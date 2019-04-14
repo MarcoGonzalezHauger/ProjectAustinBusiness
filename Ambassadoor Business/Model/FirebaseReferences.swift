@@ -27,33 +27,12 @@ func GetOffers(userId: String) -> [Offer] {
 }
 
 //Creates the offer and returns the newly created offer as an Offer instance
-func CreateOffer() -> Offer {
+func CreateOffer(offer: Offer) -> Offer {
     let ref = Database.database().reference().child("offers")
     let offerRef = ref.childByAutoId()
-    /*
-     let values = [
-     "money": 0
-     "company": Company,
-     "posts": [Post],
-     "offerdate": Date,
-     "offer_ID": String,
-     "expiredate": Date,
-     "allPostsConfrimedSince": Date?,
-     "allConfirmed": Bool,
-     "areConfirmed": Bool,
-     "isAccepted": Bool,
-     "isExpired": Bool,
-     ] as [String : Any]
-     */
-    let values: [String: AnyObject] = [:]
+    let values: [String: AnyObject] = serializeOffer(offer: offer)
     offerRef.updateChildValues(values)
-    var offerInstance = Offer(dictionary: [:])
-    offerRef.observeSingleEvent(of: .value, with: { (snapshot) in
-        if let dictionary = snapshot.value as? [String: AnyObject] {
-            offerInstance = Offer(dictionary: dictionary)
-        }
-    }, withCancel: nil)
-    return offerInstance
+    return offer
 }
 
 func GetFakeOffers() -> [Offer] {
@@ -75,7 +54,7 @@ func GetFakeOffers() -> [Offer] {
     
     //creates first NIKE post, that is for little money
     
-    fakeoffers.append(Offer.init(dictionary: ["money": 7.5 as AnyObject, "company": fakeNike as AnyObject, "posts": [
+    fakeoffers.append(Offer.init(dictionary: ["money": 7.5 as AnyObject, "company": fakeNike as AnyObject, "user_ID": "-LabEKrth-DRbVpG0WPn" as AnyObject, "posts": [
         
         Post.init(image: nil, instructions: "Post an image near a basketball court", captionMustInclude: "20% off Nike w/ AMB10 #sponsored", products: [fakeproduct[0], fakeproduct[1]], post_ID: "", PostType: .SinglePost, confirmedSince: nil, isConfirmed: false),
         
@@ -85,7 +64,7 @@ func GetFakeOffers() -> [Offer] {
     
     //creates good offer that's already been accepted, but not complete.
     
-    fakeoffers.append(Offer.init(dictionary: ["money": 13.65 as AnyObject, "company": fakeNike as AnyObject, "posts": [
+    fakeoffers.append(Offer.init(dictionary: ["money": 13.65 as AnyObject, "company": fakeNike as AnyObject, "user_ID": "-LabEKrth-DRbVpG0WPn" as AnyObject, "posts": [
         
         Post.init(image: nil, instructions: "Post an image outside", captionMustInclude: "20% off Nike w/ AMB10 #sponsored", products: [fakeproduct[0], fakeproduct[1]], post_ID: "", PostType: .SinglePost, confirmedSince: nil, isConfirmed: false),
         
@@ -97,7 +76,7 @@ func GetFakeOffers() -> [Offer] {
     
     //Offer that has been completed.
     
-    fakeoffers.append(Offer.init(dictionary: ["money": 13.44 as AnyObject, "company": JMichaels as AnyObject, "posts": [
+    fakeoffers.append(Offer.init(dictionary: ["money": 13.44 as AnyObject, "company": JMichaels as AnyObject, "user_ID": "-LabEKrth-DRbVpG0WPn" as AnyObject, "posts": [
         
         Post.init(image: nil, instructions: "Post an image using one of the proudcts.", captionMustInclude: "J Michaels #sponsored", products: [fakeproduct[3]], post_ID: "", PostType: .SinglePost, confirmedSince: nil, isConfirmed: false)]
         
@@ -107,6 +86,7 @@ func GetFakeOffers() -> [Offer] {
 }
 
 //Gets all relavent people, people who you are friends and a few random people to compete with.
+/*
 func GetRandomTestUsers() -> [User] {
     var userslist : [User] = []
     for _ : Int in (1...Int.random(in: 1...50)) {
@@ -116,13 +96,34 @@ func GetRandomTestUsers() -> [User] {
     }
     return userslist
 }
-
+*/
 func GetRandomName() ->  String {
     return "TestUser\(Int.random(in: 100...9999))"
 }
 
 func getRandomUsername() -> String {
     return "marco_m_polo"
+}
+
+func serializeOffer(offer: Offer) -> [String: AnyObject] {
+    var post_IDS: [String] = []
+    for post in offer.posts {
+        post_IDS.append(post.post_ID)
+    }
+     let values = [
+         "money": offer.money,
+         "company": offer.company.name,
+         "posts": post_IDS,
+         "offerdate": offer.offerdate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss"),
+         "offer_ID": offer.offer_ID,
+         "user_ID": offer.user_ID,
+         "expiredate": offer.expiredate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss"),
+         "allPostsConfrimedSince": offer.allPostsConfrimedSince?.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss") ?? " ",
+         "allConfirmed": offer.allConfirmed,
+         "isAccepted": offer.isAccepted,
+         "isExpired": offer.isExpired,
+     ] as [String : AnyObject]
+    return values
 }
 
 // Updates values for user in firebase via their id returns that same user
@@ -183,3 +184,12 @@ func GetAllUsers(completion: @escaping ([User]) -> ()){
     }, withCancel: nil)
 }
 
+extension Date
+{
+    func toString( dateFormat format  : String ) -> String
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter.string(from: self)
+    }
+}

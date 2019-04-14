@@ -47,6 +47,7 @@ class Offer : NSObject {
     let posts: [Post]
     let offerdate: Date
     let offer_ID: String
+    var user_ID: String
     let expiredate: Date
     var allPostsConfrimedSince: Date?
     var allConfirmed: Bool {
@@ -72,6 +73,7 @@ class Offer : NSObject {
         self.company = dictionary["company"] as! Company
         self.posts = dictionary["posts"] as! [Post]
         self.offerdate = dictionary["offerdate"] as! Date
+        self.user_ID = dictionary["user_ID"] as! String
         self.offer_ID = dictionary["offer_ID"] as! String
         self.expiredate = dictionary["expiredate"] as! Date
         self.allPostsConfrimedSince = dictionary["allPostsConfirmedSince"] as? Date
@@ -82,54 +84,15 @@ class Offer : NSObject {
 //Strcuture for users
 class User: NSObject {
     
-    var id: String? {
-        didSet {
-            updateUserInFirebase()
-        }
-    }
-    var name: String? {
-        didSet {
-            updateUserInFirebase()
-        }
-    }
-    var username: String {
-        didSet {
-            updateUserInFirebase()
-        }
-    }
-    var followerCount: Double {
-        didSet {
-            updateUserInFirebase()
-        }
-    }
-    var profilePicURL: String? {
-        didSet {
-            updateUserInFirebase()
-        }
-    }
-    var primaryCategory: Category {
-        didSet {
-            if primaryCategory.rawValue != "Other" {
-                debugPrint(primaryCategory.rawValue)
-                updateUserInFirebase()
-            }
-        }
-    }
-    var SecondaryCategory: Category? {
-        didSet {
-            updateUserInFirebase()
-        }
-    }
-    var averageLikes: Double? {
-        didSet {
-            updateUserInFirebase()
-        }
-    }
-    var zipCode: Int? {
-        didSet {
-            updateUserInFirebase()
-        }
-    }
+    var id: String?
+    var name: String?
+    var username: String
+    var followerCount: Double
+    var profilePicURL: String?
+    var primaryCategory: Category
+    var SecondaryCategory: Category?
+    var averageLikes: Double?
+    var zipCode: Int?
     
     init(dictionary: [String: Any]) {
         self.id = dictionary["id"] as? String
@@ -190,14 +153,6 @@ class User: NSObject {
     
     override var description: String {
         return "NAME: \(name ?? "NIL")\nUSERNAME: \(username)\nFOLLOWER COUNT: \(followerCount)\nPROFILE PIC: \(profilePicURL ?? "NIL")\nACCOUNT TYPE: \(primaryCategory)\nAVERAGE LIKES: \(averageLikes ?? -404)"
-    }
-    
-    func updateUserInFirebase() {
-        if self.id != "" {
-            debugPrint(self)
-            let _: User = UpdateUserInDatabase(instagramUser: self)
-            debugPrint(self.id! + " has been updated in database")
-        }
     }
 }
 

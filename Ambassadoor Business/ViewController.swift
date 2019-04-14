@@ -12,7 +12,11 @@ class ViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+        /* Testing with fake offer
+        let offers = GetFakeOffers()
+        let offer = offers[0]
+		CreateOffer(offer: offer)
+        */
 	}
 
 
