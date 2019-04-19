@@ -11,6 +11,9 @@
 		C05FE2D9225F683E002D3CAA /* FirebaseReferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FE2D8225F683E002D3CAA /* FirebaseReferences.swift */; };
 		C05FE2DB225F687C002D3CAA /* global.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FE2DA225F687C002D3CAA /* global.swift */; };
 		C089A3C52253D4E500ECF3B0 /* structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089A3C42253D4E500ECF3B0 /* structs.swift */; };
+		C0C9390622614AE3003DC925 /* InstagramAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9390522614AE3003DC925 /* InstagramAPI.swift */; };
+		C0FBFD01226154FC00BADDCD /* categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FBFD00226154FC00BADDCD /* categories.swift */; };
+		C0FBFD05226156FB00BADDCD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0FBFD04226156FA00BADDCD /* GoogleService-Info.plist */; };
 		E8C3694222161B3000AE12D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C3694122161B3000AE12D7 /* AppDelegate.swift */; };
 		E8C3694422161B3000AE12D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C3694322161B3000AE12D7 /* ViewController.swift */; };
 		E8C3694722161B3000AE12D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8C3694522161B3000AE12D7 /* Main.storyboard */; };
@@ -26,6 +29,9 @@
 		C05FE2D8225F683E002D3CAA /* FirebaseReferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseReferences.swift; sourceTree = "<group>"; };
 		C05FE2DA225F687C002D3CAA /* global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = global.swift; sourceTree = "<group>"; };
 		C089A3C42253D4E500ECF3B0 /* structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = structs.swift; sourceTree = "<group>"; };
+		C0C9390522614AE3003DC925 /* InstagramAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramAPI.swift; sourceTree = "<group>"; };
+		C0FBFD00226154FC00BADDCD /* categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = categories.swift; sourceTree = "<group>"; };
+		C0FBFD04226156FA00BADDCD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E8C3693E22161B3000AE12D7 /* Ambassadoor Business.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ambassadoor Business.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8C3694122161B3000AE12D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8C3694322161B3000AE12D7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +77,8 @@
 				C089A3C42253D4E500ECF3B0 /* structs.swift */,
 				C05FE2D8225F683E002D3CAA /* FirebaseReferences.swift */,
 				C05FE2DA225F687C002D3CAA /* global.swift */,
+				C0C9390522614AE3003DC925 /* InstagramAPI.swift */,
+				C0FBFD00226154FC00BADDCD /* categories.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -97,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				C089A3C32253D4C900ECF3B0 /* Model */,
+				C0FBFD04226156FA00BADDCD /* GoogleService-Info.plist */,
 				E8C3694122161B3000AE12D7 /* AppDelegate.swift */,
 				E8C3694322161B3000AE12D7 /* ViewController.swift */,
 				E8C3694522161B3000AE12D7 /* Main.storyboard */,
@@ -169,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8C3694F22161B3200AE12D7 /* LaunchScreen.storyboard in Resources */,
+				C0FBFD05226156FB00BADDCD /* GoogleService-Info.plist in Resources */,
 				E8C3694C22161B3200AE12D7 /* Assets.xcassets in Resources */,
 				E8C3694722161B3000AE12D7 /* Main.storyboard in Resources */,
 			);
@@ -186,7 +196,6 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Ambassadoor Business/Pods-Ambassadoor Business-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -194,7 +203,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -229,10 +237,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C05FE2DB225F687C002D3CAA /* global.swift in Sources */,
+				C0FBFD01226154FC00BADDCD /* categories.swift in Sources */,
 				C089A3C52253D4E500ECF3B0 /* structs.swift in Sources */,
 				C05FE2D9225F683E002D3CAA /* FirebaseReferences.swift in Sources */,
 				E8C3694422161B3000AE12D7 /* ViewController.swift in Sources */,
 				E8C3694222161B3000AE12D7 /* AppDelegate.swift in Sources */,
+				C0C9390622614AE3003DC925 /* InstagramAPI.swift in Sources */,
 				E8C3694A22161B3000AE12D7 /* Ambassadoor_Business.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,7 +400,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tesseractfreelance.Ambassadoor-Business";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -410,7 +420,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tesseractfreelance.Ambassadoor-Business";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

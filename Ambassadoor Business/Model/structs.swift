@@ -41,13 +41,14 @@ class ShadowView: UIView {
 }
 
 //Structure for an offer that comes into username's inbox
-class Offer : NSObject {
-    let money: Double
-    let company: Company
-    let posts: [Post]
-    let offerdate: Date
-    let offer_ID: String
-    let expiredate: Date
+class Offer: NSObject {
+    var money: Double
+    var company: Company
+    var posts: [Post]
+    var offerdate: Date
+    var offer_ID: String
+    var user_ID: String
+    var expiredate: Date
     var allPostsConfrimedSince: Date?
     var allConfirmed: Bool {
         get {
@@ -72,6 +73,7 @@ class Offer : NSObject {
         self.company = dictionary["company"] as! Company
         self.posts = dictionary["posts"] as! [Post]
         self.offerdate = dictionary["offerdate"] as! Date
+        self.user_ID = dictionary["user_ID"] as! String
         self.offer_ID = dictionary["offer_ID"] as! String
         self.expiredate = dictionary["expiredate"] as! Date
         self.allPostsConfrimedSince = dictionary["allPostsConfirmedSince"] as? Date
@@ -79,57 +81,42 @@ class Offer : NSObject {
     }
 }
 
+class TemplateOffer: Offer {
+    var targetCategories: [Category]
+    var zipCodes: [String]
+    var genders: [String]
+    
+    override init(dictionary: [String: AnyObject]) {
+        self.targetCategories = []
+        if let tcs = dictionary["targetCategories"] as? [Category] {
+            self.targetCategories = tcs
+        } else {
+            for cat in dictionary["targetCategories"] as! [String] {
+                if let c = Category.init(rawValue: cat as? String ?? "") {
+                    self.targetCategories.append(c)
+                } else {
+                    self.targetCategories.append(.Other)
+                }
+            }
+        }
+        self.zipCodes = dictionary["zipCodes"] as! [String]
+        self.genders = dictionary["genders"] as! [String]
+        super.init(dictionary: dictionary)
+    }
+}
+
 //Strcuture for users
 class User: NSObject {
     
-    var id: String? {
-        didSet {
-            updateUserInFirebase()
-        }
-    }
-    var name: String? {
-        didSet {
-            updateUserInFirebase()
-        }
-    }
-    var username: String {
-        didSet {
-            updateUserInFirebase()
-        }
-    }
-    var followerCount: Double {
-        didSet {
-            updateUserInFirebase()
-        }
-    }
-    var profilePicURL: String? {
-        didSet {
-            updateUserInFirebase()
-        }
-    }
-    var primaryCategory: Category {
-        didSet {
-            if primaryCategory.rawValue != "Other" {
-                debugPrint(primaryCategory.rawValue)
-                updateUserInFirebase()
-            }
-        }
-    }
-    var SecondaryCategory: Category? {
-        didSet {
-            updateUserInFirebase()
-        }
-    }
-    var averageLikes: Double? {
-        didSet {
-            updateUserInFirebase()
-        }
-    }
-    var zipCode: Int? {
-        didSet {
-            updateUserInFirebase()
-        }
-    }
+    var id: String?
+    var name: String?
+    var username: String
+    var followerCount: Double
+    var profilePicURL: String?
+    var primaryCategory: Category
+    var SecondaryCategory: Category?
+    var averageLikes: Double?
+    var zipCode: Int?
     
     init(dictionary: [String: Any]) {
         self.id = dictionary["id"] as? String
@@ -190,14 +177,6 @@ class User: NSObject {
     
     override var description: String {
         return "NAME: \(name ?? "NIL")\nUSERNAME: \(username)\nFOLLOWER COUNT: \(followerCount)\nPROFILE PIC: \(profilePicURL ?? "NIL")\nACCOUNT TYPE: \(primaryCategory)\nAVERAGE LIKES: \(averageLikes ?? -404)"
-    }
-    
-    func updateUserInFirebase() {
-        if self.id != "" {
-            debugPrint(self)
-            let _: User = UpdateUserInDatabase(instagramUser: self)
-            debugPrint(self.id! + " has been updated in database")
-        }
     }
 }
 

@@ -27,33 +27,12 @@ func GetOffers(userId: String) -> [Offer] {
 }
 
 //Creates the offer and returns the newly created offer as an Offer instance
-func CreateOffer() -> Offer {
+func CreateOffer(offer: Offer) -> Offer {
     let ref = Database.database().reference().child("offers")
     let offerRef = ref.childByAutoId()
-    /*
-     let values = [
-     "money": 0
-     "company": Company,
-     "posts": [Post],
-     "offerdate": Date,
-     "offer_ID": String,
-     "expiredate": Date,
-     "allPostsConfrimedSince": Date?,
-     "allConfirmed": Bool,
-     "areConfirmed": Bool,
-     "isAccepted": Bool,
-     "isExpired": Bool,
-     ] as [String : Any]
-     */
-    let values: [String: AnyObject] = [:]
+    let values: [String: AnyObject] = serializeOffer(offer: offer)
     offerRef.updateChildValues(values)
-    var offerInstance = Offer(dictionary: [:])
-    offerRef.observeSingleEvent(of: .value, with: { (snapshot) in
-        if let dictionary = snapshot.value as? [String: AnyObject] {
-            offerInstance = Offer(dictionary: dictionary)
-        }
-    }, withCancel: nil)
-    return offerInstance
+    return offer
 }
 
 func GetFakeOffers() -> [Offer] {
@@ -75,7 +54,7 @@ func GetFakeOffers() -> [Offer] {
     
     //creates first NIKE post, that is for little money
     
-    fakeoffers.append(Offer.init(dictionary: ["money": 7.5 as AnyObject, "company": fakeNike as AnyObject, "posts": [
+    fakeoffers.append(Offer.init(dictionary: ["money": 7.5 as AnyObject, "company": fakeNike as AnyObject, "user_ID": "-LabEKrth-DRbVpG0WPn" as AnyObject, "posts": [
         
         Post.init(image: nil, instructions: "Post an image near a basketball court", captionMustInclude: "20% off Nike w/ AMB10 #sponsored", products: [fakeproduct[0], fakeproduct[1]], post_ID: "", PostType: .SinglePost, confirmedSince: nil, isConfirmed: false),
         
@@ -85,7 +64,7 @@ func GetFakeOffers() -> [Offer] {
     
     //creates good offer that's already been accepted, but not complete.
     
-    fakeoffers.append(Offer.init(dictionary: ["money": 13.65 as AnyObject, "company": fakeNike as AnyObject, "posts": [
+    fakeoffers.append(Offer.init(dictionary: ["money": 13.65 as AnyObject, "company": fakeNike as AnyObject, "user_ID": "-LabEKrth-DRbVpG0WPn" as AnyObject, "posts": [
         
         Post.init(image: nil, instructions: "Post an image outside", captionMustInclude: "20% off Nike w/ AMB10 #sponsored", products: [fakeproduct[0], fakeproduct[1]], post_ID: "", PostType: .SinglePost, confirmedSince: nil, isConfirmed: false),
         
@@ -97,7 +76,7 @@ func GetFakeOffers() -> [Offer] {
     
     //Offer that has been completed.
     
-    fakeoffers.append(Offer.init(dictionary: ["money": 13.44 as AnyObject, "company": JMichaels as AnyObject, "posts": [
+    fakeoffers.append(Offer.init(dictionary: ["money": 13.44 as AnyObject, "company": JMichaels as AnyObject, "user_ID": "-LabEKrth-DRbVpG0WPn" as AnyObject, "posts": [
         
         Post.init(image: nil, instructions: "Post an image using one of the proudcts.", captionMustInclude: "J Michaels #sponsored", products: [fakeproduct[3]], post_ID: "", PostType: .SinglePost, confirmedSince: nil, isConfirmed: false)]
         
@@ -106,7 +85,26 @@ func GetFakeOffers() -> [Offer] {
     return fakeoffers
 }
 
+func GetTestTemplateOffer() -> TemplateOffer {
+    let fakeproduct = [Product.init(image: "https://media.kohlsimg.com/is/image/kohls/2375536_Gray?wid=350&hei=350&op_sharpen=1", name: "Any Nike Shoe", price: 80, buy_url: "https://store.nike.com/us/en_us/pw/mens-shoes/7puZoi3", color: "Any", product_ID: ""),
+                       Product.init(image: "https://ae01.alicdn.com/kf/HTB1_iYaljihSKJjy0Fiq6AuiFXat/Original-New-Arrival-NIKE-TEE-FUTURA-ICON-LS-Men-s-T-shirts-Long-sleeve-Sportswear.jpg_640x640.jpg", name: "Any Nike Shirt", price: 25, buy_url: "https://store.nike.com/us/en_us/pw/mens-tops-t-shirts/7puZobp", color: "Any", product_ID: ""),
+                       Product.init(image: "https://s3.amazonaws.com/nikeinc/assets/60756/USOC_MensLaydown_2625x1500_hd_1600.jpg?1469461906", name: "Any Nike Product", price: 20, buy_url: "https://www.nike.com/", color: "Any", product_ID: ""),
+                       Product.init(image: "https://s3.amazonaws.com/boutiika-assets/image_library/BTKA_1520271255702342_ddff2a8ce6a4e69bce5a8da0444a57.jpg", name: "Any of our shoes", price: 20, buy_url: "http://www.jmichaelshoes.com/shop/birkenstock-birkenstock-arizona-olive-bf-6991148", color: "Any", product_ID: "")]
+    
+    let fakeNike = Company.init(name: "Nike", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/1200px-Logo_NIKE.svg.png", mission: "Just Do It.", website: "https://www.nike.com/", account_ID: "", instagram_name: "", description: "Nike, Inc. is an American multinational corporation that is engaged in the design, development, manufacturing, and worldwide marketing and sales of footwear, apparel, equipment, accessories, and services. The company is headquartered near Beaverton, Oregon, in the Portland metropolitan area.")
+    
+    return TemplateOffer.init(dictionary: ["money": 13.65 as AnyObject, "company": fakeNike as AnyObject, "user_ID": "-LabEKrth-DRbVpG0WPn" as AnyObject, "posts": [
+        
+        Post.init(image: nil, instructions: "Post an image outside", captionMustInclude: "20% off Nike w/ AMB10 #sponsored", products: [fakeproduct[0], fakeproduct[1]], post_ID: "", PostType: .SinglePost, confirmedSince: nil, isConfirmed: false),
+        
+        Post.init(image: nil, instructions: "Post an image outside", captionMustInclude: "NIKE #ad", products: [fakeproduct[2]], post_ID: "", PostType: .MultiPost, confirmedSince: nil, isConfirmed: true),
+        
+        Post.init(image: nil, instructions: "Post an image outside", captionMustInclude: "Just Do It. #sponsored", products: [fakeproduct[2]], post_ID: "", PostType: .SinglePost, confirmedSince: nil, isConfirmed: true)] as AnyObject, "offerdate": Date().addingTimeInterval(3000) as AnyObject, "offer_ID": "fakeOffer\(Int.random(in: 1...9999999))" as AnyObject, "expiredate": Date(timeIntervalSinceNow: 86400) as AnyObject, "allPostsConfirmedSince": "" as AnyObject, "isAccepted": true as AnyObject, "targetCategories": [] as NSArray, "zipCodes": ["11942","13210"] as NSArray, "genders": ["male", "female"] as NSArray])
+}
+
+
 //Gets all relavent people, people who you are friends and a few random people to compete with.
+/*
 func GetRandomTestUsers() -> [User] {
     var userslist : [User] = []
     for _ : Int in (1...Int.random(in: 1...50)) {
@@ -116,13 +114,39 @@ func GetRandomTestUsers() -> [User] {
     }
     return userslist
 }
-
+*/
 func GetRandomName() ->  String {
     return "TestUser\(Int.random(in: 100...9999))"
 }
 
 func getRandomUsername() -> String {
     return "marco_m_polo"
+}
+
+func serializeOffer(offer: Offer) -> [String: AnyObject] {
+    var post_IDS: [String] = []
+    for post in offer.posts {
+        post_IDS.append(post.post_ID)
+    }
+    var values = [
+         "money": offer.money,
+         "company": offer.company.name,
+         "posts": post_IDS,
+         "offerdate": offer.offerdate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss"),
+         "offer_ID": offer.offer_ID,
+         "user_ID": offer.user_ID,
+         "expiredate": offer.expiredate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss"),
+         "allPostsConfrimedSince": offer.allPostsConfrimedSince?.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss") ?? " ",
+         "allConfirmed": offer.allConfirmed,
+         "isAccepted": offer.isAccepted,
+         "isExpired": offer.isExpired,
+     ] as [String : AnyObject]
+    if let templateOffer = offer as? TemplateOffer {
+        values["targetCategories"] = templateOffer.targetCategories as AnyObject
+        values["zipCodes"] = templateOffer.zipCodes as [String] as AnyObject
+        values["genders"] = templateOffer.genders as [String] as AnyObject
+    }
+    return values
 }
 
 // Updates values for user in firebase via their id returns that same user
@@ -183,3 +207,12 @@ func GetAllUsers(completion: @escaping ([User]) -> ()){
     }, withCancel: nil)
 }
 
+extension Date
+{
+    func toString( dateFormat format  : String ) -> String
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter.string(from: self)
+    }
+}

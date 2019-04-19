@@ -9,7 +9,6 @@
 import Foundation
 import UserNotifications
 import UIKit
-import SwiftKeychainWrapper
 
 //Allows any ViewController to add itself to the global as a delegate,
 //and get updated whenever there is a change to any of the global variables.
@@ -60,7 +59,4 @@ class CentralVariables {
 
 let global = CentralVariables()
 
-func SignOut() {
-    let _: Bool = KeychainWrapper.standard.removeObject(forKey: "instagramAuthToken")
-}
 
