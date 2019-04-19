@@ -41,14 +41,14 @@ class ShadowView: UIView {
 }
 
 //Structure for an offer that comes into username's inbox
-class Offer : NSObject {
-    let money: Double
-    let company: Company
-    let posts: [Post]
-    let offerdate: Date
-    let offer_ID: String
+class Offer: NSObject {
+    var money: Double
+    var company: Company
+    var posts: [Post]
+    var offerdate: Date
+    var offer_ID: String
     var user_ID: String
-    let expiredate: Date
+    var expiredate: Date
     var allPostsConfrimedSince: Date?
     var allConfirmed: Bool {
         get {
@@ -78,6 +78,30 @@ class Offer : NSObject {
         self.expiredate = dictionary["expiredate"] as! Date
         self.allPostsConfrimedSince = dictionary["allPostsConfirmedSince"] as? Date
         self.isAccepted = dictionary["isAccepted"] as! Bool
+    }
+}
+
+class TemplateOffer: Offer {
+    var targetCategories: [Category]
+    var zipCodes: [String]
+    var genders: [String]
+    
+    override init(dictionary: [String: AnyObject]) {
+        self.targetCategories = []
+        if let tcs = dictionary["targetCategories"] as? [Category] {
+            self.targetCategories = tcs
+        } else {
+            for cat in dictionary["targetCategories"] as! [String] {
+                if let c = Category.init(rawValue: cat as? String ?? "") {
+                    self.targetCategories.append(c)
+                } else {
+                    self.targetCategories.append(.Other)
+                }
+            }
+        }
+        self.zipCodes = dictionary["zipCodes"] as! [String]
+        self.genders = dictionary["genders"] as! [String]
+        super.init(dictionary: dictionary)
     }
 }
 

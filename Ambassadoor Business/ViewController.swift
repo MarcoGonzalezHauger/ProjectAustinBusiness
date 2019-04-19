@@ -12,13 +12,16 @@ class ViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        /* Testing with fake offer
+        // Testing with fake offer
+        /*
         let offers = GetFakeOffers()
         let offer = offers[0]
 		CreateOffer(offer: offer)
         */
+        // Testing with TemplateOffer
+        let templateOffer = GetTestTemplateOffer()
+        CreateOffer(offer: templateOffer)
 	}
-
 
 }
 
