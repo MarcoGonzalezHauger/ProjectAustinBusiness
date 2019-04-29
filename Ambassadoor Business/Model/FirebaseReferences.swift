@@ -5,7 +5,6 @@
 //  Created by Chris Chomicki on 4/11/19.
 //  Copyright © 2019 Tesseract Freelance, LLC. All rights reserved.
 //
-
 import Foundation
 import Firebase
 
@@ -54,13 +53,13 @@ func GetFakeOffers() -> [Offer] {
     
     //creates first NIKE post, that is for little money
     
-    fakeoffers.append(Offer.init(dictionary: ["money": 7.5 as AnyObject, "company": fakeNike as AnyObject, "user_ID": "-LabEKrth-DRbVpG0WPn" as AnyObject, "posts": [
+    fakeoffers.append(TemplateOffer.init(dictionary: ["money": 7.5 as AnyObject, "company": fakeNike as AnyObject, "posts": [
         
         Post.init(image: nil, instructions: "Post an image near a basketball court", captionMustInclude: "20% off Nike w/ AMB10 #sponsored", products: [fakeproduct[0], fakeproduct[1]], post_ID: "", PostType: .SinglePost, confirmedSince: nil, isConfirmed: false),
         
         Post.init(image: nil, instructions: "Post an image outside", captionMustInclude: "NIKE #ad", products: [fakeproduct[2]], post_ID: "", PostType: .MultiPost, confirmedSince: nil, isConfirmed: false)]
         
-        as AnyObject, "offerdate": Date().addingTimeInterval(3000) as AnyObject, "offer_ID": "fakeOffer\(Int.random(in: 1...9999999))" as AnyObject, "expiredate": Date(timeIntervalSinceNow: 86400) as AnyObject, "allPostsConfirmedSince": "" as AnyObject, "isAccepted": false as AnyObject]))
+        as AnyObject, "offerdate": Date().addingTimeInterval(3000) as AnyObject, "offer_ID": "fakeOffer\(Int.random(in: 1...9999999))" as AnyObject, "expiredate": Date(timeIntervalSinceNow: 86400) as AnyObject as AnyObject, "allPostsConfirmedSince": Date(timeIntervalSinceNow: 86400) as AnyObject, "isAccepted": false as AnyObject, "zipCodes": ["11942"] as AnyObject, "targetCategories": ["BodyBuilding"] as AnyObject, "genders": ["male"] as AnyObject, "user_IDs": [] as AnyObject]))
     
     //creates good offer that's already been accepted, but not complete.
     
@@ -93,28 +92,28 @@ func GetTestTemplateOffer() -> TemplateOffer {
     
     let fakeNike = Company.init(name: "Nike", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/1200px-Logo_NIKE.svg.png", mission: "Just Do It.", website: "https://www.nike.com/", account_ID: "", instagram_name: "", description: "Nike, Inc. is an American multinational corporation that is engaged in the design, development, manufacturing, and worldwide marketing and sales of footwear, apparel, equipment, accessories, and services. The company is headquartered near Beaverton, Oregon, in the Portland metropolitan area.")
     
-    return TemplateOffer.init(dictionary: ["money": 13.65 as AnyObject, "company": fakeNike as AnyObject, "posts": [
+    return TemplateOffer.init(dictionary: ["money": 13.65 as AnyObject, "company": fakeNike as AnyObject, "user_ID": "-LabEKrth-DRbVpG0WPn" as AnyObject, "posts": [
         
         Post.init(image: nil, instructions: "Post an image outside", captionMustInclude: "20% off Nike w/ AMB10 #sponsored", products: [fakeproduct[0], fakeproduct[1]], post_ID: "", PostType: .SinglePost, confirmedSince: nil, isConfirmed: false),
         
         Post.init(image: nil, instructions: "Post an image outside", captionMustInclude: "NIKE #ad", products: [fakeproduct[2]], post_ID: "", PostType: .MultiPost, confirmedSince: nil, isConfirmed: true),
         
-        Post.init(image: nil, instructions: "Post an image outside", captionMustInclude: "Just Do It. #sponsored", products: [fakeproduct[2]], post_ID: "", PostType: .SinglePost, confirmedSince: nil, isConfirmed: true)] as AnyObject, "offerdate": Date().addingTimeInterval(3000) as AnyObject, "offer_ID": "fakeOffer\(Int.random(in: 1...9999999))" as AnyObject, "expiredate": Date(timeIntervalSinceNow: 86400) as AnyObject, "allPostsConfirmedSince": "" as AnyObject, "isAccepted": true as AnyObject, "targetCategories": [] as NSArray, "zipCodes": ["11942","13210"] as NSArray, "genders": ["male", "female"] as NSArray, "user_IDs": [] as NSArray])
+        Post.init(image: nil, instructions: "Post an image outside", captionMustInclude: "Just Do It. #sponsored", products: [fakeproduct[2]], post_ID: "", PostType: .SinglePost, confirmedSince: nil, isConfirmed: true)] as AnyObject, "offerdate": Date().addingTimeInterval(3000) as AnyObject, "offer_ID": "fakeOffer\(Int.random(in: 1...9999999))" as AnyObject, "expiredate": Date(timeIntervalSinceNow: 86400) as AnyObject, "allPostsConfirmedSince": "" as AnyObject, "isAccepted": true as AnyObject, "targetCategories": [] as NSArray, "zipCodes": ["11942","13210"] as NSArray, "genders": ["male", "female"] as NSArray])
 }
 
 
 //Gets all relavent people, people who you are friends and a few random people to compete with.
 /*
-func GetRandomTestUsers() -> [User] {
-    var userslist : [User] = []
-    for _ : Int in (1...Int.random(in: 1...50)) {
-        for x : Category in [.Entrepreneuner, .Hiker, .WinterSports, .Baseball, .Basketball, .Golf, .Tennis, .Soccer, .Football, .Boxing, .MMA, .Swimming, .TableTennis, .Gymnastics, .Dancer, .Rugby, .Bowling, .Frisbee, .Cricket, .SpeedBiking, .MountainBiking, .WaterSkiing, .Running, .PowerLifting, .BodyBuilding, .Wrestling, .StrongMan, .NASCAR, .RalleyRacing, .Parkour, .Model, .Makeup, .Actor, .RunwayModel, .Designer, .Brand, .Stylist, .HairStylist, .FasionArtist, .Painter, .Sketcher, .Musician, .Band, .SingerSongWriter, .WinterSports] {
-            userslist.append(User.init(dictionary: ["name": GetRandomName() as AnyObject, "username": getRandomUsername() as AnyObject, "followerCount": Double(Int.random(in: 10...1000) << 2) as AnyObject, "profilePicture": "https://scontent-lga3-1.cdninstagram.com/vp/60d965d5d78243bd600e899ceef7b22e/5D03F5A8/t51.2885-19/s150x150/16123627_1826526524262048_8535256149333639168_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com" as  AnyObject, "primaryCategory": x as AnyObject, "averageLikes": pow(Double(Int.random(in: 1...1000)), 2) as AnyObject, "id": "" as AnyObject]))
-        }
-    }
-    return userslist
-}
-*/
+ func GetRandomTestUsers() -> [User] {
+ var userslist : [User] = []
+ for _ : Int in (1...Int.random(in: 1...50)) {
+ for x : Category in [.Entrepreneuner, .Hiker, .WinterSports, .Baseball, .Basketball, .Golf, .Tennis, .Soccer, .Football, .Boxing, .MMA, .Swimming, .TableTennis, .Gymnastics, .Dancer, .Rugby, .Bowling, .Frisbee, .Cricket, .SpeedBiking, .MountainBiking, .WaterSkiing, .Running, .PowerLifting, .BodyBuilding, .Wrestling, .StrongMan, .NASCAR, .RalleyRacing, .Parkour, .Model, .Makeup, .Actor, .RunwayModel, .Designer, .Brand, .Stylist, .HairStylist, .FasionArtist, .Painter, .Sketcher, .Musician, .Band, .SingerSongWriter, .WinterSports] {
+ userslist.append(User.init(dictionary: ["name": GetRandomName() as AnyObject, "username": getRandomUsername() as AnyObject, "followerCount": Double(Int.random(in: 10...1000) << 2) as AnyObject, "profilePicture": "https://scontent-lga3-1.cdninstagram.com/vp/60d965d5d78243bd600e899ceef7b22e/5D03F5A8/t51.2885-19/s150x150/16123627_1826526524262048_8535256149333639168_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com" as  AnyObject, "primaryCategory": x as AnyObject, "averageLikes": pow(Double(Int.random(in: 1...1000)), 2) as AnyObject, "id": "" as AnyObject]))
+ }
+ }
+ return userslist
+ }
+ */
 func GetRandomName() ->  String {
     return "TestUser\(Int.random(in: 100...9999))"
 }
@@ -131,16 +130,16 @@ func serializeOffer(offer: Offer) -> [String: AnyObject] {
     var values = [
         "money": offer.money as AnyObject,
         "company": offer.company.name as AnyObject,
-         "posts": post_IDS as AnyObject,
-         "offerdate": offer.offerdate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss") as AnyObject,
-         "offer_ID": offer.offer_ID as AnyObject,
-         "user_ID": offer.user_ID as AnyObject,
-         "expiredate": offer.expiredate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss") as AnyObject,
-         "allPostsConfirmedSince": offer.allPostsConfirmedSince?.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss") ?? " " as AnyObject,
-         "allConfirmed": offer.allConfirmed,
-         "isAccepted": offer.isAccepted,
-         "isExpired": offer.isExpired,
-     ] as [String : AnyObject]
+        "posts": post_IDS as AnyObject,
+        "offerdate": offer.offerdate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss") as AnyObject,
+        "offer_ID": offer.offer_ID as AnyObject,
+        "user_ID": offer.user_ID as AnyObject,
+        "expiredate": offer.expiredate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss") as AnyObject,
+        "allPostsConfirmedSince": offer.allPostsConfirmedSince?.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss") ?? " ",
+        "allConfirmed": offer.allConfirmed,
+        "isAccepted": offer.isAccepted,
+        "isExpired": offer.isExpired,
+        ] as [String : AnyObject]
     if let templateOffer = offer as? TemplateOffer {
         values["targetCategories"] = templateOffer.targetCategories as AnyObject
         values["zipCodes"] = templateOffer.zipCodes as [String] as AnyObject
@@ -192,7 +191,7 @@ func CreateAccount(instagramUser: [String: Any], completed: @escaping (_ userDic
 }
 
 // Query all users in Firebase and to do filtering based on algorithm
-func GetAllUsers(completion: @escaping ([User]) -> ()){
+func GetAllUsers(completion: @escaping ([User]) -> ()) {
     let usersRef = Database.database().reference().child("users")
     var users: [User] = []
     usersRef.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -205,6 +204,74 @@ func GetAllUsers(completion: @escaping ([User]) -> ()){
             completion(users)
         }
     }, withCancel: nil)
+}
+
+func sendOffer(offer: Offer, completion: @escaping (Offer) -> ()) {
+    let offersRef = Database.database().reference().child("offers")
+    let offerKey = offersRef.childByAutoId()
+    offer.offer_ID = offerKey.key!
+    var offerDictionary: [String: Any] = [:]
+    if type(of: offer) == TemplateOffer.self {
+        findInfluencers(offer: offer as! TemplateOffer, completion: { (o) in
+            offerDictionary = API.serializeTemplateOffer(offer: o)
+            offerKey.updateChildValues(offerDictionary)
+        })
+    } else {
+        offerDictionary = API.serializeOffer(offer: offer)
+        offerKey.updateChildValues(offerDictionary)
+    }
+    debugPrint(offerDictionary)
+}
+
+func findInfluencers(offer: TemplateOffer, completion: @escaping (TemplateOffer) -> ()) {
+    var count = 0
+    GetAllUsers(completion: { (users) in
+        debugPrint(users)
+        for user in users {
+            var inList: Bool = false
+            for zip in offer.zipCodes {
+                if user.zipCode == zip {
+                    offer.user_IDs.append(user.id!)
+                    count += 1
+                    inList = true
+                    
+                }
+                if inList {
+                    break
+                }
+            }
+            if inList {
+                continue
+            }
+            if user.primaryCategory != nil {
+                for cat in offer.targetCategories {
+                    if user.primaryCategory == cat {
+                        offer.user_IDs.append(user.id!)
+                        count += 1
+                        inList = true
+                    }
+                    if inList {
+                        break
+                    }
+                }
+            }
+            if inList {
+                continue
+            }
+            for gender in offer.genders {
+                if user.gender == gender {
+                    offer.user_IDs.append(user.id!)
+                    count += 1
+                    inList = true
+                }
+                if inList {
+                    break
+                }
+            }
+        }
+        completion(offer)
+    })
+    
 }
 
 extension Date
