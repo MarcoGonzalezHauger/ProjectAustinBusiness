@@ -41,6 +41,14 @@ class CentralVariables {
         }
     }
     var delegates: [GlobalListener] = []
+	
+	
+	//Passive Variables. No option to listen for change.
+	
+	var products: [Product] = []
+	var OfferDrafts: [TemplateOffer] = []
+	
+	
 }
 
 let global = CentralVariables()
