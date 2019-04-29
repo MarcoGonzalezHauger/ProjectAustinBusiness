@@ -93,13 +93,13 @@ func GetTestTemplateOffer() -> TemplateOffer {
     
     let fakeNike = Company.init(name: "Nike", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/1200px-Logo_NIKE.svg.png", mission: "Just Do It.", website: "https://www.nike.com/", account_ID: "", instagram_name: "", description: "Nike, Inc. is an American multinational corporation that is engaged in the design, development, manufacturing, and worldwide marketing and sales of footwear, apparel, equipment, accessories, and services. The company is headquartered near Beaverton, Oregon, in the Portland metropolitan area.")
     
-    return TemplateOffer.init(dictionary: ["money": 13.65 as AnyObject, "company": fakeNike as AnyObject, "user_ID": "-LabEKrth-DRbVpG0WPn" as AnyObject, "posts": [
+    return TemplateOffer.init(dictionary: ["money": 13.65 as AnyObject, "company": fakeNike as AnyObject, "posts": [
         
         Post.init(image: nil, instructions: "Post an image outside", captionMustInclude: "20% off Nike w/ AMB10 #sponsored", products: [fakeproduct[0], fakeproduct[1]], post_ID: "", PostType: .SinglePost, confirmedSince: nil, isConfirmed: false),
         
         Post.init(image: nil, instructions: "Post an image outside", captionMustInclude: "NIKE #ad", products: [fakeproduct[2]], post_ID: "", PostType: .MultiPost, confirmedSince: nil, isConfirmed: true),
         
-        Post.init(image: nil, instructions: "Post an image outside", captionMustInclude: "Just Do It. #sponsored", products: [fakeproduct[2]], post_ID: "", PostType: .SinglePost, confirmedSince: nil, isConfirmed: true)] as AnyObject, "offerdate": Date().addingTimeInterval(3000) as AnyObject, "offer_ID": "fakeOffer\(Int.random(in: 1...9999999))" as AnyObject, "expiredate": Date(timeIntervalSinceNow: 86400) as AnyObject, "allPostsConfirmedSince": "" as AnyObject, "isAccepted": true as AnyObject, "targetCategories": [] as NSArray, "zipCodes": ["11942","13210"] as NSArray, "genders": ["male", "female"] as NSArray])
+        Post.init(image: nil, instructions: "Post an image outside", captionMustInclude: "Just Do It. #sponsored", products: [fakeproduct[2]], post_ID: "", PostType: .SinglePost, confirmedSince: nil, isConfirmed: true)] as AnyObject, "offerdate": Date().addingTimeInterval(3000) as AnyObject, "offer_ID": "fakeOffer\(Int.random(in: 1...9999999))" as AnyObject, "expiredate": Date(timeIntervalSinceNow: 86400) as AnyObject, "allPostsConfirmedSince": "" as AnyObject, "isAccepted": true as AnyObject, "targetCategories": [] as NSArray, "zipCodes": ["11942","13210"] as NSArray, "genders": ["male", "female"] as NSArray, "user_IDs": [] as NSArray])
 }
 
 
@@ -129,14 +129,14 @@ func serializeOffer(offer: Offer) -> [String: AnyObject] {
         post_IDS.append(post.post_ID)
     }
     var values = [
-         "money": offer.money,
-         "company": offer.company.name,
-         "posts": post_IDS,
-         "offerdate": offer.offerdate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss"),
-         "offer_ID": offer.offer_ID,
-         "user_ID": offer.user_ID,
-         "expiredate": offer.expiredate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss"),
-         "allPostsConfrimedSince": offer.allPostsConfrimedSince?.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss") ?? " ",
+        "money": offer.money as AnyObject,
+        "company": offer.company.name as AnyObject,
+         "posts": post_IDS as AnyObject,
+         "offerdate": offer.offerdate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss") as AnyObject,
+         "offer_ID": offer.offer_ID as AnyObject,
+         "user_ID": offer.user_ID as AnyObject,
+         "expiredate": offer.expiredate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss") as AnyObject,
+         "allPostsConfirmedSince": offer.allPostsConfirmedSince?.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss") ?? " " as AnyObject,
          "allConfirmed": offer.allConfirmed,
          "isAccepted": offer.isAccepted,
          "isExpired": offer.isExpired,

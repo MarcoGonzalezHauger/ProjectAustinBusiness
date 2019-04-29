@@ -5,7 +5,6 @@
 //  Created by Chris Chomicki on 4/2/19.
 //  Copyright © 2019 Tesseract Freelance, LLC. All rights reserved.
 //
-
 import Foundation
 import UIKit
 
@@ -42,14 +41,14 @@ class ShadowView: UIView {
 
 //Structure for an offer that comes into username's inbox
 class Offer: NSObject {
+    var offer_ID: String
     var money: Double
     var company: Company
     var posts: [Post]
     var offerdate: Date
-    var offer_ID: String
-    var user_ID: String
+    var user_ID: String?
     var expiredate: Date
-    var allPostsConfrimedSince: Date?
+    var allPostsConfirmedSince: Date?
     var allConfirmed: Bool {
         get {
             var areConfirmed = true
@@ -73,10 +72,12 @@ class Offer: NSObject {
         self.company = dictionary["company"] as! Company
         self.posts = dictionary["posts"] as! [Post]
         self.offerdate = dictionary["offerdate"] as! Date
-        self.user_ID = dictionary["user_ID"] as! String
+        if dictionary["user_ID"] != nil {
+            self.user_ID = dictionary["user_ID"] as! String
+        }
         self.offer_ID = dictionary["offer_ID"] as! String
         self.expiredate = dictionary["expiredate"] as! Date
-        self.allPostsConfrimedSince = dictionary["allPostsConfirmedSince"] as? Date
+        self.allPostsConfirmedSince = dictionary["allPostsConfirmedSince"] as? Date
         self.isAccepted = dictionary["isAccepted"] as! Bool
     }
 }
@@ -85,7 +86,8 @@ class TemplateOffer: Offer {
     var targetCategories: [Category]
     var zipCodes: [String]
     var genders: [String]
-    
+    var user_IDs: [String]
+
     override init(dictionary: [String: AnyObject]) {
         self.targetCategories = []
         if let tcs = dictionary["targetCategories"] as? [Category] {
@@ -101,6 +103,7 @@ class TemplateOffer: Offer {
         }
         self.zipCodes = dictionary["zipCodes"] as! [String]
         self.genders = dictionary["genders"] as! [String]
+        self.user_IDs = dictionary["user_IDs"] as! [String]
         super.init(dictionary: dictionary)
     }
 }
@@ -116,7 +119,8 @@ class User: NSObject {
     var primaryCategory: Category
     var SecondaryCategory: Category?
     var averageLikes: Double?
-    var zipCode: Int?
+    var zipCode: String?
+    var gender: String?
     
     init(dictionary: [String: Any]) {
         self.id = dictionary["id"] as? String
@@ -172,7 +176,8 @@ class User: NSObject {
         }
         
         self.averageLikes = dictionary["averageLikes"] as? Double
-        self.zipCode = dictionary["zipCode"] as? Int
+        self.zipCode = dictionary["zipCode"] as? String
+        self.gender = dictionary["gender"] as? String
     }
     
     override var description: String {
@@ -226,4 +231,3 @@ enum Gender {
 enum TypeofPost {
     case SinglePost, MultiPost, Story
 }
-
