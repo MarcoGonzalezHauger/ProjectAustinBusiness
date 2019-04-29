@@ -5,7 +5,6 @@
 //  Created by Chris Chomicki on 4/12/19.
 //  Copyright © 2019 Tesseract Freelance, LLC. All rights reserved.
 //
-
 import Foundation
 
 struct API {
@@ -66,12 +65,47 @@ struct API {
             "primaryCategory": user.primaryCategory.rawValue,
             "secondaryCategory": user.SecondaryCategory == nil ? "" : user.SecondaryCategory!.rawValue,
             "averageLikes": user.averageLikes ?? "",
-            "zipCode": user.zipCode as Any
+            "zipCode": user.zipCode as Any,
+            "gender": user.gender as! String
         ]
         if id != "" {
             userData["id"] = id
         }
         return userData
+    }
+    
+    static func serializeTemplateOffer(offer: TemplateOffer) -> [String: Any] {
+        var offerData = serializeOffer(offer: offer)
+        var cats: [String] = []
+        for cat in offer.targetCategories {
+            cats.append(cat.rawValue)
+        }
+        offerData["targetCategories"] = cats
+        offerData["zipCodes"] = offer.zipCodes
+        offerData["genders"] = offer.genders
+        offerData["user_IDs"] = offer.user_IDs
+        return offerData
+    }
+    
+    static func serializeOffer(offer: Offer) -> [String: Any] {
+        var post_IDS: [String] = []
+        for post in offer.posts {
+            post_IDS.append(post.post_ID)
+        }
+        let offerData: [String: Any] = [
+            "offer_ID": offer.offer_ID,
+            "money": offer.money,
+            "company": offer.company.account_ID,
+            "posts": post_IDS,
+            "offerdate": offer.offerdate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss"),
+            "user_ID": offer.user_ID as Any,
+            "expiredate": offer.expiredate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss"),
+            "allPostsConfirmedSince": offer.allPostsConfirmedSince!.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss"),
+            "allConfirmed": offer.allConfirmed,
+            "isAccepted": offer.isAccepted,
+            "isExpired": offer.isExpired,
+            ]
+        return offerData
     }
     
     static func getProfilePictureURL(userId: String) -> String {
