@@ -12,15 +12,19 @@ class ViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        // Testing with fake offer
+        // Testing with fake offer, just creates the offer
         /*
         let offers = GetFakeOffers()
         let offer = offers[0]
 		CreateOffer(offer: offer)
         */
-        // Testing with TemplateOffer
+        // Testing with TemplateOffer (assigns user to template offer based on findInfluencer alg
+        /*
         let templateOffer = GetTestTemplateOffer()
-        CreateOffer(offer: templateOffer)
+        sendOffer(offer: templateOffer, completion: { (offer) in
+            debugPrint(offer)
+        })
+    `   */
 	}
 
 }
