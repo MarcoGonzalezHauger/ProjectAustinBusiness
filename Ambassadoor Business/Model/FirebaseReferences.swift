@@ -235,20 +235,18 @@ func findInfluencers(offer: TemplateOffer, money: Double, completion: @escaping 
             if moneyForOffer <= 0 {
                 return
             }
-            let cost: Double = calculateCostForUser(offer: offer, user: user)
-            var inList: Bool = false
-            for zip in offer.zipCodes {
-                if user.zipCode == zip {
-                    inList = true
-                }
-            }
-            if user.primaryCategory != nil {
-                for cat in offer.targetCategories {
-                    if user.primaryCategory == cat {
-                        inList = true
-                    }
-                }
-            }
+			let cost: Double = calculateCostForUser(offer: offer, user: user)
+			var inList: Bool = false
+			for zip in offer.zipCodes {
+				if user.zipCode == zip {
+					inList = true
+				}
+			}
+			for cat in offer.targetCategories {
+				if user.primaryCategory == cat {
+					inList = true
+				}
+			}
             for gender in offer.genders {
                 if user.gender == gender {
                     inList = true
