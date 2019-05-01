@@ -21,10 +21,10 @@ class ViewController: UIViewController {
         // Testing with TemplateOffer (assigns user to template offer based on findInfluencer alg
         /*
         let templateOffer = GetTestTemplateOffer()
-        sendOffer(offer: templateOffer, completion: { (offer) in
+        sendOffer(offer: templateOffer, money: 1000, completion: { (offer) in
             debugPrint(offer)
         })
-    `   */
+        */
 	}
 
 }
