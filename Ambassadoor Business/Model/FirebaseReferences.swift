@@ -206,13 +206,13 @@ func GetAllUsers(completion: @escaping ([User]) -> ()) {
     }, withCancel: nil)
 }
 
-func sendOffer(offer: Offer, completion: @escaping (Offer) -> ()) {
+func sendOffer(offer: Offer, money: Double, completion: @escaping (Offer) -> ()) {
     let offersRef = Database.database().reference().child("offers")
     let offerKey = offersRef.childByAutoId()
     offer.offer_ID = offerKey.key!
     var offerDictionary: [String: Any] = [:]
     if type(of: offer) == TemplateOffer.self {
-        findInfluencers(offer: offer as! TemplateOffer, completion: { (o) in
+        findInfluencers(offer: offer as! TemplateOffer, money: money, completion: { (o) in
             offerDictionary = API.serializeTemplateOffer(offer: o)
             offerKey.updateChildValues(offerDictionary)
         })
@@ -223,50 +223,41 @@ func sendOffer(offer: Offer, completion: @escaping (Offer) -> ()) {
     debugPrint(offerDictionary)
 }
 
-func findInfluencers(offer: TemplateOffer, completion: @escaping (TemplateOffer) -> ()) {
+func calculateCostForUser(offer: Offer, user: User) -> Double {
+    return 0.055 * user.averageLikes! * Double(offer.posts.count)
+}
+
+func findInfluencers(offer: TemplateOffer, money: Double, completion: @escaping (TemplateOffer) -> ()) {
+    var moneyForOffer = money
     var count = 0
     GetAllUsers(completion: { (users) in
-        debugPrint(users)
         for user in users {
+            if moneyForOffer <= 0 {
+                return
+            }
+            let cost: Double = calculateCostForUser(offer: offer, user: user)
             var inList: Bool = false
             for zip in offer.zipCodes {
                 if user.zipCode == zip {
-                    offer.user_IDs.append(user.id!)
-                    count += 1
                     inList = true
-                    
                 }
-                if inList {
-                    break
-                }
-            }
-            if inList {
-                continue
             }
             if user.primaryCategory != nil {
                 for cat in offer.targetCategories {
                     if user.primaryCategory == cat {
-                        offer.user_IDs.append(user.id!)
-                        count += 1
                         inList = true
                     }
-                    if inList {
-                        break
-                    }
                 }
-            }
-            if inList {
-                continue
             }
             for gender in offer.genders {
                 if user.gender == gender {
-                    offer.user_IDs.append(user.id!)
-                    count += 1
                     inList = true
                 }
-                if inList {
-                    break
-                }
+            }
+            if inList {
+                offer.user_IDs.append(user.id!)
+                count += 1
+                moneyForOffer -= cost
             }
         }
         completion(offer)
