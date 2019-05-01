@@ -202,7 +202,7 @@ struct Product {
     let image: String?
     let name: String
     let price: Double
-    let buy_url: String
+    let buy_url: String?
     let color: String
     let product_ID: String
 }

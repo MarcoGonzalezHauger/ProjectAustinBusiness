@@ -19,6 +19,7 @@
 		E84600852273A92A00CF60F2 /* BusinessLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84600842273A92A00CF60F2 /* BusinessLabel.swift */; };
 		E84600872273AF9100CF60F2 /* ImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84600862273AF9100CF60F2 /* ImageViewExtensions.swift */; };
 		E846008A2273B0B300CF60F2 /* Savvy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84600892273B0B300CF60F2 /* Savvy.swift */; };
+		E89C83682277A49400124420 /* ViewProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C83672277A49400124420 /* ViewProductVC.swift */; };
 		E8C3694222161B3000AE12D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C3694122161B3000AE12D7 /* AppDelegate.swift */; };
 		E8C3694422161B3000AE12D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C3694322161B3000AE12D7 /* ViewController.swift */; };
 		E8C3694722161B3000AE12D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8C3694522161B3000AE12D7 /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 		E84600842273A92A00CF60F2 /* BusinessLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessLabel.swift; sourceTree = "<group>"; };
 		E84600862273AF9100CF60F2 /* ImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtensions.swift; sourceTree = "<group>"; };
 		E84600892273B0B300CF60F2 /* Savvy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Savvy.swift; sourceTree = "<group>"; };
+		E89C83672277A49400124420 /* ViewProductVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProductVC.swift; sourceTree = "<group>"; };
 		E8C3693E22161B3000AE12D7 /* Ambassadoor Business.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ambassadoor Business.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8C3694122161B3000AE12D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8C3694322161B3000AE12D7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 		E846007E2273A5F800CF60F2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E84600842273A92A00CF60F2 /* BusinessLabel.swift */,
 				E846007F2273A65600CF60F2 /* StandardNC.swift */,
 			);
 			path = Resources;
@@ -106,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				E84600822273A8CA00CF60F2 /* ProductsVC.swift */,
+				E89C83672277A49400124420 /* ViewProductVC.swift */,
 			);
 			path = Products;
 			sourceTree = "<group>";
@@ -151,7 +155,6 @@
 				E8C3694D22161B3200AE12D7 /* LaunchScreen.storyboard */,
 				E8C3695022161B3200AE12D7 /* Info.plist */,
 				E8C3694822161B3000AE12D7 /* Ambassadoor_Business.xcdatamodeld */,
-				E84600842273A92A00CF60F2 /* BusinessLabel.swift */,
 			);
 			path = "Ambassadoor Business";
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				C05FE2D9225F683E002D3CAA /* FirebaseReferences.swift in Sources */,
 				E8C3694422161B3000AE12D7 /* ViewController.swift in Sources */,
 				E8C3694222161B3000AE12D7 /* AppDelegate.swift in Sources */,
+				E89C83682277A49400124420 /* ViewProductVC.swift in Sources */,
 				C0C9390622614AE3003DC925 /* InstagramAPI.swift in Sources */,
 				E8C3694A22161B3000AE12D7 /* Ambassadoor_Business.xcdatamodeld in Sources */,
 			);
