@@ -8,7 +8,7 @@
 
 import Foundation
 
-var YourCompany: Company {
+var YourCompany: Company! {
 	didSet {
 		//update company info.
 	}

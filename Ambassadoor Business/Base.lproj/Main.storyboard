@@ -127,7 +127,7 @@
         <!--Edit CompanyTVC-->
         <scene sceneID="y0Q-6B-Rze">
             <objects>
-                <tableViewController id="7hj-gQ-qv2" customClass="EditCompanyTVC" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="7hj-gQ-qv2" customClass="EditCompanyTVC" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dro-7y-7UF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -347,6 +347,11 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="selectedIndex">
+                            <integer key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="bds-I6-Cch"/>
                         <segue destination="g8f-wY-PKV" kind="relationship" relationship="viewControllers" id="Iy1-Na-xox"/>
@@ -632,10 +637,10 @@
             </objects>
             <point key="canvasLocation" x="1079.7101449275362" y="1927.9891304347827"/>
         </scene>
-        <!--View Controller-->
+        <!--StatsVC-->
         <scene sceneID="dY7-vX-u2k">
             <objects>
-                <viewController id="053-Mc-EGV" customClass="ViewController" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="053-Mc-EGV" customClass="StatsVC" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RdR-7x-E1T">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

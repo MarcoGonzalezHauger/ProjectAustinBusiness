@@ -24,11 +24,11 @@ class EditCompanyTVC: UITableViewController {
 	@IBOutlet weak var companyLogo: UIImageView!
 	
 	var logo: String?
-	var AccountID: String
-	var InstagramName: String
+	var AccountID: String?
+	var InstagramName: String?
 	var delegate: editDelegate?
 	
-	var ThisCompany: Company
+	var ThisCompany: Company!
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +38,7 @@ class EditCompanyTVC: UITableViewController {
 		webTextBox.text = ThisCompany.website
 		logo = ThisCompany.logo
 		if ThisCompany.logo != nil && ThisCompany.logo != "" {
-			if let thisUrl = URL(logo) {
+			if let thisUrl = URL(string: logo!) {
 				companyLogo.downloadedFrom(url: thisUrl)
 			}
 		}
@@ -61,7 +61,7 @@ class EditCompanyTVC: UITableViewController {
 			}
 		}
 		if !problem {
-			delegate?.editsMade(newCompany: Company(name: nameTextBox.text, logo: logo, mission: missionTextBox.text, website: webTextBox.text, account_ID: AccountID, instagram_name: InstagramName, description: descTextBox.text))
+			delegate?.editsMade(newCompany: Company(name: nameTextBox.text!, logo: logo, mission: missionTextBox.text, website: webTextBox.text, account_ID: AccountID ?? "", instagram_name: InstagramName ?? "", description: descTextBox.text))
 			dismiss(animated: true, completion: nil)
 		}
 	}
@@ -75,11 +75,11 @@ class EditCompanyTVC: UITableViewController {
 	
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 4
     }
 	
 }

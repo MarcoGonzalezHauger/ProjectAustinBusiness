@@ -35,7 +35,7 @@ class ViewCompanyVC: UIViewController, editDelegate {
 		companyDescription.text = YourCompany.description
 		
 		if YourCompany.logo != nil && YourCompany.logo != "" {
-			if let thisUrl = URL(YourCompany.logo!) {
+			if let thisUrl = URL(string: YourCompany.logo!) {
 				companyLogo.downloadedFrom(url: thisUrl)
 			} else {
 				companyLogo.image = UIImage.init(named: "defaultCompany")

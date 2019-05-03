@@ -15,7 +15,3 @@ target 'Ambassadoor Business' do
   
   
 end
-
-pod repo remove master
-pod repo update
-pod install --verbose

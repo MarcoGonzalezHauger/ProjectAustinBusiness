@@ -12,7 +12,8 @@ class StatsVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		YourCompany = Company(name: "KRILL GROUP", logo: nil, mission: "Turn a profit.", website: "https://www.google.com/", account_ID: "0", instagram_name: "marcogonzalezhauger", description: "No description to see here!s")
+		YourCompany = Company(name: "KRILL GROUP", logo: nil, mission: "Turn a profit.", website: "https://www.google.com/", account_ID: "0", instagram_name: "marcogonzalezhauger", description: "No description to see here!")
 	}
 
 }
+
