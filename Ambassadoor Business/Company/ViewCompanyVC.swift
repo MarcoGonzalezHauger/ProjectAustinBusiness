@@ -28,6 +28,12 @@ class ViewCompanyVC: UIViewController, editDelegate {
 		updateCompanyInfo()
     }
 	
+	@IBAction func GoToWebsite(_ sender: Any) {
+		if let url = URL(string: YourCompany.website) {
+			UIApplication.shared.open(url, options: [:])
+		}
+	}
+	
 	func updateCompanyInfo() {
 		
 		companyName.text = YourCompany.name

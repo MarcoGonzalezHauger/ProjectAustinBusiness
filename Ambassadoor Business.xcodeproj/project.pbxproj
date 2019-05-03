@@ -14,6 +14,7 @@
 		C0C9390622614AE3003DC925 /* InstagramAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9390522614AE3003DC925 /* InstagramAPI.swift */; };
 		C0FBFD01226154FC00BADDCD /* categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FBFD00226154FC00BADDCD /* categories.swift */; };
 		E83D9A39226A20B6007BDD97 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E83D9A38226A20B6007BDD97 /* GoogleService-Info.plist */; };
+		E83F378D227CDEE100BA6688 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F378C227CDEE100BA6688 /* SignUpVC.swift */; };
 		E84600802273A65600CF60F2 /* StandardNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E846007F2273A65600CF60F2 /* StandardNC.swift */; };
 		E84600832273A8CB00CF60F2 /* ProductsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84600822273A8CA00CF60F2 /* ProductsVC.swift */; };
 		E84600852273A92A00CF60F2 /* BusinessLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84600842273A92A00CF60F2 /* BusinessLabel.swift */; };
@@ -42,6 +43,7 @@
 		C0C9390522614AE3003DC925 /* InstagramAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramAPI.swift; sourceTree = "<group>"; };
 		C0FBFD00226154FC00BADDCD /* categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = categories.swift; sourceTree = "<group>"; };
 		E83D9A38226A20B6007BDD97 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E83F378C227CDEE100BA6688 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		E846007F2273A65600CF60F2 /* StandardNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardNC.swift; sourceTree = "<group>"; };
 		E84600822273A8CA00CF60F2 /* ProductsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsVC.swift; sourceTree = "<group>"; };
 		E84600842273A92A00CF60F2 /* BusinessLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessLabel.swift; sourceTree = "<group>"; };
@@ -104,6 +106,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		E83F378B227CDEBA00BA6688 /* Sign Up */ = {
+			isa = PBXGroup;
+			children = (
+				E83F378C227CDEE100BA6688 /* SignUpVC.swift */,
+			);
+			path = "Sign Up";
+			sourceTree = "<group>";
+		};
 		E846007E2273A5F800CF60F2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				E8E54688227BA3E800775A07 /* YourCompany.swift */,
+				E83F378B227CDEBA00BA6688 /* Sign Up */,
 				E8E5468A227BC9D800775A07 /* Statistics */,
 				E8E54683227BA16C00775A07 /* Company */,
 				E84600882273AFA400CF60F2 /* Extentions */,
@@ -313,6 +324,7 @@
 				E84600872273AF9100CF60F2 /* ImageViewExtensions.swift in Sources */,
 				E84600802273A65600CF60F2 /* StandardNC.swift in Sources */,
 				C0FBFD01226154FC00BADDCD /* categories.swift in Sources */,
+				E83F378D227CDEE100BA6688 /* SignUpVC.swift in Sources */,
 				C089A3C52253D4E500ECF3B0 /* structs.swift in Sources */,
 				E8E5468C227BC9E900775A07 /* StatsVC.swift in Sources */,
 				E84600852273A92A00CF60F2 /* BusinessLabel.swift in Sources */,

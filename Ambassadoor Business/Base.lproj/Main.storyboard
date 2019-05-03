@@ -53,19 +53,23 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gw8-go-yIm" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                <rect key="frame" x="20" y="631" width="374" height="40"/>
+                                <rect key="frame" x="16" y="631" width="382" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dqu-R9-PXl">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <state key="normal" title="View Website"/>
+                                        <connections>
+                                            <action selector="GoToWebsite:" destination="BYZ-38-t0r" eventType="touchUpInside" id="erZ-JH-Phr"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="dqu-R9-PXl" secondAttribute="trailing" id="7KZ-Ag-PZr"/>
+                                    <constraint firstItem="dqu-R9-PXl" firstAttribute="leading" secondItem="gw8-go-yIm" secondAttribute="leading" id="9LF-Jn-i1D"/>
                                     <constraint firstItem="dqu-R9-PXl" firstAttribute="leading" secondItem="gw8-go-yIm" secondAttribute="leading" id="B3Z-b0-LS9"/>
-                                    <constraint firstAttribute="width" constant="374" id="OX7-VS-8S9"/>
+                                    <constraint firstAttribute="trailing" secondItem="dqu-R9-PXl" secondAttribute="trailing" id="MJe-3K-Vb6"/>
                                     <constraint firstAttribute="bottom" secondItem="dqu-R9-PXl" secondAttribute="bottom" id="hzX-nZ-L05"/>
                                     <constraint firstAttribute="height" constant="40" id="kPL-ob-kCH"/>
                                     <constraint firstItem="dqu-R9-PXl" firstAttribute="top" secondItem="gw8-go-yIm" secondAttribute="top" id="nzD-6z-VXr"/>
@@ -102,10 +106,12 @@
                             <constraint firstItem="wwI-nE-pPp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="Yem-Pa-oSl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wwI-nE-pPp" secondAttribute="trailing" constant="10" id="bno-cr-LZX"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="gw8-go-yIm" secondAttribute="bottom" constant="16" id="d61-4X-bf4"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gw8-go-yIm" secondAttribute="trailing" constant="16" id="f5y-Sk-h66"/>
                             <constraint firstItem="4M0-eg-Xt1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="fWJ-ge-SL2"/>
                             <constraint firstItem="aMe-Ty-iTy" firstAttribute="top" secondItem="wwI-nE-pPp" secondAttribute="bottom" constant="16" id="fq9-hB-kI8"/>
                             <constraint firstItem="gw8-go-yIm" firstAttribute="top" secondItem="aMe-Ty-iTy" secondAttribute="bottom" constant="16" id="ley-Xr-saF"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4M0-eg-Xt1" secondAttribute="trailing" constant="16" id="ut2-qh-ZOv"/>
+                            <constraint firstItem="gw8-go-yIm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="yht-1Q-Z4O"/>
                             <constraint firstItem="c5r-L5-dcD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="zBh-Ud-hjP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -128,16 +134,16 @@
         <scene sceneID="y0Q-6B-Rze">
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="7hj-gQ-qv2" customClass="EditCompanyTVC" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dro-7y-7UF">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dro-7y-7UF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="jab-av-yoO">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="188"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="190"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ptz-Ou-cjN">
-                                    <rect key="frame" x="137" y="147.33333333333334" width="140" height="39"/>
+                                    <rect key="frame" x="137" y="148.33333333333334" width="140" height="39"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="140" id="Pfv-JE-xpb"/>
                                         <constraint firstAttribute="height" constant="39" id="zcv-kc-5eC"/>
@@ -173,7 +179,7 @@
                                     </connections>
                                 </button>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultCompany" translatesAutoresizingMaskIntoConstraints="NO" id="6ed-Cw-sM0">
-                                    <rect key="frame" x="137" y="8" width="140" height="140"/>
+                                    <rect key="frame" x="137" y="9" width="140" height="140"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="140" id="FE4-hQ-bmu"/>
                                         <constraint firstAttribute="width" secondItem="6ed-Cw-sM0" secondAttribute="height" multiplier="1:1" id="TGA-It-poE"/>
@@ -196,7 +202,7 @@
                             <tableViewSection id="m3z-0G-XzO">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="jM6-Vp-K61">
-                                        <rect key="frame" x="0.0" y="188" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="190" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jM6-Vp-K61" id="kza-5E-Jnl">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
@@ -225,7 +231,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="110" id="WES-M1-rM2">
-                                        <rect key="frame" x="0.0" y="232" width="414" height="110"/>
+                                        <rect key="frame" x="0.0" y="234" width="414" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WES-M1-rM2" id="eNn-Tp-V9P">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="109.66666666666667"/>
@@ -255,7 +261,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="184" id="zFT-3t-nDL">
-                                        <rect key="frame" x="0.0" y="342" width="414" height="184"/>
+                                        <rect key="frame" x="0.0" y="344" width="414" height="184"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zFT-3t-nDL" id="icF-I3-B9c">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="183.66666666666666"/>
@@ -285,7 +291,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="71" id="Vih-XH-EH4">
-                                        <rect key="frame" x="0.0" y="526" width="414" height="71"/>
+                                        <rect key="frame" x="0.0" y="528" width="414" height="71"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vih-XH-EH4" id="dFg-QK-sN9">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="70.666666666666671"/>
@@ -708,6 +714,6 @@
     </scenes>
     <resources>
         <image name="createNew" width="150" height="150"/>
-        <image name="defaultCompany" width="150" height="150"/>
+        <image name="defaultCompany" width="600" height="600"/>
     </resources>
 </document>
