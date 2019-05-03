@@ -12,5 +12,10 @@ target 'Ambassadoor Business' do
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
   pod 'Firebase/Database'
-
+  
+  
 end
+
+pod repo remove master
+pod repo update
+pod install --verbose

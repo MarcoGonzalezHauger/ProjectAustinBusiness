@@ -195,6 +195,15 @@ func GetTierFromFollowerCount(FollowerCount: Double) -> Int? {
 	}
 }
 
+func isGoodUrl(url: String) -> Bool {
+	if url == "" { return true }
+	if let url = URL(string: url) {
+		return UIApplication.shared.canOpenURL(url)
+	} else {
+		return false
+	}
+}
+
 func GetOrganicSubscriptionFromTier(tier: Int?) -> Double {
 	guard let tier = tier else { return 0 }
 	if tier >= 6 {
@@ -215,6 +224,14 @@ func GetOrganicSubscriptionFromTier(tier: Int?) -> Double {
 		debugPrint("Exhaust activated on GetOragnicSubscriptionFromTier Function, this is never suppost to be activated.")
 		return 5
 	}
+}
+
+func MakeShake(viewToShake thisView: UIView, coefficient: Float = 1) {
+	let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+	animation.timingFunction = CAMediaTimingFunction(name: .linear)
+	animation.duration = 0.6
+	animation.values = [-20.0 * coefficient, 20.0 * coefficient, -20.0 * coefficient, 20.0 * coefficient, -10.0 * coefficient, 10.0 * coefficient, -5.0 * coefficient, 5.0 * coefficient, 0 ]
+	thisView.layer.add(animation, forKey: "shake")
 }
 
 func makeImageCircular(image: UIImage) -> UIImage {
@@ -284,7 +301,6 @@ func GetTownName(zipCode: String, completed: @escaping (_ cityState: String?) ->
 	
 	//FORM API Key, subject to change.
 	let APIKey: String = "nyprsz9yiBMbAubGgkcab"
-	
 	
 	guard let url = URL(string: "https://form-api.com/api/geo/country/zip?key=\(APIKey)&country=US&zipcode=" + zipCode) else { completed(nil)
 	return }

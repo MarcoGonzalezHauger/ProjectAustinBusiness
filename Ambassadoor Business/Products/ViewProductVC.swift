@@ -39,15 +39,6 @@ class ViewProductVC: UIViewController, UITextViewDelegate {
 		productURL.layer.cornerRadius = 5
     }
 	
-	func isGoodUrl(url: String) -> Bool {
-		if url == "" { return true }
-		if let url = URL(string: url) {
-			return UIApplication.shared.canOpenURL(url)
-		} else {
-			return false
-		}
-	}
-	
 	@IBAction func clicked(_ sender: Any) {
 		productName.selectAll(nil)
 	}
@@ -92,14 +83,6 @@ class ViewProductVC: UIViewController, UITextViewDelegate {
 		} else {
 			MakeShake(viewToShake: productViewURL)
 		}
-	}
-	
-	func MakeShake(viewToShake thisView: UIView, coefficient: Float = 1) {
-		let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
-		animation.timingFunction = CAMediaTimingFunction(name: .linear)
-		animation.duration = 0.6
-		animation.values = [-20.0 * coefficient, 20.0 * coefficient, -20.0 * coefficient, 20.0 * coefficient, -10.0 * coefficient, 10.0 * coefficient, -5.0 * coefficient, 5.0 * coefficient, 0 ]
-		thisView.layer.add(animation, forKey: "shake")
 	}
 	
 	@IBAction func nextClicked(_ sender: Any) {

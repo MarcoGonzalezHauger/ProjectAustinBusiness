@@ -26,6 +26,10 @@
 		E8C3694A22161B3000AE12D7 /* Ambassadoor_Business.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E8C3694822161B3000AE12D7 /* Ambassadoor_Business.xcdatamodeld */; };
 		E8C3694C22161B3200AE12D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8C3694B22161B3200AE12D7 /* Assets.xcassets */; };
 		E8C3694F22161B3200AE12D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8C3694D22161B3200AE12D7 /* LaunchScreen.storyboard */; };
+		E8E54685227BA19C00775A07 /* ViewCompanyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E54684227BA19C00775A07 /* ViewCompanyVC.swift */; };
+		E8E54687227BA1D600775A07 /* EditCompanyTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E54686227BA1D600775A07 /* EditCompanyTVC.swift */; };
+		E8E54689227BA3E800775A07 /* YourCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E54688227BA3E800775A07 /* YourCompany.swift */; };
+		E8E5468C227BC9E900775A07 /* StatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E5468B227BC9E900775A07 /* StatsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +56,10 @@
 		E8C3694B22161B3200AE12D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E8C3694E22161B3200AE12D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E8C3695022161B3200AE12D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E8E54684227BA19C00775A07 /* ViewCompanyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCompanyVC.swift; sourceTree = "<group>"; };
+		E8E54686227BA1D600775A07 /* EditCompanyTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCompanyTVC.swift; sourceTree = "<group>"; };
+		E8E54688227BA3E800775A07 /* YourCompany.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourCompany.swift; sourceTree = "<group>"; };
+		E8E5468B227BC9E900775A07 /* StatsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +151,9 @@
 		E8C3694022161B3000AE12D7 /* Ambassadoor Business */ = {
 			isa = PBXGroup;
 			children = (
+				E8E5468A227BC9D800775A07 /* Statistics */,
+				E8E54688227BA3E800775A07 /* YourCompany.swift */,
+				E8E54683227BA16C00775A07 /* Company */,
 				E84600882273AFA400CF60F2 /* Extentions */,
 				E84600812273A8AB00CF60F2 /* Products */,
 				E846007E2273A5F800CF60F2 /* Resources */,
@@ -157,6 +168,23 @@
 				E8C3694822161B3000AE12D7 /* Ambassadoor_Business.xcdatamodeld */,
 			);
 			path = "Ambassadoor Business";
+			sourceTree = "<group>";
+		};
+		E8E54683227BA16C00775A07 /* Company */ = {
+			isa = PBXGroup;
+			children = (
+				E8E54684227BA19C00775A07 /* ViewCompanyVC.swift */,
+				E8E54686227BA1D600775A07 /* EditCompanyTVC.swift */,
+			);
+			path = Company;
+			sourceTree = "<group>";
+		};
+		E8E5468A227BC9D800775A07 /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				E8E5468B227BC9E900775A07 /* StatsVC.swift */,
+			);
+			path = Statistics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,13 +307,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				E84600832273A8CB00CF60F2 /* ProductsVC.swift in Sources */,
+				E8E54689227BA3E800775A07 /* YourCompany.swift in Sources */,
+				E8E54685227BA19C00775A07 /* ViewCompanyVC.swift in Sources */,
 				C05FE2DB225F687C002D3CAA /* global.swift in Sources */,
 				E84600872273AF9100CF60F2 /* ImageViewExtensions.swift in Sources */,
 				E84600802273A65600CF60F2 /* StandardNC.swift in Sources */,
 				C0FBFD01226154FC00BADDCD /* categories.swift in Sources */,
 				C089A3C52253D4E500ECF3B0 /* structs.swift in Sources */,
+				E8E5468C227BC9E900775A07 /* StatsVC.swift in Sources */,
 				E84600852273A92A00CF60F2 /* BusinessLabel.swift in Sources */,
 				E846008A2273B0B300CF60F2 /* Savvy.swift in Sources */,
+				E8E54687227BA1D600775A07 /* EditCompanyTVC.swift in Sources */,
 				C05FE2D9225F683E002D3CAA /* FirebaseReferences.swift in Sources */,
 				E8C3694422161B3000AE12D7 /* ViewController.swift in Sources */,
 				E8C3694222161B3000AE12D7 /* AppDelegate.swift in Sources */,

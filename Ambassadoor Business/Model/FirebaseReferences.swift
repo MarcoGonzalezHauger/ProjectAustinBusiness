@@ -231,7 +231,9 @@ func findInfluencers(offer: TemplateOffer, money: Double, completion: @escaping 
     var moneyForOffer = money
     var count = 0
     GetAllUsers(completion: { (users) in
-        for user in users {
+		var shuffledUsers : [User] = users
+		shuffledUsers.shuffle()
+        for user in shuffledUsers {
             if moneyForOffer <= 0 {
                 return
             }
