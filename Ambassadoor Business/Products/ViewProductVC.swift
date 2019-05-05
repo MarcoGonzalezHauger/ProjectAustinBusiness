@@ -9,12 +9,23 @@
 
 import UIKit
 
-class ViewProductVC: UIViewController, UITextViewDelegate {
+class ViewProductVC: UIViewController, UITextViewDelegate, ImagePickerDelegate {
+	
+	func imagePicked(image: UIImage?, imageUrl: String?) {
+		if let image = image {
+			productImage.image = image
+		}
+		if let imageUrl = imageUrl {
+			productImageUrl = imageUrl
+		}
+	}
+	
 	
 	@IBOutlet weak var visitButton: UIButton!
 	var ThisProduct: Product!
 	var productIndex: Int!
 	var delegate: ProductDelegate?
+	var productImageUrl: String?
 	
 	@IBOutlet weak var productName: UITextField!
 	@IBOutlet weak var productImage: UIImageView!
@@ -24,6 +35,7 @@ class ViewProductVC: UIViewController, UITextViewDelegate {
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
+		productURL.delegate = self
 		if let thisUrl = URL(string: ThisProduct.image ?? "") {
 			productImage.downloadedFrom(url: thisUrl)
 		} else {
@@ -82,6 +94,12 @@ class ViewProductVC: UIViewController, UITextViewDelegate {
 			}
 		} else {
 			MakeShake(viewToShake: productViewURL)
+		}
+	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if let destination = segue.destination as? GetPictureVC {
+			destination.delegate = self
 		}
 	}
 	

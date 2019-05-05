@@ -250,17 +250,6 @@ func makeImageCircular(image: UIImage) -> UIImage {
 	return NewImage!;
 }
 
-func PostTypeToIcon(posttype: TypeofPost) -> UIImage {
-	switch posttype {
-	case .SinglePost:
-		return UIImage(named: "singlepost_icon")!
-	case .MultiPost:
-		return UIImage(named: "multipost_icon")!
-	case .Story:
-		return UIImage(named: "storypost_icon")!
-	}
-}
-
 func OfferFromID(id: String) -> Offer? {
 	debugPrint("attempting to find offer with ID \(id)")
 	return global.AvaliableOffers.filter { (ThisOffer) -> Bool in

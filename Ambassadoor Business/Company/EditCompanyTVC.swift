@@ -13,7 +13,18 @@ protocol editDelegate {
 	func editsMade(newCompany: Company)
 }
 
-class EditCompanyTVC: UITableViewController {
+class EditCompanyTVC: UITableViewController, ImagePickerDelegate {
+	
+	
+	func imagePicked(image: UIImage?, imageUrl: String?) {
+		if let image = image {
+			companyLogo.image = image
+		}
+		if let imageUrl = imageUrl {
+			logo = imageUrl
+		}
+	}
+	
 
 	@IBOutlet weak var nameView: UIView!
 	@IBOutlet weak var webView: UIView!
@@ -30,8 +41,15 @@ class EditCompanyTVC: UITableViewController {
 	
 	var ThisCompany: Company!
 	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if let destination = segue.destination as? GetPictureVC {
+			destination.delegate = self
+		}
+	}
+	
 	override func viewDidLoad() {
         super.viewDidLoad()
+		companyLogo.layer.cornerRadius = 5
 		nameTextBox.text = ThisCompany.name
 		missionTextBox.text = ThisCompany.mission
 		descTextBox.text = ThisCompany.description

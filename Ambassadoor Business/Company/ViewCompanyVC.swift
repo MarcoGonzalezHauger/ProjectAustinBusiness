@@ -25,6 +25,7 @@ class ViewCompanyVC: UIViewController, editDelegate {
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
+		companyLogo.layer.cornerRadius = 5
 		updateCompanyInfo()
     }
 	
