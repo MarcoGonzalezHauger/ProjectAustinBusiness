@@ -61,7 +61,7 @@ class EditCompanyTVC: UITableViewController {
 			}
 		}
 		if !problem {
-			delegate?.editsMade(newCompany: Company(name: nameTextBox.text!, logo: logo, mission: missionTextBox.text, website: webTextBox.text, account_ID: AccountID ?? "", instagram_name: InstagramName ?? "", description: descTextBox.text))
+            delegate?.editsMade(newCompany: Company.init(dictionary: ["name": nameTextBox.text!, "logo": logo as Any, "mission": missionTextBox.text, "website": webTextBox.text, "account_ID": AccountID ?? "", "instagram_name": InstagramName ?? "", "description": descTextBox.text, "accountBalance": 0.0]))
 			dismiss(animated: true, completion: nil)
 		}
 	}

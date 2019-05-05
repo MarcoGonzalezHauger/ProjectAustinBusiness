@@ -26,6 +26,5 @@ class ViewController: UIViewController {
         })
         */
 	}
-
 }
 

@@ -208,14 +208,34 @@ struct Product {
 }
 
 //struct for company
-struct Company {
+class Company: NSObject {
+    let account_ID: String?
     let name: String
     let logo: String?
     let mission: String
     let website: String
-    let account_ID: String
     let instagram_name: String
-    let description: String
+    let _description: String
+    var accountBalance: Double
+    
+    init(dictionary: [String: Any]) {
+        self.account_ID = dictionary["account_ID"] as? String
+        self.name = dictionary["name"] as! String
+        self.logo = dictionary["logo"] as? String
+        self.mission = dictionary["mission"] as! String
+        self.website = dictionary["website"] as! String
+        self.instagram_name = dictionary["instagram_name"] as! String
+        self._description = dictionary["description"] as! String
+        self.accountBalance = dictionary["accountBalance"] as! Double
+    }
+    
+    func updateCompanyInFirebase() {
+        if self.account_ID != "" {
+            debugPrint(self)
+            let _: Company = UpdateCompanyInDatabase(company: self)
+            debugPrint(self.account_ID! + " has been updated in database")
+        }
+    }
 }
 
 //Carries personal info only avalible to view and edit by the user.

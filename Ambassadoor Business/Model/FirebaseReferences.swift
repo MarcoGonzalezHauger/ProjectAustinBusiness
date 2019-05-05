@@ -25,6 +25,19 @@ func GetOffers(userId: String) -> [Offer] {
     return offers
 }
 
+func GetCompany(account_ID: String) -> Company {
+    let ref = Database.database().reference().child("companies")
+    let companyRef = ref.child(account_ID)
+    var companyInstance = Company(dictionary: [:])
+    companyRef.observeSingleEvent(of: .value, with: { (snapshot) in
+        if let dictionary = snapshot.value as? [String: AnyObject] {
+            let companyDictionary = dictionary as? NSDictionary
+            companyInstance = Company(dictionary: companyDictionary! as! [String : AnyObject])
+        }
+    }, withCancel: nil)
+    return companyInstance
+}
+
 //Creates the offer and returns the newly created offer as an Offer instance
 func CreateOffer(offer: Offer) -> Offer {
     let ref = Database.database().reference().child("offers")
@@ -47,9 +60,9 @@ func GetFakeOffers() -> [Offer] {
     
     //Creates the fake Company NIKE. Unofficial Sponsor.
     
-    let fakeNike = Company.init(name: "Nike", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/1200px-Logo_NIKE.svg.png", mission: "Just Do It.", website: "https://www.nike.com/", account_ID: "", instagram_name: "", description: "Nike, Inc. is an American multinational corporation that is engaged in the design, development, manufacturing, and worldwide marketing and sales of footwear, apparel, equipment, accessories, and services. The company is headquartered near Beaverton, Oregon, in the Portland metropolitan area.")
+    let fakeNike = Company.init(dictionary: ["name": "Nike" as AnyObject, "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/1200px-Logo_NIKE.svg.png" as AnyObject, "mission": "Just Do It." as AnyObject, "website": "https://www.nike.com/" as AnyObject, "account_ID": "" as AnyObject, "instagram_name": "" as AnyObject, "description": "Nike, Inc. is an American multinational corporation that is engaged in the design, development, manufacturing, and worldwide marketing and sales of footwear, apparel, equipment, accessories, and services. The company is headquartered near Beaverton, Oregon, in the Portland metropolitan area." as AnyObject, "accountBalance": 0.0])
     
-    let JMichaels = Company.init(name: "J Michael's Shoes", logo: "https://media.licdn.com/dms/image/C4E0BAQEqnu9inQDs7w/company-logo_200_200/0?e=2159024400&v=beta&t=f5RjDMFwqrFg3mqGt7JoBcDn92Zgi0f31F2pr59OACI", mission: "Est 1983", website: "http://www.jmichaelshoes.com/", account_ID: "", instagram_name: "", description: "Since 1983, J Michael has been bringing European and Domestic designs as well as fashions from the East and West coasts to the Syracuse University Campus. Our unique collection of clothing, footwear, and accessories has made us the favorite spot to shop for generations of co-eds and Central New Yorkers. Thanks for shopping our site, but of course, we’d love to see you at our brick-and-mortar store so that you can feel the J Michael heat. Remember, “If it’s Hot…It’s Here!”™")
+    let JMichaels = Company.init(dictionary: ["name": "J Michael's Shoes", "logo": "https://media.licdn.com/dms/image/C4E0BAQEqnu9inQDs7w/company-logo_200_200/0?e=2159024400&v=beta&t=f5RjDMFwqrFg3mqGt7JoBcDn92Zgi0f31F2pr59OACI", "mission": "Est 1983", "website": "http://www.jmichaelshoes.com/", "account_ID": "", "instagram_name": "", "description": "Since 1983, J Michael has been bringing European and Domestic designs as well as fashions from the East and West coasts to the Syracuse University Campus. Our unique collection of clothing, footwear, and accessories has made us the favorite spot to shop for generations of co-eds and Central New Yorkers. Thanks for shopping our site, but of course, we’d love to see you at our brick-and-mortar store so that you can feel the J Michael heat. Remember, “If it’s Hot…It’s Here!”™", "accountBalance": 0.0])
     
     //creates first NIKE post, that is for little money
     
@@ -75,7 +88,7 @@ func GetFakeOffers() -> [Offer] {
     
     //Offer that has been completed.
     
-    fakeoffers.append(Offer.init(dictionary: ["money": 13.44 as AnyObject, "company": JMichaels as AnyObject, "user_ID": "-LabEKrth-DRbVpG0WPn" as AnyObject, "posts": [
+    fakeoffers.append(Offer.init(dictionary: ["money": 13.44 as AnyObject, "company": "JMichaels" as AnyObject, "user_ID": "-LabEKrth-DRbVpG0WPn" as AnyObject, "posts": [
         
         Post.init(image: nil, instructions: "Post an image using one of the proudcts.", captionMustInclude: "J Michaels #sponsored", products: [fakeproduct[3]], post_ID: "", PostType: .SinglePost, confirmedSince: nil, isConfirmed: false)]
         
@@ -90,7 +103,7 @@ func GetTestTemplateOffer() -> TemplateOffer {
                        Product.init(image: "https://s3.amazonaws.com/nikeinc/assets/60756/USOC_MensLaydown_2625x1500_hd_1600.jpg?1469461906", name: "Any Nike Product", price: 20, buy_url: "https://www.nike.com/", color: "Any", product_ID: ""),
                        Product.init(image: "https://s3.amazonaws.com/boutiika-assets/image_library/BTKA_1520271255702342_ddff2a8ce6a4e69bce5a8da0444a57.jpg", name: "Any of our shoes", price: 20, buy_url: "http://www.jmichaelshoes.com/shop/birkenstock-birkenstock-arizona-olive-bf-6991148", color: "Any", product_ID: "")]
     
-    let fakeNike = Company.init(name: "Nike", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/1200px-Logo_NIKE.svg.png", mission: "Just Do It.", website: "https://www.nike.com/", account_ID: "", instagram_name: "", description: "Nike, Inc. is an American multinational corporation that is engaged in the design, development, manufacturing, and worldwide marketing and sales of footwear, apparel, equipment, accessories, and services. The company is headquartered near Beaverton, Oregon, in the Portland metropolitan area.")
+    let fakeNike = Company.init(dictionary: ["name": "Nike", "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/1200px-Logo_NIKE.svg.png", "mission": "Just Do It.", "website": "https://www.nike.com/", "account_ID": "", "instagram_name": "", "description": "Nike, Inc. is an American multinational corporation that is engaged in the design, development, manufacturing, and worldwide marketing and sales of footwear, apparel, equipment, accessories, and services. The company is headquartered near Beaverton, Oregon, in the Portland metropolitan area.", "accountBalance": 0.0])
     
     return TemplateOffer.init(dictionary: ["money": 13.65 as AnyObject, "company": fakeNike as AnyObject, "posts": [
         
@@ -190,6 +203,58 @@ func CreateAccount(instagramUser: [String: Any], completed: @escaping (_ userDic
     })
 }
 
+func CreateCompany(company: Company, completed: @escaping (_ companyInstance: Company) -> ()) {
+    let ref = Database.database().reference().child("companies")
+    // Boolean flag to keep track if company is already in database
+    var alreadyRegistered: Bool = false
+    ref.observeSingleEvent(of: .value, with: { (snapshot) in
+        var companyId: String = ""
+        var companyData: [String: Any] = serializeCompany(company: company)
+        for case let company as DataSnapshot in snapshot.children {
+            if (company.childSnapshot(forPath: "name").value as! String == companyData["name"] as! String) {
+                alreadyRegistered = true
+                break
+            }
+        }
+        // If user isn't registered then create a new instance in firebase, else update the existing data for that user in firebase
+        if !alreadyRegistered {
+            let companyReference = ref.childByAutoId()
+            companyData["id"] = companyReference.key
+            companyReference.updateChildValues(companyData)
+        }
+        let categoryInstance: Company = Company(dictionary: companyData)
+        completed(categoryInstance)
+    })
+}
+
+func uploadImage(image: UIImage, type: String, name: String) -> UIImage {
+    let data = image.pngData()
+    let fileName = type + "-" + name + ".png"
+    let ref = Storage.storage().reference().child(type).child(fileName)
+    ref.putData(data!, metadata: nil, completion: { (metadata, error) in
+        if error != nil {
+            debugPrint(error)
+            return
+        }
+        debugPrint(metadata)
+    })
+    return image
+}
+
+func serializeCompany(company: Company) -> [String: Any] {
+    let companyData: [String: Any] = [
+        "account_ID": company.account_ID!,
+        "name": company.name,
+        "logo": company.logo!,
+        "mission": company.mission,
+        "website": company.website,
+        "instagram_name": company.instagram_name,
+        "description": company._description,
+        "accountBalance": company.accountBalance
+    ]
+    return companyData
+}
+
 // Query all users in Firebase and to do filtering based on algorithm
 func GetAllUsers(completion: @escaping ([User]) -> ()) {
     let usersRef = Database.database().reference().child("users")
@@ -220,6 +285,8 @@ func sendOffer(offer: Offer, money: Double, completion: @escaping (Offer) -> ())
         offerDictionary = API.serializeOffer(offer: offer)
         offerKey.updateChildValues(offerDictionary)
     }
+    YourCompany.accountBalance -= offer.money
+    UpdateCompanyInDatabase(company: YourCompany)
     debugPrint(offerDictionary)
 }
 
@@ -262,7 +329,13 @@ func findInfluencers(offer: TemplateOffer, money: Double, completion: @escaping 
         }
         completion(offer)
     })
-    
+}
+
+func UpdateCompanyInDatabase(company: Company) -> Company {
+    let ref = Database.database().reference().child("companies")
+    var companyData = serializeCompany(company: company)
+    ref.child(company.account_ID!).updateChildValues(companyData)
+    return company
 }
 
 extension Date
