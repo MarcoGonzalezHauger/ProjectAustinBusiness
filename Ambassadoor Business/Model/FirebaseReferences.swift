@@ -212,14 +212,15 @@ func CreateCompany(company: Company, completed: @escaping (_ companyInstance: Co
         var companyData: [String: Any] = serializeCompany(company: company)
         for case let company as DataSnapshot in snapshot.children {
             if (company.childSnapshot(forPath: "name").value as! String == companyData["name"] as! String) {
+                companyData["account_ID"] = company.childSnapshot(forPath: "account_ID").value as! String
                 alreadyRegistered = true
                 break
             }
         }
-        // If user isn't registered then create a new instance in firebase, else update the existing data for that user in firebase
+        // If company isn't registered then create a new instance in firebase
         if !alreadyRegistered {
             let companyReference = ref.childByAutoId()
-            companyData["id"] = companyReference.key
+            companyData["account_ID"] = companyReference.key
             companyReference.updateChildValues(companyData)
         }
         let categoryInstance: Company = Company(dictionary: companyData)
@@ -227,16 +228,17 @@ func CreateCompany(company: Company, completed: @escaping (_ companyInstance: Co
     })
 }
 
-func uploadImage(image: UIImage, type: String, name: String) -> UIImage {
+// Uploads image to firebase, parameters: the image, the type of photo ("company", "product", etc.), the id of the item to upload
+func uploadImage(image: UIImage, type: String, id: String) -> UIImage {
     let data = image.pngData()
-    let fileName = type + "-" + name + ".png"
+    let fileName = id + ".png"
     let ref = Storage.storage().reference().child(type).child(fileName)
     ref.putData(data!, metadata: nil, completion: { (metadata, error) in
         if error != nil {
-            debugPrint(error)
+            debugPrint(error!)
             return
         }
-        debugPrint(metadata)
+        debugPrint(metadata!)
     })
     return image
 }
