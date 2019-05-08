@@ -21,8 +21,6 @@
 #import "FIRAuthErrorUtils.h"
 #import "FIRAuth_Internal.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 /** @var kEndpoint
     @brief The getOobConfirmationCode endpoint name.
  */
@@ -75,11 +73,6 @@ static NSString *const kAndroidMinimumVersionKey = @"androidMinimumVersion";
         the app or not.
  */
 static NSString *const kCanHandleCodeInAppKey = @"canHandleCodeInApp";
-
-/** @var kDynamicLinkDomainKey
-    @brief The key for the "dynamic link domain" value in the request.
- */
-static NSString *const kDynamicLinkDomainKey = @"dynamicLinkDomain";
 
 /** @var kPasswordResetRequestTypeValue
     @brief The value for the "PASSWORD_RESET" request type.
@@ -134,7 +127,7 @@ static NSString *const kVerifyEmailRequestTypeValue = @"VERIFY_EMAIL";
   }
 }
 
-+ (nullable FIRGetOOBConfirmationCodeRequest *)
++ (FIRGetOOBConfirmationCodeRequest *)
     passwordResetRequestWithEmail:(NSString *)email
                actionCodeSettings:(nullable FIRActionCodeSettings *)actionCodeSettings
              requestConfiguration:(FIRAuthRequestConfiguration *)requestConfiguration {
@@ -145,7 +138,7 @@ static NSString *const kVerifyEmailRequestTypeValue = @"VERIFY_EMAIL";
                       requestConfiguration:requestConfiguration];
 }
 
-+ (nullable FIRGetOOBConfirmationCodeRequest *)
++ (FIRGetOOBConfirmationCodeRequest *)
     verifyEmailRequestWithAccessToken:(NSString *)accessToken
                    actionCodeSettings:(nullable FIRActionCodeSettings *)actionCodeSettings
                  requestConfiguration:(FIRAuthRequestConfiguration *)requestConfiguration {
@@ -156,7 +149,7 @@ static NSString *const kVerifyEmailRequestTypeValue = @"VERIFY_EMAIL";
                       requestConfiguration:requestConfiguration];
 }
 
-+ (nullable FIRGetOOBConfirmationCodeRequest *)
++ (FIRGetOOBConfirmationCodeRequest *)
     signInWithEmailLinkRequest:(NSString *)email
             actionCodeSettings:(nullable FIRActionCodeSettings *)actionCodeSettings
           requestConfiguration:(FIRAuthRequestConfiguration *)requestConfiguration {
@@ -184,7 +177,6 @@ static NSString *const kVerifyEmailRequestTypeValue = @"VERIFY_EMAIL";
     _androidMinimumVersion = actionCodeSettings.androidMinimumVersion;
     _androidInstallApp = actionCodeSettings.androidInstallIfNotAvailable;
     _handleCodeInApp = actionCodeSettings.handleCodeInApp;
-    _dynamicLinkDomain = actionCodeSettings.dynamicLinkDomain;
   }
   return self;
 }
@@ -236,13 +228,7 @@ static NSString *const kVerifyEmailRequestTypeValue = @"VERIFY_EMAIL";
     body[kCanHandleCodeInAppKey] = @YES;
   }
 
-  if (_dynamicLinkDomain) {
-    body[kDynamicLinkDomainKey] = _dynamicLinkDomain;
-  }
-
   return body;
 }
 
 @end
-
-NS_ASSUME_NONNULL_END
