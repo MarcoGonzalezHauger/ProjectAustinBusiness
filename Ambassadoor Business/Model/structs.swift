@@ -121,6 +121,7 @@ class User: NSObject {
     var averageLikes: Double?
     var zipCode: String?
     var gender: String?
+    var accountBalance: Double?
     
     init(dictionary: [String: Any]) {
         self.id = dictionary["id"] as? String
@@ -178,6 +179,7 @@ class User: NSObject {
         self.averageLikes = dictionary["averageLikes"] as? Double
         self.zipCode = dictionary["zipCode"] as? String
         self.gender = dictionary["gender"] as? String
+        self.accountBalance = dictionary["accountBalance"] as? Double
     }
     
     override var description: String {
