@@ -13,6 +13,7 @@
 		C089A3C52253D4E500ECF3B0 /* structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089A3C42253D4E500ECF3B0 /* structs.swift */; };
 		C0C9390622614AE3003DC925 /* InstagramAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9390522614AE3003DC925 /* InstagramAPI.swift */; };
 		C0FBFD01226154FC00BADDCD /* categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FBFD00226154FC00BADDCD /* categories.swift */; };
+		E816AC222282F3E200B9D951 /* MoneyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E816AC212282F3E200B9D951 /* MoneyVC.swift */; };
 		E83D9A39226A20B6007BDD97 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E83D9A38226A20B6007BDD97 /* GoogleService-Info.plist */; };
 		E83F378D227CDEE100BA6688 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F378C227CDEE100BA6688 /* SignUpVC.swift */; };
 		E83F378F227CDF3A00BA6688 /* GetPictureVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F378E227CDF3A00BA6688 /* GetPictureVC.swift */; };
@@ -42,6 +43,7 @@
 		C089A3C42253D4E500ECF3B0 /* structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = structs.swift; sourceTree = "<group>"; };
 		C0C9390522614AE3003DC925 /* InstagramAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramAPI.swift; sourceTree = "<group>"; };
 		C0FBFD00226154FC00BADDCD /* categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = categories.swift; sourceTree = "<group>"; };
+		E816AC212282F3E200B9D951 /* MoneyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyVC.swift; sourceTree = "<group>"; };
 		E83D9A38226A20B6007BDD97 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E83F378C227CDEE100BA6688 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		E83F378E227CDF3A00BA6688 /* GetPictureVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPictureVC.swift; sourceTree = "<group>"; };
@@ -108,6 +110,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		E816AC202282F34000B9D951 /* Money */ = {
+			isa = PBXGroup;
+			children = (
+				E816AC212282F3E200B9D951 /* MoneyVC.swift */,
+			);
+			path = Money;
+			sourceTree = "<group>";
+		};
 		E83F378B227CDEBA00BA6688 /* Sign Up */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				E8E54688227BA3E800775A07 /* YourCompany.swift */,
+				E816AC202282F34000B9D951 /* Money */,
 				E83F378B227CDEBA00BA6688 /* Sign Up */,
 				E8E5468A227BC9D800775A07 /* Statistics */,
 				E8E54683227BA16C00775A07 /* Company */,
@@ -324,6 +335,7 @@
 				E8E54689227BA3E800775A07 /* YourCompany.swift in Sources */,
 				E8E54685227BA19C00775A07 /* ViewCompanyVC.swift in Sources */,
 				C05FE2DB225F687C002D3CAA /* global.swift in Sources */,
+				E816AC222282F3E200B9D951 /* MoneyVC.swift in Sources */,
 				E84600872273AF9100CF60F2 /* ImageViewExtensions.swift in Sources */,
 				E84600802273A65600CF60F2 /* StandardNC.swift in Sources */,
 				C0FBFD01226154FC00BADDCD /* categories.swift in Sources */,
@@ -490,7 +502,10 @@
 				DEVELOPMENT_TEAM = F4W3LUKZFA;
 				INFOPLIST_FILE = "Ambassadoor Business/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tesseractfreelance.Ambassadoor-Business";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = AprilProfile;
@@ -508,7 +523,10 @@
 				DEVELOPMENT_TEAM = F4W3LUKZFA;
 				INFOPLIST_FILE = "Ambassadoor Business/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tesseractfreelance.Ambassadoor-Business";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = AprilProfile;
