@@ -36,8 +36,12 @@ class ViewProductVC: UIViewController, UITextViewDelegate, ImagePickerDelegate {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		productURL.delegate = self
-		if let thisUrl = URL(string: ThisProduct.image ?? "") {
-			productImage.downloadedFrom(url: thisUrl)
+        if let product_ID = ThisProduct.product_ID {
+            DispatchQueue.main.async {
+                getImage(type: "product", id: product_ID, completed: { (image) in
+                    self.productImage.image = image
+                })
+            }
 		} else {
 			productImage.image = UIImage.init(named: "defaultProduct")
 		}
@@ -76,10 +80,13 @@ class ViewProductVC: UIViewController, UITextViewDelegate, ImagePickerDelegate {
 			if productName.text == "" {
 				MakeShake(viewToShake: productName, coefficient: -1)
 			} else {
-				let NewProduct = Product(image: ThisProduct.image, name: productName.text!, price: 0, buy_url: productURL.text == "" ? nil : productURL.text , color: "", product_ID: "")
-				global.products[productIndex] = NewProduct
-				delegate?.WasSaved(index: productIndex)
-				dismissed(self)
+                let productDictionary = ["name": productName.text!, "price": 0.0, "buy_url": productURL.text == "" ? nil : productURL.text , "color": ""] as [String : Any]
+                CreateProduct(productDictionary: productDictionary, completed: { (product) in
+                    uploadImage(image: self.productImage.image!, type: "product", id: product.product_ID!)
+                    global.products[self.productIndex] = product
+                    self.delegate?.WasSaved(index: self.productIndex)
+                    self.dismissed(self)
+                })
 			}
 		}
 	}

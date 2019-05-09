@@ -38,18 +38,15 @@ class ProductsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
 			let cell = shelf.dequeueReusableCell(withIdentifier: "newCell")!
 			return cell
 		}
-		let productindex = indexPath.row - 1
+        let productIndex = indexPath.row - 1
 		let cell = shelf.dequeueReusableCell(withIdentifier: "productCellID") as! ProductCell
-		cell.productTitle.text = global.products[productindex].name == "" ? "(no name)" : global.products[productindex].name
-		if let urlstring = global.products[productindex].image {
-			if let imageurl = URL(string: urlstring) {
-				cell.productImage.downloadedFrom(url: imageurl)
-			} else {
-				cell.productImage.image = UIImage.init(named: "defaultProduct")
-			}
-		} else {
-			cell.productImage.image = UIImage.init(named: "defaultProduct")
-		}
+        debugPrint(global.products[productIndex])
+		cell.productTitle.text = global.products[productIndex].name == "" ? "(no name)" : global.products[productIndex].name
+        if let product_image = global.products[productIndex].image {
+            cell.productImage.image = product_image
+        } else {
+            cell.productImage.image = UIImage.init(named: "defaultProduct")
+        }
 		return cell
 	}
 	
@@ -92,7 +89,7 @@ class ProductsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if indexPath.row == 0 {
-			global.products.insert(Product.init(image: nil, name: "", price: 0, buy_url: "", color: "", product_ID: ""), at: 0)
+            global.products.insert(Product.init(dictionary: ["name": "", "price": 0.0, "buy_url": "", "color": "", "product_ID": ""]), at: 0)
 			shelf.insertRows(at: [IndexPath(row: 1, section: 0)], with: .top)
 			let productindex = 0
 			let product = global.products[productindex]
@@ -124,13 +121,19 @@ class ProductsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
-		let fakeproduct = [Product.init(image: "https://media.kohlsimg.com/is/image/kohls/2375536_Gray?wid=350&hei=350&op_sharpen=1", name: "Any Nike Shoe", price: 80, buy_url: "https://store.nike.com/us/en_us/pw/mens-shoes/7puZoi3", color: "Any", product_ID: ""),
-						   Product.init(image: "https://ae01.alicdn.com/kf/HTB1_iYaljihSKJjy0Fiq6AuiFXat/Original-New-Arrival-NIKE-TEE-FUTURA-ICON-LS-Men-s-T-shirts-Long-sleeve-Sportswear.jpg_640x640.jpg", name: "Any Nike Shirt", price: 25, buy_url: "https://store.nike.com/us/en_us/pw/mens-tops-t-shirts/7puZobp", color: "Any", product_ID: ""),
-						   Product.init(image: "https://s3.amazonaws.com/nikeinc/assets/60756/USOC_MensLaydown_2625x1500_hd_1600.jpg?1469461906", name: "Any Nike Product", price: 20, buy_url: "https://www.nike.com/", color: "Any", product_ID: ""),
-						   Product.init(image: "https://s3.amazonaws.com/boutiika-assets/image_library/BTKA_1520271255702342_ddff2a8ce6a4e69bce5a8da0444a57.jpg", name: "Any of our shoes", price: 20, buy_url: "http://www.jmichaelshoes.com/shop/birkenstock-birkenstock-arizona-olive-bf-6991148", color: "Any", product_ID: "")
-			
-		]
-		global.products = fakeproduct
+        // let fakeproduct = GetFakeProducts()
+        DispatchQueue.main.async {
+            getAllProducts(completion: { (products) in
+                debugPrint(products)
+                for product in products {
+                    getImage(type: "product", id: product.product_ID!, completed: { (image) in
+                        product.image = image
+                        self.shelf.reloadData()
+                    })
+                }
+                global.products = products
+            })
+        }
 		shelf.delegate = self
 		shelf.dataSource = self
     }
