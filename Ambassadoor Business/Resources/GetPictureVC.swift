@@ -77,7 +77,6 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
 		//This is the part where the image is uploaded and is assigned a URL by Chris.
 		
 		let imageUrl: String = "https://edcoinfo.com/wp-content/uploads/2017/04/bitmap.png" //chris's bit. It's a test picture right npw.
-		
 		delegate?.imagePicked(image: croppedImage, imageUrl: imageUrl)
 		self.dismiss(animated: true, completion: nil)
 	}

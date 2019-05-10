@@ -47,16 +47,21 @@ func CreateOffer(offer: Offer) -> Offer {
     return offer
 }
 
+func GetFakeProducts() -> [Product] {
+    let fakeproduct = [Product.init(dictionary: ["image": "https://media.kohlsimg.com/is/image/kohls/2375536_Gray?wid=350&hei=350&op_sharpen=1", "name": "Any Nike Shoe", "price": 80.0, "buy_url": "https://store.nike.com/us/en_us/pw/mens-shoes/7puZoi3", "color": "Any", "product_ID": ""]),
+                       Product.init(dictionary: ["image": "https://ae01.alicdn.com/kf/HTB1_iYaljihSKJjy0Fiq6AuiFXat/Original-New-Arrival-NIKE-TEE-FUTURA-ICON-LS-Men-s-T-shirts-Long-sleeve-Sportswear.jpg_640x640.jpg", "name": "Any Nike Shirt", "price": 25.0, "buy_url": "https://store.nike.com/us/en_us/pw/mens-tops-t-shirts/7puZobp", "color": "Any", "product_ID": ""]),
+                       Product.init(dictionary: ["image": "https://s3.amazonaws.com/nikeinc/assets/60756/USOC_MensLaydown_2625x1500_hd_1600.jpg?1469461906", "name": "Any Nike Product", "price": 20.0, "buy_url": "https://www.nike.com/", "color": "Any", "product_ID": ""]),
+                       Product.init(dictionary: ["image": "https://s3.amazonaws.com/boutiika-assets/image_library/BTKA_1520271255702342_ddff2a8ce6a4e69bce5a8da0444a57.jpg", "name": "Any of our shoes", "price": 20.0, "buy_url": "http://www.jmichaelshoes.com/shop/birkenstock-birkenstock-arizona-olive-bf-6991148", "color": "Any", "product_ID": ""])
+        
+    ]
+    return fakeproduct
+}
+
 func GetFakeOffers() -> [Offer] {
     
     
     var fakeoffers : [Offer] = []
-    let fakeproduct = [Product.init(image: "https://media.kohlsimg.com/is/image/kohls/2375536_Gray?wid=350&hei=350&op_sharpen=1", name: "Any Nike Shoe", price: 80, buy_url: "https://store.nike.com/us/en_us/pw/mens-shoes/7puZoi3", color: "Any", product_ID: ""),
-                       Product.init(image: "https://ae01.alicdn.com/kf/HTB1_iYaljihSKJjy0Fiq6AuiFXat/Original-New-Arrival-NIKE-TEE-FUTURA-ICON-LS-Men-s-T-shirts-Long-sleeve-Sportswear.jpg_640x640.jpg", name: "Any Nike Shirt", price: 25, buy_url: "https://store.nike.com/us/en_us/pw/mens-tops-t-shirts/7puZobp", color: "Any", product_ID: ""),
-                       Product.init(image: "https://s3.amazonaws.com/nikeinc/assets/60756/USOC_MensLaydown_2625x1500_hd_1600.jpg?1469461906", name: "Any Nike Product", price: 20, buy_url: "https://www.nike.com/", color: "Any", product_ID: ""),
-                       Product.init(image: "https://s3.amazonaws.com/boutiika-assets/image_library/BTKA_1520271255702342_ddff2a8ce6a4e69bce5a8da0444a57.jpg", name: "Any of our shoes", price: 20, buy_url: "http://www.jmichaelshoes.com/shop/birkenstock-birkenstock-arizona-olive-bf-6991148", color: "Any", product_ID: "")
-        
-    ]
+    let fakeproduct = GetFakeProducts()
     
     //Creates the fake Company NIKE. Unofficial Sponsor.
     
@@ -98,11 +103,7 @@ func GetFakeOffers() -> [Offer] {
 }
 
 func GetTestTemplateOffer() -> TemplateOffer {
-    let fakeproduct = [Product.init(image: "https://media.kohlsimg.com/is/image/kohls/2375536_Gray?wid=350&hei=350&op_sharpen=1", name: "Any Nike Shoe", price: 80, buy_url: "https://store.nike.com/us/en_us/pw/mens-shoes/7puZoi3", color: "Any", product_ID: ""),
-                       Product.init(image: "https://ae01.alicdn.com/kf/HTB1_iYaljihSKJjy0Fiq6AuiFXat/Original-New-Arrival-NIKE-TEE-FUTURA-ICON-LS-Men-s-T-shirts-Long-sleeve-Sportswear.jpg_640x640.jpg", name: "Any Nike Shirt", price: 25, buy_url: "https://store.nike.com/us/en_us/pw/mens-tops-t-shirts/7puZobp", color: "Any", product_ID: ""),
-                       Product.init(image: "https://s3.amazonaws.com/nikeinc/assets/60756/USOC_MensLaydown_2625x1500_hd_1600.jpg?1469461906", name: "Any Nike Product", price: 20, buy_url: "https://www.nike.com/", color: "Any", product_ID: ""),
-                       Product.init(image: "https://s3.amazonaws.com/boutiika-assets/image_library/BTKA_1520271255702342_ddff2a8ce6a4e69bce5a8da0444a57.jpg", name: "Any of our shoes", price: 20, buy_url: "http://www.jmichaelshoes.com/shop/birkenstock-birkenstock-arizona-olive-bf-6991148", color: "Any", product_ID: "")]
-    
+    let fakeproduct = GetFakeProducts()
     let fakeNike = Company.init(dictionary: ["name": "Nike", "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/1200px-Logo_NIKE.svg.png", "mission": "Just Do It.", "website": "https://www.nike.com/", "account_ID": "", "instagram_name": "", "description": "Nike, Inc. is an American multinational corporation that is engaged in the design, development, manufacturing, and worldwide marketing and sales of footwear, apparel, equipment, accessories, and services. The company is headquartered near Beaverton, Oregon, in the Portland metropolitan area.", "accountBalance": 0.0])
     
     return TemplateOffer.init(dictionary: ["money": 13.65 as AnyObject, "company": fakeNike as AnyObject, "posts": [
@@ -203,12 +204,23 @@ func CreateAccount(instagramUser: [String: Any], completed: @escaping (_ userDic
     })
 }
 
+func CreateProduct(productDictionary: [String: Any], completed: @escaping (_ product: Product) -> ()) {
+    let ref = Database.database().reference().child("products")
+    var productData = productDictionary
+    ref.observeSingleEvent(of: .value, with: { (snapshot) in
+        let productReference = ref.childByAutoId()
+        productData["product_ID"] = productReference.key
+        productReference.updateChildValues(productData)
+        let productInstance: Product = Product(dictionary: productData)
+        completed(productInstance)
+    })
+}
+
 func CreateCompany(company: Company, completed: @escaping (_ companyInstance: Company) -> ()) {
     let ref = Database.database().reference().child("companies")
     // Boolean flag to keep track if company is already in database
     var alreadyRegistered: Bool = false
     ref.observeSingleEvent(of: .value, with: { (snapshot) in
-        var companyId: String = ""
         var companyData: [String: Any] = serializeCompany(company: company)
         for case let company as DataSnapshot in snapshot.children {
             if (company.childSnapshot(forPath: "name").value as! String == companyData["name"] as! String) {
@@ -225,6 +237,21 @@ func CreateCompany(company: Company, completed: @escaping (_ companyInstance: Co
         }
         let categoryInstance: Company = Company(dictionary: companyData)
         completed(categoryInstance)
+    })
+}
+
+// Uploads image to firebase, parameters: the image, the type of photo ("company", "product", etc.), the id of the item to upload
+func getImage(type: String, id: String, completed: @escaping (_ image: UIImage) -> ()) {
+    let fileName = id + ".png"
+    let ref = Storage.storage().reference().child(type).child(fileName)
+    var image: UIImage = UIImage()
+    ref.getData(maxSize: 10000000000000000, completion: { (data, error) in
+        if error != nil {
+            debugPrint(error!)
+            return
+        }
+        image = UIImage(data: data!)!
+        completed(image)
     })
 }
 
@@ -269,6 +296,21 @@ func GetAllUsers(completion: @escaping ([User]) -> ()) {
                 users.append(userInstance)
             }
             completion(users)
+        }
+    }, withCancel: nil)
+}
+
+func getAllProducts(completion: @escaping ([Product]) -> ()) {
+    let productsRef = Database.database().reference().child("products")
+    var products: [Product] = []
+    productsRef.observeSingleEvent(of: .value, with: { (snapshot) in
+        if let dictionary = snapshot.value as? [String: AnyObject] {
+            for (_, product) in dictionary {
+                let productDictionary = product as? NSDictionary
+                let productInstance = Product(dictionary: productDictionary! as! [String : AnyObject])
+                products.append(productInstance)
+            }
+            completion(products)
         }
     }, withCancel: nil)
 }

@@ -200,13 +200,22 @@ struct Post {
 }
 
 //struct for product
-struct Product {
-    let image: String?
-    let name: String
-    let price: Double
-    let buy_url: String?
-    let color: String
-    let product_ID: String
+class Product: NSObject {
+    var product_ID: String?
+    var image: UIImage?
+    var name: String
+    var price: Double
+    var buy_url: String?
+    var color: String
+    
+    init(dictionary: [String: Any]) {
+        self.product_ID = (dictionary["product_ID"] as? String)!
+        self.image = dictionary["image"] as? UIImage
+        self.name = (dictionary["name"] as? String)!
+        self.price = (dictionary["price"] as? Double)!
+        self.buy_url = dictionary["buy_url"] as? String
+        self.color = dictionary["color"] as! String
+     }
 }
 
 //struct for company
