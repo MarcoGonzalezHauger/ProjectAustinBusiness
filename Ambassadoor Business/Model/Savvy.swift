@@ -15,7 +15,7 @@ func NumberToPrice(Value: Double, enforceCents isBig: Bool = false) -> String {
 		return "$" + String(Int(Value))
 	}
 	let formatter = NumberFormatter()
-	formatter.locale = Locale.current
+	formatter.locale = Locale(identifier: "en_US")
 	formatter.numberStyle = .currency
 	if let formattedAmount = formatter.string(from: Value as NSNumber) {
 		return formattedAmount

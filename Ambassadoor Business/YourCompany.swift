@@ -8,8 +8,27 @@
 
 import Foundation
 
+protocol TransactionListener {
+	func BalanceChange()
+	func TransactionHistoryChanged()
+}
+
 var YourCompany: Company! {
 	didSet {
 		//update company info.
+	}
+}
+
+var transactionDelegate: TransactionListener?
+
+var accountBalance: Double = 0 {
+	didSet {
+		transactionDelegate?.BalanceChange()
+	}
+}
+
+var transactionHistory: [Transaction] = [] {
+	didSet {
+		transactionDelegate?.TransactionHistoryChanged()
 	}
 }

@@ -31,8 +31,8 @@ func GetCompany(account_ID: String) -> Company {
     var companyInstance = Company(dictionary: [:])
     companyRef.observeSingleEvent(of: .value, with: { (snapshot) in
         if let dictionary = snapshot.value as? [String: AnyObject] {
-            let companyDictionary = dictionary as? NSDictionary
-            companyInstance = Company(dictionary: companyDictionary! as! [String : AnyObject])
+            let companyDictionary = dictionary as NSDictionary
+            companyInstance = Company(dictionary: companyDictionary as! [String : AnyObject])
         }
     }, withCancel: nil)
     return companyInstance
@@ -278,7 +278,7 @@ func serializeCompany(company: Company) -> [String: Any] {
         "mission": company.mission,
         "website": company.website,
         "instagram_name": company.instagram_name,
-        "description": company._description,
+        "description": company.companyDescription,
         "accountBalance": company.accountBalance
     ]
     return companyData

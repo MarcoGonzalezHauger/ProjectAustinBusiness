@@ -226,7 +226,7 @@ class Company: NSObject {
     let mission: String
     let website: String
     let instagram_name: String
-    let _description: String
+    let companyDescription: String
     var accountBalance: Double
     
     init(dictionary: [String: Any]) {
@@ -236,7 +236,7 @@ class Company: NSObject {
         self.mission = dictionary["mission"] as! String
         self.website = dictionary["website"] as! String
         self.instagram_name = dictionary["instagram_name"] as! String
-        self._description = dictionary["description"] as! String
+        self.companyDescription = dictionary["description"] as! String
         self.accountBalance = dictionary["accountBalance"] as! Double
     }
     

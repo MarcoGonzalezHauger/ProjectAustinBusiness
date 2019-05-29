@@ -62,6 +62,18 @@ class ViewProductVC: UIViewController, UITextViewDelegate, ImagePickerDelegate {
 	func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
 		if text == "\n" {
 			textView.resignFirstResponder()
+			if !isGoodUrl(url: productURL.text) {
+				var newText = "http://" + productURL.text
+				if isGoodUrl(url: newText) {
+					productURL.text = newText
+					return false
+				}
+				newText = "http://www." + productURL.text
+				if isGoodUrl(url: newText) {
+					productURL.text = newText
+					return false
+				}
+			}
 			return false
 		}
 		if text == " " {
@@ -80,7 +92,7 @@ class ViewProductVC: UIViewController, UITextViewDelegate, ImagePickerDelegate {
 			if productName.text == "" {
 				MakeShake(viewToShake: productName, coefficient: -1)
 			} else {
-                let productDictionary = ["name": productName.text!, "price": 0.0, "buy_url": productURL.text == "" ? nil : productURL.text , "color": ""] as [String : Any]
+				let productDictionary = ["name": productName.text!, "price": 0.0, "buy_url": productURL.text == "" || productURL.text == nil ? nil : productURL.text! as Any , "color": ""] as [String : Any]
                 CreateProduct(productDictionary: productDictionary, completed: { (product) in
                     uploadImage(image: self.productImage.image!, type: "product", id: product.product_ID!)
                     global.products[self.productIndex] = product

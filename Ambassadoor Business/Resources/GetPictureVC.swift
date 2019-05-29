@@ -91,14 +91,12 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		
 		scrollView.delegate = self
 		imagePicker.delegate = self
 		imagePicker.sourceType = .photoLibrary
 		imagePicker.allowsEditing = false
 		
 		scrollView.layer.cornerRadius = 5
-		
     }
 	
 	var alreadyPresented: Bool = false

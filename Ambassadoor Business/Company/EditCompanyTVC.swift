@@ -52,7 +52,7 @@ class EditCompanyTVC: UITableViewController, ImagePickerDelegate {
 		companyLogo.layer.cornerRadius = 5
 		nameTextBox.text = ThisCompany.name
 		missionTextBox.text = ThisCompany.mission
-		descTextBox.text = ThisCompany.description
+		descTextBox.text = ThisCompany.companyDescription
 		webTextBox.text = ThisCompany.website
 		logo = ThisCompany.logo
 		if ThisCompany.logo != nil && ThisCompany.logo != "" {
@@ -89,6 +89,7 @@ class EditCompanyTVC: UITableViewController, ImagePickerDelegate {
 	}
 	
 	@IBAction func changeImage(_ sender: Any) {
+		
 	}
 	
 

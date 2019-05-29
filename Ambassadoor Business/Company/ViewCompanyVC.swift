@@ -15,6 +15,7 @@ class ViewCompanyVC: UIViewController, editDelegate {
 	@IBOutlet weak var companyName: UILabel!
 	@IBOutlet weak var companyMission: UILabel!
 	@IBOutlet weak var companyDescription: UITextView!
+	@IBOutlet weak var viewWebsiteShadowView: ShadowView!
 	
 	var website: String?
 	
@@ -30,8 +31,12 @@ class ViewCompanyVC: UIViewController, editDelegate {
     }
 	
 	@IBAction func GoToWebsite(_ sender: Any) {
-		if let url = URL(string: YourCompany.website) {
-			UIApplication.shared.open(url, options: [:])
+		if isGoodUrl(url: YourCompany.website) {
+			if let url = URL(string: YourCompany.website) {
+				UIApplication.shared.open(url, options: [:])
+			}
+		} else {
+			MakeShake(viewToShake: viewWebsiteShadowView)
 		}
 	}
 	
@@ -39,7 +44,7 @@ class ViewCompanyVC: UIViewController, editDelegate {
 		
 		companyName.text = YourCompany.name
 		companyMission.text = YourCompany.mission
-		companyDescription.text = YourCompany.description
+		companyDescription.text = YourCompany.companyDescription
 		
 		if YourCompany.logo != nil && YourCompany.logo != "" {
 			if let thisUrl = URL(string: YourCompany.logo!) {
