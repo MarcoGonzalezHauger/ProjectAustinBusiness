@@ -104,7 +104,6 @@ class ProductsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
 			performSegue(withIdentifier: "toProductView", sender: self)
 		}
 		shelf.deselectRow(at: indexPath, animated: true)
-		
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -128,10 +127,10 @@ class ProductsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
                 for product in products {
                     getImage(type: "product", id: product.product_ID!, completed: { (image) in
                         product.image = image
-                        self.shelf.reloadData()
                     })
                 }
                 global.products = products
+				self.shelf.reloadData()
             })
         }
 		shelf.delegate = self

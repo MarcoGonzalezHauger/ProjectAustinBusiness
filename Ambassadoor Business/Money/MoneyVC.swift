@@ -44,9 +44,9 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
 	
 	func actionSent(action: cellAction) {
 		if action == .deposit {
-			
+			//depositVC must appear.
 		} else if action == .withdraw {
-			
+			//withdraw VC must appear.
 		}
 	}
 	

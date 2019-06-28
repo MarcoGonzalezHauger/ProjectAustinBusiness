@@ -13,6 +13,9 @@
 		C089A3C52253D4E500ECF3B0 /* structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089A3C42253D4E500ECF3B0 /* structs.swift */; };
 		C0C9390622614AE3003DC925 /* InstagramAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9390522614AE3003DC925 /* InstagramAPI.swift */; };
 		C0FBFD01226154FC00BADDCD /* categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FBFD00226154FC00BADDCD /* categories.swift */; };
+		E80B060622A07EA1002B9699 /* DepositVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80B060522A07EA1002B9699 /* DepositVC.swift */; };
+		E80B060822A07F63002B9699 /* WithdrawVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80B060722A07F63002B9699 /* WithdrawVC.swift */; };
+		E80B060A22A08D49002B9699 /* MoneyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80B060922A08D49002B9699 /* MoneyField.swift */; };
 		E816AC222282F3E200B9D951 /* MoneyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E816AC212282F3E200B9D951 /* MoneyVC.swift */; };
 		E83D9A39226A20B6007BDD97 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E83D9A38226A20B6007BDD97 /* GoogleService-Info.plist */; };
 		E83F378D227CDEE100BA6688 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F378C227CDEE100BA6688 /* SignUpVC.swift */; };
@@ -43,6 +46,9 @@
 		C089A3C42253D4E500ECF3B0 /* structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = structs.swift; sourceTree = "<group>"; };
 		C0C9390522614AE3003DC925 /* InstagramAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramAPI.swift; sourceTree = "<group>"; };
 		C0FBFD00226154FC00BADDCD /* categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = categories.swift; sourceTree = "<group>"; };
+		E80B060522A07EA1002B9699 /* DepositVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositVC.swift; sourceTree = "<group>"; };
+		E80B060722A07F63002B9699 /* WithdrawVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawVC.swift; sourceTree = "<group>"; };
+		E80B060922A08D49002B9699 /* MoneyField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyField.swift; sourceTree = "<group>"; };
 		E816AC212282F3E200B9D951 /* MoneyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyVC.swift; sourceTree = "<group>"; };
 		E83D9A38226A20B6007BDD97 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E83F378C227CDEE100BA6688 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
@@ -114,6 +120,8 @@
 			isa = PBXGroup;
 			children = (
 				E816AC212282F3E200B9D951 /* MoneyVC.swift */,
+				E80B060522A07EA1002B9699 /* DepositVC.swift */,
+				E80B060722A07F63002B9699 /* WithdrawVC.swift */,
 			);
 			path = Money;
 			sourceTree = "<group>";
@@ -132,6 +140,7 @@
 				E84600842273A92A00CF60F2 /* BusinessLabel.swift */,
 				E846007F2273A65600CF60F2 /* StandardNC.swift */,
 				E83F378E227CDF3A00BA6688 /* GetPictureVC.swift */,
+				E80B060922A08D49002B9699 /* MoneyField.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -332,11 +341,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				E84600832273A8CB00CF60F2 /* ProductsVC.swift in Sources */,
+				E80B060622A07EA1002B9699 /* DepositVC.swift in Sources */,
 				E8E54689227BA3E800775A07 /* YourCompany.swift in Sources */,
 				E8E54685227BA19C00775A07 /* ViewCompanyVC.swift in Sources */,
 				C05FE2DB225F687C002D3CAA /* global.swift in Sources */,
 				E816AC222282F3E200B9D951 /* MoneyVC.swift in Sources */,
 				E84600872273AF9100CF60F2 /* ImageViewExtensions.swift in Sources */,
+				E80B060A22A08D49002B9699 /* MoneyField.swift in Sources */,
+				E80B060822A07F63002B9699 /* WithdrawVC.swift in Sources */,
 				E84600802273A65600CF60F2 /* StandardNC.swift in Sources */,
 				C0FBFD01226154FC00BADDCD /* categories.swift in Sources */,
 				E83F378D227CDEE100BA6688 /* SignUpVC.swift in Sources */,
