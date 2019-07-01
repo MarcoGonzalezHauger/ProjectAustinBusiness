@@ -36,7 +36,6 @@ class EditCompanyTVC: UITableViewController, ImagePickerDelegate {
 	
 	var logo: String?
 	var AccountID: String?
-	var InstagramName: String?
 	var delegate: editDelegate?
 	
 	var ThisCompany: Company!
@@ -61,7 +60,6 @@ class EditCompanyTVC: UITableViewController, ImagePickerDelegate {
 			}
 		}
 		AccountID = ThisCompany.account_ID
-		InstagramName = ThisCompany.instagram_name
     }
 	
 	@IBAction func save(_ sender: Any) {
@@ -79,7 +77,7 @@ class EditCompanyTVC: UITableViewController, ImagePickerDelegate {
 			}
 		}
 		if !problem {
-            delegate?.editsMade(newCompany: Company.init(dictionary: ["name": nameTextBox.text!, "logo": logo as Any, "mission": missionTextBox.text, "website": webTextBox.text, "account_ID": AccountID ?? "", "instagram_name": InstagramName ?? "", "description": descTextBox.text, "accountBalance": 0.0]))
+            delegate?.editsMade(newCompany: Company.init(dictionary: ["name": nameTextBox.text!, "logo": logo as Any, "mission": missionTextBox.text, "website": webTextBox.text, "account_ID": AccountID ?? "", "description": descTextBox.text, "accountBalance": 0.0]))
 			dismiss(animated: true, completion: nil)
 		}
 	}

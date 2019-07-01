@@ -55,7 +55,19 @@ struct API {
             }
             }.resume()
     }
-    
+	
+	static func serializeProduct(product: Product) -> [String: Any] {
+		let userData: [String: Any] = [
+			"product_ID": product.product_ID as Any,
+			"image": product.image as Any,
+			"name": product.name,
+			"price": product.price,
+			"buy_url": product.buy_url as Any,
+			"color": product.color
+		]
+		return userData
+	}
+	
     static func serializeUser(user: User, id: String) -> [String: Any] {
         var userData: [String: Any] = [
             "name": user.name!,
@@ -66,7 +78,7 @@ struct API {
             "secondaryCategory": user.SecondaryCategory == nil ? "" : user.SecondaryCategory!.rawValue,
             "averageLikes": user.averageLikes ?? "",
             "zipCode": user.zipCode as Any,
-            "gender": user.gender as! String
+			"gender": user.gender!
         ]
         if id != "" {
             userData["id"] = id
@@ -95,7 +107,7 @@ struct API {
         let offerData: [String: Any] = [
             "offer_ID": offer.offer_ID,
             "money": offer.money,
-            "company": offer.company.account_ID,
+			"company": offer.company.account_ID as Any,
             "posts": post_IDS,
             "offerdate": offer.offerdate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss"),
             "user_ID": offer.user_ID as Any,

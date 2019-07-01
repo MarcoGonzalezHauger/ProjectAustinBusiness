@@ -42,8 +42,10 @@ class ProductsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
 		let cell = shelf.dequeueReusableCell(withIdentifier: "productCellID") as! ProductCell
         debugPrint(global.products[productIndex])
 		cell.productTitle.text = global.products[productIndex].name == "" ? "(no name)" : global.products[productIndex].name
-        if let product_image = global.products[productIndex].image {
-            cell.productImage.image = product_image
+        if let imageID = global.products[productIndex].image {
+			getImage(id: imageID) { (image1) in
+				cell.productImage.image = image1
+			}
         } else {
             cell.productImage.image = UIImage.init(named: "defaultProduct")
         }
@@ -120,19 +122,6 @@ class ProductsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
-        // let fakeproduct = GetFakeProducts()
-        DispatchQueue.main.async {
-            getAllProducts(completion: { (products) in
-                debugPrint(products)
-                for product in products {
-                    getImage(type: "product", id: product.product_ID!, completed: { (image) in
-                        product.image = image
-                    })
-                }
-                global.products = products
-				self.shelf.reloadData()
-            })
-        }
 		shelf.delegate = self
 		shelf.dataSource = self
     }

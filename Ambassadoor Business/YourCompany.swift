@@ -13,11 +13,7 @@ protocol TransactionListener {
 	func TransactionHistoryChanged()
 }
 
-var YourCompany: Company! {
-	didSet {
-		//update company info.
-	}
-}
+var YourCompany: Company!
 
 var transactionDelegate: TransactionListener?
 

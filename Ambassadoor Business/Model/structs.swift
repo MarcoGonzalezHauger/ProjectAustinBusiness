@@ -72,8 +72,8 @@ class Offer: NSObject {
         self.company = dictionary["company"] as! Company
         self.posts = dictionary["posts"] as! [Post]
         self.offerdate = dictionary["offerdate"] as! Date
-        if dictionary["user_ID"] != nil {
-            self.user_ID = dictionary["user_ID"] as! String
+        if let userID = dictionary["user_ID"] as? String {
+			self.user_ID = userID
         }
         self.offer_ID = dictionary["offer_ID"] as! String
         self.expiredate = dictionary["expiredate"] as! Date
@@ -87,6 +87,7 @@ class TemplateOffer: Offer {
     var zipCodes: [String]
     var genders: [String]
     var user_IDs: [String]
+	var title: String
 
     override init(dictionary: [String: AnyObject]) {
         self.targetCategories = []
@@ -94,13 +95,14 @@ class TemplateOffer: Offer {
             self.targetCategories = tcs
         } else {
             for cat in dictionary["targetCategories"] as! [String] {
-                if let c = Category.init(rawValue: cat as? String ?? "") {
+                if let c = Category.init(rawValue: cat) {
                     self.targetCategories.append(c)
                 } else {
                     self.targetCategories.append(.Other)
                 }
             }
         }
+		self.title = dictionary["title"] as! String
         self.zipCodes = dictionary["zipCodes"] as! [String]
         self.genders = dictionary["genders"] as! [String]
         self.user_IDs = dictionary["user_IDs"] as! [String]
@@ -202,7 +204,7 @@ struct Post {
 //struct for product
 class Product: NSObject {
     var product_ID: String?
-    var image: UIImage?
+    var image: String?
     var name: String
     var price: Double
     var buy_url: String?
@@ -210,7 +212,7 @@ class Product: NSObject {
     
     init(dictionary: [String: Any]) {
         self.product_ID = (dictionary["product_ID"] as? String)!
-        self.image = dictionary["image"] as? UIImage
+        self.image = dictionary["image"] as? String
         self.name = (dictionary["name"] as? String)!
         self.price = (dictionary["price"] as? Double)!
         self.buy_url = dictionary["buy_url"] as? String
@@ -225,7 +227,7 @@ class Company: NSObject {
     let logo: String?
     let mission: String
     let website: String
-    let instagram_name: String
+	let owner_email: String
     let companyDescription: String
     var accountBalance: Double
     
@@ -235,17 +237,9 @@ class Company: NSObject {
         self.logo = dictionary["logo"] as? String
         self.mission = dictionary["mission"] as! String
         self.website = dictionary["website"] as! String
-        self.instagram_name = dictionary["instagram_name"] as! String
+        self.owner_email = dictionary["owner"] as! String
         self.companyDescription = dictionary["description"] as! String
         self.accountBalance = dictionary["accountBalance"] as! Double
-    }
-    
-    func updateCompanyInFirebase() {
-        if self.account_ID != "" {
-            debugPrint(self)
-            let _: Company = UpdateCompanyInDatabase(company: self)
-            debugPrint(self.account_ID! + " has been updated in database")
-        }
     }
 }
 

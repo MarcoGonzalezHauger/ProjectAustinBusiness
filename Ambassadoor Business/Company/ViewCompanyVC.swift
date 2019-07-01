@@ -22,6 +22,7 @@ class ViewCompanyVC: UIViewController, editDelegate {
 	func editsMade(newCompany: Company) {
 		YourCompany = newCompany
 		updateCompanyInfo()
+		UpdateYourCompanyInFirebase()
 	}
 	
 	override func viewDidLoad() {
@@ -46,14 +47,14 @@ class ViewCompanyVC: UIViewController, editDelegate {
 		companyMission.text = YourCompany.mission
 		companyDescription.text = YourCompany.companyDescription
 		
+		companyLogo.image = UIImage.init(named: "defaultCompany")
+		
 		if YourCompany.logo != nil && YourCompany.logo != "" {
-			if let thisUrl = URL(string: YourCompany.logo!) {
-				companyLogo.downloadedFrom(url: thisUrl)
-			} else {
-				companyLogo.image = UIImage.init(named: "defaultCompany")
+			if let logoid = YourCompany.logo {
+				getImage(id: logoid) { (image) in
+					self.companyLogo.image = image
+				}
 			}
-		} else {
-			companyLogo.image = UIImage.init(named: "defaultCompany")
 		}
 	}
 	

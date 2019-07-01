@@ -38,7 +38,7 @@ class ViewProductVC: UIViewController, UITextViewDelegate, ImagePickerDelegate {
 		productURL.delegate = self
         if let product_ID = ThisProduct.product_ID {
             DispatchQueue.main.async {
-                getImage(type: "product", id: product_ID, completed: { (image) in
+                getImage(id: product_ID, completed: { (image) in
                     self.productImage.image = image
                 })
             }
@@ -92,9 +92,9 @@ class ViewProductVC: UIViewController, UITextViewDelegate, ImagePickerDelegate {
 			if productName.text == "" {
 				MakeShake(viewToShake: productName, coefficient: -1)
 			} else {
-				let productDictionary = ["name": productName.text!, "price": 0.0, "buy_url": productURL.text == "" || productURL.text == nil ? nil : productURL.text! as Any , "color": ""] as [String : Any]
+				let imageID = uploadImage(image: self.productImage.image!)
+				let productDictionary = ["name": productName.text!, "price": 0.0, "buy_url": productURL.text == "" || productURL.text == nil ? nil : productURL.text! as Any , "color": "", "image": imageID] as [String : Any]
                 CreateProduct(productDictionary: productDictionary, completed: { (product) in
-                    uploadImage(image: self.productImage.image!, type: "product", id: product.product_ID!)
                     global.products[self.productIndex] = product
                     self.delegate?.WasSaved(index: self.productIndex)
                     self.dismissed(self)
