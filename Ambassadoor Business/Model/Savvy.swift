@@ -252,7 +252,7 @@ func makeImageCircular(image: UIImage) -> UIImage {
 
 func OfferFromID(id: String) -> Offer? {
 	debugPrint("attempting to find offer with ID \(id)")
-	return global.AvaliableOffers.filter { (ThisOffer) -> Bool in
+	return global.TemplateOffers.filter { (ThisOffer) -> Bool in
 		return ThisOffer.offer_ID == id
 	}[0]
 }

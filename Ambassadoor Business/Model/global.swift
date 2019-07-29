@@ -23,7 +23,7 @@ class CentralVariables {
     
     //The offers that are currently in the users inbox.
 	
-    var AvaliableOffers: [Offer] = [] { didSet {
+    var TemplateOffers: [Offer] = [] { didSet {
 			EachListener(){ if let targetfunction = $0.TemplateOffersChanged{ targetfunction()}}
 		}}
 	

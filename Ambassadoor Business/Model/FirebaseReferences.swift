@@ -7,6 +7,7 @@
 //
 import Foundation
 import Firebase
+import UIKit
 
 //Gets all offers relavent to the user via Firebase
 func GetOffers(userId: String) -> [Offer] {
@@ -219,7 +220,7 @@ func CreateProduct(productDictionary: [String: Any], completed: @escaping (_ pro
 }
 
 func CreateCompany(company: Company, completed: @escaping (_ companyInstance: Company) -> ()) {
-    let ref = Database.database().reference().child("companies")
+    let ref = Database.database().reference().child("companies").child(Auth.auth().currentUser!.uid)
     // Boolean flag to keep track if company is already in database
     var alreadyRegistered: Bool = false
     ref.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -236,6 +237,8 @@ func CreateCompany(company: Company, completed: @escaping (_ companyInstance: Co
             let companyReference = ref.childByAutoId()
             companyData["account_ID"] = companyReference.key
             companyReference.updateChildValues(companyData)
+            let refUpdate = Database.database().reference().child("CompanyUser").child(Auth.auth().currentUser!.uid)
+            refUpdate.updateChildValues(["isCompanyRegistered":true])
 		}
         let categoryInstance: Company = Company(dictionary: companyData)
         completed(categoryInstance)
@@ -283,6 +286,41 @@ func uploadImage(image: UIImage) -> String {
     return id
 }
 
+func uploadImageToFIR(image: UIImage, path: String, completion: @escaping (String,Bool) -> ()) {
+    //guard let accountID = YourCompany.account_ID else { return "" }
+//    let id = "\(path)_\(Calendar.current.component(.year, from: Date()))_\(NSUUID().uuidString.lowercased())"
+    //let id = "\(path)_\(Calendar.current.component(.year, from: Date()))_\(NSUUID().uuidString.lowercased())"
+    //let dataaa = UIImageJPEGRepresentation((info[UIImagePickerControllerEditedImage] as? UIImage)!, 0.2)
+    //let data = image.pngData()
+    let data = image.jpegData(compressionQuality: 0.2)
+    let fileName = path + ".png"
+    let ref = Storage.storage().reference().child("companylogo").child(fileName)
+    ref.putData(data!, metadata: nil, completion: { (metadata, error) in
+        if error != nil {
+            debugPrint(error!)
+            completion("", true)
+            return
+        }else {
+            guard let metadata = metadata else {
+                // Uh-oh, an error occurred!
+                completion("", true)
+                return
+            }
+            // You can also access to download URL after upload.
+            ref.downloadURL { (url, error) in
+                guard let downloadURL = url else {
+                    // Uh-oh, an error occurred!
+                    completion("", true)
+                    return
+                }
+                completion(downloadURL.absoluteString, false)
+            }
+        }
+        debugPrint(metadata!)
+    })
+    //return id
+}
+
 func serializeCompany(company: Company) -> [String: Any] {
     let companyData: [String: Any] = [
         "account_ID": company.account_ID!,
@@ -296,6 +334,8 @@ func serializeCompany(company: Company) -> [String: Any] {
     ]
     return companyData
 }
+
+
 
 // Query all users in Firebase and to do filtering based on algorithm
 func GetAllUsers(completion: @escaping ([User]) -> ()) {
@@ -392,6 +432,45 @@ func UpdateCompanyInDatabase(company: Company) {
     let ref = Database.database().reference().child("companies")
 	let companyData = serializeCompany(company: company)
     ref.child(company.account_ID!).updateChildValues(companyData)
+}
+//Create Company User
+func CreateCompanyUser(companyUser: CompanyUser) -> CompanyUser {
+    
+    let ref = Database.database().reference().child("CompanyUser")
+    let values: [String: Any] = serializeCompanyUser(companyUser: companyUser)
+    let offerRef = ref.child(values["userID"] as! String)
+    offerRef.updateChildValues(values)
+    return companyUser
+    
+}
+//Serialize Company User
+func serializeCompanyUser(companyUser: CompanyUser) -> [String: Any] {
+    
+    let companyUserData: [String: Any] = [
+        "userID": companyUser.userID!,
+        "email": companyUser.email!,
+        "refreshToken": companyUser.refreshToken!,
+        "token": companyUser.token!,"isCompanyRegistered": companyUser.isCompanyRegistered!]
+    return companyUserData
+    
+}
+//
+func getCurrentCompanyUser(userID: String, completion: @escaping (CompanyUser?,String) -> Void) {
+    
+    let ref = Database.database().reference()
+    ref.child("CompanyUser").child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
+        // Get user value
+        if let value = snapshot.value as? NSDictionary{
+           let companyUser = CompanyUser.init(dictionary: value as! [String : Any])
+           completion(companyUser, "")
+        }else{
+          completion(nil, "error")
+        }
+    }) { (error) in
+        print(error.localizedDescription)
+    }
+    
+    
 }
 
 extension Date

@@ -26,6 +26,34 @@ class ShadowView: UIView {
     @IBInspectable var ShadowOpacity: Float = 0.2 { didSet { DrawShadows() } }
     @IBInspectable var ShadowRadius: Float = 1.75 { didSet { DrawShadows() } }
     @IBInspectable var ShadowColor: UIColor = UIColor.black { didSet { DrawShadows() } }
+    @IBInspectable var borderWidth: Float = 0.0 { didSet { DrawShadows() }}
+    @IBInspectable var borderColor: UIColor = UIColor.black { didSet { DrawShadows() }}
+    //    @IBInspectable
+    //    var borderWidth: CGFloat {
+    //        get {
+    //            return layer.borderWidth
+    //        }
+    //        set {
+    //            layer.borderWidth = newValue
+    //        }
+    //    }
+    //
+    //    @IBInspectable
+    //    var borderColor: UIColor? {
+    //        get {
+    //            if let color = layer.borderColor {
+    //                return UIColor(cgColor: color)
+    //            }
+    //            return nil
+    //        }
+    //        set {
+    //            if let color = newValue {
+    //                layer.borderColor = color.cgColor
+    //            } else {
+    //                layer.borderColor = nil
+    //            }
+    //        }
+    //    }
     
     func DrawShadows() {
         //draw shadow & rounded corners for offer cell
@@ -34,6 +62,9 @@ class ShadowView: UIView {
         self.layer.shadowOpacity = ShadowOpacity
         self.layer.shadowOffset = CGSize.zero
         self.layer.shadowRadius = CGFloat(ShadowRadius)
+        self.layer.borderWidth = CGFloat(borderWidth)
+        self.layer.borderColor = borderColor.cgColor
+        self.layer.masksToBounds = true
         self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.layer.cornerRadius).cgPath
         
     }
@@ -135,30 +166,7 @@ class User: NSObject {
         } else {
             self.profilePicURL = dictionary["profilePicURL"] as? String
         }
-        /*debugPrint("Category: \(String(describing: dictionary["primaryCategory"]))")
-         if ((dictionary["primaryCategory"] ?? "") as! String) == ""{
-         debugPrint("It's other")
-         self.primaryCategory = Category.init(rawValue: "Other")!
-         } else {
-         debugPrint("what's up")
-         self.primaryCategory = (((dictionary["primaryCategory"] as! String) ?? "") == "" ? Category.init(rawValue: "Other")! : Category.init(rawValue: dictionary["primaryCategory"] as! String))!
-         }
-         if (dictionary["primaryCategory"] as? String != nil) {
-         if Yourself != nil {
-         self.primaryCategory = Yourself.primaryCategory
-         } else {
-         debugPrint("hey")
-         self.primaryCategory = Category.init(rawValue: dictionary["primaryCategory"] as? String ?? "Other")!
-         }
-         } else {
-         debugPrint("sup")
-         self.primaryCategory = Category.init(rawValue: "Other")!
-         debugPrint(self.primaryCategory.rawValue)
-         }
-         if ((dictionary["secondaryCategory"] ?? "") as! String) == ""{
-         self.SecondaryCategory = nil
-         */
-        if let pc = dictionary["primaryCategory"] as? Category {
+		if let pc = dictionary["primaryCategory"] as? Category {
             self.primaryCategory = pc
         } else {
             if let pc = Category.init(rawValue: dictionary["primaryCategory"] as? String ?? "") {
@@ -231,17 +239,40 @@ class Company: NSObject {
     let companyDescription: String
     var accountBalance: Double
     
+    
+    
     init(dictionary: [String: Any]) {
         self.account_ID = dictionary["account_ID"] as? String
         self.name = dictionary["name"] as! String
         self.logo = dictionary["logo"] as? String
         self.mission = dictionary["mission"] as! String
         self.website = dictionary["website"] as! String
-        self.owner_email = dictionary["owner"] as! String
+        self.owner_email = (dictionary["owner"] as? String) ?? ""
         self.companyDescription = dictionary["description"] as! String
         self.accountBalance = dictionary["accountBalance"] as! Double
+        
     }
 }
+
+//struct for complany user
+class CompanyUser: NSObject {
+    var userID: String?
+    var token: String?
+    var email: String?
+    var refreshToken: String?
+    var isCompanyRegistered: Bool?
+    
+    
+    init(dictionary: [String: Any]) {
+        
+        self.userID = dictionary["userID"] as? String
+        self.token = dictionary["token"] as? String
+        self.email = dictionary["email"] as? String
+        self.refreshToken = dictionary["refreshToken"] as? String
+        self.isCompanyRegistered = dictionary["isCompanyRegistered"] as? Bool
+    }
+}
+
 
 //Carries personal info only avalible to view and edit by the user.
 struct PersonalInfo {
