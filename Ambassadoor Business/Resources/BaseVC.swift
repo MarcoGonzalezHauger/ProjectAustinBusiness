@@ -158,6 +158,26 @@ class BaseVC: UIViewController {
         
     }
     
+    func addDoneButtonOnKeyboard(textField: UITextField)
+    {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        doneToolbar.barStyle = UIBarStyle.blackTranslucent
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: #selector(self.doneButtonAction))
+        
+        let items = [flexSpace,done]
+        //        items.addObject(flexSpace)
+        //        items.addObject(done)
+        
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        textField.inputAccessoryView = doneToolbar
+        
+        
+    }
+    
     @objc func doneButtonAction(){
         
     }
@@ -166,16 +186,97 @@ class BaseVC: UIViewController {
         super.viewDidLoad()
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
         // Do any additional setup after loading the view.
+        
     }
+    
+    
     
     @objc func keyboardWasShown(notification : NSNotification) {
         
-        
+    }
+    
+    @objc func keyboardWillHide(notification:NSNotification){
         
     }
     
-
+    @objc func textfieldDidChangeText(notification:NSNotification){
+        
+    }
+    
+    //MARK: -Local Notification
+    
+    func createLocalNotification(notificationName: String, userInfo: [String: Any]) {
+        NotificationCenter.default.post(name: Notification.Name.init(rawValue: notificationName), object: nil, userInfo: userInfo)
+    }
+    
+    func textFieldChangeNotification(textField: UITextField) {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.textfieldDidChangeText(notification:)), name: UITextField.textDidChangeNotification, object: textField)
+    }
+    
+    func addRightButton(image: UIImage) {
+        
+        let rightButton: UIBarButtonItem = UIBarButtonItem(image: image.withRenderingMode(.alwaysOriginal), style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.addRightAction(sender:)))
+        self.navigationItem.rightBarButtonItem = rightButton
+    }
+    
+    func addRightButtonText(text: String) {
+        
+        let rightButton: UIBarButtonItem = UIBarButtonItem.init(title: text, style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.addRightAction(sender:)))
+        self.navigationItem.rightBarButtonItem = rightButton
+    }
+    
+    @IBAction func addRightAction(sender: UIBarButtonItem){
+        
+    }
+    
+    func customizeNavigationBar() {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.tintColor = UIColor.blue
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
+        self.navigationController?.navigationBar.titleTextAttributes =
+            [NSAttributedString.Key.foregroundColor:UIColor.black, NSAttributedString.Key.font:UIFont.systemFont(ofSize: 14.0)]
+        self.navigationController?.view.backgroundColor = UIColor.clear
+    }
+    
+    func addPickerToolBar(textField: UITextField,object: [String]) -> BasePicker {
+        
+        let picker = BasePicker.instanceFromNib()
+        picker.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 216)
+        picker.pickerComponents = object
+        picker.delegate = picker
+        picker.dataSource = picker
+        picker.reloadComponent(0)
+        textField.inputView = picker
+        
+        let toolbar = UIToolbar()
+        toolbar.barStyle = .default
+        toolbar.isTranslucent = true
+        toolbar.tintColor = UIColor.blue
+        toolbar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneClickPicker))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.cancelClickPicker))
+        toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        
+        toolbar.isUserInteractionEnabled = true
+        textField.inputAccessoryView = toolbar
+        return picker
+    }
+    
+    @objc func doneClickPicker() {
+        
+    }
+    
+    @objc func cancelClickPicker() {
+        
+    }
+    
     /*
     // MARK: - Navigation
 

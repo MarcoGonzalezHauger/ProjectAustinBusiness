@@ -8,6 +8,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import SDWebImage
 
 protocol ProductDelegate {
 	func WasSaved(index: Int) -> ()
@@ -18,7 +20,7 @@ class ProductCell: UITableViewCell {
 	@IBOutlet weak var productImage: UIImageView!
 }
 
-class ProductsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ProductDelegate {
+class ProductsVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ProductDelegate {
 	
 	func WasSaved(index: Int) {
 		shelf.reloadRows(at: [IndexPath(row: index + 1, section: 0)], with: .fade)
@@ -42,13 +44,15 @@ class ProductsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
 		let cell = shelf.dequeueReusableCell(withIdentifier: "productCellID") as! ProductCell
         debugPrint(global.products[productIndex])
 		cell.productTitle.text = global.products[productIndex].name == "" ? "(no name)" : global.products[productIndex].name
-        if let imageID = global.products[productIndex].image {
-			getImage(id: imageID) { (image1) in
-				cell.productImage.image = image1
-			}
-        } else {
-            cell.productImage.image = UIImage.init(named: "defaultProduct")
-        }
+        let url = URL.init(string: global.products[productIndex].image!)
+        cell.productImage.sd_setImage(with: url, placeholderImage: UIImage(named: "defaultProduct"))
+//        if let imageID = global.products[productIndex].image {
+//			getImage(id: imageID) { (image1) in
+//				cell.productImage.image = image1
+//			}
+//        } else {
+//            cell.productImage.image = UIImage.init(named: "defaultProduct")
+//        }
 		return cell
 	}
 	
@@ -91,12 +95,13 @@ class ProductsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if indexPath.row == 0 {
-            global.products.insert(Product.init(dictionary: ["name": "", "price": 0.0, "buy_url": "", "color": "", "product_ID": ""]), at: 0)
-			shelf.insertRows(at: [IndexPath(row: 1, section: 0)], with: .top)
+//            global.products.insert(Product.init(dictionary: ["name": "", "price": 0.0, "buy_url": "", "color": "", "product_ID": "","image":""]), at: 0)
+			//shelf.insertRows(at: [IndexPath(row: 1, section: 0)], with: .top)
 			let productindex = 0
-			let product = global.products[productindex]
+			//let product = global.products[productindex]
+            let product = Product.init(dictionary: ["name": "", "price": 0.0, "buy_url": "", "color": "", "product_ID": "","image":""])
 			passProduct = product
-			passIndex = productindex
+			//passIndex = productindex
 			performSegue(withIdentifier: "toProductView", sender: self)
 		} else {
 			let productindex = indexPath.row - 1
@@ -124,6 +129,17 @@ class ProductsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         super.viewDidLoad()
 		shelf.delegate = self
 		shelf.dataSource = self
+        let user = Singleton.sharedInstance.getCompanyUser()
+        let path = Auth.auth().currentUser!.uid + "/" + user.companyID!
+        self.showActivityIndicator()
+        getAllProducts(path: path) { (product) in
+            self.hideActivityIndicator()
+            global.products.removeAll()
+            global.products.append(contentsOf: product)
+            self.shelf.reloadData()
+            
+        }
+        
     }
 
 }

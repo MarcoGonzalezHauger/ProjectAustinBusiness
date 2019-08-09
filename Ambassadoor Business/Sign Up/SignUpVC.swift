@@ -109,7 +109,7 @@ class SignUpVC: BaseVC,UITextFieldDelegate {
                         user.getIDToken(completion: { (token, error) in
                             
                             if error == nil {
-                                self.companyUser = CompanyUser.init(dictionary: ["userID":user.uid,"token":token!,"email":user.email!,"refreshToken":user.refreshToken!,"isCompanyRegistered":false])
+                                self.companyUser = CompanyUser.init(dictionary: ["userID":user.uid,"token":token!,"email":user.email!,"refreshToken":user.refreshToken!,"isCompanyRegistered":false,"companyID": ""])
                             
                             let userDetails = CreateCompanyUser(companyUser: self.companyUser)
                             Singleton.sharedInstance.setCompanyUser(user: userDetails)

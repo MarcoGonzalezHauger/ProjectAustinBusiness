@@ -86,6 +86,19 @@ struct API {
         return userData
     }
     
+    static func serializePost(post: Post) -> [String: Any] {
+        //                           Post.init(image: nil, instructions: desPost.text!, captionMustInclude: <#T##String?#>, products: <#T##[Product]?#>, post_ID: <#T##String#>, PostType: <#T##TypeofPost#>, confirmedSince: <#T##Date?#>, isConfirmed: <#T##Bool#>)
+        var product = [[String: Any]]()
+        
+        for value in post.products! {
+            product.append(serializeProduct(product: value))
+        }
+        //DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: post.confirmedSince!, format: "yyyy/MMM/dd HH:mm:ss")
+        let postData: [String: Any] = ["image":post.image!,"instructions":post.instructions,"captionMustInclude":post.captionMustInclude!,"products":product,"post_ID":post.post_ID,"PostType": post.PostType,"confirmedSince":"" ,"isConfirmed":post.isConfirmed,"hashCaption":post.hashCaption]
+        
+        return postData
+    }
+    
     static func serializeTemplateOffer(offer: TemplateOffer) -> [String: Any] {
         var offerData = serializeOffer(offer: offer)
         var cats: [String] = []
@@ -96,26 +109,36 @@ struct API {
         offerData["zipCodes"] = offer.zipCodes
         offerData["genders"] = offer.genders
         offerData["user_IDs"] = offer.user_IDs
+        offerData["category"] = offer.category
+        offerData["title"] = offer.title
         return offerData
     }
     
     static func serializeOffer(offer: Offer) -> [String: Any] {
-        var post_IDS: [String] = []
+        var posts: [[String: Any]] = [[String: Any]]()
         for post in offer.posts {
-            post_IDS.append(post.post_ID)
+            posts.append(API.serializePost(post: post)) 
+        }
+        
+        var offerConSin = ""
+        
+        if offer.allPostsConfirmedSince != nil {
+           offerConSin = offer.allPostsConfirmedSince!.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss")
+        }else{
+           offerConSin = ""
         }
         let offerData: [String: Any] = [
             "offer_ID": offer.offer_ID,
             "money": offer.money,
-			"company": offer.company.account_ID as Any,
-            "posts": post_IDS,
+            "company": offer.company?.account_ID as Any,
+            "posts": posts,
             "offerdate": offer.offerdate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss"),
             "user_ID": offer.user_ID as Any,
             "expiredate": offer.expiredate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss"),
-            "allPostsConfirmedSince": offer.allPostsConfirmedSince!.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss"),
+            "allPostsConfirmedSince": offerConSin,
             "allConfirmed": offer.allConfirmed,
             "isAccepted": offer.isAccepted,
-            "isExpired": offer.isExpired,
+            "isExpired": offer.isExpired,"ownerUserID": offer.ownerUserID
             ]
         return offerData
     }

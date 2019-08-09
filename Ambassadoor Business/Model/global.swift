@@ -45,9 +45,11 @@ class CentralVariables {
 	
 	//Passive Variables. No option to listen for change.
 	
-	var products: [Product] = []
+    var products: [Product] = []
 	var OfferDrafts: [TemplateOffer] = []
-	
+    var influencers: [User] = []
+    var post: [Post] = []
+    
 	
 }
 

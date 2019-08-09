@@ -23,6 +23,8 @@ class Singleton {
     static let sharedInstance = Singleton()
     
     var company: CompanyUser
+    var companyDetails: Company!
+    
     
     init() {
         self.company = CompanyUser(dictionary: [:])
@@ -34,6 +36,13 @@ class Singleton {
     
     func getCompanyUser() -> CompanyUser {
         return company
+    }
+    
+    func setCompanyDetails(company: Company) {
+        self.companyDetails = company
+    }
+    func getCompanyDetails() -> Company {
+        return self.companyDetails
     }
     
 }

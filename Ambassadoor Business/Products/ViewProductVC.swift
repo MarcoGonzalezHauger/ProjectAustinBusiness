@@ -8,16 +8,27 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
+import SDWebImage
 
-class ViewProductVC: UIViewController, UITextViewDelegate, ImagePickerDelegate {
+class ViewProductVC: BaseVC, UITextViewDelegate, ImagePickerDelegate {
 	
 	func imagePicked(image: UIImage?, imageUrl: String?) {
-		if let image = image {
+		if  image != nil {
 			productImage.image = image
+            self.productURLstring = ""
+//            self.showActivityIndicator()
+//            uploadImageToFIR(image: self.productImage.image!, childName: "productImage", path: Auth.auth().currentUser!.uid) { (url, error) in
+//                self.hideActivityIndicator()
+//                if error == false {
+//                  self.productURLstring = url
+//                }
+//            }
 		}
-		if let imageUrl = imageUrl {
-			productImageUrl = imageUrl
-		}
+//		if let imageUrl = imageUrl {
+//			productImageUrl = imageUrl
+//		}
 	}
 	
 	
@@ -26,6 +37,8 @@ class ViewProductVC: UIViewController, UITextViewDelegate, ImagePickerDelegate {
 	var productIndex: Int!
 	var delegate: ProductDelegate?
 	var productImageUrl: String?
+    var productURLstring = ""
+    
 	
 	@IBOutlet weak var productName: UITextField!
 	@IBOutlet weak var productImage: UIImageView!
@@ -36,15 +49,21 @@ class ViewProductVC: UIViewController, UITextViewDelegate, ImagePickerDelegate {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		productURL.delegate = self
-        if let product_ID = ThisProduct.product_ID {
-            DispatchQueue.main.async {
-                getImage(id: product_ID, completed: { (image) in
-                    self.productImage.image = image
-                })
-            }
-		} else {
-			productImage.image = UIImage.init(named: "defaultProduct")
-		}
+//        if let product_ID = ThisProduct.product_ID {
+//            DispatchQueue.main.async {
+//                getImage(id: product_ID, completed: { (image) in
+//                    self.productImage.image = image
+//                })
+//            }
+//		} else {
+//			productImage.image = UIImage.init(named: "defaultProduct")
+//		}
+        if let url = URL.init(string: ThisProduct.image!) {
+           self.productImage.sd_setImage(with: url, placeholderImage: UIImage(named: "defaultProduct"))
+            self.productURLstring = ThisProduct.image!
+        }else{
+            self.productURLstring = ""
+        }
 		productName.text = ThisProduct.name
 		if ThisProduct.name	== "" {
 			productName.becomeFirstResponder()
@@ -92,13 +111,63 @@ class ViewProductVC: UIViewController, UITextViewDelegate, ImagePickerDelegate {
 			if productName.text == "" {
 				MakeShake(viewToShake: productName, coefficient: -1)
 			} else {
-				let imageID = uploadImage(image: self.productImage.image!)
-				let productDictionary = ["name": productName.text!, "price": 0.0, "buy_url": productURL.text == "" || productURL.text == nil ? nil : productURL.text! as Any , "color": "", "image": imageID] as [String : Any]
-                CreateProduct(productDictionary: productDictionary, completed: { (product) in
-                    global.products[self.productIndex] = product
-                    self.delegate?.WasSaved(index: self.productIndex)
-                    self.dismissed(self)
-                })
+				//let imageID = uploadImage(image: self.productImage.image!)
+                //uploadImageToFIR(image: self.productImage.image!, childName: , path: <#T##String#>, completion: <#T##(String, Bool) -> ()#>)
+                
+                if ThisProduct.product_ID == "" {
+                    
+                    self.showActivityIndicator()
+                    let productDictionary = ["name": productName.text!, "price": 0.0, "buy_url": productURL.text == "" || productURL.text == nil ? nil : productURL.text! as Any! , "color": "", "image": self.productURLstring] as [String : Any]
+                    CreateProduct(productDictionary: productDictionary, completed: { (product) in
+                        let path = Auth.auth().currentUser!.uid + "/" + product.product_ID!
+                        uploadImageToFIR(image: self.productImage.image!, childName: "products", path: path) { (url, error) in
+                            self.hideActivityIndicator()
+                            if error == false {
+                                updateProductDetails(dictionary: ["image":url], productID: product.product_ID!)
+                                let productDetails = product
+                                productDetails.image = url
+                                //global.products[self.productIndex] = productDetails
+                                global.products.append(productDetails)
+                                self.delegate?.WasSaved(index: self.productIndex)
+                                self.dismissed(self)
+                            }
+                        }
+                        
+                    })
+                    
+                }else{
+                    
+                    if self.productURLstring == "" {
+                        
+                        let path = Auth.auth().currentUser!.uid + "/" + ThisProduct.product_ID!
+                        uploadImageToFIR(image: self.productImage.image!, childName: "products", path: path) { (url, error) in
+                            self.hideActivityIndicator()
+                            if error == false {
+                                let productDictionary = ["name": self.productName.text!, "price": 0.0, "buy_url": self.productURL.text , "color": "", "image": url,"product_ID":self.ThisProduct.product_ID!] as [String : Any]
+                                updateProductDetails(dictionary: productDictionary, productID: self.ThisProduct.product_ID!)
+                                let productDetails = Product.init(dictionary: productDictionary)
+                                global.products[self.productIndex] = productDetails
+                                //global.products.append(productDetails)
+                                self.delegate?.WasSaved(index: self.productIndex)
+                                self.dismissed(self)
+                            }
+                        }
+                        
+                    }else{
+                        let productDictionary = ["name": self.productName.text!, "price": 0.0, "buy_url": self.productURL.text, "color": "", "image": self.productURLstring,"product_ID":self.ThisProduct.product_ID!] as [String : Any]
+                        updateProductDetails(dictionary: productDictionary, productID: self.ThisProduct.product_ID!)
+                        let productDetails = Product.init(dictionary: productDictionary)
+                        global.products[self.productIndex] = productDetails
+                        //global.products.append(productDetails)
+                        self.delegate?.WasSaved(index: self.productIndex)
+                        self.dismissed(self)
+                    }
+                    
+                    //updateProductDetails(dictionary: , productID: product.product_ID!)
+                    
+                }
+                
+
 			}
 		}
 	}

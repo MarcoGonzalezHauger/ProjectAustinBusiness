@@ -87,6 +87,10 @@ class SignInVC: BaseVC,UITextFieldDelegate {
         })
     }
     
+    @objc func timerAction(sender: AnyObject){
+        self.showActivityIndicator()
+    }
+    
     @IBAction func signInAction(sender: UIButton){
         
         if emailText.text?.count != 0 {
@@ -94,7 +98,9 @@ class SignInVC: BaseVC,UITextFieldDelegate {
             if Validation.sharedInstance.isValidEmail(emailStr: emailText.text!){
                 
                 if passwordText.text?.count != 0 {
-                    self.showActivityIndicator()
+                    //self.showActivityIndicator()
+                    let timer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(self.timerAction(sender:)), userInfo: nil, repeats: false)
+                    signInButton.setTitle("Signing In..", for: .normal)
                     Auth.auth().signIn(withEmail: emailText.text!, password: passwordText.text!) { (user, error) in
                         self.emailText.resignFirstResponder()
                         self.passwordText.resignFirstResponder()
@@ -103,11 +109,14 @@ class SignInVC: BaseVC,UITextFieldDelegate {
                                 getCurrentCompanyUser(userID: (Auth.auth().currentUser?.uid)!) { (companyUser, error) in
                                 if companyUser != nil {
                                     Singleton.sharedInstance.setCompanyUser(user: companyUser!)
-                                self.hideActivityIndicator()
-                                self.instantiateToMainScreen()
+                                    DispatchQueue.main.async(execute: {
+                                        timer.invalidate()
+                                        self.hideActivityIndicator()
+                                        self.instantiateToMainScreen()
+                                    })
                                 }
+                                    
                             }
-                            //self.instantiateToMainScreen()
                             
                         }else{
                             self.hideActivityIndicator()

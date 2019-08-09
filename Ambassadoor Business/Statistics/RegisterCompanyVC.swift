@@ -22,7 +22,6 @@ class RegisterCompanyVC: BaseVC,ImagePickerDelegate,UITextFieldDelegate,UITextVi
     @IBOutlet weak var companyMission: UITextField!
     
     var urlString = ""
-    var keyboardHeight: CGFloat = 0.00
     var assainedTextField: AnyObject? = nil
 
     override func viewDidLoad() {
@@ -51,7 +50,7 @@ class RegisterCompanyVC: BaseVC,ImagePickerDelegate,UITextFieldDelegate,UITextVi
         self.picLogo.setBackgroundImage(image, for: .normal)
         self.showActivityIndicator()
 //        self.urlString = uploadImageToFIR(image: image!, path: (Auth.auth().currentUser?.uid)!)
-            uploadImageToFIR(image: image!, path: (Auth.auth().currentUser?.uid)!) { (url, error) in
+            uploadImageToFIR(image: image!,childName: "companylogo", path: (Auth.auth().currentUser?.uid)!) { (url, error) in
                 self.hideActivityIndicator()
                 if error == false{
                 self.urlString = url
@@ -90,86 +89,29 @@ class RegisterCompanyVC: BaseVC,ImagePickerDelegate,UITextFieldDelegate,UITextVi
     
     @objc override func keyboardWasShown(notification : NSNotification) {
         
-        let info : NSDictionary = notification.userInfo! as NSDictionary
-        keyboardHeight = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
-        UIView.animate(withDuration: 0.1, animations: {
-
-            if let _ = self.assainedTextField as? UITextField {
-            let textY = self.assainedTextField!.frame.origin.y + (self.assainedTextField!.frame?.size.height)!
-                
-            var conOFFSet:CGFloat = 0.0
-                
-                
-                if textY < self.scroll.frame.size.height {
-                    
-                    conOFFSet = ((self.scroll.contentSize.height - self.scroll.frame.size.height) - (self.scroll.frame.size.height - textY))
-                    
-                }else {
-//                conOFFSet = (self.scroll.contentSize.height - self.scroll.frame.size.height) + self.keyboardHeight
-                    conOFFSet = ((self.scroll.contentSize.height - self.scroll.frame.size.height) - (self.scroll.frame.size.height - textY))
-                }
-            
-
-            let keyboardY = self.view.frame.size.height - self.keyboardHeight
-
-
-            if textY >= keyboardY {
-                UIView.animate(withDuration: 0.1) {
-                    let scrollPoint = CGPoint(x: 0, y: conOFFSet)
-                    self.scroll .setContentOffset(scrollPoint, animated: true)
-                }
-
-            }
-            }
-
-        }) { (value) in
-
-        }
+        let userInfo = notification.userInfo!
+        var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+        
+        var contentInset:UIEdgeInsets = self.scroll.contentInset
+        contentInset.bottom = keyboardFrame.size.height
+        scroll.contentInset = contentInset
         
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.assainedTextField = textField
+    @objc override func keyboardWillHide(notification:NSNotification){
         
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        
-        UIView.animate(withDuration: 0.1) {
-            let scrollPoint = CGPoint(x: 0, y: 0)
-            self.scroll .setContentOffset(scrollPoint, animated: true)
-        }
+        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+        scroll.contentInset = contentInset
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
+    
         
-        
-        let textY = textView.superview!.frame.origin.y + (textView.superview!.frame.size.height)
-        
-        var conOFFSet:CGFloat = 0.0
-        
-        
-        if textY < self.scroll.frame.size.height {
-            
-            conOFFSet = ((self.scroll.contentSize.height - self.scroll.frame.size.height) - (self.scroll.bounds.size.height - textY))
-            
-        }else {
-            //                conOFFSet = (self.scroll.contentSize.height - self.scroll.frame.size.height) + self.keyboardHeight
-            conOFFSet = ((self.scroll.contentSize.height - self.scroll.frame.size.height) - (self.scroll.bounds.size.height - textY))
+        UIView.animate(withDuration: 0.1) {
+            let scrollPoint = CGPoint(x: 0, y: textView.superview!.frame.origin.y)
+            self.scroll .setContentOffset(scrollPoint, animated: true)
         }
-        
-        
-        let keyboardY = self.view.frame.size.height - self.keyboardHeight
-        
-        
-        if textY >= keyboardY {
-            UIView.animate(withDuration: 0.1) {
-                let scrollPoint = CGPoint(x: 0, y: conOFFSet)
-                self.scroll .setContentOffset(scrollPoint, animated: true)
-            }
-            
-        }
-            
         
     }
     

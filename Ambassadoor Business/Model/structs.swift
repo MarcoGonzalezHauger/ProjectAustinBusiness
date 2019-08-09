@@ -74,10 +74,10 @@ class ShadowView: UIView {
 class Offer: NSObject {
     var offer_ID: String
     var money: Double
-    var company: Company
+    var company: Company?
     var posts: [Post]
     var offerdate: Date
-    var user_ID: String?
+    var user_ID: [String]
     var expiredate: Date
     var allPostsConfirmedSince: Date?
     var allConfirmed: Bool {
@@ -95,26 +95,31 @@ class Offer: NSObject {
     var isExpired: Bool {
         return self.expiredate.timeIntervalSinceNow <= 0
     }
+    var ownerUserID: String
+    
     var debugInfo: String {
-        return "Offer by \(company.name) for $\(String(money)) that is \(isExpired ? "" : "not ") expired."
+        return "Offer by \(company!.name) for $\(String(money)) that is \(isExpired ? "" : "not ") expired."
     }
     init(dictionary: [String: AnyObject]) {
         self.money = dictionary["money"] as! Double
-        self.company = dictionary["company"] as! Company
+        self.company = dictionary["company"] as? Company
         self.posts = dictionary["posts"] as! [Post]
         self.offerdate = dictionary["offerdate"] as! Date
-        if let userID = dictionary["user_ID"] as? String {
+        self.user_ID = [String]()
+        if let userID = dictionary["user_ID"] as? [String] {
 			self.user_ID = userID
         }
         self.offer_ID = dictionary["offer_ID"] as! String
         self.expiredate = dictionary["expiredate"] as! Date
         self.allPostsConfirmedSince = dictionary["allPostsConfirmedSince"] as? Date
         self.isAccepted = dictionary["isAccepted"] as! Bool
+        self.ownerUserID = dictionary["ownerUserID"] as! String
     }
 }
 
 class TemplateOffer: Offer {
     var targetCategories: [Category]
+    var category: [String]
     var zipCodes: [String]
     var genders: [String]
     var user_IDs: [String]
@@ -133,6 +138,7 @@ class TemplateOffer: Offer {
                 }
             }
         }
+        self.category = dictionary["category"] as! [String]
 		self.title = dictionary["title"] as! String
         self.zipCodes = dictionary["zipCodes"] as! [String]
         self.genders = dictionary["genders"] as! [String]
@@ -203,10 +209,26 @@ struct Post {
     let instructions: String
     let captionMustInclude: String?
     let products: [Product]?
-    let post_ID: String
-    let PostType: TypeofPost
+    var post_ID: String
+    let PostType: String
+    //let PostType: TypeofPost
     var confirmedSince: Date?
     var isConfirmed: Bool
+    var hashCaption: String
+    
+//    init(image: String?,instructions: String,captionMustInclude: String?,products: [Product]?,post_ID: String,PostType: TypeofPost,confirmedSince: Date?,isConfirmed: Bool,hashCaption: String) {
+//
+//        self.image = image
+//        self.instructions = instructions
+//        self.captionMustInclude = captionMustInclude
+//        self.products = products
+//        self.post_ID = post_ID
+//        self.PostType = PostType
+//        self.confirmedSince = confirmedSince
+//        self.isConfirmed = isConfirmed
+//        self.hashCaption = hashCaption
+//    }
+    
 }
 
 //struct for product
@@ -261,6 +283,7 @@ class CompanyUser: NSObject {
     var email: String?
     var refreshToken: String?
     var isCompanyRegistered: Bool?
+    var companyID: String?
     
     
     init(dictionary: [String: Any]) {
@@ -270,6 +293,7 @@ class CompanyUser: NSObject {
         self.email = dictionary["email"] as? String
         self.refreshToken = dictionary["refreshToken"] as? String
         self.isCompanyRegistered = dictionary["isCompanyRegistered"] as? Bool
+        self.companyID = dictionary["companyID"] as? String
     }
 }
 
@@ -286,4 +310,15 @@ enum Gender {
 
 enum TypeofPost {
     case SinglePost, MultiPost, Story
+}
+
+struct Section {
+    var categoryTitle: categoryClass!
+    var categoryData: [Category]!
+    var expanded: Bool!
+    init(categoryTitle: categoryClass, categoryData: [Category], expanded: Bool) {
+        self.categoryTitle = categoryTitle
+        self.categoryData = categoryData
+        self.expanded = expanded
+    }
 }
