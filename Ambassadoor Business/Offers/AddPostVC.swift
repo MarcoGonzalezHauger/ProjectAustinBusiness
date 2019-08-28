@@ -73,31 +73,48 @@ class AddPostVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UITextFieldDel
         return global.products.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = productTable.dequeueReusableCell(withIdentifier: "productCell") as! ProductCell
-        cell.productTitle.text = global.products[indexPath.row].name == "" ? "(no name)" : global.products[indexPath.row].name
-        let url = URL.init(string: global.products[indexPath.row].image!)
-        cell.productImage.sd_setImage(with: url, placeholderImage: UIImage(named: "defaultProduct"))
-        if self.productSelectedArray.contains(indexPath.row){
-            cell.accessoryType = .checkmark
-        }else{
-            cell.accessoryType = .none
+        
+        let cellIdentifier = "productlist"
+        var cell = self.productTable.dequeueReusableCell(withIdentifier: cellIdentifier) as? ProductListCell
+        if cell == nil {
+            let nib = Bundle.main.loadNibNamed("ProductListCell", owner: self, options: nil)
+            cell = nib![0] as? ProductListCell
         }
-        return cell
+        cell?.productName.text = global.products[indexPath.row].name == "" ? "(no name)" : global.products[indexPath.row].name
+        let url = URL.init(string: global.products[indexPath.row].image!)
+        cell?.productImage.sd_setImage(with: url, placeholderImage: UIImage(named: "defaultProduct"))
+        if self.productSelectedArray.contains(indexPath.row){
+            cell?.selectImage.image = UIImage(named: "selectcircle")
+        }else{
+            cell?.selectImage.image = UIImage(named: "deselectcircle")
+        }
+        return cell!
+        
+//        let cell = productTable.dequeueReusableCell(withIdentifier: "productCell") as! ProductCell
+//        cell.productTitle.text = global.products[indexPath.row].name == "" ? "(no name)" : global.products[indexPath.row].name
+//        let url = URL.init(string: global.products[indexPath.row].image!)
+//        cell.productImage.sd_setImage(with: url, placeholderImage: UIImage(named: "defaultProduct"))
+//        if self.productSelectedArray.contains(indexPath.row){
+//            cell.accessoryType = .checkmark
+//        }else{
+//            cell.accessoryType = .none
+//        }
+//        return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 67
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let cell = self.productTable.cellForRow(at: indexPath)
-        cell?.accessoryType = .checkmark
+        let cell = self.productTable.cellForRow(at: indexPath) as! ProductListCell
+        cell.selectImage.image = UIImage(named: "selectcircle")
         let product = global.products[indexPath.row]
         self.productCollection.append(product)
         self.productSelectedArray.append(indexPath.row)
     }
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath){
-        let cell = self.productTable.cellForRow(at: indexPath)
-        cell?.accessoryType = .none
+        let cell = self.productTable.cellForRow(at: indexPath) as! ProductListCell
+        cell.selectImage.image = UIImage(named: "deselectcircle")
         self.productCollection.remove(at: indexPath.row)
         let value = self.productSelectedArray.index(of: indexPath.row)
         self.productSelectedArray.remove(at: value!)

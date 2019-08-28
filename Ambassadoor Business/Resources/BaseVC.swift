@@ -141,7 +141,7 @@ class BaseVC: UIViewController {
     func addDoneButtonOnKeyboard(textView: UITextView)
     {
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
-        doneToolbar.barStyle = UIBarStyle.blackTranslucent
+        doneToolbar.barStyle = UIBarStyle.default
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: #selector(self.doneButtonAction))
@@ -161,7 +161,7 @@ class BaseVC: UIViewController {
     func addDoneButtonOnKeyboard(textField: UITextField)
     {
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
-        doneToolbar.barStyle = UIBarStyle.blackTranslucent
+        doneToolbar.barStyle = UIBarStyle.default
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: #selector(self.doneButtonAction))
@@ -241,6 +241,26 @@ class BaseVC: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes =
             [NSAttributedString.Key.foregroundColor:UIColor.black, NSAttributedString.Key.font:UIFont.systemFont(ofSize: 14.0)]
         self.navigationController?.view.backgroundColor = UIColor.clear
+    }
+    
+    func addNavigationBarTitleView(title: String,image: UIImage) {
+        // container viewF
+        let container = UIView()
+        container.frame = CGRect(x: 0, y: 0, width: 250, height: 46)
+        container.backgroundColor = UIColor.clear
+
+        let label = UILabel()
+        label.frame = CGRect(x: 0, y: 0, width: 250, height: 36)
+        label.backgroundColor = UIColor.clear
+        label.text =  title
+        label.font = UIFont.systemFont(ofSize: 18.0, weight: .semibold)
+        label.textColor = UIColor.blue
+        label.textAlignment = .center
+        label.isUserInteractionEnabled = true
+        
+        container.addSubview(label)
+        self.navigationItem.titleView = container
+        
     }
     
     func addPickerToolBar(textField: UITextField,object: [String]) -> BasePicker {

@@ -285,6 +285,21 @@ func PostTypeToText(posttype: TypeofPost) -> String {
 	}
 }
 
+func IncreasePayVariableValue(pay: String) -> IncreasePayVariable {
+    switch pay {
+    case "None":
+         return IncreasePayVariable.None
+    case "+5%":
+        return IncreasePayVariable.Five
+    case "+10%":
+        return IncreasePayVariable.Ten
+    case "+20%":
+        return IncreasePayVariable.Twenty
+    default:
+        return IncreasePayVariable.None
+    }
+}
+
 func GetTownName(zipCode: String, completed: @escaping (_ cityState: String?) -> () ) {
 	debugPrint("Getting town name from zipCode=\(zipCode)")
 	

@@ -49,6 +49,8 @@ class CentralVariables {
 	var OfferDrafts: [TemplateOffer] = []
     var influencers: [User] = []
     var post: [Post] = []
+    var IncreasePay = ["None", "+5%", "+10%", "+20%"]
+    
     
 	
 }

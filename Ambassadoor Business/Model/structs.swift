@@ -14,6 +14,7 @@ protocol OfferResponse {
 }
 
 
+
 //Shadow Class reused all throughout this app.
 @IBDesignable
 class ShadowView: UIView {
@@ -124,6 +125,8 @@ class TemplateOffer: Offer {
     var genders: [String]
     var user_IDs: [String]
 	var title: String
+    var status: String
+    
 
     override init(dictionary: [String: AnyObject]) {
         self.targetCategories = []
@@ -142,7 +145,8 @@ class TemplateOffer: Offer {
 		self.title = dictionary["title"] as! String
         self.zipCodes = dictionary["zipCodes"] as! [String]
         self.genders = dictionary["genders"] as! [String]
-        self.user_IDs = dictionary["user_IDs"] as! [String]
+        self.user_IDs = dictionary["user_IDs"] as? [String] ?? []
+        self.status = dictionary["status"] as! String
         super.init(dictionary: dictionary)
     }
 }
@@ -297,11 +301,83 @@ class CompanyUser: NSObject {
     }
 }
 
+//Deposit Amount & Details of business user
+
+class Deposit: NSObject {
+    var userID: String?
+    var currentBalance: Double?
+    var totalDepositAmount: Double?
+    var totalDeductedAmount: Double?
+    var lastDeductedAmount: Double?
+    var lastDepositedAmount: Double?
+    var lastTransactionHistory: TransactionDetails?
+    var depositHistory: [Any]?
+    
+    init(dictionary: [String: Any]) {
+        
+        self.userID = dictionary["userID"] as? String
+        self.currentBalance = dictionary["currentBalance"] as? Double
+        self.totalDepositAmount = dictionary["totalDepositAmount"] as? Double
+        self.totalDeductedAmount = dictionary["totalDeductedAmount"] as? Double
+        self.lastDeductedAmount = dictionary["lastDeductedAmount"] as? Double
+        self.lastDepositedAmount = dictionary["lastDepositedAmount"] as? Double
+        self.lastTransactionHistory = TransactionDetails.init(dictionary: dictionary["lastTransactionHistory"] as! [String : Any])
+        self.depositHistory = dictionary["depositHistory"] as? [Any]
+        
+    }
+    
+}
+
+class TransactionDetails: NSObject {
+    var id: String?
+    var status: String?
+    var type: String?
+    var currencyIsoCode: String?
+    var amount: String?
+    var createdAt: String?
+    var updatedAt: String?
+    var transactionType: String?
+    var cardDetails: Any?
+    
+    init(dictionary: [String: Any]) {
+        self.id = dictionary["id"] as? String
+        self.status = dictionary["status"] as? String
+        self.type = dictionary["type"] as? String
+        self.currencyIsoCode = dictionary["currencyIsoCode"] as? String
+        self.amount = dictionary["amount"] as? String
+        self.createdAt = dictionary["createdAt"] as? String
+        self.updatedAt = dictionary["updatedAt"] as? String
+        if dictionary.keys.contains("creditCard") {
+            if dictionary["creditCard"] != nil {
+                self.cardDetails = dictionary["creditCard"]
+            }
+        }else if dictionary.keys.contains("paypalAccount") {
+            if dictionary["creditCard"] != nil {
+                self.cardDetails = dictionary["paypalAccount"]
+            }
+        }else if dictionary.keys.contains("cardDetails") {
+            if dictionary["cardDetails"] != nil {
+                self.cardDetails = dictionary["cardDetails"]
+            }
+        }else if dictionary.keys.contains("paidDetails") {
+            if dictionary["paidDetails"] != nil {
+                self.cardDetails = dictionary["paidDetails"]
+            }
+        }
+        
+    }
+    
+}
 
 //Carries personal info only avalible to view and edit by the user.
 struct PersonalInfo {
     let gender: Gender?
     let accountBalance: Int?
+}
+
+enum IncreasePayVariable:Double {
+    
+    case None = 1.0, Five = 1.05, Ten = 1.1, Twenty = 1.2
 }
 
 enum Gender {

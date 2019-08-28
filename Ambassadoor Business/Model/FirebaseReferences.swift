@@ -168,6 +168,8 @@ func serializeOffer(offer: Offer) -> [String: AnyObject] {
     return values
 }
 
+
+
 // Updates values for user in firebase via their id returns that same user
 func UpdateUserInDatabase(instagramUser: User) -> User {
     let ref = Database.database().reference().child("users")
@@ -397,7 +399,7 @@ func GetAllUsers(completion: @escaping ([User]) -> ()) {
     }, withCancel: nil)
 }
 
-func getFilteredInfluencers(category: [String:[AnyObject]],completion: @escaping ([String]?,String) -> ()) {
+func getFilteredInfluencers(category: [String:[AnyObject]],completion: @escaping ([String]?,String,[User]?) -> ()) {
     
     let usersRef = Database.database().reference().child("users")
     usersRef.observe(.value, with: { (snapshot) in
@@ -408,6 +410,7 @@ func getFilteredInfluencers(category: [String:[AnyObject]],completion: @escaping
             
             var userIDs = [String]()
             
+            var user = [User]()
             
             for value in keys {
                 
@@ -425,25 +428,35 @@ func getFilteredInfluencers(category: [String:[AnyObject]],completion: @escaping
 //                    }
                     
                     if (category[keyValue]?.contains(where: { (errer) -> Bool in
-                        return (first[keyValue]?.isEqual(errer))!
+                        print("a=",errer)
+                        print("b=",first[keyValue])
+                        //return (first[keyValue]?.isEqual(errer))!
+                        if (first[keyValue] as? String) != nil {
+                            return (first[keyValue]?.isEqual(errer))!
+                        }else{
+                        return false
+                        }
                     }))! == false {
                         checkStatus = false
+                    }else{
+                        
                     }
                     
                 }
                 
                 if checkStatus == true {
                     userIDs.append(first["id"] as! String)
+                    user.append(User.init(dictionary: first))
                 }
                 
             }
-            completion(userIDs, "success")
+            completion(userIDs, "success", user)
         }else{
-            completion([], "error")
+            completion([], "error", nil)
         }
         
     }) { (error) in
-        completion([], "error")
+        completion([], "error", nil)
     }
 }
 
@@ -500,6 +513,27 @@ func createTemplateOffer(pathString: String,edited: Bool,templateOffer: Template
     
 }
 
+func sentOutOffers(pathString: String, templateOffer: TemplateOffer, completion: @escaping (TemplateOffer,Bool) -> ()) {
+    let offersRef = Database.database().reference().child("SentOutOffers").child(pathString)
+    var offerDictionary: [String: Any] = [:]
+    offerDictionary = API.serializeTemplateOffer(offer: templateOffer)
+    offersRef.updateChildValues(offerDictionary)
+    completion(templateOffer, true)
+}
+
+func completedOffersToUsers(pathString: String, templateOffer: TemplateOffer) {
+    
+    let offersRef = Database.database().reference().child("SentOutOffersToUsers").child(pathString)
+    var offerDictionary: [String: Any] = [:]
+    offerDictionary = API.serializeTemplateOffer(offer: templateOffer)
+    offersRef.updateChildValues(offerDictionary)
+}
+
+func removeTemplateOffers(pathString: String, templateOffer: TemplateOffer) {
+    let offersRef = Database.database().reference().child("TemplateOffers").child(pathString)
+    offersRef.removeValue()
+}
+
 func getAllTemplateOffers(userID: String, completion: @escaping([TemplateOffer],String) -> Void) {
     
     let ref = Database.database().reference().child("TemplateOffers").child(userID)
@@ -552,8 +586,34 @@ func parseTemplateOffer(offer: [String: AnyObject]) -> [Post] {
     return postValues
 }
 
-func calculateCostForUser(offer: Offer, user: User) -> Double {
-    return 0.055 * user.averageLikes! * Double(offer.posts.count)
+func sendDepositAmount(deposit: Deposit,companyUser: String,completion: @escaping(Deposit,String) -> Void) {
+    
+    let ref = Database.database().reference().child("BusinessDeposit").child(companyUser)
+    var offerDictionary: [String: Any] = [:]
+    offerDictionary = API.serializeDepositDetails(deposit: deposit)
+    ref.updateChildValues(offerDictionary)
+    completion(deposit, "success")
+}
+
+func getDepositDetails(companyUser: String,completion: @escaping(Deposit?,String,Error?) -> Void) {
+    
+    let ref = Database.database().reference().child("BusinessDeposit").child(companyUser)
+    ref.observeSingleEvent(of: .value, with: { (snapshot) in
+        
+        if let totalValues = snapshot.value as? NSDictionary{
+            
+            let deposit = Deposit.init(dictionary: totalValues as! [String : Any])
+            completion(deposit, "success", nil)
+        }else{
+            completion(nil, "new", nil)
+        }
+    }) { (error) in
+           completion(nil, "failure", error)
+    }
+}
+
+func calculateCostForUser(offer: Offer, user: User, increasePayVariable: Double = 1.00) -> Double {
+    return 0.055 * user.averageLikes! * Double(offer.posts.count) * increasePayVariable
 }
 
 func findInfluencers(offer: TemplateOffer, money: Double, completion: @escaping (TemplateOffer) -> ()) {

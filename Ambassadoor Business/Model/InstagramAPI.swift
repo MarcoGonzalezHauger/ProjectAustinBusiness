@@ -19,6 +19,8 @@ struct API {
     
     static var instagramProfileData: [String: AnyObject] = [:]
     
+    static var kBaseURL = "https://us-central1-amassadoor.cloudfunctions.net/"
+    
     static func getProfileInfo(completed: ((_ userDictionary: [String: Any]) -> () )?) {
         let url = URL(string: "https://api.instagram.com/v1/users/self/?access_token=" + INSTAGRAM_ACCESS_TOKEN)
         URLSession.shared.dataTask(with: url!){ (data, response, err) in
@@ -111,7 +113,40 @@ struct API {
         offerData["user_IDs"] = offer.user_IDs
         offerData["category"] = offer.category
         offerData["title"] = offer.title
+        offerData["status"] = offer.status
         return offerData
+    }
+    
+    static func serializeDepositDetails(deposit: Deposit) -> [String: Any] {
+        var transactionData = serializeTransactionDetails(transaction: deposit.lastTransactionHistory!)
+        /*var userID: String?
+        var currentBalance: Double?
+        var totalDepositAmount: Double?
+        var totalDeductedAmount: Double?
+        var lastDeductedAmount: Double?
+        var lastDepositedAmount: Double?
+        var lastTransactionHistory: TransactionDetails?
+        var depositHistory: [AnyObject]?
+        var depositDetails = []*/
+        let depositSerialize = ["userID":deposit.userID!,"currentBalance":deposit.currentBalance!,"totalDepositAmount":deposit.totalDepositAmount,"totalDeductedAmount":deposit.totalDeductedAmount,"lastDeductedAmount":deposit.lastDeductedAmount,"lastDepositedAmount":deposit.lastDepositedAmount,"lastTransactionHistory":transactionData,"depositHistory":deposit.depositHistory] as [String : Any]
+        
+        return depositSerialize
+    }
+    
+    static func serializeTransactionDetails(transaction: TransactionDetails) -> [String: Any] {
+        
+        /*var id: String?
+         var status: String?
+         var type: String?
+         var currencyIsoCode: String?
+         var amount: String?
+         var createdAt: String?
+         var updatedAt: String?
+         var cardDetails: Any?
+         */
+        var transactionSerialize = ["id":transaction.id,"status":transaction.status,"type":transaction.type,"currencyIsoCode":transaction.currencyIsoCode,"amount":transaction.amount,"createdAt":transaction.createdAt,"updatedAt":transaction.updatedAt,"cardDetails":transaction.cardDetails] as [String: Any]
+        
+        return transactionSerialize
     }
     
     static func serializeOffer(offer: Offer) -> [String: Any] {

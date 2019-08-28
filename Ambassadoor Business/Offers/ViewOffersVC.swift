@@ -52,12 +52,12 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
                  - Post two features 1 possible product
                  - Post three features 9 possible products
                  */
-                cell.postDetails.text = "- Post one features \(String(describing: offerOne.products!.count)) possible \(self.getProductContent(count: offerOne.products!.count)) \n - Post two features \(String(describing: offerTwo.products!.count)) possible \(self.getProductContent(count: offerTwo.products!.count)) \n - Post three features \(String(describing: offerThree.products!.count)) possible \(self.getProductContent(count: offerThree.products!.count))"
+                cell.postDetails.text = "- Post one features \(String(describing: offerOne.products!.count)) possible \(self.getProductContent(count: offerOne.products!.count)) \n- Post two features \(String(describing: offerTwo.products!.count)) possible \(self.getProductContent(count: offerTwo.products!.count)) \n- Post three features \(String(describing: offerThree.products!.count)) possible \(self.getProductContent(count: offerThree.products!.count))"
                 
             }else if thisTemplate.posts.count == 2 {
                 let offerOne = thisTemplate.posts[0]
                 let offerTwo = thisTemplate.posts[1]
-                cell.postDetails.text = "- Post one features \(String(describing: offerOne.products!.count))  possible \(self.getProductContent(count: offerOne.products!.count)) \n - Post two features \(String(describing: offerTwo.products!.count)) possible \(self.getProductContent(count: offerTwo.products!.count))"
+                cell.postDetails.text = "- Post one features \(String(describing: offerOne.products!.count))  possible \(self.getProductContent(count: offerOne.products!.count)) \n- Post two features \(String(describing: offerTwo.products!.count)) possible \(self.getProductContent(count: offerTwo.products!.count))"
                 
             }else if thisTemplate.posts.count == 1 {
                 let offerOne = thisTemplate.posts[0]
@@ -127,6 +127,11 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
             if status == "success" && templateOffers.count != 0 {
                 global.OfferDrafts.removeAll()
                 global.OfferDrafts.append(contentsOf: templateOffers)
+                DispatchQueue.main.async(execute: {
+                    self.shelf.reloadData()
+                })
+            }else{
+                global.OfferDrafts.removeAll()
                 DispatchQueue.main.async(execute: {
                     self.shelf.reloadData()
                 })

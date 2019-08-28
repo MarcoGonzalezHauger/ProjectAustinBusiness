@@ -19,9 +19,11 @@ protocol cellDelegate {
 
 struct Transaction {
 	let description: String
-	let details: String
-	let time: Date
+	let details: AnyObject
+	let time: String
 	let amount: Double
+    let type: String
+    let status: String
 }
 
 class BalanceCell: UITableViewCell {
@@ -65,7 +67,13 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
 			let cell = shelf.dequeueReusableCell(withIdentifier: "TransactionTrunk") as! TransactionCell
 			let ThisTransaction = transactionHistory[row - 1]
 			cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
-			cell.descriptionLabel.text = ThisTransaction.description
+            if ThisTransaction.type == "sale"{
+                let amt = String(ThisTransaction.amount)
+			cell.descriptionLabel.text = "Despotied $\(amt) into Ambassadoor"
+            }else if ThisTransaction.type == "paid" {
+                let amt = String(ThisTransaction.amount)
+                cell.descriptionLabel.text = "Paid $\(amt) to \(ThisTransaction.status)"
+            }
 			return cell
 			
 		}
@@ -103,9 +111,34 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
-		transactionDelegate = self
-		shelf.delegate = self
-		shelf.dataSource = self
+        self.getDeepositDetails()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.getDeepositDetails), name: Notification.Name.init(rawValue: "reloadDeposit"), object: nil)
+    }
+    
+    @objc func getDeepositDetails() {
+        let user = Singleton.sharedInstance.getCompanyUser()
+        getDepositDetails(companyUser: user.userID!) { (deposit, status, error) in
+            
+            if status == "success" {
+                
+                transactionHistory.removeAll()
+                accountBalance = deposit!.currentBalance!
+                for value in deposit!.depositHistory! {
+                    
+                    if let valueDetails = value as? NSDictionary {
+                        
+                        transactionHistory.append(Transaction(description: "", details: valueDetails["cardDetails"] as AnyObject, time: valueDetails["updatedAt"] as! String, amount: Double(valueDetails["amount"] as! String)!, type: valueDetails["type"] as! String, status: valueDetails["status"] as! String))
+                    }
+                }
+                transactionDelegate = self
+                DispatchQueue.main.async(execute: {
+                    self.shelf.delegate = self
+                    self.shelf.dataSource = self
+                    self.shelf.reloadData()
+                })
+            }
+            
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

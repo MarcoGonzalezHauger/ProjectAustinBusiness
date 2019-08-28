@@ -119,7 +119,9 @@ class SignInVC: BaseVC,UITextFieldDelegate {
                             }
                             
                         }else{
+                            timer.invalidate()
                             self.hideActivityIndicator()
+                            self.signInButton.setTitle("Sign In", for: .normal)
                             print("error=",error!)
                             self.showAlertMessage(title: "Alert", message: (error?.localizedDescription)!) {
                                 
