@@ -15,11 +15,15 @@ enum EditingMode {
 	case slider, manual
 }
 
-class DepositVC: BaseVC, changedDelegate {
+class DepositVC: BaseVC, changedDelegate,BTViewControllerPresentingDelegate,BTAppSwitchDelegate {
+
+    
 	
 	@IBOutlet weak var moneySlider: UISlider!
     @IBOutlet weak var ExpectedReturns: UILabel!
     @IBOutlet weak var ExpectedPROFIT: UILabel!
+    
+    var braintreeClient: BTAPIClient!
 	
 	var amountOfMoneyInCents: Int = 10000
 	
@@ -34,6 +38,7 @@ class DepositVC: BaseVC, changedDelegate {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        
 		money.changedDelegate = self
 		money.moneyValue = amountOfMoneyInCents
 		moneyChanged()
@@ -96,6 +101,21 @@ class DepositVC: BaseVC, changedDelegate {
                     let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String : Any]
 
                     let clientToken = json!["token"] as! String
+//                    DispatchQueue.main.async {
+//                    self.braintreeClient = BTAPIClient(authorization: clientToken)
+//                        let payPalDriver = BTPayPalDriver(apiClient: self.braintreeClient)
+//                        payPalDriver.viewControllerPresentingDelegate = self
+//                        payPalDriver.appSwitchDelegate = self
+//
+//                        //        payPalDriver.authorizeAccount() { (tokenizedPayPalAccount, error) -> Void in
+//                        //        }
+//
+//                        // ...start the Checkout flow
+//                        let payPalRequest = BTPayPalRequest(amount: "1.00")
+//                        payPalDriver.requestOneTimePayment(payPalRequest) { (tokenizedPayPalAccount, error) -> Void in
+//                        }
+//                    }
+                    
                     DispatchQueue.main.async(execute: {
                     self.getDropInUI(token: clientToken)
                     })
@@ -257,6 +277,42 @@ class DepositVC: BaseVC, changedDelegate {
         
     }
 	
+    }
+    
+    @IBAction func paypalAction(sender: UIButton){
+        
+        let payPalDriver = BTPayPalDriver(apiClient: self.braintreeClient)
+        payPalDriver.viewControllerPresentingDelegate = self
+        payPalDriver.appSwitchDelegate = self
+        
+//        payPalDriver.authorizeAccount() { (tokenizedPayPalAccount, error) -> Void in
+//        }
+        
+        // ...start the Checkout flow
+        let payPalRequest = BTPayPalRequest(amount: "1.00")
+        payPalDriver.requestOneTimePayment(payPalRequest) { (tokenizedPayPalAccount, error) -> Void in
+        }
+        
+    }
+    
+    func paymentDriver(_ driver: Any, requestsPresentationOf viewController: UIViewController) {
+        
+    }
+    
+    func paymentDriver(_ driver: Any, requestsDismissalOf viewController: UIViewController) {
+        
+    }
+    
+    func appSwitcherWillPerformAppSwitch(_ appSwitcher: Any) {
+        
+    }
+    
+    func appSwitcher(_ appSwitcher: Any, didPerformSwitchTo target: BTAppSwitchTarget) {
+        
+    }
+    
+    func appSwitcherWillProcessPaymentInfo(_ appSwitcher: Any) {
+        
     }
 	
 }

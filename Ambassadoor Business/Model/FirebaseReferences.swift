@@ -513,6 +513,8 @@ func createTemplateOffer(pathString: String,edited: Bool,templateOffer: Template
     
 }
 
+
+
 func sentOutOffers(pathString: String, templateOffer: TemplateOffer, completion: @escaping (TemplateOffer,Bool) -> ()) {
     let offersRef = Database.database().reference().child("SentOutOffers").child(pathString)
     var offerDictionary: [String: Any] = [:]
@@ -612,6 +614,126 @@ func getDepositDetails(companyUser: String,completion: @escaping(Deposit?,String
     }
 }
 
+//MARK: Dwolla Customer Creation
+
+func createDwollaCustomerToFIR(object: DwollaCustomerInformation) {
+    
+    let ref = Database.database().reference().child("DwollaCustomers").child(Auth.auth().currentUser!.uid).child(object.acctID)
+    var customerDictionary: [String: Any] = [:]
+    customerDictionary = API.serializeDwollaCustomers(object: object)
+    ref.updateChildValues(customerDictionary)
+}
+
+func getDwollaFundingSource(completion: @escaping([DwollaCustomerFSList]?,String,Error?) -> Void) {
+    
+    let ref = Database.database().reference().child("DwollaCustomers").child(Auth.auth().currentUser!.uid)
+    ref.observeSingleEvent(of: .value, with: { (snapshot) in
+        
+        if let totalValues = snapshot.value as? NSDictionary{
+            
+            var objects = [DwollaCustomerFSList]()
+            
+            for value in totalValues.allKeys {
+                
+                let fundSource = DwollaCustomerFSList.init(dictionary: totalValues[value] as! [String: Any])
+                objects.append(fundSource)
+                
+            }
+            completion(objects, "success", nil)
+        }
+        
+        
+    }) { (error) in
+        completion(nil, "success", error)
+    }
+    
+}
+
+func fundTransferAccount(transferURL: String,accountID: String, Obj: DwollaCustomerFSList, currency: String, amount: String) {
+    
+    let ref = Database.database().reference().child("FundTransfer").child(Auth.auth().currentUser!.uid).child(accountID)
+    let fundTransfer: [String: Any] = ["accountID":accountID,"transferURL":transferURL,"currency":currency,"amount":amount,"name":Obj.name,"mask":Obj.mask,"customerURL":Obj.customerURL,"FS":Obj.customerFSURL,"firstname":Obj.firstName,"lastname":Obj.lastName]
+    ref.updateChildValues(fundTransfer)
+    
+//    var fundingSURL = [String]()
+//
+//    let getRef = Database.database().reference().child("FundTransfer").child(Auth.auth().currentUser!.uid).child(accountID)
+//
+//    getRef.observeSingleEvent(of: .value, with: { (snapshot) in
+//
+//        if let value = snapshot.value as? NSDictionary{
+//
+//           if let fundingURL = value["transferURL"] as? [String] {
+//
+//            if fundingURL.count != 0 {
+//
+//                fundingSURL.append(contentsOf: fundingURL)
+//                fundingSURL.append(transferURL)
+//                let ref = Database.database().reference().child("FundTransfer").child(Auth.auth().currentUser!.uid).child(accountID)
+//                let fundTransfer: [String: Any] = ["accountID":accountID,"transferURL":fundingSURL]
+//                ref.updateChildValues(fundTransfer)
+//
+//            }else{
+//
+//                let ref = Database.database().reference().child("FundTransfer").child(Auth.auth().currentUser!.uid).child(accountID)
+//                fundingSURL.append(transferURL)
+//                let fundTransfer: [String: Any] = ["accountID":accountID,"transferURL":fundingSURL]
+//                ref.updateChildValues(fundTransfer)
+//
+//            }
+//
+//            }
+//            //if
+//
+//        }else{
+//
+//            let ref = Database.database().reference().child("FundTransfer").child(Auth.auth().currentUser!.uid).child(accountID)
+//            fundingSURL.append(transferURL)
+//            let fundTransfer: [String: Any] = ["accountID":accountID,"transferURL":fundingSURL]
+//            ref.updateChildValues(fundTransfer)
+//
+//        }
+//
+//    }) { (error) in
+//
+//        let ref = Database.database().reference().child("FundTransfer").child(Auth.auth().currentUser!.uid).child(accountID)
+//        fundingSURL.append(transferURL)
+//        let fundTransfer: [String: Any] = ["accountID":accountID,"transferURL":fundingSURL]
+//        ref.updateChildValues(fundTransfer)
+//
+//    }
+    
+    
+    
+    
+    
+}
+
+func transactionInfo(completion: @escaping([TransactionInfo]?,String,Error?) -> Void) {
+    
+    let ref = Database.database().reference().child("FundTransfer").child("3225555942")
+    ref.observeSingleEvent(of: .value, with: { (snapshot) in
+        
+        if let totalValues = snapshot.value as? NSDictionary{
+            
+            var objects = [TransactionInfo]()
+            
+            for value in totalValues.allKeys {
+                
+                let transactionInfo = TransactionInfo.init(dictionary: totalValues[value] as! [String: Any])
+                objects.append(transactionInfo)
+                
+            }
+            completion(objects, "success", nil)
+        }
+        
+        
+    }) { (error) in
+        completion(nil, "success", error)
+    }
+    
+}
+
 func calculateCostForUser(offer: Offer, user: User, increasePayVariable: Double = 1.00) -> Double {
     return 0.055 * user.averageLikes! * Double(offer.posts.count) * increasePayVariable
 }
@@ -695,6 +817,29 @@ func getCurrentCompanyUser(userID: String, completion: @escaping (CompanyUser?,S
         print(error.localizedDescription)
     }
     
+    
+}
+
+func getAdminValues(completion: @escaping (String) -> Void) {
+    
+    Database.database().reference().child("Admin").observeSingleEvent(of: .value, with: { (snapshot) in
+        
+        if let value = snapshot.value as? NSDictionary{
+            
+            
+            
+            let fsource = value["SourceFundingSource"] as! String
+            let commision = value["paycommision"] as! Double
+            Singleton.sharedInstance.setAdminFS(value: fsource)
+            Singleton.sharedInstance.setCommision(value: commision)
+            completion("")
+            
+        }else{
+            completion("error")
+        }
+    }) { (error) in
+        
+    }
     
 }
 

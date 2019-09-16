@@ -50,6 +50,7 @@ class CentralVariables {
     var influencers: [User] = []
     var post: [Post] = []
     var IncreasePay = ["None", "+5%", "+10%", "+20%"]
+    var dwollaCustomerInformation = DwollaCustomerInformation()
     
     
 	

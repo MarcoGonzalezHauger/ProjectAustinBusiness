@@ -10,6 +10,7 @@
 		B706CB4D22E5F3310092FB77 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B706CB4C22E5F3310092FB77 /* SignInVC.swift */; };
 		B706CB4F22E5F7860092FB77 /* ValidationFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B706CB4E22E5F7860092FB77 /* ValidationFile.swift */; };
 		B706CB5122E60DC20092FB77 /* ForgetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B706CB5022E60DC20092FB77 /* ForgetPasswordVC.swift */; };
+		B70DEC7C232C2CFA00580FD7 /* TransactionDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70DEC7B232C2CFA00580FD7 /* TransactionDetailsVC.swift */; };
 		B712C485230690A700728758 /* ProductListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B712C484230690A700728758 /* ProductListCell.swift */; };
 		B712C487230690B500728758 /* ProductListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B712C486230690B500728758 /* ProductListCell.xib */; };
 		B712C4892306B6C900728758 /* WebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B712C4882306B6C900728758 /* WebVC.swift */; };
@@ -20,13 +21,20 @@
 		B7551F2B22F98841001C4974 /* BasePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7551F2A22F98841001C4974 /* BasePicker.swift */; };
 		B7551F2F22F99B01001C4974 /* BasePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7551F2E22F99B01001C4974 /* BasePicker.xib */; };
 		B75EC9A6230ACE4800BA7A7B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75EC9A5230ACE4800BA7A7B /* NetworkManager.swift */; };
+		B761DA242321352100587F28 /* DwollaUserInformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B761DA232321352100587F28 /* DwollaUserInformationVC.swift */; };
 		B788D6F422E8931100FA59BA /* RegisterCompanyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B788D6F322E8931100FA59BA /* RegisterCompanyVC.swift */; };
 		B79308FE23015C3E001BB47A /* DistributeOfferVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79308FD23015C3E001BB47A /* DistributeOfferVC.swift */; };
 		B799227622F16FA9007E84B0 /* PickUserCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B799227522F16FA9007E84B0 /* PickUserCVC.swift */; };
 		B799227822F1C511007E84B0 /* AddPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B799227722F1C511007E84B0 /* AddPostVC.swift */; };
 		B79B1D2E22F2EE8D00F3C660 /* DateFormatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79B1D2D22F2EE8D00F3C660 /* DateFormatManager.swift */; };
+		B7B11FF523242615006711BB /* PlaidTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B11FF423242615006711BB /* PlaidTVCell.swift */; };
+		B7B11FF723242638006711BB /* ConnectedPlaidTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B11FF623242638006711BB /* ConnectedPlaidTVCell.swift */; };
 		B7BD39BB22FAAB53008A0496 /* CategoryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BD39BA22FAAB53008A0496 /* CategoryTVC.swift */; };
 		B7BD39BD22FAAE42008A0496 /* CategoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BD39BC22FAAE42008A0496 /* CategoryHeaderView.swift */; };
+		B7C9FE8E231E4870005580E4 /* PlaidLinkEnabledVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C9FE8C231E486F005580E4 /* PlaidLinkEnabledVC.swift */; };
+		B7C9FE8F231E4870005580E4 /* PlaidHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C9FE8D231E486F005580E4 /* PlaidHelper.swift */; };
+		B7D42099232A9F40009F0FCE /* TransactionInfoTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D42098232A9F40009F0FCE /* TransactionInfoTVCell.swift */; };
+		B7D4209D232AA9A1009F0FCE /* TransactionListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D4209C232AA9A1009F0FCE /* TransactionListVC.swift */; };
 		B7FD83E322F072F800347E8E /* AddOfferVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FD83E222F072F800347E8E /* AddOfferVC.swift */; };
 		B7FD83E722F07E1800347E8E /* AddPostTC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FD83E622F07E1800347E8E /* AddPostTC.swift */; };
 		B7FD83E922F0844C00347E8E /* AddPostTC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7FD83E822F0844C00347E8E /* AddPostTC.xib */; };
@@ -72,6 +80,7 @@
 		B706CB4C22E5F3310092FB77 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		B706CB4E22E5F7860092FB77 /* ValidationFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationFile.swift; sourceTree = "<group>"; };
 		B706CB5022E60DC20092FB77 /* ForgetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordVC.swift; sourceTree = "<group>"; };
+		B70DEC7B232C2CFA00580FD7 /* TransactionDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsVC.swift; sourceTree = "<group>"; };
 		B712C484230690A700728758 /* ProductListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListCell.swift; sourceTree = "<group>"; };
 		B712C486230690B500728758 /* ProductListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductListCell.xib; sourceTree = "<group>"; };
 		B712C4882306B6C900728758 /* WebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebVC.swift; sourceTree = "<group>"; };
@@ -82,13 +91,21 @@
 		B7551F2A22F98841001C4974 /* BasePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePicker.swift; sourceTree = "<group>"; };
 		B7551F2E22F99B01001C4974 /* BasePicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasePicker.xib; sourceTree = "<group>"; };
 		B75EC9A5230ACE4800BA7A7B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		B761DA232321352100587F28 /* DwollaUserInformationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DwollaUserInformationVC.swift; sourceTree = "<group>"; };
 		B788D6F322E8931100FA59BA /* RegisterCompanyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCompanyVC.swift; sourceTree = "<group>"; };
 		B79308FD23015C3E001BB47A /* DistributeOfferVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistributeOfferVC.swift; sourceTree = "<group>"; };
 		B799227522F16FA9007E84B0 /* PickUserCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickUserCVC.swift; sourceTree = "<group>"; };
 		B799227722F1C511007E84B0 /* AddPostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostVC.swift; sourceTree = "<group>"; };
 		B79B1D2D22F2EE8D00F3C660 /* DateFormatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatManager.swift; sourceTree = "<group>"; };
+		B7B11FF423242615006711BB /* PlaidTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaidTVCell.swift; sourceTree = "<group>"; };
+		B7B11FF623242638006711BB /* ConnectedPlaidTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedPlaidTVCell.swift; sourceTree = "<group>"; };
 		B7BD39BA22FAAB53008A0496 /* CategoryTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTVC.swift; sourceTree = "<group>"; };
 		B7BD39BC22FAAE42008A0496 /* CategoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryHeaderView.swift; sourceTree = "<group>"; };
+		B7C9FE8C231E486F005580E4 /* PlaidLinkEnabledVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaidLinkEnabledVC.swift; sourceTree = "<group>"; };
+		B7C9FE8D231E486F005580E4 /* PlaidHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaidHelper.swift; sourceTree = "<group>"; };
+		B7D030AD23237CA4002B90FF /* Ambassadoor Business-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ambassadoor Business-Bridging-Header.h"; sourceTree = "<group>"; };
+		B7D42098232A9F40009F0FCE /* TransactionInfoTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionInfoTVCell.swift; sourceTree = "<group>"; };
+		B7D4209C232AA9A1009F0FCE /* TransactionListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionListVC.swift; sourceTree = "<group>"; };
 		B7FD83E222F072F800347E8E /* AddOfferVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOfferVC.swift; sourceTree = "<group>"; };
 		B7FD83E622F07E1800347E8E /* AddPostTC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostTC.swift; sourceTree = "<group>"; };
 		B7FD83E822F0844C00347E8E /* AddPostTC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddPostTC.xib; sourceTree = "<group>"; };
@@ -183,6 +200,15 @@
 			path = CollectionCell;
 			sourceTree = "<group>";
 		};
+		B7C9FE8B231E485E005580E4 /* Plaid */ = {
+			isa = PBXGroup;
+			children = (
+				B7C9FE8D231E486F005580E4 /* PlaidHelper.swift */,
+				B7C9FE8C231E486F005580E4 /* PlaidLinkEnabledVC.swift */,
+			);
+			path = Plaid;
+			sourceTree = "<group>";
+		};
 		B7FD83E522F07DD900347E8E /* TableviewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +218,9 @@
 				B7FD83EC22F0870F00347E8E /* PostDetailTC.xib */,
 				B712C484230690A700728758 /* ProductListCell.swift */,
 				B712C486230690B500728758 /* ProductListCell.xib */,
+				B7B11FF423242615006711BB /* PlaidTVCell.swift */,
+				B7B11FF623242638006711BB /* ConnectedPlaidTVCell.swift */,
+				B7D42098232A9F40009F0FCE /* TransactionInfoTVCell.swift */,
 			);
 			path = TableviewCell;
 			sourceTree = "<group>";
@@ -215,6 +244,9 @@
 				E816AC212282F3E200B9D951 /* MoneyVC.swift */,
 				E80B060522A07EA1002B9699 /* DepositVC.swift */,
 				E80B060722A07F63002B9699 /* WithdrawVC.swift */,
+				B761DA232321352100587F28 /* DwollaUserInformationVC.swift */,
+				B7D4209C232AA9A1009F0FCE /* TransactionListVC.swift */,
+				B70DEC7B232C2CFA00580FD7 /* TransactionDetailsVC.swift */,
 			);
 			path = Money;
 			sourceTree = "<group>";
@@ -285,7 +317,9 @@
 			isa = PBXGroup;
 			children = (
 				E8F8AACA22C981390047BF5E /* Changes.rtf */,
+				B7D030AD23237CA4002B90FF /* Ambassadoor Business-Bridging-Header.h */,
 				E8E54688227BA3E800775A07 /* YourCompany.swift */,
+				B7C9FE8B231E485E005580E4 /* Plaid */,
 				B7551F2222F9859C001C4974 /* Category */,
 				E8F8AAC722C8485A0047BF5E /* Offers */,
 				E816AC202282F34000B9D951 /* Money */,
@@ -357,6 +391,7 @@
 				E8C3693B22161B3000AE12D7 /* Frameworks */,
 				E8C3693C22161B3000AE12D7 /* Resources */,
 				D1CC777ECFFC90FA5FE945A2 /* [CP] Embed Pods Frameworks */,
+				B7C9FE90231E48F7005580E4 /* Prepare for Distribution */,
 			);
 			buildRules = (
 			);
@@ -379,6 +414,7 @@
 				TargetAttributes = {
 					E8C3693D22161B3000AE12D7 = {
 						CreatedOnToolsVersion = 10.2;
+						LastSwiftMigration = 1100;
 					};
 				};
 			};
@@ -439,6 +475,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B7C9FE90231E48F7005580E4 /* Prepare for Distribution */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Prepare for Distribution";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nLINK_ROOT=${PODS_ROOT:+$PODS_ROOT/Plaid/ios}\ncp \"${LINK_ROOT:-$PROJECT_DIR}\"/LinkKit.framework/prepare_for_distribution.sh \"${CODESIGNING_FOLDER_PATH}\"/Frameworks/LinkKit.framework/prepare_for_distribution.sh\n\"${CODESIGNING_FOLDER_PATH}\"/Frameworks/LinkKit.framework/prepare_for_distribution.sh\n";
+		};
 		D1CC777ECFFC90FA5FE945A2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -467,11 +521,13 @@
 				E84600832273A8CB00CF60F2 /* ProductsVC.swift in Sources */,
 				E80B060622A07EA1002B9699 /* DepositVC.swift in Sources */,
 				B706CB4D22E5F3310092FB77 /* SignInVC.swift in Sources */,
+				B7B11FF723242638006711BB /* ConnectedPlaidTVCell.swift in Sources */,
 				B7BD39BB22FAAB53008A0496 /* CategoryTVC.swift in Sources */,
 				B706CB5122E60DC20092FB77 /* ForgetPasswordVC.swift in Sources */,
 				B7FD83E722F07E1800347E8E /* AddPostTC.swift in Sources */,
 				B712C48B2306DA7900728758 /* StaticsPie.swift in Sources */,
 				E8E54689227BA3E800775A07 /* YourCompany.swift in Sources */,
+				B7D4209D232AA9A1009F0FCE /* TransactionListVC.swift in Sources */,
 				B799227822F1C511007E84B0 /* AddPostVC.swift in Sources */,
 				E8E54685227BA19C00775A07 /* ViewCompanyVC.swift in Sources */,
 				B7BD39BD22FAAE42008A0496 /* CategoryHeaderView.swift in Sources */,
@@ -483,15 +539,19 @@
 				E84600872273AF9100CF60F2 /* ImageViewExtensions.swift in Sources */,
 				E8F8AAC922C8492D0047BF5E /* ViewOffersVC.swift in Sources */,
 				E80B060A22A08D49002B9699 /* MoneyField.swift in Sources */,
+				B70DEC7C232C2CFA00580FD7 /* TransactionDetailsVC.swift in Sources */,
 				B72CB50A22E7024500958AE0 /* UIViewExtension.swift in Sources */,
 				E80B060822A07F63002B9699 /* WithdrawVC.swift in Sources */,
+				B7C9FE8F231E4870005580E4 /* PlaidHelper.swift in Sources */,
 				E84600802273A65600CF60F2 /* StandardNC.swift in Sources */,
 				B712C4892306B6C900728758 /* WebVC.swift in Sources */,
 				C0FBFD01226154FC00BADDCD /* categories.swift in Sources */,
 				E83F378D227CDEE100BA6688 /* SignUpVC.swift in Sources */,
 				C089A3C52253D4E500ECF3B0 /* structs.swift in Sources */,
 				E8E5468C227BC9E900775A07 /* StatsVC.swift in Sources */,
+				B7D42099232A9F40009F0FCE /* TransactionInfoTVCell.swift in Sources */,
 				E84600852273A92A00CF60F2 /* BusinessLabel.swift in Sources */,
+				B761DA242321352100587F28 /* DwollaUserInformationVC.swift in Sources */,
 				B72CB50822E6E8C100958AE0 /* BaseVC.swift in Sources */,
 				B7FD83E322F072F800347E8E /* AddOfferVC.swift in Sources */,
 				B706CB4F22E5F7860092FB77 /* ValidationFile.swift in Sources */,
@@ -500,8 +560,10 @@
 				E846008A2273B0B300CF60F2 /* Savvy.swift in Sources */,
 				B79B1D2E22F2EE8D00F3C660 /* DateFormatManager.swift in Sources */,
 				E8E54687227BA1D600775A07 /* EditCompanyTVC.swift in Sources */,
+				B7C9FE8E231E4870005580E4 /* PlaidLinkEnabledVC.swift in Sources */,
 				C05FE2D9225F683E002D3CAA /* FirebaseReferences.swift in Sources */,
 				E8C3694422161B3000AE12D7 /* ViewController.swift in Sources */,
+				B7B11FF523242615006711BB /* PlaidTVCell.swift in Sources */,
 				E8C3694222161B3000AE12D7 /* AppDelegate.swift in Sources */,
 				B7551F2B22F98841001C4974 /* BasePicker.swift in Sources */,
 				E89C83682277A49400124420 /* ViewProductVC.swift in Sources */,
@@ -655,17 +717,20 @@
 			baseConfigurationReference = A45971C7211F5A5D8A81F8A9 /* Pods-Ambassadoor Business.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = BlueIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = F4W3LUKZFA;
+				DEVELOPMENT_TEAM = JMBR2RF2B8;
 				INFOPLIST_FILE = "Ambassadoor Business/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tesseractfreelance.Ambassadoor-Business";
+				PRODUCT_BUNDLE_IDENTIFIER = com.develop.sns;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = AprilProfile;
+				PROVISIONING_PROFILE_SPECIFIER = developsnsapps;
+				SWIFT_OBJC_BRIDGING_HEADER = "Ambassadoor Business/Ambassadoor Business-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -676,17 +741,19 @@
 			baseConfigurationReference = 795D821481779CC29C258337 /* Pods-Ambassadoor Business.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = BlueIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = F4W3LUKZFA;
+				DEVELOPMENT_TEAM = JMBR2RF2B8;
 				INFOPLIST_FILE = "Ambassadoor Business/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tesseractfreelance.Ambassadoor-Business";
+				PRODUCT_BUNDLE_IDENTIFIER = com.develop.sns;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = AprilProfile;
+				PROVISIONING_PROFILE_SPECIFIER = developsnsapps;
+				SWIFT_OBJC_BRIDGING_HEADER = "Ambassadoor Business/Ambassadoor Business-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

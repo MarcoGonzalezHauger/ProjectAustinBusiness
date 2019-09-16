@@ -21,6 +21,18 @@ struct API {
     
     static var kBaseURL = "https://us-central1-amassadoor.cloudfunctions.net/"
     
+    static var kDwollaClient_id = "CijOdBYNcHDSwXjkf4PnsXjHBYSgKdgc7TdfoDNUZiNvOPfAst"
+    
+    static var kDwollaClient_secret = "m8oCRchilXnkR3eFAKlNuQWFqv9zROJX0CkD5aiys1H3nmvQMb"
+    
+    static var kCreateCustomer = "https://api-sandbox.dwolla.com/customers"
+    
+    static var kCreateFundingSourceURL = "https://api-sandbox.dwolla.com/customers/AB443D36-3757-44C1-A1B4-29727FB3111C/funding-sources"
+    
+    static var kFundTransferURL = "https://api-sandbox.dwolla.com/transfers"
+    
+    static var superBankFundingSource = "https://api-sandbox.dwolla.com/funding-sources/b23abf0b-c28d-4941-84af-617626865f2b"
+    
     static func getProfileInfo(completed: ((_ userDictionary: [String: Any]) -> () )?) {
         let url = URL(string: "https://api.instagram.com/v1/users/self/?access_token=" + INSTAGRAM_ACCESS_TOKEN)
         URLSession.shared.dataTask(with: url!){ (data, response, err) in
@@ -131,6 +143,14 @@ struct API {
         let depositSerialize = ["userID":deposit.userID!,"currentBalance":deposit.currentBalance!,"totalDepositAmount":deposit.totalDepositAmount,"totalDeductedAmount":deposit.totalDeductedAmount,"lastDeductedAmount":deposit.lastDeductedAmount,"lastDepositedAmount":deposit.lastDepositedAmount,"lastTransactionHistory":transactionData,"depositHistory":deposit.depositHistory] as [String : Any]
         
         return depositSerialize
+    }
+    
+    static func serializeDwollaCustomers(object: DwollaCustomerInformation) -> [String: Any]{
+        
+        let dwollaCustomerSerialize = ["firstname": object.firstName,"lastname": object.lastName,"accountID":object.acctID,"customerURL": object.customerURL,"customerFSURL":object.customerFSURL,"isFSAdded": object.isFSAdded,"mask":object.mask,"name":object.name] as [String : Any]
+        
+        return dwollaCustomerSerialize
+        
     }
     
     static func serializeTransactionDetails(transaction: TransactionDetails) -> [String: Any] {

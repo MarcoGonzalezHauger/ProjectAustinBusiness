@@ -28,6 +28,26 @@ class DateFormatManager: NSObject {
         
     }
     
+    func getDateFromString(dateString: String) -> String {
+        
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        dateFormatterGet.locale = Locale(identifier: "en_US_POSIX")
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "MMM dd,yyyy"
+        //dateFormatterPrint.dateFormat = "MMM, yyyy"
+        
+        if let date = dateFormatterGet.date(from: dateString) {
+            print(dateFormatterPrint.string(from: date))
+            
+            return dateFormatterPrint.string(from: date)
+        } else {
+            print("There was an error decoding the string")
+            return ""
+        }
+        
+    }
+    
     func getDateFromStringWithFormat(dateString: String, format: String) -> Date? {
         let dateFormatter = getDateFormatterWithFormat(format: format)
         if let dateInString: String = dateString {

@@ -30,7 +30,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
     
     var influencersFilter = [String: AnyObject]()
     var deductedAmount: Double = 0.00
-    
+    var ambassadoorCommision: Double = 0.00
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return global.IncreasePay.count
@@ -238,7 +238,6 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
             
             if (offerAmount < self.depositValue!.currentBalance!) {
             
-            let influencerFilter = ["primaryCategory":["Other"],"username":["brunogonzalezhauger"]]
             
                 getFilteredInfluencers(category: self.influencersFilter as! [String : [AnyObject]]) { (influencer, errorStatus,user) in
                 
@@ -247,10 +246,15 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                     var extractedInfluencer = [User]()
                     var extractedUserID = [String]()
                     
+                    self.ambassadoorCommision = offerAmount * Singleton.sharedInstance.getCommision()
                     
                     for (value,user) in zip(influencer!, user!) {
                         
-                        let influcerMoneyValue = calculateCostForUser(offer: self.templateOffer!, user: user, increasePayVariable: self.increasePayVariable.rawValue).rounded()
+                        if user.averageLikes != 0 && user.averageLikes != nil {
+                        
+                        //let influcerMoneyValue = ((Double(calculateCostForUser(offer: self.templateOffer!, user: user, increasePayVariable: self.increasePayVariable.rawValue)) * 100).rounded())/100
+                        //NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
+                        let influcerMoneyValue = calculateCostForUser(offer: self.templateOffer!, user: user, increasePayVariable: self.increasePayVariable.rawValue)
                         
                         if offerAmount >= influcerMoneyValue {
                             
@@ -261,12 +265,12 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                         }else{
                             break
                         }
-                        
+                    }
                     }
                     
                     if extractedUserID.count != 0 {
                         
-                        let totalDeductedAmount = (Double((String((self.moneyText.text?.dropFirst())!)))! - offerAmount)
+                        let totalDeductedAmount = Double(NumberToPrice(Value: (Double((String((self.moneyText.text?.dropFirst())!)))! - offerAmount), enforceCents: true).dropFirst())!
                         
                         self.sendOutOffers(influencer: extractedUserID, user: extractedInfluencer, deductedAmount: totalDeductedAmount)
                         
@@ -321,7 +325,9 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
     
     func sendOutOffers(influencer: [String]?,user: [User]?,deductedAmount: Double) {
         
-        self.templateOffer?.money = Double((String((self.moneyText.text?.dropFirst())!)))!
+        self.ambassadoorCommision = Double((String((self.moneyText.text?.dropFirst())!)))! * Singleton.sharedInstance.getCommision()
+        
+        self.templateOffer?.money = Double((String((self.moneyText.text?.dropFirst())!)))! - self.ambassadoorCommision
         self.templateOffer?.user_IDs = influencer!
         let path = Auth.auth().currentUser!.uid + "/" + self.templateOffer!.offer_ID
         sentOutOffers(pathString: path, templateOffer: self.templateOffer!) { (template, status) in
@@ -333,11 +339,14 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                 //for value in influencer! {
                 for (value, userValue) in zip(influencer!, user!) {
                     //(value, user) in zip(strArr1, strArr2)
-                    
+                    if userValue.averageLikes != 0 && userValue.averageLikes != nil {
                     let patstring = value + "/" + template.offer_ID
-                    template.money = calculateCostForUser(offer: self.templateOffer!, user: userValue, increasePayVariable: self.increasePayVariable.rawValue).rounded()
+                        
+                        
+                        template.money = Double(NumberToPrice(Value: calculateCostForUser(offer: self.templateOffer!, user: userValue, increasePayVariable: self.increasePayVariable.rawValue), enforceCents: true).dropFirst())!
                     cardDetails.append([value:["id":value,"amount":template.money,"toOffer":template.offer_ID,"name":userValue.name!,"gender":userValue.gender!,"averageLikes":userValue.averageLikes!]])
                     completedOffersToUsers(pathString: patstring, templateOffer: template)
+                    }
                 }
                 let removeTemplatePath = Auth.auth().currentUser!.uid + "/" +  template.offer_ID
                 removeTemplateOffers(pathString: removeTemplatePath, templateOffer: template)
