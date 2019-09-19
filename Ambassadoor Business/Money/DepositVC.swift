@@ -10,14 +10,94 @@
 import UIKit
 import BraintreeDropIn
 import Braintree
+import Stripe
+import Firebase
 
 enum EditingMode {
 	case slider, manual
 }
 
-class DepositVC: BaseVC, changedDelegate,BTViewControllerPresentingDelegate,BTAppSwitchDelegate {
-
+class DepositVC: BaseVC, changedDelegate,BTViewControllerPresentingDelegate,BTAppSwitchDelegate,STPAddCardViewControllerDelegate,STPAuthenticationContext,STPPaymentContextDelegate {
+    func paymentContext(_ paymentContext: STPPaymentContext, didFailToLoadWithError error: Error) {
+        
+    }
     
+    func paymentContextDidChange(_ paymentContext: STPPaymentContext) {
+        
+    }
+    
+    func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPErrorBlock) {
+        
+    }
+    
+    func paymentContext(_ paymentContext: STPPaymentContext, didFinishWith status: STPPaymentStatus, error: Error?) {
+        
+    }
+    
+    func authenticationPresentingViewController() -> UIViewController {
+        return self
+    }
+    
+    func addCardViewControllerDidCancel(_ addCardViewController: STPAddCardViewController) {
+        dismiss(animated: true)
+    }
+    
+    func addCardViewController(_ addCardViewController: STPAddCardViewController, didCreatePaymentMethod paymentMethod: STPPaymentMethod, completion: @escaping STPErrorBlock) {
+        
+//        NetworkManager.sharedInstance.postPaymentMethodThroughStripe(params: [:]) { (status, error, data) in
+//
+//            if error == nil {
+//
+//                do {
+//                    let json = try JSONSerialization.jsonObject(with: data!, options: []) as? AnyObject
+//
+//                    let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+//                    print("dataString=",dataString)
+//
+//
+//
+//            } catch _ {
+//
+//            }
+//
+//            }
+//
+//        }
+        let params = ["stripeID":paymentMethod.stripeId,"amount":100.00] as [String : Any]
+        self.depositAmountToWalletThroughStripe(params: params, paymentMethodParams: paymentMethod)
+        //cardParams.number = STPPaymentCardTextField?.cardNumber
+//        cardParams.expMonth = paymentMethod.card.
+//        cardParams.expYear = (paymentCardTextField?.expirationYear)!
+//        cardParams.cvc = paymentCardTextField?.cvc
+//        STPAPIClient.shared().createToken(withCard: cardParams) { (token: STPToken?, error: Error?) in
+//            guard let token = token, error == nil else {
+//                // Present error to user...
+//                return
+//            }
+//            print(self.dictPayData)
+//
+//        }
+        
+        
+        
+//        cardParams.number = paymentMethod.card?.expMonth
+//        cardParams.expMonth = paymentMethod.card?.expMonth
+//        cardParams.expYear = paymentMethod.card?.expYear
+//        cardParams.cvc = paymentMethod.card?.
+//        submitPaymentMethodToBackend(paymentMethod, completion: { (error: Error?) in
+//            if let error = error {
+//                // Show error in add card view controller
+//                completion(error)
+//            }
+//            else {
+//                // Notify add card view controller that PaymentMethod creation was handled successfully
+//                completion(nil)
+//
+//                // Dismiss add card view controller
+//                dismiss(animated: true)
+//            }
+//        })
+    }
 	
 	@IBOutlet weak var moneySlider: UISlider!
     @IBOutlet weak var ExpectedReturns: UILabel!
@@ -26,6 +106,8 @@ class DepositVC: BaseVC, changedDelegate,BTViewControllerPresentingDelegate,BTAp
     var braintreeClient: BTAPIClient!
 	
 	var amountOfMoneyInCents: Int = 10000
+    
+    var addCardViewController = STPAddCardViewController()
 	
 	func changed() {
 		editMode = .manual
@@ -89,45 +171,59 @@ class DepositVC: BaseVC, changedDelegate,BTViewControllerPresentingDelegate,BTAp
 	}
     
     @IBAction func proceedAction(sender: UIButton){
+        
+        
+        
+        
+        
         print("cccc=",money.text!.count)
         print("cccc=1",money.text!.replacingOccurrences(of: " ", with: "").count)
         if money.text?.dropFirst() != "0.00" && money.text!.replacingOccurrences(of: " ", with: "").count != 0 {
-        
-        NetworkManager.sharedInstance.getClientTokenFromServer { (result, errorValue, data) in
-
-            if result == "success" {
-
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String : Any]
-
-                    let clientToken = json!["token"] as! String
-//                    DispatchQueue.main.async {
-//                    self.braintreeClient = BTAPIClient(authorization: clientToken)
-//                        let payPalDriver = BTPayPalDriver(apiClient: self.braintreeClient)
-//                        payPalDriver.viewControllerPresentingDelegate = self
-//                        payPalDriver.appSwitchDelegate = self
-//
-//                        //        payPalDriver.authorizeAccount() { (tokenizedPayPalAccount, error) -> Void in
-//                        //        }
-//
-//                        // ...start the Checkout flow
-//                        let payPalRequest = BTPayPalRequest(amount: "1.00")
-//                        payPalDriver.requestOneTimePayment(payPalRequest) { (tokenizedPayPalAccount, error) -> Void in
-//                        }
-//                    }
-                    
-                    DispatchQueue.main.async(execute: {
-                    self.getDropInUI(token: clientToken)
-                    })
-                } catch _ {
-
-                }
-
-            }else{
-
-            }
             
-        }
+            // Setup add card view controller
+            addCardViewController.delegate = self
+            //let config = STPPaymentConfiguration()
+            //config.requiredBillingAddressFields = .full
+            //addCardViewController = STPAddCardViewController.init(configuration: config, theme: STPTheme.default())
+            // Present add card view controller
+            let navigationController = UINavigationController(rootViewController: addCardViewController)
+            present(navigationController, animated: true)
+        
+//        NetworkManager.sharedInstance.getClientTokenFromServer { (result, errorValue, data) in
+//
+//            if result == "success" {
+//
+//                do {
+//                    let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String : Any]
+//
+//                    let clientToken = json!["token"] as! String
+////                    DispatchQueue.main.async {
+////                    self.braintreeClient = BTAPIClient(authorization: clientToken)
+////                        let payPalDriver = BTPayPalDriver(apiClient: self.braintreeClient)
+////                        payPalDriver.viewControllerPresentingDelegate = self
+////                        payPalDriver.appSwitchDelegate = self
+////
+////                        //        payPalDriver.authorizeAccount() { (tokenizedPayPalAccount, error) -> Void in
+////                        //        }
+////
+////                        // ...start the Checkout flow
+////                        let payPalRequest = BTPayPalRequest(amount: "1.00")
+////                        payPalDriver.requestOneTimePayment(payPalRequest) { (tokenizedPayPalAccount, error) -> Void in
+////                        }
+////                    }
+//
+//                    DispatchQueue.main.async(execute: {
+//                    self.getDropInUI(token: clientToken)
+//                    })
+//                } catch _ {
+//
+//                }
+//
+//            }else{
+//
+//            }
+//
+//        }
     }else{
             
             self.showAlertMessage(title: "Alert", message: "Please deposit any amount") {
@@ -165,6 +261,167 @@ class DepositVC: BaseVC, changedDelegate,BTViewControllerPresentingDelegate,BTAp
         
         self.present(dropIn!, animated: true, completion: nil)
         //})
+        
+    }
+    
+    func depositAmountToWalletThroughStripe(params: [String: Any],paymentMethodParams: STPPaymentMethod) {
+        
+        //if params["amount"] as! String != "" && params["amount"] as! String != "0.00" {
+           
+            NetworkManager.sharedInstance.postAmountToServerThroughStripe(params: params) { (status, error, data) in
+                
+                let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+                
+                print("dataString=",dataString)
+                
+                if error == nil {
+                    
+                    do {
+                        let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: AnyObject]
+                        
+                        
+                        
+                        if let statusCode = json!["code"] as? Int {
+                            
+                            if statusCode == 200 {
+                                
+                                if let transactionDetails = json!["result"] as? NSDictionary {
+                                    
+                                    if let clientSecret = transactionDetails["client_secret"] as? String {
+                                        self.stripePaymentMethod(clientSecret: clientSecret, paymentMethodParams: paymentMethodParams)
+                                        
+                                    }
+                                    
+                                }else{
+                                    
+                                }
+                                
+                              
+                                
+                            }
+                            
+                        }
+                        
+                        
+                    } catch _ {
+                        
+                    }
+                    
+                }
+                
+            }
+
+            
+            
+//        }else{
+//
+//        }
+        
+    }
+    
+    func stripePaymentMethod(clientSecret: String, paymentMethodParams: STPPaymentMethod) {
+        
+        let paymentIntentParams = STPPaymentIntentParams(clientSecret: clientSecret)
+        let paymentManager = STPPaymentHandler.shared()
+        paymentIntentParams.paymentMethodId = paymentMethodParams.stripeId
+        paymentManager.confirmPayment(paymentIntentParams, with: self) { (status, paymentIntent, error) in
+            DispatchQueue.main.async {
+                self.addCardViewController.dismiss(animated: true, completion: nil)
+            }
+            switch (status) {
+            case .failed: break
+            // Handle error
+            case .canceled: break
+            // Handle cancel
+            case .succeeded:
+                // Payment Intent is confirmed
+                
+                
+                getDepositDetails(companyUser: Auth.auth().currentUser!.uid) { (deposit, status, error) in
+                    /*var userID: String?
+                     var currentBalance: Double?
+                     var totalDepositAmount: Double?
+                     var totalDeductedAmount: Double?
+                     var lastDeductedAmount: Double?
+                     var lastDepositedAmount: Double?
+                     var lastTransactionHistory: TransactionDetails?
+                     var depositHistory: [AnyObject]?
+                     */
+                    
+                    print(paymentIntent?.amount)
+                    print(paymentIntent?.clientSecret)
+                    print(paymentIntent?.currency)
+                    print(paymentIntent?.paymentMethodId)
+                    print(paymentIntent?.stripeId)
+                    print(paymentIntent?.status)
+                    print(paymentMethodParams.card?.expMonth)
+                    
+                    let cardDetails = ["last4":(paymentMethodParams.card?.last4)!,"expireMonth":(paymentMethodParams.card?.expMonth)!,"expireYear":(paymentMethodParams.card?.expYear)!,"country":(paymentMethodParams.card?.country)!] as [String : Any]
+                    print(paymentIntent?.created?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss"))
+                    
+                    let transactionDict = ["id":(paymentIntent?.stripeId)!,"status":paymentIntent!.status,"type":"sale","currencyIsoCode":paymentIntent!.currency,"amount":paymentIntent!.amount.stringValue,"createdAt":(paymentIntent!.created?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss"))!,"updatedAt":(paymentIntent?.created?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss"))!,"transactionType":"card","cardDetails":cardDetails] as [String : Any]
+
+                    
+                    if status == "new" {
+                        
+                        
+                        let transactionObj = TransactionDetails.init(dictionary: transactionDict)
+                        
+                        let tranObj = API.serializeTransactionDetails(transaction: transactionObj)
+                        
+                        var depositHistory = [Any]()
+                        depositHistory.append(tranObj)
+                        
+                        let deposit = Deposit.init(dictionary: ["userID":Auth.auth().currentUser!.uid ,"currentBalance":(paymentIntent?.amount.doubleValue)!,"totalDepositAmount":(paymentIntent?.amount.doubleValue)!,"totalDeductedAmount":0.00,"lastDeductedAmount":0.00,"lastDepositedAmount":(paymentIntent?.amount.doubleValue)!,"lastTransactionHistory":depositHistory,"depositHistory":depositHistory])
+                        
+                        sendDepositAmount(deposit: deposit, companyUser: Auth.auth().currentUser!.uid) { (deposit, status) in
+                            self.createLocalNotification(notificationName: "reloadDeposit", userInfo: [:])
+                            DispatchQueue.main.async(execute: {
+                                
+                                self.dismiss(animated: true, completion: nil)
+                            })
+                        }
+
+                        
+                    }else if status == "success" {
+                        
+                        let transactionObj = TransactionDetails.init(dictionary: transactionDict)
+                        
+                        let tranObj = API.serializeTransactionDetails(transaction: transactionObj)
+                        
+                        let currentBalance = deposit!.currentBalance! + (paymentIntent?.amount.doubleValue)!
+                        let totalDepositAmount = deposit!.totalDepositAmount! + (paymentIntent?.amount.doubleValue)!
+                        deposit?.totalDepositAmount = totalDepositAmount
+                        deposit?.currentBalance = currentBalance
+                        deposit?.lastDepositedAmount = (paymentIntent?.amount.doubleValue)!
+                        deposit?.lastTransactionHistory = transactionObj
+                        var depositHistory = [Any]()
+                        
+                        depositHistory.append(contentsOf: (deposit!.depositHistory!))
+                        depositHistory.append(tranObj)
+                        
+                        deposit?.depositHistory = depositHistory
+                        
+                        sendDepositAmount(deposit: deposit!, companyUser: Auth.auth().currentUser!.uid) { (modifiedDeposit, status) in
+                            self.createLocalNotification(notificationName: "reloadDeposit", userInfo: [:])
+                            DispatchQueue.main.async(execute: {
+                                self.dismiss(animated: true, completion: nil)
+                            })
+                        }
+                        
+                    }
+                    else{
+                        
+                        
+                        
+                    }
+                    
+                }
+                
+                
+            }
+            
+        }
         
     }
     

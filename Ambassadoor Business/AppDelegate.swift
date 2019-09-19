@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Firebase
 import Braintree
+import Stripe
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
+        Stripe.setDefaultPublishableKey("pk_test_8Rwst6t9gr25jXYXC4NHmiZK001i78iYO7")
         BTAppSwitch.setReturnURLScheme("com.develop.sns.paypal")
         getAdminValues { (error) in
            print("fd=",Singleton.sharedInstance.getAdminFS())
@@ -53,7 +55,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func applicationDidBecomeActive(_ application: UIApplication) {
 		// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        self.versionUpdateValidation()
 	}
+    
+    func versionUpdateValidation(){
+        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+        
+        let ref = Database.database().reference().child("LatestAppVersion").child("version")
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            let latestVersion = snapshot.value as! String
+            if (latestVersion == appVersion) {
+                
+            }else{
+                let alertMessage = "A new version of Application is available, Please update to version " + latestVersion;
+                
+                let topWindow: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
+                topWindow?.rootViewController = UIViewController()
+                topWindow?.windowLevel = UIWindow.Level.alert + 1
+                let alert = UIAlertController(title: "Update is avaliable", message: alertMessage, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "confirm"), style: .cancel, handler: {(_ action: UIAlertAction) -> Void in
+                    // continue your work
+                    
+                    // important to hide the window after work completed.
+                    // this also keeps a reference to the window until the action is invoked.
+                    topWindow?.isHidden = true // if you want to hide the topwindow then use this
+                    //            topWindow? = nil // if you want to hide the topwindow then use this
+                    
+                    if let url = URL(string: "itms-apps://itunes.apple.com/app"),
+                        UIApplication.shared.canOpenURL(url){
+                        if #available(iOS 10.0, *) {
+                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                        } else {
+                            UIApplication.shared.openURL(url)
+                        }
+                    }
+                    
+                    
+                }))
+                topWindow?.makeKeyAndVisible()
+                topWindow?.rootViewController?.present(alert, animated: true, completion: nil)
+                
+            }
+        })
+    }
 
 	func applicationWillTerminate(_ application: UIApplication) {
 		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.

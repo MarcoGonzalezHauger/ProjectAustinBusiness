@@ -127,7 +127,7 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
                     
                     if let valueDetails = value as? NSDictionary {
                         
-                        transactionHistory.append(Transaction(description: "", details: valueDetails["cardDetails"] as AnyObject, time: valueDetails["updatedAt"] as! String, amount: Double(valueDetails["amount"] as! String)!, type: valueDetails["type"] as! String, status: valueDetails["status"] as! String))
+                        transactionHistory.append(Transaction(description: "", details: valueDetails["cardDetails"] as AnyObject, time: valueDetails["updatedAt"] as! String, amount: Double(valueDetails["amount"] as! String)!, type: valueDetails["type"] as! String, status: "pending"))
                     }
                 }
                 transactionDelegate = self
