@@ -28,6 +28,12 @@ class DateFormatManager: NSObject {
         
     }
     
+    func getCurrentDateString() -> String {
+        let dateFormatter = getDateFormatterWithFormat(format: "yyyy-MM-dd'T'HH:mm:ss")
+        let dateString = dateFormatter.string(from: Date())
+        return dateString
+    }
+    
     func getDateFromString(dateString: String) -> String {
         
         let dateFormatterGet = DateFormatter()

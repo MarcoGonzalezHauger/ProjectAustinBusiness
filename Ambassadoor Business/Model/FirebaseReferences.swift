@@ -293,8 +293,6 @@ func updateProductDetails(dictionary: [String: Any], productID: String) {
     let user = Singleton.sharedInstance.getCompanyUser()
     let ref = Database.database().reference().child("products").child(Auth.auth().currentUser!.uid).child(user.companyID!).child(productID)
     ref.updateChildValues(dictionary)
-    
-    
 }
 // A MARCO FUNCTION.
 func UpdateYourCompanyInFirebase() {
@@ -376,7 +374,8 @@ func serializeCompany(company: Company) -> [String: Any] {
         "website": company.website,
         "description": company.companyDescription,
         "accountBalance": company.accountBalance,
-		"owner": company.owner_email
+		"owner": company.owner_email,
+        "referralcode": company.owner_email
     ]
     return companyData
 }
@@ -401,40 +400,57 @@ func GetAllUsers(completion: @escaping ([User]) -> ()) {
 
 func getFilteredInfluencers(category: [String:[AnyObject]],completion: @escaping ([String]?,String,[User]?) -> ()) {
     
+    var mutatingCategory = category
+    
     let usersRef = Database.database().reference().child("users")
-    usersRef.observe(.value, with: { (snapshot) in
+    
+    usersRef.observeSingleEvent(of: .value, with: { (snapshot) in
         
         if let dictionary = snapshot.value as? [String: AnyObject] {
-           
+            
             let keys = dictionary.keys
             
             var userIDs = [String]()
             
             var user = [User]()
             
+            var filteredCategory = [String]()
+            
+            if category.keys.contains("primaryCategory") {
+                
+                let categoryValueArray = category["primaryCategory"] as! [String]
+                
+                filteredCategory.append(contentsOf: categoryValueArray)
+                
+                mutatingCategory.removeValue(forKey: "primaryCategory")
+                
+            }
+            
+            
             for value in keys {
                 
-            let first  = dictionary[value] as! [String: AnyObject]
+                let first  = dictionary[value] as! [String: AnyObject]
                 
                 //_ = first["primaryCategory"] as! String
+                //Getting All Keys From Offer
+                let categoryArray = mutatingCategory.keys
                 
-                let categoryArray = category.keys
+                
                 var checkStatus = true
-                
                 for keyValue in categoryArray {
                     
-//                    if !(category[keyValue]?.contains(first[keyValue] as! String))!{
-//                       checkStatus = false
-//                    }
+                    //                    if !(category[keyValue]?.contains(first[keyValue] as! String))!{
+                    //                       checkStatus = false
+                    //                    }
                     
-                    if (category[keyValue]?.contains(where: { (errer) -> Bool in
+                    if (mutatingCategory[keyValue]?.contains(where: { (errer) -> Bool in
                         print("a=",errer)
                         print("b=",first[keyValue])
                         //return (first[keyValue]?.isEqual(errer))!
                         if (first[keyValue] as? String) != nil {
                             return (first[keyValue]?.isEqual(errer))!
                         }else{
-                        return false
+                            return false
                         }
                     }))! == false {
                         checkStatus = false
@@ -442,9 +458,37 @@ func getFilteredInfluencers(category: [String:[AnyObject]],completion: @escaping
                         
                     }
                     
+                    
                 }
                 
-                if checkStatus == true {
+                
+                var checkCategoryArray = false
+                
+                if category.keys.contains("primaryCategory") {
+                    //categories
+                    if first.keys.contains("categories") {
+                        
+                        if let userCategoryArray = first["categories"] as? [String] {
+                            
+                            for userCategoryValue in userCategoryArray {
+                                
+                                let offerCategory = category["primaryCategory"] as! [String]
+                                
+                                if offerCategory.contains(userCategoryValue ){
+                                    checkCategoryArray = true
+                                    break
+                                }
+                                
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                }
+                
+                
+                if checkStatus == true && checkCategoryArray == true {
                     userIDs.append(first["id"] as! String)
                     user.append(User.init(dictionary: first))
                 }
@@ -454,10 +498,20 @@ func getFilteredInfluencers(category: [String:[AnyObject]],completion: @escaping
         }else{
             completion([], "error", nil)
         }
+
         
-    }) { (error) in
+    }, withCancel: { (error) in
+        
         completion([], "error", nil)
-    }
+        
+    })
+    
+//    usersRef.observe(.value, with: { (snapshot) in
+//
+//
+//    }) { (error) in
+//
+//    }
 }
 
 func getAllProducts(path: String, completion: @escaping ([Product]) -> ()) {
@@ -531,9 +585,79 @@ func completedOffersToUsers(pathString: String, templateOffer: TemplateOffer) {
     offersRef.updateChildValues(offerDictionary)
 }
 
+func sentOutTransactionToInfluencer(pathString: String,transactionData: [String: Any]) {
+    
+    let transactionRef = Database.database().reference().child("InfluencerTransactions").child(pathString)
+    
+    var valueArray = [[String:Any]]()
+    
+    transactionRef.observeSingleEvent(of: .value, with: { (snapshot) in
+        
+        print(snapshot.value)
+        
+        if let arrayValues = snapshot.value as? [[String: AnyObject]] {
+            
+            valueArray.append(contentsOf: arrayValues)
+            valueArray.append(transactionData)
+            let transactionRefVal = Database.database().reference().child("InfluencerTransactions")
+            let data = [pathString: valueArray]
+            transactionRefVal.updateChildValues(data)
+            
+//            for keyValues in arrayValues.keys {
+//                
+//                let singleValue = arrayValues[keyValues] as! [String: AnyObject]
+//                valueArray.append(singleValue)
+//                let transactionRefVal = Database.database().reference().child("InfluencerTransactions")
+//                let data = [pathString: valueArray]
+//                transactionRefVal.updateChildValues(data)
+//                
+//            }
+            
+        }else{
+            
+            let transactionRefVal = Database.database().reference().child("InfluencerTransactions")
+            valueArray.append(transactionData)
+            let data = [pathString: valueArray]
+            transactionRefVal.updateChildValues(data)
+            
+        }
+        
+    }) { (error) in
+        
+        let transactionRefVal = Database.database().reference().child("InfluencerTransactions")
+        let data = [pathString: valueArray]
+        transactionRefVal.updateChildValues(data)
+        
+    }
+    
+    
+    
+}
+
+//Mark: Influencer Amount Updated By Business User
+
+func updateInfluencerAmountByReferral(user: User, amount: Double) {
+    
+    let transactionRef = Database.database().reference().child("users").child(user.id!)
+    
+    
+    transactionRef.updateChildValues(["yourMoney":amount])
+    
+}
+
 func removeTemplateOffers(pathString: String, templateOffer: TemplateOffer) {
     let offersRef = Database.database().reference().child("TemplateOffers").child(pathString)
     offersRef.removeValue()
+}
+
+func updateTemplateOffers(pathString: String, templateOffer: TemplateOffer, userID: [Any]) {
+    let offersRef = Database.database().reference().child("TemplateOffers").child(pathString)
+//    var userIDValue = [String]()
+//    for uderIDs in userID {
+//        userIDValue.append(uderIDs.id!)
+//    }
+    offersRef.updateChildValues(["user_IDs":userID])
+    //offersRef.removeValue()
 }
 
 func getAllTemplateOffers(userID: String, completion: @escaping([TemplateOffer],String) -> Void) {
@@ -817,6 +941,69 @@ func getCurrentCompanyUser(userID: String, completion: @escaping (CompanyUser?,S
         print(error.localizedDescription)
     }
     
+    
+}
+
+//MARK: Get User By Refferal Code
+
+func getUserByReferralCode(referralcode: String,completion: @escaping (User?) -> Void) {
+    
+    let usersRef = Database.database().reference().child("users")
+    
+    usersRef.queryOrdered(byChild: referralcode).observeSingleEvent(of: .value) { (snapshot) in
+        
+        if let dictionary = snapshot.value as? [String: AnyObject] {
+            
+            for values in dictionary.keys {
+                
+                if let dict = dictionary[values] as? [String: AnyObject] {
+                    
+                    if dict.keys.contains("referralcode") {
+                    
+                    if dict["referralcode"] as! String == referralcode {
+                        
+                        let userInstance = User(dictionary: dict)
+                        if userInstance.referralcode == referralcode {
+                            completion(userInstance)
+                            break
+                        }
+                        
+                    }
+                    }
+                    
+                }
+                
+            }
+            
+//            let userInstance = User(dictionary: dictionary)
+//            if userInstance.referralcode == referralcode {
+//                completion(userInstance)
+//            }
+            
+        }
+        
+    }
+    
+//    usersRef.queryOrdered(byChild: referralcode).observe(.childAdded, with: { (snapshot) in
+//
+//        if let dictionary = snapshot.value as? [String: AnyObject] {
+//            let userInstance = User(dictionary: dictionary)
+//            if userInstance.referralcode == referralcode {
+//               completion(userInstance)
+//            }
+//
+//        }
+//
+//    }) { (error) in
+//        completion(nil)
+//    }
+    
+//    usersRef.observeSingleEvent(of: .value, with: { (snapshot) in
+//        if let dictionary = snapshot.value as? [String: AnyObject] {
+//            let userInstance = User(dictionary: dictionary as! [String : AnyObject])
+//            completion(userInstance)
+//        }
+//    }, withCancel: nil)
     
 }
 

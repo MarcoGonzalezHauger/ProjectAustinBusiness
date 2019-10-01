@@ -13,16 +13,24 @@ class ForgetPasswordVC: BaseVC,UITextFieldDelegate {
     
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var scroll: UIScrollView!
-    
+	@IBOutlet weak var sendEmailButton: UIButton!
+	@IBOutlet weak var line: UILabel!
+	
     var keyboardHeight: CGFloat = 0.00
     var assainedTextField: UITextField? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+		
+		sendEmailButton.layer.cornerRadius = 6
+		
         // Do any additional setup after loading the view.
     }
-    
+	
+    @IBAction func Cancelled(_ sender: Any) { self.navigationController?.popViewController(animated: true)
+	}
+	
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         
         if (emailText != nil){
@@ -78,7 +86,8 @@ class ForgetPasswordVC: BaseVC,UITextFieldDelegate {
                 Auth.auth().sendPasswordReset(withEmail: emailText.text!) { (error) in
                     self.emailText.resignFirstResponder()
                     if error == nil {
-                        self.showAlertMessage(title: "Alert", message: "we have been sent reset password link to your email address.") {
+						self.sendEmailButton.setTitle("Sent", for: .normal)
+                        self.showAlertMessage(title: "Sent", message: "The reset link has been sent to your email.") {
                             
                             self.navigationController?.popViewController(animated: true)
                             
@@ -92,17 +101,17 @@ class ForgetPasswordVC: BaseVC,UITextFieldDelegate {
                 }
                 
             }else{
-                
-                self.showAlertMessage(title: "Alert", message: "Please enter the valid email address") {
-                    
-                }
+                //invalid email
+				
+				MakeShake(viewToShake: sendEmailButton)
+				line.backgroundColor = .red
                 
             }
             
         }else{
-            self.showAlertMessage(title: "Alert", message: "Please enter your email address") {
-                
-            }
+            
+			MakeShake(viewToShake: sendEmailButton)
+			line.backgroundColor = .red
         }
     }
 

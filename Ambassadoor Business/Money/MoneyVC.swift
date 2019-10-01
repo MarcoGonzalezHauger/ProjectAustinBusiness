@@ -136,6 +136,15 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
                     self.shelf.dataSource = self
                     self.shelf.reloadData()
                 })
+            }else{
+                
+                transactionDelegate = self
+                DispatchQueue.main.async(execute: {
+                    self.shelf.delegate = self
+                    self.shelf.dataSource = self
+                    self.shelf.reloadData()
+                })
+                
             }
             
         }

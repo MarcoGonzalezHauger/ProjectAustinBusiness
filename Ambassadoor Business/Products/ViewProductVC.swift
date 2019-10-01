@@ -113,7 +113,7 @@ class ViewProductVC: BaseVC, UITextViewDelegate, ImagePickerDelegate {
 			} else {
 				//let imageID = uploadImage(image: self.productImage.image!)
                 //uploadImageToFIR(image: self.productImage.image!, childName: , path: <#T##String#>, completion: <#T##(String, Bool) -> ()#>)
-                
+                if self.productImage.image != nil {
                 if ThisProduct.product_ID == "" {
                     
                     self.showActivityIndicator()
@@ -128,7 +128,7 @@ class ViewProductVC: BaseVC, UITextViewDelegate, ImagePickerDelegate {
                                 productDetails.image = url
                                 //global.products[self.productIndex] = productDetails
                                 global.products.append(productDetails)
-                                self.delegate?.WasSaved(index: self.productIndex)
+                                //self.delegate?.WasSaved(index: self.productIndex)
                                 self.dismissed(self)
                             }
                         }
@@ -166,7 +166,12 @@ class ViewProductVC: BaseVC, UITextViewDelegate, ImagePickerDelegate {
                     //updateProductDetails(dictionary: , productID: product.product_ID!)
                     
                 }
+            }else{
                 
+                    self.showAlertMessage(title: "Alert", message: "Please add your company logo") {
+                        
+                    }
+            }
 
 			}
 		}

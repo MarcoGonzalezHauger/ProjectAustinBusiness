@@ -156,8 +156,8 @@ class User: NSObject {
     
     var id: String?
     var name: String?
-    var username: String
-    var followerCount: Double
+    var username: String?
+    var followerCount: Double?
     var profilePicURL: String?
     var primaryCategory: Category
     var SecondaryCategory: Category?
@@ -165,12 +165,14 @@ class User: NSObject {
     var zipCode: String?
     var gender: String?
     var accountBalance: Double?
+    var referralcode: String?
+    
     
     init(dictionary: [String: Any]) {
         self.id = dictionary["id"] as? String
         self.name = dictionary["name"] as? String
-        self.username = dictionary["username"] as! String
-        self.followerCount = dictionary["followerCount"] as! Double
+        self.username = dictionary["username"] as? String
+        self.followerCount = dictionary["followerCount"] as? Double
         if (dictionary["profilePicURL"] as? String ?? "") == "" {
             self.profilePicURL = nil
         } else {
@@ -199,7 +201,8 @@ class User: NSObject {
         self.averageLikes = dictionary["averageLikes"] as? Double
         self.zipCode = dictionary["zipCode"] as? String
         self.gender = dictionary["gender"] as? String
-        self.accountBalance = dictionary["accountBalance"] as? Double
+        self.accountBalance = dictionary["yourMoney"] as? Double
+        self.referralcode = dictionary["referralcode"] as? String
     }
     
     override var description: String {
@@ -264,6 +267,7 @@ class Company: NSObject {
 	let owner_email: String
     let companyDescription: String
     var accountBalance: Double
+    var referralcode: String?
     
     
     
@@ -276,7 +280,7 @@ class Company: NSObject {
         self.owner_email = (dictionary["owner"] as? String) ?? ""
         self.companyDescription = dictionary["description"] as! String
         self.accountBalance = dictionary["accountBalance"] as! Double
-        
+        self.referralcode = dictionary["referralcode"] as? String
     }
 }
 

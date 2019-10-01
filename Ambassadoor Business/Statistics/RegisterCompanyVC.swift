@@ -130,11 +130,11 @@ class RegisterCompanyVC: BaseVC,ImagePickerDelegate,UITextFieldDelegate,UITextVi
                             
                             if self.companyDescription.text.count != 0 {
                                 
-                                let companyValue = Company.init(dictionary: ["account_ID":"","name":self.companyName.text!,"logo":self.urlString,"mission":self.companyMission.text!,"website":self.companySite.text!,"owner":self.companyEmail.text!,"description":self.companyDescription.text!,"accountBalance":0.0])
+                                let companyValue = Company.init(dictionary: ["account_ID":"","name":self.companyName.text!,"logo":self.urlString,"mission":self.companyMission.text!,"website":self.companySite.text!,"owner":self.companyEmail.text!,"description":self.companyDescription.text!,"accountBalance":0.0,"referralcode": self.companyEmail.text!])
                                 
                                 
                                 CreateCompany(company: companyValue) { (company) in
-                                    
+                                    Singleton.sharedInstance.setCompanyDetails(company: company)
                                     self.dismiss(animated: true, completion: nil)
                                     
                                 }

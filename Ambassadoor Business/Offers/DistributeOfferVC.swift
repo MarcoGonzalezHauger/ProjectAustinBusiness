@@ -232,6 +232,8 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
         
         if self.moneyText.text?.count != 0 {
             
+            if self.depositValue != nil {
+                
             if self.depositValue!.currentBalance != nil {
             
             var offerAmount = Double((String((self.moneyText.text?.dropFirst())!)))!
@@ -246,7 +248,16 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                     var extractedInfluencer = [User]()
                     var extractedUserID = [String]()
                     
-                    self.ambassadoorCommision = offerAmount * Singleton.sharedInstance.getCommision()
+                    //MARK: Deducting Ambassadoor Commision
+                    if Singleton.sharedInstance.getCompanyDetails().referralcode?.count != 0 {
+                        
+                        self.ambassadoorCommision = offerAmount * Singleton.sharedInstance.getCommision()
+                        
+                        offerAmount = offerAmount - self.ambassadoorCommision
+                        
+                    }
+                    
+                    
                     
                     for (value,user) in zip(influencer!, user!) {
                         
@@ -258,9 +269,25 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                         
                         if offerAmount >= influcerMoneyValue {
                             
-                            offerAmount -= influcerMoneyValue
-                            extractedInfluencer.append(user)
-                            extractedUserID.append(value)
+                            if self.templateOffer?.user_IDs.count != 0 {
+                            
+                            if (self.templateOffer?.user_IDs.contains(value))!{
+                            
+                            
+                            }else{
+                                
+                                offerAmount -= influcerMoneyValue
+                                extractedInfluencer.append(user)
+                                extractedUserID.append(value)
+                                
+                            }
+                            }else{
+                                
+                                offerAmount -= influcerMoneyValue
+                                extractedInfluencer.append(user)
+                                extractedUserID.append(value)
+                                
+                            }
                             
                         }else{
                             break
@@ -270,7 +297,11 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                     
                     if extractedUserID.count != 0 {
                         
+                        
+                        
                         let totalDeductedAmount = Double(NumberToPrice(Value: (Double((String((self.moneyText.text?.dropFirst())!)))! - offerAmount), enforceCents: true).dropFirst())!
+                        
+                        
                         
                         self.sendOutOffers(influencer: extractedUserID, user: extractedInfluencer, deductedAmount: totalDeductedAmount)
                         
@@ -296,6 +327,9 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                     
                 }
         }
+            }else {
+                
+            }
         }else {
             
                 self.showAlertMessage(title: "Alert", message: "Please Deposit some amount to account") {
@@ -322,6 +356,39 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
             view.urlString = "https://www.ambassadoor.co/terms-of-service"
         }
     }
+            
+    func sentOutReferralCommision(referral: String?,offerID: String) {
+        
+        if referral != "" && referral != nil {
+        
+          getUserByReferralCode(referralcode: referral!) { (user) in
+            
+            if user != nil {
+            
+                let transactionHistory = ["from":Auth.auth().currentUser!.uid,"To":user?.id! as Any,"type":"referral","Amount":(self.ambassadoorCommision * 0.2),"status":"pending","createdAt":DateFormatManager.sharedInstance.getCurrentDateString(),"id":offerID] as [String : Any]
+                
+                var amount = 0.0
+                
+                if user?.accountBalance != nil {
+                
+                    amount = user!.accountBalance! + (self.ambassadoorCommision * 0.2)
+                }else{
+                amount = (self.ambassadoorCommision * 0.2)
+                }
+                
+                updateInfluencerAmountByReferral(user: user!, amount: amount)
+            
+                sentOutTransactionToInfluencer(pathString: (user?.id!)!, transactionData: transactionHistory)
+                
+                
+            
+            }
+            
+        }
+            
+        }
+        
+    }
     
     func sendOutOffers(influencer: [String]?,user: [User]?,deductedAmount: Double) {
         
@@ -346,10 +413,24 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                         template.money = Double(NumberToPrice(Value: calculateCostForUser(offer: self.templateOffer!, user: userValue, increasePayVariable: self.increasePayVariable.rawValue), enforceCents: true).dropFirst())!
                     cardDetails.append([value:["id":value,"amount":template.money,"toOffer":template.offer_ID,"name":userValue.name!,"gender":userValue.gender!,"averageLikes":userValue.averageLikes!]])
                     completedOffersToUsers(pathString: patstring, templateOffer: template)
+                        
+                    
+                        
+                        let transactionHistory = ["from":Auth.auth().currentUser!.uid,"To":value,"type":"offer","Amount":template.money,"status":"pending","createdAt":DateFormatManager.sharedInstance.getCurrentDateString(),"id":template.offer_ID] as [String : Any]
+                    
+                        sentOutTransactionToInfluencer(pathString: value, transactionData: transactionHistory)
+                        
                     }
                 }
-                let removeTemplatePath = Auth.auth().currentUser!.uid + "/" +  template.offer_ID
-                removeTemplateOffers(pathString: removeTemplatePath, templateOffer: template)
+                //let removeTemplatePath = Auth.auth().currentUser!.uid + "/" +  template.offer_ID
+                //removeTemplateOffers(pathString: removeTemplatePath, templateOffer: template)
+                var userIDValue = [String]()
+                for uderIDs in user! {
+                    userIDValue.append(uderIDs.id!)
+                }
+                userIDValue.append(contentsOf: template.user_IDs)
+                let updateTemplatePath = Auth.auth().currentUser!.uid + "/" +  template.offer_ID
+                updateTemplateOffers(pathString: updateTemplatePath, templateOffer: template, userID: userIDValue)
                 let user = Singleton.sharedInstance.getCompanyUser()
                 let depositBalance = self.depositValue!.currentBalance! - deductedAmount
                 let totalDeductedAmt = (self.depositValue?.totalDeductedAmount!)! + deductedAmount
@@ -373,6 +454,9 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                 
                 sendDepositAmount(deposit: self.depositValue!, companyUser: user.userID!) { (deposit, status) in
                     self.depositValue = deposit
+                }
+                if Singleton.sharedInstance.getCompanyDetails().referralcode?.count != 0 {
+                self.sentOutReferralCommision(referral: Singleton.sharedInstance.getCompanyDetails().referralcode, offerID: self.templateOffer!.offer_ID)
                 }
                 global.post.removeAll()
                 self.createLocalNotification(notificationName: "reloadOffer", userInfo: [:])

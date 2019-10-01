@@ -395,8 +395,14 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
                                 let timer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(self.timerAction(sender:)), userInfo: nil, repeats: false)
                                 //                            getFilteredInfluencers(category: influencerFilter as [String : [AnyObject]]) { (influencer, errorStatus) in
 //
-                                let offer = ["offer_ID":"","money":0.0,"company":Singleton.sharedInstance.getCompanyDetails(),"posts":global.post,"offerdate":Date(),"user_ID":[],"expiredate":DateFormatManager.sharedInstance.getDateFromStringWithFormat(dateString: self.expiryDate.text!, format: "yyyy/MMM/dd HH:mm:ss"),"allPostsConfirmedSince":nil,"allConfirmed":false,"isAccepted":false,"isExpired":false,"ownerUserID":Auth.auth().currentUser!.uid,"category":self.selectedCategoryArray,"zipCodes":self.zipCode.text!.components(separatedBy: ","),"genders":self.gender.text!.components(separatedBy: ","),"title":self.offerName.text!,"targetCategories":[Category.Actor],"user_IDs":[],"status":"available"] as [String : AnyObject]
-
+                                var offer = ["offer_ID":"","money":0.0,"company":Singleton.sharedInstance.getCompanyDetails(),"posts":global.post,"offerdate":Date(),"user_ID":[],"expiredate":DateFormatManager.sharedInstance.getDateFromStringWithFormat(dateString: self.expiryDate.text!, format: "yyyy/MMM/dd HH:mm:ss"),"allPostsConfirmedSince":nil,"allConfirmed":false,"isAccepted":false,"isExpired":false,"ownerUserID":Auth.auth().currentUser!.uid,"category":self.selectedCategoryArray,"zipCodes":self.zipCode.text!.components(separatedBy: ","),"genders":self.gender.text!.components(separatedBy: ","),"title":self.offerName.text!,"targetCategories":[Category.Actor],"user_IDs":[],"status":"available"] as [String : AnyObject]
+                                
+                                if segueOffer != nil {
+                                    
+                                    offer["user_IDs"] = segueOffer?.user_IDs as AnyObject?
+                                            
+                                }
+                                
                                 let template = TemplateOffer.init(dictionary: offer)
                                 var edited = false
                                 var path = Auth.auth().currentUser!.uid
@@ -580,7 +586,13 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
                             let timer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(self.timerAction(sender:)), userInfo: nil, repeats: false)
 //                            getFilteredInfluencers(category: influencerFilter as [String : [AnyObject]]) { (influencer, errorStatus) in
                                 
-                                let offer = ["offer_ID":"","money":0.0,"company":Singleton.sharedInstance.getCompanyDetails(),"posts":global.post,"offerdate":Date(),"user_ID":[],"expiredate":DateFormatManager.sharedInstance.getDateFromStringWithFormat(dateString: self.expiryDate.text!, format: "yyyy/MMM/dd HH:mm:ss"),"allPostsConfirmedSince":nil,"allConfirmed":false,"isAccepted":false,"isExpired":false,"ownerUserID":Auth.auth().currentUser!.uid,"category":self.selectedCategoryArray,"zipCodes":self.zipCode.text!.components(separatedBy: ","),"genders":self.gender.text!.components(separatedBy: ","),"title":self.offerName.text!,"targetCategories":[Category.Actor],"user_IDs":[],"status":"available"] as [String : AnyObject]
+                                var offer = ["offer_ID":"","money":0.0,"company":Singleton.sharedInstance.getCompanyDetails(),"posts":global.post,"offerdate":Date(),"user_ID":[],"expiredate":DateFormatManager.sharedInstance.getDateFromStringWithFormat(dateString: self.expiryDate.text!, format: "yyyy/MMM/dd HH:mm:ss"),"allPostsConfirmedSince":nil,"allConfirmed":false,"isAccepted":false,"isExpired":false,"ownerUserID":Auth.auth().currentUser!.uid,"category":self.selectedCategoryArray,"zipCodes":self.zipCode.text!.components(separatedBy: ","),"genders":self.gender.text!.components(separatedBy: ","),"title":self.offerName.text!,"targetCategories":[Category.Actor],"user_IDs":[],"status":"available"] as [String : AnyObject]
+                                        
+                                if segueOffer != nil {
+                                    
+                                    offer["user_IDs"] = segueOffer?.user_IDs as AnyObject?
+                                            
+                                }
                                 
                                 let template = TemplateOffer.init(dictionary: offer)
                                 var edited = false

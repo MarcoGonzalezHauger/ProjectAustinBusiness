@@ -359,7 +359,7 @@ class DepositVC: BaseVC, changedDelegate,BTViewControllerPresentingDelegate,BTAp
                     let cardDetails = ["last4":(paymentMethodParams.card?.last4)!,"expireMonth":(paymentMethodParams.card?.expMonth)!,"expireYear":(paymentMethodParams.card?.expYear)!,"country":(paymentMethodParams.card?.country)!] as [String : Any]
                     print(paymentIntent?.created?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss"))
                     
-                    let transactionDict = ["id":(paymentIntent?.stripeId)!,"status":paymentIntent!.status,"type":"sale","currencyIsoCode":paymentIntent!.currency,"amount":paymentIntent!.amount.stringValue,"createdAt":(paymentIntent!.created?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss"))!,"updatedAt":(paymentIntent?.created?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss"))!,"transactionType":"card","cardDetails":cardDetails] as [String : Any]
+                    let transactionDict = ["id":(paymentIntent?.stripeId)!,"status":String(paymentIntent!.status.rawValue),"type":"sale","currencyIsoCode":paymentIntent!.currency,"amount":paymentIntent!.amount.stringValue,"createdAt":(paymentIntent!.created?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss"))!,"updatedAt":(paymentIntent?.created?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss"))!,"transactionType":"card","cardDetails":cardDetails] as [String : Any]
 
                     
                     if status == "new" {
@@ -372,7 +372,7 @@ class DepositVC: BaseVC, changedDelegate,BTViewControllerPresentingDelegate,BTAp
                         var depositHistory = [Any]()
                         depositHistory.append(tranObj)
                         
-                        let deposit = Deposit.init(dictionary: ["userID":Auth.auth().currentUser!.uid ,"currentBalance":(paymentIntent?.amount.doubleValue)!,"totalDepositAmount":(paymentIntent?.amount.doubleValue)!,"totalDeductedAmount":0.00,"lastDeductedAmount":0.00,"lastDepositedAmount":(paymentIntent?.amount.doubleValue)!,"lastTransactionHistory":depositHistory,"depositHistory":depositHistory])
+                        let deposit = Deposit.init(dictionary: ["userID":Auth.auth().currentUser!.uid ,"currentBalance":(paymentIntent?.amount.doubleValue)!,"totalDepositAmount":(paymentIntent?.amount.doubleValue)!,"totalDeductedAmount":0.00,"lastDeductedAmount":0.00,"lastDepositedAmount":(paymentIntent?.amount.doubleValue)!,"lastTransactionHistory":tranObj,"depositHistory":depositHistory])
                         
                         sendDepositAmount(deposit: deposit, companyUser: Auth.auth().currentUser!.uid) { (deposit, status) in
                             self.createLocalNotification(notificationName: "reloadDeposit", userInfo: [:])
@@ -396,6 +396,8 @@ class DepositVC: BaseVC, changedDelegate,BTViewControllerPresentingDelegate,BTAp
                         deposit?.lastDepositedAmount = (paymentIntent?.amount.doubleValue)!
                         deposit?.lastTransactionHistory = transactionObj
                         var depositHistory = [Any]()
+                        
+                        
                         
                         depositHistory.append(contentsOf: (deposit!.depositHistory!))
                         depositHistory.append(tranObj)

@@ -127,8 +127,24 @@ class ProductsVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ProductDel
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
-		shelf.delegate = self
-		shelf.dataSource = self
+//		shelf.delegate = self
+//		shelf.dataSource = self
+//        let user = Singleton.sharedInstance.getCompanyUser()
+//        let path = Auth.auth().currentUser!.uid + "/" + user.companyID!
+//        self.showActivityIndicator()
+//        getAllProducts(path: path) { (product) in
+//            self.hideActivityIndicator()
+//            global.products.removeAll()
+//            global.products.append(contentsOf: product)
+//            self.shelf.reloadData()
+//
+//        }
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        shelf.delegate = self
+        shelf.dataSource = self
         let user = Singleton.sharedInstance.getCompanyUser()
         let path = Auth.auth().currentUser!.uid + "/" + user.companyID!
         self.showActivityIndicator()
@@ -139,7 +155,6 @@ class ProductsVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ProductDel
             self.shelf.reloadData()
             
         }
-        
     }
 
 }

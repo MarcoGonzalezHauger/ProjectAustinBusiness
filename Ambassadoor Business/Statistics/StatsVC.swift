@@ -19,6 +19,8 @@ class StatsVC: BaseVC {
 		
 		//Temporary measure
         
+        //self.sentOutReferralCommision(referral: "NJ200919HWE6")
+        
         let pieChartView = StaticsPie()
         pieChartView.frame = CGRect(x: 0, y: 0, width: pieView.frame.size.width, height: pieView.frame.size.height)
         pieChartView.segments = [
@@ -49,6 +51,18 @@ class StatsVC: BaseVC {
 		
 		
 	}
+    
+//    func sentOutReferralCommision(referral: String?) {
+//
+//        if referral != "" && referral != nil {
+//
+//          getUserByReferralCode(referralcode: referral!) { (user) in
+//
+//        }
+//
+//        }
+//
+//    }
 	
 //	override func awakeFromNib() {
 //		if Auth.auth().currentUser == nil {

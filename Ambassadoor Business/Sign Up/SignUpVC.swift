@@ -23,8 +23,9 @@ class signupbutton: UIButton {
 
 class SignUpVC: BaseVC,UITextFieldDelegate {
 
+	@IBOutlet weak var passwordLine: UILabel!
+	@IBOutlet weak var usernameLine: UILabel!
 	@IBOutlet weak var registerButton: UIButton!
-	@IBOutlet weak var signinButton: UIButton!
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var scroll: UIScrollView!
@@ -37,9 +38,13 @@ class SignUpVC: BaseVC,UITextFieldDelegate {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
+		registerButton.layer.cornerRadius = 6
+		
     }
     
-    
+	@IBAction func Cancelled(_ sender: Any) { self.navigationController?.popViewController(animated: true)
+	}
+	
     @objc override func keyboardWasShown(notification : NSNotification) {
         
         let info : NSDictionary = notification.userInfo! as NSDictionary
@@ -102,28 +107,28 @@ class SignUpVC: BaseVC,UITextFieldDelegate {
                 self.showActivityIndicator()
                 Auth.auth().createUser(withEmail: emailText.text!, password: passwordText.text!) { (user, error) in
                     self.hideActivityIndicator()
-                    self.emailText.resignFirstResponder()
-                    self.passwordText.resignFirstResponder()
-                    if error == nil {
-                        let user = Auth.auth().currentUser!
-                        user.getIDToken(completion: { (token, error) in
-                            
-                            if error == nil {
-                                self.companyUser = CompanyUser.init(dictionary: ["userID":user.uid,"token":token!,"email":user.email!,"refreshToken":user.refreshToken!,"isCompanyRegistered":false,"companyID": ""])
-                            
-                            let userDetails = CreateCompanyUser(companyUser: self.companyUser)
-                            Singleton.sharedInstance.setCompanyUser(user: userDetails)
-                            self.instantiateToMainScreen()
-                            }
-                            
-                        })
-                        
-                        print("You have successfully signed up")
-                        
-                        
+					self.emailText.resignFirstResponder()
+					self.passwordText.resignFirstResponder()
+					if error == nil {
+						let user = Auth.auth().currentUser!
+						user.getIDToken(completion: { (token, error) in
+							
+							if error == nil {
+								self.companyUser = CompanyUser.init(dictionary: ["userID":user.uid,"token":token!,"email":user.email!,"refreshToken":user.refreshToken!,"isCompanyRegistered":false,"companyID": ""])
+								
+								let userDetails = CreateCompanyUser(companyUser: self.companyUser)
+								Singleton.sharedInstance.setCompanyUser(user: userDetails)
+								self.instantiateToMainScreen()
+							}
+							
+						})
+						
+						print("You have successfully signed up")
+						
+						
                     }else{
                         
-                        print("error",error?.localizedDescription)
+						print("SIGN UP error")
                         self.showAlertMessage(title: "Alert", message: (error?.localizedDescription)!) {
                             
                         }
@@ -133,23 +138,24 @@ class SignUpVC: BaseVC,UITextFieldDelegate {
                 }
                 
             }else{
+				
+				//no password
                 
-                self.showAlertMessage(title: "Alert", message: "Please enter your password") {
-                    
-                }
+				passwordLine.backgroundColor = .red
                 
             }
         }else{
-            self.showAlertMessage(title: "Alert", message: "Please enter the valid email") {
-                
-            }
+			
+			//invalid email
+			
+			MakeShake(viewToShake: emailText)
+			usernameLine.backgroundColor = .red
         }
-        }else {
-            
-            self.showAlertMessage(title: "Alert", message: "Please enter your email address") {
-                
-            }
-            
+        } else {
+			
+			//no username
+			
+			usernameLine.backgroundColor = .red
         }
         
     }

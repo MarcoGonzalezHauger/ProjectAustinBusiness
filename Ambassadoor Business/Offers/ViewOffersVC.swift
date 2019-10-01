@@ -106,8 +106,13 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         super.viewDidLoad()
         //let user = Singleton.sharedInstance.getCompanyUser().userID!
         //global.OfferDrafts = GetOffers(userId: user)
-		shelf.dataSource = self
-		shelf.delegate = self
+		
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        shelf.dataSource = self
+        shelf.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(self.reloadOffer(notification:)), name: Notification.Name.init(rawValue: "reloadOffer"), object: nil)
         getAllTemplateOffers(userID: Auth.auth().currentUser!.uid) { (templateOffers, status) in
             if status == "success" && templateOffers.count != 0 {
@@ -118,7 +123,6 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
                })
             }
         }
-        
     }
     
     @objc func reloadOffer(notification: Notification) {

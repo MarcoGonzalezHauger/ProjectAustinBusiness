@@ -25,6 +25,9 @@ class SignInVC: BaseVC,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("roundup",(1.056756 * 100).rounded()/100)
+		
+		registerButton.layer.cornerRadius = 6
+		
         // Do any additional setup after loading the view.
     }
     
@@ -69,7 +72,12 @@ class SignInVC: BaseVC,UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
-        textField.resignFirstResponder()
+		if textField == emailText {
+			passwordText.becomeFirstResponder()
+		} else {
+			signInAction(sender: signInButton)
+			textField.resignFirstResponder()
+		}
         return true
     }
     
@@ -91,7 +99,10 @@ class SignInVC: BaseVC,UITextFieldDelegate {
         self.showActivityIndicator()
     }
     
-    @IBAction func signInAction(sender: UIButton){
+	@IBOutlet weak var usernameLine: UILabel!
+	@IBOutlet weak var passwordline: UILabel!
+	
+	@IBAction func signInAction(sender: UIButton){
         
         if emailText.text?.count != 0 {
             
@@ -112,10 +123,10 @@ class SignInVC: BaseVC,UITextFieldDelegate {
                                     DispatchQueue.main.async(execute: {
                                         timer.invalidate()
                                         self.hideActivityIndicator()
-                                        self.instantiateToMainScreen()
-                                    })
-                                }
-                                    
+										self.instantiateToMainScreen()
+									})
+									}
+									
                             }
                             
                         }else{
@@ -131,30 +142,23 @@ class SignInVC: BaseVC,UITextFieldDelegate {
                         
                     }
                     
-                }else{
-                    
-                    self.showAlertMessage(title: "Alert", message: "Please enter your password") {
-                        
-                    }
-                    
-                }
-            }else{
-                print("Invalid Mail")
-                self.showAlertMessage(title: "Alert", message: "Please enter the valid email") {
-                    
-                }
-            }
-        }else {
-            
-            self.showAlertMessage(title: "Alert", message: "Please enter your email address") {
-                
-            }
-            
-        }
-        
-    }
-    
-    @IBAction func forgetPasswordAction(sender: UIButton){
+                } else {
+                    MakeShake(viewToShake: signInButton)
+					passwordline.backgroundColor = .red
+					
+				}
+			} else {
+				MakeShake(viewToShake: signInButton)
+				usernameLine.backgroundColor = .red
+			}
+		} else {
+			MakeShake(viewToShake: signInButton)
+			usernameLine.backgroundColor = .red
+		}
+		
+	}
+	
+	@IBAction func forgetPasswordAction(sender: UIButton){
         
         DispatchQueue.main.async(execute: {
             
@@ -163,18 +167,5 @@ class SignInVC: BaseVC,UITextFieldDelegate {
         })
         
     }
-    
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
