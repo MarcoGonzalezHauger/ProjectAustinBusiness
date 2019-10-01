@@ -50,6 +50,7 @@
 		E80B060822A07F63002B9699 /* WithdrawVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80B060722A07F63002B9699 /* WithdrawVC.swift */; };
 		E80B060A22A08D49002B9699 /* MoneyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80B060922A08D49002B9699 /* MoneyField.swift */; };
 		E816AC222282F3E200B9D951 /* MoneyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E816AC212282F3E200B9D951 /* MoneyVC.swift */; };
+		E82B22512344146C00C2CE91 /* StatisticsStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82B22502344146C00C2CE91 /* StatisticsStruct.swift */; };
 		E82F890D22DD30B40036A079 /* CreateCompanyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82F890C22DD30B40036A079 /* CreateCompanyVC.swift */; };
 		E83D9A39226A20B6007BDD97 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E83D9A38226A20B6007BDD97 /* GoogleService-Info.plist */; };
 		E83F378D227CDEE100BA6688 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F378C227CDEE100BA6688 /* SignUpVC.swift */; };
@@ -120,6 +121,7 @@
 		E80B060722A07F63002B9699 /* WithdrawVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawVC.swift; sourceTree = "<group>"; };
 		E80B060922A08D49002B9699 /* MoneyField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyField.swift; sourceTree = "<group>"; };
 		E816AC212282F3E200B9D951 /* MoneyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyVC.swift; sourceTree = "<group>"; };
+		E82B22502344146C00C2CE91 /* StatisticsStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsStruct.swift; sourceTree = "<group>"; };
 		E82F890C22DD30B40036A079 /* CreateCompanyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCompanyVC.swift; sourceTree = "<group>"; };
 		E83D9A38226A20B6007BDD97 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E83F378C227CDEE100BA6688 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 				E8E5468B227BC9E900775A07 /* StatsVC.swift */,
 				B788D6F322E8931100FA59BA /* RegisterCompanyVC.swift */,
 				B712C48A2306DA7900728758 /* StaticsPie.swift */,
+				E82B22502344146C00C2CE91 /* StatisticsStruct.swift */,
 			);
 			path = Statistics;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				B7FD83E722F07E1800347E8E /* AddPostTC.swift in Sources */,
 				B712C48B2306DA7900728758 /* StaticsPie.swift in Sources */,
 				E8E54689227BA3E800775A07 /* YourCompany.swift in Sources */,
+				E82B22512344146C00C2CE91 /* StatisticsStruct.swift in Sources */,
 				B7D4209D232AA9A1009F0FCE /* TransactionListVC.swift in Sources */,
 				B799227822F1C511007E84B0 /* AddPostVC.swift in Sources */,
 				E8E54685227BA19C00775A07 /* ViewCompanyVC.swift in Sources */,

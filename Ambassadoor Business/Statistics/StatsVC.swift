@@ -12,6 +12,8 @@ import FirebaseAuth
 
 class StatsVC: BaseVC {
     
+	let stats: StatisticsStruct? = nil
+	
     @IBOutlet weak var pieView: ShadowView!
 
     override func viewDidLoad() {
