@@ -63,8 +63,14 @@ class DepositVC: BaseVC, changedDelegate,BTViewControllerPresentingDelegate,BTAp
 //            }
 //
 //        }
-        let params = ["stripeID":paymentMethod.stripeId,"amount":100.00] as [String : Any]
+        
+        
+        
+        let params = ["stripeID":paymentMethod.stripeId,"amount":(self.creditAmount * 100.00)] as [String : Any]
         self.depositAmountToWalletThroughStripe(params: params, paymentMethodParams: paymentMethod)
+        
+        
+        
         //cardParams.number = STPPaymentCardTextField?.cardNumber
 //        cardParams.expMonth = paymentMethod.card.
 //        cardParams.expYear = (paymentCardTextField?.expirationYear)!
@@ -106,6 +112,8 @@ class DepositVC: BaseVC, changedDelegate,BTViewControllerPresentingDelegate,BTAp
     var braintreeClient: BTAPIClient!
 	
 	var amountOfMoneyInCents: Int = 10000
+    
+    var creditAmount = 0.00
     
     var addCardViewController = STPAddCardViewController()
 	
@@ -180,14 +188,36 @@ class DepositVC: BaseVC, changedDelegate,BTViewControllerPresentingDelegate,BTAp
         print("cccc=1",money.text!.replacingOccurrences(of: " ", with: "").count)
         if money.text?.dropFirst() != "0.00" && money.text!.replacingOccurrences(of: " ", with: "").count != 0 {
             
+            let moneyDouble = Double(money.text!.dropFirst())
+            
+            let stripeFeeNotRoundup = ((((moneyDouble! * 1.027 + 0.3) - moneyDouble!) * 100).rounded())
+            
+            let stripeFeeAmount = stripeFeeNotRoundup/100
+            
+            let depositAmount = moneyDouble!
+            
+            let totalAmount = (((moneyDouble! * 1.027 + 0.3) * 100).rounded())/100
+            
+            self.creditAmount = totalAmount
+            
+            self.showAlertMessageForDestruction(title: "Alert", message: "We Will deduct Stripe Fees \(stripeFeeAmount) + \(depositAmount).\n Total Amount = \(totalAmount)", cancelTitle: " I Agree", destructionTitle: "Cancel", completion: {
+                self.addCardViewController.delegate = self
+                let navigationController = UINavigationController(rootViewController: self.addCardViewController)
+                self.present(navigationController, animated: true)
+                
+            }) {
+                
+                
+                
+            }
+            
             // Setup add card view controller
-            addCardViewController.delegate = self
+            
             //let config = STPPaymentConfiguration()
             //config.requiredBillingAddressFields = .full
             //addCardViewController = STPAddCardViewController.init(configuration: config, theme: STPTheme.default())
             // Present add card view controller
-            let navigationController = UINavigationController(rootViewController: addCardViewController)
-            present(navigationController, animated: true)
+            
         
 //        NetworkManager.sharedInstance.getClientTokenFromServer { (result, errorValue, data) in
 //
@@ -356,10 +386,14 @@ class DepositVC: BaseVC, changedDelegate,BTViewControllerPresentingDelegate,BTAp
                     print(paymentIntent?.status)
                     print(paymentMethodParams.card?.expMonth)
                     
+                    var depositedAmount = ((paymentIntent?.amount.doubleValue)!)/100
+                    
                     let cardDetails = ["last4":(paymentMethodParams.card?.last4)!,"expireMonth":(paymentMethodParams.card?.expMonth)!,"expireYear":(paymentMethodParams.card?.expYear)!,"country":(paymentMethodParams.card?.country)!] as [String : Any]
                     print(paymentIntent?.created?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss"))
                     
-                    let transactionDict = ["id":(paymentIntent?.stripeId)!,"status":String(paymentIntent!.status.rawValue),"type":"sale","currencyIsoCode":paymentIntent!.currency,"amount":paymentIntent!.amount.stringValue,"createdAt":(paymentIntent!.created?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss"))!,"updatedAt":(paymentIntent?.created?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss"))!,"transactionType":"card","cardDetails":cardDetails] as [String : Any]
+                    
+                    
+                    let transactionDict = ["id":(paymentIntent?.stripeId)!,"status":String(paymentIntent!.status.rawValue),"type":"sale","currencyIsoCode":paymentIntent!.currency,"amount":String(depositedAmount),"createdAt":(paymentIntent!.created?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss"))!,"updatedAt":(paymentIntent?.created?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss"))!,"transactionType":"card","cardDetails":cardDetails] as [String : Any]
 
                     
                     if status == "new" {
@@ -372,7 +406,7 @@ class DepositVC: BaseVC, changedDelegate,BTViewControllerPresentingDelegate,BTAp
                         var depositHistory = [Any]()
                         depositHistory.append(tranObj)
                         
-                        let deposit = Deposit.init(dictionary: ["userID":Auth.auth().currentUser!.uid ,"currentBalance":(paymentIntent?.amount.doubleValue)!,"totalDepositAmount":(paymentIntent?.amount.doubleValue)!,"totalDeductedAmount":0.00,"lastDeductedAmount":0.00,"lastDepositedAmount":(paymentIntent?.amount.doubleValue)!,"lastTransactionHistory":tranObj,"depositHistory":depositHistory])
+                        let deposit = Deposit.init(dictionary: ["userID":Auth.auth().currentUser!.uid ,"currentBalance":depositedAmount,"totalDepositAmount":depositedAmount,"totalDeductedAmount":0.00,"lastDeductedAmount":0.00,"lastDepositedAmount":depositedAmount,"lastTransactionHistory":tranObj,"depositHistory":depositHistory])
                         
                         sendDepositAmount(deposit: deposit, companyUser: Auth.auth().currentUser!.uid) { (deposit, status) in
                             self.createLocalNotification(notificationName: "reloadDeposit", userInfo: [:])
@@ -389,11 +423,11 @@ class DepositVC: BaseVC, changedDelegate,BTViewControllerPresentingDelegate,BTAp
                         
                         let tranObj = API.serializeTransactionDetails(transaction: transactionObj)
                         
-                        let currentBalance = deposit!.currentBalance! + (paymentIntent?.amount.doubleValue)!
-                        let totalDepositAmount = deposit!.totalDepositAmount! + (paymentIntent?.amount.doubleValue)!
+                        let currentBalance = deposit!.currentBalance! + depositedAmount
+                        let totalDepositAmount = deposit!.totalDepositAmount! + depositedAmount
                         deposit?.totalDepositAmount = totalDepositAmount
                         deposit?.currentBalance = currentBalance
-                        deposit?.lastDepositedAmount = (paymentIntent?.amount.doubleValue)!
+                        deposit?.lastDepositedAmount = depositedAmount
                         deposit?.lastTransactionHistory = transactionObj
                         var depositHistory = [Any]()
                         
