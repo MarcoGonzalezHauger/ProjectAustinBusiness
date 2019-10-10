@@ -25,7 +25,9 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
     var available: Int = 0
     var rejected: Int = 0
     
-    @IBOutlet weak var paidText: UILabel!
+	@IBOutlet var boxes: [UILabel]!
+	
+	@IBOutlet weak var paidText: UILabel!
     @IBOutlet weak var allVerifiedText: UILabel!
     @IBOutlet weak var acceptedText: UILabel!
     @IBOutlet weak var availableText: UILabel!
@@ -39,7 +41,6 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
     var instagramDataUserArray = [String]()
     var instagramOfferArray = [String: instagramOfferDetails]()
     
-    let stats: StatisticsStruct? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,11 +49,11 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
         
         //self.sentOutReferralCommision(referral: "NJ200919HWE6")
         
-        
-        
+		for l in boxes {
+			l.layer.cornerRadius = 5
+			l.clipsToBounds = true
+		}
 		
-        YourCompany = Company.init(dictionary: ["name": "KRILL GROUP", "logo": "", "mission": "Turn a profit.", "website": "https://www.google.com/", "account_ID": "0", "instagram_name": "marcogonzalezhauger", "description": "No description to see here!", "accountBalance": 1000.0])
-		accountBalance = 610.78
 //		transactionHistory = [Transaction(description: "Despotied $620.77 into Ambassadoor", details: "Order processed.", time: Date.init(timeIntervalSinceNow: -10000), amount: 620.77),Transaction(description: "You paid $9.99", details: "Processed.", time: Date.init(timeIntervalSinceNow: 0), amount: -9.99)]
         if Singleton.sharedInstance.getCompanyUser().isCompanyRegistered == false {
             self.performSegue(withIdentifier: "toCompanyRegister", sender: self)
