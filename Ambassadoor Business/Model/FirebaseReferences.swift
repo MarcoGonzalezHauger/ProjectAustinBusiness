@@ -738,6 +738,165 @@ func getDepositDetails(companyUser: String,completion: @escaping(Deposit?,String
     }
 }
 
+//MARK: Statistic Page Data
+
+func getStatisticsData(completion: @escaping([Statistics]?,String,Error?) -> Void) {
+    
+    let ref = Database.database().reference().child("SentOutOffers").child(Auth.auth().currentUser!.uid)
+    
+    ref.observeSingleEvent(of: .value, with: { (snapshot) in
+        var staticsArray = [Statistics]()
+        
+        if let totalValues = snapshot.value as? NSDictionary{
+            
+            for (index, offerKey) in totalValues.allKeys.enumerated() {
+                
+                if let Offer = totalValues[offerKey] as? NSDictionary {
+                    
+                    
+                    if let userIDs = Offer["user_IDs"] as? [String] {
+                        
+                        for (userIDIndex,userID) in userIDs.enumerated() {
+                            
+                            let refUserPost = Database.database().reference().child("SentOutOffersToUsers").child(userID).child(offerKey as! String)
+                            
+                            print(offerKey)
+                            
+                            if "-Lq1aMXg-fOz1uTHkiLL" == offerKey as! String {
+                                
+                            }
+                            
+                            refUserPost.observeSingleEvent(of: .value, with: { (userpublish) in
+                                
+                                let object = Statistics()
+                                
+                                if let offerValues = userpublish.value as? NSDictionary {
+                                    
+                                    object.offerID = offerKey as! String
+                                    object.userID = userID
+                                    object.offer = offerValues
+                                    staticsArray.append(object)
+                                    
+                                }else{
+                                    
+                                    object.offerID = offerKey as! String
+                                    object.userID = userID
+                                    staticsArray.append(object)
+                                }
+                                
+                                if index == (totalValues.allKeys.count - 1) {
+                                    
+                                    if userIDIndex == (userIDs.count - 1) {
+                                        
+                                        completion(staticsArray, "success", nil)
+                                        
+                                    }
+                                    
+                                }
+                                
+                            }) { (error) in
+                                
+                                
+                                
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                }
+                
+            }
+            
+            
+            
+        }
+    }) { (error) in
+        
+        completion(nil, "success", error)
+        
+    }
+     
+}
+
+//MARK: Get Instagram Post
+
+func getInstagramPosts(statisticsData: [Statistics],completion: @escaping([String: instagramOfferDetails]?,String,Error?) -> Void) {
+    
+    var instagramOfferDetailsArray = [String: instagramOfferDetails]()
+    
+    
+    for (index,statistics) in statisticsData.enumerated() {
+        
+        //let ref = Database.database().reference().child("InfluencerInstagramPost").child("3225555942").child("XXXDefault")
+        
+        let ref = Database.database().reference().child("InfluencerInstagramPost").child(statistics.userID).child(statistics.offerID)
+        
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let instagramPost = snapshot.value as? NSDictionary {
+               
+                if instagramOfferDetailsArray.keys.contains(statistics.userID){
+                    let insData = instagramOfferDetailsArray[statistics.userID]
+                    
+                    if let commentsData = instagramPost["comments"] as? NSDictionary {
+                        
+                        insData?.commentsCount = insData!.commentsCount + (commentsData["count"] as! Int)
+                        
+                    }
+                    
+                    if let likesData = instagramPost["likes"] as? NSDictionary {
+                        
+                        insData?.likesCount = insData!.likesCount + (likesData["count"] as! Int)
+                        
+                    }
+                    
+                    if let userData = instagramPost["user"] as? NSDictionary {
+                        insData?.userInfo = userData
+                    }
+                    
+                    instagramOfferDetailsArray[statistics.userID] = insData
+                    
+                }else{
+                    
+                    let insData = instagramOfferDetails()
+                    
+                    if let commentsData = instagramPost["comments"] as? NSDictionary {
+                        
+                        insData.commentsCount = (commentsData["count"] as! Int)
+                        
+                    }
+                    
+                    if let likesData = instagramPost["likes"] as? NSDictionary {
+                        
+                        insData.likesCount = (likesData["count"] as! Int)
+                        
+                    }
+                    
+                    if let userData = instagramPost["user"] as? NSDictionary {
+                        insData.userInfo = userData
+                    }
+                    
+                    instagramOfferDetailsArray[statistics.userID] = insData
+                    
+                }
+                
+            }
+            
+            if index == statisticsData.count - 1 {
+                completion(instagramOfferDetailsArray, "success", nil)
+            }
+            
+        }) { (error) in
+            
+            completion(nil, "failure", error)
+            
+        }
+        
+    }
+    
+}
+
 //MARK: Dwolla Customer Creation
 
 func createDwollaCustomerToFIR(object: DwollaCustomerInformation) {

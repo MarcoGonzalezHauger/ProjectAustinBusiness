@@ -332,6 +332,31 @@ class Deposit: NSObject {
     
 }
 
+class Statistics: NSObject {
+    
+    var offerID: String = ""
+    var userID: String = ""
+    var offer: NSDictionary? = nil
+    
+    
+//    init(dictionary: [String: Any]) {
+//
+//        self.offerID = dictionary["offerID"] as! String
+//        self.userID = dictionary["userID"] as! String
+//        self.offer = dictionary[]
+//    }
+    
+}
+
+class instagramOfferDetails: NSObject {
+    
+    var userID: String = ""
+    var likesCount: Int = 0
+    var commentsCount: Int = 0
+    var userInfo: NSDictionary? = nil
+    
+}
+
 class DwollaCustomerInformation: NSObject {
     
     var acctID = ""
