@@ -31,8 +31,10 @@
 		B7B11FF723242638006711BB /* ConnectedPlaidTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B11FF623242638006711BB /* ConnectedPlaidTVCell.swift */; };
 		B7BD39BB22FAAB53008A0496 /* CategoryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BD39BA22FAAB53008A0496 /* CategoryTVC.swift */; };
 		B7BD39BD22FAAE42008A0496 /* CategoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BD39BC22FAAE42008A0496 /* CategoryHeaderView.swift */; };
+		B7C58569234DED3600EB90BB /* InstagramUserTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C58568234DED3600EB90BB /* InstagramUserTVC.swift */; };
 		B7C9FE8E231E4870005580E4 /* PlaidLinkEnabledVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C9FE8C231E486F005580E4 /* PlaidLinkEnabledVC.swift */; };
 		B7C9FE8F231E4870005580E4 /* PlaidHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C9FE8D231E486F005580E4 /* PlaidHelper.swift */; };
+		B7CA8455234CB4A600A3223A /* StatisticsStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CA8454234CB4A600A3223A /* StatisticsStruct.swift */; };
 		B7D42099232A9F40009F0FCE /* TransactionInfoTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D42098232A9F40009F0FCE /* TransactionInfoTVCell.swift */; };
 		B7D4209D232AA9A1009F0FCE /* TransactionListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D4209C232AA9A1009F0FCE /* TransactionListVC.swift */; };
 		B7FD83E322F072F800347E8E /* AddOfferVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FD83E222F072F800347E8E /* AddOfferVC.swift */; };
@@ -102,8 +104,10 @@
 		B7B11FF623242638006711BB /* ConnectedPlaidTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedPlaidTVCell.swift; sourceTree = "<group>"; };
 		B7BD39BA22FAAB53008A0496 /* CategoryTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTVC.swift; sourceTree = "<group>"; };
 		B7BD39BC22FAAE42008A0496 /* CategoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryHeaderView.swift; sourceTree = "<group>"; };
+		B7C58568234DED3600EB90BB /* InstagramUserTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramUserTVC.swift; sourceTree = "<group>"; };
 		B7C9FE8C231E486F005580E4 /* PlaidLinkEnabledVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaidLinkEnabledVC.swift; sourceTree = "<group>"; };
 		B7C9FE8D231E486F005580E4 /* PlaidHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaidHelper.swift; sourceTree = "<group>"; };
+		B7CA8454234CB4A600A3223A /* StatisticsStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsStruct.swift; sourceTree = "<group>"; };
 		B7D030AD23237CA4002B90FF /* Ambassadoor Business-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ambassadoor Business-Bridging-Header.h"; sourceTree = "<group>"; };
 		B7D42098232A9F40009F0FCE /* TransactionInfoTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionInfoTVCell.swift; sourceTree = "<group>"; };
 		B7D4209C232AA9A1009F0FCE /* TransactionListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionListVC.swift; sourceTree = "<group>"; };
@@ -223,6 +227,7 @@
 				B7B11FF423242615006711BB /* PlaidTVCell.swift */,
 				B7B11FF623242638006711BB /* ConnectedPlaidTVCell.swift */,
 				B7D42098232A9F40009F0FCE /* TransactionInfoTVCell.swift */,
+				B7C58568234DED3600EB90BB /* InstagramUserTVC.swift */,
 			);
 			path = TableviewCell;
 			sourceTree = "<group>";
@@ -362,7 +367,7 @@
 				E8E5468B227BC9E900775A07 /* StatsVC.swift */,
 				B788D6F322E8931100FA59BA /* RegisterCompanyVC.swift */,
 				B712C48A2306DA7900728758 /* StaticsPie.swift */,
-				E82B22502344146C00C2CE91 /* StatisticsStruct.swift */,
+				B7CA8454234CB4A600A3223A /* StatisticsStruct.swift */,
 			);
 			path = Statistics;
 			sourceTree = "<group>";
@@ -530,7 +535,7 @@
 				B7FD83E722F07E1800347E8E /* AddPostTC.swift in Sources */,
 				B712C48B2306DA7900728758 /* StaticsPie.swift in Sources */,
 				E8E54689227BA3E800775A07 /* YourCompany.swift in Sources */,
-				E82B22512344146C00C2CE91 /* StatisticsStruct.swift in Sources */,
+				B7CA8455234CB4A600A3223A /* StatisticsStruct.swift in Sources */,
 				B7D4209D232AA9A1009F0FCE /* TransactionListVC.swift in Sources */,
 				B799227822F1C511007E84B0 /* AddPostVC.swift in Sources */,
 				E8E54685227BA19C00775A07 /* ViewCompanyVC.swift in Sources */,
@@ -555,6 +560,7 @@
 				E8E5468C227BC9E900775A07 /* StatsVC.swift in Sources */,
 				B7D42099232A9F40009F0FCE /* TransactionInfoTVCell.swift in Sources */,
 				E84600852273A92A00CF60F2 /* BusinessLabel.swift in Sources */,
+				B7C58569234DED3600EB90BB /* InstagramUserTVC.swift in Sources */,
 				B761DA242321352100587F28 /* DwollaUserInformationVC.swift in Sources */,
 				B72CB50822E6E8C100958AE0 /* BaseVC.swift in Sources */,
 				B7FD83E322F072F800347E8E /* AddOfferVC.swift in Sources */,
