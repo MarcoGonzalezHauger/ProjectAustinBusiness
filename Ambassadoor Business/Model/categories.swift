@@ -42,3 +42,12 @@ let Fashion: [Category] = [.Model, .Makeup, .Actor, .RunwayModel, .Designer, .Br
 let Music: [Category] = [.Musician, .Band, .SingerSongWriter]
 let Photography: [Category] = [.SportsPhotography, .RealEstatePhotography, .CarPhotography, .AutomotivePhotography, .FashionPhotography, .NaturePhotography, .UrbanPhotography, .WildlifePhotography, .LifestylePhotography, .GeneralPhotography]
 let Automotive: [Category] = [.Driver, .CarEnthusiast, .Mechanic, .Customizations, .Modifications, .Autobody, .Tuning, .CarBrand]
+
+var categoryListArray: [Section]! {
+    didSet{
+        //categoryList.removeAll()
+        for value in allCategoryClasses {
+            categoryListArray.append(Section.init(categoryTitle: value, categoryData: ClassToCategories[value]!, expanded: false))
+        }
+    }
+}

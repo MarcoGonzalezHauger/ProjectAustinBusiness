@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina5_9" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,17 +16,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BusinessGradient" translatesAutoresizingMaskIntoConstraints="NO" id="BL0-fv-Xxr">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashIcon" translatesAutoresizingMaskIntoConstraints="NO" id="W2T-9P-f7s">
-                                <rect key="frame" x="125" y="343.66666666666669" width="125" height="125"/>
+                                <rect key="frame" x="107.66666666666669" y="326" width="160" height="160"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="125" id="aH5-zc-q7O"/>
+                                    <constraint firstAttribute="width" constant="160" id="aH5-zc-q7O"/>
                                     <constraint firstAttribute="width" secondItem="W2T-9P-f7s" secondAttribute="height" id="ot8-X0-CCT"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.2466755211353302" green="0.53034651279449463" blue="0.94906419515609741" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="BL0-fv-Xxr" secondAttribute="bottom" id="OBB-MC-o5c"/>
+                            <constraint firstItem="BL0-fv-Xxr" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="OeL-Kf-snw"/>
                             <constraint firstItem="W2T-9P-f7s" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="d0A-pd-1en"/>
+                            <constraint firstAttribute="trailing" secondItem="BL0-fv-Xxr" secondAttribute="trailing" id="ng9-6E-6pi"/>
+                            <constraint firstItem="BL0-fv-Xxr" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="rAL-Gb-9eB"/>
                             <constraint firstItem="W2T-9P-f7s" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ydC-Nf-4Fh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -36,10 +41,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.6305418719212"/>
         </scene>
     </scenes>
     <resources>
+        <image name="BusinessGradient" width="1000" height="2000"/>
         <image name="SplashIcon" width="1000" height="1000"/>
     </resources>
 </document>

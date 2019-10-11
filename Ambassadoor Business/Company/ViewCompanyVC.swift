@@ -8,8 +8,9 @@
 //
 
 import UIKit
+import SDWebImage
 
-class ViewCompanyVC: UIViewController, editDelegate {
+class ViewCompanyVC: BaseVC, editDelegate {
 
 	@IBOutlet weak var companyLogo: UIImageView!
 	@IBOutlet weak var companyName: UILabel!
@@ -28,7 +29,14 @@ class ViewCompanyVC: UIViewController, editDelegate {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		companyLogo.layer.cornerRadius = 5
-		updateCompanyInfo()
+        self.showActivityIndicator()
+        let user = Singleton.sharedInstance.getCompanyUser().companyID!
+        getCompany(companyID: user) { (company, error) in
+            self.hideActivityIndicator()
+            YourCompany = company
+            self.updateCompanyInfo()
+        }
+		
     }
 	
 	@IBAction func GoToWebsite(_ sender: Any) {
@@ -46,16 +54,17 @@ class ViewCompanyVC: UIViewController, editDelegate {
 		companyName.text = YourCompany.name
 		companyMission.text = YourCompany.mission
 		companyDescription.text = YourCompany.companyDescription
+        self.companyLogo.sd_setImage(with: URL.init(string: YourCompany.logo!), placeholderImage: UIImage(named: "defaultProduct"))
 		
-		companyLogo.image = UIImage.init(named: "defaultCompany")
-		
-		if YourCompany.logo != nil && YourCompany.logo != "" {
-			if let logoid = YourCompany.logo {
-				getImage(id: logoid) { (image) in
-					self.companyLogo.image = image
-				}
-			}
-		}
+//		companyLogo.image = UIImage.init(named: "defaultCompany")
+//
+//		if YourCompany.logo != nil && YourCompany.logo != "" {
+//			if let logoid = YourCompany.logo {
+//				getImage(id: logoid) { (image) in
+//					self.companyLogo.image = image
+//				}
+//			}
+//		}
 	}
 	
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

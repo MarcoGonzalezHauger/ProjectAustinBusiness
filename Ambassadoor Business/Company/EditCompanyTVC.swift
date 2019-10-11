@@ -8,6 +8,8 @@
 //
 
 import UIKit
+import SDWebImage
+import FirebaseAuth
 
 protocol editDelegate {
 	func editsMade(newCompany: Company)
@@ -17,12 +19,26 @@ class EditCompanyTVC: UITableViewController, ImagePickerDelegate {
 	
 	
 	func imagePicked(image: UIImage?, imageUrl: String?) {
-		if let image = image {
-			companyLogo.image = image
-		}
-		if let imageUrl = imageUrl {
-			logo = imageUrl
-		}
+        
+        if image != nil {
+            self.companyLogo.image = image
+            //        self.urlString = uploadImageToFIR(image: image!, path: (Auth.auth().currentUser?.uid)!)
+            uploadImageToFIR(image: image!,childName: "companylogo", path: (Auth.auth().currentUser?.uid)!) { (url, error) in
+                if error == false{
+                    self.logo = url
+                    print("URL=",url)
+                }else{
+                    self.logo = ""
+                }
+            }
+            
+        }
+//		if let image = image {
+//			companyLogo.image = image
+//		}
+//		if let imageUrl = imageUrl {
+//			logo = imageUrl
+//		}
 	}
 	
 
@@ -54,11 +70,12 @@ class EditCompanyTVC: UITableViewController, ImagePickerDelegate {
 		descTextBox.text = ThisCompany.companyDescription
 		webTextBox.text = ThisCompany.website
 		logo = ThisCompany.logo
-		if ThisCompany.logo != nil && ThisCompany.logo != "" {
-			if let thisUrl = URL(string: logo!) {
-				companyLogo.downloadedFrom(url: thisUrl)
-			}
-		}
+        self.companyLogo.sd_setImage(with: URL.init(string: ThisCompany.logo!), placeholderImage: UIImage(named: "defaultProduct"))
+//		if ThisCompany.logo != nil && ThisCompany.logo != "" {
+//			if let thisUrl = URL(string: logo!) {
+//				companyLogo.downloadedFrom(url: thisUrl)
+//			}
+//		}
 		AccountID = ThisCompany.account_ID
     }
 	
@@ -87,7 +104,7 @@ class EditCompanyTVC: UITableViewController, ImagePickerDelegate {
 	}
 	
 	@IBAction func changeImage(_ sender: Any) {
-		
+		self.performSegue(withIdentifier: "changeCompanyLogo", sender: self)
 	}
 	
 
@@ -98,5 +115,7 @@ class EditCompanyTVC: UITableViewController, ImagePickerDelegate {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
-	
+    
+    
+    
 }

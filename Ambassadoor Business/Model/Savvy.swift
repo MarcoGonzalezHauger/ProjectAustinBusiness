@@ -252,7 +252,7 @@ func makeImageCircular(image: UIImage) -> UIImage {
 
 func OfferFromID(id: String) -> Offer? {
 	debugPrint("attempting to find offer with ID \(id)")
-	return global.AvaliableOffers.filter { (ThisOffer) -> Bool in
+	return global.TemplateOffers.filter { (ThisOffer) -> Bool in
 		return ThisOffer.offer_ID == id
 	}[0]
 }
@@ -283,6 +283,21 @@ func PostTypeToText(posttype: TypeofPost) -> String {
 	case .Story:
 		return "Story Post"
 	}
+}
+
+func IncreasePayVariableValue(pay: String) -> IncreasePayVariable {
+    switch pay {
+    case "None":
+         return IncreasePayVariable.None
+    case "+5%":
+        return IncreasePayVariable.Five
+    case "+10%":
+        return IncreasePayVariable.Ten
+    case "+20%":
+        return IncreasePayVariable.Twenty
+    default:
+        return IncreasePayVariable.None
+    }
 }
 
 func GetTownName(zipCode: String, completed: @escaping (_ cityState: String?) -> () ) {

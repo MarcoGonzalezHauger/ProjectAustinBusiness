@@ -23,7 +23,7 @@ class CentralVariables {
     
     //The offers that are currently in the users inbox.
 	
-    var AvaliableOffers: [Offer] = [] { didSet {
+    var TemplateOffers: [Offer] = [] { didSet {
 			EachListener(){ if let targetfunction = $0.TemplateOffersChanged{ targetfunction()}}
 		}}
 	
@@ -45,9 +45,14 @@ class CentralVariables {
 	
 	//Passive Variables. No option to listen for change.
 	
-	var products: [Product] = []
+    var products: [Product] = []
 	var OfferDrafts: [TemplateOffer] = []
-	
+    var influencers: [User] = []
+    var post: [Post] = []
+    var IncreasePay = ["None", "+5%", "+10%", "+20%"]
+    var dwollaCustomerInformation = DwollaCustomerInformation()
+    
+    
 	
 }
 

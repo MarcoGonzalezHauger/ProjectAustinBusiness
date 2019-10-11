@@ -7,6 +7,7 @@
 //
 import Foundation
 import Firebase
+import UIKit
 
 //Gets all offers relavent to the user via Firebase
 func GetOffers(userId: String) -> [Offer] {
@@ -44,12 +45,15 @@ func GetCompany(account_ID: String) -> Company {
 
 //Creates the offer and returns the newly created offer as an Offer instance
 func CreateOffer(offer: Offer) -> Offer {
-    let ref = Database.database().reference().child("offers")
+    let user = Auth.auth().currentUser!.uid
+    let ref = Database.database().reference().child("offers").child(user)
     let offerRef = ref.childByAutoId()
     let values: [String: AnyObject] = serializeOffer(offer: offer)
     offerRef.updateChildValues(values)
     return offer
 }
+
+
 
 //func GetFakeProducts() -> [Product] {
 //    let fakeproduct = [Product.init(dictionary: ["image": "https://media.kohlsimg.com/is/image/kohls/2375536_Gray?wid=350&hei=350&op_sharpen=1", "name": "Any Nike Shoe", "price": 80.0, "buy_url": "https://store.nike.com/us/en_us/pw/mens-shoes/7puZoi3", "color": "Any", "product_ID": ""]),
@@ -139,13 +143,13 @@ func CreateOffer(offer: Offer) -> Offer {
 //}
 
 func serializeOffer(offer: Offer) -> [String: AnyObject] {
-    var post_IDS: [String] = []
+    var post_IDS: [[String: Any]] = [[:]]
     for post in offer.posts {
-        post_IDS.append(post.post_ID)
+        post_IDS.append(API.serializePost(post: post) as [String : Any])
     }
     var values = [
         "money": offer.money as AnyObject,
-        "company": offer.company.name as AnyObject,
+        "company": offer.company?.account_ID as AnyObject,
         "posts": post_IDS as AnyObject,
         "offerdate": offer.offerdate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss") as AnyObject,
         "offer_ID": offer.offer_ID as AnyObject,
@@ -163,6 +167,8 @@ func serializeOffer(offer: Offer) -> [String: AnyObject] {
     }
     return values
 }
+
+
 
 // Updates values for user in firebase via their id returns that same user
 func UpdateUserInDatabase(instagramUser: User) -> User {
@@ -207,7 +213,8 @@ func CreateAccount(instagramUser: [String: Any], completed: @escaping (_ userDic
 }
 
 func CreateProduct(productDictionary: [String: Any], completed: @escaping (_ product: Product) -> ()) {
-    let ref = Database.database().reference().child("products")
+    let user = Singleton.sharedInstance.getCompanyUser()
+    let ref = Database.database().reference().child("products").child(Auth.auth().currentUser!.uid).child(user.companyID!)
     var productData = productDictionary
     ref.observeSingleEvent(of: .value, with: { (snapshot) in
         let productReference = ref.childByAutoId()
@@ -218,8 +225,45 @@ func CreateProduct(productDictionary: [String: Any], completed: @escaping (_ pro
     })
 }
 
+func CreatePost(param: Post,completion: @escaping (Post,Bool) -> ())  {
+
+    let ref = Database.database().reference().child("post").child(Auth.auth().currentUser!.uid)
+    ref.observeSingleEvent(of: .value, with: { (snapshot) in
+        let postReference = ref.childByAutoId()
+        let post = Post.init(image: param.image!, instructions: param.instructions, captionMustInclude: param.captionMustInclude!, products: param.products!, post_ID: postReference.key!, PostType: param.PostType, confirmedSince: param.confirmedSince!, isConfirmed: param.isConfirmed, hashCaption: param.hashCaption)
+        let productData = API.serializePost(post: post)
+        postReference.updateChildValues(productData)
+        completion(post, true)
+    })
+
+}
+
+func getCreatePostUniqueID(param: Post, completion: @escaping (Post,Bool) -> ()) {
+    
+    let ref = Database.database().reference()
+    let postReference = ref.childByAutoId()
+    let post = Post.init(image: param.image!, instructions: param.instructions, captionMustInclude: param.captionMustInclude!, products: param.products!, post_ID: postReference.key!, PostType: param.PostType, confirmedSince: param.confirmedSince!, isConfirmed: param.isConfirmed, hashCaption: param.hashCaption)
+    //let productData = API.serializePost(post: post)
+    completion(post,true)
+}
+
+/*
+ func CreateProduct(productDictionary: [String: Any], completed: @escaping (_ product: Product) -> ()) {
+ let ref = Database.database().reference().child("products")
+ var productData = productDictionary
+ ref.observeSingleEvent(of: .value, with: { (snapshot) in
+ let productReference = ref.childByAutoId()
+ productData["product_ID"] = productReference.key
+ productReference.updateChildValues(productData)
+ let productInstance: Product = Product(dictionary: productData)
+ completed(productInstance)
+ })
+ }
+ */
+
+
 func CreateCompany(company: Company, completed: @escaping (_ companyInstance: Company) -> ()) {
-    let ref = Database.database().reference().child("companies")
+    let ref = Database.database().reference().child("companies").child(Auth.auth().currentUser!.uid)
     // Boolean flag to keep track if company is already in database
     var alreadyRegistered: Bool = false
     ref.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -236,12 +280,20 @@ func CreateCompany(company: Company, completed: @escaping (_ companyInstance: Co
             let companyReference = ref.childByAutoId()
             companyData["account_ID"] = companyReference.key
             companyReference.updateChildValues(companyData)
+            let refUpdate = Database.database().reference().child("CompanyUser").child(Auth.auth().currentUser!.uid)
+            refUpdate.updateChildValues(["isCompanyRegistered":true,"companyID":companyReference.key!])
 		}
         let categoryInstance: Company = Company(dictionary: companyData)
         completed(categoryInstance)
     })
 }
 
+func updateProductDetails(dictionary: [String: Any], productID: String) {
+    
+    let user = Singleton.sharedInstance.getCompanyUser()
+    let ref = Database.database().reference().child("products").child(Auth.auth().currentUser!.uid).child(user.companyID!).child(productID)
+    ref.updateChildValues(dictionary)
+}
 // A MARCO FUNCTION.
 func UpdateYourCompanyInFirebase() {
 	if let id = YourCompany.account_ID {
@@ -283,6 +335,36 @@ func uploadImage(image: UIImage) -> String {
     return id
 }
 
+func uploadImageToFIR(image: UIImage, childName: String, path: String, completion: @escaping (String,Bool) -> ()) {
+    let data = image.jpegData(compressionQuality: 0.2)
+    let fileName = path + ".png"
+    let ref = Storage.storage().reference().child(childName).child(fileName)
+    ref.putData(data!, metadata: nil, completion: { (metadata, error) in
+        if error != nil {
+            debugPrint(error!)
+            completion("", true)
+            return
+        }else {
+            guard let metadata = metadata else {
+                // Uh-oh, an error occurred!
+                completion("", true)
+                return
+            }
+            // You can also access to download URL after upload.
+            ref.downloadURL { (url, error) in
+                guard let downloadURL = url else {
+                    // Uh-oh, an error occurred!
+                    completion("", true)
+                    return
+                }
+                completion(downloadURL.absoluteString, false)
+            }
+        }
+        debugPrint(metadata!)
+    })
+    //return id
+}
+
 func serializeCompany(company: Company) -> [String: Any] {
     let companyData: [String: Any] = [
         "account_ID": company.account_ID!,
@@ -292,10 +374,13 @@ func serializeCompany(company: Company) -> [String: Any] {
         "website": company.website,
         "description": company.companyDescription,
         "accountBalance": company.accountBalance,
-		"owner": company.owner_email
+		"owner": company.owner_email,
+        "referralcode": company.owner_email
     ]
     return companyData
 }
+
+
 
 // Query all users in Firebase and to do filtering based on algorithm
 func GetAllUsers(completion: @escaping ([User]) -> ()) {
@@ -313,8 +398,124 @@ func GetAllUsers(completion: @escaping ([User]) -> ()) {
     }, withCancel: nil)
 }
 
-func getAllProducts(completion: @escaping ([Product]) -> ()) {
-    let productsRef = Database.database().reference().child("products")
+func getFilteredInfluencers(category: [String:[AnyObject]],completion: @escaping ([String]?,String,[User]?) -> ()) {
+    
+    var mutatingCategory = category
+    
+    let usersRef = Database.database().reference().child("users")
+    
+    usersRef.observeSingleEvent(of: .value, with: { (snapshot) in
+        
+        if let dictionary = snapshot.value as? [String: AnyObject] {
+            
+            let keys = dictionary.keys
+            
+            var userIDs = [String]()
+            
+            var user = [User]()
+            
+            var filteredCategory = [String]()
+            
+            if category.keys.contains("primaryCategory") {
+                
+                let categoryValueArray = category["primaryCategory"] as! [String]
+                
+                filteredCategory.append(contentsOf: categoryValueArray)
+                
+                mutatingCategory.removeValue(forKey: "primaryCategory")
+                
+            }
+            
+            
+            for value in keys {
+                
+                let first  = dictionary[value] as! [String: AnyObject]
+                
+                //_ = first["primaryCategory"] as! String
+                //Getting All Keys From Offer
+                let categoryArray = mutatingCategory.keys
+                
+                
+                var checkStatus = true
+                for keyValue in categoryArray {
+                    
+                    //                    if !(category[keyValue]?.contains(first[keyValue] as! String))!{
+                    //                       checkStatus = false
+                    //                    }
+                    
+                    if (mutatingCategory[keyValue]?.contains(where: { (errer) -> Bool in
+                        print("a=",errer)
+                        print("b=",first[keyValue])
+                        //return (first[keyValue]?.isEqual(errer))!
+                        if (first[keyValue] as? String) != nil {
+                            return (first[keyValue]?.isEqual(errer))!
+                        }else{
+                            return false
+                        }
+                    }))! == false {
+                        checkStatus = false
+                    }else{
+                        
+                    }
+                    
+                    
+                }
+                
+                
+                var checkCategoryArray = false
+                
+                if category.keys.contains("primaryCategory") {
+                    //categories
+                    if first.keys.contains("categories") {
+                        
+                        if let userCategoryArray = first["categories"] as? [String] {
+                            
+                            for userCategoryValue in userCategoryArray {
+                                
+                                let offerCategory = category["primaryCategory"] as! [String]
+                                
+                                if offerCategory.contains(userCategoryValue ){
+                                    checkCategoryArray = true
+                                    break
+                                }
+                                
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                }
+                
+                
+                if checkStatus == true && checkCategoryArray == true {
+                    userIDs.append(first["id"] as! String)
+                    user.append(User.init(dictionary: first))
+                }
+                
+            }
+            completion(userIDs, "success", user)
+        }else{
+            completion([], "error", nil)
+        }
+
+        
+    }, withCancel: { (error) in
+        
+        completion([], "error", nil)
+        
+    })
+    
+//    usersRef.observe(.value, with: { (snapshot) in
+//
+//
+//    }) { (error) in
+//
+//    }
+}
+
+func getAllProducts(path: String, completion: @escaping ([Product]) -> ()) {
+    let productsRef = Database.database().reference().child("products").child(path)
     var products: [Product] = []
     productsRef.observeSingleEvent(of: .value, with: { (snapshot) in
         if let dictionary = snapshot.value as? [String: AnyObject] {
@@ -347,8 +548,477 @@ func sendOffer(offer: Offer, money: Double, completion: @escaping (Offer) -> ())
     debugPrint(offerDictionary)
 }
 
-func calculateCostForUser(offer: Offer, user: User) -> Double {
-    return 0.055 * user.averageLikes! * Double(offer.posts.count)
+func createTemplateOffer(pathString: String,edited: Bool,templateOffer: TemplateOffer,completion: @escaping (TemplateOffer,Bool) -> ()) {
+    let offersRef = Database.database().reference().child("TemplateOffers").child(pathString)
+    if edited == false {
+    let offerKey = offersRef.childByAutoId()
+    templateOffer.offer_ID = offerKey.key!
+    var offerDictionary: [String: Any] = [:]
+    offerDictionary = API.serializeTemplateOffer(offer: templateOffer)
+    offerKey.updateChildValues(offerDictionary)
+    completion(templateOffer, true)
+    }else{
+        var offerDictionary: [String: Any] = [:]
+        offerDictionary = API.serializeTemplateOffer(offer: templateOffer)
+        offersRef.removeValue()
+        offersRef.updateChildValues(offerDictionary)
+        completion(templateOffer, true)
+    }
+    
+}
+
+
+
+func sentOutOffers(pathString: String, templateOffer: TemplateOffer, completion: @escaping (TemplateOffer,Bool) -> ()) {
+    let offersRef = Database.database().reference().child("SentOutOffers").child(pathString)
+    var offerDictionary: [String: Any] = [:]
+    offerDictionary = API.serializeTemplateOffer(offer: templateOffer)
+    offersRef.updateChildValues(offerDictionary)
+    completion(templateOffer, true)
+}
+
+func completedOffersToUsers(pathString: String, templateOffer: TemplateOffer) {
+    
+    let offersRef = Database.database().reference().child("SentOutOffersToUsers").child(pathString)
+    var offerDictionary: [String: Any] = [:]
+    offerDictionary = API.serializeTemplateOffer(offer: templateOffer)
+    offersRef.updateChildValues(offerDictionary)
+}
+
+func sentOutTransactionToInfluencer(pathString: String,transactionData: [String: Any]) {
+    
+    let transactionRef = Database.database().reference().child("InfluencerTransactions").child(pathString)
+    
+    var valueArray = [[String:Any]]()
+    
+    transactionRef.observeSingleEvent(of: .value, with: { (snapshot) in
+        
+        print(snapshot.value)
+        
+        if let arrayValues = snapshot.value as? [[String: AnyObject]] {
+            
+            valueArray.append(contentsOf: arrayValues)
+            valueArray.append(transactionData)
+            let transactionRefVal = Database.database().reference().child("InfluencerTransactions")
+            let data = [pathString: valueArray]
+            transactionRefVal.updateChildValues(data)
+            
+//            for keyValues in arrayValues.keys {
+//                
+//                let singleValue = arrayValues[keyValues] as! [String: AnyObject]
+//                valueArray.append(singleValue)
+//                let transactionRefVal = Database.database().reference().child("InfluencerTransactions")
+//                let data = [pathString: valueArray]
+//                transactionRefVal.updateChildValues(data)
+//                
+//            }
+            
+        }else{
+            
+            let transactionRefVal = Database.database().reference().child("InfluencerTransactions")
+            valueArray.append(transactionData)
+            let data = [pathString: valueArray]
+            transactionRefVal.updateChildValues(data)
+            
+        }
+        
+    }) { (error) in
+        
+        let transactionRefVal = Database.database().reference().child("InfluencerTransactions")
+        let data = [pathString: valueArray]
+        transactionRefVal.updateChildValues(data)
+        
+    }
+    
+    
+    
+}
+
+//Mark: Influencer Amount Updated By Business User
+
+func updateInfluencerAmountByReferral(user: User, amount: Double) {
+    
+    let transactionRef = Database.database().reference().child("users").child(user.id!)
+    
+    
+    transactionRef.updateChildValues(["yourMoney":amount])
+    
+}
+
+func removeTemplateOffers(pathString: String, templateOffer: TemplateOffer) {
+    let offersRef = Database.database().reference().child("TemplateOffers").child(pathString)
+    offersRef.removeValue()
+}
+
+func updateTemplateOffers(pathString: String, templateOffer: TemplateOffer, userID: [Any]) {
+    let offersRef = Database.database().reference().child("TemplateOffers").child(pathString)
+//    var userIDValue = [String]()
+//    for uderIDs in userID {
+//        userIDValue.append(uderIDs.id!)
+//    }
+    offersRef.updateChildValues(["user_IDs":userID])
+    //offersRef.removeValue()
+}
+
+func getAllTemplateOffers(userID: String, completion: @escaping([TemplateOffer],String) -> Void) {
+    
+    let ref = Database.database().reference().child("TemplateOffers").child(userID)
+    
+    ref.observeSingleEvent(of: .value, with: { (snapshot) in
+        
+        if let totalValues = snapshot.value as? NSDictionary{
+            var template = [TemplateOffer]()
+            
+            for value in totalValues.allKeys {
+                var offer = totalValues[value] as! [String: AnyObject]
+                let post = parseTemplateOffer(offer: offer)
+                offer["posts"] = post as AnyObject
+                let conDate = offer["offerdate"] as! String
+                let exDate = offer["expiredate"] as! String
+                let dateCon = DateFormatManager.sharedInstance.getDateFromStringWithFormat(dateString: conDate, format: "yyyy/MMM/dd HH:mm:ss")
+                let dateEx = DateFormatManager.sharedInstance.getDateFromStringWithFormat(dateString: exDate, format: "yyyy/MMM/dd HH:mm:ss")
+                offer["offerdate"] = dateCon as AnyObject?
+                offer["expiredate"] = dateEx as AnyObject?
+                template.append(TemplateOffer.init(dictionary: offer))
+            }
+            completion(template, "success")
+        }else{
+            completion([], "failure")
+        }
+        
+    }) { (error) in
+        completion([], "failure")
+    }
+    
+}
+
+func parseTemplateOffer(offer: [String: AnyObject]) -> [Post] {
+    
+    var postValues = [Post]()
+    let post = offer["posts"] as! [NSDictionary]
+    for value in post {
+        
+        let product = value["products"] as! [[String: AnyObject]]
+        var productList = [Product]()
+        for productValue in product {
+            
+            let productInitialized = Product.init(dictionary: productValue)
+            productList.append(productInitialized)
+        }
+        
+        let postInitialized = Post.init(image: "", instructions: value["instructions"] as? String ?? "", captionMustInclude: value["captionMustInclude"] as? String, products: productList, post_ID: value["post_ID"] as! String, PostType: value["PostType"] as! String, confirmedSince: value["confirmedSince"] as? Date, isConfirmed: (value["isConfirmed"] != nil), hashCaption: value["hashCaption"] as! String)
+        postValues.append(postInitialized)
+    }
+    return postValues
+}
+
+func sendDepositAmount(deposit: Deposit,companyUser: String,completion: @escaping(Deposit,String) -> Void) {
+    
+    let ref = Database.database().reference().child("BusinessDeposit").child(companyUser)
+    var offerDictionary: [String: Any] = [:]
+    offerDictionary = API.serializeDepositDetails(deposit: deposit)
+    ref.updateChildValues(offerDictionary)
+    completion(deposit, "success")
+}
+
+func getDepositDetails(companyUser: String,completion: @escaping(Deposit?,String,Error?) -> Void) {
+    
+    let ref = Database.database().reference().child("BusinessDeposit").child(companyUser)
+    ref.observeSingleEvent(of: .value, with: { (snapshot) in
+        
+        if let totalValues = snapshot.value as? NSDictionary{
+            
+            let deposit = Deposit.init(dictionary: totalValues as! [String : Any])
+            completion(deposit, "success", nil)
+        }else{
+            completion(nil, "new", nil)
+        }
+    }) { (error) in
+           completion(nil, "failure", error)
+    }
+}
+
+//MARK: Statistic Page Data
+
+func getStatisticsData(completion: @escaping([Statistics]?,String,Error?) -> Void) {
+    
+    let ref = Database.database().reference().child("SentOutOffers").child(Auth.auth().currentUser!.uid)
+    
+    ref.observeSingleEvent(of: .value, with: { (snapshot) in
+        var staticsArray = [Statistics]()
+        
+        if let totalValues = snapshot.value as? NSDictionary{
+            
+            for (index, offerKey) in totalValues.allKeys.enumerated() {
+                
+                if let Offer = totalValues[offerKey] as? NSDictionary {
+                    
+                    
+                    if let userIDs = Offer["user_IDs"] as? [String] {
+                        
+                        for (userIDIndex,userID) in userIDs.enumerated() {
+                            
+                            let refUserPost = Database.database().reference().child("SentOutOffersToUsers").child(userID).child(offerKey as! String)
+                            
+                            print(offerKey)
+                            
+                            if "-Lq1aMXg-fOz1uTHkiLL" == offerKey as! String {
+                                
+                            }
+                            
+                            refUserPost.observeSingleEvent(of: .value, with: { (userpublish) in
+                                
+                                let object = Statistics()
+                                
+                                if let offerValues = userpublish.value as? NSDictionary {
+                                    
+                                    object.offerID = offerKey as! String
+                                    object.userID = userID
+                                    object.offer = offerValues
+                                    staticsArray.append(object)
+                                    
+                                }else{
+                                    
+                                    object.offerID = offerKey as! String
+                                    object.userID = userID
+                                    staticsArray.append(object)
+                                }
+                                
+                                if index == (totalValues.allKeys.count - 1) {
+                                    
+                                    if userIDIndex == (userIDs.count - 1) {
+                                        
+                                        completion(staticsArray, "success", nil)
+                                        
+                                    }
+                                    
+                                }
+                                
+                            }) { (error) in
+                                
+                                
+                                
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                }
+                
+            }
+            
+            
+            
+        }
+    }) { (error) in
+        
+        completion(nil, "success", error)
+        
+    }
+     
+}
+
+//MARK: Get Instagram Post
+
+func getInstagramPosts(statisticsData: [Statistics],completion: @escaping([String: instagramOfferDetails]?,String,Error?) -> Void) {
+    
+    var instagramOfferDetailsArray = [String: instagramOfferDetails]()
+    
+    
+    for (index,statistics) in statisticsData.enumerated() {
+        
+        //let ref = Database.database().reference().child("InfluencerInstagramPost").child("3225555942").child("XXXDefault")
+        
+        let ref = Database.database().reference().child("InfluencerInstagramPost").child(statistics.userID).child(statistics.offerID)
+        
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let instagramPost = snapshot.value as? NSDictionary {
+               
+                if instagramOfferDetailsArray.keys.contains(statistics.userID){
+                    let insData = instagramOfferDetailsArray[statistics.userID]
+                    
+                    if let commentsData = instagramPost["comments"] as? NSDictionary {
+                        
+                        insData?.commentsCount = insData!.commentsCount + (commentsData["count"] as! Int)
+                        
+                    }
+                    
+                    if let likesData = instagramPost["likes"] as? NSDictionary {
+                        
+                        insData?.likesCount = insData!.likesCount + (likesData["count"] as! Int)
+                        
+                    }
+                    
+                    if let userData = instagramPost["user"] as? NSDictionary {
+                        insData?.userInfo = userData
+                    }
+                    
+                    instagramOfferDetailsArray[statistics.userID] = insData
+                    
+                }else{
+                    
+                    let insData = instagramOfferDetails()
+                    
+                    if let commentsData = instagramPost["comments"] as? NSDictionary {
+                        
+                        insData.commentsCount = (commentsData["count"] as! Int)
+                        
+                    }
+                    
+                    if let likesData = instagramPost["likes"] as? NSDictionary {
+                        
+                        insData.likesCount = (likesData["count"] as! Int)
+                        
+                    }
+                    
+                    if let userData = instagramPost["user"] as? NSDictionary {
+                        insData.userInfo = userData
+                    }
+                    
+                    instagramOfferDetailsArray[statistics.userID] = insData
+                    
+                }
+                
+            }
+            
+            if index == statisticsData.count - 1 {
+                completion(instagramOfferDetailsArray, "success", nil)
+            }
+            
+        }) { (error) in
+            
+            completion(nil, "failure", error)
+            
+        }
+        
+    }
+    
+}
+
+//MARK: Dwolla Customer Creation
+
+func createDwollaCustomerToFIR(object: DwollaCustomerInformation) {
+    
+    let ref = Database.database().reference().child("DwollaCustomers").child(Auth.auth().currentUser!.uid).child(object.acctID)
+    var customerDictionary: [String: Any] = [:]
+    customerDictionary = API.serializeDwollaCustomers(object: object)
+    ref.updateChildValues(customerDictionary)
+}
+
+func getDwollaFundingSource(completion: @escaping([DwollaCustomerFSList]?,String,Error?) -> Void) {
+    
+    let ref = Database.database().reference().child("DwollaCustomers").child(Auth.auth().currentUser!.uid)
+    ref.observeSingleEvent(of: .value, with: { (snapshot) in
+        
+        if let totalValues = snapshot.value as? NSDictionary{
+            
+            var objects = [DwollaCustomerFSList]()
+            
+            for value in totalValues.allKeys {
+                
+                let fundSource = DwollaCustomerFSList.init(dictionary: totalValues[value] as! [String: Any])
+                objects.append(fundSource)
+                
+            }
+            completion(objects, "success", nil)
+        }
+        
+        
+    }) { (error) in
+        completion(nil, "success", error)
+    }
+    
+}
+
+func fundTransferAccount(transferURL: String,accountID: String, Obj: DwollaCustomerFSList, currency: String, amount: String) {
+    
+    let ref = Database.database().reference().child("FundTransfer").child(Auth.auth().currentUser!.uid).child(accountID)
+    let fundTransfer: [String: Any] = ["accountID":accountID,"transferURL":transferURL,"currency":currency,"amount":amount,"name":Obj.name,"mask":Obj.mask,"customerURL":Obj.customerURL,"FS":Obj.customerFSURL,"firstname":Obj.firstName,"lastname":Obj.lastName]
+    ref.updateChildValues(fundTransfer)
+    
+//    var fundingSURL = [String]()
+//
+//    let getRef = Database.database().reference().child("FundTransfer").child(Auth.auth().currentUser!.uid).child(accountID)
+//
+//    getRef.observeSingleEvent(of: .value, with: { (snapshot) in
+//
+//        if let value = snapshot.value as? NSDictionary{
+//
+//           if let fundingURL = value["transferURL"] as? [String] {
+//
+//            if fundingURL.count != 0 {
+//
+//                fundingSURL.append(contentsOf: fundingURL)
+//                fundingSURL.append(transferURL)
+//                let ref = Database.database().reference().child("FundTransfer").child(Auth.auth().currentUser!.uid).child(accountID)
+//                let fundTransfer: [String: Any] = ["accountID":accountID,"transferURL":fundingSURL]
+//                ref.updateChildValues(fundTransfer)
+//
+//            }else{
+//
+//                let ref = Database.database().reference().child("FundTransfer").child(Auth.auth().currentUser!.uid).child(accountID)
+//                fundingSURL.append(transferURL)
+//                let fundTransfer: [String: Any] = ["accountID":accountID,"transferURL":fundingSURL]
+//                ref.updateChildValues(fundTransfer)
+//
+//            }
+//
+//            }
+//            //if
+//
+//        }else{
+//
+//            let ref = Database.database().reference().child("FundTransfer").child(Auth.auth().currentUser!.uid).child(accountID)
+//            fundingSURL.append(transferURL)
+//            let fundTransfer: [String: Any] = ["accountID":accountID,"transferURL":fundingSURL]
+//            ref.updateChildValues(fundTransfer)
+//
+//        }
+//
+//    }) { (error) in
+//
+//        let ref = Database.database().reference().child("FundTransfer").child(Auth.auth().currentUser!.uid).child(accountID)
+//        fundingSURL.append(transferURL)
+//        let fundTransfer: [String: Any] = ["accountID":accountID,"transferURL":fundingSURL]
+//        ref.updateChildValues(fundTransfer)
+//
+//    }
+    
+    
+    
+    
+    
+}
+
+func transactionInfo(completion: @escaping([TransactionInfo]?,String,Error?) -> Void) {
+    
+    let ref = Database.database().reference().child("FundTransfer").child("3225555942")
+    ref.observeSingleEvent(of: .value, with: { (snapshot) in
+        
+        if let totalValues = snapshot.value as? NSDictionary{
+            
+            var objects = [TransactionInfo]()
+            
+            for value in totalValues.allKeys {
+                
+                let transactionInfo = TransactionInfo.init(dictionary: totalValues[value] as! [String: Any])
+                objects.append(transactionInfo)
+                
+            }
+            completion(objects, "success", nil)
+        }
+        
+        
+    }) { (error) in
+        completion(nil, "success", error)
+    }
+    
+}
+
+func calculateCostForUser(offer: Offer, user: User, increasePayVariable: Double = 1.00) -> Double {
+    return 0.055 * user.averageLikes! * Double(offer.posts.count) * increasePayVariable
 }
 
 func findInfluencers(offer: TemplateOffer, money: Double, completion: @escaping (TemplateOffer) -> ()) {
@@ -392,6 +1062,148 @@ func UpdateCompanyInDatabase(company: Company) {
     let ref = Database.database().reference().child("companies")
 	let companyData = serializeCompany(company: company)
     ref.child(company.account_ID!).updateChildValues(companyData)
+}
+//Create Company User
+func CreateCompanyUser(companyUser: CompanyUser) -> CompanyUser {
+    
+    let ref = Database.database().reference().child("CompanyUser")
+    let values: [String: Any] = serializeCompanyUser(companyUser: companyUser)
+    let offerRef = ref.child(values["userID"] as! String)
+    offerRef.updateChildValues(values)
+    return companyUser
+    
+}
+//Serialize Company User
+func serializeCompanyUser(companyUser: CompanyUser) -> [String: Any] {
+    
+    let companyUserData: [String: Any] = [
+        "userID": companyUser.userID!,
+        "email": companyUser.email!,
+        "refreshToken": companyUser.refreshToken!,
+        "token": companyUser.token!,"isCompanyRegistered": companyUser.isCompanyRegistered!,"companyID":companyUser.companyID!]
+    return companyUserData
+    
+}
+//
+func getCurrentCompanyUser(userID: String, completion: @escaping (CompanyUser?,String) -> Void) {
+    
+    let ref = Database.database().reference()
+    ref.child("CompanyUser").child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
+        // Get user value
+        if let value = snapshot.value as? NSDictionary{
+           let companyUser = CompanyUser.init(dictionary: value as! [String : Any])
+           completion(companyUser, "")
+        }else{
+          completion(nil, "error")
+        }
+    }) { (error) in
+        print(error.localizedDescription)
+    }
+    
+    
+}
+
+//MARK: Get User By Refferal Code
+
+func getUserByReferralCode(referralcode: String,completion: @escaping (User?) -> Void) {
+    
+    let usersRef = Database.database().reference().child("users")
+    
+    usersRef.queryOrdered(byChild: referralcode).observeSingleEvent(of: .value) { (snapshot) in
+        
+        if let dictionary = snapshot.value as? [String: AnyObject] {
+            
+            for values in dictionary.keys {
+                
+                if let dict = dictionary[values] as? [String: AnyObject] {
+                    
+                    if dict.keys.contains("referralcode") {
+                    
+                    if dict["referralcode"] as! String == referralcode {
+                        
+                        let userInstance = User(dictionary: dict)
+                        if userInstance.referralcode == referralcode {
+                            completion(userInstance)
+                            break
+                        }
+                        
+                    }
+                    }
+                    
+                }
+                
+            }
+            
+//            let userInstance = User(dictionary: dictionary)
+//            if userInstance.referralcode == referralcode {
+//                completion(userInstance)
+//            }
+            
+        }
+        
+    }
+    
+//    usersRef.queryOrdered(byChild: referralcode).observe(.childAdded, with: { (snapshot) in
+//
+//        if let dictionary = snapshot.value as? [String: AnyObject] {
+//            let userInstance = User(dictionary: dictionary)
+//            if userInstance.referralcode == referralcode {
+//               completion(userInstance)
+//            }
+//
+//        }
+//
+//    }) { (error) in
+//        completion(nil)
+//    }
+    
+//    usersRef.observeSingleEvent(of: .value, with: { (snapshot) in
+//        if let dictionary = snapshot.value as? [String: AnyObject] {
+//            let userInstance = User(dictionary: dictionary as! [String : AnyObject])
+//            completion(userInstance)
+//        }
+//    }, withCancel: nil)
+    
+}
+
+func getAdminValues(completion: @escaping (String) -> Void) {
+    
+    Database.database().reference().child("Admin").observeSingleEvent(of: .value, with: { (snapshot) in
+        
+        if let value = snapshot.value as? NSDictionary{
+            
+            
+            
+            let fsource = value["SourceFundingSource"] as! String
+            let commision = value["paycommision"] as! Double
+            Singleton.sharedInstance.setAdminFS(value: fsource)
+            Singleton.sharedInstance.setCommision(value: commision)
+            completion("")
+            
+        }else{
+            completion("error")
+        }
+    }) { (error) in
+        
+    }
+    
+}
+
+//
+func getCompany(companyID: String,completion: @escaping (Company?,String) -> Void) {
+    let user = Auth.auth().currentUser!.uid
+    Database.database().reference().child("companies").child(user).child(companyID).observeSingleEvent(of: .value, with: { (snapshot) in
+        
+            if let value = snapshot.value as? NSDictionary{
+                let company = Company.init(dictionary: value as! [String : Any])
+                completion(company,"")
+            }else{
+            completion(nil, "error")
+        }
+    }) { (error) in
+        
+    }
+    
 }
 
 extension Date

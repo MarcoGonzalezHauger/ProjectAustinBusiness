@@ -19,6 +19,20 @@ struct API {
     
     static var instagramProfileData: [String: AnyObject] = [:]
     
+    static var kBaseURL = "https://us-central1-amassadoor.cloudfunctions.net/"
+    
+    static var kDwollaClient_id = "CijOdBYNcHDSwXjkf4PnsXjHBYSgKdgc7TdfoDNUZiNvOPfAst"
+    
+    static var kDwollaClient_secret = "m8oCRchilXnkR3eFAKlNuQWFqv9zROJX0CkD5aiys1H3nmvQMb"
+    
+    static var kCreateCustomer = "https://api-sandbox.dwolla.com/customers"
+    
+    static var kCreateFundingSourceURL = "https://api-sandbox.dwolla.com/customers/AB443D36-3757-44C1-A1B4-29727FB3111C/funding-sources"
+    
+    static var kFundTransferURL = "https://api-sandbox.dwolla.com/transfers"
+    
+    static var superBankFundingSource = "https://api-sandbox.dwolla.com/funding-sources/b23abf0b-c28d-4941-84af-617626865f2b"
+    
     static func getProfileInfo(completed: ((_ userDictionary: [String: Any]) -> () )?) {
         let url = URL(string: "https://api.instagram.com/v1/users/self/?access_token=" + INSTAGRAM_ACCESS_TOKEN)
         URLSession.shared.dataTask(with: url!){ (data, response, err) in
@@ -86,6 +100,19 @@ struct API {
         return userData
     }
     
+    static func serializePost(post: Post) -> [String: Any] {
+        //                           Post.init(image: nil, instructions: desPost.text!, captionMustInclude: <#T##String?#>, products: <#T##[Product]?#>, post_ID: <#T##String#>, PostType: <#T##TypeofPost#>, confirmedSince: <#T##Date?#>, isConfirmed: <#T##Bool#>)
+        var product = [[String: Any]]()
+        
+        for value in post.products! {
+            product.append(serializeProduct(product: value))
+        }
+        //DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: post.confirmedSince!, format: "yyyy/MMM/dd HH:mm:ss")
+        let postData: [String: Any] = ["image":post.image!,"instructions":post.instructions,"captionMustInclude":post.captionMustInclude!,"products":product,"post_ID":post.post_ID,"PostType": post.PostType,"confirmedSince":"" ,"isConfirmed":post.isConfirmed,"hashCaption":post.hashCaption]
+        
+        return postData
+    }
+    
     static func serializeTemplateOffer(offer: TemplateOffer) -> [String: Any] {
         var offerData = serializeOffer(offer: offer)
         var cats: [String] = []
@@ -96,26 +123,77 @@ struct API {
         offerData["zipCodes"] = offer.zipCodes
         offerData["genders"] = offer.genders
         offerData["user_IDs"] = offer.user_IDs
+        offerData["category"] = offer.category
+        offerData["title"] = offer.title
+        offerData["status"] = offer.status
         return offerData
     }
     
+    static func serializeDepositDetails(deposit: Deposit) -> [String: Any] {
+        var transactionData = serializeTransactionDetails(transaction: deposit.lastTransactionHistory!)
+        /*var userID: String?
+        var currentBalance: Double?
+        var totalDepositAmount: Double?
+        var totalDeductedAmount: Double?
+        var lastDeductedAmount: Double?
+        var lastDepositedAmount: Double?
+        var lastTransactionHistory: TransactionDetails?
+        var depositHistory: [AnyObject]?
+        var depositDetails = []*/
+        let depositSerialize = ["userID":deposit.userID!,"currentBalance":deposit.currentBalance!,"totalDepositAmount":deposit.totalDepositAmount,"totalDeductedAmount":deposit.totalDeductedAmount,"lastDeductedAmount":deposit.lastDeductedAmount,"lastDepositedAmount":deposit.lastDepositedAmount,"lastTransactionHistory":transactionData,"depositHistory":deposit.depositHistory] as [String : Any]
+        
+        return depositSerialize
+    }
+    
+    static func serializeDwollaCustomers(object: DwollaCustomerInformation) -> [String: Any]{
+        
+        let dwollaCustomerSerialize = ["firstname": object.firstName,"lastname": object.lastName,"accountID":object.acctID,"customerURL": object.customerURL,"customerFSURL":object.customerFSURL,"isFSAdded": object.isFSAdded,"mask":object.mask,"name":object.name] as [String : Any]
+        
+        return dwollaCustomerSerialize
+        
+    }
+    
+    static func serializeTransactionDetails(transaction: TransactionDetails) -> [String: Any] {
+        
+        /*var id: String?
+         var status: String?
+         var type: String?
+         var currencyIsoCode: String?
+         var amount: String?
+         var createdAt: String?
+         var updatedAt: String?
+         var cardDetails: Any?
+         */
+        var transactionSerialize = ["id":transaction.id,"status":transaction.status,"type":transaction.type,"currencyIsoCode":transaction.currencyIsoCode,"amount":transaction.amount,"createdAt":transaction.createdAt,"updatedAt":transaction.updatedAt,"cardDetails":transaction.cardDetails] as [String: Any]
+        
+        return transactionSerialize
+    }
+    
     static func serializeOffer(offer: Offer) -> [String: Any] {
-        var post_IDS: [String] = []
+        var posts: [[String: Any]] = [[String: Any]]()
         for post in offer.posts {
-            post_IDS.append(post.post_ID)
+            posts.append(API.serializePost(post: post)) 
+        }
+        
+        var offerConSin = ""
+        
+        if offer.allPostsConfirmedSince != nil {
+           offerConSin = offer.allPostsConfirmedSince!.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss")
+        }else{
+           offerConSin = ""
         }
         let offerData: [String: Any] = [
             "offer_ID": offer.offer_ID,
             "money": offer.money,
-			"company": offer.company.account_ID as Any,
-            "posts": post_IDS,
+            "company": offer.company?.account_ID as Any,
+            "posts": posts,
             "offerdate": offer.offerdate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss"),
             "user_ID": offer.user_ID as Any,
             "expiredate": offer.expiredate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss"),
-            "allPostsConfirmedSince": offer.allPostsConfirmedSince!.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss"),
+            "allPostsConfirmedSince": offerConSin,
             "allConfirmed": offer.allConfirmed,
             "isAccepted": offer.isAccepted,
-            "isExpired": offer.isExpired,
+            "isExpired": offer.isExpired,"ownerUserID": offer.ownerUserID
             ]
         return offerData
     }
