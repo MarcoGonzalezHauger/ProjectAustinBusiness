@@ -10,9 +10,12 @@
 import UIKit
 import Firebase
 
-class WithdrawVC: PlaidLinkEnabledVC,UITableViewDelegate,UITableViewDataSource {
+class WithdrawVC: PlaidLinkEnabledVC,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate {
     
     @IBOutlet weak var bankTableView: UITableView!
+    @IBOutlet weak var depositBalance: UITextField!
+    
+    @IBOutlet weak var moneyText: UITextField!
     
     var dwollaFSList = [DwollaCustomerFSList]()
     
@@ -24,6 +27,9 @@ class WithdrawVC: PlaidLinkEnabledVC,UITableViewDelegate,UITableViewDataSource {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
+        self.getDeepositDetails()
+        
         getDwollaFundingSource { (object, status, error) in
         if error == nil {
             if object != nil {
@@ -32,6 +38,36 @@ class WithdrawVC: PlaidLinkEnabledVC,UITableViewDelegate,UITableViewDataSource {
             }
         }
         }
+    }
+    
+    @IBAction func normalWithDrawAction(sender: UIButton){
+        
+        if moneyText.text?.count != 0 {
+            let doubleAmt = Double(moneyText.text!.dropFirst())
+            let amountVal = doubleAmt! * 100
+        
+            self.performSegue(withIdentifier: "stripeconnect", sender: amountVal)
+            
+        }else{
+            self.showAlertMessage(title: "Alert", message: "Please Enter Some Amount") {
+                
+            }
+        }
+    }
+    
+    @objc func getDeepositDetails() {
+        let user = Singleton.sharedInstance.getCompanyUser()
+        getDepositDetails(companyUser: user.userID!) { (deposit, status, error) in
+            
+            if status == "success" {
+                
+                self.depositBalance.text = NumberToPrice(Value: deposit!.currentBalance!, enforceCents: true)
+                
+
+            
+        }
+    }
+        
     }
     
     @IBAction func presentPlaid(sender: UIButton){
@@ -256,6 +292,36 @@ class WithdrawVC: PlaidLinkEnabledVC,UITableViewDelegate,UITableViewDataSource {
         }
     }
     
+    //MARK: -Textfield Delegate
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool{
+        if textField == self.moneyText {
+            if string == "" {
+                if self.moneyText.text!.count == 2 {
+                    self.moneyText.text = ""
+                }
+                
+            }else{
+                if (self.moneyText.text?.first == "$"){
+                    //self.offerRate.text = self.offerRate.text!
+                }else{
+                    self.moneyText.text = "$" + self.moneyText.text!
+                }
+                
+            }
+            return true
+            
+        }else{
+            return true
+        }
+    }
+
+    
 	
 	@IBAction func dismiss(_ sender: Any) {
 		self.dismiss(animated: true, completion: nil)
@@ -268,6 +334,10 @@ class WithdrawVC: PlaidLinkEnabledVC,UITableViewDelegate,UITableViewDataSource {
             destination.dwollaTokens = sender as! [String: AnyObject]
         }else if segue.identifier == "toTransactionDetails" {
             
+        }else if segue.identifier == "stripeconnect"{
+            
+            let destination = segue.destination as! StripeConnectionMKWebview
+            destination.withDrawAmount = sender as! Double
         }
     }
 	

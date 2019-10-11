@@ -38,7 +38,7 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
         // Do any additional setup after loading the view.
         self.setBasicComponents()
         NotificationCenter.default.addObserver(self, selector: #selector(self.reloadProduct(notification:)), name: Notification.Name.init(rawValue: "reload"), object: nil)
-        let picker = self.addPickerToolBar(textField: gender, object: ["Male","Female","Other"])
+        let picker = self.addPickerToolBar(textField: gender, object: ["Male","Female","Other","All"])
         picker.pickerDelegate = self
 
         self.setInputField()
@@ -390,8 +390,18 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
                             if self.selectedCategoryArray.count != 0 {
                                 let timer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(self.timerAction(sender:)), userInfo: nil, repeats: false)
                                 //                            getFilteredInfluencers(category: influencerFilter as [String : [AnyObject]]) { (influencer, errorStatus) in
+                                
+                                var genderArray = [String]()
+                                
+                                if (self.gender.text?.contains("All"))!{
+                                    
+                                    genderArray.append(contentsOf: ["Male","Female","Other"])
+                                    
+                                }else{
+                                    genderArray = self.gender.text!.components(separatedBy: ",")
+                                }
 //
-                                var offer = ["offer_ID":"","money":0.0,"company":Singleton.sharedInstance.getCompanyDetails(),"posts":global.post,"offerdate":Date(),"user_ID":[],"expiredate":DateFormatManager.sharedInstance.getDateFromStringWithFormat(dateString: self.expiryDate.text!, format: "yyyy/MMM/dd HH:mm:ss"),"allPostsConfirmedSince":nil,"allConfirmed":false,"isAccepted":false,"isExpired":false,"ownerUserID":Auth.auth().currentUser!.uid,"category":self.selectedCategoryArray,"zipCodes":self.zipCode.text!.components(separatedBy: ","),"genders":self.gender.text!.components(separatedBy: ","),"title":self.offerName.text!,"targetCategories":[Category.Actor],"user_IDs":[],"status":"available"] as [String : AnyObject]
+                                var offer = ["offer_ID":"","money":0.0,"company":Singleton.sharedInstance.getCompanyDetails(),"posts":global.post,"offerdate":Date(),"user_ID":[],"expiredate":DateFormatManager.sharedInstance.getDateFromStringWithFormat(dateString: self.expiryDate.text!, format: "yyyy/MMM/dd HH:mm:ss"),"allPostsConfirmedSince":nil,"allConfirmed":false,"isAccepted":false,"isExpired":false,"ownerUserID":Auth.auth().currentUser!.uid,"category":self.selectedCategoryArray,"zipCodes":self.zipCode.text!.components(separatedBy: ","),"genders":genderArray,"title":self.offerName.text!,"targetCategories":[Category.Actor],"user_IDs":[],"status":"available"] as [String : AnyObject]
                                 
                                 if segueOffer != nil {
                                     
@@ -472,12 +482,46 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
     @objc override func doneClickPicker() {
         self.gender.resignFirstResponder()
         if gender.text!.count != 0 {
-            let stringCount = self.genderPicker.components(separatedBy: ",")
-            if stringCount.count == 0 {
-                gender.text = self.genderPicker
+            if (gender.text?.contains("All"))!{
+                
+                let stringCount = self.genderPicker.components(separatedBy: ",")
+                
+                if stringCount.count == 0 {
+                    
+                    gender.text = self.genderPicker
+                    
+                }else{
+                    
+                    var stringSepArray = stringCount
+                    
+                    for value in stringCount {
+                        if value == "All" {
+                            
+                            if let index = stringSepArray.firstIndex(of: "All") {
+                                stringSepArray.remove(at: index)
+                            }
+                            
+                        }
+                    }
+                    
+                    gender.text = stringSepArray.joined(separator: ",")
+                    
+                }
+                
             }else{
-                gender.text = gender.text! + "," + self.genderPicker
-            }
+                
+                if self.genderPicker == "All" {
+                    gender.text = "All"
+                }else{
+                    let stringCount = self.genderPicker.components(separatedBy: ",")
+                    if stringCount.count == 0 {
+                        gender.text = self.genderPicker
+                    }else{
+                        gender.text = gender.text! + "," + self.genderPicker
+                    }
+                }
+
+        }
         }else{
             gender.text = self.genderPicker
         }
@@ -581,8 +625,18 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
                                     if self.selectedCategoryArray.count != 0 {
                             let timer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(self.timerAction(sender:)), userInfo: nil, repeats: false)
 //                            getFilteredInfluencers(category: influencerFilter as [String : [AnyObject]]) { (influencer, errorStatus) in
+                                        
+                                        var genderArray = [String]()
+                                        
+                                        if (self.gender.text?.contains("All"))!{
+                                            
+                                            genderArray.append(contentsOf: ["Male","Female","Other"])
+                                            
+                                        }else{
+                                            genderArray = self.gender.text!.components(separatedBy: ",")
+                                        }
                                 
-                                var offer = ["offer_ID":"","money":0.0,"company":Singleton.sharedInstance.getCompanyDetails(),"posts":global.post,"offerdate":Date(),"user_ID":[],"expiredate":DateFormatManager.sharedInstance.getDateFromStringWithFormat(dateString: self.expiryDate.text!, format: "yyyy/MMM/dd HH:mm:ss"),"allPostsConfirmedSince":nil,"allConfirmed":false,"isAccepted":false,"isExpired":false,"ownerUserID":Auth.auth().currentUser!.uid,"category":self.selectedCategoryArray,"zipCodes":self.zipCode.text!.components(separatedBy: ","),"genders":self.gender.text!.components(separatedBy: ","),"title":self.offerName.text!,"targetCategories":[Category.Actor],"user_IDs":[],"status":"available"] as [String : AnyObject]
+                                var offer = ["offer_ID":"","money":0.0,"company":Singleton.sharedInstance.getCompanyDetails(),"posts":global.post,"offerdate":Date(),"user_ID":[],"expiredate":DateFormatManager.sharedInstance.getDateFromStringWithFormat(dateString: self.expiryDate.text!, format: "yyyy/MMM/dd HH:mm:ss"),"allPostsConfirmedSince":nil,"allConfirmed":false,"isAccepted":false,"isExpired":false,"ownerUserID":Auth.auth().currentUser!.uid,"category":self.selectedCategoryArray,"zipCodes":self.zipCode.text!.components(separatedBy: ","),"genders":genderArray,"title":self.offerName.text!,"targetCategories":[Category.Actor],"user_IDs":[],"status":"available"] as [String : AnyObject]
                                         
                                 if segueOffer != nil {
                                     
