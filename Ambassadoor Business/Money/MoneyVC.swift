@@ -111,11 +111,17 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
-        self.getDeepositDetails()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.getDeepositDetails), name: Notification.Name.init(rawValue: "reloadDeposit"), object: nil)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.getDeepositDetails()
+    }
+    
     @objc func getDeepositDetails() {
+        accountBalance = 0.0
         let user = Singleton.sharedInstance.getCompanyUser()
         getDepositDetails(companyUser: user.userID!) { (deposit, status, error) in
             

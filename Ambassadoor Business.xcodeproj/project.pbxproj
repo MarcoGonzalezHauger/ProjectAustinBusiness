@@ -37,6 +37,7 @@
 		B7CA8455234CB4A600A3223A /* StatisticsStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CA8454234CB4A600A3223A /* StatisticsStruct.swift */; };
 		B7D42099232A9F40009F0FCE /* TransactionInfoTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D42098232A9F40009F0FCE /* TransactionInfoTVCell.swift */; };
 		B7D4209D232AA9A1009F0FCE /* TransactionListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D4209C232AA9A1009F0FCE /* TransactionListVC.swift */; };
+		B7FAB9562350888D00CED248 /* StripeConnectionMKWebview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FAB9552350888C00CED248 /* StripeConnectionMKWebview.swift */; };
 		B7FD83E322F072F800347E8E /* AddOfferVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FD83E222F072F800347E8E /* AddOfferVC.swift */; };
 		B7FD83E722F07E1800347E8E /* AddPostTC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FD83E622F07E1800347E8E /* AddPostTC.swift */; };
 		B7FD83E922F0844C00347E8E /* AddPostTC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7FD83E822F0844C00347E8E /* AddPostTC.xib */; };
@@ -110,6 +111,7 @@
 		B7D030AD23237CA4002B90FF /* Ambassadoor Business-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ambassadoor Business-Bridging-Header.h"; sourceTree = "<group>"; };
 		B7D42098232A9F40009F0FCE /* TransactionInfoTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionInfoTVCell.swift; sourceTree = "<group>"; };
 		B7D4209C232AA9A1009F0FCE /* TransactionListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionListVC.swift; sourceTree = "<group>"; };
+		B7FAB9552350888C00CED248 /* StripeConnectionMKWebview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StripeConnectionMKWebview.swift; sourceTree = "<group>"; };
 		B7FD83E222F072F800347E8E /* AddOfferVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOfferVC.swift; sourceTree = "<group>"; };
 		B7FD83E622F07E1800347E8E /* AddPostTC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostTC.swift; sourceTree = "<group>"; };
 		B7FD83E822F0844C00347E8E /* AddPostTC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddPostTC.xib; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				B761DA232321352100587F28 /* DwollaUserInformationVC.swift */,
 				B7D4209C232AA9A1009F0FCE /* TransactionListVC.swift */,
 				B70DEC7B232C2CFA00580FD7 /* TransactionDetailsVC.swift */,
+				B7FAB9552350888C00CED248 /* StripeConnectionMKWebview.swift */,
 			);
 			path = Money;
 			sourceTree = "<group>";
@@ -555,6 +558,7 @@
 				C0FBFD01226154FC00BADDCD /* categories.swift in Sources */,
 				E83F378D227CDEE100BA6688 /* SignUpVC.swift in Sources */,
 				C089A3C52253D4E500ECF3B0 /* structs.swift in Sources */,
+				B7FAB9562350888D00CED248 /* StripeConnectionMKWebview.swift in Sources */,
 				E8E5468C227BC9E900775A07 /* StatsVC.swift in Sources */,
 				B7D42099232A9F40009F0FCE /* TransactionInfoTVCell.swift in Sources */,
 				E84600852273A92A00CF60F2 /* BusinessLabel.swift in Sources */,
