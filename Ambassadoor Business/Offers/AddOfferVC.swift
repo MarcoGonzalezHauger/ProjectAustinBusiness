@@ -16,12 +16,8 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
     
     @IBOutlet weak var postTableView: UITableView!
     @IBOutlet weak var expiryDate: UITextField!
-    //@IBOutlet weak var influencerCollection: UICollectionView!
-    //@IBOutlet weak var pickedInfluencer: UICollectionView!
     @IBOutlet weak var scroll: UIScrollView!
-    //@IBOutlet weak var pickedText: UILabel!
     @IBOutlet weak var offerName: UITextField!
-    //@IBOutlet weak var offerRate: UITextField!
     @IBOutlet weak var zipCode: UITextField!
     @IBOutlet weak var gender: UITextField!
     @IBOutlet weak var selectedCategoryText: UILabel!

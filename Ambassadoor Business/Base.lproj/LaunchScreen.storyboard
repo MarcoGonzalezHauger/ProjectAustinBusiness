@@ -16,13 +16,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BusinessGradient" translatesAutoresizingMaskIntoConstraints="NO" id="BL0-fv-Xxr">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BusinessGradient" translatesAutoresizingMaskIntoConstraints="NO" id="BL0-fv-Xxr">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashIcon" translatesAutoresizingMaskIntoConstraints="NO" id="W2T-9P-f7s">
-                                <rect key="frame" x="125" y="343.66666666666669" width="125" height="125"/>
+                                <rect key="frame" x="107.66666666666669" y="326" width="160" height="160"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="125" id="aH5-zc-q7O"/>
+                                    <constraint firstAttribute="width" constant="160" id="aH5-zc-q7O"/>
                                     <constraint firstAttribute="width" secondItem="W2T-9P-f7s" secondAttribute="height" id="ot8-X0-CCT"/>
                                 </constraints>
                             </imageView>
