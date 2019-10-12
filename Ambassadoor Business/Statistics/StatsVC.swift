@@ -28,6 +28,7 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
     
 	@IBOutlet var boxes: [UILabel]!
 	
+	@IBOutlet weak var noWorkLabel: UILabel!
 	@IBOutlet weak var paidText: UILabel!
     @IBOutlet weak var allVerifiedText: UILabel!
     @IBOutlet weak var acceptedText: UILabel!
@@ -45,6 +46,7 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		view.bringSubviewToFront(noWorkLabel)
 		self.statisticDataView.isHidden = false
 		//Temporary measure
         
@@ -77,7 +79,8 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
                     
                     if statistics!.count == 0 {
                         self.statisticDataView.isHidden = false
-                    }else{
+						self.noWorkLabel.text = "No Statistics Yet"
+                    } else {
                         self.statisticDataView.isHidden = true
                     }
                     
@@ -130,7 +133,7 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
                     let pieChartView = StaticsPie()
                     pieChartView.frame = CGRect(x: 0, y: 0, width: self.pieView.frame.size.width, height: self.pieView.frame.size.height)
                     pieChartView.segments = [
-                        OfferStatusSegment(color: .red, value: CGFloat(rejectData)),
+						OfferStatusSegment(color: UIColor(named: "expiredColor")!, value: CGFloat(rejectData)),
                         OfferStatusSegment(color: .yellow, value: CGFloat(paidData)),
                         OfferStatusSegment(color: UIColor.init(red: 0.0, green: 128.0/255.0, blue: 0.0, alpha: 1.0), value: CGFloat(acceptData)),
                         OfferStatusSegment(color: .green, value: CGFloat(allverifiedData)),

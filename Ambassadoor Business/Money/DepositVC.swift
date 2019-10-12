@@ -200,7 +200,7 @@ class DepositVC: BaseVC, changedDelegate,BTViewControllerPresentingDelegate,BTAp
             
             self.creditAmount = totalAmount
             
-            self.showAlertMessageForDestruction(title: "Alert", message: "We Will deduct Stripe Fees \(stripeFeeAmount) + \(depositAmount).\n Total Amount = \(totalAmount)", cancelTitle: " I Agree", destructionTitle: "Cancel", completion: {
+            self.showAlertMessageForDestruction(title: "Alert", message: "You will deposit \(depositAmount) into your Ambassadoor Money Account.\n Total Amount (including fees) that will be charged is \(totalAmount)", cancelTitle: " I Agree", destructionTitle: "Cancel", completion: {
                 self.addCardViewController.delegate = self
                 let navigationController = UINavigationController(rootViewController: self.addCardViewController)
                 self.present(navigationController, animated: true)
