@@ -15,9 +15,13 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
     
     
     @IBOutlet weak var postTableView: UITableView!
-    @IBOutlet weak var expiryDate: UITextField!
+    //@IBOutlet weak var expiryDate: UITextField!
+    //@IBOutlet weak var influencerCollection: UICollectionView!
+    //@IBOutlet weak var pickedInfluencer: UICollectionView!
     @IBOutlet weak var scroll: UIScrollView!
+    //@IBOutlet weak var pickedText: UILabel!
     @IBOutlet weak var offerName: UITextField!
+    //@IBOutlet weak var offerRate: UITextField!
     @IBOutlet weak var zipCode: UITextField!
     @IBOutlet weak var gender: UITextField!
     @IBOutlet weak var selectedCategoryText: UILabel!
@@ -41,7 +45,7 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
         let picker = self.addPickerToolBar(textField: gender, object: ["Male","Female","Other","All"])
         picker.pickerDelegate = self
 
-        self.setInputField()
+        //self.setInputField()
         self.tableViewHeight.constant = 80
         self.postTableView.updateConstraints()
         self.postTableView.layoutIfNeeded()
@@ -57,7 +61,7 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
             
             self.offerName.text = segueOffer?.title
             //self.offerRate.text = "$" + String(segueOffer!.money)
-            self.expiryDate.text = DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: segueOffer!.expiredate, format: "yyyy/MMM/dd HH:mm:ss")
+//            self.expiryDate.text = DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: segueOffer!.expiredate, format: "yyyy/MMM/dd HH:mm:ss")
             self.zipCode.text = segueOffer?.zipCodes.joined(separator: ",")
             self.gender.text = segueOffer?.genders.joined(separator: ",")
             selectedCategoryArray.append(contentsOf: segueOffer!.category)
@@ -300,40 +304,40 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
         self.addRightButtonText(text: "Save")
     }
     
-    func setInputField() {
-        let newDateComponents = NSDateComponents()
-        newDateComponents.month = 1
-        newDateComponents.day = 0
-        newDateComponents.year = 0
-        dobPickerView.minimumDate = Date()
-        dobPickerView.maximumDate = NSCalendar.current.date(byAdding: newDateComponents as DateComponents, to: NSDate() as Date)
-        
-        dobPickerView.datePickerMode = UIDatePicker.Mode.dateAndTime
-        
-        self.expiryDate.inputView = dobPickerView
-        dobPickerView.addTarget(self, action: #selector(self.datePickerValueChanged), for: UIControl.Event.valueChanged)
-        self.addDoneButtonOnKeyboard(textField: expiryDate)
-    }
+//    func setInputField() {
+//        let newDateComponents = NSDateComponents()
+//        newDateComponents.month = 1
+//        newDateComponents.day = 0
+//        newDateComponents.year = 0
+//        dobPickerView.minimumDate = Date()
+//        dobPickerView.maximumDate = NSCalendar.current.date(byAdding: newDateComponents as DateComponents, to: NSDate() as Date)
+//
+//        dobPickerView.datePickerMode = UIDatePicker.Mode.dateAndTime
+//
+//        self.expiryDate.inputView = dobPickerView
+//        dobPickerView.addTarget(self, action: #selector(self.datePickerValueChanged), for: UIControl.Event.valueChanged)
+//        self.addDoneButtonOnKeyboard(textField: expiryDate)
+//    }
     
-    @objc func datePickerValueChanged(sender:UIDatePicker) {
-        
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateStyle = DateFormatter.Style.medium
-        
-        dateFormatter.timeStyle = DateFormatter.Style.none
-        // NSLocale *locale = [NSLocale localeWithLocaleIdentifier:@"EN"];
-        let locale = NSLocale.init(localeIdentifier: "en_US")
-        print(locale)
-        //"MM/dd/YYYY HH:mm:ss",yyyy/MMM/dd HH:mm:ss
-        //dateFormatter.dateFormat = "dd/MM/YYYY"
-        dateFormatter.dateFormat = "yyyy/MMM/dd HH:mm:ss"
-        //        dateFormatter.dateFormat = "mm/dd/yyyy HH:mm:ss"
-        dateFormatter.locale = Locale.current
-        expiryDate.text = dateFormatter.string(from: sender.date)
-        
-        
-    }
+//    @objc func datePickerValueChanged(sender:UIDatePicker) {
+//
+//        let dateFormatter = DateFormatter()
+//
+//        dateFormatter.dateStyle = DateFormatter.Style.medium
+//
+//        dateFormatter.timeStyle = DateFormatter.Style.none
+//        // NSLocale *locale = [NSLocale localeWithLocaleIdentifier:@"EN"];
+//        let locale = NSLocale.init(localeIdentifier: "en_US")
+//        print(locale)
+//        //"MM/dd/YYYY HH:mm:ss",yyyy/MMM/dd HH:mm:ss
+//        //dateFormatter.dateFormat = "dd/MM/YYYY"
+//        dateFormatter.dateFormat = "yyyy/MMM/dd HH:mm:ss"
+//        //        dateFormatter.dateFormat = "mm/dd/yyyy HH:mm:ss"
+//        dateFormatter.locale = Locale.current
+//        expiryDate.text = dateFormatter.string(from: sender.date)
+//
+//
+//    }
     
     //MARK: -Textfield Delegate
     
@@ -361,7 +365,7 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
     }
     
     @objc override func doneButtonAction() {
-        self.expiryDate.resignFirstResponder()
+        //self.expiryDate.resignFirstResponder()
         //self.offerRate.resignFirstResponder()
         self.zipCode.resignFirstResponder()
     }
@@ -379,7 +383,7 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
 
             //if self.offerRate.text?.count != 0{
 
-            if self.expiryDate.text?.count != 0{
+//            if self.expiryDate.text?.count != 0{
 
                 if self.zipCode.text?.count != 0{
 
@@ -401,7 +405,13 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
                                     genderArray = self.gender.text!.components(separatedBy: ",")
                                 }
 //
-                                var offer = ["offer_ID":"","money":0.0,"company":Singleton.sharedInstance.getCompanyDetails(),"posts":global.post,"offerdate":Date(),"user_ID":[],"expiredate":DateFormatManager.sharedInstance.getDateFromStringWithFormat(dateString: self.expiryDate.text!, format: "yyyy/MMM/dd HH:mm:ss"),"allPostsConfirmedSince":nil,"allConfirmed":false,"isAccepted":false,"isExpired":false,"ownerUserID":Auth.auth().currentUser!.uid,"category":self.selectedCategoryArray,"zipCodes":self.zipCode.text!.components(separatedBy: ","),"genders":genderArray,"title":self.offerName.text!,"targetCategories":[Category.Actor],"user_IDs":[],"status":"available"] as [String : AnyObject]
+                                //DateFormatManager.sharedInstance.getDateFromStringWithFormat(dateString: self.expiryDate.text!, format: "yyyy/MMM/dd HH:mm:ss")
+                                let expiryDateAdded = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
+                                let dateString = DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: expiryDateAdded, format: "yyyy-MM-dd'T'HH:mm:ss")
+                                
+                                let expiryDate = DateFormatManager.sharedInstance.getExpiryDate(dateString: dateString)
+                                
+                                var offer = ["offer_ID":"","money":0.0,"company":Singleton.sharedInstance.getCompanyDetails(),"posts":global.post,"offerdate":Date(),"user_ID":[],"expiredate":expiryDate,"allPostsConfirmedSince":nil,"allConfirmed":false,"isAccepted":false,"isExpired":false,"ownerUserID":Auth.auth().currentUser!.uid,"category":self.selectedCategoryArray,"zipCodes":self.zipCode.text!.components(separatedBy: ","),"genders":genderArray,"title":self.offerName.text!,"targetCategories":[Category.Actor],"user_IDs":[],"status":"available"] as [String : AnyObject]
                                 
                                 if segueOffer != nil {
                                     
@@ -454,11 +464,12 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
                     }
                 }
 
-            }else{
-                self.showAlertMessage(title: "Alert", message: "Enter the expiry date"){
-
-                }
-            }
+//            }
+//            else{
+//                self.showAlertMessage(title: "Alert", message: "Enter the expiry date"){
+//
+//                }
+//            }
 
             //                }else{
             //
@@ -477,54 +488,55 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
     
     func PickerValue(value: String) {
         self.genderPicker = value
+        self.gender.text = value
     }
     
     @objc override func doneClickPicker() {
         self.gender.resignFirstResponder()
-        if gender.text!.count != 0 {
-            if (gender.text?.contains("All"))!{
-                
-                let stringCount = self.genderPicker.components(separatedBy: ",")
-                
-                if stringCount.count == 0 {
-                    
-                    gender.text = self.genderPicker
-                    
-                }else{
-                    
-                    var stringSepArray = stringCount
-                    
-                    for value in stringCount {
-                        if value == "All" {
-                            
-                            if let index = stringSepArray.firstIndex(of: "All") {
-                                stringSepArray.remove(at: index)
-                            }
-                            
-                        }
-                    }
-                    
-                    gender.text = stringSepArray.joined(separator: ",")
-                    
-                }
-                
-            }else{
-                
-                if self.genderPicker == "All" {
-                    gender.text = "All"
-                }else{
-                    let stringCount = self.genderPicker.components(separatedBy: ",")
-                    if stringCount.count == 0 {
-                        gender.text = self.genderPicker
-                    }else{
-                        gender.text = gender.text! + "," + self.genderPicker
-                    }
-                }
-
-        }
-        }else{
-            gender.text = self.genderPicker
-        }
+//        if gender.text!.count != 0 {
+//            if (gender.text?.contains("All"))!{
+//
+//                let stringCount = self.genderPicker.components(separatedBy: ",")
+//
+//                if stringCount.count == 0 {
+//
+//                    gender.text = self.genderPicker
+//
+//                }else{
+//
+//                    var stringSepArray = stringCount
+//
+//                    for value in stringCount {
+//                        if value == "All" {
+//
+//                            if let index = stringSepArray.firstIndex(of: "All") {
+//                                stringSepArray.remove(at: index)
+//                            }
+//
+//                        }
+//                    }
+//
+//                    gender.text = stringSepArray.joined(separator: ",")
+//
+//                }
+//
+//            }else{
+//
+//                if self.genderPicker == "All" {
+//                    gender.text = "All"
+//                }else{
+//                    let stringCount = self.genderPicker.components(separatedBy: ",")
+//                    if stringCount.count == 0 {
+//                        gender.text = self.genderPicker
+//                    }else{
+//                        gender.text = gender.text! + "," + self.genderPicker
+//                    }
+//                }
+//
+//        }
+//        }else{
+//            gender.text = self.genderPicker
+//        }
         
     }
     
@@ -593,7 +605,7 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
         if array.count != 0 {
             selectedCategoryArray.removeAll()
             selectedCategoryArray.append(contentsOf: array)
-            let selectedCategory  = array.joined(separator: ",")
+            let selectedCategory  = array.joined(separator: ", ")
             self.selectedCategoryText.text = selectedCategory
         }
     }
@@ -614,7 +626,7 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
                 
                 //if self.offerRate.text?.count != 0{
                     
-                    if self.expiryDate.text?.count != 0{
+ //                   if self.expiryDate.text?.count != 0{
                         
                         if self.zipCode.text?.count != 0{
                             
@@ -635,8 +647,14 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
                                         }else{
                                             genderArray = self.gender.text!.components(separatedBy: ",")
                                         }
-                                
-                                var offer = ["offer_ID":"","money":0.0,"company":Singleton.sharedInstance.getCompanyDetails(),"posts":global.post,"offerdate":Date(),"user_ID":[],"expiredate":DateFormatManager.sharedInstance.getDateFromStringWithFormat(dateString: self.expiryDate.text!, format: "yyyy/MMM/dd HH:mm:ss"),"allPostsConfirmedSince":nil,"allConfirmed":false,"isAccepted":false,"isExpired":false,"ownerUserID":Auth.auth().currentUser!.uid,"category":self.selectedCategoryArray,"zipCodes":self.zipCode.text!.components(separatedBy: ","),"genders":genderArray,"title":self.offerName.text!,"targetCategories":[Category.Actor],"user_IDs":[],"status":"available"] as [String : AnyObject]
+                                //DateFormatManager.sharedInstance.getDateFromStringWithFormat(dateString: self.expiryDate.text!, format: "yyyy/MMM/dd HH:mm:ss")
+                                //let expiryDate = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
+                                        
+                                        let expiryDateAdded = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
+                                        let dateString = DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: expiryDateAdded, format: "yyyy-MM-dd'T'HH:mm:ss")
+                                        
+                                        let expiryDate = DateFormatManager.sharedInstance.getExpiryDate(dateString: dateString)
+                                var offer = ["offer_ID":"","money":0.0,"company":Singleton.sharedInstance.getCompanyDetails(),"posts":global.post,"offerdate":Date(),"user_ID":[],"expiredate":expiryDate,"allPostsConfirmedSince":nil,"allConfirmed":false,"isAccepted":false,"isExpired":false,"ownerUserID":Auth.auth().currentUser!.uid,"category":self.selectedCategoryArray,"zipCodes":self.zipCode.text!.components(separatedBy: ","),"genders":genderArray,"title":self.offerName.text!,"targetCategories":[Category.Actor],"user_IDs":[],"status":"available"] as [String : AnyObject]
                                         
                                 if segueOffer != nil {
                                     
@@ -691,11 +709,12 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
                             }
                         }
                         
-                    }else{
-                        self.showAlertMessage(title: "Alert", message: "Enter the expiry date"){
-                            
-                        }
-                    }
+//                    }
+//                    else{
+//                        self.showAlertMessage(title: "Alert", message: "Enter the expiry date"){
+//
+//                        }
+//                    }
                     
 //                }else{
 //
