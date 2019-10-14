@@ -395,6 +395,11 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
         self.ambassadoorCommision = Double((String((self.moneyText.text?.dropFirst())!)))! * Singleton.sharedInstance.getCommision()
         
         self.templateOffer?.money = Double((String((self.moneyText.text?.dropFirst())!)))! - self.ambassadoorCommision
+        let expiryDateAdded = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
+        let dateString = DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: expiryDateAdded, format: "yyyy-MM-dd'T'HH:mm:ss")
+        
+        let expiryDate = DateFormatManager.sharedInstance.getExpiryDate(dateString: dateString)
+        self.templateOffer?.expiredate = expiryDate
         self.templateOffer?.user_IDs = influencer!
         let path = Auth.auth().currentUser!.uid + "/" + self.templateOffer!.offer_ID
         sentOutOffers(pathString: path, templateOffer: self.templateOffer!) { (template, status) in

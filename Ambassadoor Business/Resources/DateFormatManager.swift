@@ -28,6 +28,43 @@ class DateFormatManager: NSObject {
         
     }
     
+    func getExpiryDateFormat(dateString: String) -> String {
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "MMM dd,yyyy"
+        //dateFormatterPrint.dateFormat = "MMM, yyyy"
+        
+        if let date = dateFormatterGet.date(from: dateString) {
+            print(dateFormatterPrint.string(from: date))
+            
+            return dateFormatterPrint.string(from: date)
+        } else {
+            print("There was an error decoding the string")
+            return ""
+        }
+    }
+    
+    func getExpiryDate(dateString: String) -> Date {
+        
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "yyyy/MMM/dd HH:mm:ss"
+        //dateFormatterPrint.dateFormat = "MMM, yyyy"
+        
+        let date = dateFormatterGet.date(from: dateString)
+        
+        let dateString = dateFormatterPrint.string(from: date!)
+        
+        let finalDate = dateFormatterPrint.date(from: dateString)
+        
+        return finalDate!
+    }
+    
+    
     func getCurrentDateString() -> String {
         let dateFormatter = getDateFormatterWithFormat(format: "yyyy-MM-dd'T'HH:mm:ss")
         let dateString = dateFormatter.string(from: Date())
