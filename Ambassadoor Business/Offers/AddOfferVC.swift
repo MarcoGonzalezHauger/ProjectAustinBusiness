@@ -301,7 +301,9 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
         self.textFieldChangeNotification(textField: self.zipCode)
         //self.addDoneButtonOnKeyboard(textField: self.offerRate)
         self.addDoneButtonOnKeyboard(textField: self.zipCode)
+        //self.customizeNavigationBar()
         self.addRightButtonText(text: "Save")
+        self.customizeNavigationBar()
     }
     
 //    func setInputField() {
@@ -432,6 +434,7 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
                                 createTemplateOffer(pathString: path, edited: edited, templateOffer: template) { (offer, response) in
                                     timer.invalidate()
                                     self.hideActivityIndicator()
+                                    self.segueOffer = template
                                     self.performSegue(withIdentifier: "toDistributeOffer", sender: offer)
                                 }
 
@@ -618,114 +621,98 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
         
         
         
-        var influencerFilter = ["primaryCategory":["Other"],"followerCount":[845]]
         
-        
-        
-            if self.offerName.text?.count != 0{
+        if self.offerName.text?.count != 0{
+            
+            
+            if self.zipCode.text?.count != 0{
                 
-                //if self.offerRate.text?.count != 0{
+                if self.zipCode.text!.components(separatedBy: ",").last?.count == 5 {
                     
- //                   if self.expiryDate.text?.count != 0{
+                    if self.gender.text?.count != 0 {
                         
-                        if self.zipCode.text?.count != 0{
-                            
-                            if self.zipCode.text!.components(separatedBy: ",").last?.count == 5 {
-                                
-                                if self.gender.text?.count != 0 {
-                                    
-                                    if self.selectedCategoryArray.count != 0 {
+                        if self.selectedCategoryArray.count != 0 {
                             let timer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(self.timerAction(sender:)), userInfo: nil, repeats: false)
-//                            getFilteredInfluencers(category: influencerFilter as [String : [AnyObject]]) { (influencer, errorStatus) in
-                                        
-                                        var genderArray = [String]()
-                                        
-                                        if (self.gender.text?.contains("All"))!{
-                                            
-                                            genderArray.append(contentsOf: ["Male","Female","Other"])
-                                            
-                                        }else{
-                                            genderArray = self.gender.text!.components(separatedBy: ",")
-                                        }
-                                //DateFormatManager.sharedInstance.getDateFromStringWithFormat(dateString: self.expiryDate.text!, format: "yyyy/MMM/dd HH:mm:ss")
-                                //let expiryDate = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
-                                        
-                                        let expiryDateAdded = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
-                                        let dateString = DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: expiryDateAdded, format: "yyyy-MM-dd'T'HH:mm:ss")
-                                        
-                                        let expiryDate = DateFormatManager.sharedInstance.getExpiryDate(dateString: dateString)
-                                var offer = ["offer_ID":"","money":0.0,"company":Singleton.sharedInstance.getCompanyDetails(),"posts":global.post,"offerdate":Date(),"user_ID":[],"expiredate":expiryDate,"allPostsConfirmedSince":nil,"allConfirmed":false,"isAccepted":false,"isExpired":false,"ownerUserID":Auth.auth().currentUser!.uid,"category":self.selectedCategoryArray,"zipCodes":self.zipCode.text!.components(separatedBy: ","),"genders":genderArray,"title":self.offerName.text!,"targetCategories":[Category.Actor],"user_IDs":[],"status":"available"] as [String : AnyObject]
-                                        
-                                if segueOffer != nil {
-                                    
-                                    offer["user_IDs"] = segueOffer?.user_IDs as AnyObject?
-                                            
-                                }
+                            //                            getFilteredInfluencers(category: influencerFilter as [String : [AnyObject]]) { (influencer, errorStatus) in
+                            
+                            var genderArray = [String]()
+                            
+                            if (self.gender.text?.contains("All"))!{
                                 
-                                let template = TemplateOffer.init(dictionary: offer)
-                                var edited = false
-                                var path = Auth.auth().currentUser!.uid
+                                genderArray.append(contentsOf: ["Male","Female","Other"])
                                 
-                                if self.segueOffer != nil {
-                                   edited = true
-                                    path = path + "/" + self.segueOffer!.offer_ID
-                                    template.offer_ID = self.segueOffer!.offer_ID
-                                }
+                            }else{
+                                genderArray = self.gender.text!.components(separatedBy: ",")
+                            }
+                            
+                            let expiryDateAdded = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
+                            let dateString = DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: expiryDateAdded, format: "yyyy-MM-dd'T'HH:mm:ss")
+                            
+                            let expiryDate = DateFormatManager.sharedInstance.getExpiryDate(dateString: dateString)
+                            
+                            var offer = ["offer_ID":"","money":0.0,"company":Singleton.sharedInstance.getCompanyDetails(),"posts":global.post,"offerdate":Date(),"user_ID":[],"expiredate":expiryDate,"allPostsConfirmedSince":nil,"allConfirmed":false,"isAccepted":false,"isExpired":false,"ownerUserID":Auth.auth().currentUser!.uid,"category":self.selectedCategoryArray,"zipCodes":self.zipCode.text!.components(separatedBy: ","),"genders":genderArray,"title":self.offerName.text!,"targetCategories":[Category.Actor],"user_IDs":[],"status":"available"] as [String : AnyObject]
+                            
+                            if segueOffer != nil {
                                 
-                                createTemplateOffer(pathString: path, edited: edited, templateOffer: template) { (offer, response) in
+                                offer["user_IDs"] = segueOffer?.user_IDs as AnyObject?
+                                
+                            }
+                            
+                            let template = TemplateOffer.init(dictionary: offer)
+                            var edited = false
+                            var path = Auth.auth().currentUser!.uid
+                            
+                            if self.segueOffer != nil {
+                                edited = true
+                                path = path + "/" + self.segueOffer!.offer_ID
+                                template.offer_ID = self.segueOffer!.offer_ID
+                            }
+                            
+                            createTemplateOffer(pathString: path, edited: edited, templateOffer: template) { (offer, response) in
                                 timer.invalidate()
                                 self.hideActivityIndicator()
                                 self.createLocalNotification(notificationName: "reloadOffer", userInfo: [:])
                                 global.post.removeAll()
                                 self.navigationController?.popViewController(animated: true)
-                                }
-
-                            //}
-                                            
-                                        
-                                    }else{
-                                        self.showAlertMessage(title: "Alert", message: "Please Choose prefered categories"){
-                                            
-                                        }
-                                    }
-                                    
-                                }else{
-                                    
-                                    self.showAlertMessage(title: "Alert", message: "Please Choose genders to filter prefered influencers"){
-                                        
-                                    }
-                                    
-                                }
-                                
-                            }else{
-                                self.showAlertMessage(title: "Alert", message: "Enter the valid Zipcode"){
-                                    
-                                }
                             }
                             
+                            
                         }else{
-                            self.showAlertMessage(title: "Alert", message: "Enter the expiry date"){
+                            self.showAlertMessage(title: "Alert", message: "Please Choose prefered categories"){
                                 
                             }
                         }
                         
-//                    }
-//                    else{
-//                        self.showAlertMessage(title: "Alert", message: "Enter the expiry date"){
-//
-//                        }
-//                    }
+                    }else{
+                        
+                        self.showAlertMessage(title: "Alert", message: "Please Choose genders to filter prefered influencers"){
+                            
+                        }
+                        
+                    }
                     
-//                }else{
-//
-//                    self.showAlertMessage(title: "Alert", message: "Enter the offer rate") {
-//                    }
-//                }
+                }else{
+                    self.showAlertMessage(title: "Alert", message: "Enter the valid Zipcode"){
+                        
+                    }
+                }
                 
             }else{
-                self.showAlertMessage(title: "Alert", message: "Please enter your offer name") {
+                self.showAlertMessage(title: "Alert", message: "Enter the expiry date"){
+                    
+                }
+            }
+            
+            
+        }else{
+            self.showAlertMessage(title: "Alert", message: "Please enter your offer name") {
             }
         }
+        
+        
+        
+        
+        
         
 }
     

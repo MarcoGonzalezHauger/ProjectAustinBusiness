@@ -25,6 +25,7 @@ class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         categoryListArray = [Section]()
         categoryList.append(contentsOf: categoryListArray)
         self.customizeNavigationBar()
@@ -34,6 +35,11 @@ class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
     }
     
     func addRightButton() {
@@ -133,12 +139,10 @@ class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
     func customizeNavigationBar() {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.tintColor = UIColor.blue
-        self.navigationController?.navigationBar.barTintColor = UIColor.white
-        self.navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.foregroundColor:UIColor.black, NSAttributedString.Key.font:UIFont.systemFont(ofSize: 14.0)]
-        self.navigationController?.view.backgroundColor = UIColor.clear
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 239.0/255.0, green: 239.0/255.0, blue: 244.0/255.0, alpha: 1.0)
+        self.navigationController?.view.backgroundColor = UIColor.black
     }
     
     

@@ -200,7 +200,10 @@ class DepositVC: BaseVC, changedDelegate,BTViewControllerPresentingDelegate,BTAp
             
             self.creditAmount = totalAmount
             
-            self.showAlertMessageForDestruction(title: "Alert", message: "You will deposit \(depositAmount) into your Ambassadoor Money Account.\n Total Amount (including fees) that will be charged is \(totalAmount)", cancelTitle: " I Agree", destructionTitle: "Cancel", completion: {
+			let DepositString = NumberToPrice(Value: depositAmount, enforceCents: true)
+			let TotalString = NumberToPrice(Value: totalAmount, enforceCents: true)
+			
+            self.showAlertMessageForDestruction(title: "Alert", message: "You will deposit \(DepositString) into your Ambassadoor Money Account.\n Total Amount (including fees) that will be charged is \(TotalString)", cancelTitle: "OK", destructionTitle: "Cancel", completion: {
                 self.addCardViewController.delegate = self
                 let navigationController = UINavigationController(rootViewController: self.addCardViewController)
                 self.present(navigationController, animated: true)
@@ -378,18 +381,18 @@ class DepositVC: BaseVC, changedDelegate,BTViewControllerPresentingDelegate,BTAp
                      var depositHistory: [AnyObject]?
                      */
                     
-                    print(paymentIntent?.amount)
-                    print(paymentIntent?.clientSecret)
-                    print(paymentIntent?.currency)
-                    print(paymentIntent?.paymentMethodId)
-                    print(paymentIntent?.stripeId)
-                    print(paymentIntent?.status)
-                    print(paymentMethodParams.card?.expMonth)
+                    print(paymentIntent?.amount as Any)
+                    print(paymentIntent?.clientSecret as Any)
+                    print(paymentIntent?.currency as Any)
+                    print(paymentIntent?.paymentMethodId as Any)
+                    print(paymentIntent?.stripeId as Any)
+					print(paymentIntent?.status as Any)
+                    print(paymentMethodParams.card?.expMonth as Any)
                     
-                    var depositedAmount = ((paymentIntent?.amount.doubleValue)!)/100
+					let depositedAmount = Double(self.amountOfMoneyInCents) / 100
                     
                     let cardDetails = ["last4":(paymentMethodParams.card?.last4)!,"expireMonth":(paymentMethodParams.card?.expMonth)!,"expireYear":(paymentMethodParams.card?.expYear)!,"country":(paymentMethodParams.card?.country)!] as [String : Any]
-                    print(paymentIntent?.created?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss"))
+                    print(paymentIntent?.created?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss") as Any)
                     
                     
                     

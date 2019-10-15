@@ -77,7 +77,7 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func composeAction(sender: UIButton){
-        
+        global.post.removeAll()
         self.performSegue(withIdentifier: "toCreateOfferView", sender: nil)
     }
     
@@ -106,7 +106,7 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         super.viewDidLoad()
         //let user = Singleton.sharedInstance.getCompanyUser().userID!
         //global.OfferDrafts = GetOffers(userId: user)
-		
+        self.customizeNavigationBar()
         
     }
     

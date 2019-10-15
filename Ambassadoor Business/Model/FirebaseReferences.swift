@@ -492,6 +492,8 @@ func getFilteredInfluencers(category: [String:[AnyObject]],completion: @escaping
                     userIDs.append(first["id"] as! String)
                     user.append(User.init(dictionary: first))
                 }
+				
+				userIDs.shuffle()
                 
             }
             completion(userIDs, "success", user)
@@ -514,7 +516,7 @@ func getFilteredInfluencers(category: [String:[AnyObject]],completion: @escaping
 //    }
 }
 
-func getAllProducts(path: String, completion: @escaping ([Product]) -> ()) {
+func getAllProducts(path: String, completion: @escaping ([Product]?) -> ()) {
     let productsRef = Database.database().reference().child("products").child(path)
     var products: [Product] = []
     productsRef.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -525,6 +527,8 @@ func getAllProducts(path: String, completion: @escaping ([Product]) -> ()) {
                 products.append(productInstance)
             }
             completion(products)
+        }else{
+            completion(nil)
         }
     }, withCancel: nil)
 }

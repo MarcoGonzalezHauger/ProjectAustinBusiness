@@ -76,7 +76,7 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
 		
 		//This is the part where the image is uploaded and is assigned a URL by Chris.
 		
-		let imageUrl: String = uploadImage(image: croppedImage)
+		//let imageUrl: String = uploadImage(image: croppedImage)
 		delegate?.imagePicked(image: croppedImage, imageUrl: "")
 		self.dismiss(animated: true, completion: nil)
 	}

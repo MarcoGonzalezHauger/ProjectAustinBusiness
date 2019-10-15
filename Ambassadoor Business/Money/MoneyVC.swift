@@ -69,7 +69,7 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
 			cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
             if ThisTransaction.type == "sale"{
                 let amt = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
-			cell.descriptionLabel.text = "Despotied \(amt) into Ambassadoor"
+			cell.descriptionLabel.text = "Deposited \(amt) into Ambassadoor"
             }else if ThisTransaction.type == "paid" {
                 let amt = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
                 cell.descriptionLabel.text = "Paid \(amt) to \(ThisTransaction.status)"

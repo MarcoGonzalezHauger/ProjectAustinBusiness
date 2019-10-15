@@ -79,7 +79,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.customizeNavigationBar()
         // Do any additional setup after loading the view.
         self.addNavigationBarTitleView(title: "Distribute Offer", image: UIImage())
         self.addDoneButtonOnKeyboard(textField: moneyText)
@@ -436,7 +436,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                 userIDValue.append(contentsOf: template.user_IDs)
                 let updateTemplatePath = Auth.auth().currentUser!.uid + "/" +  template.offer_ID
                 updateTemplateOffers(pathString: updateTemplatePath, templateOffer: template, userID: userIDValue)
-                let user = Singleton.sharedInstance.getCompanyUser()
+                let userCompany = Singleton.sharedInstance.getCompanyUser()
                 let depositBalance = self.depositValue!.currentBalance! - deductedAmount
                 let totalDeductedAmt = (self.depositValue?.totalDeductedAmount!)! + deductedAmount
                 //Add Transaction Details
@@ -457,15 +457,25 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                 self.depositValue?.lastTransactionHistory = transaction
                 
                 
-                sendDepositAmount(deposit: self.depositValue!, companyUser: user.userID!) { (deposit, status) in
+                sendDepositAmount(deposit: self.depositValue!, companyUser: userCompany.userID!) { (deposit, status) in
                     self.depositValue = deposit
                 }
                 if Singleton.sharedInstance.getCompanyDetails().referralcode?.count != 0 {
                 self.sentOutReferralCommision(referral: Singleton.sharedInstance.getCompanyDetails().referralcode, offerID: self.templateOffer!.offer_ID)
                 }
-                global.post.removeAll()
-                self.createLocalNotification(notificationName: "reloadOffer", userInfo: [:])
-                self.navigationController?.popToRootViewController(animated: true)
+                
+//                let distributedUsers = user?.reduce("", { (currentUser, nextUser) -> String in
+//
+//                    return currentUser + "," + nextUser.username!
+//
+//                })
+                
+                self.showAlertMessage(title: "Offer Distrubuted", message: "Your offer was sent to \(influencer?.count ?? 0) influencers, totaling $\(deductedAmount).If you send this Offer again, Ambassadoor will not send this offer to these influencer again.") {
+                    global.post.removeAll()
+                    self.createLocalNotification(notificationName: "reloadOffer", userInfo: [:])
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
+                
             }
             
         }

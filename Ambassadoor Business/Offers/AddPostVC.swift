@@ -27,7 +27,7 @@ class AddPostVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UITextFieldDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.customizeNavigationBar()
         if index != nil {
             let post = global.post[index!]
             self.desPost.text = post.instructions
@@ -41,8 +41,9 @@ class AddPostVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UITextFieldDel
         if global.products.count == 0 {
         self.showActivityIndicator()
         getAllProducts(path: path) { (product) in
+            if product != nil {
             self.hideActivityIndicator()
-            global.products.append(contentsOf: product)
+            global.products.append(contentsOf: product!)
             self.productTable.reloadData()
             if self.index != nil {
                 let post = global.post[self.index!]
@@ -60,6 +61,10 @@ class AddPostVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UITextFieldDel
                 
             }
             self.productTable.reloadData()
+            }
+            
+            }else{
+                self.hideActivityIndicator()
             }
 
         }

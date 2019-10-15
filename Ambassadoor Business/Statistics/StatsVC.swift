@@ -15,8 +15,6 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
     
     
     
-	let stats: StatisticsStruct? = nil
-	
     @IBOutlet weak var pieView: ShadowView!
     @IBOutlet weak var statisticDataView: UIView!
     
@@ -26,10 +24,7 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
     var available: Int = 0
     var rejected: Int = 0
     
-	@IBOutlet var boxes: [UILabel]!
-	
-	@IBOutlet weak var noWorkLabel: UILabel!
-	@IBOutlet weak var paidText: UILabel!
+    @IBOutlet weak var paidText: UILabel!
     @IBOutlet weak var allVerifiedText: UILabel!
     @IBOutlet weak var acceptedText: UILabel!
     @IBOutlet weak var availableText: UILabel!
@@ -43,23 +38,22 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
     var instagramDataUserArray = [String]()
     var instagramOfferArray = [String: instagramOfferDetails]()
     
+    let stats: StatisticsStruct? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		view.bringSubviewToFront(noWorkLabel)
 		self.statisticDataView.isHidden = false
 		//Temporary measure
         
         //self.sentOutReferralCommision(referral: "NJ200919HWE6")
         
-		for l in boxes {
-			l.layer.cornerRadius = 5
-			l.clipsToBounds = true
-		}
+        
+        
 		
 //        YourCompany = Company.init(dictionary: ["name": "KRILL GROUP", "logo": "", "mission": "Turn a profit.", "website": "https://www.google.com/", "account_ID": "0", "instagram_name": "marcogonzalezhauger", "description": "No description to see here!", "accountBalance": 1000.0])
 //		accountBalance = 610.78
 //		transactionHistory = [Transaction(description: "Despotied $620.77 into Ambassadoor", details: "Order processed.", time: Date.init(timeIntervalSinceNow: -10000), amount: 620.77),Transaction(description: "You paid $9.99", details: "Processed.", time: Date.init(timeIntervalSinceNow: 0), amount: -9.99)]
+        
         if Singleton.sharedInstance.getCompanyUser().isCompanyRegistered == false {
             self.performSegue(withIdentifier: "toCompanyRegister", sender: self)
         }else{
@@ -71,6 +65,27 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
                 Singleton.sharedInstance.setCompanyDetails(company: company!)
             }
             
+        }
+
+	}
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+//        if Singleton.sharedInstance.getCompanyUser().isCompanyRegistered == false {
+//            self.performSegue(withIdentifier: "toCompanyRegister", sender: self)
+//        }else{
+//
+//            let user = Singleton.sharedInstance.getCompanyUser().companyID!
+//
+//            getCompany(companyID: user) { (company, error) in
+//
+//                Singleton.sharedInstance.setCompanyDetails(company: company!)
+//            }
+            self.accepted = 0
+            self.rejected = 0
+            self.paid = 0
+            self.allVerified = 0
+            self.available = 0
             getStatisticsData { (statistics, status, error) in
                 
                 if error == nil {
@@ -79,8 +94,7 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
                     
                     if statistics!.count == 0 {
                         self.statisticDataView.isHidden = false
-						self.noWorkLabel.text = "No Statistics Yet"
-                    } else {
+                    }else{
                         self.statisticDataView.isHidden = true
                     }
                     
@@ -133,7 +147,7 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
                     let pieChartView = StaticsPie()
                     pieChartView.frame = CGRect(x: 0, y: 0, width: self.pieView.frame.size.width, height: self.pieView.frame.size.height)
                     pieChartView.segments = [
-						OfferStatusSegment(color: UIColor(named: "expiredColor")!, value: CGFloat(rejectData)),
+                        OfferStatusSegment(color: .red, value: CGFloat(rejectData)),
                         OfferStatusSegment(color: .yellow, value: CGFloat(paidData)),
                         OfferStatusSegment(color: UIColor.init(red: 0.0, green: 128.0/255.0, blue: 0.0, alpha: 1.0), value: CGFloat(acceptData)),
                         OfferStatusSegment(color: .green, value: CGFloat(allverifiedData)),
@@ -165,11 +179,8 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
                 
             }
             
-        }
-            
-		
-		
-	}
+       // }
+    }
     
     //MARK: UITableview Datasource
     

@@ -10,6 +10,7 @@
 import UIKit
 import FirebaseAuth
 import SDWebImage
+import Firebase
 
 protocol ProductDelegate {
 	func WasSaved(index: Int) -> ()
@@ -80,8 +81,12 @@ class ProductsVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ProductDel
 	
 	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 		if editingStyle == .delete {
+			let user = Singleton.sharedInstance.getCompanyUser()
+			let ref = Database.database().reference().child("products").child(Auth.auth().currentUser!.uid).child(user.companyID!).child(global.products[indexPath.row - 1].product_ID!)
+			ref.removeValue()
 			global.products.remove(at: indexPath.row - 1)
 			shelf.deleteRows(at: [indexPath], with: .bottom)
+			
 		}
 	}
 	
@@ -97,7 +102,7 @@ class ProductsVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ProductDel
 		if indexPath.row == 0 {
 //            global.products.insert(Product.init(dictionary: ["name": "", "price": 0.0, "buy_url": "", "color": "", "product_ID": "","image":""]), at: 0)
 			//shelf.insertRows(at: [IndexPath(row: 1, section: 0)], with: .top)
-			let productindex = 0
+//			let productindex = 0
 			//let product = global.products[productindex]
             let product = Product.init(dictionary: ["name": "", "price": 0.0, "buy_url": "", "color": "", "product_ID": "","image":""])
 			passProduct = product
@@ -149,12 +154,17 @@ class ProductsVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ProductDel
         let path = Auth.auth().currentUser!.uid + "/" + user.companyID!
         self.showActivityIndicator()
         getAllProducts(path: path) { (product) in
+            if product != nil {
             self.hideActivityIndicator()
             global.products.removeAll()
-            global.products.append(contentsOf: product)
+            global.products.append(contentsOf: product!)
             self.shelf.reloadData()
+            }else{
+                self.hideActivityIndicator()
+            }
             
         }
+        
     }
 
 }
