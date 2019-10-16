@@ -401,7 +401,15 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
         
         let expiryDate = DateFormatManager.sharedInstance.getExpiryDate(dateString: dateString)
         self.templateOffer?.expiredate = expiryDate
-        self.templateOffer?.user_IDs.append(contentsOf: influencer!)
+        for influencerID in influencer! {
+            if (self.templateOffer?.user_IDs.contains(influencerID))!{
+                
+            }else{
+                
+                self.templateOffer?.user_IDs.append(influencerID)
+            }
+        }
+        
         let path = Auth.auth().currentUser!.uid + "/" + self.templateOffer!.offer_ID
         sentOutOffers(pathString: path, templateOffer: self.templateOffer!) { (template, status) in
             
@@ -431,10 +439,22 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                 //let removeTemplatePath = Auth.auth().currentUser!.uid + "/" +  template.offer_ID
                 //removeTemplateOffers(pathString: removeTemplatePath, templateOffer: template)
                 var userIDValue = [String]()
+                var userIDDubValue = [String]()
                 for uderIDs in user! {
-                    userIDValue.append(uderIDs.id!)
+                    userIDDubValue.append(uderIDs.id!)
                 }
-                userIDValue.append(contentsOf: template.user_IDs)
+                userIDDubValue.append(contentsOf: template.user_IDs)
+                
+                for uniqueID in userIDDubValue {
+                    
+                    if userIDValue.contains(uniqueID){
+                        
+                    }else{
+                        userIDValue.append(uniqueID)
+                    }
+                    
+                }
+                
                 let updateTemplatePath = Auth.auth().currentUser!.uid + "/" +  template.offer_ID
                 updateTemplateOffers(pathString: updateTemplatePath, templateOffer: template, userID: userIDValue)
                 let userCompany = Singleton.sharedInstance.getCompanyUser()

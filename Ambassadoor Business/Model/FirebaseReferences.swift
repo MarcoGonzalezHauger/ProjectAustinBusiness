@@ -837,52 +837,64 @@ func getInstagramPosts(statisticsData: [Statistics],completion: @escaping([Strin
         
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             
-            if let instagramPost = snapshot.value as? NSDictionary {
-               
-                if instagramOfferDetailsArray.keys.contains(statistics.userID){
-                    let insData = instagramOfferDetailsArray[statistics.userID]
+            print(snapshot.value)
+            
+            if let instagramPostOffer = snapshot.value as? NSDictionary {
+                
+                for offerKey in instagramPostOffer.allKeys {
                     
-                    if let commentsData = instagramPost["comments"] as? NSDictionary {
+                    if let instagramPost = instagramPostOffer[offerKey] as? NSDictionary {
                         
-                        insData?.commentsCount = insData!.commentsCount + (commentsData["count"] as! Int)
+                        if instagramOfferDetailsArray.keys.contains(statistics.userID){
+                            let insData = instagramOfferDetailsArray[statistics.userID]
+                            
+                            if let commentsData = instagramPost["comments"] as? NSDictionary {
+                                
+                                insData?.commentsCount = insData!.commentsCount + (commentsData["count"] as! Int)
+                                
+                            }
+                            
+                            if let likesData = instagramPost["likes"] as? NSDictionary {
+                                
+                                insData?.likesCount = insData!.likesCount + (likesData["count"] as! Int)
+                                
+                            }
+                            
+                            if let userData = instagramPost["user"] as? NSDictionary {
+                                insData?.userInfo = userData
+                            }
+                            
+                            instagramOfferDetailsArray[statistics.userID] = insData
+                            
+                        }else{
+                            
+                            let insData = instagramOfferDetails()
+                            
+                            if let commentsData = instagramPost["comments"] as? NSDictionary {
+                                
+                                insData.commentsCount = (commentsData["count"] as! Int)
+                                
+                            }
+                            
+                            if let likesData = instagramPost["likes"] as? NSDictionary {
+                                
+                                insData.likesCount = (likesData["count"] as! Int)
+                                
+                            }
+                            
+                            if let userData = instagramPost["user"] as? NSDictionary {
+                                insData.userInfo = userData
+                            }
+                            
+                            instagramOfferDetailsArray[statistics.userID] = insData
+                            
+                        }
                         
                     }
-                    
-                    if let likesData = instagramPost["likes"] as? NSDictionary {
-                        
-                        insData?.likesCount = insData!.likesCount + (likesData["count"] as! Int)
-                        
-                    }
-                    
-                    if let userData = instagramPost["user"] as? NSDictionary {
-                        insData?.userInfo = userData
-                    }
-                    
-                    instagramOfferDetailsArray[statistics.userID] = insData
-                    
-                }else{
-                    
-                    let insData = instagramOfferDetails()
-                    
-                    if let commentsData = instagramPost["comments"] as? NSDictionary {
-                        
-                        insData.commentsCount = (commentsData["count"] as! Int)
-                        
-                    }
-                    
-                    if let likesData = instagramPost["likes"] as? NSDictionary {
-                        
-                        insData.likesCount = (likesData["count"] as! Int)
-                        
-                    }
-                    
-                    if let userData = instagramPost["user"] as? NSDictionary {
-                        insData.userInfo = userData
-                    }
-                    
-                    instagramOfferDetailsArray[statistics.userID] = insData
                     
                 }
+               
+
                 
             }
             

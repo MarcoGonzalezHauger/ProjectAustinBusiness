@@ -29,6 +29,7 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
     @IBOutlet weak var acceptedText: UILabel!
     @IBOutlet weak var availableText: UILabel!
     @IBOutlet weak var rejectedText: UILabel!
+    @IBOutlet weak var noneInfluencers: UIView!
     
     @IBOutlet weak var totalPosts: UILabel!
     
@@ -160,11 +161,15 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
                         if error == nil {
                             
                             if InstagramData?.count != 0 {
+                                self.noneInfluencers.isHidden = true
                                 self.instagramOfferArray.removeAll()
                                 self.instagramOfferArray = InstagramData!
+                                self.instagramDataUserArray.removeAll()
                                 self.instagramDataUserArray.append(contentsOf: InstagramData!.keys)
                                 self.userTable.reloadData()
                                 
+                            }else{
+                                self.noneInfluencers.isHidden = false
                             }
                             
                         }

@@ -76,6 +76,13 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        if indexPath.row != 0 {
+            let template = global.OfferDrafts[indexPath.row - 1]
+            self.performSegue(withIdentifier: "toCreateOfferView", sender: template)
+        }
+    }
+    
     @objc func composeAction(sender: UIButton){
         global.post.removeAll()
         self.performSegue(withIdentifier: "toCreateOfferView", sender: nil)
