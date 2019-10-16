@@ -485,6 +485,8 @@ func getFilteredInfluencers(category: [String:[AnyObject]],completion: @escaping
                         
                     }
                     
+                }else{
+                    checkCategoryArray = true
                 }
                 
                 
@@ -494,6 +496,7 @@ func getFilteredInfluencers(category: [String:[AnyObject]],completion: @escaping
                 }
 				
 				userIDs.shuffle()
+                user.shuffle()
                 
             }
             completion(userIDs, "success", user)
@@ -765,10 +768,6 @@ func getStatisticsData(completion: @escaping([Statistics]?,String,Error?) -> Voi
                             let refUserPost = Database.database().reference().child("SentOutOffersToUsers").child(userID).child(offerKey as! String)
                             
                             print(offerKey)
-                            
-                            if "-Lq1aMXg-fOz1uTHkiLL" == offerKey as! String {
-                                
-                            }
                             
                             refUserPost.observeSingleEvent(of: .value, with: { (userpublish) in
                                 

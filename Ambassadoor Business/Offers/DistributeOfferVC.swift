@@ -241,7 +241,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
             if (offerAmount < self.depositValue!.currentBalance!) {
             
             
-                getFilteredInfluencers(category: self.influencersFilter as! [String : [AnyObject]]) { (influencer, errorStatus,user) in
+                getFilteredInfluencers(category: self.influencersFilter as! [String : [AnyObject]]) { (influencer, errorStatus,userArray) in
                 
                 if influencer?.count != 0 {
                     
@@ -259,7 +259,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                     
                     
                     
-                    for (value,user) in zip(influencer!, user!) {
+                    for (value,user) in zip(influencer!, userArray!) {
                         
                         if user.averageLikes != 0 && user.averageLikes != nil {
                         
@@ -271,21 +271,21 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                             
                             if self.templateOffer?.user_IDs.count != 0 {
                             
-                            if (self.templateOffer?.user_IDs.contains(value))!{
+                                if (self.templateOffer?.user_IDs.contains(user.id!))!{
                             
                             
                             }else{
                                 
                                 offerAmount -= influcerMoneyValue
                                 extractedInfluencer.append(user)
-                                extractedUserID.append(value)
+                                extractedUserID.append(user.id!)
                                 
                             }
                             }else{
                                 
                                 offerAmount -= influcerMoneyValue
                                 extractedInfluencer.append(user)
-                                extractedUserID.append(value)
+                                extractedUserID.append(user.id!)
                                 
                             }
                             
@@ -293,6 +293,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                             break
                         }
                     }
+                        
                     }
                     
                     if extractedUserID.count != 0 {
@@ -400,7 +401,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
         
         let expiryDate = DateFormatManager.sharedInstance.getExpiryDate(dateString: dateString)
         self.templateOffer?.expiredate = expiryDate
-        self.templateOffer?.user_IDs = influencer!
+        self.templateOffer?.user_IDs.append(contentsOf: influencer!)
         let path = Auth.auth().currentUser!.uid + "/" + self.templateOffer!.offer_ID
         sentOutOffers(pathString: path, templateOffer: self.templateOffer!) { (template, status) in
             

@@ -245,7 +245,7 @@ class BaseVC: UIViewController {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
                 self.navigationController?.navigationBar.shadowImage = UIImage()
                 self.navigationController?.navigationBar.isTranslucent = false
-                self.navigationController?.navigationBar.tintColor = UIColor.blue
+                self.navigationController?.navigationBar.tintColor = UIColor.systemBlue
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 239.0/255.0, green: 239.0/255.0, blue: 244.0/255.0, alpha: 1.0)
         //        self.navigationController?.navigationBar.titleTextAttributes =
         //            [NSAttributedString.Key.foregroundColor:UIColor.black, NSAttributedString.Key.font:UIFont.systemFont(ofSize: 14.0)]
@@ -264,7 +264,7 @@ class BaseVC: UIViewController {
         label.backgroundColor = UIColor.clear
         label.text =  title
         label.font = UIFont.systemFont(ofSize: 18.0, weight: .semibold)
-        label.textColor = UIColor.blue
+        label.textColor = UIColor.systemBlue
         label.textAlignment = .center
         label.isUserInteractionEnabled = true
         
