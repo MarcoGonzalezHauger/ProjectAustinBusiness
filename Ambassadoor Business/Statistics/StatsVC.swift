@@ -43,6 +43,7 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		self.view.bringSubviewToFront(statisticDataView)
 		self.statisticDataView.isHidden = false
 		//Temporary measure
         

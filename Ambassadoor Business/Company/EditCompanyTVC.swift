@@ -80,6 +80,7 @@ class EditCompanyTVC: UITableViewController, ImagePickerDelegate {
     }
 	
 	@IBAction func save(_ sender: Any) {
+		var urlEmpty = false
 		var problem = false
 		if nameTextBox.text == "" {
 			problem = true
@@ -90,11 +91,12 @@ class EditCompanyTVC: UITableViewController, ImagePickerDelegate {
 		} else {
 			if webTextBox.text != "" {
 				problem = true
+				urlEmpty = true
 				MakeShake(viewToShake: webView)
 			}
 		}
 		if !problem {
-            delegate?.editsMade(newCompany: Company.init(dictionary: ["name": nameTextBox.text!, "logo": logo as Any, "mission": missionTextBox.text, "website": webTextBox.text, "account_ID": AccountID ?? "", "description": descTextBox.text, "accountBalance": 0.0]))
+			delegate?.editsMade(newCompany: Company.init(dictionary: ["name": nameTextBox.text!, "logo": logo as Any, "mission": missionTextBox.text, "website": urlEmpty ? "" : webTextBox.text, "account_ID": AccountID ?? "", "description": descTextBox.text, "accountBalance": 0.0]))
 			dismiss(animated: true, completion: nil)
 		}
 	}

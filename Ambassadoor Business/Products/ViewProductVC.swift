@@ -117,7 +117,7 @@ class ViewProductVC: BaseVC, UITextViewDelegate, ImagePickerDelegate {
                 if ThisProduct.product_ID == "" {
                     
                     self.showActivityIndicator()
-                    let productDictionary = ["name": productName.text!, "price": 0.0, "buy_url": productURL.text == "" || productURL.text == nil ? nil : productURL.text! as Any! , "color": "", "image": self.productURLstring] as [String : Any]
+                    let productDictionary = ["name": productName.text!, "price": 0.0, "buy_url": productURL.text == "" || productURL.text == nil ? "" : productURL.text! as Any! , "color": "", "image": self.productURLstring] as [String : Any]
                     CreateProduct(productDictionary: productDictionary, completed: { (product) in
                         let path = Auth.auth().currentUser!.uid + "/" + product.product_ID!
                         uploadImageToFIR(image: self.productImage.image!, childName: "products", path: path) { (url, error) in
@@ -126,7 +126,7 @@ class ViewProductVC: BaseVC, UITextViewDelegate, ImagePickerDelegate {
                                 updateProductDetails(dictionary: ["image":url], productID: product.product_ID!)
                                 let productDetails = product
                                 productDetails.image = url
-                                //global.products[self.productIndex] = productDetails
+                                //global.products[self.p roductIndex] = productDetails
                                 global.products.append(productDetails)
                                 //self.delegate?.WasSaved(index: self.productIndex)
                                 self.dismissed(self)

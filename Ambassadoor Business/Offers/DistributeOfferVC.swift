@@ -490,8 +490,10 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
 //                    return currentUser + "," + nextUser.username!
 //
 //                })
+				
+				
                 
-                self.showAlertMessage(title: "Offer Distrubuted", message: "Your offer was sent to \(influencer?.count ?? 0) influencers, totaling $\(deductedAmount).If you send this Offer again, Ambassadoor will not send this offer to these influencer again.") {
+                self.showAlertMessage(title: "Offer Distrubuted", message: "Your offer was sent to \(influencer?.count ?? 0) influencers, totaling $\(NumberToPrice(Value: deductedAmount)). If you send this Offer again, Ambassadoor will not send this offer to these influencer again.") {
                     global.post.removeAll()
                     self.createLocalNotification(notificationName: "reloadOffer", userInfo: [:])
                     self.navigationController?.popToRootViewController(animated: true)
