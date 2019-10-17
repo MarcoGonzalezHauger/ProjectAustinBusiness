@@ -10,6 +10,10 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import SDWebImage
+import AVKit
+import AVFoundation
+
+var tutorialRegistered = false
 
 class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
     
@@ -58,6 +62,8 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
         
         if Singleton.sharedInstance.getCompanyUser().isCompanyRegistered == false {
             self.performSegue(withIdentifier: "toCompanyRegister", sender: self)
+			needsTutorial = true
+			print("needs tutorial :TRUE")
         }else{
             
             let user = Singleton.sharedInstance.getCompanyUser().companyID!
@@ -70,19 +76,27 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
         }
 
 	}
+	
+	var needsTutorial = false
     
+	
+	func playVideo() {
+		print("Tutorial is going to play Video")
+        guard let thisPath = Bundle.main.path(forResource: "tutorial", ofType:"mp4") else {
+            print("tutorial file not found!")
+            return
+        }
+        let player = AVPlayer(url: URL(fileURLWithPath: thisPath))
+        let playerController = AVPlayerViewController()
+        playerController.player = player
+		self.present(playerController, animated: true) {
+            player.play()
+        }
+    }
+	
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-//        if Singleton.sharedInstance.getCompanyUser().isCompanyRegistered == false {
-//            self.performSegue(withIdentifier: "toCompanyRegister", sender: self)
-//        }else{
-//
-//            let user = Singleton.sharedInstance.getCompanyUser().companyID!
-//
-//            getCompany(companyID: user) { (company, error) in
-//
-//                Singleton.sharedInstance.setCompanyDetails(company: company!)
-//            }
+
             self.accepted = 0
             self.rejected = 0
             self.paid = 0
@@ -185,8 +199,13 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
                 
             }
             
-       // }
-    }
+       
+	   if needsTutorial && tutorialRegistered {
+		   playVideo()
+		   needsTutorial = false
+	   }
+		
+	}
     
     //MARK: UITableview Datasource
     

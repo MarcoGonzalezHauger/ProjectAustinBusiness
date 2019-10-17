@@ -379,9 +379,6 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" textContentType="email"/>
-                                                <connections>
-                                                    <outlet property="delegate" destination="kAN-Z2-zIi" id="wNt-bs-HRX"/>
-                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pEW-gC-31n">
                                                 <rect key="frame" x="20" y="110" width="335" height="2"/>
@@ -400,9 +397,6 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
-                                                <connections>
-                                                    <outlet property="delegate" destination="kAN-Z2-zIi" id="UQv-fG-OiI"/>
-                                                </connections>
                                             </textField>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -474,6 +468,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="1P8-al-bFV" firstAttribute="top" secondItem="I3A-3H-LOD" secondAttribute="bottom" constant="7" id="27M-9H-eSZ"/>
                             <constraint firstItem="1P8-al-bFV" firstAttribute="trailing" secondItem="3sp-Pn-vTI" secondAttribute="trailing" id="4ab-jZ-Wdj"/>
@@ -489,6 +484,9 @@
                             <constraint firstItem="3sp-Pn-vTI" firstAttribute="bottom" secondItem="4df-iX-jpF" secondAttribute="bottom" constant="10" id="qiY-2G-Gde"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3sp-Pn-vTI"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="2GB-yt-o1p" appends="YES" id="F6o-JW-iBl"/>
+                        </connections>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
@@ -501,6 +499,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HQv-My-BLc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="2GB-yt-o1p">
+                    <connections>
+                        <action selector="tapped:" destination="rtC-H4-P1t" id="urr-fq-6pg"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1813.5999999999999" y="143.47826086956522"/>
         </scene>

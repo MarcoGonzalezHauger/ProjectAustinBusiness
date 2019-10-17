@@ -62,6 +62,7 @@
 		E84600852273A92A00CF60F2 /* BusinessLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84600842273A92A00CF60F2 /* BusinessLabel.swift */; };
 		E84600872273AF9100CF60F2 /* ImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84600862273AF9100CF60F2 /* ImageViewExtensions.swift */; };
 		E846008A2273B0B300CF60F2 /* Savvy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84600892273B0B300CF60F2 /* Savvy.swift */; };
+		E84EFD2F2357EA3300B70D15 /* tutorial.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E84EFD2E2357E9FD00B70D15 /* tutorial.mp4 */; };
 		E89C83682277A49400124420 /* ViewProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C83672277A49400124420 /* ViewProductVC.swift */; };
 		E8C3694222161B3000AE12D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C3694122161B3000AE12D7 /* AppDelegate.swift */; };
 		E8C3694422161B3000AE12D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C3694322161B3000AE12D7 /* ViewController.swift */; };
@@ -135,6 +136,7 @@
 		E84600842273A92A00CF60F2 /* BusinessLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessLabel.swift; sourceTree = "<group>"; };
 		E84600862273AF9100CF60F2 /* ImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtensions.swift; sourceTree = "<group>"; };
 		E84600892273B0B300CF60F2 /* Savvy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Savvy.swift; sourceTree = "<group>"; };
+		E84EFD2E2357E9FD00B70D15 /* tutorial.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = tutorial.mp4; sourceTree = "<group>"; };
 		E89C83672277A49400124420 /* ViewProductVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProductVC.swift; sourceTree = "<group>"; };
 		E8B08C244165BD27DA5136C1 /* Pods_Ambassadoor_Business.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ambassadoor_Business.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8C3693E22161B3000AE12D7 /* Ambassadoor Business.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ambassadoor Business.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -346,6 +348,7 @@
 				E8C3694522161B3000AE12D7 /* Main.storyboard */,
 				E83D9A38226A20B6007BDD97 /* GoogleService-Info.plist */,
 				E8C3694B22161B3200AE12D7 /* Assets.xcassets */,
+				E84EFD2E2357E9FD00B70D15 /* tutorial.mp4 */,
 				E8C3694D22161B3200AE12D7 /* LaunchScreen.storyboard */,
 				E8C3695022161B3200AE12D7 /* Info.plist */,
 				E8C3694822161B3000AE12D7 /* Ambassadoor_Business.xcdatamodeld */,
@@ -450,6 +453,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E84EFD2F2357EA3300B70D15 /* tutorial.mp4 in Resources */,
 				E8C3694F22161B3200AE12D7 /* LaunchScreen.storyboard in Resources */,
 				B712C487230690B500728758 /* ProductListCell.xib in Resources */,
 				B7551F2F22F99B01001C4974 /* BasePicker.xib in Resources */,

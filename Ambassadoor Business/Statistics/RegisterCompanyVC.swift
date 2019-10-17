@@ -8,6 +8,8 @@
 
 import UIKit
 import FirebaseAuth
+import AVKit
+import AVFoundation
 
 class RegisterCompanyVC: BaseVC,ImagePickerDelegate,UITextFieldDelegate,UITextViewDelegate,UIScrollViewDelegate {
     
@@ -138,7 +140,9 @@ class RegisterCompanyVC: BaseVC,ImagePickerDelegate,UITextFieldDelegate,UITextVi
                                     companyUser.companyID = company.account_ID
                                     Singleton.sharedInstance.setCompanyUser(user: companyUser)
                                     Singleton.sharedInstance.setCompanyDetails(company: company)
-                                    self.dismiss(animated: true, completion: nil)
+									tutorialRegistered = true
+									self.dismiss(animated: true) {
+									}
                                     
                                 }
                                 

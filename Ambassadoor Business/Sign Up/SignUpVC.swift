@@ -38,6 +38,9 @@ class SignUpVC: BaseVC,UITextFieldDelegate {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
+		emailText.delegate = self
+		passwordText.delegate = self
+		
 		registerButton.layer.cornerRadius = 6
 		
     }
@@ -96,7 +99,11 @@ class SignUpVC: BaseVC,UITextFieldDelegate {
 
         return true
     }
-    
+	
+	@IBAction func tapped(_ sender: Any) {
+		view.endEditing(true)
+	}
+	
     @IBAction func signinAction(sender: UIButton){
         
         if emailText.text?.count != 0 {
