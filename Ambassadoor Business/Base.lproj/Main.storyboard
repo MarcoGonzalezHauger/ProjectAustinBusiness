@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kfA-qH-ebm">
-    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
@@ -1595,11 +1595,11 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b8P-61-ypZ">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="759"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Offer Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXP-gn-dXA">
-                                        <rect key="frame" x="8" y="14" width="216" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Offer Name (only you will see this)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXP-gn-dXA">
+                                        <rect key="frame" x="8" y="14" width="300" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="cT5-iq-sEi"/>
-                                            <constraint firstAttribute="width" constant="216" id="od5-tM-LVt"/>
+                                            <constraint firstAttribute="width" constant="300" id="od5-tM-LVt"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -1616,7 +1616,7 @@
                                             <outlet property="delegate" destination="LOf-8t-dcQ" id="gyQ-8d-pQi"/>
                                         </connections>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zipcodes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rit-UU-Ub1">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Desired Zipcodes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rit-UU-Ub1">
                                         <rect key="frame" x="8" y="85" width="216" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="7p7-Pp-6Gw"/>
@@ -1637,7 +1637,7 @@
                                             <outlet property="delegate" destination="LOf-8t-dcQ" id="gL7-g8-nMq"/>
                                         </connections>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genders" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Go6-nV-y8I">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Desired Genders" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Go6-nV-y8I">
                                         <rect key="frame" x="8" y="156" width="216" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="216" id="GbD-bJ-SGu"/>
@@ -1934,7 +1934,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dM8-IR-Q4w" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                         <rect key="frame" x="19" y="226" width="376" height="194"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqF-mC-eg4">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Influencer Filters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqF-mC-eg4">
                                                 <rect key="frame" x="8" y="8" width="360" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="8rM-NL-XQQ"/>
@@ -2127,21 +2127,21 @@
                                             <constraint firstAttribute="height" constant="51" id="VOb-9g-s73"/>
                                         </constraints>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lwn-cD-mL8">
-                                            <size key="itemSize" width="50" height="50"/>
+                                            <size key="itemSize" width="67" height="50"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="increasepay" id="8mi-FC-xvX" customClass="IncreasePay" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.5" width="50" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.5" width="70" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="pl5-Gy-xOB" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="70" height="50"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="None" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ke1-yt-4Pp">
-                                                            <rect key="frame" x="4" y="8" width="42" height="34"/>
+                                                            <rect key="frame" x="14" y="8" width="42" height="34"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="34" id="PTX-zs-Bug"/>
                                                                 <constraint firstAttribute="width" constant="42" id="q8O-H0-4AK"/>
@@ -2163,6 +2163,7 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </collectionViewCellContentView>
+                                                <size key="customSize" width="70" height="50"/>
                                                 <connections>
                                                     <outlet property="payText" destination="Ke1-yt-4Pp" id="gzE-CP-Ds1"/>
                                                 </connections>
@@ -2182,7 +2183,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How much money would you like to put into distributing this offers?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0r0-wR-dQM">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How much money would you like to put into distributing this offer?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0r0-wR-dQM">
                                         <rect key="frame" x="19" y="664" width="376" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="Ngg-Ez-fTj"/>
@@ -2325,7 +2326,7 @@
                         <outlet property="offerName" destination="xb6-JJ-98D" id="inE-ec-gUI"/>
                         <outlet property="offerProducts" destination="hHa-yW-pqf" id="XB7-ls-94a"/>
                         <outlet property="scroll" destination="s7V-nI-Reb" id="kbT-ji-d4h"/>
-                        <segue destination="9Vw-SB-902" kind="show" identifier="toWebVC" id="p75-rr-M2R"/>
+                        <segue destination="9Vw-SB-902" kind="presentation" identifier="toWebVC" id="p75-rr-M2R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OGv-HG-bsS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2335,34 +2336,49 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="4286.9565217391309" y="1916.576086956522"/>
+            <point key="canvasLocation" x="4286.9565217391309" y="1916.5178571428571"/>
         </scene>
         <!--WebVC-->
         <scene sceneID="zrd-hb-i5h">
             <objects>
                 <viewController id="9Vw-SB-902" customClass="WebVC" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V0K-ck-4v9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cxc-Ti-Ima">
-                                <rect key="frame" x="0.0" y="56" width="414" height="703"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="737"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IHE-0P-ebU">
+                                <rect key="frame" x="16" y="0.0" width="90" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="QOK-q4-h2p"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="dismissed:" destination="9Vw-SB-902" eventType="touchUpInside" id="ZTf-fH-JbH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="IHE-0P-ebU" firstAttribute="top" secondItem="bDg-vy-A37" secondAttribute="top" id="0JK-Kh-EK3"/>
                             <constraint firstItem="bDg-vy-A37" firstAttribute="trailing" secondItem="cxc-Ti-Ima" secondAttribute="trailing" id="0Q9-NM-H12"/>
                             <constraint firstAttribute="bottom" secondItem="cxc-Ti-Ima" secondAttribute="bottom" constant="49" id="5DN-b0-jJ9"/>
                             <constraint firstItem="cxc-Ti-Ima" firstAttribute="top" secondItem="V0K-ck-4v9" secondAttribute="top" constant="56" id="O6S-gF-04i"/>
                             <constraint firstItem="cxc-Ti-Ima" firstAttribute="leading" secondItem="bDg-vy-A37" secondAttribute="leading" id="Y2m-b6-4Rv"/>
+                            <constraint firstItem="cxc-Ti-Ima" firstAttribute="top" secondItem="IHE-0P-ebU" secondAttribute="bottom" id="bUP-E4-FEO"/>
+                            <constraint firstItem="IHE-0P-ebU" firstAttribute="leading" secondItem="bDg-vy-A37" secondAttribute="leading" constant="16" id="stp-Br-VAN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bDg-vy-A37"/>
                     </view>
+                    <navigationItem key="navigationItem" id="srw-G4-bfO"/>
                     <connections>
                         <outlet property="webView" destination="cxc-Ti-Ima" id="NTQ-B3-Shv"/>
                     </connections>
@@ -4389,7 +4405,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eiY-DZ-cVe">
-                                <rect key="frame" x="0.0" y="80" width="414" height="608"/>
+                                <rect key="frame" x="0.0" y="80" width="414" height="586"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RCf-nl-eWS" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                         <rect key="frame" x="132" y="28" width="150" height="150"/>
@@ -4652,20 +4668,33 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="8yn-Dm-1jQ"/>
                             </scrollView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="x7S-aU-1SF">
-                                <rect key="frame" x="20" y="696" width="374" height="110"/>
+                                <rect key="frame" x="20" y="674" width="374" height="112"/>
                                 <string key="text">By pressing "Register" you are agreeing to all our Terms of Service. Also, you are verifying that you were given consent by the owner of the Business you have entered to use their name and/or logo.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zd1-TQ-rcV">
+                                <rect key="frame" x="20" y="784" width="374" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="OaW-Dz-Xsd"/>
+                                </constraints>
+                                <state key="normal" title="View Terms of Service"/>
+                                <connections>
+                                    <segue destination="9Vw-SB-902" kind="presentation" identifier="toWebVC" id="Yip-uZ-gWZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="DeH-Sd-bdJ" firstAttribute="top" secondItem="x7S-aU-1SF" secondAttribute="bottom" constant="10" id="2eQ-n6-RN0"/>
+                            <constraint firstItem="DeH-Sd-bdJ" firstAttribute="top" secondItem="x7S-aU-1SF" secondAttribute="bottom" constant="30" id="2eQ-n6-RN0"/>
                             <constraint firstItem="IsN-ZL-zIG" firstAttribute="trailing" secondItem="DeH-Sd-bdJ" secondAttribute="trailing" constant="20" id="B8m-sI-mFL"/>
                             <constraint firstItem="IsN-ZL-zIG" firstAttribute="trailing" secondItem="eiY-DZ-cVe" secondAttribute="trailing" id="BXI-24-eQ9"/>
                             <constraint firstAttribute="trailing" secondItem="x7S-aU-1SF" secondAttribute="trailing" constant="20" id="DAU-Sg-2Q9"/>
-                            <constraint firstItem="DeH-Sd-bdJ" firstAttribute="top" secondItem="eiY-DZ-cVe" secondAttribute="bottom" constant="128" id="EF9-uu-cWG"/>
+                            <constraint firstItem="DeH-Sd-bdJ" firstAttribute="top" secondItem="eiY-DZ-cVe" secondAttribute="bottom" constant="150" id="EF9-uu-cWG"/>
+                            <constraint firstItem="DeH-Sd-bdJ" firstAttribute="top" secondItem="Zd1-TQ-rcV" secondAttribute="bottom" constant="2" id="Kgr-uu-xQC"/>
+                            <constraint firstItem="Zd1-TQ-rcV" firstAttribute="leading" secondItem="x7S-aU-1SF" secondAttribute="leading" id="LRG-vx-hJr"/>
+                            <constraint firstItem="IsN-ZL-zIG" firstAttribute="trailing" secondItem="Zd1-TQ-rcV" secondAttribute="trailing" constant="20" id="Lyd-tK-Urg"/>
                             <constraint firstAttribute="bottom" secondItem="DeH-Sd-bdJ" secondAttribute="bottom" constant="20" id="Ofs-2F-MuZ"/>
                             <constraint firstItem="eiY-DZ-cVe" firstAttribute="top" secondItem="oE1-w9-lGt" secondAttribute="bottom" constant="8" id="PLt-kQ-zhO"/>
                             <constraint firstItem="DeH-Sd-bdJ" firstAttribute="leading" secondItem="IsN-ZL-zIG" secondAttribute="leading" constant="20" id="TFO-Yu-O0X"/>
@@ -4800,5 +4829,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="IZB-Tp-j70"/>
         <segue reference="M0i-E2-U7z"/>
+        <segue reference="p75-rr-M2R"/>
     </inferredMetricsTieBreakers>
 </document>

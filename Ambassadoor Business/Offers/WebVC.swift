@@ -15,14 +15,16 @@ class WebVC: BaseVC {
     var urlString = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.customizeNavigationBar()
         let url = URL (string: urlString)
         let requestObj = URLRequest(url: url!)
         webView.load(requestObj)
         // Do any additional setup after loading the view.
     }
     
-
+	@IBAction func dismissed(_ sender: Any) {
+		self.dismiss(animated: true, completion: nil)
+	}
+	
     /*
     // MARK: - Navigation
 

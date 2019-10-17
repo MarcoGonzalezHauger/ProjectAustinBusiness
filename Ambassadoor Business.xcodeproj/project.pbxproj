@@ -64,6 +64,7 @@
 		E846008A2273B0B300CF60F2 /* Savvy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84600892273B0B300CF60F2 /* Savvy.swift */; };
 		E84EFD2F2357EA3300B70D15 /* tutorial.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E84EFD2E2357E9FD00B70D15 /* tutorial.mp4 */; };
 		E89C83682277A49400124420 /* ViewProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C83672277A49400124420 /* ViewProductVC.swift */; };
+		E8A00CE22358D49B0027DA5F /* FormAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A00CE12358D49B0027DA5F /* FormAPI.swift */; };
 		E8C3694222161B3000AE12D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C3694122161B3000AE12D7 /* AppDelegate.swift */; };
 		E8C3694422161B3000AE12D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C3694322161B3000AE12D7 /* ViewController.swift */; };
 		E8C3694722161B3000AE12D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8C3694522161B3000AE12D7 /* Main.storyboard */; };
@@ -138,6 +139,7 @@
 		E84600892273B0B300CF60F2 /* Savvy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Savvy.swift; sourceTree = "<group>"; };
 		E84EFD2E2357E9FD00B70D15 /* tutorial.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = tutorial.mp4; sourceTree = "<group>"; };
 		E89C83672277A49400124420 /* ViewProductVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProductVC.swift; sourceTree = "<group>"; };
+		E8A00CE12358D49B0027DA5F /* FormAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormAPI.swift; sourceTree = "<group>"; };
 		E8B08C244165BD27DA5136C1 /* Pods_Ambassadoor_Business.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ambassadoor_Business.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8C3693E22161B3000AE12D7 /* Ambassadoor Business.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ambassadoor Business.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8C3694122161B3000AE12D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 				C05FE2DA225F687C002D3CAA /* global.swift */,
 				C0C9390522614AE3003DC925 /* InstagramAPI.swift */,
 				C0FBFD00226154FC00BADDCD /* categories.swift */,
+				E8A00CE12358D49B0027DA5F /* FormAPI.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				E82F890D22DD30B40036A079 /* CreateCompanyVC.swift in Sources */,
 				B788D6F422E8931100FA59BA /* RegisterCompanyVC.swift in Sources */,
 				C05FE2DB225F687C002D3CAA /* global.swift in Sources */,
+				E8A00CE22358D49B0027DA5F /* FormAPI.swift in Sources */,
 				E816AC222282F3E200B9D951 /* MoneyVC.swift in Sources */,
 				B712C485230690A700728758 /* ProductListCell.swift in Sources */,
 				E84600872273AF9100CF60F2 /* ImageViewExtensions.swift in Sources */,
@@ -734,6 +738,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = BlueIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1.0;
 				DEVELOPMENT_TEAM = F4W3LUKZFA;
@@ -749,7 +754,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Ambassadoor Business/Ambassadoor Business-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -759,6 +764,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = BlueIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1.0;
 				DEVELOPMENT_TEAM = F4W3LUKZFA;
@@ -773,7 +779,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = OctoberProfile;
 				SWIFT_OBJC_BRIDGING_HEADER = "Ambassadoor Business/Ambassadoor Business-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

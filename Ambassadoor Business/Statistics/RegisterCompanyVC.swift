@@ -76,12 +76,18 @@ class RegisterCompanyVC: BaseVC,ImagePickerDelegate,UITextFieldDelegate,UITextVi
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? GetPictureVC {
-            destination.delegate = self
-        }
-    }
-    
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "toGetPictureVC" {
+			if let destination = segue.destination as? GetPictureVC {
+				destination.delegate = self
+			}
+		}
+		if segue.identifier == "toWebVC" {
+			let view = segue.destination as! WebVC
+			view.urlString = "https://www.ambassadoor.co/terms-of-service"
+		}
+	}
+	
     // MARK: -Text Field Delegates
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
