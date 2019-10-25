@@ -196,32 +196,22 @@ class AddPostVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UITextFieldDel
             if hashPost.text?.count != 0 {
                 
                 if pharsePost.text?.count != 0 {
-                    
-                    if productCollection.count != 0 {
-                        
-                            
-                           let post  = Post.init(image: "", instructions: desPost.text!, captionMustInclude: self.pharsePost.text!, products: productCollection, post_ID: "", PostType: PostTypeToText(posttype: .SinglePost) , confirmedSince: Date(), isConfirmed: false, hashCaption: hashPost.text!)
-                            self.showActivityIndicator()
-                            getCreatePostUniqueID(param: post) { (postValue, error) in
-                                self.hideActivityIndicator()
-                                if self.index != nil {
-                                    global.post[self.index!] = postValue
-                                }else{
-                                 global.post.append(postValue)
-                                }
-                                
-                                self.createLocalNotification(notificationName: "reload", userInfo: [:])
-                                self.navigationController?.popViewController(animated: true)
-                            }
-                            
-                        
-                    }else{
-                        
-                    self.showAlertMessage(title: "Alert", message: "Please choose the product") {
-                            
-                        }
-                    }
-                    
+					
+					
+					let post  = Post.init(image: "", instructions: desPost.text!, captionMustInclude: self.pharsePost.text!, products: productCollection, post_ID: "", PostType: PostTypeToText(posttype: .SinglePost) , confirmedSince: Date(), isConfirmed: false, hashCaption: hashPost.text!)
+					self.showActivityIndicator()
+					getCreatePostUniqueID(param: post) { (postValue, error) in
+						self.hideActivityIndicator()
+						if self.index != nil {
+							global.post[self.index!] = postValue
+						}else{
+							global.post.append(postValue)
+						}
+						
+						self.createLocalNotification(notificationName: "reload", userInfo: [:])
+						self.navigationController?.popViewController(animated: true)
+					}
+					
                 }else{
                     
                     self.showAlertMessage(title: "Alert", message: "Please enter some pharse to include in the caption of the post.") {

@@ -146,9 +146,10 @@ class SignInVC: BaseVC,UITextFieldDelegate {
                             self.hideActivityIndicator()
                             self.signInButton.setTitle("Sign In", for: .normal)
                             print("error=",error!)
-                            self.showAlertMessage(title: "Alert", message: (error?.localizedDescription)!) {
-                                
-                            }
+							
+							MakeShake(viewToShake: self.signInButton)
+							self.passwordline.backgroundColor = .red
+							self.usernameLine.backgroundColor = .red
                             
                         }
                         

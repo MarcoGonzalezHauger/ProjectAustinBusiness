@@ -68,7 +68,7 @@ class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "catCell", for: indexPath) as! catCell
-        cell.titleLabel.text = categoryList[indexPath.section].categoryData[indexPath.row].rawValue
+        cell.titleLabel.text = categoryList[indexPath.section].categoryData[indexPath.row]
         // Configure the cell...
         
         if self.selectedValues.contains(cell.titleLabel.text!){
@@ -113,13 +113,13 @@ class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
         
         let cell = self.tableView.cellForRow(at: indexPath)
         cell?.accessoryType = .checkmark
-        let category = categoryList[indexPath.section].categoryData[indexPath.row].rawValue
+        let category = categoryList[indexPath.section].categoryData[indexPath.row]
         self.selectedValues.append(category)
     }
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath){
         let cell = self.tableView.cellForRow(at: indexPath)
         cell?.accessoryType = .none
-        let category = categoryList[indexPath.section].categoryData[indexPath.row].rawValue
+        let category = categoryList[indexPath.section].categoryData[indexPath.row]
         let index = self.selectedValues.index(of: category)
         self.selectedValues.remove(at: index!)
     }

@@ -413,7 +413,7 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
                                 
                                 let expiryDate = DateFormatManager.sharedInstance.getExpiryDate(dateString: dateString)
                                 
-                                var offer = ["offer_ID":"","money":0.0,"company":Singleton.sharedInstance.getCompanyDetails(),"posts":global.post,"offerdate":Date(),"user_ID":[],"expiredate":expiryDate,"allPostsConfirmedSince":nil,"allConfirmed":false,"isAccepted":false,"isExpired":false,"ownerUserID":Auth.auth().currentUser!.uid,"category":self.selectedCategoryArray,"zipCodes":self.zipCode.text!.components(separatedBy: ","),"genders":genderArray,"title":self.offerName.text!,"targetCategories":[Category.Actor],"user_IDs":[],"status":"available"] as [String : AnyObject]
+                                var offer = ["offer_ID":"","money":0.0,"company":Singleton.sharedInstance.getCompanyDetails(),"posts":global.post,"offerdate":Date(),"user_ID":[],"expiredate":expiryDate,"allPostsConfirmedSince":nil,"allConfirmed":false,"isAccepted":false,"isExpired":false,"ownerUserID":Auth.auth().currentUser!.uid,"category":self.selectedCategoryArray,"zipCodes":self.zipCode.text!.components(separatedBy: ","),"genders":genderArray,"title":self.offerName.text!,"targetCategories":["Other"],"user_IDs":[],"status":"available"] as [String : AnyObject]
                                 
                                 if segueOffer != nil {
                                     
@@ -650,7 +650,7 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
                             
                             let expiryDate = DateFormatManager.sharedInstance.getExpiryDate(dateString: dateString)
                             
-                            var offer = ["offer_ID":"","money":0.0,"company":Singleton.sharedInstance.getCompanyDetails(),"posts":global.post,"offerdate":Date(),"user_ID":[],"expiredate":expiryDate,"allPostsConfirmedSince":nil,"allConfirmed":false,"isAccepted":false,"isExpired":false,"ownerUserID":Auth.auth().currentUser!.uid,"category":self.selectedCategoryArray,"zipCodes":self.zipCode.text!.components(separatedBy: ","),"genders":genderArray,"title":self.offerName.text!,"targetCategories":[Category.Actor],"user_IDs":[],"status":"available"] as [String : AnyObject]
+                            var offer = ["offer_ID":"","money":0.0,"company":Singleton.sharedInstance.getCompanyDetails(),"posts":global.post,"offerdate":Date(),"user_ID":[],"expiredate":expiryDate,"allPostsConfirmedSince":nil,"allConfirmed":false,"isAccepted":false,"isExpired":false,"ownerUserID":Auth.auth().currentUser!.uid,"category":self.selectedCategoryArray,"zipCodes":self.zipCode.text!.components(separatedBy: ","),"genders":genderArray,"title":self.offerName.text!,"targetCategories":["Actor"],"user_IDs":[],"status":"available"] as [String : AnyObject]
                             
                             if segueOffer != nil {
                                 
@@ -727,13 +727,21 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
         if segue.identifier == "toCategoryTVC"{
             let view = segue.destination as! CategoryTVC
             view.delegateCategory = self
+			let backItem = UIBarButtonItem()
+			backItem.title = "Back"
+			navigationItem.backBarButtonItem = backItem
         }else if segue.identifier == "toAddPost" {
             let view = segue.destination as! AddPostVC
             view.index = sender as? Int
+			let backItem = UIBarButtonItem()
+			backItem.title = "Don't Save"
+			navigationItem.backBarButtonItem = backItem
         }else if segue.identifier == "toDistributeOffer" {
             let view = segue.destination as! DistributeOfferVC
             view.templateOffer = sender as! TemplateOffer
-            
+			let backItem = UIBarButtonItem()
+			backItem.title = "Back"
+			navigationItem.backBarButtonItem = backItem
         }
     }
     

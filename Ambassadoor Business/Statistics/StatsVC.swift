@@ -48,9 +48,6 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		GetCitiesInState(state: "New York") { (cities, state) in
-			print(cities)
-		}
 		self.view.bringSubviewToFront(statisticDataView)
 		self.statisticDataView.isHidden = false
 		//Temporary measure

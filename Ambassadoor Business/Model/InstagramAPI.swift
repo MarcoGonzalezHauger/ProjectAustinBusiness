@@ -84,15 +84,20 @@ struct API {
 	
     static func serializeUser(user: User, id: String) -> [String: Any] {
         var userData: [String: Any] = [
+            "id": id,
             "name": user.name!,
             "username": user.username,
             "followerCount": user.followerCount,
-            "profilePicURL": user.profilePicURL!,
-            "primaryCategory": user.primaryCategory.rawValue,
-            "secondaryCategory": user.SecondaryCategory == nil ? "" : user.SecondaryCategory!.rawValue,
-            "averageLikes": user.averageLikes ?? "",
-            "zipCode": user.zipCode as Any,
-			"gender": user.gender!
+            "profilePicture": user.profilePicURL!,
+            "averageLikes": user.averageLikes ?? 0,
+			"zipCode": user.zipCode as Any,
+			"gender": user.gender as Any,
+            "isBankAdded": user.isBankAdded,
+            "yourMoney": user.accountBalance,
+            "joinedDate": user.joinedDate!,
+            "categories": user.categories as AnyObject,
+            "referralcode": user.referralcode,
+            "isDefaultOfferVerify": user.isDefaultOfferVerify
         ]
         if id != "" {
             userData["id"] = id
@@ -101,7 +106,6 @@ struct API {
     }
     
     static func serializePost(post: Post) -> [String: Any] {
-        //                           Post.init(image: nil, instructions: desPost.text!, captionMustInclude: <#T##String?#>, products: <#T##[Product]?#>, post_ID: <#T##String#>, PostType: <#T##TypeofPost#>, confirmedSince: <#T##Date?#>, isConfirmed: <#T##Bool#>)
         var product = [[String: Any]]()
         
         for value in post.products! {
@@ -117,7 +121,7 @@ struct API {
         var offerData = serializeOffer(offer: offer)
         var cats: [String] = []
         for cat in offer.targetCategories {
-            cats.append(cat.rawValue)
+            cats.append(cat)
         }
         offerData["targetCategories"] = cats
         offerData["zipCodes"] = offer.zipCodes

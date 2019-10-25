@@ -271,21 +271,21 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                             
                             if self.templateOffer?.user_IDs.count != 0 {
                             
-                                if (self.templateOffer?.user_IDs.contains(user.id!))!{
+								if (self.templateOffer?.user_IDs.contains(user.id))!{
                             
                             
                             }else{
                                 
                                 offerAmount -= influcerMoneyValue
                                 extractedInfluencer.append(user)
-                                extractedUserID.append(user.id!)
+									extractedUserID.append(user.id)
                                 
                             }
                             }else{
                                 
                                 offerAmount -= influcerMoneyValue
                                 extractedInfluencer.append(user)
-                                extractedUserID.append(user.id!)
+								extractedUserID.append(user.id)
                                 
                             }
                             
@@ -366,20 +366,21 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
             
             if user != nil {
             
-                let transactionHistory = ["from":Auth.auth().currentUser!.uid,"To":user?.id! as Any,"type":"referral","Amount":(self.ambassadoorCommision * 0.2),"status":"pending","createdAt":DateFormatManager.sharedInstance.getCurrentDateString(),"id":offerID] as [String : Any]
+                let transactionHistory = ["from":Auth.auth().currentUser!.uid,"To":user?.id as Any,"type":"referral","Amount":(self.ambassadoorCommision * 0.2),"status":"pending","createdAt":DateFormatManager.sharedInstance.getCurrentDateString(),"id":offerID] as [String : Any]
                 
                 var amount = 0.0
                 
                 if user?.accountBalance != nil {
                 
                     amount = user!.accountBalance! + (self.ambassadoorCommision * 0.2)
+					
                 }else{
                 amount = (self.ambassadoorCommision * 0.2)
                 }
                 
                 updateInfluencerAmountByReferral(user: user!, amount: amount)
             
-                sentOutTransactionToInfluencer(pathString: (user?.id!)!, transactionData: transactionHistory)
+				sentOutTransactionToInfluencer(pathString: (user?.id)!, transactionData: transactionHistory)
                 
                 
             
@@ -441,7 +442,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                 var userIDValue = [String]()
                 var userIDDubValue = [String]()
                 for uderIDs in user! {
-                    userIDDubValue.append(uderIDs.id!)
+					userIDDubValue.append(uderIDs.id)
                 }
                 userIDDubValue.append(contentsOf: template.user_IDs)
                 

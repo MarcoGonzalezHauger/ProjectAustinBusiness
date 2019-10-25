@@ -119,7 +119,7 @@ class Offer: NSObject {
 }
 
 class TemplateOffer: Offer {
-    var targetCategories: [Category]
+    var targetCategories: [String]
     var category: [String]
     var zipCodes: [String]
     var genders: [String]
@@ -130,17 +130,13 @@ class TemplateOffer: Offer {
 
     override init(dictionary: [String: AnyObject]) {
         self.targetCategories = []
-        if let tcs = dictionary["targetCategories"] as? [Category] {
+        if let tcs = dictionary["targetCategories"] as? [String] {
             self.targetCategories = tcs
         } else {
-            for cat in dictionary["targetCategories"] as! [String] {
-                if let c = Category.init(rawValue: cat) {
-                    self.targetCategories.append(c)
-                } else {
-                    self.targetCategories.append(.Other)
-                }
-            }
-        }
+			for cat in dictionary["targetCategories"] as! [String] {
+				self.targetCategories.append(cat)
+			}
+		}
         self.category = dictionary["category"] as! [String]
 		self.title = dictionary["title"] as! String
         self.zipCodes = dictionary["zipCodes"] as! [String]
@@ -154,60 +150,42 @@ class TemplateOffer: Offer {
 //Strcuture for users
 class User: NSObject {
     
-    var id: String?
-    var name: String?
-    var username: String?
-    var followerCount: Double?
-    var profilePicURL: String?
-    var primaryCategory: Category
-    var SecondaryCategory: Category?
-    var averageLikes: Double?
-    var zipCode: String?
-    var gender: String?
-    var accountBalance: Double?
-    var referralcode: String?
-    
-    
-    init(dictionary: [String: Any]) {
-        self.id = dictionary["id"] as? String
-        self.name = dictionary["name"] as? String
-        self.username = dictionary["username"] as? String
-        self.followerCount = dictionary["followerCount"] as? Double
-        if (dictionary["profilePicURL"] as? String ?? "") == "" {
-            self.profilePicURL = nil
-        } else {
-            self.profilePicURL = dictionary["profilePicURL"] as? String
-        }
-		if let pc = dictionary["primaryCategory"] as? Category {
-            self.primaryCategory = pc
-        } else {
-            if let pc = Category.init(rawValue: dictionary["primaryCategory"] as? String ?? "") {
-                self.primaryCategory = pc
-            } else {
-                self.primaryCategory = .Other
-            }
-        }
-        
-        if let sc = dictionary["secondaryCategory"] as? Category {
-            self.SecondaryCategory = sc
-        } else {
-            if let sc = Category.init(rawValue: dictionary["secondaryCategory"] as? String ?? "") {
-                self.SecondaryCategory = sc
-            } else {
-                self.SecondaryCategory = nil
-            }
-        }
-        
-        self.averageLikes = dictionary["averageLikes"] as? Double
-        self.zipCode = dictionary["zipCode"] as? String
-        self.gender = dictionary["gender"] as? String
-        self.accountBalance = dictionary["yourMoney"] as? Double
-        self.referralcode = dictionary["referralcode"] as? String
-    }
-    
-    override var description: String {
-        return "NAME: \(name ?? "NIL")\nUSERNAME: \(username)\nFOLLOWER COUNT: \(followerCount)\nPROFILE PIC: \(profilePicURL ?? "NIL")\nACCOUNT TYPE: \(primaryCategory)\nAVERAGE LIKES: \(averageLikes ?? -404)"
-    }
+    let name: String?
+		let username: String
+		let followerCount: Double
+		let profilePicURL: String?
+		let averageLikes: Double?
+		var zipCode: String?
+		let id: String
+		var gender: Gender?
+		var isBankAdded: Bool
+		var joinedDate: String?
+		var categories: [String]?
+		var referralcode: String
+		var accountBalance: Double?
+		var isDefaultOfferVerify: Bool
+		
+		init(dictionary: [String: Any]) {
+			self.name = dictionary["name"] as? String
+			self.username = dictionary["username"] as! String
+			self.followerCount = dictionary["followerCount"] as! Double
+			if (dictionary["profilePicture"] as? String ?? "") == "" {
+				self.profilePicURL = nil
+			} else {
+				self.profilePicURL = dictionary["profilePicture"] as? String
+			}
+			self.averageLikes = dictionary["averageLikes"] as? Double
+			self.zipCode = dictionary["zipCode"] as? String
+			self.id = dictionary["id"] as! String
+			self.gender = dictionary["gender"] as? Gender
+			self.isBankAdded = dictionary["isBankAdded"] as! Bool
+			self.joinedDate = dictionary["joinedDate"] as? String
+			self.categories = dictionary["categories"] as? [String]
+
+			self.accountBalance = dictionary["yourMoney"] as? Double
+			self.referralcode = dictionary["referralcode"] as? String ?? ""
+			self.isDefaultOfferVerify = dictionary["isDefaultOfferVerify"] as? Bool ?? false
+		}
 }
 
 //Structure for post
@@ -499,9 +477,9 @@ enum TypeofPost {
 
 struct Section {
     var categoryTitle: categoryClass!
-    var categoryData: [Category]!
+    var categoryData: [String]!
     var expanded: Bool!
-    init(categoryTitle: categoryClass, categoryData: [Category], expanded: Bool) {
+    init(categoryTitle: categoryClass, categoryData: [String], expanded: Bool) {
         self.categoryTitle = categoryTitle
         self.categoryData = categoryData
         self.expanded = expanded
