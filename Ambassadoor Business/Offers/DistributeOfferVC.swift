@@ -115,32 +115,27 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
              - Post two features 1 possible product
              - Post three features 9 possible products
              */
-            offerProducts.text = "- Post one features \(String(describing: offerOne.products!.count)) possible \(self.getProductContent(count: offerOne.products!.count)) \n- Post two features \(String(describing: offerTwo.products!.count)) possible \(self.getProductContent(count: offerTwo.products!.count)) \n- Post three features \(String(describing: offerThree.products!.count)) possible \(self.getProductContent(count: offerThree.products!.count))"
+            offerProducts.text = "- Post one features \(String(describing: offerOne.products?.count ?? 0)) possible \(self.getProductContent(count: offerOne.products?.count ?? 0)) \n- Post two features \(String(describing: offerTwo.products!.count)) possible \(self.getProductContent(count: offerTwo.products!.count)) \n- Post three features \(String(describing: offerThree.products!.count)) possible \(self.getProductContent(count: offerThree.products!.count))"
         
             }else if templateOffer!.posts.count == 2 {
             let offerOne = templateOffer!.posts[0]
             let offerTwo = templateOffer!.posts[1]
-            offerProducts.text = "- Post one features \(String(describing: offerOne.products!.count))  possible \(self.getProductContent(count: offerOne.products!.count)) \n- Post two features \(String(describing: offerTwo.products!.count)) possible \(self.getProductContent(count: offerTwo.products!.count))"
+            offerProducts.text = "- Post one features \(String(describing: offerOne.products?.count ?? 0))  possible \(self.getProductContent(count: offerOne.products?.count ?? 0)) \n- Post two features \(String(describing: offerTwo.products!.count)) possible \(self.getProductContent(count: offerTwo.products!.count))"
         
             }else if templateOffer!.posts.count == 1 {
             let offerOne = templateOffer!.posts[0]
-            offerProducts.text = "- Post one features \(String(describing: offerOne.products!.count))  possible \(self.getProductContent(count: offerOne.products!.count))"
+            offerProducts.text = "- Post one features \(String(describing: offerOne.products?.count ?? 0))  possible \(self.getProductContent(count: offerOne.products?.count ?? 0))"
         
             }
         
     }
     
     func getProductContent(count: Int) -> String {
-        
-        if count > 1 {
-            
-            return "products"
-            
-        }else{
+        if count == 1 {
             return "product"
+        } else {
+            return "products"
         }
-        
-        
     }
     
     //MARK: -Textfield Delegate
