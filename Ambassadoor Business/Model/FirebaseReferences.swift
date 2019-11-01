@@ -500,7 +500,7 @@ func getFilteredInfluencers(category: [String:[AnyObject]],completion: @escaping
                 
                 
             }
-            let sortedPriority = user.sorted(by: { $0.priorityValue! < $1.priorityValue! })
+            let sortedPriority = user.sorted(by: { $0.priorityValue ?? 0 < $1.priorityValue ?? 0 })
             user.removeAll()
             user.append(contentsOf: sortedPriority)
             completion(userIDs, "success", user)
@@ -662,9 +662,14 @@ func UpdatePriorityValue(user: User) {
     
     transactionRef.observeSingleEvent(of: .value, with: { (snapshot) in
         if let userData = snapshot.value as? NSDictionary{
-            
-            let priorityValue = userData["priorityValue"] as! Int + 24
-            
+            var priorityValue = 0
+            if (userData["priorityValue"] as? Int) != nil {
+            priorityValue = userData["priorityValue"] as! Int + 24
+            }else{
+                
+            priorityValue = 24
+                
+            }
             transactionRef.updateChildValues(["priorityValue":priorityValue])
             
         }
