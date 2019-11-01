@@ -9,6 +9,7 @@
 import UIKit
 protocol ExpandableHeaderViewDelegate {
     func toggleSection(header: ExpandableHeaderView, section: Int)
+    func selectAllSection(header: ExpandableHeaderView, section: Int, selected: Bool)
 }
 
 class ExpandableHeaderView: UITableViewHeaderFooterView {
@@ -16,8 +17,11 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
     var delegate: ExpandableHeaderViewDelegate?
     var section: Int!
     var imageView: UIImageView?
+    var selectAllBTN: UIButton?
     var bottomImage: UIImageView?
     var expandBool: Bool = false
+    var selectedAll: Bool = false
+    var selectedAllArray = [Int]()
     
     
     override init(reuseIdentifier: String?) {
@@ -28,6 +32,13 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
     @objc func selectHeaderAction(gestureRecognizer: UITapGestureRecognizer) {
         let cell = gestureRecognizer.view as! ExpandableHeaderView
         delegate?.toggleSection(header: self, section: cell.section)
+    }
+    
+    @IBAction func selectAllAction(sender: UIButton){
+        
+        let cell = sender.superview?.superview as! ExpandableHeaderView
+        delegate?.selectAllSection(header: self, section: cell.section, selected: true)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -75,6 +86,24 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
         imageView?.backgroundColor = UIColor.white
         //imageView?.contentMode = .scaleAspectFit
         self.contentView.addSubview(imageView!)
+        
+        //let image = UIImage(named: imageName)
+        //selectAllBTN = (image: image!)
+        if selectedAll {
+        selectAllBTN = UIButton()
+        selectAllBTN?.frame = CGRect(x: self.contentView.frame.width-80, y: 20, width: 25, height: 25)
+        selectAllBTN?.backgroundColor = UIColor.clear
+        selectAllBTN?.setBackgroundImage(UIImage(named: "tick"), for: .normal)
+        selectAllBTN?.addTarget(self, action: #selector(selectAllAction(sender:)), for: .touchUpInside)
+        self.contentView.addSubview(selectAllBTN!)
+        }else{
+        selectAllBTN = UIButton()
+        selectAllBTN?.frame = CGRect(x: self.contentView.frame.width-80, y: 20, width: 25, height: 25)
+        selectAllBTN?.backgroundColor = UIColor.clear
+        selectAllBTN?.setBackgroundImage(UIImage(named: "square"), for: .normal)
+        selectAllBTN?.addTarget(self, action: #selector(selectAllAction(sender:)), for: .touchUpInside)
+        self.contentView.addSubview(selectAllBTN!)
+        }
         
         bottomImage = UIImageView()
         bottomImage?.frame = CGRect(x: 0, y: self.contentView.frame.height-1, width: self.contentView.frame.width, height: 1)

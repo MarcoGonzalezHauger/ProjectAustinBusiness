@@ -23,6 +23,8 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
     @IBOutlet weak var moneyText: UITextField!
     @IBOutlet weak var scroll: UIScrollView!
     
+    @IBOutlet weak var commisionText: UILabel!
+    
     var templateOffer: TemplateOffer?
     var depositValue: Deposit?
     var increasePayVariable: IncreasePayVariable = .None
@@ -79,8 +81,10 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.customizeNavigationBar()
         // Do any additional setup after loading the view.
+        let commission = Singleton.sharedInstance.getCommision() * 100
+        self.commisionText.text = "Ambassadoor will take \(commission)%"
         self.addNavigationBarTitleView(title: "Distribute Offer", image: UIImage())
         self.addDoneButtonOnKeyboard(textField: moneyText)
         self.offerTextValue()
@@ -241,7 +245,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
             if (offerAmount < self.depositValue!.currentBalance!) {
             
             
-                getFilteredInfluencers(category: self.influencersFilter as! [String : [AnyObject]]) { (influencer, errorStatus,user) in
+                getFilteredInfluencers(category: self.influencersFilter as! [String : [AnyObject]]) { (influencer, errorStatus,userArray) in
                 
                 if influencer?.count != 0 {
                     
@@ -259,7 +263,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                     
                     
                     
-                    for (value,user) in zip(influencer!, user!) {
+                    for (_,user) in zip(influencer!, userArray!) {
                         
                         if user.averageLikes != 0 && user.averageLikes != nil {
                         
@@ -271,21 +275,21 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                             
                             if self.templateOffer?.user_IDs.count != 0 {
                             
-                            if (self.templateOffer?.user_IDs.contains(value))!{
+                                if (self.templateOffer?.user_IDs.contains(user.id!))!{
                             
                             
                             }else{
                                 
                                 offerAmount -= influcerMoneyValue
                                 extractedInfluencer.append(user)
-                                extractedUserID.append(value)
+                                extractedUserID.append(user.id!)
                                 
                             }
                             }else{
                                 
                                 offerAmount -= influcerMoneyValue
                                 extractedInfluencer.append(user)
-                                extractedUserID.append(value)
+                                extractedUserID.append(user.id!)
                                 
                             }
                             
@@ -293,6 +297,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                             break
                         }
                     }
+                        
                     }
                     
                     if extractedUserID.count != 0 {
@@ -365,7 +370,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
             
             if user != nil {
             
-                let transactionHistory = ["from":Auth.auth().currentUser!.uid,"To":user?.id! as Any,"type":"referral","Amount":(self.ambassadoorCommision * 0.2),"status":"pending","createdAt":DateFormatManager.sharedInstance.getCurrentDateString(),"id":offerID] as [String : Any]
+                let transactionHistory = ["from":Auth.auth().currentUser!.uid,"To":user?.id! as Any,"type":"referral","Amount":(self.ambassadoorCommision * 0.2),"status":"success","createdAt":DateFormatManager.sharedInstance.getCurrentDateString(),"id":offerID] as [String : Any]
                 
                 var amount = 0.0
                 
@@ -400,7 +405,15 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
         
         let expiryDate = DateFormatManager.sharedInstance.getExpiryDate(dateString: dateString)
         self.templateOffer?.expiredate = expiryDate
-        self.templateOffer?.user_IDs = influencer!
+        for influencerID in influencer! {
+            if (self.templateOffer?.user_IDs.contains(influencerID))!{
+                
+            }else{
+                
+                self.templateOffer?.user_IDs.append(influencerID)
+            }
+        }
+        
         let path = Auth.auth().currentUser!.uid + "/" + self.templateOffer!.offer_ID
         sentOutOffers(pathString: path, templateOffer: self.templateOffer!) { (template, status) in
             
@@ -412,31 +425,44 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                 for (value, userValue) in zip(influencer!, user!) {
                     //(value, user) in zip(strArr1, strArr2)
                     if userValue.averageLikes != 0 && userValue.averageLikes != nil {
-                    let patstring = value + "/" + template.offer_ID
+                        let patstring = userValue.id! + "/" + template.offer_ID
                         
                         
                         template.money = Double(NumberToPrice(Value: calculateCostForUser(offer: self.templateOffer!, user: userValue, increasePayVariable: self.increasePayVariable.rawValue), enforceCents: true).dropFirst())!
-                    cardDetails.append([value:["id":value,"amount":template.money,"toOffer":template.offer_ID,"name":userValue.name!,"gender":userValue.gender!,"averageLikes":userValue.averageLikes!]])
+                    cardDetails.append([value:["id":userValue.id!,"amount":template.money,"toOffer":template.offer_ID,"name":userValue.name!,"gender":userValue.gender!,"averageLikes":userValue.averageLikes!]])
+                    UpdatePriorityValue(user: userValue)
                     completedOffersToUsers(pathString: patstring, templateOffer: template)
                         
                     
-                        
-                        let transactionHistory = ["from":Auth.auth().currentUser!.uid,"To":value,"type":"offer","Amount":template.money,"status":"pending","createdAt":DateFormatManager.sharedInstance.getCurrentDateString(),"id":template.offer_ID] as [String : Any]
-                    
-                        sentOutTransactionToInfluencer(pathString: value, transactionData: transactionHistory)
+                        //Naveen Suggested - No Need this functionalities
+//                        let transactionHistory = ["from":Auth.auth().currentUser!.uid,"To":value,"type":"offer","Amount":template.money,"status":"pending","createdAt":DateFormatManager.sharedInstance.getCurrentDateString(),"id":template.offer_ID] as [String : Any]
+//
+//                        sentOutTransactionToInfluencer(pathString: value, transactionData: transactionHistory)
                         
                     }
                 }
                 //let removeTemplatePath = Auth.auth().currentUser!.uid + "/" +  template.offer_ID
                 //removeTemplateOffers(pathString: removeTemplatePath, templateOffer: template)
                 var userIDValue = [String]()
+                var userIDDubValue = [String]()
                 for uderIDs in user! {
-                    userIDValue.append(uderIDs.id!)
+                    userIDDubValue.append(uderIDs.id!)
                 }
-                userIDValue.append(contentsOf: template.user_IDs)
+                userIDDubValue.append(contentsOf: template.user_IDs)
+                
+                for uniqueID in userIDDubValue {
+                    
+                    if userIDValue.contains(uniqueID){
+                        
+                    }else{
+                        userIDValue.append(uniqueID)
+                    }
+                    
+                }
+                
                 let updateTemplatePath = Auth.auth().currentUser!.uid + "/" +  template.offer_ID
                 updateTemplateOffers(pathString: updateTemplatePath, templateOffer: template, userID: userIDValue)
-                let user = Singleton.sharedInstance.getCompanyUser()
+                let userCompany = Singleton.sharedInstance.getCompanyUser()
                 let depositBalance = self.depositValue!.currentBalance! - deductedAmount
                 let totalDeductedAmt = (self.depositValue?.totalDeductedAmount!)! + deductedAmount
                 //Add Transaction Details
@@ -457,15 +483,25 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                 self.depositValue?.lastTransactionHistory = transaction
                 
                 
-                sendDepositAmount(deposit: self.depositValue!, companyUser: user.userID!) { (deposit, status) in
+                sendDepositAmount(deposit: self.depositValue!, companyUser: userCompany.userID!) { (deposit, status) in
                     self.depositValue = deposit
                 }
                 if Singleton.sharedInstance.getCompanyDetails().referralcode?.count != 0 {
                 self.sentOutReferralCommision(referral: Singleton.sharedInstance.getCompanyDetails().referralcode, offerID: self.templateOffer!.offer_ID)
                 }
-                global.post.removeAll()
-                self.createLocalNotification(notificationName: "reloadOffer", userInfo: [:])
-                self.navigationController?.popToRootViewController(animated: true)
+                
+//                let distributedUsers = user?.reduce("", { (currentUser, nextUser) -> String in
+//
+//                    return currentUser + "," + nextUser.username!
+//
+//                })
+                
+                self.showAlertMessage(title: "Offer Distrubuted", message: "Your offer was sent to \(influencer?.count ?? 0) influencers, totaling $\(deductedAmount).If you send this Offer again, Ambassadoor will not send this offer to these influencer again.") {
+                    global.post.removeAll()
+                    self.createLocalNotification(notificationName: "reloadOffer", userInfo: [:])
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
+                
             }
             
         }

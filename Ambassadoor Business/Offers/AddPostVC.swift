@@ -27,7 +27,7 @@ class AddPostVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UITextFieldDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.customizeNavigationBar()
         if index != nil {
             let post = global.post[index!]
             self.desPost.text = post.instructions
@@ -41,8 +41,9 @@ class AddPostVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UITextFieldDel
         if global.products.count == 0 {
         self.showActivityIndicator()
         getAllProducts(path: path) { (product) in
+            if product != nil {
             self.hideActivityIndicator()
-            global.products.append(contentsOf: product)
+            global.products.append(contentsOf: product!)
             self.productTable.reloadData()
             if self.index != nil {
                 let post = global.post[self.index!]
@@ -60,6 +61,10 @@ class AddPostVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UITextFieldDel
                 
             }
             self.productTable.reloadData()
+            }
+            
+            }else{
+                self.hideActivityIndicator()
             }
 
         }
@@ -195,7 +200,7 @@ class AddPostVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UITextFieldDel
                     if productCollection.count != 0 {
                         
                             
-                           let post  = Post.init(image: "", instructions: desPost.text!, captionMustInclude: self.pharsePost.text!, products: productCollection, post_ID: "", PostType: PostTypeToText(posttype: .SinglePost) , confirmedSince: Date(), isConfirmed: false, hashCaption: hashPost.text!)
+                        let post  = Post.init(image: "", instructions: desPost.text!, captionMustInclude: self.pharsePost.text!, products: productCollection, post_ID: "", PostType: PostTypeToText(posttype: .SinglePost) , confirmedSince: Date(), isConfirmed: false, hashCaption: hashPost.text!, status: "available")
                             self.showActivityIndicator()
                             getCreatePostUniqueID(param: post) { (postValue, error) in
                                 self.hideActivityIndicator()

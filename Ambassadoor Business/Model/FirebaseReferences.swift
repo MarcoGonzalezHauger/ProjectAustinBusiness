@@ -230,7 +230,7 @@ func CreatePost(param: Post,completion: @escaping (Post,Bool) -> ())  {
     let ref = Database.database().reference().child("post").child(Auth.auth().currentUser!.uid)
     ref.observeSingleEvent(of: .value, with: { (snapshot) in
         let postReference = ref.childByAutoId()
-        let post = Post.init(image: param.image!, instructions: param.instructions, captionMustInclude: param.captionMustInclude!, products: param.products!, post_ID: postReference.key!, PostType: param.PostType, confirmedSince: param.confirmedSince!, isConfirmed: param.isConfirmed, hashCaption: param.hashCaption)
+        let post = Post.init(image: param.image!, instructions: param.instructions, captionMustInclude: param.captionMustInclude!, products: param.products!, post_ID: postReference.key!, PostType: param.PostType, confirmedSince: param.confirmedSince!, isConfirmed: param.isConfirmed, hashCaption: param.hashCaption, status: param.status)
         let productData = API.serializePost(post: post)
         postReference.updateChildValues(productData)
         completion(post, true)
@@ -242,7 +242,7 @@ func getCreatePostUniqueID(param: Post, completion: @escaping (Post,Bool) -> ())
     
     let ref = Database.database().reference()
     let postReference = ref.childByAutoId()
-    let post = Post.init(image: param.image!, instructions: param.instructions, captionMustInclude: param.captionMustInclude!, products: param.products!, post_ID: postReference.key!, PostType: param.PostType, confirmedSince: param.confirmedSince!, isConfirmed: param.isConfirmed, hashCaption: param.hashCaption)
+    let post = Post.init(image: param.image!, instructions: param.instructions, captionMustInclude: param.captionMustInclude!, products: param.products!, post_ID: postReference.key!, PostType: param.PostType, confirmedSince: param.confirmedSince!, isConfirmed: param.isConfirmed, hashCaption: param.hashCaption, status: param.status)
     //let productData = API.serializePost(post: post)
     completion(post,true)
 }
@@ -485,6 +485,8 @@ func getFilteredInfluencers(category: [String:[AnyObject]],completion: @escaping
                         
                     }
                     
+                }else{
+                    checkCategoryArray = true
                 }
                 
                 
@@ -492,8 +494,15 @@ func getFilteredInfluencers(category: [String:[AnyObject]],completion: @escaping
                     userIDs.append(first["id"] as! String)
                     user.append(User.init(dictionary: first))
                 }
+				
+				//userIDs.shuffle()
+                //user.shuffle()
+                
                 
             }
+            let sortedPriority = user.sorted(by: { $0.priorityValue! < $1.priorityValue! })
+            user.removeAll()
+            user.append(contentsOf: sortedPriority)
             completion(userIDs, "success", user)
         }else{
             completion([], "error", nil)
@@ -514,7 +523,7 @@ func getFilteredInfluencers(category: [String:[AnyObject]],completion: @escaping
 //    }
 }
 
-func getAllProducts(path: String, completion: @escaping ([Product]) -> ()) {
+func getAllProducts(path: String, completion: @escaping ([Product]?) -> ()) {
     let productsRef = Database.database().reference().child("products").child(path)
     var products: [Product] = []
     productsRef.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -525,6 +534,8 @@ func getAllProducts(path: String, completion: @escaping ([Product]) -> ()) {
                 products.append(productInstance)
             }
             completion(products)
+        }else{
+            completion(nil)
         }
     }, withCancel: nil)
 }
@@ -645,6 +656,24 @@ func updateInfluencerAmountByReferral(user: User, amount: Double) {
     
 }
 
+func UpdatePriorityValue(user: User) {
+    
+    let transactionRef = Database.database().reference().child("users").child(user.id!)
+    
+    transactionRef.observeSingleEvent(of: .value, with: { (snapshot) in
+        if let userData = snapshot.value as? NSDictionary{
+            
+            let priorityValue = userData["priorityValue"] as! Int + 24
+            
+            transactionRef.updateChildValues(["priorityValue":priorityValue])
+            
+        }
+        
+    }) { (error) in
+        
+    }
+}
+
 func removeTemplateOffers(pathString: String, templateOffer: TemplateOffer) {
     let offersRef = Database.database().reference().child("TemplateOffers").child(pathString)
     offersRef.removeValue()
@@ -706,7 +735,7 @@ func parseTemplateOffer(offer: [String: AnyObject]) -> [Post] {
             productList.append(productInitialized)
         }
         
-        let postInitialized = Post.init(image: "", instructions: value["instructions"] as? String ?? "", captionMustInclude: value["captionMustInclude"] as? String, products: productList, post_ID: value["post_ID"] as! String, PostType: value["PostType"] as! String, confirmedSince: value["confirmedSince"] as? Date, isConfirmed: (value["isConfirmed"] != nil), hashCaption: value["hashCaption"] as! String)
+        let postInitialized = Post.init(image: "", instructions: value["instructions"] as? String ?? "", captionMustInclude: value["captionMustInclude"] as? String, products: productList, post_ID: value["post_ID"] as! String, PostType: value["PostType"] as! String, confirmedSince: value["confirmedSince"] as? Date, isConfirmed: (value["isConfirmed"] != nil), hashCaption: value["hashCaption"] as! String, status: value["status"] as? String ?? "")
         postValues.append(postInitialized)
     }
     return postValues
@@ -761,10 +790,6 @@ func getStatisticsData(completion: @escaping([Statistics]?,String,Error?) -> Voi
                             let refUserPost = Database.database().reference().child("SentOutOffersToUsers").child(userID).child(offerKey as! String)
                             
                             print(offerKey)
-                            
-                            if "-Lq1aMXg-fOz1uTHkiLL" == offerKey as! String {
-                                
-                            }
                             
                             refUserPost.observeSingleEvent(of: .value, with: { (userpublish) in
                                 
@@ -834,52 +859,64 @@ func getInstagramPosts(statisticsData: [Statistics],completion: @escaping([Strin
         
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             
-            if let instagramPost = snapshot.value as? NSDictionary {
-               
-                if instagramOfferDetailsArray.keys.contains(statistics.userID){
-                    let insData = instagramOfferDetailsArray[statistics.userID]
+            print(snapshot.value)
+            
+            if let instagramPostOffer = snapshot.value as? NSDictionary {
+                
+                for offerKey in instagramPostOffer.allKeys {
                     
-                    if let commentsData = instagramPost["comments"] as? NSDictionary {
+                    if let instagramPost = instagramPostOffer[offerKey] as? NSDictionary {
                         
-                        insData?.commentsCount = insData!.commentsCount + (commentsData["count"] as! Int)
+                        if instagramOfferDetailsArray.keys.contains(statistics.userID){
+                            let insData = instagramOfferDetailsArray[statistics.userID]
+                            
+                            if let commentsData = instagramPost["comments"] as? NSDictionary {
+                                
+                                insData?.commentsCount = insData!.commentsCount + (commentsData["count"] as! Int)
+                                
+                            }
+                            
+                            if let likesData = instagramPost["likes"] as? NSDictionary {
+                                
+                                insData?.likesCount = insData!.likesCount + (likesData["count"] as! Int)
+                                
+                            }
+                            
+                            if let userData = instagramPost["user"] as? NSDictionary {
+                                insData?.userInfo = userData
+                            }
+                            
+                            instagramOfferDetailsArray[statistics.userID] = insData
+                            
+                        }else{
+                            
+                            let insData = instagramOfferDetails()
+                            
+                            if let commentsData = instagramPost["comments"] as? NSDictionary {
+                                
+                                insData.commentsCount = (commentsData["count"] as! Int)
+                                
+                            }
+                            
+                            if let likesData = instagramPost["likes"] as? NSDictionary {
+                                
+                                insData.likesCount = (likesData["count"] as! Int)
+                                
+                            }
+                            
+                            if let userData = instagramPost["user"] as? NSDictionary {
+                                insData.userInfo = userData
+                            }
+                            
+                            instagramOfferDetailsArray[statistics.userID] = insData
+                            
+                        }
                         
                     }
-                    
-                    if let likesData = instagramPost["likes"] as? NSDictionary {
-                        
-                        insData?.likesCount = insData!.likesCount + (likesData["count"] as! Int)
-                        
-                    }
-                    
-                    if let userData = instagramPost["user"] as? NSDictionary {
-                        insData?.userInfo = userData
-                    }
-                    
-                    instagramOfferDetailsArray[statistics.userID] = insData
-                    
-                }else{
-                    
-                    let insData = instagramOfferDetails()
-                    
-                    if let commentsData = instagramPost["comments"] as? NSDictionary {
-                        
-                        insData.commentsCount = (commentsData["count"] as! Int)
-                        
-                    }
-                    
-                    if let likesData = instagramPost["likes"] as? NSDictionary {
-                        
-                        insData.likesCount = (likesData["count"] as! Int)
-                        
-                    }
-                    
-                    if let userData = instagramPost["user"] as? NSDictionary {
-                        insData.userInfo = userData
-                    }
-                    
-                    instagramOfferDetailsArray[statistics.userID] = insData
                     
                 }
+               
+
                 
             }
             

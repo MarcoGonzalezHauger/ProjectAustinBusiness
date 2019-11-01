@@ -13,6 +13,7 @@ class InstagramUserTVC: UITableViewCell {
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var likesCount: UILabel!
+    @IBOutlet weak var offerStatus: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

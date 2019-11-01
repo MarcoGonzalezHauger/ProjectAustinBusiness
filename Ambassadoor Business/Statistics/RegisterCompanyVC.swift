@@ -120,9 +120,9 @@ class RegisterCompanyVC: BaseVC,ImagePickerDelegate,UITextFieldDelegate,UITextVi
             
            if self.companyName.text?.count != 0 {
             
-            if self.companyEmail.text?.count != 0 {
+            //if self.companyEmail.text?.count != 0 {
                 
-                if Validation.sharedInstance.isValidEmail(emailStr: self.companyEmail.text!){
+                //if Validation.sharedInstance.isValidEmail(emailStr: self.companyEmail.text!){
                     
                     if self.companySite.text?.count != 0 {
                         
@@ -134,6 +134,9 @@ class RegisterCompanyVC: BaseVC,ImagePickerDelegate,UITextFieldDelegate,UITextVi
                                 
                                 
                                 CreateCompany(company: companyValue) { (company) in
+                                    let companyUser = Singleton.sharedInstance.getCompanyUser()
+                                    companyUser.companyID = company.account_ID
+                                    Singleton.sharedInstance.setCompanyUser(user: companyUser)
                                     Singleton.sharedInstance.setCompanyDetails(company: company)
                                     self.dismiss(animated: true, completion: nil)
                                     
@@ -161,19 +164,19 @@ class RegisterCompanyVC: BaseVC,ImagePickerDelegate,UITextFieldDelegate,UITextVi
                         }
                     }
                     
-                }else {
-                    self.showAlertMessage(title: "Alert", message: "Please enter valid email address") {
-                        
-                    }
-                }
+//                }else {
+//                    self.showAlertMessage(title: "Alert", message: "Please enter valid email address") {
+//
+//                    }
+//                }
                 
-            }else {
-                
-                self.showAlertMessage(title: "Alert", message: "Please enter your company email address") {
-                    
-                }
-                
-            }
+//            }else {
+//
+//                self.showAlertMessage(title: "Alert", message: "Please enter your company email address") {
+//
+//                }
+//
+//            }
                 
            }else{
             

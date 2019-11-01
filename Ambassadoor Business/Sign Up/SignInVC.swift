@@ -86,6 +86,14 @@ class SignInVC: BaseVC,UITextFieldDelegate {
         self.assainedTextField = textField
         
     }
+	
+	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+		
+		if textField == emailText && string.contains(" ") {
+			return false
+		}
+		return true
+	}
     
     @IBAction func createAccountAction(sender: UIButton){
         DispatchQueue.main.async(execute: {
@@ -94,7 +102,11 @@ class SignInVC: BaseVC,UITextFieldDelegate {
             
         })
     }
-    
+	
+	@IBAction func tapped(_ sender: Any) {
+		view.endEditing(true)
+	}
+	
     @objc func timerAction(sender: AnyObject){
         self.showActivityIndicator()
     }

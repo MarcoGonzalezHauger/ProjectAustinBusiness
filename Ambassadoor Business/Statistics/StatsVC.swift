@@ -29,6 +29,7 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
     @IBOutlet weak var acceptedText: UILabel!
     @IBOutlet weak var availableText: UILabel!
     @IBOutlet weak var rejectedText: UILabel!
+    @IBOutlet weak var noneInfluencers: UIView!
     
     @IBOutlet weak var totalPosts: UILabel!
     
@@ -53,6 +54,7 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
 //        YourCompany = Company.init(dictionary: ["name": "KRILL GROUP", "logo": "", "mission": "Turn a profit.", "website": "https://www.google.com/", "account_ID": "0", "instagram_name": "marcogonzalezhauger", "description": "No description to see here!", "accountBalance": 1000.0])
 //		accountBalance = 610.78
 //		transactionHistory = [Transaction(description: "Despotied $620.77 into Ambassadoor", details: "Order processed.", time: Date.init(timeIntervalSinceNow: -10000), amount: 620.77),Transaction(description: "You paid $9.99", details: "Processed.", time: Date.init(timeIntervalSinceNow: 0), amount: -9.99)]
+        
         if Singleton.sharedInstance.getCompanyUser().isCompanyRegistered == false {
             self.performSegue(withIdentifier: "toCompanyRegister", sender: self)
         }else{
@@ -64,6 +66,27 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
                 Singleton.sharedInstance.setCompanyDetails(company: company!)
             }
             
+        }
+
+	}
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+//        if Singleton.sharedInstance.getCompanyUser().isCompanyRegistered == false {
+//            self.performSegue(withIdentifier: "toCompanyRegister", sender: self)
+//        }else{
+//
+//            let user = Singleton.sharedInstance.getCompanyUser().companyID!
+//
+//            getCompany(companyID: user) { (company, error) in
+//
+//                Singleton.sharedInstance.setCompanyDetails(company: company!)
+//            }
+            self.accepted = 0
+            self.rejected = 0
+            self.paid = 0
+            self.allVerified = 0
+            self.available = 0
             getStatisticsData { (statistics, status, error) in
                 
                 if error == nil {
@@ -138,11 +161,15 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
                         if error == nil {
                             
                             if InstagramData?.count != 0 {
+                                self.noneInfluencers.isHidden = true
                                 self.instagramOfferArray.removeAll()
                                 self.instagramOfferArray = InstagramData!
+                                self.instagramDataUserArray.removeAll()
                                 self.instagramDataUserArray.append(contentsOf: InstagramData!.keys)
                                 self.userTable.reloadData()
                                 
+                            }else{
+                                self.noneInfluencers.isHidden = false
                             }
                             
                         }
@@ -157,11 +184,8 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
                 
             }
             
-        }
-            
-		
-		
-	}
+       // }
+    }
     
     //MARK: UITableview Datasource
     

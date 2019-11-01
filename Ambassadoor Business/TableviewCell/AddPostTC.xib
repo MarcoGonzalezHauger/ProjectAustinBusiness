@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14835.7" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14790.5"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,18 +17,24 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QHE-ib-5zp" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                        <rect key="frame" x="20" y="9" width="373" height="60"/>
+                        <rect key="frame" x="0.0" y="9" width="413" height="60"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VN0-tX-usH" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VN0-tX-usH" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="createNew" translatesAutoresizingMaskIntoConstraints="NO" id="SLh-cT-RNF">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="createNew" translatesAutoresizingMaskIntoConstraints="NO" id="SLh-cT-RNF">
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="SLh-cT-RNF" secondAttribute="trailing" id="J6m-AU-KWy"/>
+                                    <constraint firstAttribute="bottom" secondItem="SLh-cT-RNF" secondAttribute="bottom" id="Ln3-aC-3Gl"/>
+                                    <constraint firstAttribute="width" constant="60" id="RAA-be-0Oc"/>
+                                    <constraint firstItem="SLh-cT-RNF" firstAttribute="leading" secondItem="VN0-tX-usH" secondAttribute="leading" id="fcL-YP-a9x"/>
+                                    <constraint firstItem="SLh-cT-RNF" firstAttribute="top" secondItem="VN0-tX-usH" secondAttribute="top" id="gzK-Zr-Ist"/>
+                                    <constraint firstAttribute="height" constant="60" id="lzo-JS-wN3"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="30"/>
@@ -36,16 +42,19 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Your Post" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9DN-Mr-O7l">
-                                <rect key="frame" x="68" y="20" width="306" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Post" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9DN-Mr-O7l">
+                                <rect key="frame" x="76" y="19.5" width="72.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="VN0-tX-usH" firstAttribute="centerY" secondItem="QHE-ib-5zp" secondAttribute="centerY" id="0iv-u9-gDP"/>
+                            <constraint firstItem="VN0-tX-usH" firstAttribute="leading" secondItem="QHE-ib-5zp" secondAttribute="leading" id="HFn-N0-yYc"/>
+                            <constraint firstItem="9DN-Mr-O7l" firstAttribute="centerY" secondItem="QHE-ib-5zp" secondAttribute="centerY" id="aCk-PA-cKN"/>
+                            <constraint firstItem="9DN-Mr-O7l" firstAttribute="leading" secondItem="VN0-tX-usH" secondAttribute="trailing" constant="16" id="cF1-kh-Pkl"/>
                             <constraint firstAttribute="height" constant="60" id="rbr-PY-HYP"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -57,12 +66,10 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="QHE-ib-5zp" firstAttribute="centerY" secondItem="zkC-GQ-ZEM" secondAttribute="centerY" id="Mp3-0b-eDf"/>
                     <constraint firstAttribute="bottom" secondItem="QHE-ib-5zp" secondAttribute="bottom" constant="9" id="Uu4-q3-2RX"/>
-                    <constraint firstItem="QHE-ib-5zp" firstAttribute="centerX" secondItem="zkC-GQ-ZEM" secondAttribute="centerX" id="ceI-5q-HtQ"/>
                     <constraint firstItem="QHE-ib-5zp" firstAttribute="top" secondItem="zkC-GQ-ZEM" secondAttribute="top" constant="9" id="e5j-DQ-27b"/>
-                    <constraint firstItem="QHE-ib-5zp" firstAttribute="leading" secondItem="zkC-GQ-ZEM" secondAttribute="leading" constant="20" id="pSJ-9z-dc2"/>
-                    <constraint firstAttribute="trailing" secondItem="QHE-ib-5zp" secondAttribute="trailing" constant="20" id="sCa-5k-U4d"/>
+                    <constraint firstItem="QHE-ib-5zp" firstAttribute="leading" secondItem="zkC-GQ-ZEM" secondAttribute="leading" id="pSJ-9z-dc2"/>
+                    <constraint firstAttribute="trailing" secondItem="QHE-ib-5zp" secondAttribute="trailing" id="sCa-5k-U4d"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

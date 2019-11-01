@@ -166,6 +166,7 @@ class User: NSObject {
     var gender: String?
     var accountBalance: Double?
     var referralcode: String?
+    var priorityValue: Int?
     
     
     init(dictionary: [String: Any]) {
@@ -203,6 +204,7 @@ class User: NSObject {
         self.gender = dictionary["gender"] as? String
         self.accountBalance = dictionary["yourMoney"] as? Double
         self.referralcode = dictionary["referralcode"] as? String
+        self.priorityValue = dictionary["priorityValue"] as? Int
     }
     
     override var description: String {
@@ -222,6 +224,8 @@ struct Post {
     var confirmedSince: Date?
     var isConfirmed: Bool
     var hashCaption: String
+    var status: String
+    
     
 //    init(image: String?,instructions: String,captionMustInclude: String?,products: [Product]?,post_ID: String,PostType: TypeofPost,confirmedSince: Date?,isConfirmed: Bool,hashCaption: String) {
 //
@@ -501,9 +505,11 @@ struct Section {
     var categoryTitle: categoryClass!
     var categoryData: [Category]!
     var expanded: Bool!
-    init(categoryTitle: categoryClass, categoryData: [Category], expanded: Bool) {
+    var selectedAll: Bool!
+    init(categoryTitle: categoryClass, categoryData: [Category], expanded: Bool, selected: Bool) {
         self.categoryTitle = categoryTitle
         self.categoryData = categoryData
         self.expanded = expanded
+        self.selectedAll = selected
     }
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14835.7" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14790.5"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FgB-hr-VL6" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                        <rect key="frame" x="20" y="0.0" width="374" height="67"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="67"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qeh-fj-oAq">
                                 <rect key="frame" x="8" y="8.5" width="50" height="50"/>
@@ -26,7 +26,7 @@
                                     <constraint firstAttribute="height" constant="50" id="d9G-01-wvB"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio-Degradable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5V-QU-kJF">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5V-QU-kJF">
                                 <rect key="frame" x="71" y="23" width="231" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="231" id="GDv-7m-HDP"/>
@@ -37,14 +37,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pfX-et-fNY" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                <rect key="frame" x="341" y="21" width="25" height="25"/>
+                                <rect key="frame" x="381" y="21" width="25" height="25"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uqK-lE-De7">
                                         <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="Tqe-PB-Vct"/>
                                     <constraint firstAttribute="height" constant="25" id="prt-Ul-ovl"/>
@@ -57,7 +57,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="g5V-QU-kJF" firstAttribute="leading" secondItem="Qeh-fj-oAq" secondAttribute="trailing" constant="13" id="HnV-E1-bft"/>
                             <constraint firstAttribute="height" constant="67" id="Mmh-BV-tPM"/>
@@ -77,10 +77,8 @@
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="FgB-hr-VL6" firstAttribute="centerX" secondItem="DWZ-hV-dNY" secondAttribute="centerX" id="Dvo-3T-20q"/>
-                    <constraint firstItem="FgB-hr-VL6" firstAttribute="leading" secondItem="DWZ-hV-dNY" secondAttribute="leading" constant="20" id="FO1-jq-Vcf"/>
-                    <constraint firstItem="FgB-hr-VL6" firstAttribute="centerY" secondItem="DWZ-hV-dNY" secondAttribute="centerY" id="L7m-Hv-GNH"/>
-                    <constraint firstAttribute="trailing" secondItem="FgB-hr-VL6" secondAttribute="trailing" constant="20" id="Ycv-Jl-vfq"/>
+                    <constraint firstItem="FgB-hr-VL6" firstAttribute="leading" secondItem="DWZ-hV-dNY" secondAttribute="leading" id="FO1-jq-Vcf"/>
+                    <constraint firstAttribute="trailing" secondItem="FgB-hr-VL6" secondAttribute="trailing" id="Ycv-Jl-vfq"/>
                     <constraint firstAttribute="bottom" secondItem="FgB-hr-VL6" secondAttribute="bottom" id="eBN-Nd-vhq"/>
                     <constraint firstItem="FgB-hr-VL6" firstAttribute="top" secondItem="DWZ-hV-dNY" secondAttribute="top" id="iBv-B5-g7h"/>
                 </constraints>

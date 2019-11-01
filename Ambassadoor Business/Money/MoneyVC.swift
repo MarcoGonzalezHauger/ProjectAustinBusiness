@@ -24,6 +24,7 @@ struct Transaction {
 	let amount: Double
     let type: String
     let status: String
+    let userName: String
 }
 
 class BalanceCell: UITableViewCell {
@@ -69,10 +70,13 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
 			cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
             if ThisTransaction.type == "sale"{
                 let amt = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
-			cell.descriptionLabel.text = "Despotied \(amt) into Ambassadoor"
+			cell.descriptionLabel.text = "Deposited \(amt) into Ambassadoor"
             }else if ThisTransaction.type == "paid" {
                 let amt = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
-                cell.descriptionLabel.text = "Paid \(amt) to \(ThisTransaction.status)"
+                cell.descriptionLabel.text = "Paid \(amt) to Pending"
+            }else if ThisTransaction.type == "refund" {
+                let amt = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
+                cell.descriptionLabel.text = "Refund \(amt) From \(ThisTransaction.userName) of the \(ThisTransaction.status) Offer"
             }
 			return cell
 			
@@ -133,7 +137,7 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
                     
                     if let valueDetails = value as? NSDictionary {
                         
-                        transactionHistory.append(Transaction(description: "", details: valueDetails["cardDetails"] as AnyObject, time: valueDetails["updatedAt"] as! String, amount: Double(valueDetails["amount"] as! String)!, type: valueDetails["type"] as! String, status: "pending"))
+                        transactionHistory.append(Transaction(description: "", details: valueDetails["cardDetails"] as AnyObject, time: valueDetails["updatedAt"] as! String, amount: Double(valueDetails["amount"] as! String)!, type: valueDetails["type"] as! String, status: valueDetails["status"] as? String ?? "", userName: valueDetails["userName"] as? String ?? ""))
                     }
                 }
                 transactionDelegate = self
