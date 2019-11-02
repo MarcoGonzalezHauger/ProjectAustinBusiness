@@ -23,6 +23,8 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
     @IBOutlet weak var moneyText: UITextField!
     @IBOutlet weak var scroll: UIScrollView!
     
+    @IBOutlet weak var commisionText: UILabel!
+    
     var templateOffer: TemplateOffer?
     var depositValue: Deposit?
     var increasePayVariable: IncreasePayVariable = .None
@@ -81,6 +83,8 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
         super.viewDidLoad()
         self.customizeNavigationBar()
         // Do any additional setup after loading the view.
+        let commission = Singleton.sharedInstance.getCommision() * 100
+        self.commisionText.text = "Ambassadoor will take \(commission)%"
         self.addNavigationBarTitleView(title: "Distribute Offer", image: UIImage())
         self.addDoneButtonOnKeyboard(textField: moneyText)
         self.offerTextValue()
@@ -273,7 +277,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                                 
                                 offerAmount -= influcerMoneyValue
                                 extractedInfluencer.append(user)
-									extractedUserID.append(user.id)
+								extractedUserID.append(user.id)
                                 
                             }
                             }else{
@@ -417,18 +421,19 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                 for (value, userValue) in zip(influencer!, user!) {
                     //(value, user) in zip(strArr1, strArr2)
                     if userValue.averageLikes != 0 && userValue.averageLikes != nil {
-                    let patstring = value + "/" + template.offer_ID
+                        let patstring = userValue.id! + "/" + template.offer_ID
                         
                         
                         template.money = Double(NumberToPrice(Value: calculateCostForUser(offer: self.templateOffer!, user: userValue, increasePayVariable: self.increasePayVariable.rawValue), enforceCents: true).dropFirst())!
-                    cardDetails.append([value:["id":value,"amount":template.money,"toOffer":template.offer_ID,"name":userValue.name!,"gender":userValue.gender!,"averageLikes":userValue.averageLikes!]])
+                    cardDetails.append([value:["id":userValue.id!,"amount":template.money,"toOffer":template.offer_ID,"name":userValue.name!,"gender":userValue.gender!,"averageLikes":userValue.averageLikes!]])
+                    UpdatePriorityValue(user: userValue)
                     completedOffersToUsers(pathString: patstring, templateOffer: template)
                         
                     
-                        
-                        let transactionHistory = ["from":Auth.auth().currentUser!.uid,"To":value,"type":"offer","Amount":template.money,"status":"pending","createdAt":DateFormatManager.sharedInstance.getCurrentDateString(),"id":template.offer_ID] as [String : Any]
-                    
-                        sentOutTransactionToInfluencer(pathString: value, transactionData: transactionHistory)
+                        //Naveen Suggested - No Need this functionalities
+//                        let transactionHistory = ["from":Auth.auth().currentUser!.uid,"To":value,"type":"offer","Amount":template.money,"status":"pending","createdAt":DateFormatManager.sharedInstance.getCurrentDateString(),"id":template.offer_ID] as [String : Any]
+//
+//                        sentOutTransactionToInfluencer(pathString: value, transactionData: transactionHistory)
                         
                     }
                 }

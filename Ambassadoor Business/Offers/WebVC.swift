@@ -15,6 +15,7 @@ class WebVC: BaseVC {
     var urlString = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.customizeNavigationBar()
         let url = URL (string: urlString)
         let requestObj = URLRequest(url: url!)
         webView.load(requestObj)

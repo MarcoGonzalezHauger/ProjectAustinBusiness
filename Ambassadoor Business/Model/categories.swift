@@ -307,13 +307,15 @@ let organization = ["Business", //Organization
 
 
 
+let ClassToCategories: [categoryClass: [Category]] = [.Athletic: Athletic, .Fashion: Fashion, .Photography: Photography, .Music: Music, .Automotive: Automotive, .popAccounts: PopAccounts]
+
 
 
 var categoryListArray: [Section]! {
     didSet{
         //categoryList.removeAll()
         for value in allCategoryClasses {
-			categoryListArray.append(Section.init(categoryTitle: value, categoryData: ClassToCategories[value]!, expanded: false))
+            categoryListArray.append(Section.init(categoryTitle: value, categoryData: ClassToCategories[value]!, expanded: false, selected: false))
         }
     }
 }

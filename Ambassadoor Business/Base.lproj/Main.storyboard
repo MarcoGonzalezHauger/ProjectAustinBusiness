@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+jjjj<?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kfA-qH-ebm">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
@@ -609,11 +609,11 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ambassadoor Business" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x5g-CZ-SWj" customClass="BusinessLabel" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                <rect key="frame" x="100.5" y="60" width="213.5" height="26"/>
+                                <rect key="frame" x="91" y="16" width="232" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="qAf-1s-r7f"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -723,11 +723,11 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ambassadoor Business" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TcV-h1-fsy" customClass="BusinessLabel" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                <rect key="frame" x="16" y="60" width="213.5" height="26"/>
+                                <rect key="frame" x="16" y="16" width="232" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="hOs-L4-6x4"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1140,7 +1140,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Paid" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o9s-OT-wBH">
-                                                <rect key="frame" x="49" y="12" width="122" height="25"/>
+                                                <rect key="frame" x="63" y="12" width="122" height="25"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="122" id="FY5-MK-Jij"/>
@@ -1184,7 +1184,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="22H-6Y-l1j">
-                                                <rect key="frame" x="16" y="116" width="15" height="15"/>
+                                                <rect key="frame" x="30" y="116" width="15" height="15"/>
                                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="15" id="JGn-Te-uVp"/>
@@ -1195,8 +1195,8 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wkj-Md-CRK">
-                                                <rect key="frame" x="16" y="149" width="15" height="15"/>
-                                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <rect key="frame" x="30" y="149" width="15" height="15"/>
+                                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="15" id="BZM-T4-QZf"/>
                                                     <constraint firstAttribute="height" constant="15" id="bAi-dn-RbG"/>
@@ -1206,13 +1206,16 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="Wkj-Md-CRK" firstAttribute="top" secondItem="22H-6Y-l1j" secondAttribute="bottom" constant="18" id="1Qz-ju-c7z"/>
                                             <constraint firstItem="o9s-OT-wBH" firstAttribute="leading" secondItem="a3C-G4-n5t" secondAttribute="trailing" constant="18" id="1eC-b0-FXI"/>
+                                            <constraint firstItem="sxO-HF-VbR" firstAttribute="leading" secondItem="SsI-qE-iRT" secondAttribute="leading" constant="30" id="3za-d8-6Bc"/>
                                             <constraint firstItem="OTs-cw-ldm" firstAttribute="top" secondItem="vYG-eO-f5c" secondAttribute="bottom" constant="8" id="57r-ew-JTt"/>
+                                            <constraint firstItem="6kF-gs-NQh" firstAttribute="leading" secondItem="SsI-qE-iRT" secondAttribute="leading" constant="30" id="7Mm-VC-nU6"/>
                                             <constraint firstItem="iPE-La-M9i" firstAttribute="leading" secondItem="o9s-OT-wBH" secondAttribute="trailing" constant="17" id="7qu-B6-i1Q"/>
                                             <constraint firstItem="vYG-eO-f5c" firstAttribute="top" secondItem="iPE-La-M9i" secondAttribute="bottom" constant="8" id="CJK-Ew-Xjh"/>
+                                            <constraint firstItem="Wkj-Md-CRK" firstAttribute="leading" secondItem="SsI-qE-iRT" secondAttribute="leading" constant="30" id="Cnd-v7-vyN"/>
                                             <constraint firstItem="rpy-4x-2jv" firstAttribute="top" secondItem="o9s-OT-wBH" secondAttribute="bottom" constant="8" id="GtU-tZ-ADW"/>
                                             <constraint firstItem="i8O-e4-Sx3" firstAttribute="leading" secondItem="0ls-Bz-nOU" secondAttribute="trailing" constant="17" id="Kce-oQ-TqT"/>
                                             <constraint firstItem="22H-6Y-l1j" firstAttribute="top" secondItem="sxO-HF-VbR" secondAttribute="bottom" constant="18" id="Kxs-Bp-Xw6"/>
@@ -1327,6 +1330,26 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="3me-RY-U5T"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="t1C-oV-yKV"/>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9fr-Rn-q0w">
+                                <rect key="frame" x="0.0" y="53" width="414" height="898"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Statistics Data Found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZYE-sK-5jh">
+                                        <rect key="frame" x="94" y="438.66666666666669" width="226" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="226" id="0ij-S1-FbN"/>
+                                            <constraint firstAttribute="height" constant="21" id="rmp-Cq-N53"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="ZYE-sK-5jh" firstAttribute="centerX" secondItem="9fr-Rn-q0w" secondAttribute="centerX" id="PIZ-Zh-Ryt"/>
+                                    <constraint firstItem="ZYE-sK-5jh" firstAttribute="centerY" secondItem="9fr-Rn-q0w" secondAttribute="centerY" id="xSt-Na-aOg"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qK7-Oi-30v" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="2" width="414" height="97"/>
                                 <subviews>
@@ -1410,12 +1433,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kYa-8k-ffa">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="54"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Ambassadoor Business" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LZg-yp-CNY" customClass="BusinessLabel" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Ambassadoor Business" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LZg-yp-CNY" customClass="BusinessLabel" customModule="Ambassadoor_Business" customModuleProvider="target">
                                         <rect key="frame" x="16" y="14" width="259" height="26"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="26" id="y8I-0y-iba"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1836,8 +1859,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="sectionIndexColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="sectionIndexTrackingBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="catCell" rowHeight="52" id="OoN-aQ-LKk" customClass="catCell" customModule="Ambassadoor_Business" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="catCell" rowHeight="52" id="OoN-aQ-LKk" customClass="catCell" customModule="Ambassadoor_Business" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="52"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OoN-aQ-LKk" id="CSD-g0-ZpN">
@@ -1853,6 +1879,7 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="titleLabel" destination="O3G-2B-paR" id="oLL-46-UMp"/>
                                 </connections>
@@ -2321,6 +2348,7 @@
                     <size key="freeformSize" width="414" height="1000"/>
                     <connections>
                         <outlet property="IncreasePayColl" destination="jke-BH-289" id="ywS-wS-kxS"/>
+                        <outlet property="commisionText" destination="Qv8-3c-cqr" id="a2d-7B-5YV"/>
                         <outlet property="increasePay" destination="VTE-lk-8iS" id="ctt-Ia-Gx9"/>
                         <outlet property="moneyText" destination="T3a-qp-fL3" id="mNb-oA-kJw"/>
                         <outlet property="offerName" destination="xb6-JJ-98D" id="inE-ec-gUI"/>

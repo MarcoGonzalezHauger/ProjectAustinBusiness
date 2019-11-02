@@ -200,6 +200,8 @@ struct Post {
     var confirmedSince: Date?
     var isConfirmed: Bool
     var hashCaption: String
+    var status: String
+    
     
 //    init(image: String?,instructions: String,captionMustInclude: String?,products: [Product]?,post_ID: String,PostType: TypeofPost,confirmedSince: Date?,isConfirmed: Bool,hashCaption: String) {
 //
@@ -483,5 +485,6 @@ struct Section {
         self.categoryTitle = categoryTitle
         self.categoryData = categoryData
         self.expanded = expanded
+        self.selectedAll = selected
     }
 }

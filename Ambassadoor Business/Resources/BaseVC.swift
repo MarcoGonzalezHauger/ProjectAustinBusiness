@@ -264,7 +264,7 @@ class BaseVC: UIViewController {
         label.backgroundColor = UIColor.clear
         label.text =  title
         label.font = UIFont.systemFont(ofSize: 18.0, weight: .semibold)
-        label.textColor = UIColor.systemBlue
+        label.textColor = UIColor.black
         label.textAlignment = .center
         label.isUserInteractionEnabled = true
         

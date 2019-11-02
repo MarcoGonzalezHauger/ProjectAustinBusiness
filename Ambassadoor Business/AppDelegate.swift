@@ -59,47 +59,92 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.versionUpdateValidation()
 	}
     
-    func versionUpdateValidation(){
-        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
-        
-        let ref = Database.database().reference().child("LatestAppVersion").child("Businessversion")
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            let latestVersion = snapshot.value as! String
-            if (latestVersion == appVersion) {
+//    func versionUpdateValidation(){
+//        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+//
+//        let ref = Database.database().reference().child("LatestAppVersion").child("Businessversion")
+//        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+//
+//            let latestVersion = snapshot.value as! String
+//            if (latestVersion == appVersion) {
+//
+//            }else{
+//                let alertMessage = "A new version of Application is available, Please update to version " + latestVersion;
+//
+//                let topWindow: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
+//                topWindow?.rootViewController = UIViewController()
+//                topWindow?.windowLevel = UIWindow.Level.alert + 1
+//                let alert = UIAlertController(title: "Update is avaliable", message: alertMessage, preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "confirm"), style: .cancel, handler: {(_ action: UIAlertAction) -> Void in
+//                    // continue your work
+//
+//                    // important to hide the window after work completed.
+//                    // this also keeps a reference to the window until the action is invoked.
+//                    topWindow?.isHidden = true // if you want to hide the topwindow then use this
+//                    //            topWindow? = nil // if you want to hide the topwindow then use this
+//
+//                    if let url = URL(string: "itms-apps://itunes.apple.com/app"),
+//                        UIApplication.shared.canOpenURL(url){
+//                        if #available(iOS 10.0, *) {
+//                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//                        } else {
+//                            UIApplication.shared.openURL(url)
+//                        }
+//                    }
+//
+//
+//                }))
+//                topWindow?.makeKeyAndVisible()
+//                topWindow?.rootViewController?.present(alert, animated: true, completion: nil)
+//
+//            }
+//        })
+//    }
+    
+        func versionUpdateValidation(){
+
+                let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
                 
-            }else{
-                let alertMessage = "A new version of Application is available, Please update to version " + latestVersion;
-                
-                let topWindow: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
-                topWindow?.rootViewController = UIViewController()
-                topWindow?.windowLevel = UIWindow.Level.alert + 1
-                let alert = UIAlertController(title: "Update is avaliable", message: alertMessage, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "confirm"), style: .cancel, handler: {(_ action: UIAlertAction) -> Void in
-                    // continue your work
+                let ref = Database.database().reference().child("LatestAppVersion").child("Businessversion")
+                ref.observeSingleEvent(of: .value, with: { (snapshot) in
                     
-                    // important to hide the window after work completed.
-                    // this also keeps a reference to the window until the action is invoked.
-                    topWindow?.isHidden = true // if you want to hide the topwindow then use this
-                    //            topWindow? = nil // if you want to hide the topwindow then use this
-                    
-                    if let url = URL(string: "itms-apps://itunes.apple.com/app"),
-                        UIApplication.shared.canOpenURL(url){
-                        if #available(iOS 10.0, *) {
-                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                        } else {
-                            UIApplication.shared.openURL(url)
-                        }
+                    let latestVersion = snapshot.value as! String
+                    let versionCompare = appVersion!.compare(latestVersion, options: .numeric)
+                    if versionCompare == .orderedDescending || versionCompare == .orderedSame {
+                        
+                    }else{
+                        let alertMessage = "A new version of Application is available, Please update to version " + latestVersion;
+
+                        let topWindow: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
+                        topWindow?.rootViewController = UIViewController()
+                        topWindow?.windowLevel = UIWindow.Level.alert + 1
+                        let alert = UIAlertController(title: "Update is avaliable", message: alertMessage, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "confirm"), style: .cancel, handler: {(_ action: UIAlertAction) -> Void in
+                            // continue your work
+                            
+                            // important to hide the window after work completed.
+                            // this also keeps a reference to the window until the action is invoked.
+                            topWindow?.isHidden = true // if you want to hide the topwindow then use this
+                            //            topWindow? = nil // if you want to hide the topwindow then use this
+                                                        
+                            if let url = URL(string: "itms-apps://itunes.apple.com/app"),
+                                UIApplication.shared.canOpenURL(url){
+                                if #available(iOS 10.0, *) {
+                                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                } else {
+                                    UIApplication.shared.openURL(url)
+                                }
+                            }
+                            
+                            
+                        }))
+                        topWindow?.makeKeyAndVisible()
+                        topWindow?.rootViewController?.present(alert, animated: true, completion: nil)
                     }
-                    
-                    
-                }))
-                topWindow?.makeKeyAndVisible()
-                topWindow?.rootViewController?.present(alert, animated: true, completion: nil)
-                
-            }
-        })
-    }
+                })
+            
+            
+        }
 
 	func applicationWillTerminate(_ application: UIApplication) {
 		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.

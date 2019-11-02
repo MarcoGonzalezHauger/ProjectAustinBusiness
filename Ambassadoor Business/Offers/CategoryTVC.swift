@@ -18,7 +18,7 @@ class catCell: UITableViewCell {
 
 class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
     
-    
+
     var categoryList = [Section]()
     var selectedValues = [String]()
     var delegateCategory: selectedCategoryDelegate!
@@ -30,6 +30,7 @@ class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
         categoryList.append(contentsOf: categoryListArray)
         self.customizeNavigationBar()
         self.addRightButton()
+        self.addLeftButton()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -39,18 +40,57 @@ class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
+        for (index,categoryData) in categoryList.enumerated() {
+            
+            var selectTag = true
+            
+            
+            for category in categoryData.categoryData {
+                
+                if self.selectedValues.contains(category.rawValue){
+                    
+                }else{
+                    
+                    selectTag = false
+                    
+                }
+                
+            }
+            if selectTag {
+            categoryList[index].selectedAll = true
+            }else{
+            categoryList[index].selectedAll = false
+            }
+            
+        }
+    }
+    
+    func addLeftButton() {
+        let rightButton: UIBarButtonItem = UIBarButtonItem.init(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.addLeftAction(sender:)))
+        self.navigationItem.leftBarButtonItem = rightButton
     }
     
     func addRightButton() {
         
-        let rightButton: UIBarButtonItem = UIBarButtonItem.init(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.addRightAction(sender:)))
+        let rightButton: UIBarButtonItem = UIBarButtonItem.init(title: "Clear", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.clearAction(sender:)))
         self.navigationItem.rightBarButtonItem = rightButton
     }
     
-    @IBAction func addRightAction(sender: UIBarButtonItem){
-        self.navigationController?.popViewController(animated: true)
+    @IBAction func addLeftAction(sender: UIBarButtonItem){
         self.delegateCategory.selectedArray(array: self.selectedValues)
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func clearAction(sender: UIBarButtonItem){
+        self.selectedValues.removeAll()
+        let categoryPartialList = categoryList.map { (category) -> Section in
+            var categoryPartial = category
+            categoryPartial.selectedAll = false
+            return categoryPartial
+        }
+        categoryList.removeAll()
+        categoryList.append(contentsOf: categoryPartialList)
+        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -73,8 +113,10 @@ class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
         
         if self.selectedValues.contains(cell.titleLabel.text!){
             cell.accessoryType = .checkmark
+            cell.titleLabel.textColor = UIColor.systemBlue
         }else{
             cell.accessoryType = .none
+            cell.titleLabel.textColor = UIColor.black
         }
 
         return cell
@@ -96,6 +138,15 @@ class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
         let header = ExpandableHeaderView()
         // header.backgroundColor = UIColor.clear
         header.expandBool = categoryList[section].expanded
+        header.selectedAll = categoryList[section].selectedAll
+//        if categoryList[section].categoryData.contains(where: { (category) -> Bool in
+//
+//            category.
+//
+//        }) {
+//
+//        }
+        
         header.customInit(title: categoryList[section].categoryTitle!.rawValue, section: section, delegate: self)
         // header.backgroundColor = UIColor.clear
         
@@ -111,15 +162,17 @@ class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let cell = self.tableView.cellForRow(at: indexPath)
-        cell?.accessoryType = .checkmark
-        let category = categoryList[indexPath.section].categoryData[indexPath.row]
+        let cell = self.tableView.cellForRow(at: indexPath) as! catCell
+        cell.accessoryType = .checkmark
+        cell.titleLabel.textColor = UIColor.systemBlue
+        let category = categoryList[indexPath.section].categoryData[indexPath.row].rawValue
         self.selectedValues.append(category)
     }
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath){
-        let cell = self.tableView.cellForRow(at: indexPath)
-        cell?.accessoryType = .none
-        let category = categoryList[indexPath.section].categoryData[indexPath.row]
+        let cell = self.tableView.cellForRow(at: indexPath) as! catCell
+        cell.accessoryType = .none
+        cell.titleLabel.textColor = UIColor.black
+        let category = categoryList[indexPath.section].categoryData[indexPath.row].rawValue
         let index = self.selectedValues.index(of: category)
         self.selectedValues.remove(at: index!)
     }
@@ -134,6 +187,48 @@ class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
             self.tableView.reloadRows(at: [IndexPath(row: i, section: section)], with: .automatic)
         }
        self.tableView.endUpdates()
+    }
+    
+    func selectAllSection(header: ExpandableHeaderView, section: Int, selected: Bool) {
+        
+        categoryList[section].selectedAll = !categoryList[section].selectedAll
+        
+        if categoryList[section].selectedAll {
+            
+            for category in categoryList[section].categoryData {
+                
+                
+                if self.selectedValues.contains(category.rawValue){
+                    
+                }else{
+                   self.selectedValues.append(category.rawValue)
+                }
+                
+            }
+            
+            
+            
+        }else{
+            
+            for category in categoryList[section].categoryData {
+                
+                
+                if self.selectedValues.contains(category.rawValue){
+                    let index = selectedValues.index(of: category.rawValue)
+                    self.selectedValues.remove(at: index!)
+                    
+                }else{
+                   
+                }
+                
+            }
+            
+        }
+        
+        
+        
+        self.tableView.reloadData()
+         
     }
     
     func customizeNavigationBar() {

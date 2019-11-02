@@ -230,7 +230,7 @@ func CreatePost(param: Post,completion: @escaping (Post,Bool) -> ())  {
     let ref = Database.database().reference().child("post").child(Auth.auth().currentUser!.uid)
     ref.observeSingleEvent(of: .value, with: { (snapshot) in
         let postReference = ref.childByAutoId()
-        let post = Post.init(image: param.image!, instructions: param.instructions, captionMustInclude: param.captionMustInclude!, products: param.products!, post_ID: postReference.key!, PostType: param.PostType, confirmedSince: param.confirmedSince!, isConfirmed: param.isConfirmed, hashCaption: param.hashCaption)
+        let post = Post.init(image: param.image!, instructions: param.instructions, captionMustInclude: param.captionMustInclude!, products: param.products!, post_ID: postReference.key!, PostType: param.PostType, confirmedSince: param.confirmedSince!, isConfirmed: param.isConfirmed, hashCaption: param.hashCaption, status: param.status)
         let productData = API.serializePost(post: post)
         postReference.updateChildValues(productData)
         completion(post, true)
@@ -242,7 +242,7 @@ func getCreatePostUniqueID(param: Post, completion: @escaping (Post,Bool) -> ())
     
     let ref = Database.database().reference()
     let postReference = ref.childByAutoId()
-    let post = Post.init(image: param.image!, instructions: param.instructions, captionMustInclude: param.captionMustInclude!, products: param.products!, post_ID: postReference.key!, PostType: param.PostType, confirmedSince: param.confirmedSince!, isConfirmed: param.isConfirmed, hashCaption: param.hashCaption)
+    let post = Post.init(image: param.image!, instructions: param.instructions, captionMustInclude: param.captionMustInclude!, products: param.products!, post_ID: postReference.key!, PostType: param.PostType, confirmedSince: param.confirmedSince!, isConfirmed: param.isConfirmed, hashCaption: param.hashCaption, status: param.status)
     //let productData = API.serializePost(post: post)
     completion(post,true)
 }
@@ -495,10 +495,14 @@ func getFilteredInfluencers(category: [String:[AnyObject]],completion: @escaping
                     user.append(User.init(dictionary: first))
                 }
 				
-				userIDs.shuffle()
-                user.shuffle()
+				//userIDs.shuffle()
+                //user.shuffle()
+                
                 
             }
+            let sortedPriority = user.sorted(by: { $0.priorityValue ?? 0 < $1.priorityValue ?? 0 })
+            user.removeAll()
+            user.append(contentsOf: sortedPriority)
             completion(userIDs, "success", user)
         }else{
             completion([], "error", nil)
@@ -652,6 +656,29 @@ func updateInfluencerAmountByReferral(user: User, amount: Double) {
     
 }
 
+func UpdatePriorityValue(user: User) {
+    
+    let transactionRef = Database.database().reference().child("users").child(user.id!)
+    
+    transactionRef.observeSingleEvent(of: .value, with: { (snapshot) in
+        if let userData = snapshot.value as? NSDictionary{
+            var priorityValue = 0
+            if (userData["priorityValue"] as? Int) != nil {
+            priorityValue = userData["priorityValue"] as! Int + 24
+            }else{
+                
+            priorityValue = 24
+                
+            }
+            transactionRef.updateChildValues(["priorityValue":priorityValue])
+            
+        }
+        
+    }) { (error) in
+        
+    }
+}
+
 func removeTemplateOffers(pathString: String, templateOffer: TemplateOffer) {
     let offersRef = Database.database().reference().child("TemplateOffers").child(pathString)
     offersRef.removeValue()
@@ -713,7 +740,7 @@ func parseTemplateOffer(offer: [String: AnyObject]) -> [Post] {
             productList.append(productInitialized)
         }
         
-        let postInitialized = Post.init(image: "", instructions: value["instructions"] as? String ?? "", captionMustInclude: value["captionMustInclude"] as? String, products: productList, post_ID: value["post_ID"] as! String, PostType: value["PostType"] as! String, confirmedSince: value["confirmedSince"] as? Date, isConfirmed: (value["isConfirmed"] != nil), hashCaption: value["hashCaption"] as! String)
+        let postInitialized = Post.init(image: "", instructions: value["instructions"] as? String ?? "", captionMustInclude: value["captionMustInclude"] as? String, products: productList, post_ID: value["post_ID"] as! String, PostType: value["PostType"] as! String, confirmedSince: value["confirmedSince"] as? Date, isConfirmed: (value["isConfirmed"] != nil), hashCaption: value["hashCaption"] as! String, status: value["status"] as? String ?? "")
         postValues.append(postInitialized)
     }
     return postValues

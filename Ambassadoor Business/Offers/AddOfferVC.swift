@@ -610,6 +610,9 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
             selectedCategoryArray.append(contentsOf: array)
             let selectedCategory  = array.joined(separator: ", ")
             self.selectedCategoryText.text = selectedCategory
+        }else{
+            selectedCategoryArray.removeAll()
+            self.selectedCategoryText.text = ""
         }
     }
     
@@ -650,7 +653,7 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
                             
                             let expiryDate = DateFormatManager.sharedInstance.getExpiryDate(dateString: dateString)
                             
-                            var offer = ["offer_ID":"","money":0.0,"company":Singleton.sharedInstance.getCompanyDetails(),"posts":global.post,"offerdate":Date(),"user_ID":[],"expiredate":expiryDate,"allPostsConfirmedSince":nil,"allConfirmed":false,"isAccepted":false,"isExpired":false,"ownerUserID":Auth.auth().currentUser!.uid,"category":self.selectedCategoryArray,"zipCodes":self.zipCode.text!.components(separatedBy: ","),"genders":genderArray,"title":self.offerName.text!,"targetCategories":["Actor"],"user_IDs":[],"status":"available"] as [String : AnyObject]
+                            var offer = ["offer_ID":"","money":0.0,"company":Singleton.sharedInstance.getCompanyDetails(),"posts":global.post,"offerdate":Date(),"user_ID":[],"expiredate":expiryDate,"allPostsConfirmedSince":nil,"allConfirmed":false,"isAccepted":false,"isExpired":false,"ownerUserID":Auth.auth().currentUser!.uid,"category":self.selectedCategoryArray,"zipCodes":self.zipCode.text!.components(separatedBy: ","),"genders":genderArray,"title":self.offerName.text!,"targetCategories":[Category.Actor],"user_IDs":[],"status":"available"] as [String : AnyObject]
                             
                             if segueOffer != nil {
                                 
@@ -726,6 +729,7 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
         // Pass the selected object to the new view controller.
         if segue.identifier == "toCategoryTVC"{
             let view = segue.destination as! CategoryTVC
+            view.selectedValues = selectedCategoryArray
             view.delegateCategory = self
 			let backItem = UIBarButtonItem()
 			backItem.title = "Back"
