@@ -9,34 +9,290 @@
 import Foundation
 import UIKit
 
-//COMPLETE FOR LATER
-//account type enumeration
-public enum Category: String, CaseIterable {
-	case Hiker,	WinterSports = "Winter Sports",	Baseball,Basketball, Golf, Tennis, Soccer, Football, Boxing, MMA, Swimming, TableTennis = "Table Tennis", Gymnastics, Dancer, Rugby, Bowling, Frisbee, Cricket, SpeedBiking = "Speed Biking", MountainBiking = "Mountain Biking", Coach, WaterSkiing = "Water Skiing", Running, PowerLifting = "Power Lifting", BodyBuilding = "Body Building", Wrestling, StrongMan = "Strong Man", NASCAR, RallyRacing = "Rally Racing", Parkour, Model, Makeup, Actor, RunwayModel = "Runway Model", Designer, Brand, Stylist, HairStylist = "Hair Stylist", FashionArtist = "Fashion Artist", Painter, Sketcher, Musician, Band, SingerSongWriter = "Singer-Songwriter", SportsPhotography = "Sports Photography", RealEstatePhotography = "Real Estate Photography", CarPhotography = "Car Photography", AutomotivePhotography = "Automotive Photography", FashionPhotography = "Fashion Photography", NaturePhotography = "Nature Photography", UrbanPhotography = "Urban Photography", WildlifePhotography = "Wildlife Photography", LifestylePhotography = "Lifestyle Photography", GeneralPhotography = "General Photography", Driver, CarEnthusiast = "Car Enthusiast", Mechanic, Customizations, Modifications, Autobody, Tuning, CarBrand = "Car Brand", Artist, Athlete, Author, Blogger, Chef, Comedian, Entrepreneur, FashionModel = "Fashion Model", FilmDirector = "Film Director", FitnessModel = "Fitness Model", Gamer, GamingVideoCreator = "Gaming Video Creator", GovernmentOfficial = "Government Official", Journalist, MotivationalSpeaker = "Motivational Speaker", MovieCharacter = "Movie Character", MusicianBand = "Musician Band", NewsPersonality = "News Personality", Photographer, PoliticalCandidite = "Political Candidite", Politician, Producer, PublicFigure = "Public Figure", Scientist, VideoCreator = "Video Creator", Writer, Foodie, FoodCritic = "Food Critic", MartialArts = "Martial Arts", Other
-}
+public let AllCategories: [String] = [
+	"Animal Photography", //Animals
+	"Pets",
+	"Pet Product Reviewer",
+	"Foodie", //Food
+	"Chef",
+	"Baker",
+	"Food Photography",
+	"Health Foods",
+	"Food Critic",
+	"Restaurant",
+	"Diet Reviewer",
+	"Meme Account", //Commedy
+	"Comedian",
+	"Stand up Comedy",
+	"Family", //Lifestlye
+	"Mother",
+	"Father",
+	"Blogger",
+	"Vlogger",
+	"Party Enthusiast",
+	"Student",
+	"International Travels",
+	"Lifestyle Photography",
+	"Winter Sports", //Sports
+	"Baseball",
+	"Basketball",
+	"Tennis",
+	"Soccer",
+	"Football",
+	"Boxing",
+	"Martial Arts",
+	"MMA",
+	"Swimming",
+	"Table Tennis",
+	"Wrestling",
+	"Frisbee",
+	"Rowing",
+	"NASCAR",
+	"Dancing", //Athletics
+	"Coach",
+	"Body Building",
+	"Power Lifting",
+	"Trick Shots",
+	"Sports Compilations",
+	"General Photography", //Photography
+	"Wild Life Photography",
+	"Nature Photography",
+	"Urban Photography",
+	"Lifestyle Photography",
+	"Fashion Photography",
+	"Food Photography",
+	"Car Photography",
+	"Car Enthusiast", //Automotive
+	"Driver",
+	"Mechanic",
+	"Modifications",
+	"Car Photography",
+	"Do It Yourself", //Crafts
+	"Arts & Crafts",
+	"Construction",
+	"Computer Building", //Technology
+	"Engineer",
+	"Software Developer",
+	"Tech Reviewer",
+	"Tech Tutorials",
+	"Board Games", //Gaming
+	"Computer Gaming",
+	"Gaming Video Creator",
+	"Professional Gamer",
+	"Makeup Artist", //Fashion
+	"Clothing Reviewer",
+	"Model",
+	"Stylist",
+	"Designer",
+	"Fashion Photography",
+	"Singer/Songwriter", //Music
+	"Band",
+	"Musician",
+	"Composer",
+	"Producer",
+	"Author", //Literature
+	"Editor",
+	"Publisher",
+	"Journalist",
+	"Actor", //Entertainment
+	"Film Director",
+	"Film Producer",
+	"Motivational Speaker",
+	"Magician",
+	"Movie Account", //Movies & TV Shows
+	"TV Show Account",
+	"Fandom",
+	"Movie & TV Show Reviews",
+	"Democrat", //Political Account
+	"Republican",
+	"Independent",
+	"Political Candidate",
+	"Politician",
+	"Real Estate Photography", //Real Estate
+	"Real Estate Broker",
+	"Landscaper",
+	"Lawyer", //Professional
+	"Nurse",
+	"Mathematician",
+	"Accountant",
+	"Landscaper",
+	"Construction",
+	"Dental Professional",
+	"Medical Professional",
+	"Drawing/Painting", //Artist
+	"Sculture",
+	"Calligraphy",
+	"Graphic Design",
+	"Art Supply Reviewer",
+	"Meme Page", //Meme Accounts
+	"Adult Memes",
+	"Teenage Memes",
+	"Kid Memes",
+	"Business", //Organization
+	"Brand",
+	"Entrepreneur",
+	"Club",
+	"College/University",
+	"Festival",
+	"Event"
+]
 
 enum categoryClass: String, CaseIterable {
-	case popAccounts = "Popular Accounts"
-	case Athletic = "Athletic"
-	case Fashion = "Fashion"
-	case Photography = "Photography"
-	case Music = "Music"
-	case Automotive = "Automotive"
+	case petsAnimals = "Pets & Animals"
+	case food = "Food"
+	case comedy = "Comedy"
+	case lifestyle = "Lifestyle & Travel"
+	case sports = "Sports"
+	case athletics = "Athletics"
+	case photography = "Photography"
+	case automotive = "Automotive"
+	case crafts = "Crafts"
+	case technology = "Technology"
+	case gaming = "Gaming"
+	case fashion = "Fashion"
+	case music = "Music"
+	case literature = "Literature"
+	case entertainment = "Entertainment"
+	case moviesandtv = "Movies & TV Shows"
+	case political = "Political"
+	case realestate = "Real Estate"
+	case professional = "Professional"
+	case artist = "Artist"
+	case memes = "Memes"
+	case organization = "Organization"
 }
 
 let selectedBoxColor = UIColor(red: 255/255, green: 121/255, blue: 8/255, alpha: 1)
 
-let allCategoryClasses: [categoryClass] = [.popAccounts, .Athletic, .Fashion, .Photography, .Music, .Automotive]
+let allCategoryClasses: [categoryClass] = [.petsAnimals, .food, .comedy, .lifestyle, .sports, .athletics, .photography, .automotive, .crafts, .technology, .gaming, .fashion, .music, .literature, .entertainment, .moviesandtv, .political, .realestate, .professional, .artist, .memes, .organization]
 
-let ClassToCategories: [categoryClass: [Category]] = [.Athletic: Athletic, .Fashion: Fashion, .Photography: Photography, .Music: Music, .Automotive: Automotive, .popAccounts: PopAccounts]
+let ClassToCategories: [categoryClass: [String]] = [.petsAnimals: animals, .food: food, .comedy: comedy, .lifestyle: lifestyle, .sports: sports, .athletics: athletics, .photography: photography, .automotive: automotive, .crafts: crafts, .technology: technology, .gaming: gaming, .fashion: fashion, .music: music, .literature: literature, .entertainment: entertainment, .moviesandtv: moviesandshows, .political: political, .realestate: realestate, .professional: professional, .artist: aritst, .memes: meme, .organization: organization]
 
-//Categories that house subCategories.
-let PopAccounts: [Category] = [.Actor, .Artist, .Athlete, .Author, .Band, .Blogger, .Chef, .Coach, .Comedian, .Dancer, .Entrepreneur, .FashionModel, .FilmDirector, .FitnessModel, .Gamer, .GamingVideoCreator, .GovernmentOfficial, .Journalist, .MotivationalSpeaker, .MovieCharacter, .Musician, .MusicianBand, .NewsPersonality, .Photographer, .PoliticalCandidite, .Politician, .Producer, .PublicFigure, .Scientist, .VideoCreator, .Writer, .Foodie, .FoodCritic]
-let Athletic: [Category] = [.Hiker, .WinterSports, .Baseball, .Basketball, .Golf, .Tennis, .Soccer, .Football, .Boxing, .MartialArts, .MMA, .Swimming, .TableTennis, .Gymnastics, .Dancer, .Rugby, .Bowling, .Frisbee, .Cricket, .SpeedBiking, .MountainBiking, .WaterSkiing, .Running, .PowerLifting, .BodyBuilding, .Wrestling, .StrongMan, .NASCAR, .RallyRacing, .Parkour, .Dancer, .Coach]
-let Fashion: [Category] = [.Model, .Makeup, .Actor, .RunwayModel, .Designer, .Brand, .Stylist, .HairStylist, .FashionArtist, .Painter, .Sketcher]
-let Music: [Category] = [.Musician, .Band, .SingerSongWriter]
-let Photography: [Category] = [.SportsPhotography, .RealEstatePhotography, .CarPhotography, .AutomotivePhotography, .FashionPhotography, .NaturePhotography, .UrbanPhotography, .WildlifePhotography, .LifestylePhotography, .GeneralPhotography]
-let Automotive: [Category] = [.Driver, .CarEnthusiast, .Mechanic, .Customizations, .Modifications, .Autobody, .Tuning, .CarBrand]
+let animals = ["Animal Photography", //Animals
+"Pets",
+"Pet Product Reviewer"]
+let food = ["Foodie", //Food
+"Chef",
+"Baker",
+"Food Photography",
+"Health Foods",
+"Food Critic",
+"Restaurant",
+"Diet Reviewer"]
+let comedy = ["Meme Account", //Commedy
+"Comedian",
+"Stand up Comedy"]
+let lifestyle = ["Family", //Lifestlye
+"Mother",
+"Father",
+"Blogger",
+"Vlogger",
+"Party Enthusiast",
+"Student",
+"International Travels",
+"Lifestyle Photography"]
+let sports = ["Winter Sports", //Sports
+"Baseball",
+"Basketball",
+"Tennis",
+"Soccer",
+"Football",
+"Boxing",
+"Martial Arts",
+"MMA",
+"Swimming",
+"Table Tennis",
+"Wrestling",
+"Frisbee",
+"Rowing",
+"NASCAR"]
+let athletics = ["Dancing", //Athletics
+"Coach",
+"Body Building",
+"Power Lifting",
+"Trick Shots",
+"Sports Compilations"]
+let photography = ["General Photography", //Photography
+"Wild Life Photography",
+"Nature Photography",
+"Urban Photography",
+"Lifestyle Photography",
+"Fashion Photography",
+"Food Photography",
+"Car Photography"]
+let automotive = ["Car Enthusiast", //Automotive
+"Driver",
+"Mechanic",
+"Modifications",
+"Car Photography"]
+let crafts = ["Do It Yourself", //Crafts
+"Arts & Crafts",
+"Construction"]
+let technology = ["Computer Building", //Technology
+"Engineer",
+"Software Developer",
+"Tech Reviewer",
+"Tech Tutorials"]
+let gaming = ["Board Games", //Gaming
+"Computer Gaming",
+"Gaming Video Creator",
+"Professional Gamer"]
+let fashion = ["Makeup Artist", //Fashion
+"Clothing Reviewer",
+"Model",
+"Stylist",
+"Designer",
+"Fashion Photography"]
+let music = ["Singer/Songwriter", //Music
+"Band",
+"Musician",
+"Composer",
+"Producer"]
+let literature = ["Author", //Literature
+"Editor",
+"Publisher",
+"Journalist"]
+let entertainment = ["Actor", //Entertainment
+"Film Director",
+"Film Producer",
+"Motivational Speaker",
+"Magician"]
+let moviesandshows = ["Movie Account", //Movies & TV Shows
+"TV Show Account",
+"Fandom",
+"Movie & TV Show Reviews"]
+let political = ["Democrat", //Political Account
+"Republican",
+"Independent",
+"Political Candidate",
+"Politician"]
+let realestate  = ["Real Estate Photography", //Real Estate
+"Real Estate Broker",
+"Landscaper"]
+let professional = ["Lawyer", //Professional
+"Nurse",
+"Mathematician",
+"Accountant",
+"Landscaper",
+"Construction",
+"Dental Professional",
+"Medical Professional"]
+let aritst = ["Drawing/Painting", //Artist
+"Sculture",
+"Calligraphy",
+"Graphic Design",
+"Art Supply Reviewer"]
+let meme = ["Meme Page", //Meme Accounts
+"Adult Memes",
+"Teenage Memes",
+"Kid Memes"]
+let organization = ["Business", //Organization
+"Brand",
+"Entrepreneur",
+"Club",
+"College/University",
+"Festival",
+"Event"]
 
 
 var categoryListArray: [Section]! {

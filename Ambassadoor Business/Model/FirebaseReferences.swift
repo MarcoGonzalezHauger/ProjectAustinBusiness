@@ -171,12 +171,12 @@ func serializeOffer(offer: Offer) -> [String: AnyObject] {
 
 
 // Updates values for user in firebase via their id returns that same user
-func UpdateUserInDatabase(instagramUser: User) -> User {
-    let ref = Database.database().reference().child("users")
-    let userData = API.serializeUser(user: instagramUser, id: instagramUser.id!)
-    ref.child(instagramUser.id!).updateChildValues(userData)
-    return instagramUser
-}
+//func UpdateUserInDatabase(instagramUser: User) -> User {
+//    let ref = Database.database().reference().child("users")
+//	let userData = API.serialize(user: instagramUser, id: instagramUser.id)
+//    ref.child(instagramUser.id).updateChildValues(userData)
+//    return instagramUser
+//}
 
 //Creates an account with nothing more than the username of the account. Returns instance of account returned from firebase
 func CreateAccount(instagramUser: [String: Any], completed: @escaping (_ userDictionary: [String: Any]) -> ()) {
@@ -540,24 +540,26 @@ func getAllProducts(path: String, completion: @escaping ([Product]?) -> ()) {
     }, withCancel: nil)
 }
 
-func sendOffer(offer: Offer, money: Double, completion: @escaping (Offer) -> ()) {
-    let offersRef = Database.database().reference().child("offers")
-    let offerKey = offersRef.childByAutoId()
-    offer.offer_ID = offerKey.key!
-    var offerDictionary: [String: Any] = [:]
-    if type(of: offer) == TemplateOffer.self {
-        findInfluencers(offer: offer as! TemplateOffer, money: money, completion: { (o) in
-            offerDictionary = API.serializeTemplateOffer(offer: o)
-            offerKey.updateChildValues(offerDictionary)
-        })
-    } else {
-        offerDictionary = API.serializeOffer(offer: offer)
-        offerKey.updateChildValues(offerDictionary)
-    }
-    YourCompany.accountBalance -= offer.money
-    UpdateCompanyInDatabase(company: YourCompany)
-    debugPrint(offerDictionary)
-}
+///This function is no longer being used by Tesseract Freelance, LLC.
+
+//func sendOffer(offer: Offer, money: Double, completion: @escaping (Offer) -> ()) {
+//    let offersRef = Database.database().reference().child("offers")
+//    let offerKey = offersRef.childByAutoId()
+//    offer.offer_ID = offerKey.key!
+//    var offerDictionary: [String: Any] = [:]
+//    if type(of: offer) == TemplateOffer.self {
+//        findInfluencers(offer: offer as! TemplateOffer, money: money, completion: { (o) in
+//            offerDictionary = API.serializeTemplateOffer(offer: o)
+//            offerKey.updateChildValues(offerDictionary)
+//        })
+//    } else {
+//        offerDictionary = API.serializeOffer(offer: offer)
+//        offerKey.updateChildValues(offerDictionary)
+//    }
+//    YourCompany.accountBalance -= offer.money
+//    UpdateCompanyInDatabase(company: YourCompany)
+//    debugPrint(offerDictionary)
+//}
 
 func createTemplateOffer(pathString: String,edited: Bool,templateOffer: TemplateOffer,completion: @escaping (TemplateOffer,Bool) -> ()) {
     let offersRef = Database.database().reference().child("TemplateOffers").child(pathString)
@@ -649,7 +651,7 @@ func sentOutTransactionToInfluencer(pathString: String,transactionData: [String:
 
 func updateInfluencerAmountByReferral(user: User, amount: Double) {
     
-    let transactionRef = Database.database().reference().child("users").child(user.id!)
+    let transactionRef = Database.database().reference().child("users").child(user.id)
     
     
     transactionRef.updateChildValues(["yourMoney":amount])
@@ -658,7 +660,7 @@ func updateInfluencerAmountByReferral(user: User, amount: Double) {
 
 func UpdatePriorityValue(user: User) {
     
-    let transactionRef = Database.database().reference().child("users").child(user.id!)
+    let transactionRef = Database.database().reference().child("users").child(user.id)
     
     transactionRef.observeSingleEvent(of: .value, with: { (snapshot) in
         if let userData = snapshot.value as? NSDictionary{
@@ -1063,42 +1065,46 @@ func calculateCostForUser(offer: Offer, user: User, increasePayVariable: Double 
     return 0.055 * user.averageLikes! * Double(offer.posts.count) * increasePayVariable
 }
 
-func findInfluencers(offer: TemplateOffer, money: Double, completion: @escaping (TemplateOffer) -> ()) {
-    var moneyForOffer = money
-    var count = 0
-    GetAllUsers(completion: { (users) in
-		var shuffledUsers : [User] = users
-		shuffledUsers.shuffle()
-        for user in shuffledUsers {
-            if moneyForOffer <= 0 {
-                return
-            }
-			let cost: Double = calculateCostForUser(offer: offer, user: user)
-			var inList: Bool = false
-			for zip in offer.zipCodes {
-				if user.zipCode == zip {
-					inList = true
-				}
-			}
-			for cat in offer.targetCategories {
-				if user.primaryCategory == cat {
-					inList = true
-				}
-			}
-            for gender in offer.genders {
-                if user.gender == gender {
-                    inList = true
-                }
-            }
-            if inList {
-                offer.user_IDs.append(user.id!)
-                count += 1
-                moneyForOffer -= cost
-            }
-        }
-        completion(offer)
-    })
-}
+
+//OLD DISTRUBUTE ALGOITHM WRITTEN BY CHRIS CHOMIKI AND OWNED BY TESSERACT FREELANCE, LLC.
+//THIS APP NO LONGER USES THIS ALGORITHM.
+
+//func findInfluencers(offer: TemplateOffer, money: Double, completion: @escaping (TemplateOffer) -> ()) {
+//    var moneyForOffer = money
+//    var count = 0
+//    GetAllUsers(completion: { (users) in
+//		var shuffledUsers : [User] = users
+//		shuffledUsers.shuffle()
+//        for user in shuffledUsers {
+//            if moneyForOffer <= 0 {
+//                return
+//            }
+//			let cost: Double = calculateCostForUser(offer: offer, user: user)
+//			var inList: Bool = false
+//			for zip in offer.zipCodes {
+//				if user.zipCode == zip {
+//					inList = true
+//				}
+//			}
+//			for cat in offer.targetCategories {
+//				if user.primaryCategory == cat {
+//					inList = true
+//				}
+//			}
+//            for gender in offer.genders {
+//                if user.gender == gender {
+//                    inList = true
+//                }
+//            }
+//            if inList {
+//                offer.user_IDs.append(user.id!)
+//                count += 1
+//                moneyForOffer -= cost
+//            }
+//        }
+//        completion(offer)
+//    })
+//}
 
 func UpdateCompanyInDatabase(company: Company) {
     let ref = Database.database().reference().child("companies")
