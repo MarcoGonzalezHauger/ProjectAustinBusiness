@@ -114,6 +114,10 @@ class SignUpVC: BaseVC,UITextFieldDelegate {
 						user.getIDToken(completion: { (token, error) in
 							
 							if error == nil {
+
+								UserDefaults.standard.set(self.emailText.text, forKey: "userEmail")
+								UserDefaults.standard.set(self.passwordText.text, forKey: "userPass")
+								
 								self.companyUser = CompanyUser.init(dictionary: ["userID":user.uid,"token":token!,"email":user.email!,"refreshToken":user.refreshToken!,"isCompanyRegistered":false,"companyID": ""])
 								
 								let userDetails = CreateCompanyUser(companyUser: self.companyUser)

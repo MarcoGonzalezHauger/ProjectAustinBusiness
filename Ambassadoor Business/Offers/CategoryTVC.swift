@@ -41,27 +41,27 @@ class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         for (index,categoryData) in categoryList.enumerated() {
-            
-            var selectTag = true
-            
-            
-            for category in categoryData.categoryData {
-                
-                if self.selectedValues.contains(category){
-                    
-                }else{
-                    
-                    selectTag = false
-                    
-                }
-                
-            }
-            if selectTag {
-            categoryList[index].selectedAll = true
-            }else{
-            categoryList[index].selectedAll = false
-            }
-            
+			
+			var selectTag = true
+			
+			
+			for category in categoryData.categoryData {
+				
+				if self.selectedValues.contains(category){
+					
+				}else{
+					
+					selectTag = false
+					
+				}
+				
+			}
+			if selectTag {
+				categoryList[index].selectedAll = true
+			}else{
+				categoryList[index].selectedAll = false
+			}
+			
         }
     }
     
@@ -114,9 +114,11 @@ class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
         if self.selectedValues.contains(cell.titleLabel.text!){
             cell.accessoryType = .checkmark
             cell.titleLabel.textColor = UIColor.systemBlue
+			cell.titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         }else{
             cell.accessoryType = .none
-            cell.titleLabel.textColor = UIColor.black
+            cell.titleLabel.textColor = GetForeColor()
+			cell.titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         }
 
         return cell
@@ -165,13 +167,15 @@ class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
         let cell = self.tableView.cellForRow(at: indexPath) as! catCell
         cell.accessoryType = .checkmark
         cell.titleLabel.textColor = UIColor.systemBlue
+		cell.titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         let category = categoryList[indexPath.section].categoryData[indexPath.row]
         self.selectedValues.append(category)
     }
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath){
         let cell = self.tableView.cellForRow(at: indexPath) as! catCell
         cell.accessoryType = .none
-        cell.titleLabel.textColor = UIColor.black
+        cell.titleLabel.textColor =	GetForeColor()
+		cell.titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         let category = categoryList[indexPath.section].categoryData[indexPath.row]
         let index = self.selectedValues.index(of: category)
         self.selectedValues.remove(at: index!)
@@ -236,7 +240,13 @@ class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.tintColor = UIColor.systemBlue
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 239.0/255.0, green: 239.0/255.0, blue: 244.0/255.0, alpha: 1.0)
+        
+		if #available(iOS 13.0, *) {
+			self.navigationController?.navigationBar.barTintColor = UIColor.secondarySystemBackground
+		} else {
+			self.navigationController?.navigationBar.barTintColor = UIColor(red: 239.0/255.0, green: 239.0/255.0, blue: 244.0/255.0, alpha: 1.0)
+		}
+        //
         self.navigationController?.view.backgroundColor = UIColor.black
     }
     

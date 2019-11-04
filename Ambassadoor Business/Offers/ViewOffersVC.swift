@@ -24,8 +24,6 @@ class viewOfferCell: UITableViewCell {
 
 class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
 	
-	let masterCornerRadius: CGFloat = 5
-	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return global.OfferDrafts.count + 1
 	}
@@ -34,14 +32,12 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
 		let index = indexPath.row
 		if index == 0 {
 			let cell = shelf.dequeueReusableCell(withIdentifier: "composeButton") as! composeButtonCell
-			cell.composebuttonOutline.layer.cornerRadius = masterCornerRadius
             cell.composebutton.addTarget(self, action: #selector(self.composeAction(sender:)), for: .touchUpInside)
 			return cell
 		} else {
 			let thisTemplate: TemplateOffer = global.OfferDrafts[indexPath.row - 1]
 			let cell = shelf.dequeueReusableCell(withIdentifier: "offerButton") as! viewOfferCell
 			cell.offerName.text = thisTemplate.title
-			cell.offerviewoutline.layer.cornerRadius = masterCornerRadius
             cell.editButton.addTarget(self, action: #selector(self.editAction(sender:)), for: .touchUpInside)
             cell.editButton.tag = indexPath.row - 1
             if thisTemplate.posts.count >= 3 {
@@ -70,10 +66,9 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         if indexPath.row == 0 {
-        return 85.0
-        }else{
-        return 276.0
+			return 66
         }
+		return 276.0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
@@ -113,7 +108,7 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         super.viewDidLoad()
         //let user = Singleton.sharedInstance.getCompanyUser().userID!
         //global.OfferDrafts = GetOffers(userId: user)
-        self.customizeNavigationBar()
+        //self.customizeNavigationBar()
         
     }
     

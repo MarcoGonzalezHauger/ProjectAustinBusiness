@@ -23,6 +23,22 @@ func NumberToPrice(Value: Double, enforceCents isBig: Bool = false) -> String {
 	return ""
 }
 
+func GetForeColor() -> UIColor {
+	if #available(iOS 13.0, *) {
+		return .label
+	} else {
+		return .black
+	}
+}
+
+func GetBackColor() -> UIColor {
+	if #available(iOS 13.0, *) {
+		return .systemBackground
+	} else {
+		return .white
+	}
+}
+
 func GoogleSearch(query: String) {
 	let newquery = query.replacingOccurrences(of: " ", with: "+")
 	if let url = URL(string: "https://www.google.com/search?q=\(newquery)") {

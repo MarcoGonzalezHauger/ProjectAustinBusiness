@@ -47,18 +47,14 @@ class ProductsVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ProductDel
 		cell.productTitle.text = global.products[productIndex].name == "" ? "(no name)" : global.products[productIndex].name
         let url = URL.init(string: global.products[productIndex].image!)
         cell.productImage.sd_setImage(with: url, placeholderImage: UIImage(named: "defaultProduct"))
-//        if let imageID = global.products[productIndex].image {
-//			getImage(id: imageID) { (image1) in
-//				cell.productImage.image = image1
-//			}
-//        } else {
-//            cell.productImage.image = UIImage.init(named: "defaultProduct")
-//        }
 		return cell
 	}
 	
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return 80
+		if indexPath.row == 0 {
+			return 66 // + New Product
+		}
+		return 100
 	}
 	
 	var isEdit = false

@@ -59,7 +59,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 50, height: 50)
+        return CGSize(width: 70, height: 50)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -84,7 +84,11 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
         self.customizeNavigationBar()
         // Do any additional setup after loading the view.
         let commission = Singleton.sharedInstance.getCommision() * 100
-        self.commisionText.text = "Ambassadoor will take \(commission)%"
+		if commission == floor(commission) {
+			self.commisionText.text = "Ambassadoor will take \(floor(commission))%"
+		} else {
+			self.commisionText.text = "Ambassadoor will take \(commission)%"
+		}
         self.addNavigationBarTitleView(title: "Distribute Offer", image: UIImage())
         self.addDoneButtonOnKeyboard(textField: moneyText)
         self.offerTextValue()
