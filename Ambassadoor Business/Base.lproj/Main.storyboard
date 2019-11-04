@@ -1923,7 +1923,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="803"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tBJ-wX-VOn" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="8" width="398" height="917"/>
+                                        <rect key="frame" x="8" y="8" width="398" height="931"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -2222,20 +2222,20 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T3a-qp-fL3">
-                                        <rect key="frame" x="68.5" y="714" width="277" height="34"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="$0.00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T3a-qp-fL3">
+                                        <rect key="frame" x="68.5" y="721" width="277" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="Um2-Zo-eOz"/>
                                             <constraint firstAttribute="width" constant="277" id="gze-Dx-mnn"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         <connections>
                                             <outlet property="delegate" destination="Jeg-Lw-dvM" id="6nB-Dw-kL2"/>
                                         </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ambassadoor will take 5%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qv8-3c-cqr">
-                                        <rect key="frame" x="68.5" y="751" width="277" height="20"/>
+                                        <rect key="frame" x="68.5" y="758" width="277" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="277" id="64v-9N-1cS"/>
                                             <constraint firstAttribute="height" constant="20" id="Hnx-Fs-z5f"/>
@@ -2244,8 +2244,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By pressing Distribute you are agreeing to all terms of service listed here" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efS-S7-52K">
-                                        <rect key="frame" x="19" y="779" width="376" height="48"/>
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By pressing Distribute you are agreeing to all terms of service listed here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efS-S7-52K">
+                                        <rect key="frame" x="19" y="786" width="376" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="2o1-cH-j90"/>
                                         </constraints>
@@ -2257,7 +2257,7 @@
                                         </connections>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a0u-UI-t9c" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                        <rect key="frame" x="19" y="852" width="376" height="53"/>
+                                        <rect key="frame" x="19" y="866" width="376" height="53"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i5X-NZ-X0s">
                                                 <rect key="frame" x="0.0" y="0.0" width="376" height="53"/>
@@ -2290,7 +2290,7 @@
                                     <constraint firstAttribute="trailing" secondItem="0r0-wR-dQM" secondAttribute="trailing" constant="19" id="0Zg-lx-qlr"/>
                                     <constraint firstAttribute="trailing" secondItem="tBJ-wX-VOn" secondAttribute="trailing" constant="8" id="1el-en-fMP"/>
                                     <constraint firstItem="mOH-he-cSw" firstAttribute="leading" secondItem="s7V-nI-Reb" secondAttribute="leading" constant="19" id="2VQ-DY-sXG"/>
-                                    <constraint firstItem="T3a-qp-fL3" firstAttribute="top" secondItem="0r0-wR-dQM" secondAttribute="bottom" constant="5" id="5aY-H8-hqd"/>
+                                    <constraint firstItem="T3a-qp-fL3" firstAttribute="top" secondItem="0r0-wR-dQM" secondAttribute="bottom" constant="12" id="5aY-H8-hqd"/>
                                     <constraint firstItem="tBJ-wX-VOn" firstAttribute="leading" secondItem="s7V-nI-Reb" secondAttribute="leading" constant="8" id="5jY-aV-LuU"/>
                                     <constraint firstItem="Zc8-G8-FUK" firstAttribute="leading" secondItem="s7V-nI-Reb" secondAttribute="leading" constant="19" id="8QH-Kl-M71"/>
                                     <constraint firstItem="efS-S7-52K" firstAttribute="top" secondItem="Qv8-3c-cqr" secondAttribute="bottom" constant="8" id="8bf-KH-F9b"/>
@@ -2310,7 +2310,7 @@
                                     <constraint firstAttribute="bottom" secondItem="a0u-UI-t9c" secondAttribute="bottom" constant="20" symbolic="YES" id="U4G-D5-sA7"/>
                                     <constraint firstItem="YWr-2E-GI4" firstAttribute="centerX" secondItem="s7V-nI-Reb" secondAttribute="centerX" id="UvH-nn-tN1"/>
                                     <constraint firstItem="Zc8-G8-FUK" firstAttribute="top" secondItem="jke-BH-289" secondAttribute="bottom" constant="8" id="Vds-Xw-reW"/>
-                                    <constraint firstItem="a0u-UI-t9c" firstAttribute="top" secondItem="efS-S7-52K" secondAttribute="bottom" constant="25" id="Yb8-4i-ReQ"/>
+                                    <constraint firstItem="a0u-UI-t9c" firstAttribute="top" secondItem="efS-S7-52K" secondAttribute="bottom" constant="32" id="Yb8-4i-ReQ"/>
                                     <constraint firstItem="mOH-he-cSw" firstAttribute="top" secondItem="PXv-Ea-1q5" secondAttribute="bottom" constant="8" id="Yin-et-D2d"/>
                                     <constraint firstAttribute="trailing" secondItem="a0u-UI-t9c" secondAttribute="trailing" constant="19" id="aS4-2p-SJm"/>
                                     <constraint firstAttribute="trailing" secondItem="dM8-IR-Q4w" secondAttribute="trailing" constant="19" id="afu-Rh-eRQ"/>
@@ -3656,8 +3656,7 @@
                                 <rect key="frame" x="10" y="797" width="394" height="57"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sPB-Wd-OYn">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="57"/>
-                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="57"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="57" id="b30-aD-Am1"/>
                                         </constraints>
@@ -3670,12 +3669,12 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="sPB-Wd-OYn" secondAttribute="bottom" id="1Ch-bL-L0W"/>
                                     <constraint firstAttribute="height" constant="57" id="9Bb-MH-id3"/>
                                     <constraint firstItem="sPB-Wd-OYn" firstAttribute="leading" secondItem="d3I-w2-iLp" secondAttribute="leading" id="9aS-Pn-IDu"/>
-                                    <constraint firstAttribute="trailing" secondItem="sPB-Wd-OYn" secondAttribute="trailing" constant="-20" id="CTV-2B-SWo"/>
+                                    <constraint firstAttribute="trailing" secondItem="sPB-Wd-OYn" secondAttribute="trailing" id="CTV-2B-SWo"/>
                                     <constraint firstItem="sPB-Wd-OYn" firstAttribute="top" secondItem="d3I-w2-iLp" secondAttribute="top" id="edW-Cx-BHg"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
