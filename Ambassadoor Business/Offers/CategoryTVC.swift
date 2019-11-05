@@ -41,39 +41,39 @@ class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         for (index,categoryData) in categoryList.enumerated() {
-            
-            var selectTag = true
-            
-            
-            for category in categoryData.categoryData {
-                
-                if self.selectedValues.contains(category){
-                    
-                }else{
-                    
-                    selectTag = false
-                    
-                }
-                
-            }
-            if selectTag {
-            categoryList[index].selectedAll = true
-            }else{
-            categoryList[index].selectedAll = false
-            }
-            
+			
+			var selectTag = true
+			
+			
+			for category in categoryData.categoryData {
+				
+				if self.selectedValues.contains(category){
+					
+				}else{
+					
+					selectTag = false
+					
+				}
+				
+			}
+			if selectTag {
+				categoryList[index].selectedAll = true
+			}else{
+				categoryList[index].selectedAll = false
+			}
+			
         }
     }
     
-    func addLeftButton() {
-        let rightButton: UIBarButtonItem = UIBarButtonItem.init(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.addLeftAction(sender:)))
-        self.navigationItem.leftBarButtonItem = rightButton
+    func addRightButton() {
+		let rightButton: UIBarButtonItem = UIBarButtonItem.init(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: #selector(self.addLeftAction(sender:)))
+        self.navigationItem.rightBarButtonItem = rightButton
     }
     
-    func addRightButton() {
+    func addLeftButton() {
         
         let rightButton: UIBarButtonItem = UIBarButtonItem.init(title: "Clear", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.clearAction(sender:)))
-        self.navigationItem.rightBarButtonItem = rightButton
+        self.navigationItem.leftBarButtonItem = rightButton
     }
     
     @IBAction func addLeftAction(sender: UIBarButtonItem){
@@ -114,9 +114,11 @@ class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
         if self.selectedValues.contains(cell.titleLabel.text!){
             cell.accessoryType = .checkmark
             cell.titleLabel.textColor = UIColor.systemBlue
+			cell.titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         }else{
             cell.accessoryType = .none
-            cell.titleLabel.textColor = UIColor.black
+            cell.titleLabel.textColor = GetForeColor()
+			cell.titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         }
 
         return cell
@@ -165,13 +167,15 @@ class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
         let cell = self.tableView.cellForRow(at: indexPath) as! catCell
         cell.accessoryType = .checkmark
         cell.titleLabel.textColor = UIColor.systemBlue
+		cell.titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         let category = categoryList[indexPath.section].categoryData[indexPath.row]
         self.selectedValues.append(category)
     }
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath){
         let cell = self.tableView.cellForRow(at: indexPath) as! catCell
         cell.accessoryType = .none
-        cell.titleLabel.textColor = UIColor.black
+        cell.titleLabel.textColor =	GetForeColor()
+		cell.titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         let category = categoryList[indexPath.section].categoryData[indexPath.row]
         let index = self.selectedValues.index(of: category)
         self.selectedValues.remove(at: index!)
@@ -179,14 +183,9 @@ class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
     
     func toggleSection(header: ExpandableHeaderView, section: Int) {
         categoryList[section].expanded = !categoryList[section].expanded
-        
-        
-        self.tableView.beginUpdates()
-        self.tableView.reloadData()
-        for i in 0 ..< categoryList[section].categoryData.count {
-            self.tableView.reloadRows(at: [IndexPath(row: i, section: section)], with: .automatic)
-        }
-       self.tableView.endUpdates()
+            self.tableView.beginUpdates()
+            self.tableView .reloadSections(IndexSet.init(integer: section), with: .fade)
+            self.tableView.endUpdates()
     }
     
     func selectAllSection(header: ExpandableHeaderView, section: Int, selected: Bool) {
@@ -236,54 +235,13 @@ class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.tintColor = UIColor.systemBlue
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 239.0/255.0, green: 239.0/255.0, blue: 244.0/255.0, alpha: 1.0)
+        
+		if #available(iOS 13.0, *) {
+			self.navigationController?.navigationBar.barTintColor = UIColor.secondarySystemBackground
+		} else {
+			self.navigationController?.navigationBar.barTintColor = UIColor(red: 239.0/255.0, green: 239.0/255.0, blue: 244.0/255.0, alpha: 1.0)
+		}
+        //
         self.navigationController?.view.backgroundColor = UIColor.black
     }
-    
-    
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

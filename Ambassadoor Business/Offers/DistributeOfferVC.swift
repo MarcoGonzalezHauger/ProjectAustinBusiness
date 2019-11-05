@@ -46,6 +46,8 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         
+		UseTapticEngine()
+		
         self.increasePay.text = global.IncreasePay[indexPath.row]
         increasePayVariable = IncreasePayVariableValue(pay: global.IncreasePay[indexPath.row])
         
@@ -59,7 +61,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 50, height: 50)
+        return CGSize(width: 70, height: 50)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -84,7 +86,11 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
         self.customizeNavigationBar()
         // Do any additional setup after loading the view.
         let commission = Singleton.sharedInstance.getCommision() * 100
-        self.commisionText.text = "Ambassadoor will take \(commission)%"
+		if commission == floor(commission) {
+			self.commisionText.text = "Ambassadoor will take \(floor(commission))%"
+		} else {
+			self.commisionText.text = "Ambassadoor will take \(commission)%"
+		}
         self.addNavigationBarTitleView(title: "Distribute Offer", image: UIImage())
         self.addDoneButtonOnKeyboard(textField: moneyText)
         self.offerTextValue()
@@ -337,14 +343,14 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
             }
         }else {
             
-                self.showAlertMessage(title: "Alert", message: "Please Deposit some amount to account") {
+                self.showAlertMessage(title: "Deposit", message: "You must have money in your Ambassdaoor account to pay influnecers.") {
                     
                 }
                 
         }
             
         }else{
-            self.showAlertMessage(title: "Alert", message: "Please enter your offer rate") {
+            self.showAlertMessage(title: "Enter Amount", message: "Enter how much money you would like to spend distributing your offer.") {
                 
             }
         }

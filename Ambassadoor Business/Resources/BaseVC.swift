@@ -24,6 +24,8 @@ class DeviceManager {
     
 }
 
+let noIndicator = true //I don't like the activity indicator. ~Marco;
+
 class BaseVC: UIViewController {
     
     let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
@@ -31,10 +33,14 @@ class BaseVC: UIViewController {
     
     var activityIndicator: UIActivityIndicatorView!
     var activityIndicatorView: UIView!
-    
-    
+	
     //Show Activity Indicator
     func showActivityIndicator() {
+		
+		if noIndicator {
+			return
+		}
+		
         if self.activityIndicatorView == nil {
             DispatchQueue.main.async(execute: {
                 let xPos = DeviceManager.sharedInstance.getDeviceWidth()/2 - 25 //  - half of image size
@@ -243,13 +249,17 @@ class BaseVC: UIViewController {
 //        self.navigationController?.view.backgroundColor = UIColor.clear
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-                self.navigationController?.navigationBar.shadowImage = UIImage()
-                self.navigationController?.navigationBar.isTranslucent = false
-                self.navigationController?.navigationBar.tintColor = UIColor.systemBlue
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 239.0/255.0, green: 239.0/255.0, blue: 244.0/255.0, alpha: 1.0)
+		self.navigationController?.navigationBar.shadowImage = UIImage()
+		self.navigationController?.navigationBar.isTranslucent = false
+		self.navigationController?.navigationBar.tintColor = UIColor.systemBlue
+		if #available(iOS 13.0, *) {
+			self.navigationController?.navigationBar.barTintColor = UIColor.secondarySystemBackground
+		} else {
+			self.navigationController?.navigationBar.barTintColor = UIColor(red: 239.0/255.0, green: 239.0/255.0, blue: 244.0/255.0, alpha: 1.0)
+		}
         //        self.navigationController?.navigationBar.titleTextAttributes =
         //            [NSAttributedString.Key.foregroundColor:UIColor.black, NSAttributedString.Key.font:UIFont.systemFont(ofSize: 14.0)]
-                self.navigationController?.view.backgroundColor = UIColor.black
+		self.navigationController?.view.backgroundColor = UIColor.black
                 //self.navigationItem.titleView = container
     }
     
