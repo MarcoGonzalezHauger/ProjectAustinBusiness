@@ -69,9 +69,6 @@ class ViewProductVC: BaseVC, UITextViewDelegate, ImagePickerDelegate {
             productName.becomeFirstResponder()
         }
         productURL.text = ThisProduct.buy_url
-        productURL.layer.borderColor = UIColor.gray.cgColor
-        productURL.layer.borderWidth = 1
-        productURL.layer.cornerRadius = 5
     }
     
     @IBAction func clicked(_ sender: Any) {
@@ -117,7 +114,11 @@ class ViewProductVC: BaseVC, UITextViewDelegate, ImagePickerDelegate {
                 if ThisProduct.product_ID == "" {
                     
                     self.showActivityIndicator()
-                    let productDictionary = ["name": productName.text!, "price": 0.0, "buy_url": productURL.text == "" || productURL.text == nil ? nil : productURL.text! as Any! , "color": "", "image": self.productURLstring] as [String : Any]
+					let productDictionary = ["name": productName.text!,
+											 "price": 0.0,
+											 "buy_url": productURL.text! == "" ? "" : (productURL.text! as Any) as Any,
+											 "color": "",
+											 "image": self.productURLstring as Any] as [String : Any]
                     CreateProduct(productDictionary: productDictionary, completed: { (product) in
                         let path = Auth.auth().currentUser!.uid + "/" + product.product_ID!
                         uploadImageToFIR(image: self.productImage.image!, childName: "products", path: path) { (url, error) in

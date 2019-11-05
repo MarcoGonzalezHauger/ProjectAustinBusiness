@@ -41,6 +41,7 @@ class BalanceCell: UITableViewCell {
 class TransactionCell: UITableViewCell {
 	@IBOutlet weak var descriptionLabel: UILabel!
 	@IBOutlet weak var amountlabel: UILabel!
+	@IBOutlet weak var shadowBox: ShadowView!
 }
 
 class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, TransactionListener, cellDelegate {
@@ -67,16 +68,21 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
 		} else {
 			let cell = shelf.dequeueReusableCell(withIdentifier: "TransactionTrunk") as! TransactionCell
 			let ThisTransaction = transactionHistory[row - 1]
-			cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
             if ThisTransaction.type == "sale"{
                 let amt = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
-			cell.descriptionLabel.text = "Deposited \(amt) into Ambassadoor"
+				cell.descriptionLabel.text = "Deposited \(amt) into Ambassadoor"
+				cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
+				cell.shadowBox.ShadowColor = .systemGreen
             }else if ThisTransaction.type == "paid" {
                 let amt = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
-                cell.descriptionLabel.text = "Paid \(amt) to \(ThisTransaction.status)"
+                cell.descriptionLabel.text = "Spent \(amt) to distribute \"\(ThisTransaction.status)\""
+				cell.amountlabel.text = "-\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
+				cell.shadowBox.ShadowColor = .systemRed
             }else if ThisTransaction.type == "refund" {
                 let amt = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
-                cell.descriptionLabel.text = "Refund \(amt) From \(ThisTransaction.userName) of the \(ThisTransaction.status) Offer"
+				cell.descriptionLabel.text = "User Rejected \"\(ThisTransaction.status)\", You have been credited \(amt)"
+				cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
+				cell.shadowBox.ShadowColor = .systemGreen
             }
 			return cell
 			

@@ -13,8 +13,6 @@ import SDWebImage
 
 class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
     
-    
-    
     @IBOutlet weak var pieView: ShadowView!
     @IBOutlet weak var statisticDataView: UIView!
     
@@ -30,9 +28,7 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
     @IBOutlet weak var availableText: UILabel!
     @IBOutlet weak var rejectedText: UILabel!
     @IBOutlet weak var noneInfluencers: UIView!
-    
     @IBOutlet weak var totalPosts: UILabel!
-    
     @IBOutlet weak var userTable: UITableView!
     
     var succeedOffers = [Statistics]()
@@ -43,6 +39,7 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		view.bringSubviewToFront(statisticDataView)
 		self.statisticDataView.isHidden = false
 		//Temporary measure
         

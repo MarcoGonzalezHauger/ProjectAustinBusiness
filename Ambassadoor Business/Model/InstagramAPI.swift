@@ -82,23 +82,30 @@ struct API {
 		return userData
 	}
 	
-    static func serializeUser(user: User, id: String) -> [String: Any] {
-        var userData: [String: Any] = [
-            "name": user.name!,
-            "username": user.username,
-            "followerCount": user.followerCount,
-            "profilePicURL": user.profilePicURL!,
-            "primaryCategory": user.primaryCategory.rawValue,
-            "secondaryCategory": user.SecondaryCategory == nil ? "" : user.SecondaryCategory!.rawValue,
-            "averageLikes": user.averageLikes ?? "",
-            "zipCode": user.zipCode as Any,
-			"gender": user.gender!
-        ]
-        if id != "" {
-            userData["id"] = id
-        }
-        return userData
-    }
+	///Under no circumstance should the business app be writing user data to firebase. It should only be read by the distrubution algorithm.
+	
+//    static func serializeUser(user: User, id: String) -> [String: Any] {
+//        let userData: [String: Any] = [
+//            "id": id,
+//            "name": user.name!,
+//            "username": user.username,
+//            "followerCount": user.followerCount,
+//            "profilePicture": user.profilePicURL!,
+//            "averageLikes": user.averageLikes ?? 0,
+//			"zipCode": user.zipCode as Any,
+//            "gender": user.gender == nil ? "" : user.gender!.rawValue,
+//            "isBankAdded": user.isBankAdded,
+//            "yourMoney": user.yourMoney,
+//            "joinedDate": user.joinedDate!,
+//            "categories": user.categories as AnyObject,
+//            "referralcode": user.referralcode,
+//            "isDefaultOfferVerify": user.isDefaultOfferVerify,
+//            "lastPaidOSCDate": user.lastPaidOSCDate,
+//            "priorityValue": user.priorityValue,
+//            "authenticationToken": user.authenticationToken
+//        ]
+//        return userData
+//    }
     
     static func serializePost(post: Post) -> [String: Any] {
         //                           Post.init(image: nil, instructions: desPost.text!, captionMustInclude: <#T##String?#>, products: <#T##[Product]?#>, post_ID: <#T##String#>, PostType: <#T##TypeofPost#>, confirmedSince: <#T##Date?#>, isConfirmed: <#T##Bool#>)
@@ -115,11 +122,7 @@ struct API {
     
     static func serializeTemplateOffer(offer: TemplateOffer) -> [String: Any] {
         var offerData = serializeOffer(offer: offer)
-        var cats: [String] = []
-        for cat in offer.targetCategories {
-            cats.append(cat.rawValue)
-        }
-        offerData["targetCategories"] = cats
+        offerData["targetCategories"] = offer.targetCategories
         offerData["zipCodes"] = offer.zipCodes
         offerData["genders"] = offer.genders
         offerData["user_IDs"] = offer.user_IDs

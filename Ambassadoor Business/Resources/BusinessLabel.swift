@@ -11,8 +11,9 @@ import UIKit
 class BusinessLabel: UILabel {
 	
 	override func awakeFromNib() {
-		self.textColor = UIColor.black
+		self.textColor = GetForeColor()
 		self.text = "Ambassadoor Business"
+		self.font = UIFont.systemFont(ofSize: 21, weight: .regular)
 	}
 
 }

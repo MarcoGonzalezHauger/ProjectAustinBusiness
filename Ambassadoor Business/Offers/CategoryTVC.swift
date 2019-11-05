@@ -41,27 +41,27 @@ class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         for (index,categoryData) in categoryList.enumerated() {
-            
-            var selectTag = true
-            
-            
-            for category in categoryData.categoryData {
-                
-                if self.selectedValues.contains(category.rawValue){
-                    
-                }else{
-                    
-                    selectTag = false
-                    
-                }
-                
-            }
-            if selectTag {
-            categoryList[index].selectedAll = true
-            }else{
-            categoryList[index].selectedAll = false
-            }
-            
+			
+			var selectTag = true
+			
+			
+			for category in categoryData.categoryData {
+				
+				if self.selectedValues.contains(category){
+					
+				}else{
+					
+					selectTag = false
+					
+				}
+				
+			}
+			if selectTag {
+				categoryList[index].selectedAll = true
+			}else{
+				categoryList[index].selectedAll = false
+			}
+			
         }
     }
     
@@ -108,15 +108,17 @@ class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "catCell", for: indexPath) as! catCell
-        cell.titleLabel.text = categoryList[indexPath.section].categoryData[indexPath.row].rawValue
+        cell.titleLabel.text = categoryList[indexPath.section].categoryData[indexPath.row]
         // Configure the cell...
         
         if self.selectedValues.contains(cell.titleLabel.text!){
             cell.accessoryType = .checkmark
             cell.titleLabel.textColor = UIColor.systemBlue
+			cell.titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         }else{
             cell.accessoryType = .none
-            cell.titleLabel.textColor = UIColor.black
+            cell.titleLabel.textColor = GetForeColor()
+			cell.titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         }
 
         return cell
@@ -165,28 +167,25 @@ class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
         let cell = self.tableView.cellForRow(at: indexPath) as! catCell
         cell.accessoryType = .checkmark
         cell.titleLabel.textColor = UIColor.systemBlue
-        let category = categoryList[indexPath.section].categoryData[indexPath.row].rawValue
+		cell.titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .bold)
+        let category = categoryList[indexPath.section].categoryData[indexPath.row]
         self.selectedValues.append(category)
     }
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath){
         let cell = self.tableView.cellForRow(at: indexPath) as! catCell
         cell.accessoryType = .none
-        cell.titleLabel.textColor = UIColor.black
-        let category = categoryList[indexPath.section].categoryData[indexPath.row].rawValue
+        cell.titleLabel.textColor =	GetForeColor()
+		cell.titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        let category = categoryList[indexPath.section].categoryData[indexPath.row]
         let index = self.selectedValues.index(of: category)
         self.selectedValues.remove(at: index!)
     }
     
     func toggleSection(header: ExpandableHeaderView, section: Int) {
         categoryList[section].expanded = !categoryList[section].expanded
-        
-        
-        self.tableView.beginUpdates()
-        self.tableView.reloadData()
-        for i in 0 ..< categoryList[section].categoryData.count {
-            self.tableView.reloadRows(at: [IndexPath(row: i, section: section)], with: .automatic)
-        }
-       self.tableView.endUpdates()
+            self.tableView.beginUpdates()
+            self.tableView .reloadSections(IndexSet.init(integer: section), with: .fade)
+            self.tableView.endUpdates()
     }
     
     func selectAllSection(header: ExpandableHeaderView, section: Int, selected: Bool) {
@@ -198,10 +197,10 @@ class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
             for category in categoryList[section].categoryData {
                 
                 
-                if self.selectedValues.contains(category.rawValue){
+                if self.selectedValues.contains(category){
                     
                 }else{
-                   self.selectedValues.append(category.rawValue)
+                   self.selectedValues.append(category)
                 }
                 
             }
@@ -213,8 +212,8 @@ class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
             for category in categoryList[section].categoryData {
                 
                 
-                if self.selectedValues.contains(category.rawValue){
-                    let index = selectedValues.index(of: category.rawValue)
+                if self.selectedValues.contains(category){
+                    let index = selectedValues.index(of: category)
                     self.selectedValues.remove(at: index!)
                     
                 }else{
@@ -236,7 +235,13 @@ class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.tintColor = UIColor.systemBlue
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 239.0/255.0, green: 239.0/255.0, blue: 244.0/255.0, alpha: 1.0)
+        
+		if #available(iOS 13.0, *) {
+			self.navigationController?.navigationBar.barTintColor = UIColor.secondarySystemBackground
+		} else {
+			self.navigationController?.navigationBar.barTintColor = UIColor(red: 239.0/255.0, green: 239.0/255.0, blue: 244.0/255.0, alpha: 1.0)
+		}
+        //
         self.navigationController?.view.backgroundColor = UIColor.black
     }
     

@@ -59,7 +59,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 50, height: 50)
+        return CGSize(width: 70, height: 50)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -84,7 +84,11 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
         self.customizeNavigationBar()
         // Do any additional setup after loading the view.
         let commission = Singleton.sharedInstance.getCommision() * 100
-        self.commisionText.text = "Ambassadoor will take \(commission)%"
+		if commission == floor(commission) {
+			self.commisionText.text = "Ambassadoor will take \(floor(commission))%"
+		} else {
+			self.commisionText.text = "Ambassadoor will take \(commission)%"
+		}
         self.addNavigationBarTitleView(title: "Distribute Offer", image: UIImage())
         self.addDoneButtonOnKeyboard(textField: moneyText)
         self.offerTextValue()
@@ -275,21 +279,21 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                             
                             if self.templateOffer?.user_IDs.count != 0 {
                             
-                                if (self.templateOffer?.user_IDs.contains(user.id!))!{
+                                if (self.templateOffer?.user_IDs.contains(user.id))!{
                             
                             
                             }else{
                                 
                                 offerAmount -= influcerMoneyValue
                                 extractedInfluencer.append(user)
-                                extractedUserID.append(user.id!)
+                                extractedUserID.append(user.id)
                                 
                             }
                             }else{
                                 
                                 offerAmount -= influcerMoneyValue
                                 extractedInfluencer.append(user)
-                                extractedUserID.append(user.id!)
+                                extractedUserID.append(user.id)
                                 
                             }
                             
@@ -370,7 +374,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
             
             if user != nil {
             
-                let transactionHistory = ["from":Auth.auth().currentUser!.uid,"To":user?.id! as Any,"type":"referral","Amount":(self.ambassadoorCommision * 0.2),"status":"success","createdAt":DateFormatManager.sharedInstance.getCurrentDateString(),"id":offerID] as [String : Any]
+                let transactionHistory = ["from":Auth.auth().currentUser!.uid,"To":user?.id as Any,"type":"referral","Amount":(self.ambassadoorCommision * 0.2),"status":"success","createdAt":DateFormatManager.sharedInstance.getCurrentDateString(),"id":offerID] as [String : Any]
                 
                 var amount = 0.0
                 
@@ -383,7 +387,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                 
                 updateInfluencerAmountByReferral(user: user!, amount: amount)
             
-                sentOutTransactionToInfluencer(pathString: (user?.id!)!, transactionData: transactionHistory)
+                sentOutTransactionToInfluencer(pathString: (user?.id)!, transactionData: transactionHistory)
                 
                 
             
@@ -425,11 +429,11 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                 for (value, userValue) in zip(influencer!, user!) {
                     //(value, user) in zip(strArr1, strArr2)
                     if userValue.averageLikes != 0 && userValue.averageLikes != nil {
-                        let patstring = userValue.id! + "/" + template.offer_ID
+                        let patstring = userValue.id + "/" + template.offer_ID
                         
                         
                         template.money = Double(NumberToPrice(Value: calculateCostForUser(offer: self.templateOffer!, user: userValue, increasePayVariable: self.increasePayVariable.rawValue), enforceCents: true).dropFirst())!
-                    cardDetails.append([value:["id":userValue.id!,"amount":template.money,"toOffer":template.offer_ID,"name":userValue.name!,"gender":userValue.gender!,"averageLikes":userValue.averageLikes!]])
+                    cardDetails.append([value:["id":userValue.id,"amount":template.money,"toOffer":template.offer_ID,"name":userValue.name!,"gender":userValue.gender!,"averageLikes":userValue.averageLikes!]])
                     UpdatePriorityValue(user: userValue)
                     completedOffersToUsers(pathString: patstring, templateOffer: template)
                         
@@ -446,7 +450,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                 var userIDValue = [String]()
                 var userIDDubValue = [String]()
                 for uderIDs in user! {
-                    userIDDubValue.append(uderIDs.id!)
+                    userIDDubValue.append(uderIDs.id)
                 }
                 userIDDubValue.append(contentsOf: template.user_IDs)
                 

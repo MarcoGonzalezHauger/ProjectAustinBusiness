@@ -8,6 +8,8 @@
 
 import UIKit
 import FirebaseAuth
+import SDWebImage
+import Firebase
 
 class composeButtonCell: UITableViewCell {
 	@IBOutlet weak var composebuttonOutline: UIView!
@@ -24,8 +26,6 @@ class viewOfferCell: UITableViewCell {
 
 class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
 	
-	let masterCornerRadius: CGFloat = 5
-	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return global.OfferDrafts.count + 1
 	}
@@ -34,14 +34,12 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
 		let index = indexPath.row
 		if index == 0 {
 			let cell = shelf.dequeueReusableCell(withIdentifier: "composeButton") as! composeButtonCell
-			cell.composebuttonOutline.layer.cornerRadius = masterCornerRadius
             cell.composebutton.addTarget(self, action: #selector(self.composeAction(sender:)), for: .touchUpInside)
 			return cell
 		} else {
 			let thisTemplate: TemplateOffer = global.OfferDrafts[indexPath.row - 1]
 			let cell = shelf.dequeueReusableCell(withIdentifier: "offerButton") as! viewOfferCell
 			cell.offerName.text = thisTemplate.title
-			cell.offerviewoutline.layer.cornerRadius = masterCornerRadius
             cell.editButton.addTarget(self, action: #selector(self.editAction(sender:)), for: .touchUpInside)
             cell.editButton.tag = indexPath.row - 1
             if thisTemplate.posts.count >= 3 {
@@ -70,10 +68,9 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         if indexPath.row == 0 {
-        return 85.0
-        }else{
-        return 276.0
+			return 66
         }
+		return 276.0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
@@ -108,18 +105,21 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
 	
 
 	@IBOutlet weak var shelf: UITableView!
+    @IBOutlet weak var editButton: UIButton!
+    var isEdit = false
 	
     override func viewDidLoad() {
         super.viewDidLoad()
         //let user = Singleton.sharedInstance.getCompanyUser().userID!
         //global.OfferDrafts = GetOffers(userId: user)
-        self.customizeNavigationBar()
+        //self.customizeNavigationBar()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         shelf.dataSource = self
         shelf.delegate = self
+        self.navigationController?.navigationBar.isHidden = true
         NotificationCenter.default.addObserver(self, selector: #selector(self.reloadOffer(notification:)), name: Notification.Name.init(rawValue: "reloadOffer"), object: nil)
         getAllTemplateOffers(userID: Auth.auth().currentUser!.uid) { (templateOffers, status) in
             if status == "success" && templateOffers.count != 0 {
@@ -130,6 +130,46 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
                })
             }
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        self.navigationController?.navigationBar.isHidden = false
+    }
+    
+    @IBAction func editProducts(_ sender: Any) {
+        isEdit = !isEdit
+        UIView.animate(withDuration: 0.5) {
+            self.editButton.setTitle(self.isEdit ? "Done" : "Edit", for: .normal)
+        }
+        shelf.setEditing(isEdit, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        if indexPath.row != 0 {
+            return .delete
+        } else {
+            return .none
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let offer = global.OfferDrafts[indexPath.row - 1]
+            let ref = Database.database().reference().child("TemplateOffers").child(Auth.auth().currentUser!.uid).child(offer.offer_ID)
+            ref.removeValue()
+            global.OfferDrafts.remove(at: indexPath.row - 1)
+            shelf.deleteRows(at: [indexPath], with: .bottom)
+            
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return indexPath.row != 0
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return indexPath.row != 0
     }
     
     @objc func reloadOffer(notification: Notification) {
