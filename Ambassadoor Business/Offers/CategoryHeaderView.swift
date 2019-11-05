@@ -18,6 +18,7 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
     var section: Int!
     var imageView: UIImageView?
     var selectAllBTN: UIButton?
+    var selectAllBigBTN: UIButton?
     var bottomImage: UIImageView?
     var expandBool: Bool = false
     var selectedAll: Bool = false
@@ -106,6 +107,22 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
 			selectAllBTN?.addTarget(self, action: #selector(selectAllAction(sender:)), for: .touchUpInside)
 			self.contentView.addSubview(selectAllBTN!)
 		}
+        
+        if selectedAll {
+            selectAllBigBTN = UIButton()
+            selectAllBigBTN?.frame = CGRect(x: self.contentView.frame.width-100, y: 0, width: 45, height: self.contentView.frame.height)
+            selectAllBigBTN?.backgroundColor = UIColor.clear
+            //selectAllBigBTN?.setBackgroundImage(UIImage(named: "tick"), for: .normal)
+            selectAllBigBTN?.addTarget(self, action: #selector(selectAllAction(sender:)), for: .touchUpInside)
+            self.contentView.addSubview(selectAllBigBTN!)
+        }else{
+            selectAllBigBTN = UIButton()
+            selectAllBigBTN?.frame = CGRect(x: self.contentView.frame.width-100, y: 0, width: 45, height: self.contentView.frame.height)
+            selectAllBigBTN?.backgroundColor = UIColor.clear
+            //selectAllBTN?.setBackgroundImage(UIImage(named: "square"), for: .normal)
+            selectAllBigBTN?.addTarget(self, action: #selector(selectAllAction(sender:)), for: .touchUpInside)
+            self.contentView.addSubview(selectAllBigBTN!)
+        }
 		
         bottomImage = UIImageView()
         bottomImage?.frame = CGRect(x: 0, y: self.contentView.frame.height-1, width: self.contentView.frame.width, height: 1)

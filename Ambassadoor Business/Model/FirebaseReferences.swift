@@ -295,7 +295,7 @@ func updateProductDetails(dictionary: [String: Any], productID: String) {
     ref.updateChildValues(dictionary)
 }
 // A MARCO FUNCTION.
-func UpdateYourCompanyInFirebase() {
+func UpdateYourCompanyInFirebase(company: Company) {
 	if let id = YourCompany.account_ID {
 		let companyData: [String: Any] = serializeCompany(company: YourCompany)
 		let ref = Database.database().reference().child("companies").child(id)
@@ -796,7 +796,7 @@ func getStatisticsData(completion: @escaping([Statistics]?,String,Error?) -> Voi
                             
                             let refUserPost = Database.database().reference().child("SentOutOffersToUsers").child(userID).child(offerKey as! String)
                             
-                            print(offerKey)
+                            //print(offerKey)
                             
                             refUserPost.observeSingleEvent(of: .value, with: { (userpublish) in
                                 
@@ -1107,7 +1107,7 @@ func calculateCostForUser(offer: Offer, user: User, increasePayVariable: Double 
 //}
 
 func UpdateCompanyInDatabase(company: Company) {
-    let ref = Database.database().reference().child("companies")
+    let ref = Database.database().reference().child("companies").child(Auth.auth().currentUser!.uid)
 	let companyData = serializeCompany(company: company)
     ref.child(company.account_ID!).updateChildValues(companyData)
 }
