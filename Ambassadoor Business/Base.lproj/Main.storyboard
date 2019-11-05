@@ -849,13 +849,9 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bgp-0t-qav">
-                                        <rect key="frame" x="319" y="180" width="75" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="gdB-E9-SwY"/>
-                                            <constraint firstAttribute="width" constant="75" id="w3Q-YT-1x0"/>
-                                        </constraints>
-                                        <state key="normal" title="Visit">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bgp-0t-qav">
+                                        <rect key="frame" x="339" y="180" width="55" height="22"/>
+                                        <state key="normal" title="Visit" image="globe" catalog="system">
                                             <color key="titleColor" red="0.20591866970062256" green="0.47089439630508423" blue="0.96475476026535034" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
                                         <connections>
@@ -868,8 +864,10 @@
                                     <constraint firstItem="hqb-Dh-CR4" firstAttribute="top" secondItem="xIX-rc-HTc" secondAttribute="bottom" constant="8" id="8xy-ru-n33"/>
                                     <constraint firstAttribute="trailing" secondItem="hqb-Dh-CR4" secondAttribute="trailing" constant="20" id="MgQ-py-nJW"/>
                                     <constraint firstAttribute="height" constant="220" id="jl1-lg-VOh"/>
+                                    <constraint firstItem="bgp-0t-qav" firstAttribute="trailing" secondItem="hqb-Dh-CR4" secondAttribute="trailing" id="nS4-z3-lWT"/>
                                     <constraint firstItem="xIX-rc-HTc" firstAttribute="top" secondItem="oMY-qT-cW3" secondAttribute="top" constant="20" id="qQC-Qx-1pd"/>
                                     <constraint firstItem="hqb-Dh-CR4" firstAttribute="leading" secondItem="xIX-rc-HTc" secondAttribute="leading" id="xiF-6Q-9lX"/>
+                                    <constraint firstItem="bgp-0t-qav" firstAttribute="top" secondItem="hqb-Dh-CR4" secondAttribute="bottom" constant="3" id="yLi-5l-Oqw"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCS-e3-dk6">
@@ -3105,7 +3103,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.55294117649999996" blue="0.81568627449999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="3Hg-e1-fHp" firstAttribute="top" secondItem="IAY-Cn-KF0" secondAttribute="bottom" constant="32" id="1tq-Hn-JlL"/>
                                     <constraint firstAttribute="trailing" secondItem="4zP-g3-ljJ" secondAttribute="trailing" constant="8" id="2jG-k5-1zU"/>
@@ -4088,11 +4086,11 @@
             <objects>
                 <viewController id="gjA-zh-oKp" customClass="RegisterCompanyVC" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fkl-oF-erZ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DeH-Sd-bdJ" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                <rect key="frame" x="20" y="920" width="374" height="60"/>
+                                <rect key="frame" x="20" y="816" width="374" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RgJ-GH-gh4">
                                         <rect key="frame" x="8" y="8" width="358" height="43"/>
@@ -4131,7 +4129,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eiY-DZ-cVe">
-                                <rect key="frame" x="0.0" y="56" width="414" height="856"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="752"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RCf-nl-eWS" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                         <rect key="frame" x="132" y="28" width="150" height="150"/>
@@ -4409,7 +4407,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IsN-ZL-zIG"/>
                     </view>
-                    <size key="freeformSize" width="414" height="1000"/>
                     <connections>
                         <outlet property="companyDescription" destination="VRI-CF-w12" id="4ge-fD-Uu0"/>
                         <outlet property="companyEmail" destination="gJF-3f-v6X" id="OSh-l7-maM"/>
@@ -4424,7 +4421,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZHO-NX-A5s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2729" y="401"/>
+            <point key="canvasLocation" x="2730" y="435"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="HyB-JU-fts">
+            <objects>
+                <viewController id="JK4-39-0rh" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9qi-v3-vVl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="foD-go-SfB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ta3-km-djL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3680" y="435"/>
         </scene>
         <!--Offers-->
         <scene sceneID="ZYz-JP-w9w">
@@ -4471,6 +4483,6 @@
         <image name="square.and.pencil" catalog="system" width="64" height="58"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ceg-yx-Afw"/>
+        <segue reference="M0i-E2-U7z"/>
     </inferredMetricsTieBreakers>
 </document>
