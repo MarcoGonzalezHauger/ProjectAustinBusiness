@@ -242,106 +242,106 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
         
         if self.moneyText.text?.count != 0 {
             
-			if self.depositValue != nil {
-				
-				if self.depositValue!.currentBalance != nil {
-					
-					var offerAmount = Double((String((self.moneyText.text?.dropFirst())!)))!
-					
-					if (offerAmount < self.depositValue!.currentBalance!) {
-						
-						
-						getFilteredInfluencers(category: self.influencersFilter as! [String : [AnyObject]]) { (influencer, errorStatus,userArray) in
-							
-							if influencer?.count != 0 {
-								
-								var extractedInfluencer = [User]()
-								var extractedUserID = [String]()
-								
-								//MARK: Deducting Ambassadoor Commision
-								if Singleton.sharedInstance.getCompanyDetails().referralcode?.count != 0 {
-									
-									self.ambassadoorCommision = offerAmount * Singleton.sharedInstance.getCommision()
-									
-									offerAmount = offerAmount - self.ambassadoorCommision
-									
-								}
-								
-								
-								
-								for (_,user) in zip(influencer!, userArray!) {
-									
-									if user.averageLikes != 0 && user.averageLikes != nil {
-										
-										//let influcerMoneyValue = ((Double(calculateCostForUser(offer: self.templateOffer!, user: user, increasePayVariable: self.increasePayVariable.rawValue)) * 100).rounded())/100
-										//NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
-										let influcerMoneyValue = calculateCostForUser(offer: self.templateOffer!, user: user, increasePayVariable: self.increasePayVariable.rawValue)
-										
-										if offerAmount >= influcerMoneyValue {
-											
-											if self.templateOffer?.user_IDs.count != 0 {
-												
-												if (self.templateOffer?.user_IDs.contains(user.id))!{
-													
-													
-												}else{
-													
-													offerAmount -= influcerMoneyValue
-													extractedInfluencer.append(user)
-													extractedUserID.append(user.id)
-													
-												}
-											}else{
-												
-												offerAmount -= influcerMoneyValue
-												extractedInfluencer.append(user)
-												extractedUserID.append(user.id)
-												
-											}
-											
-										}else{
-											break
-										}
-									}
-									
-								}
-								
-								if extractedUserID.count != 0 {
-									
-									
-									
-									let totalDeductedAmount = Double(NumberToPrice(Value: (Double((String((self.moneyText.text?.dropFirst())!)))! - offerAmount), enforceCents: true).dropFirst())!
-									
-									
-									
-									self.sendOutOffers(influencer: extractedUserID, user: extractedInfluencer, deductedAmount: totalDeductedAmount)
-									
-								}else{
-									self.showAlertMessage(title: "Alert", message: "Not enough influencers were found, please disable a filter for better results or increase the number of categories, zip codes, or genders you have set") {
-										
-									}
-								}
-								
-								
-							}else{
-								
-								self.showAlertMessage(title: "Alert", message: "Not enough influencers were found, please disable a filter for better results or increase the number of categories, zip codes, or genders you have set") {
-									
-								}
-								
-							}
-							
-						}
-						
-					}else{
-						self.showAlertMessage(title: "Insufficient funds", message: "You do not have enough money to distribute this offer.") {
-							
-						}
-					}
-				}else {
-					
-				}
-			}else {
+            if self.depositValue != nil {
+                
+            if self.depositValue!.currentBalance != nil {
+            
+            var offerAmount = Double((String((self.moneyText.text?.dropFirst())!)))!
+            
+            if (offerAmount < self.depositValue!.currentBalance!) {
+            
+            
+                getFilteredInfluencers(category: self.influencersFilter as! [String : [AnyObject]]) { (influencer, errorStatus,userArray) in
+                
+                if influencer?.count != 0 {
+                    
+                    var extractedInfluencer = [User]()
+                    var extractedUserID = [String]()
+                    
+                    //MARK: Deducting Ambassadoor Commision
+                    if Singleton.sharedInstance.getCompanyDetails().referralcode?.count != 0 {
+                        
+                        self.ambassadoorCommision = offerAmount * Singleton.sharedInstance.getCommision()
+                        
+                        offerAmount = offerAmount - self.ambassadoorCommision
+                        
+                    }
+                    
+                    
+                    
+                    for (_,user) in zip(influencer!, userArray!) {
+                        
+                        if user.averageLikes != 0 && user.averageLikes != nil {
+                        
+                        //let influcerMoneyValue = ((Double(calculateCostForUser(offer: self.templateOffer!, user: user, increasePayVariable: self.increasePayVariable.rawValue)) * 100).rounded())/100
+                        //NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
+                        let influcerMoneyValue = calculateCostForUser(offer: self.templateOffer!, user: user, increasePayVariable: self.increasePayVariable.rawValue)
+                        
+                        if offerAmount >= influcerMoneyValue {
+                            
+                            if self.templateOffer?.user_IDs.count != 0 {
+                            
+                                if (self.templateOffer?.user_IDs.contains(user.id))!{
+                            
+                            
+                            }else{
+                                
+                                offerAmount -= influcerMoneyValue
+                                extractedInfluencer.append(user)
+                                extractedUserID.append(user.id)
+                                
+                            }
+                            }else{
+                                
+                                offerAmount -= influcerMoneyValue
+                                extractedInfluencer.append(user)
+                                extractedUserID.append(user.id)
+                                
+                            }
+                            
+                        }else{
+                            break
+                        }
+                    }
+                        
+                    }
+                    
+                    if extractedUserID.count != 0 {
+                        
+                        
+                        
+                        let totalDeductedAmount = Double(NumberToPrice(Value: (Double((String((self.moneyText.text?.dropFirst())!)))! - offerAmount), enforceCents: true).dropFirst())!
+                        
+                        
+                        
+                        self.sendOutOffers(influencer: extractedUserID, user: extractedInfluencer, deductedAmount: totalDeductedAmount)
+                        
+                    }else{
+                        self.showAlertMessage(title: "Alert", message: "Not enough influencers were found, please disable a filter for better results or increase the number of categories, zip codes, or genders you have set") {
+                            
+                        }
+                    }
+                    
+                    
+                }else{
+                    
+                    self.showAlertMessage(title: "Alert", message: "Not enough influencers were found, please disable a filter for better results or increase the number of categories, zip codes, or genders you have set") {
+                        
+                    }
+                    
+                }
+                
+            }
+            
+        }else{
+            self.showAlertMessage(title: "Alert", message: "Please enter your offer amount below than deposit amount or deposit more money and try again!") {
+                    
+                }
+        }
+            }else {
+                
+            }
+        }else {
             
                 self.showAlertMessage(title: "Deposit", message: "You must have money in your Ambassdaoor account to pay influnecers.") {
                     

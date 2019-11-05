@@ -23,7 +23,9 @@ class EditCompanyTVC: UITableViewController, ImagePickerDelegate {
         if image != nil {
             self.companyLogo.image = image
             //        self.urlString = uploadImageToFIR(image: image!, path: (Auth.auth().currentUser?.uid)!)
+            self.showActivityIndicator()
             uploadImageToFIR(image: image!,childName: "companylogo", path: (Auth.auth().currentUser?.uid)!) { (url, error) in
+                self.hideActivityIndicator()
                 if error == false{
                     self.logo = url
                     print("URL=",url)
@@ -49,6 +51,9 @@ class EditCompanyTVC: UITableViewController, ImagePickerDelegate {
 	@IBOutlet weak var descTextBox: UITextView!
 	@IBOutlet weak var webTextBox: UITextView!
 	@IBOutlet weak var companyLogo: UIImageView!
+    
+    var activityIndicator: UIActivityIndicatorView!
+    var activityIndicatorView: UIView!
 	
 	var logo: String?
 	var AccountID: String?
@@ -78,6 +83,62 @@ class EditCompanyTVC: UITableViewController, ImagePickerDelegate {
 //		}
 		AccountID = ThisCompany.account_ID
     }
+    
+    //Show Activity Indicator
+    func showActivityIndicator() {
+        
+//        if noIndicator {
+//            return
+//        }
+        
+        if self.activityIndicatorView == nil {
+            DispatchQueue.main.async(execute: {
+                let xPos = DeviceManager.sharedInstance.getDeviceWidth()/2 - 25 //  - half of image size
+                let yPos = DeviceManager.sharedInstance.getDeviceHeight()/2 - 25
+                self.activityIndicatorView =
+                    UIView(frame: CGRect(x: xPos, y: yPos, width: 50, height: 50))
+                self.activityIndicatorView.alpha = 1
+                self.activityIndicatorView.backgroundColor = UIColor.white
+                let layer: CALayer = self.activityIndicatorView.layer
+                layer.cornerRadius = 5.0
+                
+                self.activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 5, y: 5, width: 40, height: 40))
+                self.activityIndicator.style = UIActivityIndicatorView.Style.whiteLarge
+                let transform: CGAffineTransform = CGAffineTransform(scaleX: 0.7, y: 0.7)
+                self.activityIndicator.transform = transform
+                self.activityIndicatorView.addSubview(self.activityIndicator)
+                self.activityIndicator .startAnimating()
+                self.activityIndicator.color = UIColor.blue
+                self.activityIndicatorView.isHidden = true
+                self.view.addSubview(self.activityIndicatorView)
+                self.activityIndicatorView.isHidden = false
+            })
+        }
+        else {
+            self.activityIndicatorView.removeFromSuperview()
+        }
+        
+    }
+    
+    //Hide Activity Indicator
+    func hideActivityIndicator() {
+        if  self.activityIndicatorView != nil {
+            DispatchQueue.main.async(execute: {
+                if self.activityIndicator == nil {
+                    
+                }
+                else{
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.removeFromSuperview()
+                    self.activityIndicator = nil
+                    
+                    self.activityIndicatorView .removeFromSuperview()
+                    self.activityIndicatorView = nil
+                }
+            })
+            
+        }
+    }
 	
 	@IBAction func save(_ sender: Any) {
 		var problem = false
@@ -94,6 +155,8 @@ class EditCompanyTVC: UITableViewController, ImagePickerDelegate {
 			}
 		}
 		if !problem {
+            let ownCompany =  Company.init(dictionary: ["name": nameTextBox.text!, "logo": logo as Any, "mission": missionTextBox.text, "website": webTextBox.text, "account_ID": AccountID ?? "", "description": descTextBox.text, "accountBalance": 0.0])
+            UpdateCompanyInDatabase(company: ownCompany)
             delegate?.editsMade(newCompany: Company.init(dictionary: ["name": nameTextBox.text!, "logo": logo as Any, "mission": missionTextBox.text, "website": webTextBox.text, "account_ID": AccountID ?? "", "description": descTextBox.text, "accountBalance": 0.0]))
 			dismiss(animated: true, completion: nil)
 		}

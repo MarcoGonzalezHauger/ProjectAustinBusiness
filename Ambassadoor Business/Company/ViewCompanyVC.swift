@@ -23,7 +23,7 @@ class ViewCompanyVC: BaseVC, editDelegate {
 	func editsMade(newCompany: Company) {
 		YourCompany = newCompany
 		updateCompanyInfo()
-		UpdateYourCompanyInFirebase()
+		
 	}
 	
 	override func viewDidLoad() {

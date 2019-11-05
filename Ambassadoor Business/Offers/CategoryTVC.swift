@@ -183,14 +183,9 @@ class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
     
     func toggleSection(header: ExpandableHeaderView, section: Int) {
         categoryList[section].expanded = !categoryList[section].expanded
-        
-        
-        self.tableView.beginUpdates()
-        self.tableView.reloadData()
-        for i in 0 ..< categoryList[section].categoryData.count {
-            self.tableView.reloadRows(at: [IndexPath(row: i, section: section)], with: .automatic)
-        }
-       self.tableView.endUpdates()
+            self.tableView.beginUpdates()
+            self.tableView .reloadSections(IndexSet.init(integer: section), with: .fade)
+            self.tableView.endUpdates()
     }
     
     func selectAllSection(header: ExpandableHeaderView, section: Int, selected: Bool) {
