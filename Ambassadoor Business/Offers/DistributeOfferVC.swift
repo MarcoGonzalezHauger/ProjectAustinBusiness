@@ -46,6 +46,8 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         
+		UseTapticEngine()
+		
         self.increasePay.text = global.IncreasePay[indexPath.row]
         increasePayVariable = IncreasePayVariableValue(pay: global.IncreasePay[indexPath.row])
         
@@ -341,14 +343,14 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
             }
         }else {
             
-                self.showAlertMessage(title: "Alert", message: "Please Deposit some amount to account") {
+                self.showAlertMessage(title: "Deposit", message: "You must have money in your Ambassdaoor account to pay influnecers.") {
                     
                 }
                 
         }
             
         }else{
-            self.showAlertMessage(title: "Alert", message: "Please enter your offer rate") {
+            self.showAlertMessage(title: "Enter Amount", message: "Enter how much money you would like to spend distributing your offer.") {
                 
             }
         }

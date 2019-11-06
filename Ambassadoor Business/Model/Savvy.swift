@@ -39,6 +39,11 @@ func GetBackColor() -> UIColor {
 	}
 }
 
+let impact = UIImpactFeedbackGenerator()
+func UseTapticEngine() {
+	impact.impactOccurred()
+}
+
 func GoogleSearch(query: String) {
 	let newquery = query.replacingOccurrences(of: " ", with: "+")
 	if let url = URL(string: "https://www.google.com/search?q=\(newquery)") {
