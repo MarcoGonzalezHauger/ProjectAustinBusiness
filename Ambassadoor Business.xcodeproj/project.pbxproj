@@ -75,7 +75,6 @@
 		E8E54689227BA3E800775A07 /* YourCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E54688227BA3E800775A07 /* YourCompany.swift */; };
 		E8E5468C227BC9E900775A07 /* StatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E5468B227BC9E900775A07 /* StatsVC.swift */; };
 		E8F8AAC922C8492D0047BF5E /* ViewOffersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F8AAC822C8492D0047BF5E /* ViewOffersVC.swift */; };
-		E8F8AACB22C981390047BF5E /* Changes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E8F8AACA22C981390047BF5E /* Changes.rtf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -152,7 +151,6 @@
 		E8E54688227BA3E800775A07 /* YourCompany.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourCompany.swift; sourceTree = "<group>"; };
 		E8E5468B227BC9E900775A07 /* StatsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsVC.swift; sourceTree = "<group>"; };
 		E8F8AAC822C8492D0047BF5E /* ViewOffersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewOffersVC.swift; sourceTree = "<group>"; };
-		E8F8AACA22C981390047BF5E /* Changes.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Changes.rtf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,13 +182,6 @@
 				795D821481779CC29C258337 /* Pods-Ambassadoor Business.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		B7551F2222F9859C001C4974 /* Category */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Category;
 			sourceTree = "<group>";
 		};
 		B7551F2922F98817001C4974 /* DataPickerClasses */ = {
@@ -328,11 +319,9 @@
 		E8C3694022161B3000AE12D7 /* Ambassadoor Business */ = {
 			isa = PBXGroup;
 			children = (
-				E8F8AACA22C981390047BF5E /* Changes.rtf */,
 				B7D030AD23237CA4002B90FF /* Ambassadoor Business-Bridging-Header.h */,
 				E8E54688227BA3E800775A07 /* YourCompany.swift */,
 				B7C9FE8B231E485E005580E4 /* Plaid */,
-				B7551F2222F9859C001C4974 /* Category */,
 				E8F8AAC722C8485A0047BF5E /* Offers */,
 				E816AC202282F34000B9D951 /* Money */,
 				E83F378B227CDEBA00BA6688 /* Sign Up */,
@@ -459,7 +448,6 @@
 				B7551F2F22F99B01001C4974 /* BasePicker.xib in Resources */,
 				B7FD83ED22F0870F00347E8E /* PostDetailTC.xib in Resources */,
 				E83D9A39226A20B6007BDD97 /* GoogleService-Info.plist in Resources */,
-				E8F8AACB22C981390047BF5E /* Changes.rtf in Resources */,
 				B7FD83E922F0844C00347E8E /* AddPostTC.xib in Resources */,
 				B750E78522E5B75F00024CB1 /* Onboarding.storyboard in Resources */,
 				E8C3694C22161B3200AE12D7 /* Assets.xcassets in Resources */,

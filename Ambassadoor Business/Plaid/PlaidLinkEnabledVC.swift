@@ -52,7 +52,7 @@ class PlaidLinkEnabledVC: BaseVC, PLKPlaidLinkViewDelegate {
             linkViewController.modalPresentationStyle = .formSheet;
         }
         DispatchQueue.main.async(execute: {
-        self.present(linkViewController, animated: animated)
+			self.present(linkViewController, animated: animated)
         })
     }
     
