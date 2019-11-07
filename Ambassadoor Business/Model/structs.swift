@@ -153,7 +153,8 @@ class User: NSObject {
 		let averageLikes: Double?
 		var zipCode: String?
 		let id: String
-		var gender: Gender?
+		var gender: String?
+    //var gender: Gender?
 		var isBankAdded: Bool
 		var joinedDate: String?
 		var categories: [String]?
@@ -174,7 +175,8 @@ class User: NSObject {
 			self.averageLikes = dictionary["averageLikes"] as? Double
 			self.zipCode = dictionary["zipCode"] as? String
 			self.id = dictionary["id"] as! String
-			self.gender = dictionary["gender"] as? Gender
+			self.gender = dictionary["gender"] as? String
+            //self.gender = dictionary["gender"] as? Gender
 			self.isBankAdded = dictionary["isBankAdded"] as! Bool
 			self.joinedDate = dictionary["joinedDate"] as? String
 			self.categories = dictionary["categories"] as? [String]
