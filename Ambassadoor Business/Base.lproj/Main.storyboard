@@ -642,18 +642,18 @@
                                 <rect key="frame" x="0.0" y="99" width="414" height="714"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="newCell" rowHeight="66" id="6Rh-VR-M1Y">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="newCell" rowHeight="66" id="6Rh-VR-M1Y">
                                         <rect key="frame" x="0.0" y="28" width="414" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6Rh-VR-M1Y" id="T2U-GP-PmP">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y06-EM-2bF" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y06-EM-2bF" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="8" width="382" height="50"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhh-RX-IcF">
-                                                            <rect key="frame" x="16" y="16" width="350" height="18"/>
+                                                            <rect key="frame" x="124" y="13.5" width="134" height="23"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                             <state key="normal" title=" New Product" image="plus" catalog="system">
                                                                 <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -662,11 +662,8 @@
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="hhh-RX-IcF" secondAttribute="bottom" constant="16" id="BnI-AJ-zGo"/>
-                                                        <constraint firstAttribute="height" constant="50" id="LsN-LP-TzI"/>
-                                                        <constraint firstAttribute="trailing" secondItem="hhh-RX-IcF" secondAttribute="trailing" constant="16" id="ZD0-xq-rKH"/>
-                                                        <constraint firstItem="hhh-RX-IcF" firstAttribute="leading" secondItem="y06-EM-2bF" secondAttribute="leading" constant="16" id="llk-ix-GQL"/>
-                                                        <constraint firstItem="hhh-RX-IcF" firstAttribute="top" secondItem="y06-EM-2bF" secondAttribute="top" constant="16" id="qB2-pn-ZUp"/>
+                                                        <constraint firstItem="hhh-RX-IcF" firstAttribute="centerX" secondItem="y06-EM-2bF" secondAttribute="centerX" id="3P6-cU-UJE"/>
+                                                        <constraint firstItem="hhh-RX-IcF" firstAttribute="centerY" secondItem="y06-EM-2bF" secondAttribute="centerY" id="DFM-OB-e3j"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -682,14 +679,15 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="y06-EM-2bF" secondAttribute="bottom" constant="8" id="Kgm-od-aCh"/>
-                                                <constraint firstAttribute="trailing" secondItem="y06-EM-2bF" secondAttribute="trailing" constant="16" id="WgA-Qr-HBZ"/>
-                                                <constraint firstItem="y06-EM-2bF" firstAttribute="leading" secondItem="T2U-GP-PmP" secondAttribute="leading" constant="16" id="qpN-S4-f0h"/>
+                                                <constraint firstItem="y06-EM-2bF" firstAttribute="leading" secondItem="T2U-GP-PmP" secondAttribute="leading" constant="16" id="7J2-wp-lIB"/>
+                                                <constraint firstAttribute="trailing" secondItem="y06-EM-2bF" secondAttribute="trailing" constant="16" id="9CP-d1-w0e"/>
+                                                <constraint firstAttribute="bottom" secondItem="y06-EM-2bF" secondAttribute="bottom" constant="8" id="Cjc-hd-gTu"/>
+                                                <constraint firstItem="y06-EM-2bF" firstAttribute="top" secondItem="T2U-GP-PmP" secondAttribute="top" constant="8" id="E5p-JU-EvX"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="productCellID" rowHeight="100" id="mIS-Pt-uQF" customClass="ProductCell" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="productCellID" rowHeight="100" id="mIS-Pt-uQF" customClass="ProductCell" customModule="Ambassadoor_Business" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="94" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mIS-Pt-uQF" id="RTl-2k-twP">
