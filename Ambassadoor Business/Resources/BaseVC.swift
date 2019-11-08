@@ -234,6 +234,17 @@ class BaseVC: UIViewController {
         self.navigationItem.rightBarButtonItem = rightButton
     }
     
+    func addLeftButtonText(text: String) {
+        
+        let leftButton: UIBarButtonItem = UIBarButtonItem.init(title: text, style: UIBarButtonItem.Style.done, target: self, action: #selector(self.addLeftAction(sender:)))
+        self.navigationItem.leftBarButtonItem = leftButton
+        
+    }
+    
+    @IBAction func addLeftAction(sender: UIBarButtonItem){
+        
+    }
+    
     @IBAction func addRightAction(sender: UIBarButtonItem){
         
     }

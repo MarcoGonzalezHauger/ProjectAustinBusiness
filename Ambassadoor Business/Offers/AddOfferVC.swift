@@ -26,6 +26,8 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
     @IBOutlet weak var gender: UITextField!
     @IBOutlet weak var selectedCategoryText: UILabel!
     
+    @IBOutlet weak var editButton: UIButton!
+    
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     
     @IBOutlet var tabCategory: UITapGestureRecognizer!
@@ -35,7 +37,7 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
     
     var selectedCategoryArray = [String]()
     var segueOffer: TemplateOffer?
-    
+    var isEdit = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -147,6 +149,7 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
             }
             let post = global.post[indexPath.row]
             cell?.postTitle.text = post.PostType
+            cell?.SetNumber(number: indexPath.row + 1)
             //cell?.postTitle.text = PostTypeToText(posttype: post.PostType)
             return cell!
             
@@ -184,6 +187,60 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 		}
 	}
     
+    @IBAction func editProducts(_ sender: Any) {
+        isEdit = !isEdit
+        UIView.animate(withDuration: 0.5) {
+            self.editButton.setTitle(self.isEdit ? "Done" : "Edit", for: .normal)
+        }
+        postTableView.setEditing(isEdit, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        if indexPath.row != 0 {
+            return .delete
+        } else {
+            return .none
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            if global.post.count < 3 {
+                
+                global.post.remove(at: indexPath.row - 1)
+                
+            }else{
+                global.post.remove(at: indexPath.row)
+            }
+            
+            postTableView.deleteRows(at: [indexPath], with: .bottom)
+            
+            
+            
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return indexPath.row != 0
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return indexPath.row != 0
+    }
+	
+	func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+		switch textField {
+		case gender:
+			return false
+		case zipCode:
+			performSegue(withIdentifier: "toZipPicker", sender: self)
+			return false
+		default:
+			return true
+		}
+	}
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
 		if indexPath.row == 0 {
 			return addCellHeight
@@ -197,7 +254,7 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
     func setBasicComponents() {
         self.textFieldChangeNotification(textField: self.zipCode)
         self.addDoneButtonOnKeyboard(textField: self.zipCode)
-        self.addRightButtonText(text: "Save")
+        self.addLeftButtonText(text: "⬅︎ Back")
         self.customizeNavigationBar()
     }
     
@@ -366,7 +423,7 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
         self.showActivityIndicator()
     }
     
-    @IBAction override func addRightAction(sender: UIBarButtonItem) {
+    @IBAction override func addLeftAction(sender: UIBarButtonItem) {
         
         
         

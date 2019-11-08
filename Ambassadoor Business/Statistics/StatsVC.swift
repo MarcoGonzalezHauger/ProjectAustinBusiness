@@ -197,6 +197,7 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
 
         Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(self.getStatisticsTimerData), userInfo: nil, repeats: true)
         
+        
     }
     
     
