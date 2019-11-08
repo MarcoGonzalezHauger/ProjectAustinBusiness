@@ -66,12 +66,12 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
-        return 2.0
+        return 8.0
         
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 2.0
+        return 8.0
         
     }
     
@@ -87,7 +87,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
         // Do any additional setup after loading the view.
         let commission = Singleton.sharedInstance.getCommision() * 100
 		if commission == floor(commission) {
-			self.commisionText.text = "Ambassadoor will take \(floor(commission))%"
+			self.commisionText.text = "Ambassadoor will take \(Int(commission))%"
 		} else {
 			self.commisionText.text = "Ambassadoor will take \(commission)%"
 		}
@@ -117,39 +117,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
     
     func offerTextValue() {
         
-        if templateOffer!.posts.count >= 3 {
-            let offerOne = templateOffer!.posts[0]
-            let offerTwo = templateOffer!.posts[1]
-            let offerThree = templateOffer!.posts[2]
-            /*- Post one features 5 products
-             - Post two features 1 possible product
-             - Post three features 9 possible products
-             */
-            offerProducts.text = "- Post one features \(String(describing: offerOne.products!.count)) possible \(self.getProductContent(count: offerOne.products!.count)) \n- Post two features \(String(describing: offerTwo.products!.count)) possible \(self.getProductContent(count: offerTwo.products!.count)) \n- Post three features \(String(describing: offerThree.products!.count)) possible \(self.getProductContent(count: offerThree.products!.count))"
-        
-            }else if templateOffer!.posts.count == 2 {
-            let offerOne = templateOffer!.posts[0]
-            let offerTwo = templateOffer!.posts[1]
-            offerProducts.text = "- Post one features \(String(describing: offerOne.products!.count))  possible \(self.getProductContent(count: offerOne.products!.count)) \n- Post two features \(String(describing: offerTwo.products!.count)) possible \(self.getProductContent(count: offerTwo.products!.count))"
-        
-            }else if templateOffer!.posts.count == 1 {
-            let offerOne = templateOffer!.posts[0]
-            offerProducts.text = "- Post one features \(String(describing: offerOne.products!.count))  possible \(self.getProductContent(count: offerOne.products!.count))"
-        
-            }
-        
-    }
-    
-    func getProductContent(count: Int) -> String {
-        
-        if count > 1 {
-            
-            return "products"
-            
-        }else{
-            return "product"
-        }
-        
+		offerProducts.text = templateOffer!.GetSummary()
         
     }
     

@@ -28,6 +28,7 @@ class AddPostVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UITextFieldDel
     override func viewDidLoad() {
         super.viewDidLoad()
         self.customizeNavigationBar()
+        self.addLeftButtonText(text: "⬅︎ Back")
         if index != nil {
             let post = global.post[index!]
             self.desPost.text = post.instructions
@@ -189,6 +190,62 @@ class AddPostVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UITextFieldDel
     }
     
     @IBAction func savePost(sender: UIButton){
+        
+        if desPost.text.count != 0 {
+            
+            
+            if hashPost.text?.count != 0 {
+                
+                if pharsePost.text?.count != 0 {
+                    
+                    if productCollection.count != 0 {
+                        
+                            
+                        let post  = Post.init(image: "", instructions: desPost.text!, captionMustInclude: self.pharsePost.text!, products: productCollection, post_ID: "", PostType: PostTypeToText(posttype: .SinglePost) , confirmedSince: Date(), isConfirmed: false, hashCaption: hashPost.text!, status: "available")
+                            self.showActivityIndicator()
+                            getCreatePostUniqueID(param: post) { (postValue, error) in
+                                self.hideActivityIndicator()
+                                if self.index != nil {
+                                    global.post[self.index!] = postValue
+                                }else{
+                                 global.post.append(postValue)
+                                }
+                                
+                                self.createLocalNotification(notificationName: "reload", userInfo: [:])
+                                self.navigationController?.popViewController(animated: true)
+                            }
+                            
+                        
+                    }else{
+                        
+                    self.showAlertMessage(title: "Alert", message: "Please choose the product") {
+                            
+                        }
+                    }
+                    
+                }else{
+                    
+                    self.showAlertMessage(title: "Alert", message: "Please enter some pharse to include in the caption of the post.") {
+                        
+                    }
+                    
+                }
+                
+            }else{
+                self.showAlertMessage(title: "Alert", message: "Please enter the hashtag to include in the caption of the post.") {
+                    
+                }
+            }
+            
+        }else{
+            self.showAlertMessage(title: "Alert", message: "Please enter some description about your post") {
+                
+            }
+        }
+        
+    }
+    
+    @IBAction override func addLeftAction(sender: UIBarButtonItem) {
         
         if desPost.text.count != 0 {
             

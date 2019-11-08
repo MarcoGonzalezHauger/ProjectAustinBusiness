@@ -90,7 +90,7 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
     
     @objc func getStatisticsTimerData(){
         
-        print("Hoooo")
+        print("GetSTatisticsTimerData() ran.")
         
         
         getStatisticsData { (statistics, status, error) in
@@ -196,6 +196,7 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
         }
 
         Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(self.getStatisticsTimerData), userInfo: nil, repeats: true)
+        
         
     }
     

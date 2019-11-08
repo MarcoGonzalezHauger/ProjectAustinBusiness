@@ -10,7 +10,7 @@ import UIKit
 import SDWebImage
 import FirebaseAuth
 
-class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate,PickerDelegate,selectedCategoryDelegate {
+class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, PickerDelegate, selectedCategoryDelegate {
     
     
     
@@ -26,6 +26,8 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
     @IBOutlet weak var gender: UITextField!
     @IBOutlet weak var selectedCategoryText: UILabel!
     
+    @IBOutlet weak var editButton: UIButton!
+    
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     
     @IBOutlet var tabCategory: UITapGestureRecognizer!
@@ -35,12 +37,11 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
     
     var selectedCategoryArray = [String]()
     var segueOffer: TemplateOffer?
-    
+    var isEdit = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.setBasicComponents()
         NotificationCenter.default.addObserver(self, selector: #selector(self.reloadProduct(notification:)), name: Notification.Name.init(rawValue: "reload"), object: nil)
         let picker = self.addPickerToolBar(textField: gender, object: ["Male","Female","Other","All"])
         picker.pickerDelegate = self
@@ -50,7 +51,7 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
         self.postTableView.updateConstraints()
         self.postTableView.layoutIfNeeded()
         
-
+        self.setBasicComponents()
         
         self.fillEditedInfo()
     }
@@ -63,55 +64,55 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
             //self.offerRate.text = "$" + String(segueOffer!.money)
 //            self.expiryDate.text = DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: segueOffer!.expiredate, format: "yyyy/MMM/dd HH:mm:ss")
             self.zipCode.text = segueOffer?.zipCodes.joined(separator: ",")
-            self.gender.text = segueOffer?.genders.joined(separator: ",")
-            selectedCategoryArray.append(contentsOf: segueOffer!.category)
-            let selectedCategory  = segueOffer?.category.joined(separator: ",")
-            self.selectedCategoryText.text = selectedCategory
+            self.gender.text = segueOffer?.genders.joined(separator: ", ")
             
-            global.post.removeAll()
-            global.post.append(contentsOf: segueOffer!.posts)
-            let count = global.post.count
-            if count < 3 {
-                self.tableViewHeight.constant = (CGFloat(80 * count) + 80)
-                self.postTableView.updateConstraints()
-                self.postTableView.layoutIfNeeded()
-                self.postTableView.reloadData()
-            }else{
-                self.tableViewHeight.constant = (CGFloat(global.post.count) * 80)
-                self.postTableView.updateConstraints()
-                self.postTableView.layoutIfNeeded()
-                self.postTableView.reloadData()
-            }
+            setCategoryLabels()
+			
+            global.post = segueOffer!.posts
+			reloadTableViewHeight()
         }
         
     }
+	
+	func setCategoryLabels() {
+		selectedCategoryArray.append(contentsOf: segueOffer!.category)
+		var cats = segueOffer?.category
+		cats?.sort { $0 > $1 }
+		let selectedCategory  = cats?.joined(separator: ", ")
+		self.selectedCategoryText.text = selectedCategory
+	}
+	
+	let postCellHeight: Int = 90
+	let addCellHeight: CGFloat = 60
     
-    @objc func reloadProduct(notification: Notification) {
-        
-        let count = global.post.count
-        if count < 3 {
-        self.tableViewHeight.constant = (CGFloat(80 * count) + 80)
-        self.postTableView.updateConstraints()
-        self.postTableView.layoutIfNeeded()
-        self.postTableView.reloadData()
-        }else{
-        self.tableViewHeight.constant = (CGFloat(global.post.count) * 80)
-        self.postTableView.updateConstraints()
-        self.postTableView.layoutIfNeeded()
-        self.postTableView.reloadData()
-        }
-        
-    }
-    
-    
-    
-    //MARK: -Table Delegates
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	@objc func reloadProduct(notification: Notification) {
+		reloadTableViewHeight()
+	}
+	
+	func reloadTableViewHeight() {
+		let count = global.post.count
+		if count < 3 {
+			self.tableViewHeight.constant = CGFloat(postCellHeight * count) + addCellHeight
+			self.postTableView.updateConstraints()
+			self.postTableView.layoutIfNeeded()
+			self.postTableView.reloadData()
+		}else{
+			self.tableViewHeight.constant = CGFloat(global.post.count * postCellHeight)
+			self.postTableView.updateConstraints()
+			self.postTableView.layoutIfNeeded()
+			self.postTableView.reloadData()
+		}
+	}
+	
+	
+	
+	//MARK: -Table Delegates
+	
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if global.post.count < 3 {
-        return global.post.count + 1
+			return global.post.count + 1
         }else{
-        return global.post.count
+			return global.post.count
         }
     }
     
@@ -133,9 +134,9 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
                 let nib = Bundle.main.loadNibNamed("PostDetailTC", owner: self, options: nil)
                 cell = nib![0] as? PostDetailTC
             }
-            
-            let post = global.post[(indexPath.row - 1)]
+            let post = global.post[indexPath.row-1]
             cell?.postTitle.text = post.PostType
+			cell?.SetNumber(number: indexPath.row)
             //cell?.postTitle.text = PostTypeToText(posttype: post.PostType)
             return cell!
         }
@@ -149,6 +150,7 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
             }
             let post = global.post[indexPath.row]
             cell?.postTitle.text = post.PostType
+            cell?.SetNumber(number: indexPath.row + 1)
             //cell?.postTitle.text = PostTypeToText(posttype: post.PostType)
             return cell!
             
@@ -174,172 +176,76 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
         
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-        return 80.0
+    @IBAction func editProducts(_ sender: Any) {
+        isEdit = !isEdit
+        UIView.animate(withDuration: 0.5) {
+            self.editButton.setTitle(self.isEdit ? "Done" : "Edit", for: .normal)
+        }
+        postTableView.setEditing(isEdit, animated: true)
     }
     
-//    //MARK: - Collectionview Delegates
-//
-//    func numberOfSections(in collectionView: UICollectionView) -> Int{
-//        if collectionView == pickedInfluencer{
-//        return  1
-//        }else{
-//        return  1
-//        }
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        if collectionView == pickedInfluencer{
-//            return  pickedUserArray.count
-//        }else{
-//        return global.influencers.count
-//        }
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        if collectionView == pickedInfluencer{
-//            let cell : PickUserCVC = collectionView.dequeueReusableCell(withReuseIdentifier: "pickuser", for: indexPath) as! PickUserCVC
-//            let user = pickedUserArray[indexPath.item]
-//            let url = URL.init(string: user.profilePicURL!)
-//            cell.profileImage.sd_setImage(with: url, placeholderImage: UIImage(named: "defaultProduct"))
-//            cell.pickText.text = user.name!
-//            return cell
-//        }else{
-//        let cell : PickUserCVC = collectionView.dequeueReusableCell(withReuseIdentifier: "influencer", for: indexPath) as! PickUserCVC
-//        let user = global.influencers[indexPath.item]
-//        let url = URL.init(string: user.profilePicURL!)
-//        cell.profileImage.sd_setImage(with: url, placeholderImage: UIImage(named: "defaultProduct"))
-//        cell.pickText.text = user.name!
-//        return cell
-//        }
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
-//
-//        if collectionView == pickedInfluencer{
-//
-//            let obj = pickedUserArray[indexPath.item]
-//            global.influencers.append(obj)
-//            pickedUserArray.remove(at: indexPath.item)
-//            let count = (Float(global.influencers.count) / 3.0).rounded(.up)
-//            self.influencerHeight.constant = CGFloat(95 * count)
-//            self.influencerCollection.updateConstraints()
-//            self.influencerCollection.layoutIfNeeded()
-//            self.influencerCollection.reloadData()
-//
-//            let countPicked = (Float(self.pickedUserArray.count) / 3.0).rounded(.up)
-//            self.pickedInfluencerHeight.constant = CGFloat(90 * countPicked)
-//            self.pickedInfluencer.updateConstraints()
-//            self.pickedInfluencer.layoutIfNeeded()
-//            self.pickedInfluencer.reloadData()
-//
-//            if pickedUserArray.count == 0 {
-//            self.pickedIT.constant = 0.0
-//            self.pickedText.updateConstraints()
-//            self.pickedText.layoutIfNeeded()
-//
-//            }
-//        }else{
-//
-//            let obj = global.influencers[indexPath.item]
-//            self.pickedUserArray.append(obj)
-//            global.influencers.remove(at: indexPath.item)
-//            let count = (Float(global.influencers.count) / 3.0).rounded(.up)
-//            self.influencerHeight.constant = CGFloat(95 * count)
-//            self.influencerCollection.updateConstraints()
-//            self.influencerCollection.layoutIfNeeded()
-//            self.influencerCollection.reloadData()
-//
-//            let countPicked = (Float(self.pickedUserArray.count) / 3.0).rounded(.up)
-//            self.pickedInfluencerHeight.constant = CGFloat(90 * countPicked)
-//            self.pickedInfluencer.updateConstraints()
-//            self.pickedInfluencer.layoutIfNeeded()
-//            self.pickedInfluencer.reloadData()
-//
-//            self.pickedIT.constant = 17.0
-//            self.pickedText.updateConstraints()
-//            self.pickedText.layoutIfNeeded()
-//        }
-//
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        if collectionView == pickedInfluencer{
-//
-//        let Width = collectionView.bounds.width/3.0
-//        _ = Width
-//        return CGSize(width: Width - 3, height: 90)
-//
-//        }else{
-//
-//        let Width = collectionView.bounds.width/3.0
-//        _ = Width
-//        return CGSize(width: Width - 4, height: 90)
-//
-//        }
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//
-//        return 2.0
-//
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 2.0
-//
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets{
-//        return UIEdgeInsets(top: 2,left: 2,bottom: 2,right: 2);
-//    }
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        if indexPath.row != 0 {
+            return .delete
+        } else {
+            return .none
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            if global.post.count < 3 {
+                
+                global.post.remove(at: indexPath.row - 1)
+                
+            }else{
+                global.post.remove(at: indexPath.row)
+            }
+            
+            postTableView.deleteRows(at: [indexPath], with: .bottom)
+            
+            
+            
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return indexPath.row != 0
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return indexPath.row != 0
+    }
+	
+	func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+		switch textField {
+		case gender:
+			return false
+		case zipCode:
+			performSegue(withIdentifier: "toZipPicker", sender: self)
+			return false
+		default:
+			return true
+		}
+	}
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
+		if indexPath.row == 0 {
+			return addCellHeight
+		} else {
+			return CGFloat(postCellHeight)
+		}
+    }
     
     //MARK: - Data Components
     
     func setBasicComponents() {
-        self.customizeNavigationBar()
         self.textFieldChangeNotification(textField: self.zipCode)
-        //self.addDoneButtonOnKeyboard(textField: self.offerRate)
         self.addDoneButtonOnKeyboard(textField: self.zipCode)
-        //self.customizeNavigationBar()
-        self.addRightButtonText(text: "Save")
+        self.addLeftButtonText(text: "⬅︎ Back")
         self.customizeNavigationBar()
     }
-    
-//    func setInputField() {
-//        let newDateComponents = NSDateComponents()
-//        newDateComponents.month = 1
-//        newDateComponents.day = 0
-//        newDateComponents.year = 0
-//        dobPickerView.minimumDate = Date()
-//        dobPickerView.maximumDate = NSCalendar.current.date(byAdding: newDateComponents as DateComponents, to: NSDate() as Date)
-//
-//        dobPickerView.datePickerMode = UIDatePicker.Mode.dateAndTime
-//
-//        self.expiryDate.inputView = dobPickerView
-//        dobPickerView.addTarget(self, action: #selector(self.datePickerValueChanged), for: UIControl.Event.valueChanged)
-//        self.addDoneButtonOnKeyboard(textField: expiryDate)
-//    }
-    
-//    @objc func datePickerValueChanged(sender:UIDatePicker) {
-//
-//        let dateFormatter = DateFormatter()
-//
-//        dateFormatter.dateStyle = DateFormatter.Style.medium
-//
-//        dateFormatter.timeStyle = DateFormatter.Style.none
-//        // NSLocale *locale = [NSLocale localeWithLocaleIdentifier:@"EN"];
-//        let locale = NSLocale.init(localeIdentifier: "en_US")
-//        print(locale)
-//        //"MM/dd/YYYY HH:mm:ss",yyyy/MMM/dd HH:mm:ss
-//        //dateFormatter.dateFormat = "dd/MM/YYYY"
-//        dateFormatter.dateFormat = "yyyy/MMM/dd HH:mm:ss"
-//        //        dateFormatter.dateFormat = "mm/dd/yyyy HH:mm:ss"
-//        dateFormatter.locale = Locale.current
-//        expiryDate.text = dateFormatter.string(from: sender.date)
-//
-//
-//    }
     
     //MARK: -Textfield Delegate
     
@@ -373,41 +279,20 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
     }
     
     @IBAction func saveOffer(sender: UIButton){
-        
-//        UIApplication.shared.open(URL.init(string: "https://amassadoor.firebaseapp.com")!, options: [:], completionHandler: nil)
-//        UIApplication.shared.open(URL.init(string: "http://localhost:5000/pay")!, options: [:], completionHandler: nil)
-        
-//        var influencerFilter = ["primaryCategory":["Other"],"followerCount":[845]]
-//
-//
-//
         if self.offerName.text?.count != 0{
-
-            //if self.offerRate.text?.count != 0{
-
-//            if self.expiryDate.text?.count != 0{
-
                 if self.zipCode.text?.count != 0{
-
                     if self.zipCode.text!.components(separatedBy: ",").last?.count == 5 {
-
                         if self.gender.text?.count != 0 {
-
                             if self.selectedCategoryArray.count != 0 {
                                 let timer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(self.timerAction(sender:)), userInfo: nil, repeats: false)
-                                //                            getFilteredInfluencers(category: influencerFilter as [String : [AnyObject]]) { (influencer, errorStatus) in
-                                
                                 var genderArray = [String]()
                                 
                                 if (self.gender.text?.contains("All"))!{
-                                    
                                     genderArray.append(contentsOf: ["Male","Female","Other"])
-                                    
                                 }else{
                                     genderArray = self.gender.text!.components(separatedBy: ",")
                                 }
-//
-                                //DateFormatManager.sharedInstance.getDateFromStringWithFormat(dateString: self.expiryDate.text!, format: "yyyy/MMM/dd HH:mm:ss")
+								
                                 let expiryDateAdded = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
                                 let dateString = DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: expiryDateAdded, format: "yyyy-MM-dd'T'HH:mm:ss")
                                 
@@ -430,56 +315,26 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
                                     path = path + "/" + self.segueOffer!.offer_ID
                                     template.offer_ID = self.segueOffer!.offer_ID
                                 }
-
+								
                                 createTemplateOffer(pathString: path, edited: edited, templateOffer: template) { (offer, response) in
                                     timer.invalidate()
                                     self.hideActivityIndicator()
                                     self.segueOffer = template
                                     self.performSegue(withIdentifier: "toDistributeOffer", sender: offer)
                                 }
-
-                                //}
-
-
-                            }else{
-                                self.showAlertMessage(title: "Alert", message: "Please Choose prefered categories"){
-
-                                }
+								
+                            } else {
+                                self.showAlertMessage(title: "Alert", message: "Please Choose prefered categories"){ }
                             }
-
                         }else{
-
-                            self.showAlertMessage(title: "Alert", message: "Please Choose genders to filter prefered influencers"){
-
-                            }
-
+                            self.showAlertMessage(title: "Alert", message: "Please Choose genders to filter prefered influencers"){ }
                         }
-
                     }else{
-                        self.showAlertMessage(title: "Alert", message: "Enter the valid Zipcode"){
-
-                        }
+                        self.showAlertMessage(title: "Alert", message: "Enter the valid Zipcode"){ }
                     }
-
                 }else{
-                    self.showAlertMessage(title: "Alert", message: "Enter the expiry date"){
-
-                    }
+                    self.showAlertMessage(title: "Alert", message: "Enter the expiry date"){ }
                 }
-
-//            }
-//            else{
-//                self.showAlertMessage(title: "Alert", message: "Enter the expiry date"){
-//
-//                }
-//            }
-
-            //                }else{
-            //
-            //                    self.showAlertMessage(title: "Alert", message: "Enter the offer rate") {
-            //                    }
-            //                }
-
         }else{
             self.showAlertMessage(title: "Alert", message: "Please enter your offer name") {
             }
@@ -496,51 +351,6 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
     
     @objc override func doneClickPicker() {
         self.gender.resignFirstResponder()
-//        if gender.text!.count != 0 {
-//            if (gender.text?.contains("All"))!{
-//
-//                let stringCount = self.genderPicker.components(separatedBy: ",")
-//
-//                if stringCount.count == 0 {
-//
-//                    gender.text = self.genderPicker
-//
-//                }else{
-//
-//                    var stringSepArray = stringCount
-//
-//                    for value in stringCount {
-//                        if value == "All" {
-//
-//                            if let index = stringSepArray.firstIndex(of: "All") {
-//                                stringSepArray.remove(at: index)
-//                            }
-//
-//                        }
-//                    }
-//
-//                    gender.text = stringSepArray.joined(separator: ",")
-//
-//                }
-//
-//            }else{
-//
-//                if self.genderPicker == "All" {
-//                    gender.text = "All"
-//                }else{
-//                    let stringCount = self.genderPicker.components(separatedBy: ",")
-//                    if stringCount.count == 0 {
-//                        gender.text = self.genderPicker
-//                    }else{
-//                        gender.text = gender.text! + "," + self.genderPicker
-//                    }
-//                }
-//
-//        }
-//        }else{
-//            gender.text = self.genderPicker
-//        }
-        
     }
     
     @objc override func cancelClickPicker() {
@@ -574,23 +384,6 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
 
            
         }
-//        else if textField == self.offerRate {
-//            if string == "" {
-//                if self.offerRate.text!.count == 2 {
-//                   self.offerRate.text = ""
-//                }
-//
-//            }else{
-//                if (self.offerRate.text?.first == "$"){
-//                //self.offerRate.text = self.offerRate.text!
-//                }else{
-//                  self.offerRate.text = "$" + self.offerRate.text!
-//                }
-//
-//            }
-//            return true
-//
-//        }
         else{
           return true
         }
@@ -606,8 +399,7 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
     
     func selectedArray(array: [String]) {
         if array.count != 0 {
-            selectedCategoryArray.removeAll()
-            selectedCategoryArray.append(contentsOf: array)
+            selectedCategoryArray = array
             let selectedCategory  = array.joined(separator: ", ")
             self.selectedCategoryText.text = selectedCategory
         }else{
@@ -620,7 +412,7 @@ class AddOfferVC: BaseVC,UITableViewDelegate,UITableViewDataSource,UICollectionV
         self.showActivityIndicator()
     }
     
-    @IBAction override func addRightAction(sender: UIBarButtonItem) {
+    @IBAction override func addLeftAction(sender: UIBarButtonItem) {
         
         
         

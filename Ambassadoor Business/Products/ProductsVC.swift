@@ -23,6 +23,8 @@ class ProductCell: UITableViewCell {
 
 class ProductsVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ProductDelegate {
 	
+	@IBOutlet weak var loadingProducts: UIActivityIndicatorView!
+	
 	func WasSaved(index: Int) {
 		shelf.reloadRows(at: [IndexPath(row: index + 1, section: 0)], with: .fade)
 	}
@@ -52,7 +54,7 @@ class ProductsVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ProductDel
 	
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		if indexPath.row == 0 {
-			return 66 // + New Product
+			return 80 // + New Product
 		}
 		return 100
 	}
@@ -128,36 +130,20 @@ class ProductsVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ProductDel
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
-//		shelf.delegate = self
-//		shelf.dataSource = self
-//        let user = Singleton.sharedInstance.getCompanyUser()
-//        let path = Auth.auth().currentUser!.uid + "/" + user.companyID!
-//        self.showActivityIndicator()
-//        getAllProducts(path: path) { (product) in
-//            self.hideActivityIndicator()
-//            global.products.removeAll()
-//            global.products.append(contentsOf: product)
-//            self.shelf.reloadData()
-//
-//        }
-        
+        shelf.delegate = self
+        shelf.dataSource = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        shelf.delegate = self
-        shelf.dataSource = self
         let user = Singleton.sharedInstance.getCompanyUser()
         let path = Auth.auth().currentUser!.uid + "/" + user.companyID!
-        self.showActivityIndicator()
         getAllProducts(path: path) { (product) in
+			self.loadingProducts.isHidden = true
             if product != nil {
-            self.hideActivityIndicator()
-            global.products.removeAll()
-            global.products.append(contentsOf: product!)
-            self.shelf.reloadData()
-            }else{
-                self.hideActivityIndicator()
-            }
+				global.products.removeAll()
+				global.products.append(contentsOf: product!)
+				self.shelf.reloadData()
+			}
             
         }
         

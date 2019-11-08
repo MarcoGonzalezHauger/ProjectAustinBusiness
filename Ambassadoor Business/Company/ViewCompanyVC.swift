@@ -43,6 +43,8 @@ class ViewCompanyVC: BaseVC, editDelegate {
 		if isGoodUrl(url: YourCompany.website) {
 			if let url = URL(string: YourCompany.website) {
 				UIApplication.shared.open(url, options: [:])
+			} else {
+				MakeShake(viewToShake: viewWebsiteShadowView)
 			}
 		} else {
 			MakeShake(viewToShake: viewWebsiteShadowView)

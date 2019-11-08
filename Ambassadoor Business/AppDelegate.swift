@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 import Firebase
-import Braintree
+//import Braintree
 import Stripe
 
 @UIApplicationMain
@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
         Stripe.setDefaultPublishableKey("pk_test_8Rwst6t9gr25jXYXC4NHmiZK001i78iYO7")
-        BTAppSwitch.setReturnURLScheme("com.develop.sns.paypal")
+        //BTAppSwitch.setReturnURLScheme("com.develop.sns.paypal")
         getAdminValues { (error) in
            print("fd=",Singleton.sharedInstance.getAdminFS())
         }
@@ -33,9 +33,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-        if url.scheme?.localizedCaseInsensitiveCompare("com.develop.sns.paypal") == .orderedSame {
-            return BTAppSwitch.handleOpen(url, options: options)
-        }
+//        if url.scheme?.localizedCaseInsensitiveCompare("com.develop.sns.paypal") == .orderedSame {
+//            return BTAppSwitch.handleOpen(url, options: options)
+//        }
         return false
     }
 
