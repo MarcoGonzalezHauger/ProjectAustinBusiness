@@ -141,6 +141,20 @@ class TemplateOffer: Offer {
         self.status = dictionary["status"] as! String
         super.init(dictionary: dictionary)
     }
+	
+	func GetSummary() -> String {
+		var lines: [String] = []
+		lines.append("This Post has \(self.posts.count) Posts:")
+		var index = 1
+		for post in self.posts {
+			let sText = post.products!.count == 1 ? "product" : "products"
+			lines.append("• Post #\(index) contains \(String(describing: post.products!.count)) \(sText).")
+			index += 1
+		}
+		lines.append("")
+		lines.append("Has been sent to \(user_IDs.count) influencer\(user_IDs.count != 1 ? "s" : "").")
+		return lines.joined(separator: "\n")
+	}
 }
 
 //Strcuture for users

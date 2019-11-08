@@ -17,7 +17,7 @@ enum EditingMode {
 	case slider, manual
 }
 
-class DepositVC: BaseVC, changedDelegate,BTViewControllerPresentingDelegate,BTAppSwitchDelegate,STPAddCardViewControllerDelegate,STPAuthenticationContext,STPPaymentContextDelegate {
+class DepositVC: BaseVC, changedDelegate, BTViewControllerPresentingDelegate, BTAppSwitchDelegate, STPAddCardViewControllerDelegate, STPAuthenticationContext, STPPaymentContextDelegate {
     func paymentContext(_ paymentContext: STPPaymentContext, didFailToLoadWithError error: Error) {
         
     }
@@ -305,7 +305,7 @@ class DepositVC: BaseVC, changedDelegate,BTViewControllerPresentingDelegate,BTAp
                 
                 let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
                 
-                print("dataString=",dataString)
+				print("dataString=",dataString ?? "nil")
                 
                 if error == nil {
                     
@@ -409,7 +409,7 @@ class DepositVC: BaseVC, changedDelegate,BTViewControllerPresentingDelegate,BTAp
                         var depositHistory = [Any]()
                         depositHistory.append(tranObj)
                         
-                        let deposit = Deposit.init(dictionary: ["userID":Auth.auth().currentUser!.uid ,"currentBalance":depositedAmount,"totalDepositAmount":depositedAmount,"totalDeductedAmount":0.00,"lastDeductedAmount":0.00,"lastDepositedAmount":depositedAmount,"lastTransactionHistory":tranObj,"depositHistory":depositHistory])
+                        let deposit = Deposit.init(dictionary: ["userID":Auth.auth().currentUser!.uid, "currentBalance":depositedAmount, "totalDepositAmount":depositedAmount, "totalDeductedAmount":0.00, "lastDeductedAmount":0.00, "lastDepositedAmount":depositedAmount, "lastTransactionHistory":tranObj, "depositHistory":depositHistory])
                         
                         sendDepositAmount(deposit: deposit, companyUser: Auth.auth().currentUser!.uid) { (deposit, status) in
                             self.createLocalNotification(notificationName: "reloadDeposit", userInfo: [:])

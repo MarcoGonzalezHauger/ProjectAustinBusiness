@@ -90,7 +90,7 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
     
     @objc func getStatisticsTimerData(){
         
-        print("Hoooo")
+        print("GetSTatisticsTimerData() ran.")
         
         
         getStatisticsData { (statistics, status, error) in

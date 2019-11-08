@@ -9,77 +9,54 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addpost" rowHeight="80" id="WfH-BQ-55n" customClass="AddPostTC" customModule="Ambassadoor_Business" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="413" height="78"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addpost" rowHeight="90" id="WfH-BQ-55n" customClass="AddPostTC" customModule="Ambassadoor_Business" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="413" height="82"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WfH-BQ-55n" id="zkC-GQ-ZEM">
-                <rect key="frame" x="0.0" y="0.0" width="413" height="78"/>
+                <rect key="frame" x="0.0" y="0.0" width="413" height="82"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QHE-ib-5zp" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="9" width="413" height="60"/>
+                        <rect key="frame" x="8" y="7" width="397" height="68"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VN0-tX-usH" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="createNew" translatesAutoresizingMaskIntoConstraints="NO" id="SLh-cT-RNF">
-                                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="SLh-cT-RNF" secondAttribute="trailing" id="J6m-AU-KWy"/>
-                                    <constraint firstAttribute="bottom" secondItem="SLh-cT-RNF" secondAttribute="bottom" id="Ln3-aC-3Gl"/>
-                                    <constraint firstAttribute="width" constant="60" id="RAA-be-0Oc"/>
-                                    <constraint firstItem="SLh-cT-RNF" firstAttribute="leading" secondItem="VN0-tX-usH" secondAttribute="leading" id="fcL-YP-a9x"/>
-                                    <constraint firstItem="SLh-cT-RNF" firstAttribute="top" secondItem="VN0-tX-usH" secondAttribute="top" id="gzK-Zr-Ist"/>
-                                    <constraint firstAttribute="height" constant="60" id="lzo-JS-wN3"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="30"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Post" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9DN-Mr-O7l">
-                                <rect key="frame" x="76" y="19.5" width="72.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GLM-KF-1Kn">
+                                <rect key="frame" x="103" y="22" width="191" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title=" Add Post to Offer" image="photo" catalog="system">
+                                    <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="VN0-tX-usH" firstAttribute="centerY" secondItem="QHE-ib-5zp" secondAttribute="centerY" id="0iv-u9-gDP"/>
-                            <constraint firstItem="VN0-tX-usH" firstAttribute="leading" secondItem="QHE-ib-5zp" secondAttribute="leading" id="HFn-N0-yYc"/>
-                            <constraint firstItem="9DN-Mr-O7l" firstAttribute="centerY" secondItem="QHE-ib-5zp" secondAttribute="centerY" id="aCk-PA-cKN"/>
-                            <constraint firstItem="9DN-Mr-O7l" firstAttribute="leading" secondItem="VN0-tX-usH" secondAttribute="trailing" constant="16" id="cF1-kh-Pkl"/>
-                            <constraint firstAttribute="height" constant="60" id="rbr-PY-HYP"/>
+                            <constraint firstItem="GLM-KF-1Kn" firstAttribute="centerX" secondItem="QHE-ib-5zp" secondAttribute="centerX" id="Cva-jf-PaH"/>
+                            <constraint firstItem="GLM-KF-1Kn" firstAttribute="centerY" secondItem="QHE-ib-5zp" secondAttribute="centerY" id="icS-dH-O3p"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                 <real key="value" value="10"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="ShadowOpacity">
+                                <real key="value" value="0.20000000000000001"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="ShadowRadius">
+                                <real key="value" value="2"/>
+                            </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="QHE-ib-5zp" secondAttribute="bottom" constant="9" id="Uu4-q3-2RX"/>
-                    <constraint firstItem="QHE-ib-5zp" firstAttribute="top" secondItem="zkC-GQ-ZEM" secondAttribute="top" constant="9" id="e5j-DQ-27b"/>
-                    <constraint firstItem="QHE-ib-5zp" firstAttribute="leading" secondItem="zkC-GQ-ZEM" secondAttribute="leading" id="pSJ-9z-dc2"/>
-                    <constraint firstAttribute="trailing" secondItem="QHE-ib-5zp" secondAttribute="trailing" id="sCa-5k-U4d"/>
+                    <constraint firstItem="QHE-ib-5zp" firstAttribute="top" secondItem="zkC-GQ-ZEM" secondAttribute="top" constant="7" id="5PF-mk-ggY"/>
+                    <constraint firstAttribute="bottom" secondItem="QHE-ib-5zp" secondAttribute="bottom" constant="7" id="Uu4-q3-2RX"/>
+                    <constraint firstItem="QHE-ib-5zp" firstAttribute="leading" secondItem="zkC-GQ-ZEM" secondAttribute="leading" constant="8" id="pSJ-9z-dc2"/>
+                    <constraint firstAttribute="trailing" secondItem="QHE-ib-5zp" secondAttribute="trailing" constant="8" id="sCa-5k-U4d"/>
                 </constraints>
             </tableViewCellContentView>
-            <connections>
-                <outlet property="addPostImage" destination="SLh-cT-RNF" id="IOF-O5-9hw"/>
-                <outlet property="addPostText" destination="9DN-Mr-O7l" id="oae-pS-SLK"/>
-            </connections>
-            <point key="canvasLocation" x="-389.13043478260875" y="72.321428571428569"/>
+            <point key="canvasLocation" x="-389.13043478260875" y="73.660714285714278"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="createNew" width="150" height="150"/>
+        <image name="photo" catalog="system" width="64" height="46"/>
     </resources>
 </document>

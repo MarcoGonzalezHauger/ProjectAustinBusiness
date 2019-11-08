@@ -239,15 +239,6 @@ class BaseVC: UIViewController {
     }
     
     func customizeNavigationBar() {
-//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-//        self.navigationController?.navigationBar.shadowImage = UIImage()
-//        self.navigationController?.navigationBar.isTranslucent = true
-//        self.navigationController?.navigationBar.tintColor = UIColor.blue
-//        self.navigationController?.navigationBar.barTintColor = UIColor.white
-//        self.navigationController?.navigationBar.titleTextAttributes =
-//            [NSAttributedString.Key.foregroundColor:UIColor.black, NSAttributedString.Key.font:UIFont.systemFont(ofSize: 14.0)]
-//        self.navigationController?.view.backgroundColor = UIColor.clear
-        
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
 		self.navigationController?.navigationBar.shadowImage = UIImage()
 		self.navigationController?.navigationBar.isTranslucent = false
@@ -257,10 +248,7 @@ class BaseVC: UIViewController {
 		} else {
 			self.navigationController?.navigationBar.barTintColor = UIColor(red: 239.0/255.0, green: 239.0/255.0, blue: 244.0/255.0, alpha: 1.0)
 		}
-        //        self.navigationController?.navigationBar.titleTextAttributes =
-        //            [NSAttributedString.Key.foregroundColor:UIColor.black, NSAttributedString.Key.font:UIFont.systemFont(ofSize: 14.0)]
 		self.navigationController?.view.backgroundColor = UIColor.black
-                //self.navigationItem.titleView = container
     }
     
     func addNavigationBarTitleView(title: String,image: UIImage) {
