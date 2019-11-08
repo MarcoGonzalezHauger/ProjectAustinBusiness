@@ -664,6 +664,7 @@
                                                     <constraints>
                                                         <constraint firstItem="hhh-RX-IcF" firstAttribute="centerX" secondItem="y06-EM-2bF" secondAttribute="centerX" id="3P6-cU-UJE"/>
                                                         <constraint firstItem="hhh-RX-IcF" firstAttribute="centerY" secondItem="y06-EM-2bF" secondAttribute="centerY" id="DFM-OB-e3j"/>
+                                                        <constraint firstAttribute="height" constant="50" id="pv7-Qt-Kob"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -682,7 +683,6 @@
                                                 <constraint firstItem="y06-EM-2bF" firstAttribute="leading" secondItem="T2U-GP-PmP" secondAttribute="leading" constant="16" id="7J2-wp-lIB"/>
                                                 <constraint firstAttribute="trailing" secondItem="y06-EM-2bF" secondAttribute="trailing" constant="16" id="9CP-d1-w0e"/>
                                                 <constraint firstAttribute="bottom" secondItem="y06-EM-2bF" secondAttribute="bottom" constant="8" id="Cjc-hd-gTu"/>
-                                                <constraint firstItem="y06-EM-2bF" firstAttribute="top" secondItem="T2U-GP-PmP" secondAttribute="top" constant="8" id="E5p-JU-EvX"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1739,7 +1739,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s3s-at-Cbl" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1787" y="1229"/>
+            <point key="canvasLocation" x="1786.9565217391305" y="1228.7946428571429"/>
         </scene>
         <!--Add OfferVC-->
         <scene sceneID="rJJ-kO-sli">
