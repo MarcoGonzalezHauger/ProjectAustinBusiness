@@ -76,6 +76,21 @@ func DateToAgo(date: Date) -> String {
 	}
 }
 
+func YouShallNotPass(SaveButtonView viewToReject: UIView, returnColor rcolor: UIColor = .systemBlue) {
+	
+	UseTapticEngine()
+	
+	MakeShake(viewToShake: viewToReject)
+	
+	viewToReject.backgroundColor = .systemRed
+	DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600), execute: {
+		UIView.animate(withDuration: 0.8) {
+			viewToReject.backgroundColor = rcolor
+		}
+	})
+	
+}
+
 func DateToCountdown(date: Date) -> String? {
 	let i : Double = date.timeIntervalSinceNow
 	let pluralSeconds: Bool = Int(i) % 60 != 1
@@ -319,39 +334,4 @@ func IncreasePayVariableValue(pay: String) -> IncreasePayVariable {
     default:
         return IncreasePayVariable.None
     }
-}
-
-func GetTownName(zipCode: String, completed: @escaping (_ cityState: String?) -> () ) {
-	debugPrint("Getting town name from zipCode=\(zipCode)")
-	
-	//FORM API Key, subject to change.
-	let APIKey: String = "nyprsz9yiBMbAubGgkcab"
-	
-	guard let url = URL(string: "https://form-api.com/api/geo/country/zip?key=\(APIKey)&country=US&zipcode=" + zipCode) else { completed(nil)
-	return }
-    var cityState: String = ""
-    URLSession.shared.dataTask(with: url){ (data, response, err) in
-        if err == nil {
-            // check if JSON data is downloaded yet
-            guard let jsondata = data else { return }
-            do {
-                do {
-                    // Deserilize object from JSON
-                    if let zipCodeData: [String: AnyObject] = try JSONSerialization.jsonObject(with: jsondata, options: []) as? [String : AnyObject] {
-                        if let result = zipCodeData["result"] {
-                            let city = result["city"] as! String
-                            let state = result["state"] as! String
-							let stateDict = ["Alabama": "AL","Alaska": "AK","Arizona": "AZ","Arkansas": "AR","California": "CA","Colorado": "CO","Connecticut": "CT","Delaware": "DE","Florida": "FL","Georgia": "GA","Hawaii": "HI","Idaho": "ID","Illinois": "IL","Indiana": "IN","Iowa": "IA","Kansas": "KS","Kentucky": "KY","Louisiana": "LA","Maine": "ME","Maryland": "MD","Massachusetts": "MA","Michigan": "MI","Minnesota": "MN","Mississippi": "MS","Missouri": "MO","Montana": "MT","Nebraska": "NE","Nevada": "NV","New Hampshire": "NH","New Jersey": "NJ","New Mexico": "NM","New York": "NY","North Carolina": "NC","North Dakota": "ND","Ohio": "OH","Oklahoma": "OK","Oregon": "OR","Pennsylvania": "PA","Rhode Island": "RI","South Carolina": "SC","South Dakota": "SD","Tennessee": "TN","Texas": "TX","Utah": "UT","Vermont": "VT","Virginia": "VA","Washington": "WA","West Virginia": "WV","Wisconsin": "WI","Wyoming": "WY"] 
-                            cityState = city + ", " + (stateDict[state] ?? state)
-                        }
-                    }
-                    DispatchQueue.main.async {
-                        completed(cityState)
-                    }
-                }
-            } catch {
-                print("JSON Downloading Error!")
-            }
-        }
-    }.resume()
 }

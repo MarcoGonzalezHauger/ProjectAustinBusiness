@@ -27,7 +27,7 @@ class SignInVC: BaseVC,UITextFieldDelegate {
         super.viewDidLoad()
         print("roundup",(1.056756 * 100).rounded()/100)
 		
-		registerButton.layer.cornerRadius = 6
+		registerButton.layer.cornerRadius = 10
 		
         // Do any additional setup after loading the view.
     }
@@ -36,7 +36,7 @@ class SignInVC: BaseVC,UITextFieldDelegate {
 		print("Bio Auth started")
 		let lac = LAContext()
 		var authError: NSError?
-		let reasonString = "Log into Ambassadoor"
+		let reasonString = "Log into Ambassadoor Business"
 		if lac.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
 			print("Can Evaluate.")
 			lac.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reasonString) { success, evaluateError in

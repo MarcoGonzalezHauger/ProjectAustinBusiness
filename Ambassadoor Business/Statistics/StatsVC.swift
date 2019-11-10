@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 import SDWebImage
 
-class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
+class StatsVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var pieView: ShadowView!
     @IBOutlet weak var statisticDataView: UIView!
@@ -41,16 +41,6 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
         super.viewDidLoad()
 		view.bringSubviewToFront(statisticDataView)
 		self.statisticDataView.isHidden = false
-		//Temporary measure
-        
-        //self.sentOutReferralCommision(referral: "NJ200919HWE6")
-        
-        
-        
-		
-//        YourCompany = Company.init(dictionary: ["name": "KRILL GROUP", "logo": "", "mission": "Turn a profit.", "website": "https://www.google.com/", "account_ID": "0", "instagram_name": "marcogonzalezhauger", "description": "No description to see here!", "accountBalance": 1000.0])
-//		accountBalance = 610.78
-//		transactionHistory = [Transaction(description: "Despotied $620.77 into Ambassadoor", details: "Order processed.", time: Date.init(timeIntervalSinceNow: -10000), amount: 620.77),Transaction(description: "You paid $9.99", details: "Processed.", time: Date.init(timeIntervalSinceNow: 0), amount: -9.99)]
         
         if Singleton.sharedInstance.getCompanyUser().isCompanyRegistered == false {
             self.performSegue(withIdentifier: "toCompanyRegister", sender: self)
@@ -68,25 +58,6 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
         self.getStatisticsTimerData()
 
 	}
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-//        if Singleton.sharedInstance.getCompanyUser().isCompanyRegistered == false {
-//            self.performSegue(withIdentifier: "toCompanyRegister", sender: self)
-//        }else{
-//
-//            let user = Singleton.sharedInstance.getCompanyUser().companyID!
-//
-//            getCompany(companyID: user) { (company, error) in
-//
-//                Singleton.sharedInstance.setCompanyDetails(company: company!)
-//            }
-            
-       // }
-        
-        //let timer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(self.getStatisticsTimerData), userInfo: nil, repeats: true)
-    }
-    
     
     @objc func getStatisticsTimerData(){
         

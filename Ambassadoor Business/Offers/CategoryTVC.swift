@@ -16,7 +16,12 @@ class catCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
 }
 
-class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
+class CategoryTVC: UITableViewController, ExpandableHeaderViewDelegate, NCDelegate {
+	
+	func shouldAllowBack() -> Bool {
+		return false
+	}
+	
     
 
     var categoryList = [Section]()
@@ -38,6 +43,12 @@ class CategoryTVC: UITableViewController,ExpandableHeaderViewDelegate {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+	override func viewDidAppear(_ animated: Bool) {
+		if let nc = self.navigationController as? StandardNC {
+			nc.tempDelegate = self
+		}
+	}
+	
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         for (index,categoryData) in categoryList.enumerated() {

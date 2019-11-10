@@ -162,7 +162,7 @@ func serializeOffer(offer: Offer) -> [String: AnyObject] {
         ] as [String : AnyObject]
     if let templateOffer = offer as? TemplateOffer {
         values["targetCategories"] = templateOffer.targetCategories as AnyObject
-        values["zipCodes"] = templateOffer.zipCodes as [String] as AnyObject
+        values["locationFilter"] = templateOffer.locationFilter as String as AnyObject
         values["genders"] = templateOffer.genders as [String] as AnyObject
     }
     return values
@@ -444,9 +444,6 @@ func getFilteredInfluencers(category: [String:[AnyObject]],completion: @escaping
                     //                    }
                     
                     if (mutatingCategory[keyValue]?.contains(where: { (errer) -> Bool in
-                        print("a=",errer)
-                        print("b=",first[keyValue])
-                        //return (first[keyValue]?.isEqual(errer))!
                         if (first[keyValue] as? String) != nil {
                             return (first[keyValue]?.isEqual(errer))!
                         }else{

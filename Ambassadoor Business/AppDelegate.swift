@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     override init() {
         FirebaseApp.configure()
         Database.database().isPersistenceEnabled = false
+		InitializeZipCodeAPI(completed: nil)
     }
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

@@ -9,7 +9,13 @@
 
 import UIKit
 
+protocol NCDelegate {
+	func shouldAllowBack() -> Bool
+}
+
 class StandardNC: UINavigationController, UIGestureRecognizerDelegate {
+	
+	var tempDelegate: NCDelegate?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -18,6 +24,9 @@ class StandardNC: UINavigationController, UIGestureRecognizerDelegate {
 	
 	func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
 		if(self.viewControllers.count > 1){
+			if let td = tempDelegate {
+				return td.shouldAllowBack()
+			}
 			return true
 		} else {
 			self.dismiss(animated: true, completion: nil)
