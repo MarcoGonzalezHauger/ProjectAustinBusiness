@@ -28,6 +28,7 @@ class AddPostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UITextField
     //@IBOutlet weak var category: UITextField!
     @IBOutlet weak var scroll: UIScrollView!
 	@IBOutlet weak var saveView: ShadowView!
+	@IBOutlet weak var productHeight: NSLayoutConstraint!
 	
     var postType: TypeofPost?
     var productCollection = [Product]()
@@ -35,21 +36,24 @@ class AddPostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UITextField
     var index: Int?
     var productSelectedArray = [Int]()
     
-    
+	@IBOutlet weak var colorBubble: ShadowView!
+	
     override func viewDidLoad() {
         super.viewDidLoad()
         self.customizeNavigationBar()
         self.addLeftButtonText(text: "Back")
+		hashPost.delegate = self
+		SetNumber(number: (index ?? global.post.count) + 1)
         if index != nil {
             let post = global.post[index!]
             self.desPost.text = post.instructions
             self.hashPost.text = post.hashCaption
             self.pharsePost.text = post.captionMustInclude
         }
-        
         self.addDoneButtonOnKeyboard(textView: desPost)
         let user = Singleton.sharedInstance.getCompanyUser()
         let path = Auth.auth().currentUser!.uid + "/" + user.companyID!
+		productHeight.constant = CGFloat(67 * global.products.count)
         if global.products.count == 0 {
         self.showActivityIndicator()
 			getAllProducts(path: path) { (product) in
@@ -67,6 +71,7 @@ class AddPostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UITextField
 								}
 							}
 						}
+						self.productHeight.constant = CGFloat(67 * global.products.count)
 						self.productTable.reloadData()
 					}
 				}else{
@@ -79,11 +84,22 @@ class AddPostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UITextField
         // Do any additional setup after loading the view.
     }
 	
+	@IBOutlet weak var PostTitle: UILabel!
 	
-    
+	func SetNumber(number: Int) {
+		PostTitle.text = "Post \(number)"
+		switch number {
+		case 1: colorBubble.backgroundColor = .systemBlue
+		case 2: colorBubble.backgroundColor = .systemYellow
+		case 3: colorBubble.backgroundColor = .systemRed
+		default: colorBubble.backgroundColor = .systemBlue
+		}
+	}
+	
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return global.products.count
     }
+	
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellIdentifier = "productlist"
@@ -113,9 +129,28 @@ class AddPostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UITextField
 //        }
 //        return cell
     }
+	
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 67
     }
+	
+	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+		if textField == hashPost {
+			if string == "" {
+				return true
+			}
+			var returner = false
+			for char in "abcdefghijklmnopqrstuvwxyz0123456789_" {
+				//Hashtags can only contain letters, numbers, and underscores (_), no special characters. Only 30 hashtags are allowed in each post.
+				if String(char) == string {
+					returner = true
+				}
+			}
+			return returner
+		}
+		return true
+	}
+	
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let cell = self.productTable.cellForRow(at: indexPath) as! ProductListCell
@@ -124,6 +159,7 @@ class AddPostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UITextField
         self.productCollection.append(product)
         self.productSelectedArray.append(indexPath.row)
     }
+	
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath){
         let cell = self.productTable.cellForRow(at: indexPath) as! ProductListCell
         cell.selectImage.image = UIImage(named: "deselectcircle")

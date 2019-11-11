@@ -118,11 +118,15 @@ class TemplateOffer: Offer {
 	
 	func GetSummary() -> String {
 		var lines: [String] = []
-		lines.append("This Post has \(self.posts.count) Posts:")
+		if self.posts.count == 1 {
+			lines.append("This Offer has 1 Post.")
+		} else {
+			lines.append("This Offer has \(self.posts.count) Posts:")
+		}
 		var index = 1
 		for post in self.posts {
 			let sText = post.products!.count == 1 ? "product" : "products"
-			lines.append("• Post #\(index) contains \(String(describing: post.products!.count)) \(sText).")
+			lines.append("• Post #\(index): '#\(post.hashCaption)'")
 			index += 1
 		}
 		lines.append("")
@@ -173,6 +177,10 @@ class User: NSObject {
 		self.referralcode = dictionary["referralcode"] as? String ?? ""
 		self.isDefaultOfferVerify = dictionary["isDefaultOfferVerify"] as? Bool ?? false
 		self.priorityValue = dictionary["priorityValue"] as? Int
+	}
+	
+	func GetSummary() -> String {
+		return "\(username): with \(followerCount) followers. ZIP: \(zipCode ?? "nil")."
 	}
 }
 

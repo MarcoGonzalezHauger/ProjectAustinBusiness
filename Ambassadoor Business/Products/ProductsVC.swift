@@ -48,6 +48,8 @@ class ProductsVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ProductDel
         debugPrint(global.products[productIndex])
 		cell.productTitle.text = global.products[productIndex].name == "" ? "(no name)" : global.products[productIndex].name
         let url = URL.init(string: global.products[productIndex].image!)
+		cell.productImage.layer.cornerRadius = 10
+		cell.productImage.clipsToBounds = true
         cell.productImage.sd_setImage(with: url, placeholderImage: UIImage(named: "defaultProduct"))
 		return cell
 	}

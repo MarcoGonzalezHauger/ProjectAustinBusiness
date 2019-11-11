@@ -26,9 +26,17 @@ class PostDetailTC: UITableViewCell {
         // Configure the view for the selected state
     }
 	
-	func SetNumber(number: Int) {
+	func SetCell(number: Int, hash: String?) {
 		postIndex.text = "\(number)"
-		postTitle.text = "Post \(number)"
+		if let hash = hash {
+			if hash == "" {
+				postTitle.text = "Post \(number)"
+			} else {
+				postTitle.text = "#\(hash)"
+			}
+		} else {
+			postTitle.text = "Post \(number)"
+		}
 		switch number {
 		case 1: colorBubble.backgroundColor = .systemBlue
 		case 2: colorBubble.backgroundColor = .systemYellow

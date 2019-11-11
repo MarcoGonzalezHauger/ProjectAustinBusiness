@@ -70,7 +70,7 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         let template = global.OfferDrafts[sender.tag]
         self.performSegue(withIdentifier: "toCreateOfferView", sender: template)
     }
-    
+     
 	@IBOutlet weak var shelf: UITableView!
     @IBOutlet weak var editButton: UIButton!
     var isEdit = false
@@ -84,19 +84,19 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        shelf.dataSource = self
-        shelf.delegate = self
-        self.navigationController?.navigationBar.isHidden = true
-        NotificationCenter.default.addObserver(self, selector: #selector(self.reloadOffer(notification:)), name: Notification.Name.init(rawValue: "reloadOffer"), object: nil)
-        getAllTemplateOffers(userID: Auth.auth().currentUser!.uid) { (templateOffers, status) in
-            if status == "success" && templateOffers.count != 0 {
-               global.OfferDrafts.removeAll()
-               global.OfferDrafts.append(contentsOf: templateOffers)
-               DispatchQueue.main.async(execute: {
-               self.shelf.reloadData()
-               })
-            }
-        }
+		shelf.dataSource = self
+		shelf.delegate = self
+		self.navigationController?.navigationBar.isHidden = true
+		NotificationCenter.default.addObserver(self, selector: #selector(self.reloadOffer(notification:)), name: Notification.Name.init(rawValue: "reloadOffer"), object: nil)
+		getAllTemplateOffers(userID: Auth.auth().currentUser!.uid) { (templateOffers, status) in
+			if status == "success" && templateOffers.count != 0 {
+				global.OfferDrafts.removeAll()
+				global.OfferDrafts.append(contentsOf: templateOffers)
+				DispatchQueue.main.async(execute: {
+					self.shelf.reloadData()
+				})
+			}
+		}
     }
     
     override func viewWillDisappear(_ animated: Bool) {

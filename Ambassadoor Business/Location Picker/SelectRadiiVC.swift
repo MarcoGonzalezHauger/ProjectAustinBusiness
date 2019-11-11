@@ -15,7 +15,9 @@ struct radii {
 
 class RadiusCell: UITableViewCell {
 	var delegate: RadiusDelegate?
-	var ip: IndexPath!
+	var ip: IndexPath {
+		return delegate!.getMyIndexPath(cell: self)
+	}
 	@IBOutlet weak var zipCode: UITextField!
 	@IBOutlet weak var Miles: UITextField!
 	
@@ -27,19 +29,34 @@ class RadiusCell: UITableViewCell {
 		delegate?.updated(zip: zipCode.text!, radius: Int(Miles.text!) ?? 0, indexPath: self.ip)
 	}
 	
+	@IBAction func deleteLocation(_ sender: Any) {
+		delegate?.removeLocation(indexPath: ip)
+	}
+	
 }
 
 protocol RadiusDelegate {
 	func updated(zip: String, radius: Int, indexPath: IndexPath)
+	func removeLocation(indexPath: IndexPath)
+	func getMyIndexPath(cell: RadiusCell) -> IndexPath
 }
 
 class SelectRadiiVC: BaseVC, UITableViewDelegate, UITableViewDataSource, RadiusDelegate {
+	
+	func getMyIndexPath(cell: RadiusCell) -> IndexPath {
+		return radiiShelf.indexPath(for: cell)!
+	}
+	
+	func removeLocation(indexPath: IndexPath) {
+		locations.remove(at: indexPath.row)
+		radiiShelf.deleteRows(at: [indexPath], with: .top)
+		updateButton()
+	}
 	
 	func updated(zip: String, radius: Int, indexPath: IndexPath) {
 		locations[indexPath.row].zip = zip
 		locations[indexPath.row].radius = radius
 		updateButton()
-		print("infomation UPDATED")
 	}
 	
 	@IBOutlet weak var radiusAroundLocation: UILabel!
@@ -80,21 +97,18 @@ class SelectRadiiVC: BaseVC, UITableViewDelegate, UITableViewDataSource, RadiusD
 		let location = locations[indexPath.row]
 		cell.zipCode.text = location.zip
 		cell.delegate = self
-		cell.ip = indexPath
 		self.addDoneButtonOnKeyboard(textField: cell.zipCode)
 		self.addDoneButtonOnKeyboard(textField: cell.Miles)
-		if location.radius != 0 {
-			cell.Miles.text = "\(location.radius)"
-		} else {
-			cell.Miles.text = ""
-		}
+		cell.Miles.text = "\(location.radius)"
 		return cell
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if indexPath.row == locations.count {
 			locations.append(radii(zip: "", radius: 0))
-			radiiShelf.insertRows(at: [indexPath], with: .bottom)
+			radiiShelf.insertRows(at: [indexPath], with: .top)
+			radiiShelf.scrollToRow(at: IndexPath(row: indexPath.row + 1, section: 0), at: .bottom, animated: true)
+			updateButton()
 		}
 		radiiShelf.deselectRow(at: indexPath, animated: false)
 	}
@@ -115,6 +129,9 @@ class SelectRadiiVC: BaseVC, UITableViewDelegate, UITableViewDataSource, RadiusD
 	}
 	
 	func isSavable() -> Bool {
+		if locations.count == 0 {
+			return false
+		}
 		var canSave = true
 		for r in locations {
 			if r.zip.count <= 3 {
@@ -124,18 +141,12 @@ class SelectRadiiVC: BaseVC, UITableViewDelegate, UITableViewDataSource, RadiusD
 		return canSave
 	}
 	
-	var prev: Bool?
-	
 	func updateButton() {
 		let savable = isSavable()
-		if prev ?? !savable == savable {
-			return
-		}
-		prev = savable
 		UIView.animate(withDuration: 1) {
 			self.UseAreaButtonView.backgroundColor = savable ? .systemBlue : .lightGray
 		}
-		UseAreaButton.setTitle(savable ? "Use Area" : "Area Not Set", for: .normal)
+		UseAreaButton.setTitle(savable ? (locations.count == 1 ? "Use Area" : "Use Areas") : "Area Not Set", for: .normal)
 	}
 	
 	var locationString: String {

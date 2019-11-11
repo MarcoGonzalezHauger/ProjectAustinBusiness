@@ -108,7 +108,8 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
 	@IBOutlet weak var moneySlider: UISlider!
     @IBOutlet weak var ExpectedReturns: UILabel!
     @IBOutlet weak var ExpectedPROFIT: UILabel!
-    
+	@IBOutlet weak var proceedView: ShadowView!
+	
     //var braintreeClient: BTAPIClient!
 	
 	var amountOfMoneyInCents: Int = 10000
@@ -128,7 +129,9 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        
+		if #available(iOS 13.0, *) {
+			self.isModalInPresentation = true
+		}
 		money.changedDelegate = self
 		money.moneyValue = amountOfMoneyInCents
 		moneyChanged()
@@ -136,8 +139,8 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
 	}
     
     override func doneButtonAction() {
-        self.money .removeTarget(self, action: #selector(self.TrackBarTracked(_:)), for: .editingDidEnd)
-        self.money.textFieldShouldReturn(self.money)
+        self.money.removeTarget(self, action: #selector(self.TrackBarTracked(_:)), for: .editingDidEnd)
+        self.money.resignFirstResponder()
         self.money.addTarget(self, action: #selector(self.TrackBarTracked(_:)), for: .editingDidEnd)
     }
 	
@@ -185,94 +188,37 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
 		self.dismiss(animated: true, completion: nil)
 	}
     
-    @IBAction func proceedAction(sender: UIButton){
-        
-        
-        
-        
-        
-        print("cccc=",money.text!.count)
-        print("cccc=1",money.text!.replacingOccurrences(of: " ", with: "").count)
-        if money.text?.dropFirst() != "0.00" && money.text!.replacingOccurrences(of: " ", with: "").count != 0 {
-            
-            let moneyDouble = Double(money.text!.dropFirst())
-            
-            let stripeFeeNotRoundup = ((((moneyDouble! * 1.027 + 0.3) - moneyDouble!) * 100).rounded())
-            
-            let stripeFeeAmount = stripeFeeNotRoundup/100
-            
-            let depositAmount = moneyDouble!
-            
-            let totalAmount = (((moneyDouble! * 1.027 + 0.3) * 100).rounded())/100
-            
-            self.creditAmount = totalAmount
-            
+	@IBAction func proceedAction(sender: UIButton){
+		
+		if amountOfMoneyInCents != 0 {
+						
+			let depositAmount: Double =  Double(amountOfMoneyInCents) / 100
+			
+			let totalAmount = (((depositAmount * 1.027 + 0.3) * 100).rounded()) / 100
+			
+			self.creditAmount = totalAmount
+			
 			let DepositString = NumberToPrice(Value: depositAmount, enforceCents: true)
 			let TotalString = NumberToPrice(Value: totalAmount, enforceCents: true)
 			
-            self.showAlertMessageForDestruction(title: "Alert", message: "You will deposit \(DepositString) into your Ambassadoor Money Account.\n Total Amount (including fees) that will be charged is \(TotalString)", cancelTitle: "OK", destructionTitle: "Cancel", completion: {
-                self.addCardViewController.delegate = self
-                let navigationController = UINavigationController(rootViewController: self.addCardViewController)
-                self.present(navigationController, animated: true)
-                
-            }) {
-                
-                
-                
-            }
-            
-            // Setup add card view controller
-            
-            //let config = STPPaymentConfiguration()
-            //config.requiredBillingAddressFields = .full
-            //addCardViewController = STPAddCardViewController.init(configuration: config, theme: STPTheme.default())
-            // Present add card view controller
-            
-        
-//        NetworkManager.sharedInstance.getClientTokenFromServer { (result, errorValue, data) in
-//
-//            if result == "success" {
-//
-//                do {
-//                    let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String : Any]
-//
-//                    let clientToken = json!["token"] as! String
-////                    DispatchQueue.main.async {
-////                    self.braintreeClient = BTAPIClient(authorization: clientToken)
-////                        let payPalDriver = BTPayPalDriver(apiClient: self.braintreeClient)
-////                        payPalDriver.viewControllerPresentingDelegate = self
-////                        payPalDriver.appSwitchDelegate = self
-////
-////                        //        payPalDriver.authorizeAccount() { (tokenizedPayPalAccount, error) -> Void in
-////                        //        }
-////
-////                        // ...start the Checkout flow
-////                        let payPalRequest = BTPayPalRequest(amount: "1.00")
-////                        payPalDriver.requestOneTimePayment(payPalRequest) { (tokenizedPayPalAccount, error) -> Void in
-////                        }
-////                    }
-//
-//                    DispatchQueue.main.async(execute: {
-//                    self.getDropInUI(token: clientToken)
-//                    })
-//                } catch _ {
-//
-//                }
-//
-//            }else{
-//
-//            }
-//
-//        }
-    }else{
-            
-            self.showAlertMessage(title: "Alert", message: "Please deposit any amount") {
-                
-            }
-            
-        }
-        
-    }
+			self.showAlertMessageForDestruction(title: "Alert", message: "You will deposit \(DepositString) into your Ambassadoor Money Account.\n Total Amount (including fees) that will be charged is \(TotalString).", cancelTitle: "OK", destructionTitle: "Cancel", completion: {
+				self.addCardViewController.delegate = self
+				let navigationController = UINavigationController(rootViewController: self.addCardViewController)
+				self.present(navigationController, animated: true)
+				
+			}) {
+				
+				
+				
+			}
+			
+		} else{
+			
+			MakeShake(viewToShake: money)
+			
+		}
+		
+	}
     
     func getDropInUI(token: String) {
         

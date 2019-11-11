@@ -28,7 +28,7 @@ class ViewCompanyVC: BaseVC, editDelegate {
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
-		companyLogo.layer.cornerRadius = 5
+		companyLogo.layer.cornerRadius = 10
         self.showActivityIndicator()
         let user = Singleton.sharedInstance.getCompanyUser().companyID!
         getCompany(companyID: user) { (company, error) in

@@ -85,22 +85,31 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
     
     func fillEditedInfo() {
         
-        if segueOffer != nil {
+        if let segueOffer = segueOffer {
             
-            self.offerName.text = segueOffer?.title
-            //self.offerRate.text = "$" + String(segueOffer!.money)
-//            self.expiryDate.text = DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: segueOffer!.expiredate, format: "yyyy/MMM/dd HH:mm:ss")
-			locationFilter = segueOffer?.locationFilter ?? ""
-            self.gender.text = segueOffer?.genders.joined(separator: ", ")
+            self.offerName.text = segueOffer.title
+			locationFilter = segueOffer.locationFilter
+			if segueOffer.genders.count > 1 {
+				self.gender.text = "All"
+			} else {
+				self.gender.text = segueOffer.genders.joined(separator: ", ")
+			}
             
             setCategoryLabels()
 			
-            global.post = segueOffer!.posts
+            global.post = segueOffer.posts
 			reloadTableViewHeight()
-        }
+		} else {
+			locationFilter = "nw"
+			self.gender.text = "All"
+			setCategoryLabels()
+			global.post = []
+			reloadTableViewHeight()
+		}
         
     }
 	
+	//used to set the textifield text and the label below it on location fitler information.
 	func TitleAndTagLineforLocationFilter(filter: String) -> [String] {
 		switch filter.components(separatedBy: ":")[0] {
 		case "nw":
@@ -135,11 +144,16 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 	}
 	
 	func setCategoryLabels() {
-		selectedCategoryArray.append(contentsOf: segueOffer!.category)
-		var cats = segueOffer?.category
-		cats?.sort { $0 > $1 }
-		let selectedCategory  = cats?.joined(separator: ", ")
-		self.selectedCategoryText.text = selectedCategory
+		if let segueOffer = segueOffer {
+			selectedCategoryArray.append(contentsOf: segueOffer.category)
+			var cats = segueOffer.category
+			cats.sort { $0 > $1 }
+			let selectedCategory  = cats.joined(separator: ", ")
+			self.selectedCategoryText.text = selectedCategory
+		} else {
+			self.selectedCategoryText.text = "Choose Categories"
+		}
+		
 	}
 	
 	let postCellHeight: Int = 90
@@ -177,43 +191,43 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if global.post.count < 3 {
-        if indexPath.row == 0 {
-        let cellIdentifier = "addpost"
-        var cell = self.postTableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? AddPostTC
-        if cell == nil {
-            let nib = Bundle.main.loadNibNamed("AddPostTC", owner: self, options: nil)
-            cell = nib![0] as? AddPostTC
-        }
-        return cell!
-        }else{
-            
-            let cellIdentifier = "productdetail"
-            var cell = self.postTableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? PostDetailTC
-            if cell == nil {
-                let nib = Bundle.main.loadNibNamed("PostDetailTC", owner: self, options: nil)
-                cell = nib![0] as? PostDetailTC
-            }
-            
-			cell?.SetNumber(number: indexPath.row)
-            //cell?.postTitle.text = PostTypeToText(posttype: post.PostType)
-            return cell!
-        }
-        }else {
-            
-            let cellIdentifier = "productdetail"
-            var cell = self.postTableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? PostDetailTC
-            if cell == nil {
-                let nib = Bundle.main.loadNibNamed("PostDetailTC", owner: self, options: nil)
-                cell = nib![0] as? PostDetailTC
-            }
-            let post = global.post[indexPath.row]
-            cell?.postTitle.text = post.PostType
-            cell?.SetNumber(number: indexPath.row + 1)
-            //cell?.postTitle.text = PostTypeToText(posttype: post.PostType)
-            return cell!
-            
-        }
+		if global.post.count < 3 {
+			if indexPath.row == 0 {
+				let cellIdentifier = "addpost"
+				var cell = self.postTableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? AddPostTC
+				if cell == nil {
+					let nib = Bundle.main.loadNibNamed("AddPostTC", owner: self, options: nil)
+					cell = nib![0] as? AddPostTC
+				}
+				return cell!
+			}else{
+				
+				let cellIdentifier = "productdetail"
+				var cell = self.postTableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? PostDetailTC
+				if cell == nil {
+					let nib = Bundle.main.loadNibNamed("PostDetailTC", owner: self, options: nil)
+					cell = nib![0] as? PostDetailTC
+				}
+				let post = global.post[indexPath.row - 1]
+				
+				cell?.SetCell(number: indexPath.row , hash: post.hashCaption)
+				return cell!
+			}
+		} else {
+			
+			let cellIdentifier = "productdetail"
+			var cell = self.postTableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? PostDetailTC
+			if cell == nil {
+				let nib = Bundle.main.loadNibNamed("PostDetailTC", owner: self, options: nil)
+				cell = nib![0] as? PostDetailTC
+			}
+			let post = global.post[indexPath.row]
+			cell?.postTitle.text = post.PostType
+			cell?.SetCell(number: indexPath.row + 1, hash: post.hashCaption)
+			//cell?.postTitle.text = PostTypeToText(posttype: post.PostType)
+			return cell!
+			
+		}
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
@@ -229,7 +243,7 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
             }
             
         }else{
-            self.performSegue(withIdentifier: "toAddPost", sender: indexPath.row)
+            self.performSegue(withIdentifier: "toAddPost", sender: global.post.count)
         }
         
         
@@ -273,8 +287,9 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
             }
             
             postTableView.deleteRows(at: [indexPath], with: .bottom)
-            
-            
+			if let rows = postTableView.indexPathsForVisibleRows {
+				postTableView.reloadRows(at: rows, with: .fade)
+			}
             
         }
     }
