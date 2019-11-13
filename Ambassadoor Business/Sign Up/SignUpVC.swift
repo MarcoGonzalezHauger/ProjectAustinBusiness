@@ -49,7 +49,7 @@ class SignUpVC: BaseVC, UITextFieldDelegate {
 	}
 	
 	@IBAction func joinButtonPressed(_ sender: Any) {
-		passwordText.resignFirstResponder()
+		doneButtonAction()
 		CreateAccount()
 	}
 	
@@ -108,13 +108,6 @@ class SignUpVC: BaseVC, UITextFieldDelegate {
         
         self.assainedTextField = textField
         
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
-
-        textField.resignFirstResponder()
-
-        return true
     }
     
     @IBAction func signinAction(sender: UIButton){

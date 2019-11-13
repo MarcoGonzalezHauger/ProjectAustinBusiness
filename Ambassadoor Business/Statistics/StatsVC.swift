@@ -59,6 +59,13 @@ class StatsVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
 
 	}
     
+	override func viewDidAppear(_ animated: Bool) {
+		if showTutorialVideoOnShow {
+			playTutorialVideo(sender: self)
+			showTutorialVideoOnShow = false
+		}
+	}
+	
     @objc func getStatisticsTimerData(){
         
         print("GetSTatisticsTimerData() ran.")

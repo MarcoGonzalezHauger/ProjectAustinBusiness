@@ -9,6 +9,8 @@
 
 import Foundation
 import UIKit
+import AVKit
+import AVFoundation
 
 func NumberToPrice(Value: Double, enforceCents isBig: Bool = false) -> String {
 	if floor(Value) == Value && isBig == false {
@@ -143,54 +145,18 @@ func NumberToStringWithCommas(number: Double) -> String {
 	return numformat.string(from: NSNumber(value:number)) ?? String(number)
 }
 
-//func SubCategoryToString(subcategory: Categories) -> String {
-//	switch subcategory {
-//	case .Hiker: return "Hiker"
-//	case .WinterSports: return "Winter Sports"
-//	case .Baseball: return "Baseball"
-//	case .Basketball: return "Basketball"
-//	case .Golf: return "Golf"
-//	case .Tennis: return "Tennis"
-//	case .Soccer: return "Soccer"
-//	case .Football: return "Football"
-//	case .Boxing: return "Boxing"
-//	case .MMA: return "MMA"
-//	case .Swimming: return "Swimming"
-//	case .TableTennis: return "Table Tennis"
-//	case .Gymnastics: return "Gymnastics"
-//	case .Dancer: return "Dancer"
-//	case .Rugby: return "Rugby"
-//	case .Bowling: return "Bowling"
-//	case .Frisbee: return "Frisbee"
-//	case .Cricket: return "Cricket"
-//	case .SpeedBiking: return "Speed Biking"
-//	case .MountainBiking: return "Mountain Biking"
-//	case .WaterSkiing: return "Water Skiing"
-//	case .Running: return "Running"
-//	case .PowerLifting: return "Power Lifting"
-//	case .BodyBuilding: return "Body Building"
-//	case .Wrestling: return "Wrestling"
-//	case .StrongMan: return "Strong Man"
-//	case .NASCAR: return "NASCAR"
-//	case .RalleyRacing: return "Ralley Racing"
-//	case .Parkour: return "Parkour"
-//	case .Model: return "Model"
-//	case .Makeup: return "Makeup"
-//	case .Actor: return "Actor"
-//	case .RunwayModel: return "Runway Model"
-//	case .Designer: return "Designer"
-//	case .Brand: return "Brand"
-//	case .Stylist: return "Stylist"
-//	case .HairStylist: return "Hair Stylist"
-//	case .FasionArtist: return "Fasion Artist"
-//	case .Painter: return "Painter"
-//	case .Sketcher: return "Sketcher"
-//	case .Musician: return "Musician"
-//	case .Band: return "Band"
-//	case .SingerSongWriter: return "Singer/Songwriter"
-//    case .Other: return "Other"
-//	}
-//}
+func playTutorialVideo(sender: UIViewController) {
+	guard let path = Bundle.main.path(forResource: "tutorial", ofType:"mp4") else {
+		print("Ambasadoor Tutorial Video not found.")
+		return
+	}
+	let player = AVPlayer(url: URL(fileURLWithPath: path))
+	let playerController = AVPlayerViewController()
+	playerController.player = player
+	sender.present(playerController, animated: true) {
+		player.play()
+	}
+}
 
 func GetTierFromFollowerCount(FollowerCount: Double) -> Int? {
 	

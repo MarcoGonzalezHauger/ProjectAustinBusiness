@@ -136,17 +136,12 @@ class AddPostVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UITextField
 	
 	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 		if textField == hashPost {
-			if string == "" {
-				return true
-			}
-			var returner = false
-			for char in "abcdefghijklmnopqrstuvwxyz0123456789_" {
-				//Hashtags can only contain letters, numbers, and underscores (_), no special characters. Only 30 hashtags are allowed in each post.
-				if String(char) == string {
-					returner = true
+			for xChar in Array(" #$%^&*()!\\[]]{}|/.,?><;':\"`~") {
+				if string.contains(xChar) {
+					return false
 				}
 			}
-			return returner
+			return true
 		}
 		return true
 	}

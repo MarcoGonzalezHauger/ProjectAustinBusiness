@@ -4329,17 +4329,13 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Company" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oE1-w9-lGt">
-                                <rect key="frame" x="79.5" y="20" width="255" height="28"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="WQW-yg-fxT"/>
-                                    <constraint firstAttribute="width" constant="255" id="cCq-uH-poX"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <rect key="frame" x="124" y="60" width="166" height="25.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eiY-DZ-cVe">
-                                <rect key="frame" x="0.0" y="56" width="414" height="647.5"/>
+                                <rect key="frame" x="0.0" y="93.5" width="414" height="610"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RCf-nl-eWS" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                         <rect key="frame" x="132" y="28" width="150" height="150"/>
@@ -4402,7 +4398,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter referral code which is referred by Influencer." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gJF-3f-v6X">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Influencer Referral Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gJF-3f-v6X">
                                         <rect key="frame" x="17" y="329.5" width="380" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="4kw-Tr-O4J"/>
@@ -4459,7 +4455,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ct-yv-bfK" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ct-yv-bfK" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                         <rect key="frame" x="17" y="538.5" width="380" height="145"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="VRI-CF-w12">
@@ -4519,7 +4515,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your company website" textAlignment="natural" minimumFontSize="17" background="Enter your Company mission" translatesAutoresizingMaskIntoConstraints="NO" id="P9W-VP-cnE">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Company Mission" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P9W-VP-cnE">
                                         <rect key="frame" x="17" y="757.5" width="380" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="06l-JA-gB8"/>
@@ -4611,7 +4607,7 @@ You must have permission to use the company name, logo, website, etc. before reg
                             <constraint firstItem="EZj-tb-EJB" firstAttribute="leading" secondItem="IsN-ZL-zIG" secondAttribute="leading" constant="20" id="Rbt-I6-aSL"/>
                             <constraint firstItem="DeH-Sd-bdJ" firstAttribute="leading" secondItem="IsN-ZL-zIG" secondAttribute="leading" constant="20" id="TFO-Yu-O0X"/>
                             <constraint firstItem="WSv-wV-qpc" firstAttribute="top" secondItem="BqR-7a-flZ" secondAttribute="bottom" constant="8" id="W44-nU-dtS"/>
-                            <constraint firstItem="oE1-w9-lGt" firstAttribute="top" secondItem="Fkl-oF-erZ" secondAttribute="top" constant="20" id="bAs-I0-bGH"/>
+                            <constraint firstItem="oE1-w9-lGt" firstAttribute="top" secondItem="IsN-ZL-zIG" secondAttribute="top" constant="16" id="bAs-I0-bGH"/>
                             <constraint firstItem="BqR-7a-flZ" firstAttribute="top" secondItem="gJF-3f-v6X" secondAttribute="bottom" constant="8" id="kCV-nc-pln"/>
                             <constraint firstItem="eiY-DZ-cVe" firstAttribute="leading" secondItem="IsN-ZL-zIG" secondAttribute="leading" id="lzE-lq-D3D"/>
                             <constraint firstItem="oE1-w9-lGt" firstAttribute="centerX" secondItem="IsN-ZL-zIG" secondAttribute="centerX" id="nMs-Nq-lgA"/>
@@ -4627,6 +4623,7 @@ You must have permission to use the company name, logo, website, etc. before reg
                         <outlet property="companySite" destination="WSv-wV-qpc" id="wf0-NT-Vhk"/>
                         <outlet property="picLogo" destination="Kl9-R9-ukh" id="XtH-Bm-fHo"/>
                         <outlet property="registerButton" destination="RgJ-GH-gh4" id="Hv3-5T-zjC"/>
+                        <outlet property="registerButtonView" destination="DeH-Sd-bdJ" id="PMC-HE-wKc"/>
                         <outlet property="scroll" destination="eiY-DZ-cVe" id="lQg-fg-Tvd"/>
                         <segue destination="qx2-bm-vmK" kind="presentation" identifier="toGetPictureVC" modalPresentationStyle="fullScreen" id="M0i-E2-U7z"/>
                     </connections>
@@ -5515,7 +5512,6 @@ You must have permission to use the company name, logo, website, etc. before reg
     </scenes>
     <resources>
         <image name="BusinsessSignIn" width="400" height="400"/>
-        <image name="Enter your Company mission" width="16" height="16"/>
         <image name="NY" width="150" height="150"/>
         <image name="Nationwide" width="150" height="150"/>
         <image name="arrowright" width="32" height="32"/>
