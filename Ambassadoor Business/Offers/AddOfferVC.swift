@@ -10,9 +10,21 @@ import UIKit
 import SDWebImage
 import FirebaseAuth
 
-class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, PickerDelegate, selectedCategoryDelegate {
-    
-    
+class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, PickerDelegate, selectedCategoryDelegate, NCDelegate, LocationFilterDelegate {
+	
+	func LocationFilterChosen(filter: String) {
+		locationFilter = filter
+	}
+
+	func shouldAllowBack() -> Bool {
+		let isSave = isSavable(alertUser: false)
+		if !isSave {
+			YouShallNotPass(SaveButtonView: saveandSendView)
+		} else {
+			SaveThisOffer() {_,_ in }
+		}
+		return isSave
+	}
     
     @IBOutlet weak var postTableView: UITableView!
     //@IBOutlet weak var expiryDate: UITextField!
@@ -26,8 +38,10 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
     @IBOutlet weak var gender: UITextField!
     @IBOutlet weak var selectedCategoryText: UILabel!
     
-    @IBOutlet weak var editButton: UIButton!
-    
+	@IBOutlet weak var saveandSendView: ShadowView!
+	@IBOutlet weak var editButton: UIButton!
+	@IBOutlet weak var locationInfo: UILabel!
+	
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     
     @IBOutlet var tabCategory: UITapGestureRecognizer!
@@ -38,7 +52,20 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
     var selectedCategoryArray = [String]()
     var segueOffer: TemplateOffer?
     var isEdit = false
+	var locationFilter = "" {
+		didSet {
+			let codes = TitleAndTagLineforLocationFilter(filter: locationFilter)
+			zipCode.text = codes[0]
+			locationInfo.text = codes[1]
+		}
+	}
     
+	override func viewDidAppear(_ animated: Bool) {
+		if let nc = self.navigationController as? StandardNC {
+			nc.tempDelegate = self
+		}
+	}
+	
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -58,28 +85,75 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
     
     func fillEditedInfo() {
         
-        if segueOffer != nil {
+        if let segueOffer = segueOffer {
             
-            self.offerName.text = segueOffer?.title
-            //self.offerRate.text = "$" + String(segueOffer!.money)
-//            self.expiryDate.text = DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: segueOffer!.expiredate, format: "yyyy/MMM/dd HH:mm:ss")
-            self.zipCode.text = segueOffer?.zipCodes.joined(separator: ",")
-            self.gender.text = segueOffer?.genders.joined(separator: ", ")
+            self.offerName.text = segueOffer.title
+			locationFilter = segueOffer.locationFilter
+			if segueOffer.genders.count > 1 {
+				self.gender.text = "All"
+			} else {
+				self.gender.text = segueOffer.genders.joined(separator: ", ")
+			}
             
             setCategoryLabels()
 			
-            global.post = segueOffer!.posts
+            global.post = segueOffer.posts
 			reloadTableViewHeight()
-        }
+		} else {
+			locationFilter = "nw"
+			self.gender.text = "All"
+			setCategoryLabels()
+			global.post = []
+			reloadTableViewHeight()
+		}
         
     }
 	
+	//used to set the textifield text and the label below it on location fitler information.
+	func TitleAndTagLineforLocationFilter(filter: String) -> [String] {
+		switch filter.components(separatedBy: ":")[0] {
+		case "nw":
+			return ["Nationwide", "Offer will be sent to influencers in the USA."]
+		case "states":
+			let stateList = GetListOfStates()
+			let data = locationFilter.components(separatedBy: ":")[1]
+			var returnData: [String] = []
+			for stateName in data.components(separatedBy: ",") {
+				returnData.append(stateList.filter { (state1) -> Bool in
+					return state1.shortName == stateName
+					}[0].name)
+			}
+			return ["Filtered by State", "This offer will be sent to influencers in " + returnData.joined(separator: ", ") + "."]
+		case "radius":
+			let data1 = locationFilter.components(separatedBy: ":")[1]
+			var returnData: [String] = []
+			if data1.components(separatedBy: ",").count == 1 {
+				let zip = data1.components(separatedBy: "-")[0]
+				let radius = Int(data1.components(separatedBy: "-")[1]) ?? 0
+				return ["Filtered by Radius", "This offer will be sent to influencers in a \(radius) mile radius of \(zip)." + returnData.joined(separator: ", or\n")]
+			}
+			for data in data1.components(separatedBy: ",") {
+				let zip = data.components(separatedBy: "-")[0]
+				let radius = Int(data.components(separatedBy: "-")[1]) ?? 0
+				returnData.append("A \(radius) mile radius of \(zip)")
+			}
+			return ["Filtered by Radii", "This offer will be sent to influencers in...\n" + returnData.joined(separator: ", or\n") + "."]
+		default:
+			return ["", ""]
+		}
+	}
+	
 	func setCategoryLabels() {
-		selectedCategoryArray.append(contentsOf: segueOffer!.category)
-		var cats = segueOffer?.category
-		cats?.sort { $0 > $1 }
-		let selectedCategory  = cats?.joined(separator: ", ")
-		self.selectedCategoryText.text = selectedCategory
+		if let segueOffer = segueOffer {
+			selectedCategoryArray.append(contentsOf: segueOffer.category)
+			var cats = segueOffer.category
+			cats.sort { $0 > $1 }
+			let selectedCategory  = cats.joined(separator: ", ")
+			self.selectedCategoryText.text = selectedCategory
+		} else {
+			self.selectedCategoryText.text = "Choose Categories"
+		}
+		
 	}
 	
 	let postCellHeight: Int = 90
@@ -117,44 +191,43 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if global.post.count < 3 {
-        if indexPath.row == 0 {
-        let cellIdentifier = "addpost"
-        var cell = self.postTableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? AddPostTC
-        if cell == nil {
-            let nib = Bundle.main.loadNibNamed("AddPostTC", owner: self, options: nil)
-            cell = nib![0] as? AddPostTC
-        }
-        return cell!
-        }else{
-            
-            let cellIdentifier = "productdetail"
-            var cell = self.postTableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? PostDetailTC
-            if cell == nil {
-                let nib = Bundle.main.loadNibNamed("PostDetailTC", owner: self, options: nil)
-                cell = nib![0] as? PostDetailTC
-            }
-            let post = global.post[indexPath.row-1]
-            cell?.postTitle.text = post.PostType
-			cell?.SetNumber(number: indexPath.row)
-            //cell?.postTitle.text = PostTypeToText(posttype: post.PostType)
-            return cell!
-        }
-        }else {
-            
-            let cellIdentifier = "productdetail"
-            var cell = self.postTableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? PostDetailTC
-            if cell == nil {
-                let nib = Bundle.main.loadNibNamed("PostDetailTC", owner: self, options: nil)
-                cell = nib![0] as? PostDetailTC
-            }
-            let post = global.post[indexPath.row]
-            cell?.postTitle.text = post.PostType
-            cell?.SetNumber(number: indexPath.row + 1)
-            //cell?.postTitle.text = PostTypeToText(posttype: post.PostType)
-            return cell!
-            
-        }
+		if global.post.count < 3 {
+			if indexPath.row == 0 {
+				let cellIdentifier = "addpost"
+				var cell = self.postTableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? AddPostTC
+				if cell == nil {
+					let nib = Bundle.main.loadNibNamed("AddPostTC", owner: self, options: nil)
+					cell = nib![0] as? AddPostTC
+				}
+				return cell!
+			}else{
+				
+				let cellIdentifier = "productdetail"
+				var cell = self.postTableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? PostDetailTC
+				if cell == nil {
+					let nib = Bundle.main.loadNibNamed("PostDetailTC", owner: self, options: nil)
+					cell = nib![0] as? PostDetailTC
+				}
+				let post = global.post[indexPath.row - 1]
+				
+				cell?.SetCell(number: indexPath.row , hash: post.hashCaption)
+				return cell!
+			}
+		} else {
+			
+			let cellIdentifier = "productdetail"
+			var cell = self.postTableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? PostDetailTC
+			if cell == nil {
+				let nib = Bundle.main.loadNibNamed("PostDetailTC", owner: self, options: nil)
+				cell = nib![0] as? PostDetailTC
+			}
+			let post = global.post[indexPath.row]
+			cell?.postTitle.text = post.PostType
+			cell?.SetCell(number: indexPath.row + 1, hash: post.hashCaption)
+			//cell?.postTitle.text = PostTypeToText(posttype: post.PostType)
+			return cell!
+			
+		}
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
@@ -170,17 +243,27 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
             }
             
         }else{
-            self.performSegue(withIdentifier: "toAddPost", sender: indexPath.row)
+            self.performSegue(withIdentifier: "toAddPost", sender: global.post.count)
         }
         
         
     }
+	
+	func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+		switch textField {
+		case gender:
+			return true
+		case zipCode:
+			performSegue(withIdentifier: "toZipPicker", sender: self)
+			return false
+		default:
+			return true
+		}
+	}
     
     @IBAction func editProducts(_ sender: Any) {
         isEdit = !isEdit
-        UIView.animate(withDuration: 0.5) {
-            self.editButton.setTitle(self.isEdit ? "Done" : "Edit", for: .normal)
-        }
+		self.editButton.setTitle(self.isEdit ? "Done" : "Edit", for: .normal)
         postTableView.setEditing(isEdit, animated: true)
     }
     
@@ -204,8 +287,9 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
             }
             
             postTableView.deleteRows(at: [indexPath], with: .bottom)
-            
-            
+			if let rows = postTableView.indexPathsForVisibleRows {
+				postTableView.reloadRows(at: rows, with: .fade)
+			}
             
         }
     }
@@ -217,18 +301,6 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return indexPath.row != 0
     }
-	
-	func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-		switch textField {
-		case gender:
-			return false
-		case zipCode:
-			performSegue(withIdentifier: "toZipPicker", sender: self)
-			return false
-		default:
-			return true
-		}
-	}
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
 		if indexPath.row == 0 {
@@ -241,9 +313,7 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
     //MARK: - Data Components
     
     func setBasicComponents() {
-        self.textFieldChangeNotification(textField: self.zipCode)
-        self.addDoneButtonOnKeyboard(textField: self.zipCode)
-        self.addLeftButtonText(text: "⬅︎ Back")
+        self.addLeftButtonText(text: "Back")
         self.customizeNavigationBar()
     }
     
@@ -273,74 +343,79 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
     }
     
     @objc override func doneButtonAction() {
-        //self.expiryDate.resignFirstResponder()
-        //self.offerRate.resignFirstResponder()
         self.zipCode.resignFirstResponder()
     }
     
     @IBAction func saveOffer(sender: UIButton){
-        if self.offerName.text?.count != 0{
-                if self.zipCode.text?.count != 0{
-                    if self.zipCode.text!.components(separatedBy: ",").last?.count == 5 {
-                        if self.gender.text?.count != 0 {
-                            if self.selectedCategoryArray.count != 0 {
-                                let timer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(self.timerAction(sender:)), userInfo: nil, repeats: false)
-                                var genderArray = [String]()
-                                
-                                if (self.gender.text?.contains("All"))!{
-                                    genderArray.append(contentsOf: ["Male","Female","Other"])
-                                }else{
-                                    genderArray = self.gender.text!.components(separatedBy: ",")
-                                }
-								
-                                let expiryDateAdded = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
-                                let dateString = DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: expiryDateAdded, format: "yyyy-MM-dd'T'HH:mm:ss")
-                                
-                                let expiryDate = DateFormatManager.sharedInstance.getExpiryDate(dateString: dateString)
-                                
-                                var offer = ["offer_ID":"","money":0.0,"company":Singleton.sharedInstance.getCompanyDetails(),"posts":global.post,"offerdate":Date(),"user_ID":[],"expiredate":expiryDate,"allPostsConfirmedSince":nil,"allConfirmed":false,"isAccepted":false,"isExpired":false,"ownerUserID":Auth.auth().currentUser!.uid,"category":self.selectedCategoryArray,"zipCodes":self.zipCode.text!.components(separatedBy: ","),"genders":genderArray,"title":self.offerName.text!,"targetCategories":["Other"],"user_IDs":[],"status":"available"] as [String : AnyObject]
-                                
-                                if segueOffer != nil {
-                                    
-                                    offer["user_IDs"] = segueOffer?.user_IDs as AnyObject?
-                                            
-                                }
-                                
-                                let template = TemplateOffer.init(dictionary: offer)
-                                var edited = false
-                                var path = Auth.auth().currentUser!.uid
-
-                                if self.segueOffer != nil {
-                                    edited = true
-                                    path = path + "/" + self.segueOffer!.offer_ID
-                                    template.offer_ID = self.segueOffer!.offer_ID
-                                }
-								
-                                createTemplateOffer(pathString: path, edited: edited, templateOffer: template) { (offer, response) in
-                                    timer.invalidate()
-                                    self.hideActivityIndicator()
-                                    self.segueOffer = template
-                                    self.performSegue(withIdentifier: "toDistributeOffer", sender: offer)
-                                }
-								
-                            } else {
-                                self.showAlertMessage(title: "Alert", message: "Please Choose prefered categories"){ }
-                            }
-                        }else{
-                            self.showAlertMessage(title: "Alert", message: "Please Choose genders to filter prefered influencers"){ }
-                        }
-                    }else{
-                        self.showAlertMessage(title: "Alert", message: "Enter the valid Zipcode"){ }
-                    }
-                }else{
-                    self.showAlertMessage(title: "Alert", message: "Enter the expiry date"){ }
-                }
-        }else{
-            self.showAlertMessage(title: "Alert", message: "Please enter your offer name") {
-            }
-        }
-        
+		if isSavable(alertUser: true) {
+			SaveThisOffer { (template, bool1) in
+				self.segueOffer = template
+				self.performSegue(withIdentifier: "toDistributeOffer", sender: template)
+			}
+		} else {
+			YouShallNotPass(SaveButtonView: saveandSendView)
+		}
     }
+	
+	func SaveThisOffer(completion: @escaping (TemplateOffer, Bool) -> ()) {
+		var genderArray = [String]()
+		
+		if (self.gender.text?.contains("All"))!{
+			genderArray.append(contentsOf: ["Male","Female","Other"])
+		}else{
+			genderArray = self.gender.text!.components(separatedBy: ",")
+		}
+		
+		let expiryDateAdded = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
+		let dateString = DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: expiryDateAdded, format: "yyyy-MM-dd'T'HH:mm:ss")
+		
+		let expiryDate = DateFormatManager.sharedInstance.getExpiryDate(dateString: dateString)
+		
+		var offer = ["offer_ID":"","money":0.0,"company":Singleton.sharedInstance.getCompanyDetails(),"posts":global.post,"offerdate":Date(),"user_ID":[],"expiredate":expiryDate,"allPostsConfirmedSince":nil,"allConfirmed":false,"isAccepted":false,"isExpired":false,"ownerUserID":Auth.auth().currentUser!.uid,"category":self.selectedCategoryArray,"locationFilter":locationFilter,"genders":genderArray,"title":self.offerName.text!,"targetCategories":["Other"],"user_IDs":[],"status":"available"] as [String : AnyObject]
+		
+		if segueOffer != nil {
+			
+			offer["user_IDs"] = segueOffer?.user_IDs as AnyObject?
+			
+		}
+		
+		let template = TemplateOffer.init(dictionary: offer)
+		var edited = false
+		var path = Auth.auth().currentUser!.uid
+		
+		if self.segueOffer != nil {
+			edited = true
+			path = path + "/" + self.segueOffer!.offer_ID
+			template.offer_ID = self.segueOffer!.offer_ID
+		}
+		
+		createTemplateOffer(pathString: path, edited: edited, templateOffer: template, completion: completion)
+	}
+	
+	func isSavable(alertUser: Bool) -> Bool {
+		if !alertUser {
+			return self.offerName.text?.count != 0 && locationFilter != "" && locationFilter != "" && self.gender.text?.count != 0 && self.selectedCategoryArray.count != 0
+		}
+		if self.offerName.text?.count != 0 {
+			if locationFilter != "" {
+				if self.gender.text?.count != 0 {
+					if self.selectedCategoryArray.count != 0 {
+						return true
+					} else {
+						self.showAlertMessage(title: "Alert", message: "Please Choose prefered categories"){ }
+					}
+				}else{
+					self.showAlertMessage(title: "Alert", message: "Please Choose genders to filter prefered influencers"){ }
+				}
+			}else{
+				self.showAlertMessage(title: "Alert", message: "Set desired location."){ }
+			}
+		}else{
+			self.showAlertMessage(title: "Alert", message: "Please enter your offer name") {
+			}
+		}
+		return false
+	}
     
     //MARK: -Picker Delagate
     
@@ -357,165 +432,40 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
         self.gender.resignFirstResponder()
     }
     
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool{
-        
-        if textField == self.zipCode {
-            
-            let component = self.zipCode.text!.components(separatedBy: ",")
-            
-                if component.last!.count >= 5 && string != "," {
-                    if string == "" {
-                    return true
-                    }else{
-                    self.zipCode.text = self.zipCode.text! + ","
-                    return true
-                        
-                    }
-                }else if component.last!.count < 5 {
-                    if string != "," {
-                        return true
-                    }else{
-                        return false
-                    }
-                }else {
-                    return true
-                }
-
-           
-        }
-        else{
-          return true
-        }
-        
-        
-    }
-    
-    @IBAction func addTabGestureAction(_ sender: Any) {
-        
-        self.performSegue(withIdentifier: "toCategoryTVC", sender: self)
-        
-    }
-    
-    func selectedArray(array: [String]) {
-        if array.count != 0 {
-            selectedCategoryArray = array
-            let selectedCategory  = array.joined(separator: ", ")
-            self.selectedCategoryText.text = selectedCategory
-        }else{
-            selectedCategoryArray.removeAll()
-            self.selectedCategoryText.text = ""
-        }
-    }
-    
-    @objc func timerAction(sender: AnyObject){
-        self.showActivityIndicator()
-    }
-    
-    @IBAction override func addLeftAction(sender: UIBarButtonItem) {
-        
-        
-        
-        
-        if self.offerName.text?.count != 0{
-            
-            
-            if self.zipCode.text?.count != 0{
-                
-                if self.zipCode.text!.components(separatedBy: ",").last?.count == 5 {
-                    
-                    if self.gender.text?.count != 0 {
-                        
-                        if self.selectedCategoryArray.count != 0 {
-                            let timer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(self.timerAction(sender:)), userInfo: nil, repeats: false)
-                            //                            getFilteredInfluencers(category: influencerFilter as [String : [AnyObject]]) { (influencer, errorStatus) in
-                            
-                            var genderArray = [String]()
-                            
-                            if (self.gender.text?.contains("All"))!{
-                                
-                                genderArray.append(contentsOf: ["Male","Female","Other"])
-                                
-                            }else{
-                                genderArray = self.gender.text!.components(separatedBy: ",")
-                            }
-                            
-                            let expiryDateAdded = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
-                            let dateString = DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: expiryDateAdded, format: "yyyy-MM-dd'T'HH:mm:ss")
-                            
-                            let expiryDate = DateFormatManager.sharedInstance.getExpiryDate(dateString: dateString)
-                            
-                            var offer = ["offer_ID":"","money":0.0,"company":Singleton.sharedInstance.getCompanyDetails(),"posts":global.post,"offerdate":Date(),"user_ID":[],"expiredate":expiryDate,"allPostsConfirmedSince":nil,"allConfirmed":false,"isAccepted":false,"isExpired":false,"ownerUserID":Auth.auth().currentUser!.uid,"category":self.selectedCategoryArray,"zipCodes":self.zipCode.text!.components(separatedBy: ","),"genders":genderArray,"title":self.offerName.text!,"targetCategories":["Other"],"user_IDs":[],"status":"available"] as [String : AnyObject]
-                            
-                            if segueOffer != nil {
-                                
-                                offer["user_IDs"] = segueOffer?.user_IDs as AnyObject?
-                                
-                            }
-                            
-                            let template = TemplateOffer.init(dictionary: offer)
-                            var edited = false
-                            var path = Auth.auth().currentUser!.uid
-                            
-                            if self.segueOffer != nil {
-                                edited = true
-                                path = path + "/" + self.segueOffer!.offer_ID
-                                template.offer_ID = self.segueOffer!.offer_ID
-                            }
-                            
-                            createTemplateOffer(pathString: path, edited: edited, templateOffer: template) { (offer, response) in
-                                timer.invalidate()
-                                self.hideActivityIndicator()
-                                self.createLocalNotification(notificationName: "reloadOffer", userInfo: [:])
-                                global.post.removeAll()
-                                self.navigationController?.popViewController(animated: true)
-                            }
-                            
-                            
-                        }else{
-                            self.showAlertMessage(title: "Alert", message: "Please Choose prefered categories"){
-                                
-                            }
-                        }
-                        
-                    }else{
-                        
-                        self.showAlertMessage(title: "Alert", message: "Please Choose genders to filter prefered influencers"){
-                            
-                        }
-                        
-                    }
-                    
-                }else{
-                    self.showAlertMessage(title: "Alert", message: "Enter the valid Zipcode"){
-                        
-                    }
-                }
-                
-            }else{
-                self.showAlertMessage(title: "Alert", message: "Enter the expiry date"){
-                    
-                }
-            }
-            
-            
-        }else{
-            self.showAlertMessage(title: "Alert", message: "Please enter your offer name") {
-            }
-        }
-        
-        
-        
-        
-        
-        
-}
-    
-
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+	@IBAction func addTabGestureAction(_ sender: Any) {
+		
+		self.performSegue(withIdentifier: "toCategoryTVC", sender: self)
+		
+	}
+	
+	func selectedArray(array: [String]) {
+		if array.count != 0 {
+			selectedCategoryArray = array
+			let selectedCategory  = array.joined(separator: ", ")
+			self.selectedCategoryText.text = selectedCategory
+		}else{
+			selectedCategoryArray.removeAll()
+			self.selectedCategoryText.text = ""
+		}
+	}
+	
+	@objc func timerAction(sender: AnyObject){
+		self.showActivityIndicator()
+	}
+	
+	@IBAction override func addLeftAction(sender: UIBarButtonItem) {
+		
+		if isSavable(alertUser: true) {
+			SaveThisOffer { (template, bool1) in
+				self.createLocalNotification(notificationName: "reloadOffer", userInfo: [:])
+				global.post.removeAll()
+				self.navigationController?.popViewController(animated: true)
+			}
+		} else {
+			YouShallNotPass(SaveButtonView: saveandSendView)
+		}
+	}
+	
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
@@ -528,9 +478,13 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
             view.index = sender as? Int
         }else if segue.identifier == "toDistributeOffer" {
             let view = segue.destination as! DistributeOfferVC
-            view.templateOffer = sender as! TemplateOffer
+			view.templateOffer = sender as? TemplateOffer
             
-        }
+		} else if segue.identifier == "toZipPicker" {
+			let view = segue.destination as! LocationPicker
+			view.locationString = locationFilter
+			view.locationDelegate = self
+		}
     }
     
 

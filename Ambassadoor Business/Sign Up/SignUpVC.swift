@@ -38,7 +38,7 @@ class SignUpVC: BaseVC,UITextFieldDelegate {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
-		registerButton.layer.cornerRadius = 6
+		registerButton.layer.cornerRadius = 10
 		
     }
     

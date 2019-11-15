@@ -44,12 +44,20 @@ class CentralVariables {
 	
 	
 	//Passive Variables. No option to listen for change.
-	
+    //MARK: Only Once Product will be loaded and used to entire app
     var products: [Product] = []
 	var OfferDrafts: [TemplateOffer] = []
+    
+    
     var influencers: [User] = []
+    
+    //MARK: To Edit, Reuse and Add new Post globbally in AddOfferVC, AddPostVC & DistributeOffer
     var post: [Post] = []
+    
+    //MARK: Business user can increment the user's pay through Increase Pay while Distributing Offer. loading IncreasePay Array to pick Increase Pay while Distributing Offer(DistributeVC).
     var IncreasePay = ["None", "+5%", "+10%", "+20%"]
+    
+    //MARK: Not Used
     var dwollaCustomerInformation = DwollaCustomerInformation()
     
     

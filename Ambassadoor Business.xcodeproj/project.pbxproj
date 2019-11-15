@@ -27,6 +27,7 @@
 		B799227622F16FA9007E84B0 /* PickUserCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B799227522F16FA9007E84B0 /* PickUserCVC.swift */; };
 		B799227822F1C511007E84B0 /* AddPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B799227722F1C511007E84B0 /* AddPostVC.swift */; };
 		B79B1D2E22F2EE8D00F3C660 /* DateFormatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79B1D2D22F2EE8D00F3C660 /* DateFormatManager.swift */; };
+		B7AD225C237D2B8600BDD2E7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B7AD225B237D2B8600BDD2E7 /* GoogleService-Info.plist */; };
 		B7B11FF523242615006711BB /* PlaidTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B11FF423242615006711BB /* PlaidTVCell.swift */; };
 		B7B11FF723242638006711BB /* ConnectedPlaidTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B11FF623242638006711BB /* ConnectedPlaidTVCell.swift */; };
 		B7BD39BB22FAAB53008A0496 /* CategoryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BD39BA22FAAB53008A0496 /* CategoryTVC.swift */; };
@@ -54,7 +55,6 @@
 		E80B060A22A08D49002B9699 /* MoneyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80B060922A08D49002B9699 /* MoneyField.swift */; };
 		E816AC222282F3E200B9D951 /* MoneyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E816AC212282F3E200B9D951 /* MoneyVC.swift */; };
 		E82F890D22DD30B40036A079 /* CreateCompanyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82F890C22DD30B40036A079 /* CreateCompanyVC.swift */; };
-		E83D9A39226A20B6007BDD97 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E83D9A38226A20B6007BDD97 /* GoogleService-Info.plist */; };
 		E83F378D227CDEE100BA6688 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F378C227CDEE100BA6688 /* SignUpVC.swift */; };
 		E83F378F227CDF3A00BA6688 /* GetPictureVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F378E227CDF3A00BA6688 /* GetPictureVC.swift */; };
 		E84600802273A65600CF60F2 /* StandardNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E846007F2273A65600CF60F2 /* StandardNC.swift */; };
@@ -70,11 +70,16 @@
 		E8C3694A22161B3000AE12D7 /* Ambassadoor_Business.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E8C3694822161B3000AE12D7 /* Ambassadoor_Business.xcdatamodeld */; };
 		E8C3694C22161B3200AE12D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8C3694B22161B3200AE12D7 /* Assets.xcassets */; };
 		E8C3694F22161B3200AE12D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8C3694D22161B3200AE12D7 /* LaunchScreen.storyboard */; };
+		E8C708C423763EAA001699D0 /* GeolocationTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C708C323763EA9001699D0 /* GeolocationTools.swift */; };
+		E8C708C7237645EB001699D0 /* FilterTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C708C6237645EB001699D0 /* FilterTypeVC.swift */; };
+		E8C708C923764C51001699D0 /* SelectStatesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C708C823764C51001699D0 /* SelectStatesVC.swift */; };
 		E8E54685227BA19C00775A07 /* ViewCompanyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E54684227BA19C00775A07 /* ViewCompanyVC.swift */; };
 		E8E54687227BA1D600775A07 /* EditCompanyTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E54686227BA1D600775A07 /* EditCompanyTVC.swift */; };
 		E8E54689227BA3E800775A07 /* YourCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E54688227BA3E800775A07 /* YourCompany.swift */; };
 		E8E5468C227BC9E900775A07 /* StatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E5468B227BC9E900775A07 /* StatsVC.swift */; };
 		E8F8AAC922C8492D0047BF5E /* ViewOffersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F8AAC822C8492D0047BF5E /* ViewOffersVC.swift */; };
+		E8FC176223778D9700245932 /* LocationPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC176123778D9700245932 /* LocationPicker.swift */; };
+		E8FC17642377A70100245932 /* SelectRadiiVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC17632377A70100245932 /* SelectRadiiVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,8 +105,10 @@
 		B799227522F16FA9007E84B0 /* PickUserCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickUserCVC.swift; sourceTree = "<group>"; };
 		B799227722F1C511007E84B0 /* AddPostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostVC.swift; sourceTree = "<group>"; };
 		B79B1D2D22F2EE8D00F3C660 /* DateFormatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatManager.swift; sourceTree = "<group>"; };
+		B7AD225B237D2B8600BDD2E7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B7B11FF423242615006711BB /* PlaidTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaidTVCell.swift; sourceTree = "<group>"; };
 		B7B11FF623242638006711BB /* ConnectedPlaidTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedPlaidTVCell.swift; sourceTree = "<group>"; };
+		B7B72E07237C4953002AB168 /* Ambassadoor Business.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Ambassadoor Business.entitlements"; sourceTree = "<group>"; };
 		B7BD39BA22FAAB53008A0496 /* CategoryTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTVC.swift; sourceTree = "<group>"; };
 		B7BD39BC22FAAE42008A0496 /* CategoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryHeaderView.swift; sourceTree = "<group>"; };
 		B7C58568234DED3600EB90BB /* InstagramUserTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramUserTVC.swift; sourceTree = "<group>"; };
@@ -127,7 +134,6 @@
 		E80B060922A08D49002B9699 /* MoneyField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyField.swift; sourceTree = "<group>"; };
 		E816AC212282F3E200B9D951 /* MoneyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyVC.swift; sourceTree = "<group>"; };
 		E82F890C22DD30B40036A079 /* CreateCompanyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCompanyVC.swift; sourceTree = "<group>"; };
-		E83D9A38226A20B6007BDD97 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E83F378C227CDEE100BA6688 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		E83F378E227CDF3A00BA6688 /* GetPictureVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPictureVC.swift; sourceTree = "<group>"; };
 		E846007F2273A65600CF60F2 /* StandardNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardNC.swift; sourceTree = "<group>"; };
@@ -146,11 +152,16 @@
 		E8C3694B22161B3200AE12D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E8C3694E22161B3200AE12D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E8C3695022161B3200AE12D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E8C708C323763EA9001699D0 /* GeolocationTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeolocationTools.swift; sourceTree = "<group>"; };
+		E8C708C6237645EB001699D0 /* FilterTypeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTypeVC.swift; sourceTree = "<group>"; };
+		E8C708C823764C51001699D0 /* SelectStatesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStatesVC.swift; sourceTree = "<group>"; };
 		E8E54684227BA19C00775A07 /* ViewCompanyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCompanyVC.swift; sourceTree = "<group>"; };
 		E8E54686227BA1D600775A07 /* EditCompanyTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCompanyTVC.swift; sourceTree = "<group>"; };
 		E8E54688227BA3E800775A07 /* YourCompany.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourCompany.swift; sourceTree = "<group>"; };
 		E8E5468B227BC9E900775A07 /* StatsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsVC.swift; sourceTree = "<group>"; };
 		E8F8AAC822C8492D0047BF5E /* ViewOffersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewOffersVC.swift; sourceTree = "<group>"; };
+		E8FC176123778D9700245932 /* LocationPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPicker.swift; sourceTree = "<group>"; };
+		E8FC17632377A70100245932 /* SelectRadiiVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRadiiVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +247,7 @@
 				C05FE2DA225F687C002D3CAA /* global.swift */,
 				C0C9390522614AE3003DC925 /* InstagramAPI.swift */,
 				C0FBFD00226154FC00BADDCD /* categories.swift */,
+				E8C708C323763EA9001699D0 /* GeolocationTools.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -319,7 +331,9 @@
 		E8C3694022161B3000AE12D7 /* Ambassadoor Business */ = {
 			isa = PBXGroup;
 			children = (
+				B7B72E07237C4953002AB168 /* Ambassadoor Business.entitlements */,
 				B7D030AD23237CA4002B90FF /* Ambassadoor Business-Bridging-Header.h */,
+				B7AD225B237D2B8600BDD2E7 /* GoogleService-Info.plist */,
 				E8E54688227BA3E800775A07 /* YourCompany.swift */,
 				B7C9FE8B231E485E005580E4 /* Plaid */,
 				E8F8AAC722C8485A0047BF5E /* Offers */,
@@ -332,18 +346,29 @@
 				E846007E2273A5F800CF60F2 /* Resources */,
 				C089A3C32253D4C900ECF3B0 /* Model */,
 				B7FD83E522F07DD900347E8E /* TableviewCell */,
+				E8C708C5237645B5001699D0 /* Location Picker */,
 				B799227422F16F1E007E84B0 /* CollectionCell */,
 				E8C3694322161B3000AE12D7 /* ViewController.swift */,
 				B750E78422E5B75F00024CB1 /* Onboarding.storyboard */,
 				E8C3694122161B3000AE12D7 /* AppDelegate.swift */,
 				E8C3694522161B3000AE12D7 /* Main.storyboard */,
-				E83D9A38226A20B6007BDD97 /* GoogleService-Info.plist */,
 				E8C3694B22161B3200AE12D7 /* Assets.xcassets */,
 				E8C3694D22161B3200AE12D7 /* LaunchScreen.storyboard */,
 				E8C3695022161B3200AE12D7 /* Info.plist */,
 				E8C3694822161B3000AE12D7 /* Ambassadoor_Business.xcdatamodeld */,
 			);
 			path = "Ambassadoor Business";
+			sourceTree = "<group>";
+		};
+		E8C708C5237645B5001699D0 /* Location Picker */ = {
+			isa = PBXGroup;
+			children = (
+				E8C708C6237645EB001699D0 /* FilterTypeVC.swift */,
+				E8C708C823764C51001699D0 /* SelectStatesVC.swift */,
+				E8FC176123778D9700245932 /* LocationPicker.swift */,
+				E8FC17632377A70100245932 /* SelectRadiiVC.swift */,
+			);
+			path = "Location Picker";
 			sourceTree = "<group>";
 		};
 		E8E54683227BA16C00775A07 /* Company */ = {
@@ -446,8 +471,8 @@
 				B712C487230690B500728758 /* ProductListCell.xib in Resources */,
 				B7551F2F22F99B01001C4974 /* BasePicker.xib in Resources */,
 				B7FD83ED22F0870F00347E8E /* PostDetailTC.xib in Resources */,
-				E83D9A39226A20B6007BDD97 /* GoogleService-Info.plist in Resources */,
 				B7FD83E922F0844C00347E8E /* AddPostTC.xib in Resources */,
+				B7AD225C237D2B8600BDD2E7 /* GoogleService-Info.plist in Resources */,
 				B750E78522E5B75F00024CB1 /* Onboarding.storyboard in Resources */,
 				E8C3694C22161B3200AE12D7 /* Assets.xcassets in Resources */,
 				E8C3694722161B3000AE12D7 /* Main.storyboard in Resources */,
@@ -504,6 +529,7 @@
 				E80B060622A07EA1002B9699 /* DepositVC.swift in Sources */,
 				B706CB4D22E5F3310092FB77 /* SignInVC.swift in Sources */,
 				B7B11FF723242638006711BB /* ConnectedPlaidTVCell.swift in Sources */,
+				E8C708C7237645EB001699D0 /* FilterTypeVC.swift in Sources */,
 				B7BD39BB22FAAB53008A0496 /* CategoryTVC.swift in Sources */,
 				B706CB5122E60DC20092FB77 /* ForgetPasswordVC.swift in Sources */,
 				B7FD83E722F07E1800347E8E /* AddPostTC.swift in Sources */,
@@ -518,6 +544,7 @@
 				B788D6F422E8931100FA59BA /* RegisterCompanyVC.swift in Sources */,
 				C05FE2DB225F687C002D3CAA /* global.swift in Sources */,
 				E816AC222282F3E200B9D951 /* MoneyVC.swift in Sources */,
+				E8C708C923764C51001699D0 /* SelectStatesVC.swift in Sources */,
 				B712C485230690A700728758 /* ProductListCell.swift in Sources */,
 				E84600872273AF9100CF60F2 /* ImageViewExtensions.swift in Sources */,
 				E8F8AAC922C8492D0047BF5E /* ViewOffersVC.swift in Sources */,
@@ -526,6 +553,7 @@
 				B72CB50A22E7024500958AE0 /* UIViewExtension.swift in Sources */,
 				E80B060822A07F63002B9699 /* WithdrawVC.swift in Sources */,
 				B7C9FE8F231E4870005580E4 /* PlaidHelper.swift in Sources */,
+				E8FC176223778D9700245932 /* LocationPicker.swift in Sources */,
 				E84600802273A65600CF60F2 /* StandardNC.swift in Sources */,
 				B712C4892306B6C900728758 /* WebVC.swift in Sources */,
 				C0FBFD01226154FC00BADDCD /* categories.swift in Sources */,
@@ -536,6 +564,7 @@
 				B7D42099232A9F40009F0FCE /* TransactionInfoTVCell.swift in Sources */,
 				E84600852273A92A00CF60F2 /* BusinessLabel.swift in Sources */,
 				B7C58569234DED3600EB90BB /* InstagramUserTVC.swift in Sources */,
+				E8FC17642377A70100245932 /* SelectRadiiVC.swift in Sources */,
 				B761DA242321352100587F28 /* DwollaUserInformationVC.swift in Sources */,
 				B72CB50822E6E8C100958AE0 /* BaseVC.swift in Sources */,
 				B7FD83E322F072F800347E8E /* AddOfferVC.swift in Sources */,
@@ -543,6 +572,7 @@
 				B79308FE23015C3E001BB47A /* DistributeOfferVC.swift in Sources */,
 				B7FD83EB22F0866B00347E8E /* PostDetailTC.swift in Sources */,
 				E846008A2273B0B300CF60F2 /* Savvy.swift in Sources */,
+				E8C708C423763EAA001699D0 /* GeolocationTools.swift in Sources */,
 				B79B1D2E22F2EE8D00F3C660 /* DateFormatManager.swift in Sources */,
 				E8E54687227BA1D600775A07 /* EditCompanyTVC.swift in Sources */,
 				B7C9FE8E231E4870005580E4 /* PlaidLinkEnabledVC.swift in Sources */,
@@ -613,7 +643,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Marco Gonzalez (7D4GHWA4CW)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -674,7 +704,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Marco Gonzalez (7D4GHWA4CW)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -703,6 +733,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = BlueIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Ambassadoor Business/Ambassadoor Business.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Marco Gonzalez (7D4GHWA4CW)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = F4W3LUKZFA;
@@ -712,10 +744,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ambassadoor.company;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = OctoberProfile;
+				MARKETING_VERSION = 1.1.3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tesseractfreelance.Ambassadoor;
+				PRODUCT_NAME = "Ambassadoor Business";
+				PROVISIONING_PROFILE_SPECIFIER = DevelopmentProfile;
 				SWIFT_OBJC_BRIDGING_HEADER = "Ambassadoor Business/Ambassadoor Business-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -729,6 +761,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = BlueIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Ambassadoor Business/Ambassadoor Business.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Marco Gonzalez (7D4GHWA4CW)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = F4W3LUKZFA;
@@ -738,10 +772,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ambassadoor.company;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = OctoberProfile;
+				MARKETING_VERSION = 1.1.3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tesseractfreelance.Ambassadoor;
+				PRODUCT_NAME = "Ambassadoor Business";
+				PROVISIONING_PROFILE_SPECIFIER = DevelopmentProfile;
 				SWIFT_OBJC_BRIDGING_HEADER = "Ambassadoor Business/Ambassadoor Business-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -23,7 +23,7 @@ class ForgetPasswordVC: BaseVC,UITextFieldDelegate {
         super.viewDidLoad()
 
 		
-		sendEmailButton.layer.cornerRadius = 6
+		sendEmailButton.layer.cornerRadius = 10
 		
         // Do any additional setup after loading the view.
     }

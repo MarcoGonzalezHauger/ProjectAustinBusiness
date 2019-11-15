@@ -9,28 +9,79 @@
 import UIKit
 import CoreData
 import Firebase
+import FirebaseCore
+import FirebaseInstanceID
 //import Braintree
 import Stripe
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
 	var window: UIWindow?
     
     override init() {
-        FirebaseApp.configure()
-        Database.database().isPersistenceEnabled = false
+        
+        
     }
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
+        FirebaseApp.configure()
+        Database.database().isPersistenceEnabled = false
+        InitializeZipCodeAPI(completed: nil)
         Stripe.setDefaultPublishableKey("pk_test_8Rwst6t9gr25jXYXC4NHmiZK001i78iYO7")
         //BTAppSwitch.setReturnURLScheme("com.develop.sns.paypal")
         getAdminValues { (error) in
            print("fd=",Singleton.sharedInstance.getAdminFS())
         }
+        UNUserNotificationCenter.current().delegate = self
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in
+            guard granted else {return}
+            DispatchQueue.main.async {
+                application.registerForRemoteNotifications()
+                
+            }
+        }
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(tokenRefreshNotification(_:)), name: NSNotification.Name.InstanceIDTokenRefresh, object: nil)
 		return true
 	}
+    
+    func application(_ application: UIApplication,didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+
+        let deviceTokenString1 = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        print("deviceToken1=",deviceTokenString1)
+        
+        
+        InstanceID.instanceID().instanceID { (result, error) in
+            if let error = error {
+                print("Error fetching remote instange ID: \(error)")
+            } else if let result = result {
+                print("Remote instance ID token: \(result.token)")
+                //print("avvv=",InstanceID.instanceID().token()!)
+            }
+        }
+    }
+
+    //Called if unable to register for APNS.
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+
+
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]){
+        
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void){
+        
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void){
+        completionHandler([.badge,.sound, .alert])
+    }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
 //        if url.scheme?.localizedCaseInsensitiveCompare("com.develop.sns.paypal") == .orderedSame {
@@ -150,6 +201,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// Saves changes in the application's managed object context before the application terminates.
 		self.saveContext()
 	}
+    
+        @objc func tokenRefreshNotification(_ notification: Notification) {
+            
+    
+            InstanceID.instanceID().instanceID { (result, error) in
+                if let error = error {
+                    print("Error fetching remote instange ID: \(error)")
+                } else if let result = result {
+                    print("Remote instance ID token: \(result.token)")
+                }
+            }
+        }
 
 	// MARK: - Core Data stack
 

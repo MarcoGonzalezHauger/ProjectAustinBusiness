@@ -123,7 +123,7 @@ struct API {
     static func serializeTemplateOffer(offer: TemplateOffer) -> [String: Any] {
         var offerData = serializeOffer(offer: offer)
         offerData["targetCategories"] = offer.targetCategories
-        offerData["zipCodes"] = offer.zipCodes
+        offerData["locationFilter"] = offer.locationFilter
         offerData["genders"] = offer.genders
         offerData["user_IDs"] = offer.user_IDs
         offerData["category"] = offer.category

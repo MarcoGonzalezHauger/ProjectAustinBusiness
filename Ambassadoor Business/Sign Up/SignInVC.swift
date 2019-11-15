@@ -19,7 +19,8 @@ class SignInVC: BaseVC,UITextFieldDelegate {
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var scroll: UIScrollView!
-    
+	@IBOutlet weak var bioAuthButton: UIButton!
+	
     var keyboardHeight: CGFloat = 0.00
     var assainedTextField: UITextField? = nil
 	
@@ -27,16 +28,61 @@ class SignInVC: BaseVC,UITextFieldDelegate {
         super.viewDidLoad()
         print("roundup",(1.056756 * 100).rounded()/100)
 		
-		registerButton.layer.cornerRadius = 6
+		registerButton.layer.cornerRadius = 10
 		
         // Do any additional setup after loading the view.
+		
+		if userInfoExists() {
+			switch GetBiometricType() {
+			case .touch:
+				bioAuthButton.setImage(UIImage(named: "touchid"), for: .normal)
+			case .face:
+				bioAuthButton.setImage(UIImage(named: "faceid"), for: .normal)
+			default:
+				bioAuthButton.isHidden = true
+			}
+		} else {
+			bioAuthButton.isHidden = true
+		}
+		
     }
+	
+	func userInfoExists() -> Bool {
+		return UserDefaults.standard.string(forKey: "userEmail") != nil && UserDefaults.standard.string(forKey: "userPass") != nil
+	}
+	
+	enum BiometricType {
+		case none
+		case touch
+		case face
+	}
+	
+	@IBAction func doBioAuth(_ sender: Any) {
+		bioAuth()
+	}
+	
+	func GetBiometricType() -> BiometricType {
+		let authContext = LAContext()
+		if #available(iOS 11, *) {
+			let _ = authContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
+			switch(authContext.biometryType) {
+			case .none:
+				return .none
+			case .touchID:
+				return .touch
+			case .faceID:
+				return .face
+			}
+		} else {
+			return authContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) ? .touch : .none
+		}
+	}
 	
 	func bioAuth() {
 		print("Bio Auth started")
 		let lac = LAContext()
 		var authError: NSError?
-		let reasonString = "Log into Ambassadoor"
+		let reasonString = "Log into Ambassadoor Business"
 		if lac.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
 			print("Can Evaluate.")
 			lac.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reasonString) { success, evaluateError in
@@ -66,10 +112,8 @@ class SignInVC: BaseVC,UITextFieldDelegate {
 			return
 		}
 		print("checking defaults.")
-		if UserDefaults.standard.string(forKey: "userEmail") != nil {
-			if UserDefaults.standard.string(forKey: "userPass") != nil {
-				bioAuth()
-			}
+		if userInfoExists() {
+			bioAuth()
 		}
 		firstTime = true
 	}
