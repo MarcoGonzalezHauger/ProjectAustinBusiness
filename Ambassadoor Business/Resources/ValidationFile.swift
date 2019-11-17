@@ -131,27 +131,43 @@ class Singleton {
         self.adminFundingSource = ""
     }
     
+    // Save Business User Details
+    
     func setCompanyUser(user: CompanyUser) {
         company = user
     }
+    
+    // Get Saved Business User Details
     
     func getCompanyUser() -> CompanyUser {
         return company
     }
     
+    // Save Company Details of the login Business User
+    
     func setCompanyDetails(company: Company) {
         self.companyDetails = company
     }
+    
+    // Get Company Details of the login Business User
+    
     func getCompanyDetails() -> Company {
         return self.companyDetails
     }
     
+    // Save Ambassadoor commission percentage
+    
     func setCommision(value: Double) {
          self.ambassadoorCommision = value
     }
+    
+    // Get Ambassadoor commission Percentage
+    
     func getCommision() -> Double {
          return self.ambassadoorCommision
     }
+    
+    // Two functions are not used any more
     
     func setAdminFS(value: String) {
         self.adminFundingSource = value

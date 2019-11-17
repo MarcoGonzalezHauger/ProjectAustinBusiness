@@ -261,7 +261,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
 	
 	func canDistribute(alertUser: Bool) -> Bool {
 		let offerAmount = Double((String((self.moneyText.text?.dropFirst())!)))!
-		if self.moneyText.text?.count != 0 {
+		if offerAmount > 0 {
 			if self.depositValue != nil {
 				if self.depositValue!.currentBalance != nil {
 					if (offerAmount < self.depositValue!.currentBalance!) {
@@ -432,6 +432,16 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
         
         let expiryDate = DateFormatManager.sharedInstance.getExpiryDate(dateString: dateString)
         self.templateOffer?.expiredate = expiryDate
+        
+        //Record of offer sent user_IDs(Based on this user-IDs only we are fetching the Statistics Data)
+        for influencerID in influencer! {
+            if (self.templateOffer?.user_IDs.contains(influencerID))!{
+                
+            }else{
+                
+                self.templateOffer?.user_IDs.append(influencerID)
+            }
+        }
 		
         let path = Auth.auth().currentUser!.uid + "/" + self.templateOffer!.offer_ID
 		

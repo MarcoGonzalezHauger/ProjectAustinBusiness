@@ -472,12 +472,6 @@ func getFilteredInfluencers(category: [String:[AnyObject]],completion: @escaping
         
     })
     
-//    usersRef.observe(.value, with: { (snapshot) in
-//
-//
-//    }) { (error) in
-//
-//    }
 }
 
 func getAllProducts(path: String, completion: @escaping ([Product]?) -> ()) {
