@@ -18,6 +18,9 @@ enum EditingMode {
 }
 //BTViewControllerPresentingDelegate, BTAppSwitchDelegate,
 class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPAuthenticationContext, STPPaymentContextDelegate {
+    
+    //MARK:- Stripe Connection Delegate
+    
     func paymentContext(_ paymentContext: STPPaymentContext, didFailToLoadWithError error: Error) {
         
     }
@@ -44,65 +47,11 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
     
     func addCardViewController(_ addCardViewController: STPAddCardViewController, didCreatePaymentMethod paymentMethod: STPPaymentMethod, completion: @escaping STPErrorBlock) {
         
-//        NetworkManager.sharedInstance.postPaymentMethodThroughStripe(params: [:]) { (status, error, data) in
-//
-//            if error == nil {
-//
-//                do {
-//                    let json = try JSONSerialization.jsonObject(with: data!, options: []) as? AnyObject
-//
-//                    let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-//                    print("dataString=",dataString)
-//
-//
-//
-//            } catch _ {
-//
-//            }
-//
-//            }
-//
-//        }
-        
-        
-        
+        // Getting payment Method Stripe ID and convert Amount Dollor to Cents(Stripe access cents only) and send to firebase server.
         let params = ["stripeID":paymentMethod.stripeId,"amount":(self.creditAmount * 100.00)] as [String : Any]
         self.depositAmountToWalletThroughStripe(params: params, paymentMethodParams: paymentMethod)
         
-        
-        
-        //cardParams.number = STPPaymentCardTextField?.cardNumber
-//        cardParams.expMonth = paymentMethod.card.
-//        cardParams.expYear = (paymentCardTextField?.expirationYear)!
-//        cardParams.cvc = paymentCardTextField?.cvc
-//        STPAPIClient.shared().createToken(withCard: cardParams) { (token: STPToken?, error: Error?) in
-//            guard let token = token, error == nil else {
-//                // Present error to user...
-//                return
-//            }
-//            print(self.dictPayData)
-//
-//        }
-        
-        
-        
-//        cardParams.number = paymentMethod.card?.expMonth
-//        cardParams.expMonth = paymentMethod.card?.expMonth
-//        cardParams.expYear = paymentMethod.card?.expYear
-//        cardParams.cvc = paymentMethod.card?.
-//        submitPaymentMethodToBackend(paymentMethod, completion: { (error: Error?) in
-//            if let error = error {
-//                // Show error in add card view controller
-//                completion(error)
-//            }
-//            else {
-//                // Notify add card view controller that PaymentMethod creation was handled successfully
-//                completion(nil)
-//
-//                // Dismiss add card view controller
-//                dismiss(animated: true)
-//            }
-//        })
+
     }
 	
 	@IBOutlet weak var moneySlider: UISlider!

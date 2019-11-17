@@ -32,6 +32,8 @@ class SignUpVC: BaseVC, UITextFieldDelegate {
     var companyUser: CompanyUser!
     
     var assainedTextField: UITextField? = nil
+
+    
     
 	
 	override func viewDidLoad() {
