@@ -15,17 +15,15 @@ protocol editDelegate {
 	func editsMade(newCompany: Company)
 }
 
-class EditCompanyTVC: UITableViewController, ImagePickerDelegate {
+class EditCompanyTVC: UITableViewController, ImagePickerDelegate, UITextViewDelegate {
 	
 	
 	func imagePicked(image: UIImage?, imageUrl: String?) {
         
         if image != nil {
             self.companyLogo.image = image
-            //        self.urlString = uploadImageToFIR(image: image!, path: (Auth.auth().currentUser?.uid)!)
-            self.showActivityIndicator()
+            //        self.urlString = uploadImageToFIR(image: image!, path: (Auth.auth().currentUser?.uid)!)\
             uploadImageToFIR(image: image!,childName: "companylogo", path: (Auth.auth().currentUser?.uid)!) { (url, error) in
-                self.hideActivityIndicator()
                 if error == false{
                     self.logo = url
                     print("URL=",url)
@@ -35,12 +33,6 @@ class EditCompanyTVC: UITableViewController, ImagePickerDelegate {
             }
             
         }
-//		if let image = image {
-//			companyLogo.image = image
-//		}
-//		if let imageUrl = imageUrl {
-//			logo = imageUrl
-//		}
 	}
 	
 
@@ -66,79 +58,38 @@ class EditCompanyTVC: UITableViewController, ImagePickerDelegate {
 			destination.delegate = self
 		}
 	}
-	
+		
 	override func viewDidLoad() {
         super.viewDidLoad()
-		companyLogo.layer.cornerRadius = 5
+		companyLogo.layer.cornerRadius = 15
 		nameTextBox.text = ThisCompany.name
 		missionTextBox.text = ThisCompany.mission
 		descTextBox.text = ThisCompany.companyDescription
 		webTextBox.text = ThisCompany.website
 		logo = ThisCompany.logo
         self.companyLogo.sd_setImage(with: URL.init(string: ThisCompany.logo!), placeholderImage: UIImage(named: "defaultProduct"))
-//		if ThisCompany.logo != nil && ThisCompany.logo != "" {
-//			if let thisUrl = URL(string: logo!) {
-//				companyLogo.downloadedFrom(url: thisUrl)
-//			}
-//		}
 		AccountID = ThisCompany.account_ID
     }
     
-    //Show Activity Indicator
-    func showActivityIndicator() {
-        
-//        if noIndicator {
-//            return
-//        }
-        
-        if self.activityIndicatorView == nil {
-            DispatchQueue.main.async(execute: {
-                let xPos = DeviceManager.sharedInstance.getDeviceWidth()/2 - 25 //  - half of image size
-                let yPos = DeviceManager.sharedInstance.getDeviceHeight()/2 - 25
-                self.activityIndicatorView =
-                    UIView(frame: CGRect(x: xPos, y: yPos, width: 50, height: 50))
-                self.activityIndicatorView.alpha = 1
-                self.activityIndicatorView.backgroundColor = UIColor.white
-                let layer: CALayer = self.activityIndicatorView.layer
-                layer.cornerRadius = 5.0
-                
-                self.activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 5, y: 5, width: 40, height: 40))
-                self.activityIndicator.style = UIActivityIndicatorView.Style.whiteLarge
-                let transform: CGAffineTransform = CGAffineTransform(scaleX: 0.7, y: 0.7)
-                self.activityIndicator.transform = transform
-                self.activityIndicatorView.addSubview(self.activityIndicator)
-                self.activityIndicator .startAnimating()
-                self.activityIndicator.color = UIColor.blue
-                self.activityIndicatorView.isHidden = true
-                self.view.addSubview(self.activityIndicatorView)
-                self.activityIndicatorView.isHidden = false
-            })
-        }
-        else {
-            self.activityIndicatorView.removeFromSuperview()
-        }
-        
-    }
-    
-    //Hide Activity Indicator
-    func hideActivityIndicator() {
-        if  self.activityIndicatorView != nil {
-            DispatchQueue.main.async(execute: {
-                if self.activityIndicator == nil {
-                    
-                }
-                else{
-                    self.activityIndicator.stopAnimating()
-                    self.activityIndicator.removeFromSuperview()
-                    self.activityIndicator = nil
-                    
-                    self.activityIndicatorView .removeFromSuperview()
-                    self.activityIndicatorView = nil
-                }
-            })
-            
-        }
-    }
+	func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+		if text == "\n" {
+			textView.resignFirstResponder()
+			return false
+		}
+		if textView == webTextBox {
+			if text == " " {
+				return false
+			} else {
+				return true
+			}
+		}
+		return true
+	}
+	
+	@IBAction func returned(_ sender: Any) {
+		nameTextBox.resignFirstResponder()
+	}
+	
 	
 	@IBAction func save(_ sender: Any) {
 		var problem = false
@@ -146,13 +97,9 @@ class EditCompanyTVC: UITableViewController, ImagePickerDelegate {
 			problem = true
 			MakeShake(viewToShake: nameView)
 		}
-		if isGoodUrl(url: webTextBox.text) {
+		if !isGoodUrl(url: webTextBox.text) {
+			problem = true
 			MakeShake(viewToShake: webView)
-		} else {
-			if webTextBox.text != "" {
-				problem = true
-				MakeShake(viewToShake: webView)
-			}
 		}
 		if !problem {
             let ownCompany =  Company.init(dictionary: ["name": nameTextBox.text!, "logo": logo as Any, "mission": missionTextBox.text, "website": webTextBox.text, "account_ID": AccountID ?? "", "description": descTextBox.text, "accountBalance": 0.0])

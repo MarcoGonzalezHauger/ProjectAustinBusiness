@@ -12,10 +12,10 @@ target 'Ambassadoor Business' do
 	pod 'Firebase/Database'
 	pod 'Firebase/Storage'
   pod 'SDWebImage'
-  pod 'Braintree'
-  pod 'BraintreeDropIn'
+  #pod 'Braintree'
+  #pod 'BraintreeDropIn'
   pod 'Alamofire', '~> 4.5'
   pod 'AlamofireObjectMapper', '~> 5.0'
-  pod 'Plaid'
+  #pod 'Plaid'
   pod 'Stripe'
 end

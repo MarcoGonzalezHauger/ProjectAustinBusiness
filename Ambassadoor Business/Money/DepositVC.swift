@@ -8,16 +8,16 @@
 //
 
 import UIKit
-import BraintreeDropIn
-import Braintree
+//import BraintreeDropIn
+//import Braintree
 import Stripe
 import Firebase
 
 enum EditingMode {
 	case slider, manual
 }
-
-class DepositVC: BaseVC, changedDelegate,BTViewControllerPresentingDelegate,BTAppSwitchDelegate,STPAddCardViewControllerDelegate,STPAuthenticationContext,STPPaymentContextDelegate {
+//BTViewControllerPresentingDelegate, BTAppSwitchDelegate,
+class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPAuthenticationContext, STPPaymentContextDelegate {
     func paymentContext(_ paymentContext: STPPaymentContext, didFailToLoadWithError error: Error) {
         
     }
@@ -108,8 +108,9 @@ class DepositVC: BaseVC, changedDelegate,BTViewControllerPresentingDelegate,BTAp
 	@IBOutlet weak var moneySlider: UISlider!
     @IBOutlet weak var ExpectedReturns: UILabel!
     @IBOutlet weak var ExpectedPROFIT: UILabel!
-    
-    var braintreeClient: BTAPIClient!
+	@IBOutlet weak var proceedView: ShadowView!
+	
+    //var braintreeClient: BTAPIClient!
 	
 	var amountOfMoneyInCents: Int = 10000
     
@@ -128,11 +129,20 @@ class DepositVC: BaseVC, changedDelegate,BTViewControllerPresentingDelegate,BTAp
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        
+		if #available(iOS 13.0, *) {
+			self.isModalInPresentation = true
+		}
 		money.changedDelegate = self
 		money.moneyValue = amountOfMoneyInCents
 		moneyChanged()
+        self.addDoneButtonOnKeyboard(textField: self.money)
 	}
+    
+    override func doneButtonAction() {
+        self.money.removeTarget(self, action: #selector(self.TrackBarTracked(_:)), for: .editingDidEnd)
+        self.money.resignFirstResponder()
+        self.money.addTarget(self, action: #selector(self.TrackBarTracked(_:)), for: .editingDidEnd)
+    }
 	
 	func moneyChanged() {
 		if editMode == .manual {
@@ -178,122 +188,65 @@ class DepositVC: BaseVC, changedDelegate,BTViewControllerPresentingDelegate,BTAp
 		self.dismiss(animated: true, completion: nil)
 	}
     
-    @IBAction func proceedAction(sender: UIButton){
-        
-        
-        
-        
-        
-        print("cccc=",money.text!.count)
-        print("cccc=1",money.text!.replacingOccurrences(of: " ", with: "").count)
-        if money.text?.dropFirst() != "0.00" && money.text!.replacingOccurrences(of: " ", with: "").count != 0 {
-            
-            let moneyDouble = Double(money.text!.dropFirst())
-            
-            let stripeFeeNotRoundup = ((((moneyDouble! * 1.027 + 0.3) - moneyDouble!) * 100).rounded())
-            
-            let stripeFeeAmount = stripeFeeNotRoundup/100
-            
-            let depositAmount = moneyDouble!
-            
-            let totalAmount = (((moneyDouble! * 1.027 + 0.3) * 100).rounded())/100
-            
-            self.creditAmount = totalAmount
-            
+	@IBAction func proceedAction(sender: UIButton){
+		
+		if amountOfMoneyInCents != 0 {
+						
+			let depositAmount: Double =  Double(amountOfMoneyInCents) / 100
+			
+			let totalAmount = (((depositAmount * 1.027 + 0.3) * 100).rounded()) / 100
+			
+			self.creditAmount = totalAmount
+			
 			let DepositString = NumberToPrice(Value: depositAmount, enforceCents: true)
 			let TotalString = NumberToPrice(Value: totalAmount, enforceCents: true)
 			
-            self.showAlertMessageForDestruction(title: "Alert", message: "You will deposit \(DepositString) into your Ambassadoor Money Account.\n Total Amount (including fees) that will be charged is \(TotalString)", cancelTitle: "OK", destructionTitle: "Cancel", completion: {
-                self.addCardViewController.delegate = self
-                let navigationController = UINavigationController(rootViewController: self.addCardViewController)
-                self.present(navigationController, animated: true)
-                
-            }) {
-                
-                
-                
-            }
-            
-            // Setup add card view controller
-            
-            //let config = STPPaymentConfiguration()
-            //config.requiredBillingAddressFields = .full
-            //addCardViewController = STPAddCardViewController.init(configuration: config, theme: STPTheme.default())
-            // Present add card view controller
-            
-        
-//        NetworkManager.sharedInstance.getClientTokenFromServer { (result, errorValue, data) in
-//
-//            if result == "success" {
-//
-//                do {
-//                    let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String : Any]
-//
-//                    let clientToken = json!["token"] as! String
-////                    DispatchQueue.main.async {
-////                    self.braintreeClient = BTAPIClient(authorization: clientToken)
-////                        let payPalDriver = BTPayPalDriver(apiClient: self.braintreeClient)
-////                        payPalDriver.viewControllerPresentingDelegate = self
-////                        payPalDriver.appSwitchDelegate = self
-////
-////                        //        payPalDriver.authorizeAccount() { (tokenizedPayPalAccount, error) -> Void in
-////                        //        }
-////
-////                        // ...start the Checkout flow
-////                        let payPalRequest = BTPayPalRequest(amount: "1.00")
-////                        payPalDriver.requestOneTimePayment(payPalRequest) { (tokenizedPayPalAccount, error) -> Void in
-////                        }
-////                    }
-//
-//                    DispatchQueue.main.async(execute: {
-//                    self.getDropInUI(token: clientToken)
-//                    })
-//                } catch _ {
-//
-//                }
-//
-//            }else{
-//
-//            }
-//
-//        }
-    }else{
-            
-            self.showAlertMessage(title: "Alert", message: "Please deposit any amount") {
-                
-            }
-            
-        }
-        
-    }
+			self.showAlertMessageForDestruction(title: "Alert", message: "You will deposit \(DepositString) into your Ambassadoor Money Account.\n Total Amount (including fees) that will be charged is \(TotalString).", cancelTitle: "OK", destructionTitle: "Cancel", completion: {
+				self.addCardViewController.delegate = self
+				let navigationController = UINavigationController(rootViewController: self.addCardViewController)
+				self.present(navigationController, animated: true)
+				
+			}) {
+				
+				
+				
+			}
+			
+		} else{
+			
+			MakeShake(viewToShake: money)
+			
+		}
+		
+	}
     
     func getDropInUI(token: String) {
         
-        let request =  BTDropInRequest()
-        
-        let dropIn = BTDropInController(authorization: token, request: request)
-        { (controller, result, error) in
-            if (error != nil) {
-                print("ERROR")
-            } else if (result?.isCancelled == true) {
-                print("CANCELLED")
-            } else if let result = result {
-                // Use the BTDropInResult properties to update your UI
-                // result.paymentOptionType
-                // result.paymentMethod
-                // result.paymentIcon
-                // result.paymentDescription
-                print("nonce=",result.paymentMethod!.nonce)
-                let companyUser = Singleton.sharedInstance.getCompanyUser()
-                let params = ["nonce":result.paymentMethod!.nonce,"userID":companyUser.userID!,"amount":String(self.money.text!.dropFirst())]
-                self.depositAmountToWallet(params: params as [String : AnyObject])
-                
-            }
-            controller.dismiss(animated: true, completion: nil)
-        }
-        
-        self.present(dropIn!, animated: true, completion: nil)
-        //})
+//        let request =  BTDropInRequest()
+//
+//        let dropIn = BTDropInController(authorization: token, request: request)
+//        { (controller, result, error) in
+//            if (error != nil) {
+//                print("ERROR")
+//            } else if (result?.isCancelled == true) {
+//                print("CANCELLED")
+//            } else if let result = result {
+//                // Use the BTDropInResult properties to update your UI
+//                // result.paymentOptionType
+//                // result.paymentMethod
+//                // result.paymentIcon
+//                // result.paymentDescription
+//                print("nonce=",result.paymentMethod!.nonce)
+//                let companyUser = Singleton.sharedInstance.getCompanyUser()
+//                let params = ["nonce":result.paymentMethod!.nonce,"userID":companyUser.userID!,"amount":String(self.money.text!.dropFirst())]
+//                self.depositAmountToWallet(params: params as [String : AnyObject])
+//
+//            }
+//            controller.dismiss(animated: true, completion: nil)
+//        }
+//
+//        self.present(dropIn!, animated: true, completion: nil)
+//        //})
         
     }
     
@@ -305,7 +258,7 @@ class DepositVC: BaseVC, changedDelegate,BTViewControllerPresentingDelegate,BTAp
                 
                 let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
                 
-                print("dataString=",dataString)
+				print("dataString=",dataString ?? "nil")
                 
                 if error == nil {
                     
@@ -409,7 +362,7 @@ class DepositVC: BaseVC, changedDelegate,BTViewControllerPresentingDelegate,BTAp
                         var depositHistory = [Any]()
                         depositHistory.append(tranObj)
                         
-                        let deposit = Deposit.init(dictionary: ["userID":Auth.auth().currentUser!.uid ,"currentBalance":depositedAmount,"totalDepositAmount":depositedAmount,"totalDeductedAmount":0.00,"lastDeductedAmount":0.00,"lastDepositedAmount":depositedAmount,"lastTransactionHistory":tranObj,"depositHistory":depositHistory])
+                        let deposit = Deposit.init(dictionary: ["userID":Auth.auth().currentUser!.uid, "currentBalance":depositedAmount, "totalDepositAmount":depositedAmount, "totalDeductedAmount":0.00, "lastDeductedAmount":0.00, "lastDepositedAmount":depositedAmount, "lastTransactionHistory":tranObj, "depositHistory":depositHistory])
                         
                         sendDepositAmount(deposit: deposit, companyUser: Auth.auth().currentUser!.uid) { (deposit, status) in
                             self.createLocalNotification(notificationName: "reloadDeposit", userInfo: [:])
@@ -577,38 +530,38 @@ class DepositVC: BaseVC, changedDelegate,BTViewControllerPresentingDelegate,BTAp
     
     @IBAction func paypalAction(sender: UIButton){
         
-        let payPalDriver = BTPayPalDriver(apiClient: self.braintreeClient)
-        payPalDriver.viewControllerPresentingDelegate = self
-        payPalDriver.appSwitchDelegate = self
-        
-//        payPalDriver.authorizeAccount() { (tokenizedPayPalAccount, error) -> Void in
+//        let payPalDriver = BTPayPalDriver(apiClient: self.braintreeClient)
+//        payPalDriver.viewControllerPresentingDelegate = self
+//        payPalDriver.appSwitchDelegate = self
+//
+////        payPalDriver.authorizeAccount() { (tokenizedPayPalAccount, error) -> Void in
+////        }
+//
+//        // ...start the Checkout flow
+//        let payPalRequest = BTPayPalRequest(amount: "1.00")
+//        payPalDriver.requestOneTimePayment(payPalRequest) { (tokenizedPayPalAccount, error) -> Void in
 //        }
         
-        // ...start the Checkout flow
-        let payPalRequest = BTPayPalRequest(amount: "1.00")
-        payPalDriver.requestOneTimePayment(payPalRequest) { (tokenizedPayPalAccount, error) -> Void in
-        }
-        
     }
     
-    func paymentDriver(_ driver: Any, requestsPresentationOf viewController: UIViewController) {
-        
-    }
+//    func paymentDriver(_ driver: Any, requestsPresentationOf viewController: UIViewController) {
+//
+//    }
+//
+//    func paymentDriver(_ driver: Any, requestsDismissalOf viewController: UIViewController) {
+//
+//    }
+//
+//    func appSwitcherWillPerformAppSwitch(_ appSwitcher: Any) {
+//
+//    }
     
-    func paymentDriver(_ driver: Any, requestsDismissalOf viewController: UIViewController) {
-        
-    }
+//    func appSwitcher(_ appSwitcher: Any, didPerformSwitchTo target: BTAppSwitchTarget) {
+//
+//    }
     
-    func appSwitcherWillPerformAppSwitch(_ appSwitcher: Any) {
-        
-    }
-    
-    func appSwitcher(_ appSwitcher: Any, didPerformSwitchTo target: BTAppSwitchTarget) {
-        
-    }
-    
-    func appSwitcherWillProcessPaymentInfo(_ appSwitcher: Any) {
-        
-    }
+//    func appSwitcherWillProcessPaymentInfo(_ appSwitcher: Any) {
+//
+//    }
 	
 }

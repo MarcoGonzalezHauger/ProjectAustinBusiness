@@ -162,7 +162,7 @@ func serializeOffer(offer: Offer) -> [String: AnyObject] {
         ] as [String : AnyObject]
     if let templateOffer = offer as? TemplateOffer {
         values["targetCategories"] = templateOffer.targetCategories as AnyObject
-        values["zipCodes"] = templateOffer.zipCodes as [String] as AnyObject
+        values["locationFilter"] = templateOffer.locationFilter as String as AnyObject
         values["genders"] = templateOffer.genders as [String] as AnyObject
     }
     return values
@@ -179,38 +179,7 @@ func serializeOffer(offer: Offer) -> [String: AnyObject] {
 //}
 
 //Creates an account with nothing more than the username of the account. Returns instance of account returned from firebase
-func CreateAccount(instagramUser: [String: Any], completed: @escaping (_ userDictionary: [String: Any]) -> ()) {
-    // Pointer reference in Firebase to Users
-    let ref = Database.database().reference().child("users")
-    // Boolean flag to keep track if user is already in database
-    var alreadyRegistered: Bool = false
-    ref.observeSingleEvent(of: .value, with: { (snapshot) in
-        var userId: String = ""
-        var userData: [String: Any] = instagramUser
-        for case let user as DataSnapshot in snapshot.children {
-            if (user.childSnapshot(forPath: "username").value as! String == userData["username"] as! String) {
-                alreadyRegistered = true
-                userId = user.childSnapshot(forPath: "id").value as! String
-                userData["id"] = user.childSnapshot(forPath: "id").value as! String
-                userData["primaryCategory"] = user.childSnapshot(forPath: "primaryCategory").value as! String
-                userData["secondaryCategory"] = user.childSnapshot(forPath: "secondaryCategory").value as! String
-                // userData = API.serializeUser(user: instagramUser, id: userId)
-                break
-            }
-        }
-        // If user isn't registered then create a new instance in firebase, else update the existing data for that user in firebase
-        if !alreadyRegistered {
-            let userReference = ref.childByAutoId()
-            userData["id"] = userReference.key
-            // var userData = API.serializeUser(user: instagramUser, id: userReference.key!)
-            userReference.updateChildValues(userData)
-        } else {
-            debugPrint(userData)
-            ref.child(userId).updateChildValues(userData)
-        }
-        completed(userData)
-    })
-}
+
 
 func CreateProduct(productDictionary: [String: Any], completed: @escaping (_ product: Product) -> ()) {
     let user = Singleton.sharedInstance.getCompanyUser()
@@ -398,101 +367,89 @@ func GetAllUsers(completion: @escaping ([User]) -> ()) {
     }, withCancel: nil)
 }
 
-func getFilteredInfluencers(category: [String:[AnyObject]],completion: @escaping ([String]?,String,[User]?) -> ()) {
+func getFilteredInfluencers(category: [String:[AnyObject]],completion: @escaping (String,[User]?) -> ()) {
     
-    var mutatingCategory = category
+    var BusinessFilters = category
     
     let usersRef = Database.database().reference().child("users")
     
     usersRef.observeSingleEvent(of: .value, with: { (snapshot) in
         
-        if let dictionary = snapshot.value as? [String: AnyObject] {
+        if let userDatabase = snapshot.value as? [String: AnyObject] {
             
-            let keys = dictionary.keys
-            
-            var userIDs = [String]()
+            let keys = userDatabase.keys //all user IDs
             
             var user = [User]()
             
-            var filteredCategory = [String]()
+            var filteredCategory = [String]() //all categories in the template offer.
             
-            if category.keys.contains("primaryCategory") {
+            if category.keys.contains("categories") {
                 
-                let categoryValueArray = category["primaryCategory"] as! [String]
+                let categoryValueArray = category["categories"] as! [String]
                 
                 filteredCategory.append(contentsOf: categoryValueArray)
                 
-                mutatingCategory.removeValue(forKey: "primaryCategory")
+                BusinessFilters.removeValue(forKey: "categories")
                 
             }
+			
+			//filteredcategory list is now populated
             
-            
-            for value in keys {
+            for userID in keys { //FOR EACH USER ID IN USER DATABASE
                 
-                let first  = dictionary[value] as! [String: AnyObject]
+                let userData  = userDatabase[userID] as! [String: AnyObject] //Getting User data from ID.
                 
-                //_ = first["primaryCategory"] as! String
-                //Getting All Keys From Offer
-                let categoryArray = mutatingCategory.keys
+                let BusinessFilterKeys = BusinessFilters.keys //Getting every property the users's have and putting it into a list, for example
                 
+				var categoryMatch = !BusinessFilterKeys.contains("categories")
+				var genderMatch = !BusinessFilterKeys.contains("gender")
+				var locationMatch = !BusinessFilterKeys.contains("zipCode")
+				
+				//Gender filter
+				
+				if !genderMatch {
+					let gender: [String] = BusinessFilters["gender"] as! [String]
+					if let userGender = userData["gender"] as? String {
+						if gender.contains(userGender) {
+							genderMatch = true
+						}
+					}
+				}
+				
+				
+				//ZIP CODE
+								
+                if !locationMatch && genderMatch {
+					let zips: [String] = BusinessFilters["zipCode"] as! [String]
+					if let userZip = userData["zipCode"] as? String {
+						if zips.contains(userZip) {
+							locationMatch = true
+						}
+					}
+				}
                 
-                var checkStatus = true
-                for keyValue in categoryArray {
-                    
-                    //                    if !(category[keyValue]?.contains(first[keyValue] as! String))!{
-                    //                       checkStatus = false
-                    //                    }
-                    
-                    if (mutatingCategory[keyValue]?.contains(where: { (errer) -> Bool in
-                        print("a=",errer)
-                        print("b=",first[keyValue])
-                        //return (first[keyValue]?.isEqual(errer))!
-                        if (first[keyValue] as? String) != nil {
-                            return (first[keyValue]?.isEqual(errer))!
-                        }else{
-                            return false
-                        }
-                    }))! == false {
-                        checkStatus = false
-                    }else{
-                        
-                    }
-                    
-                    
-                }
+                //CATEGORIES
+				
+								
+                if !categoryMatch && locationMatch && genderMatch {
+					let businessCats: [String] = BusinessFilters["categories"] as! [String]
+					if let userCats = userData["categories"] as? [String] {
+						//cats = Checks if user is a crazy cat person.
+						//Okay maybe I shouldn't joke when commenting.
+						for userCat in userCats {
+							let catExistsInBusinessFilter = businessCats.contains(userCat)
+							if catExistsInBusinessFilter {
+								categoryMatch = true
+								break
+							}
+						}
+					}
+				}
+				
+				//MAKE FINAL SAY
                 
-                
-                var checkCategoryArray = false
-                
-                if category.keys.contains("primaryCategory") {
-                    //categories
-                    if first.keys.contains("categories") {
-                        
-                        if let userCategoryArray = first["categories"] as? [String] {
-                            
-                            for userCategoryValue in userCategoryArray {
-                                
-                                let offerCategory = category["primaryCategory"] as! [String]
-                                
-                                if offerCategory.contains(userCategoryValue ){
-                                    checkCategoryArray = true
-                                    break
-                                }
-                                
-                            }
-                            
-                        }
-                        
-                    }
-                    
-                }else{
-                    checkCategoryArray = true
-                }
-                
-                
-                if checkStatus == true && checkCategoryArray == true {
-                    userIDs.append(first["id"] as! String)
-                    user.append(User.init(dictionary: first))
+                if categoryMatch && genderMatch && locationMatch {
+                    user.append(User.init(dictionary: userData))
                 }
 				
 				//userIDs.shuffle()
@@ -503,15 +460,15 @@ func getFilteredInfluencers(category: [String:[AnyObject]],completion: @escaping
             let sortedPriority = user.sorted(by: { $0.priorityValue ?? 0 < $1.priorityValue ?? 0 })
             user.removeAll()
             user.append(contentsOf: sortedPriority)
-            completion(userIDs, "success", user)
+            completion("success", user)
         }else{
-            completion([], "error", nil)
+            completion("error", nil)
         }
 
         
     }, withCancel: { (error) in
         
-        completion([], "error", nil)
+        completion("error", nil)
         
     })
     
@@ -734,14 +691,15 @@ func parseTemplateOffer(offer: [String: AnyObject]) -> [Post] {
     let post = offer["posts"] as! [NSDictionary]
     for value in post {
         
-        let product = value["products"] as! [[String: AnyObject]]
         var productList = [Product]()
-        for productValue in product {
-            
-            let productInitialized = Product.init(dictionary: productValue)
-            productList.append(productInitialized)
-        }
-        
+		if let product = value["products"] as? [[String: AnyObject]] {
+			for productValue in product {
+				
+				let productInitialized = Product.init(dictionary: productValue)
+				productList.append(productInitialized)
+			}
+		}
+		
         let postInitialized = Post.init(image: "", instructions: value["instructions"] as? String ?? "", captionMustInclude: value["captionMustInclude"] as? String, products: productList, post_ID: value["post_ID"] as! String, PostType: value["PostType"] as! String, confirmedSince: value["confirmedSince"] as? Date, isConfirmed: (value["isConfirmed"] != nil), hashCaption: value["hashCaption"] as! String, status: value["status"] as? String ?? "")
         postValues.append(postInitialized)
     }

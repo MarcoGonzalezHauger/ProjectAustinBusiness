@@ -60,7 +60,7 @@
                                                     <constraint firstAttribute="width" constant="200" id="0N0-m4-2pR"/>
                                                     <constraint firstAttribute="height" constant="37" id="Yh1-6o-rGh"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="19"/>
+                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="21"/>
                                                 <state key="normal" title="Sign In"/>
                                                 <connections>
                                                     <action selector="signInActionWithSender:" destination="kAN-Z2-zIi" eventType="touchUpInside" id="gcT-iC-rde"/>
@@ -82,7 +82,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="dNE-MN-Z6C"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="join" secureTextEntry="YES" textContentType="password"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="kAN-Z2-zIi" id="4C8-7t-Sp5"/>
                                                 </connections>
@@ -120,6 +120,19 @@
                                                     <action selector="forgetPasswordActionWithSender:" destination="kAN-Z2-zIi" eventType="touchUpInside" id="Bzp-Kk-jly"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R6K-VY-grl">
+                                                <rect key="frame" x="357" y="184" width="37" height="37"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="R6K-VY-grl" secondAttribute="height" id="xyu-tW-0JM"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <state key="normal" title="Button" image="faceid">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default" weight="light"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="doBioAuth:" destination="kAN-Z2-zIi" eventType="touchUpInside" id="otI-hf-mev"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <gestureRecognizers/>
@@ -135,14 +148,17 @@
                                             <constraint firstAttribute="height" constant="241" id="N6u-wm-mRF"/>
                                             <constraint firstItem="DQE-sp-V2u" firstAttribute="trailing" secondItem="d6B-pg-KYm" secondAttribute="trailing" id="Nad-01-NCy"/>
                                             <constraint firstItem="cQU-jn-j0z" firstAttribute="leading" secondItem="d6B-pg-KYm" secondAttribute="leading" id="Pdj-O1-DOx"/>
+                                            <constraint firstItem="R6K-VY-grl" firstAttribute="trailing" secondItem="DQE-sp-V2u" secondAttribute="trailing" id="TVC-pg-Fme"/>
                                             <constraint firstItem="d6B-pg-KYm" firstAttribute="centerX" secondItem="6LX-WD-eKn" secondAttribute="centerX" id="Ueg-bu-SaM"/>
                                             <constraint firstItem="Olb-Pw-Pa0" firstAttribute="top" secondItem="DQE-sp-V2u" secondAttribute="bottom" constant="2" id="ZqQ-bc-K6B"/>
                                             <constraint firstItem="Olb-Pw-Pa0" firstAttribute="leading" secondItem="DQE-sp-V2u" secondAttribute="leading" id="c2s-bK-Eq8"/>
                                             <constraint firstItem="cQU-jn-j0z" firstAttribute="trailing" secondItem="d6B-pg-KYm" secondAttribute="trailing" id="dqW-jE-zzo"/>
                                             <constraint firstItem="Olb-Pw-Pa0" firstAttribute="trailing" secondItem="DQE-sp-V2u" secondAttribute="trailing" id="eHc-LJ-7dZ"/>
                                             <constraint firstItem="2gX-5m-jaf" firstAttribute="top" secondItem="Khy-nN-kM2" secondAttribute="bottom" constant="34" id="jq3-U4-wjM"/>
+                                            <constraint firstItem="R6K-VY-grl" firstAttribute="centerY" secondItem="2gX-5m-jaf" secondAttribute="centerY" id="kmZ-l6-KyV"/>
                                             <constraint firstItem="Khy-nN-kM2" firstAttribute="top" secondItem="Olb-Pw-Pa0" secondAttribute="bottom" constant="8" id="rxR-jP-vaN"/>
                                             <constraint firstItem="d6B-pg-KYm" firstAttribute="leading" secondItem="6LX-WD-eKn" secondAttribute="leading" constant="20" id="tD1-Nh-ySg"/>
+                                            <constraint firstItem="R6K-VY-grl" firstAttribute="height" secondItem="2gX-5m-jaf" secondAttribute="height" id="u9P-B8-PWT"/>
                                             <constraint firstItem="cQU-jn-j0z" firstAttribute="centerX" secondItem="6LX-WD-eKn" secondAttribute="centerX" id="wca-Hj-OzA"/>
                                             <constraint firstAttribute="trailing" secondItem="d6B-pg-KYm" secondAttribute="trailing" constant="20" id="xT3-VY-7eG"/>
                                             <constraint firstItem="DQE-sp-V2u" firstAttribute="top" secondItem="d6B-pg-KYm" secondAttribute="bottom" constant="28" id="zqD-yP-TnG"/>
@@ -199,6 +215,7 @@
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="f3d-aR-uS6"/>
                     <connections>
+                        <outlet property="bioAuthButton" destination="R6K-VY-grl" id="5OT-5L-jif"/>
                         <outlet property="emailText" destination="d6B-pg-KYm" id="4pJ-1i-59u"/>
                         <outlet property="forgetButton" destination="Khy-nN-kM2" id="nMa-Dw-tYU"/>
                         <outlet property="passwordText" destination="DQE-sp-V2u" id="1hv-Dr-mwd"/>
@@ -251,7 +268,7 @@
                                             <constraint firstAttribute="height" constant="34" id="Jii-nc-eap"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="email"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" textContentType="email"/>
                                         <connections>
                                             <outlet property="delegate" destination="egL-yc-bQC" id="Eb1-By-8Hy"/>
                                         </connections>
@@ -356,7 +373,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1P8-al-bFV">
+                            <scrollView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="1P8-al-bFV">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nap-qC-YiL">
@@ -378,8 +395,9 @@
                                                     <constraint firstAttribute="height" constant="30" id="2wo-y9-e3u"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits" textContentType="email"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="email"/>
                                                 <connections>
+                                                    <action selector="nextButtonClicked:" destination="rtC-H4-P1t" eventType="primaryActionTriggered" id="6Rm-q3-W4D"/>
                                                     <outlet property="delegate" destination="kAN-Z2-zIi" id="wNt-bs-HRX"/>
                                                 </connections>
                                             </textField>
@@ -399,8 +417,9 @@
                                                     <constraint firstAttribute="height" constant="30" id="6Iy-YE-uhy"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="join" secureTextEntry="YES" textContentType="password"/>
                                                 <connections>
+                                                    <action selector="joinButtonPressed:" destination="rtC-H4-P1t" eventType="primaryActionTriggered" id="mux-8N-Bo5"/>
                                                     <outlet property="delegate" destination="kAN-Z2-zIi" id="UQv-fG-OiI"/>
                                                 </connections>
                                             </textField>
@@ -434,6 +453,7 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="Nap-qC-YiL" firstAttribute="trailing" secondItem="cK0-zh-faH" secondAttribute="trailing" id="5jy-bW-V4d"/>
                                     <constraint firstItem="Nap-qC-YiL" firstAttribute="top" secondItem="nvk-Jf-aF8" secondAttribute="bottom" constant="67" id="8xg-lq-exe"/>
@@ -445,6 +465,9 @@
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="RX6-Zs-NuS"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="cK0-zh-faH"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="8jN-D0-1qQ" appends="YES" id="WUw-Fc-DUh"/>
+                                </connections>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4df-iX-jpF">
                                 <rect key="frame" x="10" y="792" width="394" height="60"/>
@@ -501,6 +524,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HQv-My-BLc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="8jN-D0-1qQ">
+                    <connections>
+                        <action selector="stopEditing:" destination="rtC-H4-P1t" id="Sm1-jQ-3XF"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1813.0434782608697" y="143.30357142857142"/>
         </scene>
@@ -525,5 +553,6 @@
     </scenes>
     <resources>
         <image name="BusinsessSignIn" width="400" height="400"/>
+        <image name="faceid" width="150" height="150"/>
     </resources>
 </document>

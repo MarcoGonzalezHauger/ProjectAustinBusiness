@@ -63,6 +63,7 @@
 		E84600872273AF9100CF60F2 /* ImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84600862273AF9100CF60F2 /* ImageViewExtensions.swift */; };
 		E846008A2273B0B300CF60F2 /* Savvy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84600892273B0B300CF60F2 /* Savvy.swift */; };
 		E8769168236F9A8A0026E07D /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8769166236F9A830026E07D /* LocalAuthentication.framework */; };
+		E878E6EF237B846D00D25553 /* tutorial.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E878E6EE237B846D00D25553 /* tutorial.mp4 */; };
 		E89C83682277A49400124420 /* ViewProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C83672277A49400124420 /* ViewProductVC.swift */; };
 		E8C3694222161B3000AE12D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C3694122161B3000AE12D7 /* AppDelegate.swift */; };
 		E8C3694422161B3000AE12D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C3694322161B3000AE12D7 /* ViewController.swift */; };
@@ -70,12 +71,16 @@
 		E8C3694A22161B3000AE12D7 /* Ambassadoor_Business.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E8C3694822161B3000AE12D7 /* Ambassadoor_Business.xcdatamodeld */; };
 		E8C3694C22161B3200AE12D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8C3694B22161B3200AE12D7 /* Assets.xcassets */; };
 		E8C3694F22161B3200AE12D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8C3694D22161B3200AE12D7 /* LaunchScreen.storyboard */; };
+		E8C708C423763EAA001699D0 /* GeolocationTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C708C323763EA9001699D0 /* GeolocationTools.swift */; };
+		E8C708C7237645EB001699D0 /* FilterTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C708C6237645EB001699D0 /* FilterTypeVC.swift */; };
+		E8C708C923764C51001699D0 /* SelectStatesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C708C823764C51001699D0 /* SelectStatesVC.swift */; };
 		E8E54685227BA19C00775A07 /* ViewCompanyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E54684227BA19C00775A07 /* ViewCompanyVC.swift */; };
 		E8E54687227BA1D600775A07 /* EditCompanyTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E54686227BA1D600775A07 /* EditCompanyTVC.swift */; };
 		E8E54689227BA3E800775A07 /* YourCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E54688227BA3E800775A07 /* YourCompany.swift */; };
 		E8E5468C227BC9E900775A07 /* StatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E5468B227BC9E900775A07 /* StatsVC.swift */; };
 		E8F8AAC922C8492D0047BF5E /* ViewOffersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F8AAC822C8492D0047BF5E /* ViewOffersVC.swift */; };
-		E8F8AACB22C981390047BF5E /* Changes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E8F8AACA22C981390047BF5E /* Changes.rtf */; };
+		E8FC176223778D9700245932 /* LocationPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC176123778D9700245932 /* LocationPicker.swift */; };
+		E8FC17642377A70100245932 /* SelectRadiiVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC17632377A70100245932 /* SelectRadiiVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -137,6 +142,7 @@
 		E84600862273AF9100CF60F2 /* ImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtensions.swift; sourceTree = "<group>"; };
 		E84600892273B0B300CF60F2 /* Savvy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Savvy.swift; sourceTree = "<group>"; };
 		E8769166236F9A830026E07D /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		E878E6EE237B846D00D25553 /* tutorial.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = tutorial.mp4; sourceTree = "<group>"; };
 		E89C83672277A49400124420 /* ViewProductVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProductVC.swift; sourceTree = "<group>"; };
 		E8B08C244165BD27DA5136C1 /* Pods_Ambassadoor_Business.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ambassadoor_Business.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8C3693E22161B3000AE12D7 /* Ambassadoor Business.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ambassadoor Business.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,12 +153,16 @@
 		E8C3694B22161B3200AE12D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E8C3694E22161B3200AE12D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E8C3695022161B3200AE12D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E8C708C323763EA9001699D0 /* GeolocationTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeolocationTools.swift; sourceTree = "<group>"; };
+		E8C708C6237645EB001699D0 /* FilterTypeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTypeVC.swift; sourceTree = "<group>"; };
+		E8C708C823764C51001699D0 /* SelectStatesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStatesVC.swift; sourceTree = "<group>"; };
 		E8E54684227BA19C00775A07 /* ViewCompanyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCompanyVC.swift; sourceTree = "<group>"; };
 		E8E54686227BA1D600775A07 /* EditCompanyTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCompanyTVC.swift; sourceTree = "<group>"; };
 		E8E54688227BA3E800775A07 /* YourCompany.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourCompany.swift; sourceTree = "<group>"; };
 		E8E5468B227BC9E900775A07 /* StatsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsVC.swift; sourceTree = "<group>"; };
 		E8F8AAC822C8492D0047BF5E /* ViewOffersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewOffersVC.swift; sourceTree = "<group>"; };
-		E8F8AACA22C981390047BF5E /* Changes.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Changes.rtf; sourceTree = "<group>"; };
+		E8FC176123778D9700245932 /* LocationPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPicker.swift; sourceTree = "<group>"; };
+		E8FC17632377A70100245932 /* SelectRadiiVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRadiiVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,13 +194,6 @@
 				795D821481779CC29C258337 /* Pods-Ambassadoor Business.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		B7551F2222F9859C001C4974 /* Category */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Category;
 			sourceTree = "<group>";
 		};
 		B7551F2922F98817001C4974 /* DataPickerClasses */ = {
@@ -245,6 +248,7 @@
 				C05FE2DA225F687C002D3CAA /* global.swift */,
 				C0C9390522614AE3003DC925 /* InstagramAPI.swift */,
 				C0FBFD00226154FC00BADDCD /* categories.swift */,
+				E8C708C323763EA9001699D0 /* GeolocationTools.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -328,11 +332,9 @@
 		E8C3694022161B3000AE12D7 /* Ambassadoor Business */ = {
 			isa = PBXGroup;
 			children = (
-				E8F8AACA22C981390047BF5E /* Changes.rtf */,
 				B7D030AD23237CA4002B90FF /* Ambassadoor Business-Bridging-Header.h */,
 				E8E54688227BA3E800775A07 /* YourCompany.swift */,
 				B7C9FE8B231E485E005580E4 /* Plaid */,
-				B7551F2222F9859C001C4974 /* Category */,
 				E8F8AAC722C8485A0047BF5E /* Offers */,
 				E816AC202282F34000B9D951 /* Money */,
 				E83F378B227CDEBA00BA6688 /* Sign Up */,
@@ -343,11 +345,13 @@
 				E846007E2273A5F800CF60F2 /* Resources */,
 				C089A3C32253D4C900ECF3B0 /* Model */,
 				B7FD83E522F07DD900347E8E /* TableviewCell */,
+				E8C708C5237645B5001699D0 /* Location Picker */,
 				B799227422F16F1E007E84B0 /* CollectionCell */,
 				E8C3694322161B3000AE12D7 /* ViewController.swift */,
 				B750E78422E5B75F00024CB1 /* Onboarding.storyboard */,
 				E8C3694122161B3000AE12D7 /* AppDelegate.swift */,
 				E8C3694522161B3000AE12D7 /* Main.storyboard */,
+				E878E6EE237B846D00D25553 /* tutorial.mp4 */,
 				E83D9A38226A20B6007BDD97 /* GoogleService-Info.plist */,
 				E8C3694B22161B3200AE12D7 /* Assets.xcassets */,
 				E8C3694D22161B3200AE12D7 /* LaunchScreen.storyboard */,
@@ -355,6 +359,17 @@
 				E8C3694822161B3000AE12D7 /* Ambassadoor_Business.xcdatamodeld */,
 			);
 			path = "Ambassadoor Business";
+			sourceTree = "<group>";
+		};
+		E8C708C5237645B5001699D0 /* Location Picker */ = {
+			isa = PBXGroup;
+			children = (
+				E8C708C6237645EB001699D0 /* FilterTypeVC.swift */,
+				E8C708C823764C51001699D0 /* SelectStatesVC.swift */,
+				E8FC176123778D9700245932 /* LocationPicker.swift */,
+				E8FC17632377A70100245932 /* SelectRadiiVC.swift */,
+			);
+			path = "Location Picker";
 			sourceTree = "<group>";
 		};
 		E8E54683227BA16C00775A07 /* Company */ = {
@@ -404,7 +419,6 @@
 				E8C3693B22161B3000AE12D7 /* Frameworks */,
 				E8C3693C22161B3000AE12D7 /* Resources */,
 				D1CC777ECFFC90FA5FE945A2 /* [CP] Embed Pods Frameworks */,
-				B7C9FE90231E48F7005580E4 /* Prepare for Distribution */,
 			);
 			buildRules = (
 			);
@@ -455,11 +469,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8C3694F22161B3200AE12D7 /* LaunchScreen.storyboard in Resources */,
+				E878E6EF237B846D00D25553 /* tutorial.mp4 in Resources */,
 				B712C487230690B500728758 /* ProductListCell.xib in Resources */,
 				B7551F2F22F99B01001C4974 /* BasePicker.xib in Resources */,
 				B7FD83ED22F0870F00347E8E /* PostDetailTC.xib in Resources */,
 				E83D9A39226A20B6007BDD97 /* GoogleService-Info.plist in Resources */,
-				E8F8AACB22C981390047BF5E /* Changes.rtf in Resources */,
 				B7FD83E922F0844C00347E8E /* AddPostTC.xib in Resources */,
 				B750E78522E5B75F00024CB1 /* Onboarding.storyboard in Resources */,
 				E8C3694C22161B3200AE12D7 /* Assets.xcassets in Resources */,
@@ -487,24 +501,6 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
-		};
-		B7C9FE90231E48F7005580E4 /* Prepare for Distribution */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Prepare for Distribution";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nLINK_ROOT=${PODS_ROOT:+$PODS_ROOT/Plaid/ios}\ncp \"${LINK_ROOT:-$PROJECT_DIR}\"/LinkKit.framework/prepare_for_distribution.sh \"${CODESIGNING_FOLDER_PATH}\"/Frameworks/LinkKit.framework/prepare_for_distribution.sh\n\"${CODESIGNING_FOLDER_PATH}\"/Frameworks/LinkKit.framework/prepare_for_distribution.sh\n";
 		};
 		D1CC777ECFFC90FA5FE945A2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -535,6 +531,7 @@
 				E80B060622A07EA1002B9699 /* DepositVC.swift in Sources */,
 				B706CB4D22E5F3310092FB77 /* SignInVC.swift in Sources */,
 				B7B11FF723242638006711BB /* ConnectedPlaidTVCell.swift in Sources */,
+				E8C708C7237645EB001699D0 /* FilterTypeVC.swift in Sources */,
 				B7BD39BB22FAAB53008A0496 /* CategoryTVC.swift in Sources */,
 				B706CB5122E60DC20092FB77 /* ForgetPasswordVC.swift in Sources */,
 				B7FD83E722F07E1800347E8E /* AddPostTC.swift in Sources */,
@@ -549,6 +546,7 @@
 				B788D6F422E8931100FA59BA /* RegisterCompanyVC.swift in Sources */,
 				C05FE2DB225F687C002D3CAA /* global.swift in Sources */,
 				E816AC222282F3E200B9D951 /* MoneyVC.swift in Sources */,
+				E8C708C923764C51001699D0 /* SelectStatesVC.swift in Sources */,
 				B712C485230690A700728758 /* ProductListCell.swift in Sources */,
 				E84600872273AF9100CF60F2 /* ImageViewExtensions.swift in Sources */,
 				E8F8AAC922C8492D0047BF5E /* ViewOffersVC.swift in Sources */,
@@ -557,6 +555,7 @@
 				B72CB50A22E7024500958AE0 /* UIViewExtension.swift in Sources */,
 				E80B060822A07F63002B9699 /* WithdrawVC.swift in Sources */,
 				B7C9FE8F231E4870005580E4 /* PlaidHelper.swift in Sources */,
+				E8FC176223778D9700245932 /* LocationPicker.swift in Sources */,
 				E84600802273A65600CF60F2 /* StandardNC.swift in Sources */,
 				B712C4892306B6C900728758 /* WebVC.swift in Sources */,
 				C0FBFD01226154FC00BADDCD /* categories.swift in Sources */,
@@ -567,6 +566,7 @@
 				B7D42099232A9F40009F0FCE /* TransactionInfoTVCell.swift in Sources */,
 				E84600852273A92A00CF60F2 /* BusinessLabel.swift in Sources */,
 				B7C58569234DED3600EB90BB /* InstagramUserTVC.swift in Sources */,
+				E8FC17642377A70100245932 /* SelectRadiiVC.swift in Sources */,
 				B761DA242321352100587F28 /* DwollaUserInformationVC.swift in Sources */,
 				B72CB50822E6E8C100958AE0 /* BaseVC.swift in Sources */,
 				B7FD83E322F072F800347E8E /* AddOfferVC.swift in Sources */,
@@ -574,6 +574,7 @@
 				B79308FE23015C3E001BB47A /* DistributeOfferVC.swift in Sources */,
 				B7FD83EB22F0866B00347E8E /* PostDetailTC.swift in Sources */,
 				E846008A2273B0B300CF60F2 /* Savvy.swift in Sources */,
+				E8C708C423763EAA001699D0 /* GeolocationTools.swift in Sources */,
 				B79B1D2E22F2EE8D00F3C660 /* DateFormatManager.swift in Sources */,
 				E8E54687227BA1D600775A07 /* EditCompanyTVC.swift in Sources */,
 				B7C9FE8E231E4870005580E4 /* PlaidLinkEnabledVC.swift in Sources */,
@@ -734,8 +735,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = BlueIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = F4W3LUKZFA;
 				INFOPLIST_FILE = "Ambassadoor Business/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -743,9 +746,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ambassadoor.company;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Ambassadoor Business";
 				PROVISIONING_PROFILE_SPECIFIER = OctoberProfile;
 				SWIFT_OBJC_BRIDGING_HEADER = "Ambassadoor Business/Ambassadoor Business-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -760,8 +763,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = BlueIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = F4W3LUKZFA;
 				INFOPLIST_FILE = "Ambassadoor Business/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -769,9 +774,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ambassadoor.company;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Ambassadoor Business";
 				PROVISIONING_PROFILE_SPECIFIER = OctoberProfile;
 				SWIFT_OBJC_BRIDGING_HEADER = "Ambassadoor Business/Ambassadoor Business-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;

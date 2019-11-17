@@ -41,7 +41,41 @@ class MoneyField: UITextField, UITextFieldDelegate {
 		
 		return false
 	}
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+      self.resignFirstResponder()
+      return true;
+    }
 	
+//    func resign() {
+//        self.resignFirstResponder()
+//    }
+    
+//    func addDoneNativeButtonOnKeyboard()
+//    {
+//        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+//        doneToolbar.barStyle = UIBarStyle.default
+//
+//        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+//        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: #selector(self.doneNativeButtonAction))
+//
+//        let items = [flexSpace,done]
+//        //        items.addObject(flexSpace)
+//        //        items.addObject(done)
+//
+//        doneToolbar.items = items
+//        doneToolbar.sizeToFit()
+//
+//        self.inputAccessoryView = doneToolbar
+//
+//
+//    }
+    
+//    @objc func doneNativeButtonAction(){
+//
+//        self.endEditing(true)
+//    }
+    
 	func updateAmount() -> String? {
 		let formatter = NumberFormatter()
 		formatter.numberStyle = .currency

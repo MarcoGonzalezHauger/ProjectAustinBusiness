@@ -28,33 +28,7 @@ class ShadowView: UIView {
     @IBInspectable var ShadowRadius: Float = 1.75 { didSet { DrawShadows() } }
     @IBInspectable var ShadowColor: UIColor = UIColor.black { didSet { DrawShadows() } }
     @IBInspectable var borderWidth: Float = 0.0 { didSet { DrawShadows() }}
-    @IBInspectable var borderColor: UIColor = UIColor.black { didSet { DrawShadows() }}
-    //    @IBInspectable
-    //    var borderWidth: CGFloat {
-    //        get {
-    //            return layer.borderWidth
-    //        }
-    //        set {
-    //            layer.borderWidth = newValue
-    //        }
-    //    }
-    //
-    //    @IBInspectable
-    //    var borderColor: UIColor? {
-    //        get {
-    //            if let color = layer.borderColor {
-    //                return UIColor(cgColor: color)
-    //            }
-    //            return nil
-    //        }
-    //        set {
-    //            if let color = newValue {
-    //                layer.borderColor = color.cgColor
-    //            } else {
-    //                layer.borderColor = nil
-    //            }
-    //        }
-    //    }
+	@IBInspectable var borderColor: UIColor = UIColor.black { didSet { DrawShadows() } }
     
     func DrawShadows() {
         //draw shadow & rounded corners for offer cell
@@ -121,7 +95,7 @@ class Offer: NSObject {
 class TemplateOffer: Offer {
     var targetCategories: [String]
     var category: [String]
-    var zipCodes: [String]
+    var locationFilter: String
     var genders: [String]
     var user_IDs: [String]
 	var title: String
@@ -135,55 +109,79 @@ class TemplateOffer: Offer {
 		}
 		self.category = dictionary["category"] as! [String]
 		self.title = dictionary["title"] as! String
-        self.zipCodes = dictionary["zipCodes"] as! [String]
+        self.locationFilter = dictionary["locationFilter"] as? String ?? ""
         self.genders = dictionary["genders"] as! [String]
         self.user_IDs = dictionary["user_IDs"] as? [String] ?? []
         self.status = dictionary["status"] as! String
         super.init(dictionary: dictionary)
     }
+	
+	func GetSummary() -> String {
+		var lines: [String] = []
+		if self.posts.count == 1 {
+			lines.append("This Offer has 1 Post.")
+		} else {
+			lines.append("This Offer has \(self.posts.count) Posts:")
+		}
+		var index = 1
+		for post in self.posts {
+			let sText = post.products!.count == 1 ? "product" : "products"
+			lines.append("• Post #\(index): '#\(post.hashCaption)'")
+			index += 1
+		}
+		lines.append("")
+		lines.append("Has been sent to \(user_IDs.count) influencer\(user_IDs.count != 1 ? "s" : "").")
+		return lines.joined(separator: "\n")
+	}
 }
 
 //Strcuture for users
 class User: NSObject {
     
-    let name: String?
-		let username: String
-		let followerCount: Double
-		let profilePicURL: String?
-		let averageLikes: Double?
-		var zipCode: String?
-		let id: String
-		var gender: Gender?
-		var isBankAdded: Bool
-		var joinedDate: String?
-		var categories: [String]?
-		var referralcode: String
-		var accountBalance: Double?
-		var isDefaultOfferVerify: Bool
-		var priorityValue: Int?
-		
-		init(dictionary: [String: Any]) {
-			self.name = dictionary["name"] as? String
-			self.username = dictionary["username"] as! String
-			self.followerCount = dictionary["followerCount"] as! Double
-			if (dictionary["profilePicture"] as? String ?? "") == "" {
-				self.profilePicURL = nil
-			} else {
-				self.profilePicURL = dictionary["profilePicture"] as? String
-			}
-			self.averageLikes = dictionary["averageLikes"] as? Double
-			self.zipCode = dictionary["zipCode"] as? String
-			self.id = dictionary["id"] as! String
-			self.gender = dictionary["gender"] as? Gender
-			self.isBankAdded = dictionary["isBankAdded"] as! Bool
-			self.joinedDate = dictionary["joinedDate"] as? String
-			self.categories = dictionary["categories"] as? [String]
-
-			self.accountBalance = dictionary["yourMoney"] as? Double
-			self.referralcode = dictionary["referralcode"] as? String ?? ""
-			self.isDefaultOfferVerify = dictionary["isDefaultOfferVerify"] as? Bool ?? false
-			self.priorityValue = dictionary["priorityValue"] as? Int
+	let name: String?
+	let username: String
+	let followerCount: Double
+	let profilePicURL: String?
+	let averageLikes: Double?
+	var zipCode: String?
+	let id: String
+	var gender: String?
+	//var gender: Gender?
+	var isBankAdded: Bool
+	var joinedDate: String?
+	var categories: [String]?
+	var referralcode: String
+	var accountBalance: Double?
+	var isDefaultOfferVerify: Bool
+	var priorityValue: Int?
+	
+	init(dictionary: [String: Any]) {
+		self.name = dictionary["name"] as? String
+		self.username = dictionary["username"] as! String
+		self.followerCount = dictionary["followerCount"] as! Double
+		if (dictionary["profilePicture"] as? String ?? "") == "" {
+			self.profilePicURL = nil
+		} else {
+			self.profilePicURL = dictionary["profilePicture"] as? String
 		}
+		self.averageLikes = dictionary["averageLikes"] as? Double
+		self.zipCode = dictionary["zipCode"] as? String
+		self.id = dictionary["id"] as! String
+		self.gender = dictionary["gender"] as? String
+		//self.gender = dictionary["gender"] as? Gender
+		self.isBankAdded = dictionary["isBankAdded"] as! Bool
+		self.joinedDate = dictionary["joinedDate"] as? String
+		self.categories = dictionary["categories"] as? [String]
+		
+		self.accountBalance = dictionary["yourMoney"] as? Double
+		self.referralcode = dictionary["referralcode"] as? String ?? ""
+		self.isDefaultOfferVerify = dictionary["isDefaultOfferVerify"] as? Bool ?? false
+		self.priorityValue = dictionary["priorityValue"] as? Int
+	}
+	
+	func GetSummary() -> String {
+		return "\(username): with \(followerCount) followers. ZIP: \(zipCode ?? "nil")."
+	}
 }
 
 //Structure for post
@@ -199,20 +197,6 @@ struct Post {
     var isConfirmed: Bool
     var hashCaption: String
     var status: String
-    
-    
-//    init(image: String?,instructions: String,captionMustInclude: String?,products: [Product]?,post_ID: String,PostType: TypeofPost,confirmedSince: Date?,isConfirmed: Bool,hashCaption: String) {
-//
-//        self.image = image
-//        self.instructions = instructions
-//        self.captionMustInclude = captionMustInclude
-//        self.products = products
-//        self.post_ID = post_ID
-//        self.PostType = PostType
-//        self.confirmedSince = confirmedSince
-//        self.isConfirmed = isConfirmed
-//        self.hashCaption = hashCaption
-//    }
     
 }
 
@@ -316,14 +300,6 @@ class Statistics: NSObject {
     var userID: String = ""
     var offer: NSDictionary? = nil
     
-    
-//    init(dictionary: [String: Any]) {
-//
-//        self.offerID = dictionary["offerID"] as! String
-//        self.userID = dictionary["userID"] as! String
-//        self.offer = dictionary[]
-//    }
-    
 }
 
 class instagramOfferDetails: NSObject {
@@ -345,19 +321,6 @@ class DwollaCustomerInformation: NSObject {
     var isFSAdded = false
     var mask = ""
     var name = ""
-    
-//    init(dictionary: [String: Any]) {
-//
-//        self.acctID = dictionary["accountID"] as! String
-//        self.firstName = dictionary["firstname"] as! String
-//        self.lastName = dictionary["lastname"] as! String
-//        self.customerURL = dictionary["customerURL"] as! String
-//        self.customerFSURL = dictionary["customerFSURL"] as! String
-//        self.isFSAdded = dictionary["isFSAdded"] as! Bool
-//        self.mask = dictionary["mask"] as! String
-//        self.name = dictionary["name"] as! String
-//    }
-    
     
 }
 

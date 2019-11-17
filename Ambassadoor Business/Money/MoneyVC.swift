@@ -129,9 +129,14 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
         super.viewWillAppear(true)
         self.getDeepositDetails()
     }
+	
+	var shownBefore = false
     
     @objc func getDeepositDetails() {
-        accountBalance = 0.0
+		if !shownBefore {
+			accountBalance = 0.0
+			shownBefore = true
+		}
         let user = Singleton.sharedInstance.getCompanyUser()
         getDepositDetails(companyUser: user.userID!) { (deposit, status, error) in
             

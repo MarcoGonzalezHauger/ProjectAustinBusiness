@@ -22,7 +22,8 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
     @IBOutlet weak var increasePay: UITextField!
     @IBOutlet weak var moneyText: UITextField!
     @IBOutlet weak var scroll: UIScrollView!
-    
+	@IBOutlet weak var locationFilterSwitch: UISwitch!
+	
     @IBOutlet weak var commisionText: UILabel!
     
     var templateOffer: TemplateOffer?
@@ -66,12 +67,12 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
-        return 2.0
+        return 8.0
         
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 2.0
+        return 8.0
         
     }
     
@@ -87,7 +88,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
         // Do any additional setup after loading the view.
         let commission = Singleton.sharedInstance.getCommision() * 100
 		if commission == floor(commission) {
-			self.commisionText.text = "Ambassadoor will take \(floor(commission))%"
+			self.commisionText.text = "Ambassadoor will take \(Int(commission))%"
 		} else {
 			self.commisionText.text = "Ambassadoor will take \(commission)%"
 		}
@@ -97,10 +98,21 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
         self.offerName.text = templateOffer?.title
         
         self.influencersFilter["gender"] = templateOffer?.genders as AnyObject?
-        self.influencersFilter["primaryCategory"] = templateOffer?.category as AnyObject?
-        self.influencersFilter["zipCode"] = templateOffer?.zipCodes as AnyObject?
-        
+        self.influencersFilter["categories"] = templateOffer?.category as AnyObject?
         self.getDeepositDetails()
+		
+		
+		if let templateOffer = templateOffer {
+			GetZipsFromLocationFilter(locationFilter: templateOffer.locationFilter) { (zips1) in
+				self.zips = zips1
+				DispatchQueue.main.async {
+					if self.locationFilterSwitch.isOn {
+						self.influencersFilter["zipCode"] = zips1 as AnyObject?
+					}
+				}
+			}
+		}
+        
     }
     
     @objc func getDeepositDetails() {
@@ -117,39 +129,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
     
     func offerTextValue() {
         
-        if templateOffer!.posts.count >= 3 {
-            let offerOne = templateOffer!.posts[0]
-            let offerTwo = templateOffer!.posts[1]
-            let offerThree = templateOffer!.posts[2]
-            /*- Post one features 5 products
-             - Post two features 1 possible product
-             - Post three features 9 possible products
-             */
-            offerProducts.text = "- Post one features \(String(describing: offerOne.products!.count)) possible \(self.getProductContent(count: offerOne.products!.count)) \n- Post two features \(String(describing: offerTwo.products!.count)) possible \(self.getProductContent(count: offerTwo.products!.count)) \n- Post three features \(String(describing: offerThree.products!.count)) possible \(self.getProductContent(count: offerThree.products!.count))"
-        
-            }else if templateOffer!.posts.count == 2 {
-            let offerOne = templateOffer!.posts[0]
-            let offerTwo = templateOffer!.posts[1]
-            offerProducts.text = "- Post one features \(String(describing: offerOne.products!.count))  possible \(self.getProductContent(count: offerOne.products!.count)) \n- Post two features \(String(describing: offerTwo.products!.count)) possible \(self.getProductContent(count: offerTwo.products!.count))"
-        
-            }else if templateOffer!.posts.count == 1 {
-            let offerOne = templateOffer!.posts[0]
-            offerProducts.text = "- Post one features \(String(describing: offerOne.products!.count))  possible \(self.getProductContent(count: offerOne.products!.count))"
-        
-            }
-        
-    }
-    
-    func getProductContent(count: Int) -> String {
-        
-        if count > 1 {
-            
-            return "products"
-            
-        }else{
-            return "product"
-        }
-        
+		offerProducts.text = templateOffer!.GetSummary()
         
     }
     
@@ -200,17 +180,58 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
         scroll.contentInset = contentInset
     }
     
+	var zips: [String]?
+	
+	func GetZipsFromLocationFilter(locationFilter: String, completion: @escaping ([String]?) -> ()) {
+		switch locationFilter.components(separatedBy: ":")[0] {
+		case "nw":
+			completion(nil)
+		case "states":
+			let data = locationFilter.components(separatedBy: ":")[1]
+			var returnData: [String] = []
+			var index = 0
+			for stateName in data.components(separatedBy: ",") {
+				GetZipCodesInState(stateShortName: stateName) { (zips1) in
+					returnData.append(contentsOf: zips1)
+					index += 1
+					if index == data.components(separatedBy: ",").count {
+						completion(returnData)
+					}
+				}
+			}
+		case "radius":
+			let data1 = locationFilter.components(separatedBy: ":")[1]
+			var returnData: [String] = []
+			var index = 0
+			for data in data1.components(separatedBy: ",") {
+				let zip = data.components(separatedBy: "-")[0]
+				let radius = Int(data.components(separatedBy: "-")[1]) ?? 0
+				GetAllZipCodesInRadius(zipCode: zip, radiusInMiles: radius) { (returns, zip, radius) in
+					if let returns = returns {
+						returnData.append(contentsOf: returns.keys)
+					}
+					index += 1
+					if index >= data1.components(separatedBy: ",").count {
+						completion(returnData)
+					}
+				}
+			}
+		default:
+			completion(nil)
+		}
+	}
+	
     @objc override func doneButtonAction() {
         self.moneyText.resignFirstResponder()
     }
     
     @IBAction func changeSwitchAction(sender: UISwitch){
         if sender.tag == 100 {
-            
-            
             if sender.isOn {
                 self.influencersFilter.removeValue(forKey: "zipCode")
-                self.influencersFilter["zipCode"] = templateOffer?.zipCodes as AnyObject?
+				if let zips = zips {
+					self.influencersFilter["zipCode"] = zips as AnyObject?
+				}
                 
             }else{
                 self.influencersFilter.removeValue(forKey: "zipCode")
@@ -220,7 +241,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
             
             if sender.isOn {
                 self.influencersFilter.removeValue(forKey: "gender")
-                self.influencersFilter["gender"] = templateOffer?.zipCodes as AnyObject?
+                self.influencersFilter["gender"] = templateOffer?.genders as AnyObject?
             }else{
                 self.influencersFilter.removeValue(forKey: "gender")
             }
@@ -228,135 +249,134 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
         }else if sender.tag == 102 {
             
             if sender.isOn {
-                self.influencersFilter.removeValue(forKey: "primaryCategory")
-                self.influencersFilter["primaryCategory"] = templateOffer?.zipCodes as AnyObject?
+                self.influencersFilter.removeValue(forKey: "categories")
+                self.influencersFilter["categories"] = templateOffer?.category as AnyObject?
             }else{
-                self.influencersFilter.removeValue(forKey: "primaryCategory")
+                self.influencersFilter.removeValue(forKey: "categories")
             }
             
         }
         print(self.influencersFilter)
     }
-    
+	
+	func canDistribute(alertUser: Bool) -> Bool {
+		let offerAmount = Double((String((self.moneyText.text?.dropFirst())!)))!
+		if self.moneyText.text?.count != 0 {
+			if self.depositValue != nil {
+				if self.depositValue!.currentBalance != nil {
+					if (offerAmount < self.depositValue!.currentBalance!) {
+						return true
+					} else {
+						self.showAlertMessage(title: "Alert", message: "Please enter your offer amount below than deposit amount or deposit more money and try again!") {
+							
+						}
+					}
+				}
+			}else {
+				
+				self.showAlertMessage(title: "Deposit", message: "You must have money in your Ambassdaoor account to pay influnecers.") {
+					
+				}
+				
+			}
+			
+		}else{
+			self.showAlertMessage(title: "Enter Amount", message: "Enter how much money you would like to spend distributing your offer.") {
+				
+			}
+		}
+		return false
+	}
+	
+	@IBOutlet weak var DistributeButtonview: ShadowView!
+	
     @IBAction func distributeAction(sender: UIButton){
-        
-        if self.moneyText.text?.count != 0 {
-            
-            if self.depositValue != nil {
-                
-            if self.depositValue!.currentBalance != nil {
-            
-            var offerAmount = Double((String((self.moneyText.text?.dropFirst())!)))!
-            
-            if (offerAmount < self.depositValue!.currentBalance!) {
-            
-            
-                getFilteredInfluencers(category: self.influencersFilter as! [String : [AnyObject]]) { (influencer, errorStatus,userArray) in
-                
-                if influencer?.count != 0 {
-                    
-                    var extractedInfluencer = [User]()
-                    var extractedUserID = [String]()
-                    
-                    //MARK: Deducting Ambassadoor Commision
-                    if Singleton.sharedInstance.getCompanyDetails().referralcode?.count != 0 {
-                        
-                        self.ambassadoorCommision = offerAmount * Singleton.sharedInstance.getCommision()
-                        
-                        offerAmount = offerAmount - self.ambassadoorCommision
-                        
-                    }
-                    
-                    
-                    
-                    for (_,user) in zip(influencer!, userArray!) {
-                        
-                        if user.averageLikes != 0 && user.averageLikes != nil {
-                        
-                        //let influcerMoneyValue = ((Double(calculateCostForUser(offer: self.templateOffer!, user: user, increasePayVariable: self.increasePayVariable.rawValue)) * 100).rounded())/100
-                        //NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
-                        let influcerMoneyValue = calculateCostForUser(offer: self.templateOffer!, user: user, increasePayVariable: self.increasePayVariable.rawValue)
-                        
-                        if offerAmount >= influcerMoneyValue {
-                            
-                            if self.templateOffer?.user_IDs.count != 0 {
-                            
-                                if (self.templateOffer?.user_IDs.contains(user.id))!{
-                            
-                            
-                            }else{
-                                
-                                offerAmount -= influcerMoneyValue
-                                extractedInfluencer.append(user)
-                                extractedUserID.append(user.id)
-                                
-                            }
-                            }else{
-                                
-                                offerAmount -= influcerMoneyValue
-                                extractedInfluencer.append(user)
-                                extractedUserID.append(user.id)
-                                
-                            }
-                            
-                        }else{
-                            break
-                        }
-                    }
-                        
-                    }
-                    
-                    if extractedUserID.count != 0 {
-                        
-                        
-                        
-                        let totalDeductedAmount = Double(NumberToPrice(Value: (Double((String((self.moneyText.text?.dropFirst())!)))! - offerAmount), enforceCents: true).dropFirst())!
-                        
-                        
-                        
-                        self.sendOutOffers(influencer: extractedUserID, user: extractedInfluencer, deductedAmount: totalDeductedAmount)
-                        
-                    }else{
-                        self.showAlertMessage(title: "Alert", message: "Not enough influencers were found, please disable a filter for better results or increase the number of categories, zip codes, or genders you have set") {
-                            
-                        }
-                    }
-                    
-                    
-                }else{
-                    
-                    self.showAlertMessage(title: "Alert", message: "Not enough influencers were found, please disable a filter for better results or increase the number of categories, zip codes, or genders you have set") {
-                        
-                    }
-                    
-                }
-                
-            }
-            
-        }else{
-            self.showAlertMessage(title: "Alert", message: "Please enter your offer amount below than deposit amount or deposit more money and try again!") {
-                    
-                }
-        }
-            }else {
-                
-            }
-        }else {
-            
-                self.showAlertMessage(title: "Deposit", message: "You must have money in your Ambassdaoor account to pay influnecers.") {
-                    
-                }
-                
-        }
-            
-        }else{
-            self.showAlertMessage(title: "Enter Amount", message: "Enter how much money you would like to spend distributing your offer.") {
-                
-            }
-        }
-        
+		if canDistribute(alertUser: true) {
+			DistributeOffer()
+		} else {
+			YouShallNotPass(SaveButtonView: DistributeButtonview)
+		}
     }
-    
+	
+	var moneyAmount: Double = 0.0
+
+	func DistributeOffer() {
+		var error = false
+		guard var offerAmount = Double((String((self.moneyText.text?.dropFirst())!))) else {
+			MakeShake(viewToShake: moneyText)
+			YouShallNotPass(SaveButtonView: DistributeButtonview)
+			return
+			
+		}
+		
+		let originalAmount = offerAmount
+	
+		getFilteredInfluencers(category: self.influencersFilter as! [String : [AnyObject]]) { (errorStatus,userArray) in
+
+			if errorStatus == "error" {
+				self.showAlertMessage(title: "Error", message: "There was an error and you offer could not be distributed.") {}
+				return
+			}
+
+			print("INFLUENCERS FILTERED:", userArray!.count)
+			for user in userArray! {
+				print(user.GetSummary())
+			}
+
+			if userArray?.count != 0 {
+
+				var extractedInfluencer = [User]()
+				var extractedUserID = [String]()
+
+				//MARK: Deducting Ambassadoor Commision
+
+				if Singleton.sharedInstance.getCompanyDetails().referralcode?.count != 0 {
+					self.ambassadoorCommision = offerAmount * Singleton.sharedInstance.getCommision()
+					offerAmount -= self.ambassadoorCommision
+				}
+
+				for user in userArray! {
+
+					if user.averageLikes != 0 && user.averageLikes != nil {
+
+						//let influcerMoneyValue = ((Double(calculateCostForUser(offer: self.templateOffer!, user: user, increasePayVariable: self.increasePayVariable.rawValue)) * 100).rounded())/100
+						//NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
+						let influcerMoneyValue = calculateCostForUser(offer: self.templateOffer!, user: user, increasePayVariable: self.increasePayVariable.rawValue)
+
+						if offerAmount >= influcerMoneyValue {
+
+							if (self.templateOffer?.user_IDs.contains(user.id))! == false {
+								
+								offerAmount -= influcerMoneyValue
+								extractedInfluencer.append(user)
+								extractedUserID.append(user.id)
+								
+							}
+							
+						}
+					}
+					
+				}
+				
+				if extractedUserID.count != 0 {
+					
+					let totalDeductedAmount = originalAmount - offerAmount
+					
+					self.DistributeOffersWithFirebase(influencer: extractedUserID, user: extractedInfluencer, deductedAmount: totalDeductedAmount, originalAmount: originalAmount)
+					
+				} else {
+					error = true
+				}
+			} else {
+				error = true
+			}
+		}
+		if error {
+			YouShallNotPass(SaveButtonView: DistributeButtonview)
+			self.showAlertMessage(title: "Alert", message: "Not enough influencers were found, please disable a filter or add more range to your location, category, or gender filter.") {}
+		}
+	}
+	
     @IBAction func privacyAction(gesture: UITapGestureRecognizer){
         self.performSegue(withIdentifier: "toWebVC", sender: self)
     }
@@ -401,31 +421,24 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
         
     }
     
-    func sendOutOffers(influencer: [String]?,user: [User]?,deductedAmount: Double) {
+	func DistributeOffersWithFirebase(influencer: [String]?, user: [User]?, deductedAmount: Double, originalAmount: Double) {
         
-        self.ambassadoorCommision = Double((String((self.moneyText.text?.dropFirst())!)))! * Singleton.sharedInstance.getCommision()
+        self.ambassadoorCommision = originalAmount * Singleton.sharedInstance.getCommision()
         
-        self.templateOffer?.money = Double((String((self.moneyText.text?.dropFirst())!)))! - self.ambassadoorCommision
+        self.templateOffer?.money = originalAmount - self.ambassadoorCommision
+		
         let expiryDateAdded = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
         let dateString = DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: expiryDateAdded, format: "yyyy-MM-dd'T'HH:mm:ss")
         
         let expiryDate = DateFormatManager.sharedInstance.getExpiryDate(dateString: dateString)
         self.templateOffer?.expiredate = expiryDate
-        for influencerID in influencer! {
-            if (self.templateOffer?.user_IDs.contains(influencerID))!{
-                
-            }else{
-                
-                self.templateOffer?.user_IDs.append(influencerID)
-            }
-        }
-        
+		
         let path = Auth.auth().currentUser!.uid + "/" + self.templateOffer!.offer_ID
+		
         sentOutOffers(pathString: path, templateOffer: self.templateOffer!) { (template, status) in
             
             var cardDetails = [Any]()
-            
-            
+                        
             if status == true {
                 //for value in influencer! {
                 for (value, userValue) in zip(influencer!, user!) {
@@ -436,6 +449,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                         
                         template.money = Double(NumberToPrice(Value: calculateCostForUser(offer: self.templateOffer!, user: userValue, increasePayVariable: self.increasePayVariable.rawValue), enforceCents: true).dropFirst())!
                     cardDetails.append([value:["id":userValue.id,"amount":template.money,"toOffer":template.offer_ID,"name":userValue.name!,"gender":userValue.gender!,"averageLikes":userValue.averageLikes!]])
+						
                     UpdatePriorityValue(user: userValue)
                     completedOffersToUsers(pathString: patstring, templateOffer: template)
                         
@@ -502,7 +516,9 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
 //
 //                })
                 
-                self.showAlertMessage(title: "Offer Distrubuted", message: "Your offer was sent to \(influencer?.count ?? 0) influencers, totaling $\(deductedAmount).If you send this Offer again, Ambassadoor will not send this offer to these influencer again.") {
+				
+				
+                self.showAlertMessage(title: "Offer Distrubuted", message: "Your offer was sent to \(influencer?.count ?? 0) influencers, totaling \(NumberToPrice(Value: deductedAmount, enforceCents: true)). If you send this Offer again, Ambassadoor will not resend the offer to influencers who already recieved it.") {
                     global.post.removeAll()
                     self.createLocalNotification(notificationName: "reloadOffer", userInfo: [:])
                     self.navigationController?.popToRootViewController(animated: true)
@@ -513,16 +529,5 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
         }
         
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

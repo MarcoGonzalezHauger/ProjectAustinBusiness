@@ -42,35 +42,16 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
 			cell.offerName.text = thisTemplate.title
             cell.editButton.addTarget(self, action: #selector(self.editAction(sender:)), for: .touchUpInside)
             cell.editButton.tag = indexPath.row - 1
-            if thisTemplate.posts.count >= 3 {
-                let offerOne = thisTemplate.posts[0]
-                let offerTwo = thisTemplate.posts[1]
-                let offerThree = thisTemplate.posts[2]
-                /*- Post one features 5 products
-                 - Post two features 1 possible product
-                 - Post three features 9 possible products
-                 */
-                cell.postDetails.text = "- Post one features \(String(describing: offerOne.products!.count)) possible \(self.getProductContent(count: offerOne.products!.count)) \n- Post two features \(String(describing: offerTwo.products!.count)) possible \(self.getProductContent(count: offerTwo.products!.count)) \n- Post three features \(String(describing: offerThree.products!.count)) possible \(self.getProductContent(count: offerThree.products!.count))"
-                
-            }else if thisTemplate.posts.count == 2 {
-                let offerOne = thisTemplate.posts[0]
-                let offerTwo = thisTemplate.posts[1]
-                cell.postDetails.text = "- Post one features \(String(describing: offerOne.products!.count))  possible \(self.getProductContent(count: offerOne.products!.count)) \n- Post two features \(String(describing: offerTwo.products!.count)) possible \(self.getProductContent(count: offerTwo.products!.count))"
-                
-            }else if thisTemplate.posts.count == 1 {
-                let offerOne = thisTemplate.posts[0]
-                cell.postDetails.text = "- Post one features \(String(describing: offerOne.products!.count))  possible \(self.getProductContent(count: offerOne.products!.count))"
-                
-            }
+			cell.postDetails.text = thisTemplate.GetSummary()
 			return cell
 		}
 	}
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         if indexPath.row == 0 {
-			return 66
+			return 80
         }
-		return 276.0
+		return 276
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
@@ -89,21 +70,7 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         let template = global.OfferDrafts[sender.tag]
         self.performSegue(withIdentifier: "toCreateOfferView", sender: template)
     }
-    
-    func getProductContent(count: Int) -> String {
-        
-        if count > 1 {
-            
-            return "products"
-            
-        }else{
-            return "product"
-        }
-        
-        
-    }
-	
-
+     
 	@IBOutlet weak var shelf: UITableView!
     @IBOutlet weak var editButton: UIButton!
     var isEdit = false
@@ -117,19 +84,19 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        shelf.dataSource = self
-        shelf.delegate = self
-        self.navigationController?.navigationBar.isHidden = true
-        NotificationCenter.default.addObserver(self, selector: #selector(self.reloadOffer(notification:)), name: Notification.Name.init(rawValue: "reloadOffer"), object: nil)
-        getAllTemplateOffers(userID: Auth.auth().currentUser!.uid) { (templateOffers, status) in
-            if status == "success" && templateOffers.count != 0 {
-               global.OfferDrafts.removeAll()
-               global.OfferDrafts.append(contentsOf: templateOffers)
-               DispatchQueue.main.async(execute: {
-               self.shelf.reloadData()
-               })
-            }
-        }
+		shelf.dataSource = self
+		shelf.delegate = self
+		self.navigationController?.navigationBar.isHidden = true
+		NotificationCenter.default.addObserver(self, selector: #selector(self.reloadOffer(notification:)), name: Notification.Name.init(rawValue: "reloadOffer"), object: nil)
+		getAllTemplateOffers(userID: Auth.auth().currentUser!.uid) { (templateOffers, status) in
+			if status == "success" && templateOffers.count != 0 {
+				global.OfferDrafts.removeAll()
+				global.OfferDrafts.append(contentsOf: templateOffers)
+				DispatchQueue.main.async(execute: {
+					self.shelf.reloadData()
+				})
+			}
+		}
     }
     
     override func viewWillDisappear(_ animated: Bool) {

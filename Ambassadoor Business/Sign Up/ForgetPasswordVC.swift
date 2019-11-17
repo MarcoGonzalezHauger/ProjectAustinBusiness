@@ -22,20 +22,24 @@ class ForgetPasswordVC: BaseVC,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+		addDoneButtonOnKeyboard(textField: emailText)
 		
-		sendEmailButton.layer.cornerRadius = 6
+		sendEmailButton.layer.cornerRadius = 10
 		
         // Do any additional setup after loading the view.
     }
 	
-    @IBAction func Cancelled(_ sender: Any) { self.navigationController?.popViewController(animated: true)
+	override func doneButtonAction() {
+		emailText.resignFirstResponder()
+	}
+	
+    @IBAction func Cancelled(_ sender: Any) {
+		
+		self.navigationController?.popViewController(animated: true)
 	}
 	
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
-        
-        if (emailText != nil){
-            emailText.resignFirstResponder()
-        }
+		emailText.resignFirstResponder()
         return true
     }
     

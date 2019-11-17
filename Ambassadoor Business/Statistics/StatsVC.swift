@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 import SDWebImage
 
-class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
+class StatsVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var pieView: ShadowView!
     @IBOutlet weak var statisticDataView: UIView!
@@ -41,16 +41,6 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
         super.viewDidLoad()
 		view.bringSubviewToFront(statisticDataView)
 		self.statisticDataView.isHidden = false
-		//Temporary measure
-        
-        //self.sentOutReferralCommision(referral: "NJ200919HWE6")
-        
-        
-        
-		
-//        YourCompany = Company.init(dictionary: ["name": "KRILL GROUP", "logo": "", "mission": "Turn a profit.", "website": "https://www.google.com/", "account_ID": "0", "instagram_name": "marcogonzalezhauger", "description": "No description to see here!", "accountBalance": 1000.0])
-//		accountBalance = 610.78
-//		transactionHistory = [Transaction(description: "Despotied $620.77 into Ambassadoor", details: "Order processed.", time: Date.init(timeIntervalSinceNow: -10000), amount: 620.77),Transaction(description: "You paid $9.99", details: "Processed.", time: Date.init(timeIntervalSinceNow: 0), amount: -9.99)]
         
         if Singleton.sharedInstance.getCompanyUser().isCompanyRegistered == false {
             self.performSegue(withIdentifier: "toCompanyRegister", sender: self)
@@ -69,28 +59,16 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
 
 	}
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-//        if Singleton.sharedInstance.getCompanyUser().isCompanyRegistered == false {
-//            self.performSegue(withIdentifier: "toCompanyRegister", sender: self)
-//        }else{
-//
-//            let user = Singleton.sharedInstance.getCompanyUser().companyID!
-//
-//            getCompany(companyID: user) { (company, error) in
-//
-//                Singleton.sharedInstance.setCompanyDetails(company: company!)
-//            }
-            
-       // }
-        
-        //let timer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(self.getStatisticsTimerData), userInfo: nil, repeats: true)
-    }
-    
-    
+	override func viewDidAppear(_ animated: Bool) {
+		if showTutorialVideoOnShow {
+			playTutorialVideo(sender: self)
+			showTutorialVideoOnShow = false
+		}
+	}
+	
     @objc func getStatisticsTimerData(){
         
-        print("Hoooo")
+        print("GetSTatisticsTimerData() ran.")
         
         
         getStatisticsData { (statistics, status, error) in
@@ -112,49 +90,52 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
                 
                 for statisticsData in statistics! {
                     
-                    if statisticsData.offer != nil {
+                    if let offer = statisticsData.offer {
+						
+						let status = offer["status"] as! String
                         
-                        if statisticsData.offer!["status"] as! String == "accepted" {
+                        if status == "accepted" {
                             
                             self.accepted = self.accepted + 1
                             self.succeedOffers.append(statisticsData)
                             
-                        }else if statisticsData.offer!["status"] as! String == "rejected" {
+                        }else if status == "rejected" {
                             
                             self.rejected = self.rejected + 1
                             
-                        }else if statisticsData.offer!["status"] as! String == "paid" {
+                        }else if status == "paid" {
                             
                             self.paid = self.paid + 1
                             
-                        }else if statisticsData.offer!["status"] as! String == "allverified" {
+                        }else if status == "allverified" || status == "verified" {
                             
                             self.allVerified = self.allVerified + 1
                             
-                        }else if statisticsData.offer!["status"] as! String == "available" {
+                        }else if status == "available" {
                             
                             self.available = self.available + 1
-                        }
+						} else {
+							self.rejected = self.rejected + 1
+						}
                         
                     }else{
-                        
                         self.rejected = self.rejected + 1
                         
                     }
                     
                 }
                 
-                let acceptData = ((CGFloat(self.accepted)/CGFloat(statistics!.count) * 100)/100) * 154.0
-                let rejectData = ((CGFloat(self.rejected)/CGFloat(statistics!.count) * 100)/100) * 154.0
-                let paidData = ((CGFloat(self.paid)/CGFloat(statistics!.count) * 100)/100) * 154.0
-                let allverifiedData = ((CGFloat(self.allVerified)/CGFloat(statistics!.count) * 100)/100) * 154.0
-                let availableData = ((CGFloat(self.available)/CGFloat(statistics!.count) * 100)/100) * 154.0
+                let acceptData = 		CGFloat(self.accepted)
+                let rejectData = 		CGFloat(self.rejected)
+                let paidData = 			CGFloat(self.paid)
+                let allverifiedData = 	CGFloat(self.allVerified)
+                let availableData = 	CGFloat(self.available)
                 
-                self.acceptedText.text = String(self.accepted) + " Posts"
-                self.rejectedText.text = String(self.rejected) + " Posts"
-                self.paidText.text = String(self.paid) + " Posts"
-                self.allVerifiedText.text = String(self.allVerified) + " Posts"
-                self.availableText.text = String(self.available) + " Posts"
+				self.acceptedText.text = 	String(self.accepted) + " Post" + (self.accepted != 1 ? "s" : "")
+                self.rejectedText.text = 	String(self.rejected) + " Post" + (self.rejected != 1 ? "s" : "")
+                self.paidText.text = 		String(self.paid) + " Post" + (self.paid != 1 ? "s" : "")
+                self.allVerifiedText.text = String(self.allVerified) + " Post" + (self.allVerified != 1 ? "s" : "")
+                self.availableText.text = 	String(self.available) + " Post" + (self.available != 1 ? "s" : "")
                 
                 let pieChartView = StaticsPie()
                 pieChartView.frame = CGRect(x: 0, y: 0, width: self.pieView.frame.size.width, height: self.pieView.frame.size.height)
@@ -194,10 +175,16 @@ class StatsVC: BaseVC,UITableViewDataSource,UITableViewDelegate {
             }
             
         }
-
-        Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(self.getStatisticsTimerData), userInfo: nil, repeats: true)
+		
+		if !timercreated {
+			Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.getStatisticsTimerData), userInfo: nil, repeats: true)
+			timercreated = true
+		}
+        
         
     }
+	
+	var timercreated = false
     
     
     //MARK: UITableview Datasource
