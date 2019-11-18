@@ -431,6 +431,8 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
     
 	func DistributeOffersWithFirebase(influencer: [String]?, user: [User]?, deductedAmount: Double, originalAmount: Double) {
         
+        var userNotificationArray = [[String: Any]]()
+        
         self.ambassadoorCommision = originalAmount * Singleton.sharedInstance.getCommision()
         
         self.templateOffer?.money = originalAmount - self.ambassadoorCommision
@@ -467,6 +469,8 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                         
                         template.money = Double(NumberToPrice(Value: calculateCostForUser(offer: self.templateOffer!, user: userValue, increasePayVariable: self.increasePayVariable.rawValue), enforceCents: true).dropFirst())!
                     cardDetails.append([value:["id":userValue.id,"amount":template.money,"toOffer":template.offer_ID,"name":userValue.name!,"gender":userValue.gender!,"averageLikes":userValue.averageLikes!]])
+                    //Collecting Details For sending Push Notification to Influencers
+                    userNotificationArray.append(API.serializeUser(user: userValue,amount: template.money))
 						
                     UpdatePriorityValue(user: userValue)
                     completedOffersToUsers(pathString: patstring, templateOffer: template)
@@ -481,6 +485,9 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                 }
                 //let removeTemplatePath = Auth.auth().currentUser!.uid + "/" +  template.offer_ID
                 //removeTemplateOffers(pathString: removeTemplatePath, templateOffer: template)
+                let companyDetail = Singleton.sharedInstance.getCompanyDetails()
+                let params = ["tokens":userNotificationArray,"Owner":companyDetail.name,"offer": self.templateOffer!.title] as [String : AnyObject]
+                NetworkManager.sharedInstance.sendPushNotification(params: params)
                 var userIDValue = [String]()
                 var userIDDubValue = [String]()
                 for uderIDs in user! {
