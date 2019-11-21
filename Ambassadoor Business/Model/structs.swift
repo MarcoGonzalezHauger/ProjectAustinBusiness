@@ -256,7 +256,7 @@ class CompanyUser: NSObject {
     var refreshToken: String?
     var isCompanyRegistered: Bool?
     var companyID: String?
-    
+    var deviceFIRToken: String?
     
     init(dictionary: [String: Any]) {
         
@@ -266,6 +266,7 @@ class CompanyUser: NSObject {
         self.refreshToken = dictionary["refreshToken"] as? String
         self.isCompanyRegistered = dictionary["isCompanyRegistered"] as? Bool
         self.companyID = dictionary["companyID"] as? String
+        self.deviceFIRToken = dictionary["deviceFIRToken"] as? String ?? ""
     }
 }
 

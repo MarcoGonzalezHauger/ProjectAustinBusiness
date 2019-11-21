@@ -60,6 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 print("Error fetching remote instange ID: \(error)")
             } else if let result = result {
                 print("Remote instance ID token: \(result.token)")
+                global.deviceFIRToken = result.token;
                 //print("avvv=",InstanceID.instanceID().token()!)
             }
         }
@@ -212,6 +213,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     print("Error fetching remote instange ID: \(error)")
                 } else if let result = result {
                     print("Remote instance ID token: \(result.token)")
+                    global.deviceFIRToken = result.token;
                 }
             }
         }

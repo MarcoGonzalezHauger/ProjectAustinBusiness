@@ -137,6 +137,9 @@ struct API {
         offerData["category"] = offer.category
         offerData["title"] = offer.title
         offerData["status"] = offer.status
+        offerData["shouldRefund"] = false
+        offerData["didRefund"] = false
+        offerData["refundedOn"] = ""
         return offerData
     }
     
