@@ -507,6 +507,33 @@ class NetworkManager {
             
         }
     
+    func sendPushNotification(params: [String: AnyObject]){
+        
+        let urlString = "https://us-central1-amassadoor.cloudfunctions.net/" + "sendNotificationToUser"
+        
+        let url = URL(string: urlString)!
+        
+        let session = URLSession.shared
+        var request = URLRequest(url: url)
+        request.httpMethod = "Post"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.cachePolicy = URLRequest.CachePolicy.reloadIgnoringCacheData
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        let task = session.dataTask(with: request) { (data, response, error) in
+            
+            let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+            print("result=",dataString!)
+            
+        }
+        task.resume()
+    }
+    
     func getTransactionDetails(accessToken: String,url: String,completion: @escaping (_ status: String, _ error: String?, _ dataValue: Data?,_ response: URLResponse?) -> Void) {
         
         let urlString = url

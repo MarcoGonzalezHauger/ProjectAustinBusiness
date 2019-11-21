@@ -61,10 +61,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 print("Error fetching remote instange ID: \(error)")
             } else if let result = result {
                 print("Remote instance ID token: \(result.token)")
+                global.deviceFIRToken = result.token;
                 //print("avvv=",InstanceID.instanceID().token()!)
             }
         }
     }
+    
+    
 
     //Called if unable to register for APNS.
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -211,6 +214,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     print("Error fetching remote instange ID: \(error)")
                 } else if let result = result {
                     print("Remote instance ID token: \(result.token)")
+                    global.deviceFIRToken = result.token;
                 }
             }
         }

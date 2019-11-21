@@ -154,6 +154,7 @@ class User: NSObject {
 	var accountBalance: Double?
 	var isDefaultOfferVerify: Bool
 	var priorityValue: Int?
+    var tokenFIR: String?
 	
 	init(dictionary: [String: Any]) {
 		self.name = dictionary["name"] as? String
@@ -177,6 +178,7 @@ class User: NSObject {
 		self.referralcode = dictionary["referralcode"] as? String ?? ""
 		self.isDefaultOfferVerify = dictionary["isDefaultOfferVerify"] as? Bool ?? false
 		self.priorityValue = dictionary["priorityValue"] as? Int
+        self.tokenFIR = dictionary["tokenFIR"] as? String ?? ""
 	}
 	
 	func GetSummary() -> String {
@@ -254,7 +256,7 @@ class CompanyUser: NSObject {
     var refreshToken: String?
     var isCompanyRegistered: Bool?
     var companyID: String?
-    
+    var deviceFIRToken: String?
     
     init(dictionary: [String: Any]) {
         
@@ -264,6 +266,7 @@ class CompanyUser: NSObject {
         self.refreshToken = dictionary["refreshToken"] as? String
         self.isCompanyRegistered = dictionary["isCompanyRegistered"] as? Bool
         self.companyID = dictionary["companyID"] as? String
+        self.deviceFIRToken = dictionary["deviceFIRToken"] as? String ?? ""
     }
 }
 

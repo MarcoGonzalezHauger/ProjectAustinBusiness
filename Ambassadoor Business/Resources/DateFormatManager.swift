@@ -17,7 +17,8 @@ class DateFormatManager: NSObject {
     func getDateFormatterWithFormat(format: String) -> DateFormatter {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
-        dateFormatter.locale = NSLocale(localeIdentifier: kEnUsLocaleIdentifier) as Locale
+        //dateFormatter.locale = NSLocale(localeIdentifier: kEnUsLocaleIdentifier) as Locale
+        dateFormatter.timeZone = TimeZone(abbreviation: "EST")
         return dateFormatter
     }
     
@@ -53,6 +54,8 @@ class DateFormatManager: NSObject {
         
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "yyyy/MMM/dd HH:mm:ss"
+        //dateFormatterPrint.locale = NSLocale(localeIdentifier: kEnUsLocaleIdentifier) as Locale
+        dateFormatterPrint.timeZone = TimeZone(abbreviation: "EST")
         //dateFormatterPrint.dateFormat = "MMM, yyyy"
         
         let date = dateFormatterGet.date(from: dateString)

@@ -107,6 +107,14 @@ struct API {
 //        return userData
 //    }
     
+    static func serializeUser(user: User,amount: Double) -> [String: Any] {
+        
+        let user = ["username":user.username,"amount": amount, "id": user.id,"token":user.tokenFIR ?? ""] as [String: Any]
+        
+        return user
+        
+    }
+    
     static func serializePost(post: Post) -> [String: Any] {
         //                           Post.init(image: nil, instructions: desPost.text!, captionMustInclude: <#T##String?#>, products: <#T##[Product]?#>, post_ID: <#T##String#>, PostType: <#T##TypeofPost#>, confirmedSince: <#T##Date?#>, isConfirmed: <#T##Bool#>)
         var product = [[String: Any]]()
@@ -129,6 +137,9 @@ struct API {
         offerData["category"] = offer.category
         offerData["title"] = offer.title
         offerData["status"] = offer.status
+        offerData["shouldRefund"] = false
+        offerData["didRefund"] = false
+        offerData["refundedOn"] = ""
         return offerData
     }
     
