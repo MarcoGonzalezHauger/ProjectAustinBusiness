@@ -20,15 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	var window: UIWindow?
     
     override init() {
-        FirebaseApp.configure()
+		FirebaseApp.configure()
         Database.database().isPersistenceEnabled = false
 		InitializeZipCodeAPI(completed: nil)
     }
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
-        FirebaseApp.configure()
-        Database.database().isPersistenceEnabled = false
         InitializeZipCodeAPI(completed: nil)
         Stripe.setDefaultPublishableKey("pk_test_8Rwst6t9gr25jXYXC4NHmiZK001i78iYO7")
         //BTAppSwitch.setReturnURLScheme("com.develop.sns.paypal")
