@@ -139,6 +139,8 @@ struct API {
         offerData["status"] = offer.status
         offerData["shouldRefund"] = false
         offerData["didRefund"] = false
+        offerData["oneHrsNotify"] = false
+        offerData["sixHrsNotify"] = false
         offerData["refundedOn"] = ""
         return offerData
     }
