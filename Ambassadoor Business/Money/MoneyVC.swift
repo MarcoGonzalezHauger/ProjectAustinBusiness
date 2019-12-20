@@ -53,6 +53,8 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
 			//withdraw VC must appear.
 		}
 	}
+    
+    //MARK: Transaction History of the Business User
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return transactionHistory.count + 1
@@ -131,6 +133,8 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
     }
 	
 	var shownBefore = false
+    
+    //Get Deposit and Current Balance Of the Business User
     
     @objc func getDeepositDetails() {
 		if !shownBefore {

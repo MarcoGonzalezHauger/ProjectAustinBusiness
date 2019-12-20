@@ -25,6 +25,8 @@ class ViewCompanyVC: BaseVC, editDelegate {
 		updateCompanyInfo()
 		
 	}
+    
+    //MARK: Get Company Details
 	
 	override func viewDidLoad() {
         super.viewDidLoad()

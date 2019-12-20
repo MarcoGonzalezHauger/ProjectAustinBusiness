@@ -262,6 +262,8 @@ func GetOrganicSubscriptionFromTier(tier: Int?) -> Double {
 	}
 }
 
+//MARK: Shake Animation for views
+
 func MakeShake(viewToShake thisView: UIView, coefficient: Float = 1) {
 	let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
 	animation.timingFunction = CAMediaTimingFunction(name: .linear)

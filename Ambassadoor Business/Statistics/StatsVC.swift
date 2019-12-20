@@ -42,6 +42,7 @@ class StatsVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
 		view.bringSubviewToFront(statisticDataView)
 		self.statisticDataView.isHidden = false
         
+        //If a new user, move to company register page else show statics offers of the user.
         if Singleton.sharedInstance.getCompanyUser().isCompanyRegistered == false {
             self.performSegue(withIdentifier: "toCompanyRegister", sender: self)
         }else{
@@ -58,6 +59,9 @@ class StatsVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         self.getStatisticsTimerData()
 
 	}
+    
+    
+    //MARK: Get company sent out offers and calculate statistics of the company user
     
     @objc func getStatisticsTimerData(){
         
@@ -138,6 +142,8 @@ class StatsVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
                 ]
                 self.pieView.addSubview(pieChartView)
                 
+                //MARK: Get Instagram post of the offers based on the influencer ID.
+                
                 getInstagramPosts(statisticsData: self.succeedOffers) { (InstagramData, status, error) in
                     
                     if error == nil {
@@ -172,7 +178,7 @@ class StatsVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     
-    //MARK: UITableview Datasource
+    //MARK: Influencer UITableview Datasource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return instagramDataUserArray.count

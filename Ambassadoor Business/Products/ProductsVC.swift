@@ -24,6 +24,8 @@ class ProductCell: UITableViewCell {
 class ProductsVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ProductDelegate {
 	
 	@IBOutlet weak var loadingProducts: UIActivityIndicatorView!
+    
+    //MARK: Product Delegate Method. After adding product successfully on viewproduct page, This method will be triggered and reload the shelf tableview.
 	
 	func WasSaved(index: Int) {
 		shelf.reloadRows(at: [IndexPath(row: index + 1, section: 0)], with: .fade)
@@ -62,6 +64,8 @@ class ProductsVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ProductDel
 	}
 	
 	var isEdit = false
+    
+    //MARK: Edit listed products. Here you can delete the products
 	
 	@IBAction func editProducts(_ sender: Any) {
 		isEdit = !isEdit
@@ -70,6 +74,8 @@ class ProductsVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ProductDel
 		}
 		shelf.setEditing(isEdit, animated: true)
 	}
+    
+    //MARK: Product List Tableview Delegate and Datasource
 	
 	func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
 		if indexPath.row != 0 {
@@ -139,6 +145,7 @@ class ProductsVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ProductDel
     override func viewWillAppear(_ animated: Bool) {
         let user = Singleton.sharedInstance.getCompanyUser()
         let path = Auth.auth().currentUser!.uid + "/" + user.companyID!
+        //MARK: Getting all products
         getAllProducts(path: path) { (product) in
 			self.loadingProducts.isHidden = true
             if product != nil {

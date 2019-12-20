@@ -356,6 +356,8 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 			YouShallNotPass(SaveButtonView: saveandSendView)
 		}
     }
+    
+    //MARK: Create Template Offer or Save Template Offer
 	
 	func SaveThisOffer(completion: @escaping (TemplateOffer, Bool) -> ()) {
 		var genderArray = [String]()
@@ -431,6 +433,8 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
     @objc override func cancelClickPicker() {
         self.gender.resignFirstResponder()
     }
+    
+    //MARK: Move To Categories List
     
 	@IBAction func addTabGestureAction(_ sender: Any) {
 		

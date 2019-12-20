@@ -25,6 +25,8 @@ class viewOfferCell: UITableViewCell {
 }
 
 class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
+    
+    //MARK: Offer List UITableview Datasource and Delegates
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return global.OfferDrafts.count + 1
@@ -61,10 +63,14 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    //MARK: Move to AddOfferVC to Create New Offer Page
+    
     @objc func composeAction(sender: UIButton){
         global.post.removeAll()
         self.performSegue(withIdentifier: "toCreateOfferView", sender: nil)
     }
+    
+    //MARK: Move to AddOfferVC to Edit the Existed Offer
     
     @objc func editAction(sender: UIButton){
         let template = global.OfferDrafts[sender.tag]
@@ -104,6 +110,8 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         self.navigationController?.navigationBar.isHidden = false
     }
     
+    //MARK: Edit Product Action
+    
     @IBAction func editProducts(_ sender: Any) {
         isEdit = !isEdit
         UIView.animate(withDuration: 0.5) {
@@ -138,6 +146,8 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return indexPath.row != 0
     }
+    
+    //MARK: If any new offer created or edited this function will be triggered through NotificationCenter
     
     @objc func reloadOffer(notification: Notification) {
         

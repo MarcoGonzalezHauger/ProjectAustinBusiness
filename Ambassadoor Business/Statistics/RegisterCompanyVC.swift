@@ -115,6 +115,8 @@ class RegisterCompanyVC: BaseVC,ImagePickerDelegate,UITextFieldDelegate,UITextVi
         
     }
     
+    //MARK: Register Company 
+    
     @IBAction func registerAction(sender: UIButton){
         if self.urlString != ""{
             

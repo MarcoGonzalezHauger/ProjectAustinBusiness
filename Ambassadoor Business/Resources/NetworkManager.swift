@@ -507,6 +507,8 @@ class NetworkManager {
             
         }
     
+    //Send Push Notification To Influencers
+    
     func sendPushNotification(params: [String: AnyObject]){
         
         let urlString = "https://us-central1-amassadoor.cloudfunctions.net/" + "sendNotificationToUser"

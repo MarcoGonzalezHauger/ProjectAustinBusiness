@@ -137,6 +137,8 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
 		self.dismiss(animated: true, completion: nil)
 	}
     
+    //MARK: Deposit Proceed Action. Round up the deposit amount. Calling Stripe Connection card at end of the function.
+    
 	@IBAction func proceedAction(sender: UIButton){
 		
 		if amountOfMoneyInCents != 0 {
@@ -199,6 +201,8 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
         
     }
     
+    //MARK: Getting Client Secret ID from Stripe
+    
     func depositAmountToWalletThroughStripe(params: [String: Any],paymentMethodParams: STPPaymentMethod) {
         
         //if params["amount"] as! String != "" && params["amount"] as! String != "0.00" {
@@ -253,6 +257,8 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
 //        }
         
     }
+    
+    //MARK: Making Stripe Payment through Sending Payment Method ID and Client Secret and Storing Deposit History and Balance To Firebase
     
     func stripePaymentMethod(clientSecret: String, paymentMethodParams: STPPaymentMethod) {
         

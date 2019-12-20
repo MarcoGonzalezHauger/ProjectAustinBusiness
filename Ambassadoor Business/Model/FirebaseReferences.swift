@@ -367,6 +367,8 @@ func GetAllUsers(completion: @escaping ([User]) -> ()) {
     }, withCancel: nil)
 }
 
+//MARK: Filter the influencers as per the filtered Category
+
 func getFilteredInfluencers(category: [String:[AnyObject]],completion: @escaping (String,[User]?) -> ()) {
     
     var BusinessFilters = category
@@ -474,6 +476,8 @@ func getFilteredInfluencers(category: [String:[AnyObject]],completion: @escaping
     
 }
 
+//MARK: Getting all products of the comapny user.
+
 func getAllProducts(path: String, completion: @escaping ([Product]?) -> ()) {
     let productsRef = Database.database().reference().child("products").child(path)
     var products: [Product] = []
@@ -531,7 +535,7 @@ func createTemplateOffer(pathString: String,edited: Bool,templateOffer: Template
     
 }
 
-
+//Save Send Out Offer details to Firebase
 
 func sentOutOffers(pathString: String, templateOffer: TemplateOffer, completion: @escaping (TemplateOffer,Bool) -> ()) {
     let offersRef = Database.database().reference().child("SentOutOffers").child(pathString)
@@ -548,6 +552,8 @@ func completedOffersToUsers(pathString: String, templateOffer: TemplateOffer) {
     offerDictionary = API.serializeTemplateOffer(offer: templateOffer)
     offersRef.updateChildValues(offerDictionary)
 }
+
+//Save transcation details of refered influencer 
 
 func sentOutTransactionToInfluencer(pathString: String,transactionData: [String: Any]) {
     
@@ -647,6 +653,8 @@ func updateTemplateOffers(pathString: String, templateOffer: TemplateOffer, user
     //offersRef.removeValue()
 }
 
+//MARK: Get All Created Template Offers by Current Company User
+
 func getAllTemplateOffers(userID: String, completion: @escaping([TemplateOffer],String) -> Void) {
     
     let ref = Database.database().reference().child("TemplateOffers").child(userID)
@@ -700,6 +708,8 @@ func parseTemplateOffer(offer: [String: AnyObject]) -> [Post] {
     return postValues
 }
 
+//Deduct and Save Transaction history of Business User
+
 func sendDepositAmount(deposit: Deposit,companyUser: String,completion: @escaping(Deposit,String) -> Void) {
     
     let ref = Database.database().reference().child("BusinessDeposit").child(companyUser)
@@ -708,6 +718,8 @@ func sendDepositAmount(deposit: Deposit,companyUser: String,completion: @escapin
     ref.updateChildValues(offerDictionary)
     completion(deposit, "success")
 }
+
+//MARK: Get Deposit and Current Balance Of the Business User
 
 func getDepositDetails(companyUser: String,completion: @escaping(Deposit?,String,Error?) -> Void) {
     
@@ -1013,6 +1025,8 @@ func transactionInfo(completion: @escaping([TransactionInfo]?,String,Error?) -> 
     
 }
 
+//MARK: Calculate Influencer Cost Bsed On the Post Cost and Average Likes
+
 func calculateCostForUser(offer: Offer, user: User, increasePayVariable: Double = 1.00) -> Double {
     return 0.055 * user.averageLikes! * Double(offer.posts.count) * increasePayVariable
 }
@@ -1084,7 +1098,7 @@ func serializeCompanyUser(companyUser: CompanyUser) -> [String: Any] {
     return companyUserData
     
 }
-//
+//Get Current Company User
 func getCurrentCompanyUser(userID: String, completion: @escaping (CompanyUser?,String) -> Void) {
     
     let ref = Database.database().reference()
@@ -1189,7 +1203,7 @@ func getAdminValues(completion: @escaping (String) -> Void) {
     
 }
 
-//
+//Get Company Details of the Business User
 func getCompany(companyID: String,completion: @escaping (Company?,String) -> Void) {
     let user = Auth.auth().currentUser!.uid
     Database.database().reference().child("companies").child(user).child(companyID).observeSingleEvent(of: .value, with: { (snapshot) in

@@ -40,6 +40,8 @@ class WithdrawVC: PlaidLinkEnabledVC,UITableViewDelegate,UITableViewDataSource,U
         }
     }
     
+    //Mark: Move to Stipe Connect Webview controller
+    
     @IBAction func normalWithDrawAction(sender: UIButton){
         
         if moneyText.text?.count != 0 {
