@@ -89,7 +89,7 @@ class StripeConnectionMKWebview: BaseVC, WKNavigationDelegate {
     
     func getAccountID(code: String) {
 
-        let params = ["client_secret":"sk_test_zrg6oDehYkCJIVAA4oe5LrWD00mNP6IImr","code":code,"grant_type":"authorization_code"] as [String: AnyObject]
+        let params = ["client_secret":"sk_live_KwcqGxImMq4fosE3n7QMycBw00eMO7si8E","code":code,"grant_type":"authorization_code"] as [String: AnyObject]
         self.showActivityIndicator()
         NetworkManager.sharedInstance.getAccountID(params: params) { (status, error, data) in
             let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
