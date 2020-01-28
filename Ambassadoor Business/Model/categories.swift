@@ -25,6 +25,7 @@ public let AllCategories: [String] = [
 	"Comedian",
 	"Stand up Comedy",
 	"Family", //Lifestlye
+	"Adventurer",
 	"Mother",
 	"Father",
 	"Blogger",
@@ -49,6 +50,7 @@ public let AllCategories: [String] = [
 	"Rowing",
 	"NASCAR",
 	"Dancing", //Athletics
+	"Fitness Model",
 	"Coach",
 	"Body Building",
 	"Power Lifting",
@@ -79,7 +81,8 @@ public let AllCategories: [String] = [
 	"Computer Gaming",
 	"Gaming Video Creator",
 	"Professional Gamer",
-	"Makeup Artist", //Fashion
+	"Fashion", //Fashion
+	"Makeup Artist",
 	"Clothing Reviewer",
 	"Model",
 	"Stylist",
@@ -120,7 +123,8 @@ public let AllCategories: [String] = [
 	"Dental Professional",
 	"Medical Professional",
 	"Drawing/Painting", //Artist
-	"Sculture",
+	"Artsy",
+	"Sculpture",
 	"Calligraphy",
 	"Graphic Design",
 	"Art Supply Reviewer",
@@ -183,6 +187,7 @@ let comedy = ["Meme Account", //Commedy
 "Comedian",
 "Stand up Comedy"]
 let lifestyle = ["Family", //Lifestlye
+"Adventurer",
 "Mother",
 "Father",
 "Blogger",
@@ -209,6 +214,7 @@ let sports = ["Winter Sports", //Sports
 let athletics = ["Dancing", //Athletics
 "Coach",
 "Body Building",
+"Fitness Model",
 "Power Lifting",
 "Trick Shots",
 "Sports Compilations"]
@@ -237,9 +243,11 @@ let gaming = ["Board Games", //Gaming
 "Computer Gaming",
 "Gaming Video Creator",
 "Professional Gamer"]
-let fashion = ["Makeup Artist", //Fashion
+let fashion = ["Fashion", //Fashion
+"Makeup Artist",
 "Clothing Reviewer",
 "Model",
+"Fitness Model",
 "Stylist",
 "Designer",
 "Fashion Photography"]
@@ -277,8 +285,9 @@ let professional = ["Lawyer", //Professional
 "Construction",
 "Dental Professional",
 "Medical Professional"]
-let aritst = ["Drawing/Painting", //Artist
-"Sculture",
+let aritst = ["Artsy", //Artist
+"Drawing/Painting",
+"Sculpture",
 "Calligraphy",
 "Graphic Design",
 "Art Supply Reviewer"]

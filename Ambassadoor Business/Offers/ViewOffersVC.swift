@@ -20,8 +20,9 @@ class viewOfferCell: UITableViewCell {
 	@IBOutlet weak var offerviewoutline: UIView!
 	@IBOutlet weak var offerName: UILabel!
 	@IBOutlet weak var postDetails: UILabel!
-    @IBOutlet weak var editButton: UIButton!
-    
+	@IBOutlet weak var incompleteLabel: UILabel!
+	@IBOutlet weak var lastEditedLabel: UILabel!
+	
 }
 
 class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
@@ -39,17 +40,18 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
 		} else {
 			let thisTemplate: TemplateOffer = global.OfferDrafts[indexPath.row - 1]
 			let cell = shelf.dequeueReusableCell(withIdentifier: "offerButton") as! viewOfferCell
-			cell.offerName.text = thisTemplate.title
-            cell.editButton.addTarget(self, action: #selector(self.editAction(sender:)), for: .touchUpInside)
-            cell.editButton.tag = indexPath.row - 1
+			cell.offerName.text = thisTemplate.title == "" ? "Untitled" : thisTemplate.title
+			cell.offerName.textColor = thisTemplate.title == "" ? UIColor.gray : GetForeColor()
 			cell.postDetails.text = thisTemplate.GetSummary()
+			cell.incompleteLabel.isHidden = thisTemplate.isFinished() == []
+			cell.lastEditedLabel.text = "Last edited " + DateToAgo(date: thisTemplate.lastEdited)
 			return cell
 		}
 	}
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         if indexPath.row == 0 {
-			return 80
+			return 70
         }
 		return 276
     }
@@ -75,8 +77,14 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var editButton: UIButton!
     var isEdit = false
 	
+	@objc func timerAction(sender: AnyObject) {
+		shelf.reloadData()
+	}
+	
     override func viewDidLoad() {
         super.viewDidLoad()
+		let timer = Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector(self.timerAction(sender:)), userInfo: nil, repeats: true)
+		timer.fire()
         //let user = Singleton.sharedInstance.getCompanyUser().userID!
         //global.OfferDrafts = GetOffers(userId: user)
         //self.customizeNavigationBar()

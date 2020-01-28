@@ -17,13 +17,8 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 	}
 
 	func shouldAllowBack() -> Bool {
-		let isSave = isSavable(alertUser: false)
-		if !isSave {
-			YouShallNotPass(SaveButtonView: saveandSendView)
-		} else {
-			SaveThisOffer() {_,_ in }
-		}
-		return isSave
+		SaveThisOffer() {_,_ in }
+		return true
 	}
     
     @IBOutlet weak var postTableView: UITableView!
@@ -130,12 +125,12 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 			if data1.components(separatedBy: ",").count == 1 {
 				let zip = data1.components(separatedBy: "-")[0]
 				let radius = Int(data1.components(separatedBy: "-")[1]) ?? 0
-				return ["Filtered by Radius", "This offer will be sent to influencers in a \(radius) mile radius of \(zip)." + returnData.joined(separator: ", or\n")]
+				return ["Filtered by Radius", "This offer will be sent to influencers in a \(radius) mile radius around \(zip)." + returnData.joined(separator: ", or\n")]
 			}
 			for data in data1.components(separatedBy: ",") {
 				let zip = data.components(separatedBy: "-")[0]
 				let radius = Int(data.components(separatedBy: "-")[1]) ?? 0
-				returnData.append("A \(radius) mile radius of \(zip)")
+				returnData.append("A \(radius) mile radius around \(zip)")
 			}
 			return ["Filtered by Radii", "This offer will be sent to influencers in...\n" + returnData.joined(separator: ", or\n") + "."]
 		default:
@@ -160,6 +155,7 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 	let addCellHeight: CGFloat = 60
     
 	@objc func reloadProduct(notification: Notification) {
+		print("Post edited.")
 		reloadTableViewHeight()
 	}
 	
@@ -183,10 +179,10 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 	//MARK: -Table Delegates
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if global.post.count < 3 {
-			return global.post.count + 1
+        if global.post.count == 3 {
+			return 3
         }else{
-			return global.post.count
+			return global.post.count + 1
         }
     }
     
@@ -209,8 +205,7 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 					cell = nib![0] as? PostDetailTC
 				}
 				let post = global.post[indexPath.row - 1]
-				
-				cell?.SetCell(number: indexPath.row , hash: post.hashCaption)
+				cell?.SetCell(number: indexPath.row , hash: post.GetSummary(maxItems: 5), incomplete: post.isFinished() != [])
 				return cell!
 			}
 		} else {
@@ -223,7 +218,7 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 			}
 			let post = global.post[indexPath.row]
 			cell?.postTitle.text = post.PostType
-			cell?.SetCell(number: indexPath.row + 1, hash: post.hashCaption)
+			cell?.SetCell(number: indexPath.row + 1, hash: post.GetSummary(maxItems: 5), incomplete: post.isFinished() != [])
 			//cell?.postTitle.text = PostTypeToText(posttype: post.PostType)
 			return cell!
 			
@@ -232,20 +227,16 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         
-        if global.post.count < 3 {
-            
-            if indexPath.row == 0 {
-                self.performSegue(withIdentifier: "toAddPost", sender: nil)
-                
-            }else{
-                let index = indexPath.row - 1
-                self.performSegue(withIdentifier: "toAddPost", sender: index)
-            }
-            
+        if global.post.count == 3 {
+			self.performSegue(withIdentifier: "toAddPost", sender: indexPath.row)
         }else{
-            self.performSegue(withIdentifier: "toAddPost", sender: global.post.count)
+			if indexPath.row == 0 {
+                self.performSegue(withIdentifier: "toAddPost", sender: nil)
+            }else{
+                self.performSegue(withIdentifier: "toAddPost", sender: indexPath.row - 1)
+            }
         }
-        
+		postTableView.deselectRow(at: indexPath, animated: false)
         
     }
 	
@@ -268,7 +259,7 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        if indexPath.row != 0 {
+        if global.post.count == 3 ? true : indexPath.row != 0 {
             return .delete
         } else {
             return .none
@@ -276,37 +267,42 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            
-            if global.post.count < 3 {
-                
-                global.post.remove(at: indexPath.row - 1)
-                
-            }else{
-                global.post.remove(at: indexPath.row)
-            }
-            
-            postTableView.deleteRows(at: [indexPath], with: .bottom)
-			if let rows = postTableView.indexPathsForVisibleRows {
-				postTableView.reloadRows(at: rows, with: .fade)
+		if editingStyle == .delete {
+			if global.post.count == 3 {
+				global.post.remove(at: indexPath.row)
+				if let rows = postTableView.indexPathsForVisibleRows {
+					postTableView.reloadRows(at: rows, with: .fade)
+				}
+			} else {
+				global.post.remove(at: indexPath.row - 1)
+				postTableView.deleteRows(at: [indexPath], with: .right)
+				DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+					if let rows = self.postTableView.indexPathsForVisibleRows {
+						self.postTableView.reloadRows(at: rows, with: .fade)
+					}
+				}
 			}
             
         }
     }
     
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
-        return indexPath.row != 0
+		return global.post.count == 3 ? true : indexPath.row != 0
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return indexPath.row != 0
+        return global.post.count == 3 ? true : indexPath.row != 0
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-		if indexPath.row == 0 {
-			return addCellHeight
-		} else {
+		if global.post.count == 3 {
 			return CGFloat(postCellHeight)
+		} else {
+			if indexPath.row == 0 {
+				return addCellHeight
+			} else {
+				return CGFloat(postCellHeight)
+			}
 		}
     }
     
@@ -371,7 +367,7 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 		
 		let expiryDate = DateFormatManager.sharedInstance.getExpiryDate(dateString: dateString)
 		
-		var offer = ["offer_ID":"","money":0.0,"company":Singleton.sharedInstance.getCompanyDetails(),"posts":global.post,"offerdate":Date(),"user_ID":[],"expiredate":expiryDate,"allPostsConfirmedSince":nil,"allConfirmed":false,"isAccepted":false,"isExpired":false,"ownerUserID":Auth.auth().currentUser!.uid,"category":self.selectedCategoryArray,"locationFilter":locationFilter,"genders":genderArray,"title":self.offerName.text!,"targetCategories":["Other"],"user_IDs":[],"status":"available"] as [String : AnyObject]
+		var offer = ["offer_ID":"","money":0.0,"company":Singleton.sharedInstance.getCompanyDetails(),"posts":global.post,"offerdate":Date(),"user_ID":[],"expiredate":expiryDate,"allPostsConfirmedSince":nil,"allConfirmed":false,"isAccepted":false,"isExpired":false,"ownerUserID":Auth.auth().currentUser!.uid,"category":self.selectedCategoryArray,"locationFilter":locationFilter,"genders":genderArray,"title":self.offerName.text!,"targetCategories":["Other"],"user_IDs":[],"status":"available", "lastEditDate": DateToFirebase(date: Date())] as [String : AnyObject]
 		
 		if segueOffer != nil {
 			
@@ -400,7 +396,21 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 			if locationFilter != "" {
 				if self.gender.text?.count != 0 {
 					if self.selectedCategoryArray.count != 0 {
-						return true
+						var postsNotOkay = 0
+						for p in global.post {
+							if p.isFinished() != [] {
+								postsNotOkay += 1
+							}
+						}
+						if postsNotOkay > 0 {
+							self.showAlertMessage(title: "Alert", message: "Posts are not complete."){ }
+						} else {
+							if global.post.count == 0 {
+								self.showAlertMessage(title: "Alert", message: "You don't have any posts."){ }
+							} else {
+								return true
+							}
+						}
 					} else {
 						self.showAlertMessage(title: "Alert", message: "Please Choose prefered categories"){ }
 					}
@@ -454,15 +464,10 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 	}
 	
 	@IBAction override func addLeftAction(sender: UIBarButtonItem) {
-		
-		if isSavable(alertUser: true) {
-			SaveThisOffer { (template, bool1) in
-				self.createLocalNotification(notificationName: "reloadOffer", userInfo: [:])
+		SaveThisOffer { (template, bool1) in
+			self.createLocalNotification(notificationName: "reloadOffer", userInfo: [:])
 				global.post.removeAll()
-				self.navigationController?.popViewController(animated: true)
-			}
-		} else {
-			YouShallNotPass(SaveButtonView: saveandSendView)
+			self.navigationController?.popViewController(animated: true)
 		}
 	}
 	

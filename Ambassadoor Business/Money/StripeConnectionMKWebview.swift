@@ -19,7 +19,7 @@ class StripeConnectionMKWebview: BaseVC, WKNavigationDelegate {
     var withDrawAmount = 0.00
     
 
-    let url = URL(string: "https://dashboard.stripe.com/express/oauth/authorize?response_type=code&client_id=ca_FrDIyMuhEQEpU7K8z6tsPNMwKJ2f6AiM&scope=read_write")
+    let url = URL(string: "https://dashboard.stripe.com/express/oauth/authorize?response_type=code&client_id=ca_FrDIP5fLBXnTWCJTkPzngRUquWqrzKZh&scope=read_write") 
 
     
     override func viewDidLoad() {

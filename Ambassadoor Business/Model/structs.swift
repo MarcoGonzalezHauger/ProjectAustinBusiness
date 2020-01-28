@@ -29,6 +29,7 @@ class ShadowView: UIView {
     @IBInspectable var ShadowColor: UIColor = UIColor.black { didSet { DrawShadows() } }
     @IBInspectable var borderWidth: Float = 0.0 { didSet { DrawShadows() }}
 	@IBInspectable var borderColor: UIColor = UIColor.black { didSet { DrawShadows() } }
+	@IBInspectable var maskToBounds: Int = -1 { didSet { DrawShadows() } }
     
     func DrawShadows() {
         //draw shadow & rounded corners for offer cell
@@ -39,7 +40,11 @@ class ShadowView: UIView {
         self.layer.shadowRadius = CGFloat(ShadowRadius)
         self.layer.borderWidth = CGFloat(borderWidth)
         self.layer.borderColor = borderColor.cgColor
-        self.layer.masksToBounds = false
+		if maskToBounds != -1 {
+			self.layer.masksToBounds = maskToBounds == 1
+		} else {
+			self.layer.masksToBounds = false
+		}
         self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.layer.cornerRadius).cgPath
         
     }
@@ -100,19 +105,47 @@ class TemplateOffer: Offer {
     var user_IDs: [String]
 	var title: String
     var status: String
-    
+	var lastEdited: Date
+	
+	func isFinished() -> [String] {
+		var returnValue: [String] = []
+		if title == "" {
+			returnValue.append("title")
+		}
+		if genders == [] {
+			returnValue.append("genders")
+		}
+		if targetCategories == [] {
+			returnValue.append("cats")
+		}
+		if title == "" {
+			returnValue.append("title")
+		}
+		if self.posts.count == 0 {
+			returnValue.append("nopost")
+		}
+		var postsNotDone: Int = 0
+		for p in posts {
+			if p.isFinished().count > 0 {
+				postsNotDone += 1
+			}
+		}
+		if postsNotDone > 0 {
+			returnValue.append("postNotDone")
+		}
+		return returnValue
+	}
 
     override init(dictionary: [String: AnyObject]) {
 		self.targetCategories = []
-		for cat in dictionary["targetCategories"] as! [String] {
-			self.targetCategories.append(cat)
-		}
-		self.category = dictionary["category"] as! [String]
+		self.targetCategories = dictionary["targetCategories"] as? [String] ?? []
+		self.category = dictionary["category"] as? [String] ?? []
 		self.title = dictionary["title"] as! String
         self.locationFilter = dictionary["locationFilter"] as? String ?? ""
-        self.genders = dictionary["genders"] as! [String]
+        self.genders = dictionary["genders"] as? [String] ?? []
         self.user_IDs = dictionary["user_IDs"] as? [String] ?? []
         self.status = dictionary["status"] as! String
+		self.lastEdited = FirebaseToDate(object: dictionary["lastEditDate"])
         super.init(dictionary: dictionary)
     }
 	
@@ -120,13 +153,14 @@ class TemplateOffer: Offer {
 		var lines: [String] = []
 		if self.posts.count == 1 {
 			lines.append("This Offer has 1 Post.")
+		} else if self.posts.count == 0 {
+			lines.append("This Offer doesn't have posts yet.")
 		} else {
 			lines.append("This Offer has \(self.posts.count) Posts:")
 		}
 		var index = 1
 		for post in self.posts {
-			let sText = post.products!.count == 1 ? "product" : "products"
-			lines.append("• Post #\(index): '#\(post.hashCaption)'")
+			lines.append("• Post #\(index): \(post.GetSummary(maxItems: 2))")
 			index += 1
 		}
 		lines.append("")
@@ -199,7 +233,54 @@ struct Post {
     var isConfirmed: Bool
     var hashCaption: String
     var status: String
+	var hashtags: [String]
+	var keywords: [String]
     
+	func isFinished() -> [String] {
+		var returnValue: [String] = []
+		if instructions == "" {
+			returnValue.append("instructions")
+		}
+		if hashtags == [] && keywords == [] {
+			returnValue.append("hash and keywords")
+		}
+		if hashtags.contains("") {
+			returnValue.append("empty hash")
+		}
+		if keywords.contains("") {
+			returnValue.append("empty keyword")
+		}
+		return returnValue
+	}
+	
+	func GetSummary(maxItems: Int = 5) -> String {
+		var all = /*--->*/ [String](/*GROSS*/) //ew ~Marco Jan 18 2020
+		for p in keywords {
+			all.append("\"\(p)\"")
+		}
+		for h in hashtags {
+			all.append("#\(h)")
+		}
+		
+		if all.count == 0 {
+			if maxItems == 5 {
+				return "Post"
+			} else {
+				return "Incomplete Post"
+			}
+		} else {
+			
+			var str = ""
+			for i in 0...(all.count - 1) {
+				if i < maxItems {
+					str += all[i] + ", "
+				}
+			}
+			str = String(str.dropLast(2))
+			return str
+		}
+	}
+	
 }
 
 //struct for product
@@ -236,15 +317,15 @@ class Company: NSObject {
     
     
     init(dictionary: [String: Any]) {
-        self.account_ID = dictionary["account_ID"] as? String
-        self.name = dictionary["name"] as! String
-        self.logo = dictionary["logo"] as? String
-        self.mission = dictionary["mission"] as! String
-        self.website = dictionary["website"] as! String
-        self.owner_email = (dictionary["owner"] as? String) ?? ""
-        self.companyDescription = dictionary["description"] as! String
-        self.accountBalance = dictionary["accountBalance"] as! Double
-        self.referralcode = dictionary["referralcode"] as? String
+		self.account_ID = dictionary["account_ID"] as? String
+		self.name = dictionary["name"] as! String
+		self.logo = dictionary["logo"] as? String
+		self.mission = dictionary["mission"] as! String
+		self.website = dictionary["website"] as! String
+		self.owner_email = (dictionary["owner"] as? String) ?? ""
+		self.companyDescription = dictionary["description"] as! String
+		self.accountBalance = dictionary["accountBalance"] as! Double
+		self.referralcode = dictionary["referralcode"] as? String
     }
 }
 
