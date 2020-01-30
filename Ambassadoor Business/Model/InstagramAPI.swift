@@ -107,15 +107,22 @@ struct API {
 //        return userData
 //    }
     
+    static func serializeUser(user: User,amount: Double) -> [String: Any] {
+        
+        let user = ["username":user.username,"amount": amount, "id": user.id,"token":user.tokenFIR ?? ""] as [String: Any]
+        
+        return user
+        
+    }
+    
     static func serializePost(post: Post) -> [String: Any] {
-        //                           Post.init(image: nil, instructions: desPost.text!, captionMustInclude: <#T##String?#>, products: <#T##[Product]?#>, post_ID: <#T##String#>, PostType: <#T##TypeofPost#>, confirmedSince: <#T##Date?#>, isConfirmed: <#T##Bool#>)
         var product = [[String: Any]]()
         
         for value in post.products! {
             product.append(serializeProduct(product: value))
         }
         //DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: post.confirmedSince!, format: "yyyy/MMM/dd HH:mm:ss")
-        let postData: [String: Any] = ["image":post.image!,"instructions":post.instructions,"captionMustInclude":post.captionMustInclude!,"products":product,"post_ID":post.post_ID,"PostType": post.PostType,"confirmedSince":"" ,"isConfirmed":post.isConfirmed,"hashCaption":post.hashCaption,"status": post.status]
+		let postData: [String: Any] = ["image":post.image!,"instructions":post.instructions,"captionMustInclude":post.captionMustInclude!,"products":product,"post_ID":post.post_ID,"PostType": post.PostType,"confirmedSince":"" ,"isConfirmed":post.isConfirmed,"hashCaption":post.hashCaption,"status": post.status,"hashtags": post.hashtags, "keywords": post.keywords]
         
         return postData
     }
@@ -129,6 +136,10 @@ struct API {
         offerData["category"] = offer.category
         offerData["title"] = offer.title
         offerData["status"] = offer.status
+        offerData["shouldRefund"] = false
+        offerData["didRefund"] = false
+        offerData["refundedOn"] = ""
+		offerData["lastEditDate"] = DateToFirebase(date: offer.lastEdited)
         return offerData
     }
     

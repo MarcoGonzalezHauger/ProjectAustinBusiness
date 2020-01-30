@@ -60,7 +60,7 @@ class CentralVariables {
     //MARK: Not Used
     var dwollaCustomerInformation = DwollaCustomerInformation()
     
-    
+    var deviceFIRToken = ""
 	
 }
 

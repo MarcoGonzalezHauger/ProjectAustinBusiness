@@ -11,6 +11,7 @@ import Foundation
 import UIKit
 import AVKit
 import AVFoundation
+import Firebase
 
 func NumberToPrice(Value: Double, enforceCents isBig: Bool = false) -> String {
 	if floor(Value) == Value && isBig == false {
@@ -228,11 +229,19 @@ func GetOrganicSubscriptionFromTier(tier: Int?) -> Double {
 	}
 }
 
-func MakeShake(viewToShake thisView: UIView, coefficient: Float = 1) {
+func MakeShake(viewToShake thisView: UIView, coefficient: Float = 1, negativeCoefficient: Float = 1, positiveCoefficient: Float = 1) {
 	let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
 	animation.timingFunction = CAMediaTimingFunction(name: .linear)
 	animation.duration = 0.6
-	animation.values = [-20.0 * coefficient, 20.0 * coefficient, -20.0 * coefficient, 20.0 * coefficient, -10.0 * coefficient, 10.0 * coefficient, -5.0 * coefficient, 5.0 * coefficient, 0 ]
+	animation.values = [-20.0 * coefficient * negativeCoefficient,
+						20.0 * coefficient * positiveCoefficient,
+						-20.0 * coefficient * negativeCoefficient,
+						20.0 * coefficient * positiveCoefficient,
+						-10.0 * coefficient * negativeCoefficient,
+						10.0 * coefficient * positiveCoefficient,
+						-5.0 * coefficient * negativeCoefficient,
+						5.0 * coefficient * positiveCoefficient,
+						0 ]
 	thisView.layer.add(animation, forKey: "shake")
 }
 
@@ -285,6 +294,17 @@ func PostTypeToText(posttype: TypeofPost) -> String {
 	case .Story:
 		return "Story Post"
 	}
+}
+
+func DateToFirebase(date: Date) -> AnyObject {
+	return NSDate().timeIntervalSince1970 as AnyObject
+}
+
+func FirebaseToDate(object: AnyObject?) -> Date {
+	guard let object = object else { return Date() }
+	let myTimeInterval = TimeInterval(exactly: object as! NSNumber)!
+	let time = NSDate(timeIntervalSince1970: TimeInterval(myTimeInterval))
+	return time as Date
 }
 
 func IncreasePayVariableValue(pay: String) -> IncreasePayVariable {
