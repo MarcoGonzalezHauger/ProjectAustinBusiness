@@ -96,6 +96,7 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     override func viewWillAppear(_ animated: Bool) {
 		shelf.dataSource = self
 		shelf.delegate = self
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
 //        NotificationCenter.default.addObserver(self, selector: #selector(self.hideNavigationAction(notification:)), name: Notification.Name.init(rawValue: "hidenavigation"), object: nil)
 		//self.navigationController?.navigationBar.isHidden = true
         //self.navigationController?.hidesBarsOnTap = true
