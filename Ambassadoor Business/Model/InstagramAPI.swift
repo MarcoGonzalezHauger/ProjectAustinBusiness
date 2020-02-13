@@ -33,15 +33,6 @@ struct API {
     
     static var superBankFundingSource = "https://api-sandbox.dwolla.com/funding-sources/b23abf0b-c28d-4941-84af-617626865f2b"
     
-    //Stripe account live and demo client ID and secret ID
-        //Live
-        static var Stripeclient_id = "ca_FrDIP5fLBXnTWCJTkPzngRUquWqrzKZh"
-        static var Stripeclient_secret = "sk_live_KwcqGxImMq4fosE3n7QMycBw00eMO7si8E"
-        //demo
-    //    static var Stripeclient_id = "ca_FrDIyMuhEQEpU7K8z6tsPNMwKJ2f6AiM"
-    //    static var Stripeclient_secret = "sk_test_zrg6oDehYkCJIVAA4oe5LrWD00mNP6IImr"
-    
-    
     static func getProfileInfo(completed: ((_ userDictionary: [String: Any]) -> () )?) {
         let url = URL(string: "https://api.instagram.com/v1/users/self/?access_token=" + INSTAGRAM_ACCESS_TOKEN)
         URLSession.shared.dataTask(with: url!){ (data, response, err) in
@@ -125,14 +116,13 @@ struct API {
     }
     
     static func serializePost(post: Post) -> [String: Any] {
-        //                           Post.init(image: nil, instructions: desPost.text!, captionMustInclude: <#T##String?#>, products: <#T##[Product]?#>, post_ID: <#T##String#>, PostType: <#T##TypeofPost#>, confirmedSince: <#T##Date?#>, isConfirmed: <#T##Bool#>)
         var product = [[String: Any]]()
         
         for value in post.products! {
             product.append(serializeProduct(product: value))
         }
         //DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: post.confirmedSince!, format: "yyyy/MMM/dd HH:mm:ss")
-        let postData: [String: Any] = ["image":post.image!,"instructions":post.instructions,"captionMustInclude":post.captionMustInclude!,"products":product,"post_ID":post.post_ID,"PostType": post.PostType,"confirmedSince":"" ,"isConfirmed":post.isConfirmed,"hashCaption":post.hashCaption,"status": post.status]
+        let postData: [String: Any] = ["image":post.image!,"instructions":post.instructions,"captionMustInclude":post.captionMustInclude!,"products":product,"post_ID":post.post_ID,"PostType": post.PostType,"confirmedSince":"" ,"isConfirmed":post.isConfirmed,"hashCaption":post.hashCaption,"status": post.status,"hashtags": post.hashtags, "keywords": post.keywords, "isPaid": post.isPaid ?? false, "PayAmount": post.PayAmount ?? 0.0]
         
         return postData
     }
@@ -148,9 +138,9 @@ struct API {
         offerData["status"] = offer.status
         offerData["shouldRefund"] = false
         offerData["didRefund"] = false
-        offerData["oneHrsNotify"] = false
-        offerData["sixHrsNotify"] = false
+        //offerData["commission"] = 0.0
         offerData["refundedOn"] = ""
+		offerData["lastEditDate"] = DateToFirebase(date: offer.lastEdited)
         return offerData
     }
     
@@ -189,7 +179,7 @@ struct API {
          var updatedAt: String?
          var cardDetails: Any?
          */
-        var transactionSerialize = ["id":transaction.id,"status":transaction.status,"type":transaction.type,"currencyIsoCode":transaction.currencyIsoCode,"amount":transaction.amount,"createdAt":transaction.createdAt,"updatedAt":transaction.updatedAt,"cardDetails":transaction.cardDetails] as [String: Any]
+        var transactionSerialize = ["id":transaction.id,"status":transaction.status,"type":transaction.type,"currencyIsoCode":transaction.currencyIsoCode,"amount":transaction.amount,"createdAt":transaction.createdAt,"updatedAt":transaction.updatedAt,"cardDetails":transaction.cardDetails,"commission":transaction.commission] as [String: Any]
         
         return transactionSerialize
     }
@@ -210,6 +200,8 @@ struct API {
         let offerData: [String: Any] = [
             "offer_ID": offer.offer_ID,
             "money": offer.money,
+            "commission": offer.commission ?? 0,
+            "isCommissionPaid": offer.isCommissionPaid ?? false,
             "company": offer.company?.account_ID as Any,
             "posts": posts,
             "offerdate": offer.offerdate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss"),
@@ -218,9 +210,17 @@ struct API {
             "allPostsConfirmedSince": offerConSin,
             "allConfirmed": offer.allConfirmed,
             "isAccepted": offer.isAccepted,
-            "isExpired": offer.isExpired,"ownerUserID": offer.ownerUserID
+            "isExpired": offer.isExpired,"ownerUserID": offer.ownerUserID,
+            "isAllPaid":false,
+            "isRefferedByInfluencer": offer.isRefferedByInfluencer as Any,
+            "isReferCommissionPaid":offer.isReferCommissionPaid as Any,
+            "referralAmount":offer.referralAmount as Any,
+            "referralID":offer.referralID as Any
             ]
         return offerData
+        //self.isRefferedByInfluencer = dictionary["isRefferedByInfluencer"] as? Bool ?? false
+        //self.isReferCommissionPaid = dictionary["isReferCommissionPaid"] as? Bool ?? false
+        //self.referralAmount = dictionary["referralAmount"] as? Double ?? 0.0
     }
     
     static func getProfilePictureURL(userId: String) -> String {

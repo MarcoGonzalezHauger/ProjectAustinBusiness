@@ -137,8 +137,6 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
 		self.dismiss(animated: true, completion: nil)
 	}
     
-    //MARK: Deposit Proceed Action. Round up the deposit amount. Calling Stripe Connection card at end of the function.
-    
 	@IBAction func proceedAction(sender: UIButton){
 		
 		if amountOfMoneyInCents != 0 {
@@ -201,8 +199,6 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
         
     }
     
-    //MARK: Getting Client Secret ID from Stripe
-    
     func depositAmountToWalletThroughStripe(params: [String: Any],paymentMethodParams: STPPaymentMethod) {
         
         //if params["amount"] as! String != "" && params["amount"] as! String != "0.00" {
@@ -258,8 +254,6 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
         
     }
     
-    //MARK: Making Stripe Payment through Sending Payment Method ID and Client Secret and Storing Deposit History and Balance To Firebase
-    
     func stripePaymentMethod(clientSecret: String, paymentMethodParams: STPPaymentMethod) {
         
         let paymentIntentParams = STPPaymentIntentParams(clientSecret: clientSecret)
@@ -304,7 +298,7 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
                     
                     
                     
-                    let transactionDict = ["id":(paymentIntent?.stripeId)!,"status":String(paymentIntent!.status.rawValue),"type":"sale","currencyIsoCode":paymentIntent!.currency,"amount":String(depositedAmount),"createdAt":(paymentIntent!.created?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss"))!,"updatedAt":(paymentIntent?.created?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss"))!,"transactionType":"card","cardDetails":cardDetails] as [String : Any]
+                    let transactionDict = ["id":(paymentIntent?.stripeId)!,"status":String(paymentIntent!.status.rawValue),"type":"sale","currencyIsoCode":paymentIntent!.currency,"amount":String(depositedAmount),"createdAt":(paymentIntent!.created?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss"))!,"updatedAt":(paymentIntent?.created?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss"))!,"transactionType":"card","cardDetails":cardDetails,"commission":0.0] as [String : Any]
 
                     
                     if status == "new" {

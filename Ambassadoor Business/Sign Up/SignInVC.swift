@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 import LocalAuthentication
 
-class SignInVC: BaseVC,UITextFieldDelegate {
+class SignInVC: BaseVC, UITextFieldDelegate {
     
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var signInButton: UIButton!
@@ -30,6 +30,11 @@ class SignInVC: BaseVC,UITextFieldDelegate {
 		
 		registerButton.layer.cornerRadius = 10
 		
+		
+		
+		addDoneButtonOnKeyboard(textField: emailText)
+		addDoneButtonOnKeyboard(textField: passwordText)
+		
         // Do any additional setup after loading the view.
 		
 		if userInfoExists() {
@@ -46,6 +51,10 @@ class SignInVC: BaseVC,UITextFieldDelegate {
 		}
 		
     }
+	
+	override func doneButtonAction() {
+		view.endEditing(true)
+	}
 	
 	func userInfoExists() -> Bool {
 		return UserDefaults.standard.string(forKey: "userEmail") != nil && UserDefaults.standard.string(forKey: "userPass") != nil

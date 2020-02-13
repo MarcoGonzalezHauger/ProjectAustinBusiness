@@ -199,8 +199,6 @@ class CategoryTVC: UITableViewController, ExpandableHeaderViewDelegate, NCDelega
             self.tableView.endUpdates()
     }
     
-    //MARK: Select All Categories or Deselect All Categories
-    
     func selectAllSection(header: ExpandableHeaderView, section: Int, selected: Bool) {
         
         categoryList[section].selectedAll = !categoryList[section].selectedAll

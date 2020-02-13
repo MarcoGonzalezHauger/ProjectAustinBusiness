@@ -63,6 +63,8 @@
 		E84600872273AF9100CF60F2 /* ImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84600862273AF9100CF60F2 /* ImageViewExtensions.swift */; };
 		E846008A2273B0B300CF60F2 /* Savvy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84600892273B0B300CF60F2 /* Savvy.swift */; };
 		E8769168236F9A8A0026E07D /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8769166236F9A830026E07D /* LocalAuthentication.framework */; };
+		E878E6EF237B846D00D25553 /* tutorial.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E878E6EE237B846D00D25553 /* tutorial.mp4 */; };
+		E899878323D3B8F20093FC0E /* CurseWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899878223D3B8F20093FC0E /* CurseWords.swift */; };
 		E89C83682277A49400124420 /* ViewProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C83672277A49400124420 /* ViewProductVC.swift */; };
 		E8C3694222161B3000AE12D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C3694122161B3000AE12D7 /* AppDelegate.swift */; };
 		E8C3694422161B3000AE12D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C3694322161B3000AE12D7 /* ViewController.swift */; };
@@ -142,6 +144,8 @@
 		E84600862273AF9100CF60F2 /* ImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtensions.swift; sourceTree = "<group>"; };
 		E84600892273B0B300CF60F2 /* Savvy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Savvy.swift; sourceTree = "<group>"; };
 		E8769166236F9A830026E07D /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		E878E6EE237B846D00D25553 /* tutorial.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = tutorial.mp4; sourceTree = "<group>"; };
+		E899878223D3B8F20093FC0E /* CurseWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurseWords.swift; sourceTree = "<group>"; };
 		E89C83672277A49400124420 /* ViewProductVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProductVC.swift; sourceTree = "<group>"; };
 		E8B08C244165BD27DA5136C1 /* Pods_Ambassadoor_Business.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ambassadoor_Business.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8C3693E22161B3000AE12D7 /* Ambassadoor Business.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ambassadoor Business.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -248,6 +252,7 @@
 				C0C9390522614AE3003DC925 /* InstagramAPI.swift */,
 				C0FBFD00226154FC00BADDCD /* categories.swift */,
 				E8C708C323763EA9001699D0 /* GeolocationTools.swift */,
+				E899878223D3B8F20093FC0E /* CurseWords.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -352,6 +357,7 @@
 				B750E78422E5B75F00024CB1 /* Onboarding.storyboard */,
 				E8C3694122161B3000AE12D7 /* AppDelegate.swift */,
 				E8C3694522161B3000AE12D7 /* Main.storyboard */,
+				E878E6EE237B846D00D25553 /* tutorial.mp4 */,
 				E8C3694B22161B3200AE12D7 /* Assets.xcassets */,
 				E8C3694D22161B3200AE12D7 /* LaunchScreen.storyboard */,
 				E8C3695022161B3200AE12D7 /* Info.plist */,
@@ -468,6 +474,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8C3694F22161B3200AE12D7 /* LaunchScreen.storyboard in Resources */,
+				E878E6EF237B846D00D25553 /* tutorial.mp4 in Resources */,
 				B712C487230690B500728758 /* ProductListCell.xib in Resources */,
 				B7551F2F22F99B01001C4974 /* BasePicker.xib in Resources */,
 				B7FD83ED22F0870F00347E8E /* PostDetailTC.xib in Resources */,
@@ -549,6 +556,7 @@
 				E84600872273AF9100CF60F2 /* ImageViewExtensions.swift in Sources */,
 				E8F8AAC922C8492D0047BF5E /* ViewOffersVC.swift in Sources */,
 				E80B060A22A08D49002B9699 /* MoneyField.swift in Sources */,
+				E899878323D3B8F20093FC0E /* CurseWords.swift in Sources */,
 				B70DEC7C232C2CFA00580FD7 /* TransactionDetailsVC.swift in Sources */,
 				B72CB50A22E7024500958AE0 /* UIViewExtension.swift in Sources */,
 				E80B060822A07F63002B9699 /* WithdrawVC.swift in Sources */,
@@ -662,7 +670,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -717,7 +725,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -734,20 +742,21 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = BlueIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ambassadoor Business/Ambassadoor Business.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Marco Gonzalez (7D4GHWA4CW)";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = F4W3LUKZFA;
 				INFOPLIST_FILE = "Ambassadoor Business/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.5;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tesseractfreelance.Ambassadoor;
+				MARKETING_VERSION = 1.1.6;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ambassadoor.company;
 				PRODUCT_NAME = "Ambassadoor Business";
-				PROVISIONING_PROFILE_SPECIFIER = DevelopmentProfile;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Ambassadoor Business/Ambassadoor Business-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -762,20 +771,21 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = BlueIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ambassadoor Business/Ambassadoor Business.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Marco Gonzalez (7D4GHWA4CW)";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = F4W3LUKZFA;
 				INFOPLIST_FILE = "Ambassadoor Business/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.5;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tesseractfreelance.Ambassadoor;
+				MARKETING_VERSION = 1.1.6;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ambassadoor.company;
 				PRODUCT_NAME = "Ambassadoor Business";
-				PROVISIONING_PROFILE_SPECIFIER = DevelopmentProfile;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Ambassadoor Business/Ambassadoor Business-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;

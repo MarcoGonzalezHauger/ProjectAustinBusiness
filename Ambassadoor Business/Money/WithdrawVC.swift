@@ -22,9 +22,27 @@ class WithdrawVC: PlaidLinkEnabledVC,UITableViewDelegate,UITableViewDataSource,U
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		
+		addDoneButtonOnKeyboard(textField: moneyText)
     }
-    
+	
+	override func doneButtonAction() {
+		moneyText.resignFirstResponder()
+	}
+	
+	@IBAction func editingChanged(_ sender: Any) {
+		let formatter = NumberFormatter()
+		var doubleAmt = Double(moneyText.text!.dropFirst())
+        formatter.maximumFractionDigits = 2
+		if String(moneyText.text!.dropFirst()) != formatter.string(from: doubleAmt! as NSNumber) {
+			moneyText.text! = "$\(formatter.string(from: doubleAmt! as NSNumber)!)"
+		}
+        formatter.minimumFractionDigits = 2
+		doubleAmt = Double(moneyText.text!.dropFirst())
+		if doubleAmt ?? 0 > accountBalance {
+			moneyText.text = "$\(formatter.string(from: accountBalance as NSNumber)!)"
+		}
+	}
+	
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
@@ -39,8 +57,6 @@ class WithdrawVC: PlaidLinkEnabledVC,UITableViewDelegate,UITableViewDataSource,U
         }
         }
     }
-    
-    //Mark: Move to Stipe Connect Webview controller
     
     @IBAction func normalWithDrawAction(sender: UIButton){
         

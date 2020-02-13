@@ -24,13 +24,9 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
 	@IBOutlet weak var imageView: UIImageView!
 	@IBOutlet weak var scrollView: UIScrollView!
 	
-    
-    //MARK: UIScrollview Delegate
 	func viewForZooming(in scrollView: UIScrollView) -> UIView? {
 		return imageView
 	}
-    
-    //MARK: Image Crop Function
 	
 	func setImageToCrop(image : UIImage) {
 		
@@ -46,8 +42,6 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
 		blur.isHidden = true
 		
 	}
-    
-    //MARK: Crop the image function
 	
 	func GetCroppedImage() -> UIImage {
 		let scale : CGFloat = 1 / scrollView.zoomScale
@@ -60,8 +54,6 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
 		let croppedImage = UIImage(cgImage: croppedCGImage!)
 		return croppedImage
 	}
-    
-    //MARK: Fix Orientation Function
 	
 	func fixOrientation(image: UIImage?) -> UIImage? {
 		guard let image = image else { return nil }
@@ -77,8 +69,6 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
 			return image
 		}
 	}
-    
-    //MARK: Crop Action
 	
 	@IBAction func cropImage(_ sender: Any) {
 		
@@ -90,8 +80,6 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
 		delegate?.imagePicked(image: croppedImage, imageUrl: "")
 		self.dismiss(animated: true, completion: nil)
 	}
-    
-    //MARK: Cancel Action
 	
 	@IBAction func cancel(_ sender: Any) {
 		delegate?.imagePicked(image: nil, imageUrl: nil)
@@ -129,9 +117,7 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
 				(newStatus) in
 				debugPrint("status is \(newStatus)")
 				if newStatus ==  PHAuthorizationStatus.authorized {
-                    DispatchQueue.main.async {
-                        self.present(self.imagePicker, animated: true, completion: nil)
-                    }
+					self.present(self.imagePicker, animated: true, completion: nil)
 					print("success")
 				} else {
 					self.dismiss(animated: true, completion: nil)
@@ -147,9 +133,6 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
 		}
 		alreadyPresented = true
 	}
-    
-    
-    //MARK: Image Picker Controller Delegate
 	
 	@objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 		if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {

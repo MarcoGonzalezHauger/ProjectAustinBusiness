@@ -16,12 +16,11 @@ class signupbutton: UIButton {
 		self.layer.borderWidth = 2
 		self.layer.borderColor = UIColor.gray.cgColor
 	}
-    
 }
 
 
 
-class SignUpVC: BaseVC,UITextFieldDelegate {
+class SignUpVC: BaseVC, UITextFieldDelegate {
 
 	@IBOutlet weak var passwordLine: UILabel!
 	@IBOutlet weak var usernameLine: UILabel!
@@ -33,6 +32,8 @@ class SignUpVC: BaseVC,UITextFieldDelegate {
     var companyUser: CompanyUser!
     
     var assainedTextField: UITextField? = nil
+
+    
     
 	
 	override func viewDidLoad() {
@@ -40,9 +41,30 @@ class SignUpVC: BaseVC,UITextFieldDelegate {
 		
 		registerButton.layer.cornerRadius = 10
 		
+		addDoneButtonOnKeyboard(textField: emailText)
+		addDoneButtonOnKeyboard(textField: passwordText)
+		
     }
+	
+	@IBAction func nextButtonClicked(_ sender: Any) {
+		passwordText.becomeFirstResponder()
+	}
+	
+	@IBAction func joinButtonPressed(_ sender: Any) {
+		doneButtonAction()
+		CreateAccount()
+	}
+	
+	@IBAction func stopEditing(_ sender: Any) {
+		doneButtonAction()
+	}
+	
+	override func doneButtonAction() {
+		view.endEditing(true)
+	}
     
-	@IBAction func Cancelled(_ sender: Any) { self.navigationController?.popViewController(animated: true)
+	@IBAction func Cancelled(_ sender: Any) {
+		self.navigationController?.popViewController(animated: true)
 	}
 	
     @objc override func keyboardWasShown(notification : NSNotification) {
@@ -61,8 +83,8 @@ class SignUpVC: BaseVC,UITextFieldDelegate {
                     
                     conOFFSet = ((self.scroll.contentSize.height - self.scroll.frame.size.height) - (self.scroll.frame.size.height - textY))
                     
-                }else {
-                    //                conOFFSet = (self.scroll.contentSize.height - self.scroll.frame.size.height) + self.keyboardHeight
+                } else {
+                    //conOFFSet = (self.scroll.contentSize.height - self.scroll.frame.size.height) + self.keyboardHeight
                     conOFFSet = ((self.scroll.contentSize.height - self.scroll.frame.size.height) - (self.scroll.frame.size.height - textY))
                 }
                 
@@ -90,16 +112,12 @@ class SignUpVC: BaseVC,UITextFieldDelegate {
         
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
-
-        textField.resignFirstResponder()
-
-        return true
-    }
-    
     @IBAction func signinAction(sender: UIButton){
-        
-        if emailText.text?.count != 0 {
+        CreateAccount()
+    }
+	
+	func CreateAccount() {
+		if emailText.text?.count != 0 {
         
         if Validation.sharedInstance.isValidEmail(emailStr: emailText.text!){
             
@@ -161,7 +179,6 @@ class SignUpVC: BaseVC,UITextFieldDelegate {
 			
 			usernameLine.backgroundColor = .red
         }
-        
-    }
+	}
 
 }

@@ -52,17 +52,26 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yh6-U9-18m">
-                                <rect key="frame" x="76" y="27" width="75.5" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yh6-U9-18m">
+                                <rect key="frame" x="76" y="18.5" width="301" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INCOMPLETE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qnV-H1-cZF">
+                                <rect key="frame" x="76" y="40.5" width="86.5" height="16"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="qnV-H1-cZF" firstAttribute="leading" secondItem="Mcv-v5-YcY" secondAttribute="trailing" constant="8" id="6T4-qK-RrG"/>
                             <constraint firstItem="Mcv-v5-YcY" firstAttribute="centerY" secondItem="2qw-ia-czn" secondAttribute="centerY" id="B0p-vw-tYJ"/>
-                            <constraint firstItem="yh6-U9-18m" firstAttribute="centerY" secondItem="2qw-ia-czn" secondAttribute="centerY" id="XRK-1M-WMQ"/>
+                            <constraint firstItem="qnV-H1-cZF" firstAttribute="top" secondItem="yh6-U9-18m" secondAttribute="bottom" constant="1" id="CPf-we-sJ1"/>
+                            <constraint firstItem="yh6-U9-18m" firstAttribute="centerY" secondItem="2qw-ia-czn" secondAttribute="centerY" constant="-8.5" id="XRK-1M-WMQ"/>
+                            <constraint firstAttribute="trailing" secondItem="yh6-U9-18m" secondAttribute="trailing" constant="8" id="hPE-l7-H5f"/>
                             <constraint firstItem="yh6-U9-18m" firstAttribute="leading" secondItem="Mcv-v5-YcY" secondAttribute="trailing" constant="8" id="rhD-PS-De5"/>
                             <constraint firstItem="Mcv-v5-YcY" firstAttribute="leading" secondItem="2qw-ia-czn" secondAttribute="leading" constant="8" id="tyL-gc-WqI"/>
                         </constraints>
@@ -90,10 +99,20 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="colorBubble" destination="Mcv-v5-YcY" id="hIK-pb-Gva"/>
+                <outlet property="inCompleteLabel" destination="qnV-H1-cZF" id="B2C-Og-zr5"/>
+                <outlet property="midPoint" destination="XRK-1M-WMQ" id="sLz-UT-0jE"/>
                 <outlet property="postIndex" destination="THd-mW-2CS" id="r4p-G4-NmH"/>
                 <outlet property="postTitle" destination="yh6-U9-18m" id="aQH-qI-X06"/>
             </connections>
-            <point key="canvasLocation" x="80.434782608695656" y="100.78125"/>
+            <point key="canvasLocation" x="83" y="79"/>
         </tableViewCell>
+        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INCOMPLETE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="L6h-eW-G68">
+            <rect key="frame" x="0.0" y="0.0" width="92.5" height="17"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+            <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <nil key="highlightedColor"/>
+            <point key="canvasLocation" x="140" y="182"/>
+        </label>
     </objects>
 </document>

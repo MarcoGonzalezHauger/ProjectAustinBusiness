@@ -20,16 +20,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	var window: UIWindow?
     
     override init() {
-        
-        
+		FirebaseApp.configure()
+        Database.database().isPersistenceEnabled = false
+		InitializeZipCodeAPI(completed: nil)
     }
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
-        FirebaseApp.configure()
-        Database.database().isPersistenceEnabled = false
         InitializeZipCodeAPI(completed: nil)
-        Stripe.setDefaultPublishableKey("pk_test_8Rwst6t9gr25jXYXC4NHmiZK001i78iYO7")
+        Stripe.setDefaultPublishableKey("pk_live_k9m0LJO9sODGltsithrwmvqH00laWBjcra")
         //BTAppSwitch.setReturnURLScheme("com.develop.sns.paypal")
         getAdminValues { (error) in
            print("fd=",Singleton.sharedInstance.getAdminFS())
@@ -75,8 +74,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]){
-        
-        
         
     }
     

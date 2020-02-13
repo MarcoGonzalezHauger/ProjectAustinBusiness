@@ -34,8 +34,6 @@ class StaticsPie: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: Drawing Pie Chart
-    
     override func draw(_ rect: CGRect) {
         
         // get current context

@@ -20,13 +20,12 @@ class viewOfferCell: UITableViewCell {
 	@IBOutlet weak var offerviewoutline: UIView!
 	@IBOutlet weak var offerName: UILabel!
 	@IBOutlet weak var postDetails: UILabel!
-    @IBOutlet weak var editButton: UIButton!
-    
+	@IBOutlet weak var incompleteLabel: UILabel!
+	@IBOutlet weak var lastEditedLabel: UILabel!
+	
 }
 
 class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
-    
-    //MARK: Offer List UITableview Datasource and Delegates
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return global.OfferDrafts.count + 1
@@ -41,17 +40,18 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
 		} else {
 			let thisTemplate: TemplateOffer = global.OfferDrafts[indexPath.row - 1]
 			let cell = shelf.dequeueReusableCell(withIdentifier: "offerButton") as! viewOfferCell
-			cell.offerName.text = thisTemplate.title
-            cell.editButton.addTarget(self, action: #selector(self.editAction(sender:)), for: .touchUpInside)
-            cell.editButton.tag = indexPath.row - 1
+			cell.offerName.text = thisTemplate.title == "" ? "Untitled" : thisTemplate.title
+			cell.offerName.textColor = thisTemplate.title == "" ? UIColor.gray : GetForeColor()
 			cell.postDetails.text = thisTemplate.GetSummary()
+			cell.incompleteLabel.isHidden = thisTemplate.isFinished() == []
+			cell.lastEditedLabel.text = "Last edited " + DateToAgo(date: thisTemplate.lastEdited)
 			return cell
 		}
 	}
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         if indexPath.row == 0 {
-			return 80
+			return 70
         }
 		return 276
     }
@@ -63,14 +63,10 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    //MARK: Move to AddOfferVC to Create New Offer Page
-    
     @objc func composeAction(sender: UIButton){
         global.post.removeAll()
         self.performSegue(withIdentifier: "toCreateOfferView", sender: nil)
     }
-    
-    //MARK: Move to AddOfferVC to Edit the Existed Offer
     
     @objc func editAction(sender: UIButton){
         let template = global.OfferDrafts[sender.tag]
@@ -81,8 +77,16 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var editButton: UIButton!
     var isEdit = false
 	
+	@objc func timerAction(sender: AnyObject) {
+		shelf.reloadData()
+	}
+	
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+		let timer = Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector(self.timerAction(sender:)), userInfo: nil, repeats: true)
+		timer.fire()
         //let user = Singleton.sharedInstance.getCompanyUser().userID!
         //global.OfferDrafts = GetOffers(userId: user)
         //self.customizeNavigationBar()
@@ -92,8 +96,13 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     override func viewWillAppear(_ animated: Bool) {
 		shelf.dataSource = self
 		shelf.delegate = self
-		self.navigationController?.navigationBar.isHidden = true
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.hideNavigationAction(notification:)), name: Notification.Name.init(rawValue: "hidenavigation"), object: nil)
+		//self.navigationController?.navigationBar.isHidden = true
+        //self.navigationController?.hidesBarsOnTap = true
 		NotificationCenter.default.addObserver(self, selector: #selector(self.reloadOffer(notification:)), name: Notification.Name.init(rawValue: "reloadOffer"), object: nil)
+        
+        
+        
 		getAllTemplateOffers(userID: Auth.auth().currentUser!.uid) { (templateOffers, status) in
 			if status == "success" && templateOffers.count != 0 {
 				global.OfferDrafts.removeAll()
@@ -105,12 +114,17 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
 		}
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-        self.navigationController?.navigationBar.isHidden = false
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
     }
     
-    //MARK: Edit Product Action
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        //self.navigationController?.navigationBar.isHidden = false
+    }
     
     @IBAction func editProducts(_ sender: Any) {
         isEdit = !isEdit
@@ -146,8 +160,6 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return indexPath.row != 0
     }
-    
-    //MARK: If any new offer created or edited this function will be triggered through NotificationCenter
     
     @objc func reloadOffer(notification: Notification) {
         

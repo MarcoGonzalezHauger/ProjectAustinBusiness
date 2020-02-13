@@ -13,6 +13,8 @@ class PostDetailTC: UITableViewCell {
     @IBOutlet weak var postTitle: UILabel!
 	@IBOutlet weak var postIndex: UILabel!
 	@IBOutlet weak var colorBubble: ShadowView!
+	@IBOutlet weak var midPoint: NSLayoutConstraint!
+	@IBOutlet weak var inCompleteLabel: UILabel!
 	
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,13 +28,15 @@ class PostDetailTC: UITableViewCell {
         // Configure the view for the selected state
     }
 	
-	func SetCell(number: Int, hash: String?) {
+	func SetCell(number: Int, hash: String?, incomplete: Bool) {
 		postIndex.text = "\(number)"
+		midPoint.constant = incomplete ? -8.5 : 0
+		inCompleteLabel.isHidden = !incomplete
 		if let hash = hash {
 			if hash == "" {
 				postTitle.text = "Post \(number)"
 			} else {
-				postTitle.text = "#\(hash)"
+				postTitle.text = hash
 			}
 		} else {
 			postTitle.text = "Post \(number)"

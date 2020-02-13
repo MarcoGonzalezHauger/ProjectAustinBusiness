@@ -53,8 +53,6 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
 			//withdraw VC must appear.
 		}
 	}
-    
-    //MARK: Transaction History of the Business User
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return transactionHistory.count + 1
@@ -85,6 +83,16 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
 				cell.descriptionLabel.text = "User Rejected \"\(ThisTransaction.status)\", You have been credited \(amt)"
 				cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
 				cell.shadowBox.ShadowColor = .systemGreen
+            }else if ThisTransaction.type == "commissionrefund" {
+                let amt = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
+                cell.descriptionLabel.text = "Ambassadoor Commission Refunded \"\(ThisTransaction.status)\", You have been credited \(amt)"
+                cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
+                cell.shadowBox.ShadowColor = .systemGreen
+            }else if ThisTransaction.type == "postrefund" {
+                let amt = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
+                cell.descriptionLabel.text = "Ambassadoor Refunded the single post, You have been credited \(amt)"
+                cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
+                cell.shadowBox.ShadowColor = .systemGreen
             }
 			return cell
 			
@@ -133,8 +141,6 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
     }
 	
 	var shownBefore = false
-    
-    //Get Deposit and Current Balance Of the Business User
     
     @objc func getDeepositDetails() {
 		if !shownBefore {

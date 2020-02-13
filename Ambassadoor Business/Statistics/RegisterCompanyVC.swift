@@ -9,12 +9,15 @@
 import UIKit
 import FirebaseAuth
 
-class RegisterCompanyVC: BaseVC,ImagePickerDelegate,UITextFieldDelegate,UITextViewDelegate,UIScrollViewDelegate {
+var showTutorialVideoOnShow = false
+
+class RegisterCompanyVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITextViewDelegate, UIScrollViewDelegate {
     
     @IBOutlet weak var scroll: UIScrollView!
     @IBOutlet weak var picLogo: UIButton!
     @IBOutlet weak var registerButton: UIButton!
-    
+	@IBOutlet weak var registerButtonView: ShadowView!
+	
     @IBOutlet weak var companyName: UITextField!
     @IBOutlet weak var companyEmail: UITextField!
     @IBOutlet weak var companySite: UITextField!
@@ -32,10 +35,10 @@ class RegisterCompanyVC: BaseVC,ImagePickerDelegate,UITextFieldDelegate,UITextVi
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView){
-        print("contentOFset",scrollView.contentOffset.y)
-        let ok = scrollView.contentSize.height - scrollView.frame.size.height
-        print("contentOFset1",scrollView.contentSize.height)
-        print("contentOFset2",ok)
+//        print("contentOFset",scrollView.contentOffset.y)
+//        let ok = scrollView.contentSize.height - scrollView.frame.size.height
+//        print("contentOFset1",scrollView.contentSize.height)
+//        print("contentOFset2",ok)
     }
     
     @IBAction func logoControlAction(sender: UIButton){
@@ -115,94 +118,50 @@ class RegisterCompanyVC: BaseVC,ImagePickerDelegate,UITextFieldDelegate,UITextVi
         
     }
     
-    //MARK: Register Company 
-    
+	func RegisterCompany() {
+		if CanRegisterCompany(alertUser: true) {
+			showTutorialVideoOnShow = true
+			let companyValue = Company.init(dictionary: ["account_ID":"","name":self.companyName.text!,"logo":self.urlString,"mission":self.companyMission.text!,"website":self.companySite.text!,"owner":self.companyEmail.text!,"description":self.companyDescription.text!,"accountBalance":0.0,"referralcode": self.companyEmail.text!])
+			CreateCompany(company: companyValue) { (company) in
+				let companyUser = Singleton.sharedInstance.getCompanyUser()
+				companyUser.companyID = company.account_ID
+				Singleton.sharedInstance.setCompanyUser(user: companyUser)
+				Singleton.sharedInstance.setCompanyDetails(company: company)
+				self.dismiss(animated: true, completion: nil)
+			}
+		} else {
+			YouShallNotPass(SaveButtonView: registerButtonView)
+		}
+	}
+	
+	func CanRegisterCompany(alertUser: Bool) -> Bool {
+		if !alertUser {
+			return self.urlString != ""  && self.companyName.text?.count != 0 && isGoodUrl(url: self.companySite.text ?? "") && self.companyDescription.text.count > 0
+		}
+		
+		if self.urlString != "" {
+			if self.companyName.text?.count ?? 0 > 0 {
+				if isGoodUrl(url: self.companySite.text ?? "") {
+					if self.companyDescription.text.count != 0 {
+						return true
+					} else {
+						self.showAlertMessage(title: "Alert", message: "Please describe about your company in few lines") {}
+					}
+				} else {
+					self.showAlertMessage(title: "Alert", message: "Please enter a valid website") {}
+				}
+			} else {
+				self.showAlertMessage(title: "Alert", message: "Please enter your company name") {}
+			}
+		} else {
+			self.showAlertMessage(title: "Alert", message: "Please add your company logo") {}
+		}
+		
+		return false
+	}
+	
     @IBAction func registerAction(sender: UIButton){
-        if self.urlString != ""{
-            
-           if self.companyName.text?.count != 0 {
-            
-            //if self.companyEmail.text?.count != 0 {
-                
-                //if Validation.sharedInstance.isValidEmail(emailStr: self.companyEmail.text!){
-                    
-                    if self.companySite.text?.count != 0 {
-                        
-                        if (URL.init(string: self.companySite.text!) != nil){
-                            
-                            if self.companyDescription.text.count != 0 {
-                                
-                                let companyValue = Company.init(dictionary: ["account_ID":"","name":self.companyName.text!,"logo":self.urlString,"mission":self.companyMission.text!,"website":self.companySite.text!,"owner":self.companyEmail.text!,"description":self.companyDescription.text!,"accountBalance":0.0,"referralcode": self.companyEmail.text!])
-                                
-                                
-                                CreateCompany(company: companyValue) { (company) in
-                                    let companyUser = Singleton.sharedInstance.getCompanyUser()
-                                    companyUser.companyID = company.account_ID
-                                    Singleton.sharedInstance.setCompanyUser(user: companyUser)
-                                    Singleton.sharedInstance.setCompanyDetails(company: company)
-                                    self.dismiss(animated: true, completion: nil)
-                                    
-                                }
-                                
-                            }else {
-                                
-                                self.showAlertMessage(title: "Alert", message: "Please describe about your company in few lines") {
-                                    
-                                }
-                                
-                            }
-                            
-                        }else{
-                            
-                            self.showAlertMessage(title: "Alert", message: "Please enter valid website") {
-                                
-                            }
-                            
-                        }
-                        
-                    }else {
-                        self.showAlertMessage(title: "Alert", message: "Please enter your company site") {
-                            
-                        }
-                    }
-                    
-//                }else {
-//                    self.showAlertMessage(title: "Alert", message: "Please enter valid email address") {
-//
-//                    }
-//                }
-                
-//            }else {
-//
-//                self.showAlertMessage(title: "Alert", message: "Please enter your company email address") {
-//
-//                }
-//
-//            }
-                
-           }else{
-            
-            self.showAlertMessage(title: "Alert", message: "Please enter your company name") {
-                
-            }
-            
-            }
-            
-        }else{
-            self.showAlertMessage(title: "Alert", message: "Please add your company logo") {
-                
-            }
-        }
+        RegisterCompany()
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

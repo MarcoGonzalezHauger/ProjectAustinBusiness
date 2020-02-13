@@ -39,10 +39,6 @@ func GetCompany(account_ID: String) -> Company {
     return companyInstance
 }
 
-//func UploadTemplateOffersToUser() {
-//	let ref = Database.database().reference().child("companies").child("<#T##pathString: String##String#>")
-//}
-
 //Creates the offer and returns the newly created offer as an Offer instance
 func CreateOffer(offer: Offer) -> Offer {
     let user = Auth.auth().currentUser!.uid
@@ -52,95 +48,6 @@ func CreateOffer(offer: Offer) -> Offer {
     offerRef.updateChildValues(values)
     return offer
 }
-
-
-
-//func GetFakeProducts() -> [Product] {
-//    let fakeproduct = [Product.init(dictionary: ["image": "https://media.kohlsimg.com/is/image/kohls/2375536_Gray?wid=350&hei=350&op_sharpen=1", "name": "Any Nike Shoe", "price": 80.0, "buy_url": "https://store.nike.com/us/en_us/pw/mens-shoes/7puZoi3", "color": "Any", "product_ID": ""]),
-//                       Product.init(dictionary: ["image": "https://ae01.alicdn.com/kf/HTB1_iYaljihSKJjy0Fiq6AuiFXat/Original-New-Arrival-NIKE-TEE-FUTURA-ICON-LS-Men-s-T-shirts-Long-sleeve-Sportswear.jpg_640x640.jpg", "name": "Any Nike Shirt", "price": 25.0, "buy_url": "https://store.nike.com/us/en_us/pw/mens-tops-t-shirts/7puZobp", "color": "Any", "product_ID": ""]),
-//                       Product.init(dictionary: ["image": "https://s3.amazonaws.com/nikeinc/assets/60756/USOC_MensLaydown_2625x1500_hd_1600.jpg?1469461906", "name": "Any Nike Product", "price": 20.0, "buy_url": "https://www.nike.com/", "color": "Any", "product_ID": ""]),
-//                       Product.init(dictionary: ["image": "https://s3.amazonaws.com/boutiika-assets/image_library/BTKA_1520271255702342_ddff2a8ce6a4e69bce5a8da0444a57.jpg", "name": "Any of our shoes", "price": 20.0, "buy_url": "http://www.jmichaelshoes.com/shop/birkenstock-birkenstock-arizona-olive-bf-6991148", "color": "Any", "product_ID": ""])
-//
-//    ]
-//    return fakeproduct
-//}
-
-//func GetFakeOffers() -> [Offer] {
-//
-//
-//    var fakeoffers : [Offer] = []
-//    let fakeproduct = GetFakeProducts()
-//
-//    //Creates the fake Company NIKE. Unofficial Sponsor.
-//
-//    let fakeNike = Company.init(dictionary: ["name": "Nike" as AnyObject, "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/1200px-Logo_NIKE.svg.png" as AnyObject, "mission": "Just Do It." as AnyObject, "website": "https://www.nike.com/" as AnyObject, "account_ID": "" as AnyObject, "instagram_name": "" as AnyObject, "description": "Nike, Inc. is an American multinational corporation that is engaged in the design, development, manufacturing, and worldwide marketing and sales of footwear, apparel, equipment, accessories, and services. The company is headquartered near Beaverton, Oregon, in the Portland metropolitan area." as AnyObject, "accountBalance": 0.0])
-//
-//    //creates first NIKE post, that is for little money
-//
-//    fakeoffers.append(TemplateOffer.init(dictionary: ["money": 7.5 as AnyObject, "company": fakeNike as AnyObject, "posts": [
-//
-//        Post.init(image: nil, instructions: "Post an image near a basketball court", captionMustInclude: "20% off Nike w/ AMB10 #sponsored", products: [fakeproduct[0], fakeproduct[1]], post_ID: "", PostType: .SinglePost, confirmedSince: nil, isConfirmed: false),
-//
-//        Post.init(image: nil, instructions: "Post an image outside", captionMustInclude: "NIKE #ad", products: [fakeproduct[2]], post_ID: "", PostType: .MultiPost, confirmedSince: nil, isConfirmed: false)]
-//
-//        as AnyObject, "offerdate": Date().addingTimeInterval(3000) as AnyObject, "offer_ID": "fakeOffer\(Int.random(in: 1...9999999))" as AnyObject, "expiredate": Date(timeIntervalSinceNow: 86400) as AnyObject as AnyObject, "allPostsConfirmedSince": Date(timeIntervalSinceNow: 86400) as AnyObject, "isAccepted": false as AnyObject, "zipCodes": ["11942"] as AnyObject, "targetCategories": ["BodyBuilding"] as AnyObject, "genders": ["male"] as AnyObject, "user_IDs": [] as AnyObject]))
-//
-//    //creates good offer that's already been accepted, but not complete.
-//
-//    fakeoffers.append(Offer.init(dictionary: ["money": 13.65 as AnyObject, "company": fakeNike as AnyObject, "user_ID": "-LabEKrth-DRbVpG0WPn" as AnyObject, "posts": [
-//
-//        Post.init(image: nil, instructions: "Post an image outside", captionMustInclude: "20% off Nike w/ AMB10 #sponsored", products: [fakeproduct[0], fakeproduct[1]], post_ID: "", PostType: .SinglePost, confirmedSince: nil, isConfirmed: false),
-//
-//        Post.init(image: nil, instructions: "Post an image outside", captionMustInclude: "NIKE #ad", products: [fakeproduct[2]], post_ID: "", PostType: .MultiPost, confirmedSince: nil, isConfirmed: true),
-//
-//        Post.init(image: nil, instructions: "Post an image outside", captionMustInclude: "Just Do It. #sponsored", products: [fakeproduct[2]], post_ID: "", PostType: .SinglePost, confirmedSince: nil, isConfirmed: true)]
-//
-//        as AnyObject, "offerdate": Date().addingTimeInterval(3000) as AnyObject, "offer_ID": "fakeOffer\(Int.random(in: 1...9999999))" as AnyObject, "expiredate": Date(timeIntervalSinceNow: 86400) as AnyObject, "allPostsConfirmedSince": "" as AnyObject, "isAccepted": true as AnyObject]))
-//
-//    //Offer that has been completed.
-//
-//    fakeoffers.append(Offer.init(dictionary: ["money": 13.44 as AnyObject, "company": "JMichaels" as AnyObject, "user_ID": "-LabEKrth-DRbVpG0WPn" as AnyObject, "posts": [
-//
-//        Post.init(image: nil, instructions: "Post an image using one of the proudcts.", captionMustInclude: "J Michaels #sponsored", products: [fakeproduct[3]], post_ID: "", PostType: .SinglePost, confirmedSince: nil, isConfirmed: false)]
-//
-//        as AnyObject, "offerdate": Date().addingTimeInterval(3000) as AnyObject, "offer_ID": "fakeOffer\(Int.random(in: 1...9999999))" as AnyObject, "expiredate": Date(timeIntervalSinceNow: 86400) as AnyObject, "allPostsConfirmedSince": "" as AnyObject, "isAccepted": false as AnyObject]))
-//
-//    return fakeoffers
-//}
-//
-//func GetTestTemplateOffer() -> TemplateOffer {
-//    let fakeproduct = GetFakeProducts()
-//    let fakeNike = Company.init(dictionary: ["name": "Nike", "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/1200px-Logo_NIKE.svg.png", "mission": "Just Do It.", "website": "https://www.nike.com/", "account_ID": "", "instagram_name": "", "description": "Nike, Inc. is an American multinational corporation that is engaged in the design, development, manufacturing, and worldwide marketing and sales of footwear, apparel, equipment, accessories, and services. The company is headquartered near Beaverton, Oregon, in the Portland metropolitan area.", "accountBalance": 0.0])
-//    
-//	return TemplateOffer.init(dictionary: ["title": "Offer 1" as AnyObject, "money": 13.65 as AnyObject, "company": fakeNike as AnyObject, "posts": [
-//        
-//        Post.init(image: nil, instructions: "Post an image outside", captionMustInclude: "20% off Nike w/ AMB10 #sponsored", products: [fakeproduct[0], fakeproduct[1]], post_ID: "", PostType: .SinglePost, confirmedSince: nil, isConfirmed: false),
-//        
-//        Post.init(image: nil, instructions: "Post an image outside", captionMustInclude: "NIKE #ad", products: [fakeproduct[2]], post_ID: "", PostType: .MultiPost, confirmedSince: nil, isConfirmed: true),
-//        
-//        Post.init(image: nil, instructions: "Post an image outside", captionMustInclude: "Just Do It. #sponsored", products: [fakeproduct[2]], post_ID: "", PostType: .SinglePost, confirmedSince: nil, isConfirmed: true)] as AnyObject, "offerdate": Date().addingTimeInterval(3000) as AnyObject, "offer_ID": "fakeOffer\(Int.random(in: 1...9999999))" as AnyObject, "expiredate": Date(timeIntervalSinceNow: 86400) as AnyObject, "allPostsConfirmedSince": Date(timeIntervalSinceNow: 86400) as AnyObject as AnyObject, "isAccepted": true as AnyObject, "targetCategories": [] as NSArray, "zipCodes": ["11942","13210"] as NSArray, "genders": ["male", "female"] as NSArray, "user_IDs": [] as NSArray])
-//}
-
-
-//Gets all relavent people, people who you are friends and a few random people to compete with.
-/*
- func GetRandomTestUsers() -> [User] {
- var userslist : [User] = []
- for _ : Int in (1...Int.random(in: 1...50)) {
- for x : Category in [.Entrepreneuner, .Hiker, .WinterSports, .Baseball, .Basketball, .Golf, .Tennis, .Soccer, .Football, .Boxing, .MMA, .Swimming, .TableTennis, .Gymnastics, .Dancer, .Rugby, .Bowling, .Frisbee, .Cricket, .SpeedBiking, .MountainBiking, .WaterSkiing, .Running, .PowerLifting, .BodyBuilding, .Wrestling, .StrongMan, .NASCAR, .RalleyRacing, .Parkour, .Model, .Makeup, .Actor, .RunwayModel, .Designer, .Brand, .Stylist, .HairStylist, .FasionArtist, .Painter, .Sketcher, .Musician, .Band, .SingerSongWriter, .WinterSports] {
- userslist.append(User.init(dictionary: ["name": GetRandomName() as AnyObject, "username": getRandomUsername() as AnyObject, "followerCount": Double(Int.random(in: 10...1000) << 2) as AnyObject, "profilePicture": "https://scontent-lga3-1.cdninstagram.com/vp/60d965d5d78243bd600e899ceef7b22e/5D03F5A8/t51.2885-19/s150x150/16123627_1826526524262048_8535256149333639168_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com" as  AnyObject, "primaryCategory": x as AnyObject, "averageLikes": pow(Double(Int.random(in: 1...1000)), 2) as AnyObject, "id": "" as AnyObject]))
- }
- }
- return userslist
- }
-// */
-//func GetRandomName() ->  String {
-//    return "TestUser\(Int.random(in: 100...9999))"
-//}
-//
-//func getRandomUsername() -> String {
-//    return "marco_m_polo"
-//}
 
 func serializeOffer(offer: Offer) -> [String: AnyObject] {
     var post_IDS: [[String: Any]] = [[:]]
@@ -199,7 +106,7 @@ func CreatePost(param: Post,completion: @escaping (Post,Bool) -> ())  {
     let ref = Database.database().reference().child("post").child(Auth.auth().currentUser!.uid)
     ref.observeSingleEvent(of: .value, with: { (snapshot) in
         let postReference = ref.childByAutoId()
-        let post = Post.init(image: param.image!, instructions: param.instructions, captionMustInclude: param.captionMustInclude!, products: param.products!, post_ID: postReference.key!, PostType: param.PostType, confirmedSince: param.confirmedSince!, isConfirmed: param.isConfirmed, hashCaption: param.hashCaption, status: param.status)
+        let post = Post.init(image: param.image!, instructions: param.instructions, captionMustInclude: param.captionMustInclude!, products: param.products!, post_ID: postReference.key!, PostType: param.PostType, confirmedSince: param.confirmedSince!, isConfirmed: param.isConfirmed, hashCaption: param.hashCaption, status: param.status, hashtags: param.hashtags, keywords: param.keywords, isPaid: param.isPaid, PayAmount: 0.0)
         let productData = API.serializePost(post: post)
         postReference.updateChildValues(productData)
         completion(post, true)
@@ -211,7 +118,7 @@ func getCreatePostUniqueID(param: Post, completion: @escaping (Post,Bool) -> ())
     
     let ref = Database.database().reference()
     let postReference = ref.childByAutoId()
-    let post = Post.init(image: param.image!, instructions: param.instructions, captionMustInclude: param.captionMustInclude!, products: param.products!, post_ID: postReference.key!, PostType: param.PostType, confirmedSince: param.confirmedSince!, isConfirmed: param.isConfirmed, hashCaption: param.hashCaption, status: param.status)
+    let post = Post.init(image: param.image!, instructions: param.instructions, captionMustInclude: param.captionMustInclude!, products: param.products!, post_ID: postReference.key!, PostType: param.PostType, confirmedSince: param.confirmedSince!, isConfirmed: param.isConfirmed, hashCaption: param.hashCaption, status: param.status, hashtags: param.hashtags, keywords: param.keywords, isPaid: param.isPaid, PayAmount: 0.0)
     //let productData = API.serializePost(post: post)
     completion(post,true)
 }
@@ -367,8 +274,6 @@ func GetAllUsers(completion: @escaping ([User]) -> ()) {
     }, withCancel: nil)
 }
 
-//MARK: Filter the influencers as per the filtered Category
-
 func getFilteredInfluencers(category: [String:[AnyObject]],completion: @escaping (String,[User]?) -> ()) {
     
     var BusinessFilters = category
@@ -476,8 +381,6 @@ func getFilteredInfluencers(category: [String:[AnyObject]],completion: @escaping
     
 }
 
-//MARK: Getting all products of the comapny user.
-
 func getAllProducts(path: String, completion: @escaping ([Product]?) -> ()) {
     let productsRef = Database.database().reference().child("products").child(path)
     var products: [Product] = []
@@ -519,12 +422,12 @@ func getAllProducts(path: String, completion: @escaping ([Product]?) -> ()) {
 func createTemplateOffer(pathString: String,edited: Bool,templateOffer: TemplateOffer,completion: @escaping (TemplateOffer,Bool) -> ()) {
     let offersRef = Database.database().reference().child("TemplateOffers").child(pathString)
     if edited == false {
-    let offerKey = offersRef.childByAutoId()
-    templateOffer.offer_ID = offerKey.key!
-    var offerDictionary: [String: Any] = [:]
-    offerDictionary = API.serializeTemplateOffer(offer: templateOffer)
-    offerKey.updateChildValues(offerDictionary)
-    completion(templateOffer, true)
+		let offerKey = offersRef.childByAutoId()
+		templateOffer.offer_ID = offerKey.key!
+		var offerDictionary: [String: Any] = [:]
+		offerDictionary = API.serializeTemplateOffer(offer: templateOffer)
+		offerKey.updateChildValues(offerDictionary)
+		completion(templateOffer, true)
     }else{
         var offerDictionary: [String: Any] = [:]
         offerDictionary = API.serializeTemplateOffer(offer: templateOffer)
@@ -535,9 +438,10 @@ func createTemplateOffer(pathString: String,edited: Bool,templateOffer: Template
     
 }
 
-//Save Send Out Offer details to Firebase
 
+// We do separate Commission and User Amount Sentout Offers too
 func sentOutOffers(pathString: String, templateOffer: TemplateOffer, completion: @escaping (TemplateOffer,Bool) -> ()) {
+    print(templateOffer.posts.count)
     let offersRef = Database.database().reference().child("SentOutOffers").child(pathString)
     var offerDictionary: [String: Any] = [:]
     offerDictionary = API.serializeTemplateOffer(offer: templateOffer)
@@ -552,8 +456,6 @@ func completedOffersToUsers(pathString: String, templateOffer: TemplateOffer) {
     offerDictionary = API.serializeTemplateOffer(offer: templateOffer)
     offersRef.updateChildValues(offerDictionary)
 }
-
-//Save transcation details of refered influencer 
 
 func sentOutTransactionToInfluencer(pathString: String,transactionData: [String: Any]) {
     
@@ -653,8 +555,6 @@ func updateTemplateOffers(pathString: String, templateOffer: TemplateOffer, user
     //offersRef.removeValue()
 }
 
-//MARK: Get All Created Template Offers by Current Company User
-
 func getAllTemplateOffers(userID: String, completion: @escaping([TemplateOffer],String) -> Void) {
     
     let ref = Database.database().reference().child("TemplateOffers").child(userID)
@@ -690,7 +590,7 @@ func getAllTemplateOffers(userID: String, completion: @escaping([TemplateOffer],
 func parseTemplateOffer(offer: [String: AnyObject]) -> [Post] {
     
     var postValues = [Post]()
-    let post = offer["posts"] as! [NSDictionary]
+    let post = offer["posts"] as? [NSDictionary] ?? []
     for value in post {
         
         var productList = [Product]()
@@ -702,13 +602,11 @@ func parseTemplateOffer(offer: [String: AnyObject]) -> [Post] {
 			}
 		}
 		
-        let postInitialized = Post.init(image: "", instructions: value["instructions"] as? String ?? "", captionMustInclude: value["captionMustInclude"] as? String, products: productList, post_ID: value["post_ID"] as! String, PostType: value["PostType"] as! String, confirmedSince: value["confirmedSince"] as? Date, isConfirmed: (value["isConfirmed"] != nil), hashCaption: value["hashCaption"] as! String, status: value["status"] as? String ?? "")
+        let postInitialized = Post.init(image: "", instructions: value["instructions"] as? String ?? "", captionMustInclude: value["captionMustInclude"] as? String, products: productList, post_ID: value["post_ID"] as! String, PostType: value["PostType"] as! String, confirmedSince: value["confirmedSince"] as? Date, isConfirmed: (value["isConfirmed"] != nil), hashCaption: value["hashCaption"] as! String, status: value["status"] as? String ?? "", hashtags: value["hashtags"] as? [String] ?? [], keywords: value["keywords"] as? [String] ?? [], isPaid: value["isPaid"] as? Bool ?? false, PayAmount: value["PayAmount"] as? Double ?? 0.0)
         postValues.append(postInitialized)
     }
     return postValues
 }
-
-//Deduct and Save Transaction history of Business User
 
 func sendDepositAmount(deposit: Deposit,companyUser: String,completion: @escaping(Deposit,String) -> Void) {
     
@@ -718,8 +616,6 @@ func sendDepositAmount(deposit: Deposit,companyUser: String,completion: @escapin
     ref.updateChildValues(offerDictionary)
     completion(deposit, "success")
 }
-
-//MARK: Get Deposit and Current Balance Of the Business User
 
 func getDepositDetails(companyUser: String,completion: @escaping(Deposit?,String,Error?) -> Void) {
     
@@ -1025,8 +921,6 @@ func transactionInfo(completion: @escaping([TransactionInfo]?,String,Error?) -> 
     
 }
 
-//MARK: Calculate Influencer Cost Bsed On the Post Cost and Average Likes
-
 func calculateCostForUser(offer: Offer, user: User, increasePayVariable: Double = 1.00) -> Double {
     return 0.055 * user.averageLikes! * Double(offer.posts.count) * increasePayVariable
 }
@@ -1098,7 +992,7 @@ func serializeCompanyUser(companyUser: CompanyUser) -> [String: Any] {
     return companyUserData
     
 }
-//Get Current Company User
+//
 func getCurrentCompanyUser(userID: String, completion: @escaping (CompanyUser?,String) -> Void) {
     
     let ref = Database.database().reference()
@@ -1203,7 +1097,7 @@ func getAdminValues(completion: @escaping (String) -> Void) {
     
 }
 
-//Get Company Details of the Business User
+//
 func getCompany(companyID: String,completion: @escaping (Company?,String) -> Void) {
     let user = Auth.auth().currentUser!.uid
     Database.database().reference().child("companies").child(user).child(companyID).observeSingleEvent(of: .value, with: { (snapshot) in

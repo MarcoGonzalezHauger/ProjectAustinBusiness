@@ -17,7 +17,6 @@ protocol editDelegate {
 
 class EditCompanyTVC: UITableViewController, ImagePickerDelegate, UITextViewDelegate {
 	
-    //MARK: Image Picker Delegate
 	
 	func imagePicked(image: UIImage?, imageUrl: String?) {
         
@@ -91,7 +90,6 @@ class EditCompanyTVC: UITableViewController, ImagePickerDelegate, UITextViewDele
 		nameTextBox.resignFirstResponder()
 	}
 	
-    //MARK: Saving Edited Company Details
 	
 	@IBAction func save(_ sender: Any) {
 		var problem = false

@@ -82,7 +82,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="dNE-MN-Z6C"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="join" secureTextEntry="YES" textContentType="password"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="kAN-Z2-zIi" id="4C8-7t-Sp5"/>
                                                 </connections>
@@ -268,7 +268,7 @@
                                             <constraint firstAttribute="height" constant="34" id="Jii-nc-eap"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="email"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" textContentType="email"/>
                                         <connections>
                                             <outlet property="delegate" destination="egL-yc-bQC" id="Eb1-By-8Hy"/>
                                         </connections>
@@ -373,7 +373,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1P8-al-bFV">
+                            <scrollView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="1P8-al-bFV">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nap-qC-YiL">
@@ -395,8 +395,9 @@
                                                     <constraint firstAttribute="height" constant="30" id="2wo-y9-e3u"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits" textContentType="email"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="email"/>
                                                 <connections>
+                                                    <action selector="nextButtonClicked:" destination="rtC-H4-P1t" eventType="primaryActionTriggered" id="6Rm-q3-W4D"/>
                                                     <outlet property="delegate" destination="kAN-Z2-zIi" id="wNt-bs-HRX"/>
                                                 </connections>
                                             </textField>
@@ -416,8 +417,9 @@
                                                     <constraint firstAttribute="height" constant="30" id="6Iy-YE-uhy"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="join" secureTextEntry="YES" textContentType="password"/>
                                                 <connections>
+                                                    <action selector="joinButtonPressed:" destination="rtC-H4-P1t" eventType="primaryActionTriggered" id="mux-8N-Bo5"/>
                                                     <outlet property="delegate" destination="kAN-Z2-zIi" id="UQv-fG-OiI"/>
                                                 </connections>
                                             </textField>
@@ -451,6 +453,7 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="Nap-qC-YiL" firstAttribute="trailing" secondItem="cK0-zh-faH" secondAttribute="trailing" id="5jy-bW-V4d"/>
                                     <constraint firstItem="Nap-qC-YiL" firstAttribute="top" secondItem="nvk-Jf-aF8" secondAttribute="bottom" constant="67" id="8xg-lq-exe"/>
@@ -462,6 +465,9 @@
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="RX6-Zs-NuS"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="cK0-zh-faH"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="8jN-D0-1qQ" appends="YES" id="WUw-Fc-DUh"/>
+                                </connections>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4df-iX-jpF">
                                 <rect key="frame" x="10" y="792" width="394" height="60"/>
@@ -518,6 +524,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HQv-My-BLc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="8jN-D0-1qQ">
+                    <connections>
+                        <action selector="stopEditing:" destination="rtC-H4-P1t" id="Sm1-jQ-3XF"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1813.0434782608697" y="143.30357142857142"/>
         </scene>

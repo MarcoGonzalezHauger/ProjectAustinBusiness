@@ -14,8 +14,6 @@ import SDWebImage
 
 class ViewProductVC: BaseVC, UITextViewDelegate, ImagePickerDelegate {
     
-    //MARK: Image Picker Delegate
-    
     func imagePicked(image: UIImage?, imageUrl: String?) {
         if  image != nil {
             productImage.image = image
@@ -77,8 +75,6 @@ class ViewProductVC: BaseVC, UITextViewDelegate, ImagePickerDelegate {
         productName.selectAll(nil)
     }
     
-    //MARK: Add Http or Http://www before the text after ending the line
-    
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
             textView.resignFirstResponder()
@@ -101,8 +97,6 @@ class ViewProductVC: BaseVC, UITextViewDelegate, ImagePickerDelegate {
         }
         return true
     }
-    
-    //MARK: Save product details to Firebase
     
     @IBAction func save(_ sender: Any) {
         if !isGoodUrl(url: productURL.text) {
@@ -183,8 +177,6 @@ class ViewProductVC: BaseVC, UITextViewDelegate, ImagePickerDelegate {
             }
         }
     }
-    
-    //MARK: Open External Web browser for loading the productViewURL
     
     @IBAction func visitWebPage(_ sender: Any) {
         let good = isGoodUrl(url: productURL.text)
