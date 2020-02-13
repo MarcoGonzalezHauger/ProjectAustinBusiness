@@ -338,14 +338,19 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
 				for user in userArray! {
 
 					if user.averageLikes != 0 && user.averageLikes != nil {
+						print(user.username	+ " has likes")
 
 						//let influcerMoneyValue = ((Double(calculateCostForUser(offer: self.templateOffer!, user: user, increasePayVariable: self.increasePayVariable.rawValue)) * 100).rounded())/100
 						//NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
 						let influcerMoneyValue = calculateCostForUser(offer: self.templateOffer!, user: user, increasePayVariable: self.increasePayVariable.rawValue)
+						print(user.username	+ " costs " + "\(influcerMoneyValue)")
 
 						if offerAmount >= influcerMoneyValue {
 
+							print(user.username	+ " affordable")
+							
 							if (self.templateOffer?.user_IDs.contains(user.id))! == false {
+								print(user.username	+ " ADDED")
 								
 								offerAmount -= influcerMoneyValue
 								extractedInfluencer.append(user)
