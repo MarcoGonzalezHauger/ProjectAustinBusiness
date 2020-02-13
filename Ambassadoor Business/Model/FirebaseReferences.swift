@@ -106,7 +106,7 @@ func CreatePost(param: Post,completion: @escaping (Post,Bool) -> ())  {
     let ref = Database.database().reference().child("post").child(Auth.auth().currentUser!.uid)
     ref.observeSingleEvent(of: .value, with: { (snapshot) in
         let postReference = ref.childByAutoId()
-        let post = Post.init(image: param.image!, instructions: param.instructions, captionMustInclude: param.captionMustInclude!, products: param.products!, post_ID: postReference.key!, PostType: param.PostType, confirmedSince: param.confirmedSince!, isConfirmed: param.isConfirmed, hashCaption: param.hashCaption, status: param.status, hashtags: param.hashtags, keywords: param.keywords)
+        let post = Post.init(image: param.image!, instructions: param.instructions, captionMustInclude: param.captionMustInclude!, products: param.products!, post_ID: postReference.key!, PostType: param.PostType, confirmedSince: param.confirmedSince!, isConfirmed: param.isConfirmed, hashCaption: param.hashCaption, status: param.status, hashtags: param.hashtags, keywords: param.keywords, isPaid: param.isPaid, PayAmount: 0.0)
         let productData = API.serializePost(post: post)
         postReference.updateChildValues(productData)
         completion(post, true)
@@ -118,7 +118,7 @@ func getCreatePostUniqueID(param: Post, completion: @escaping (Post,Bool) -> ())
     
     let ref = Database.database().reference()
     let postReference = ref.childByAutoId()
-	let post = Post.init(image: param.image!, instructions: param.instructions, captionMustInclude: param.captionMustInclude!, products: param.products!, post_ID: postReference.key!, PostType: param.PostType, confirmedSince: param.confirmedSince!, isConfirmed: param.isConfirmed, hashCaption: param.hashCaption, status: param.status, hashtags: param.hashtags, keywords: param.keywords)
+    let post = Post.init(image: param.image!, instructions: param.instructions, captionMustInclude: param.captionMustInclude!, products: param.products!, post_ID: postReference.key!, PostType: param.PostType, confirmedSince: param.confirmedSince!, isConfirmed: param.isConfirmed, hashCaption: param.hashCaption, status: param.status, hashtags: param.hashtags, keywords: param.keywords, isPaid: param.isPaid, PayAmount: 0.0)
     //let productData = API.serializePost(post: post)
     completion(post,true)
 }
@@ -439,8 +439,9 @@ func createTemplateOffer(pathString: String,edited: Bool,templateOffer: Template
 }
 
 
-
+// We do separate Commission and User Amount Sentout Offers too
 func sentOutOffers(pathString: String, templateOffer: TemplateOffer, completion: @escaping (TemplateOffer,Bool) -> ()) {
+    print(templateOffer.posts.count)
     let offersRef = Database.database().reference().child("SentOutOffers").child(pathString)
     var offerDictionary: [String: Any] = [:]
     offerDictionary = API.serializeTemplateOffer(offer: templateOffer)
@@ -601,7 +602,7 @@ func parseTemplateOffer(offer: [String: AnyObject]) -> [Post] {
 			}
 		}
 		
-		let postInitialized = Post.init(image: "", instructions: value["instructions"] as? String ?? "", captionMustInclude: value["captionMustInclude"] as? String, products: productList, post_ID: value["post_ID"] as! String, PostType: value["PostType"] as! String, confirmedSince: value["confirmedSince"] as? Date, isConfirmed: (value["isConfirmed"] != nil), hashCaption: value["hashCaption"] as! String, status: value["status"] as? String ?? "", hashtags: value["hashtags"] as? [String] ?? [], keywords: value["keywords"] as? [String] ?? [])
+        let postInitialized = Post.init(image: "", instructions: value["instructions"] as? String ?? "", captionMustInclude: value["captionMustInclude"] as? String, products: productList, post_ID: value["post_ID"] as! String, PostType: value["PostType"] as! String, confirmedSince: value["confirmedSince"] as? Date, isConfirmed: (value["isConfirmed"] != nil), hashCaption: value["hashCaption"] as! String, status: value["status"] as? String ?? "", hashtags: value["hashtags"] as? [String] ?? [], keywords: value["keywords"] as? [String] ?? [], isPaid: value["isPaid"] as? Bool ?? false, PayAmount: value["PayAmount"] as? Double ?? 0.0)
         postValues.append(postInitialized)
     }
     return postValues

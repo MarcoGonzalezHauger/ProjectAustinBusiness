@@ -367,7 +367,11 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 		
 		let expiryDate = DateFormatManager.sharedInstance.getExpiryDate(dateString: dateString)
 		
-		var offer = ["offer_ID":"","money":0.0,"company":Singleton.sharedInstance.getCompanyDetails(),"posts":global.post,"offerdate":Date(),"user_ID":[],"expiredate":expiryDate,"allPostsConfirmedSince":nil,"allConfirmed":false,"isAccepted":false,"isExpired":false,"ownerUserID":Auth.auth().currentUser!.uid,"category":self.selectedCategoryArray,"locationFilter":locationFilter,"genders":genderArray,"title":self.offerName.text!,"targetCategories":["Other"],"user_IDs":[],"status":"available", "lastEditDate": DateToFirebase(date: Date())] as [String : AnyObject]
+        var offer = ["offer_ID":"","money":0.0,"commission":0.0,"isCommissionPaid": false,"company":Singleton.sharedInstance.getCompanyDetails(),"posts":global.post,"offerdate":Date(),"user_ID":[],"expiredate":expiryDate,"allPostsConfirmedSince":nil,"allConfirmed":false,"isAccepted":false,"isExpired":false,"ownerUserID":Auth.auth().currentUser!.uid,"category":self.selectedCategoryArray,"locationFilter":locationFilter,"genders":genderArray,"title":self.offerName.text!,"targetCategories":["Other"],"user_IDs":[],"status":"available", "lastEditDate": DateToFirebase(date: Date()),"isAllPaid":false,"isRefferedByInfluencer":false,"isReferCommissionPaid":false,"referralAmount":0.0,"referralID":""] as [String : AnyObject]
+        
+        //self.isRefferedByInfluencer = dictionary["isRefferedByInfluencer"] as? Bool ?? false
+        //self.isReferCommissionPaid = dictionary["isReferCommissionPaid"] as? Bool ?? false
+        //self.referralAmount = dictionary["referralAmount"] as? Double ?? 0.0
 		
 		if segueOffer != nil {
 			
@@ -467,6 +471,7 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 		SaveThisOffer { (template, bool1) in
 			self.createLocalNotification(notificationName: "reloadOffer", userInfo: [:])
 				global.post.removeAll()
+            self.navigationController?.setNavigationBarHidden(true, animated: false)
 			self.navigationController?.popViewController(animated: true)
 		}
 	}

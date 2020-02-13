@@ -238,7 +238,7 @@ class AddPostVC: BaseVC, NCDelegate, UITableViewDelegate, UITableViewDataSource,
 				}
 			}
 		}
-		let post  = Post.init(image: "", instructions: InstructionsTextView.text!, captionMustInclude: "", products: [], post_ID: "", PostType: PostTypeToText(posttype: .SinglePost), confirmedSince: Date(), isConfirmed: false, hashCaption: "", status: "available", hashtags: hashes, keywords: phrases)
+        let post  = Post.init(image: "", instructions: InstructionsTextView.text!, captionMustInclude: "", products: [], post_ID: "", PostType: PostTypeToText(posttype: .SinglePost), confirmedSince: Date(), isConfirmed: false, hashCaption: "", status: "available", hashtags: hashes, keywords: phrases, isPaid: false, PayAmount: 0.0)
 		getCreatePostUniqueID(param: post) { (postValue, error) in
 			if self.index != nil {
 				global.post[self.index!] = postValue

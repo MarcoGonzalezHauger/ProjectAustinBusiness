@@ -192,7 +192,7 @@ class StripeConnectionMKWebview: BaseVC, WKNavigationDelegate {
             
             //let cardDetails = ["last4":stripeID,"expireMonth":"00","expireYear":"00","country":"US"] as [String : Any]
             
-            let transactionDict = ["id":stripeID,"status":"success","type":"paid","currencyIsoCode":"usd","amount":String(depositedAmount),"createdAt":DateFormatManager.sharedInstance.getCurrentDateString(),"updatedAt":DateFormatManager.sharedInstance.getCurrentDateString(),"transactionType":"card","cardDetails":cardDetails] as [String : Any]
+            let transactionDict = ["id":stripeID,"status":"success","type":"paid","currencyIsoCode":"usd","amount":String(depositedAmount),"createdAt":DateFormatManager.sharedInstance.getCurrentDateString(),"updatedAt":DateFormatManager.sharedInstance.getCurrentDateString(),"transactionType":"card","cardDetails":cardDetails,"commission":0.0] as [String : Any]
             
             
             if status == "new" {
