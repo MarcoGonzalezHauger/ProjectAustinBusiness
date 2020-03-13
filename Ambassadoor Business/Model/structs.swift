@@ -83,6 +83,7 @@ class Offer: NSObject {
         return self.expiredate.timeIntervalSinceNow <= 0
     }
     var ownerUserID: String
+    var notify: Bool
     
     var debugInfo: String {
         return "Offer by \(company!.name) for $\(String(money)) that is \(isExpired ? "" : "not ") expired."
@@ -108,6 +109,7 @@ class Offer: NSObject {
         self.isReferCommissionPaid = dictionary["isReferCommissionPaid"] as? Bool ?? false
         self.referralAmount = dictionary["referralAmount"] as? Double ?? 0.0
         self.referralID = dictionary["referralID"] as? String ?? ""
+        self.notify = dictionary["notify"] as? Bool ?? false
     }
 }
 

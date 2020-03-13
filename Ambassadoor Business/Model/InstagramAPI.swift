@@ -215,7 +215,8 @@ struct API {
             "isRefferedByInfluencer": offer.isRefferedByInfluencer as Any,
             "isReferCommissionPaid":offer.isReferCommissionPaid as Any,
             "referralAmount":offer.referralAmount as Any,
-            "referralID":offer.referralID as Any
+            "referralID":offer.referralID as Any,
+            "notify":offer.notify as Any
             ]
         return offerData
         //self.isRefferedByInfluencer = dictionary["isRefferedByInfluencer"] as? Bool ?? false

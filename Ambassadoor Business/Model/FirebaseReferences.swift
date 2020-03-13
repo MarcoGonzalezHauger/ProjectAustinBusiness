@@ -1000,6 +1000,9 @@ func getCurrentCompanyUser(userID: String, completion: @escaping (CompanyUser?,S
         // Get user value
         if let value = snapshot.value as? NSDictionary{
            let companyUser = CompanyUser.init(dictionary: value as! [String : Any])
+            companyUser.deviceFIRToken = global.deviceFIRToken
+            let updateRef = Database.database().reference().child("CompanyUser").child(userID)
+            updateRef.updateChildValues(["deviceFIRToken":global.deviceFIRToken])
            completion(companyUser, "")
         }else{
           completion(nil, "error")
