@@ -135,8 +135,10 @@ class SignUpVC: BaseVC, UITextFieldDelegate {
 
 								UserDefaults.standard.set(self.emailText.text, forKey: "userEmail")
 								UserDefaults.standard.set(self.passwordText.text, forKey: "userPass")
+                                
+                                let referralCode = randomString(length: 7)
 								
-                                self.companyUser = CompanyUser.init(dictionary: ["userID":user.uid,"token":token!,"email":user.email!,"refreshToken":user.refreshToken!,"isCompanyRegistered":false,"companyID": "", "deviceFIRToken": global.deviceFIRToken])
+                                self.companyUser = CompanyUser.init(dictionary: ["userID":user.uid,"token":token!,"email":user.email!,"refreshToken":user.refreshToken!,"isCompanyRegistered":false,"companyID": "", "deviceFIRToken": global.deviceFIRToken, "businessReferral": referralCode])
 								
 								let userDetails = CreateCompanyUser(companyUser: self.companyUser)
 								Singleton.sharedInstance.setCompanyUser(user: userDetails)

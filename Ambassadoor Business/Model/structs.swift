@@ -356,6 +356,7 @@ class CompanyUser: NSObject {
     var isCompanyRegistered: Bool?
     var companyID: String?
     var deviceFIRToken: String?
+    var businessReferral: String?
     
     init(dictionary: [String: Any]) {
         
@@ -366,6 +367,7 @@ class CompanyUser: NSObject {
         self.isCompanyRegistered = dictionary["isCompanyRegistered"] as? Bool
         self.companyID = dictionary["companyID"] as? String
         self.deviceFIRToken = dictionary["deviceFIRToken"] as? String ?? ""
+        self.businessReferral = dictionary["businessReferral"] as? String ?? ""
     }
 }
 

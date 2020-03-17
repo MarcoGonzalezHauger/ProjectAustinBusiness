@@ -321,3 +321,15 @@ func IncreasePayVariableValue(pay: String) -> IncreasePayVariable {
         return IncreasePayVariable.None
     }
 }
+
+func randomString(length: Int) -> String {
+    let letters = "ABCDEFGHIJKLMNPQRSTUVWXYZ123456789"
+    
+    let randomStringValue = (0..<length).map{ _ in letters.randomElement()!}.reduce("") { (result, current) -> String in
+        return result + String(current)
+    }
+    
+    let finalString = randomStringValue
+    
+    return finalString
+}
