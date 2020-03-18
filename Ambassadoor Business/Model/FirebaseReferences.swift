@@ -1117,6 +1117,88 @@ func getCompany(companyID: String,completion: @escaping (Company?,String) -> Voi
     
 }
 
+func sentReferralAmountToBusiness(referralID: String,completion: @escaping(CompanyUser?)->Void) {
+    
+    let usersRef = Database.database().reference().child("CompanyUser")
+    
+    let query = usersRef.queryOrdered(byChild: "businessReferral").queryEqual(toValue: referralID)
+    
+    query.observeSingleEvent(of: .value) { (snapshot) in
+        
+        if let dictionary = snapshot.value as? [String: AnyObject] {
+            
+            let userInstance = CompanyUser(dictionary: dictionary[dictionary.keys.first!] as! [String: AnyObject])
+            completion(userInstance)
+            
+//            for values in dictionary.keys {
+//
+//                if let dict = dictionary[values] as? [String: AnyObject] {
+//
+//                    if dict.keys.contains("businessReferral") {
+//
+//                    if dict["businessReferral"] as! String == referralID {
+//
+//                        let userInstance = CompanyUser(dictionary: dict)
+//                         completion(userInstance)
+////                        if userInstance.businessReferral == referralID {
+////                            completion(userInstance)
+////                            break
+////
+////                        }
+//
+//                    }
+//                    }
+//
+//                }
+//
+//            }
+            
+        }
+        
+    }
+    
+}
+
+func sentReferralAmountToInfluencer(referralID: String,completion: @escaping(User?)->Void) {
+    
+    let usersRef = Database.database().reference().child("users")
+    
+    let query = usersRef.queryOrdered(byChild: "referralcode").queryEqual(toValue: referralID)
+    
+    query.observeSingleEvent(of: .value) { (snapshot) in
+        
+        if let dictionary = snapshot.value as? [String: AnyObject] {
+            
+            let userInstance = User(dictionary: dictionary[dictionary.keys.first!] as! [String: AnyObject])
+            completion(userInstance)
+            
+//            for values in dictionary.keys {
+//
+//                if let dict = dictionary[values] as? [String: AnyObject] {
+//
+//                    if dict.keys.contains("referralcode") {
+//
+//                    if dict["referralcode"] as! String == referralID {
+//
+//                        let userInstance = User(dictionary: dict)
+//                        if userInstance.referralcode == referralID {
+//                            completion(userInstance)
+//                            break
+//                        }
+//
+//                    }
+//                    }
+//
+//                }
+//
+//            }
+            
+        }
+        
+    }
+    
+}
+
 extension Date
 {
     func toString( dateFormat format  : String ) -> String

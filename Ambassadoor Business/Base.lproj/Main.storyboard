@@ -4531,13 +4531,13 @@ For example, if you list "#sale" and "buy one get one free" the influencer could
                                             <outlet property="delegate" destination="gjA-zh-oKp" id="wI6-JD-tYo"/>
                                         </connections>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Referral Code (Given by Influnecer)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRp-KK-f6Z">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Referral Code (Given by Influnecer / Organizer)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRp-KK-f6Z">
                                         <rect key="frame" x="17" y="305.5" width="380" height="16"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Influencer Referral Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gJF-3f-v6X">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Influencer / Organizer Referral Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gJF-3f-v6X">
                                         <rect key="frame" x="17" y="329.5" width="380" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="4kw-Tr-O4J"/>
@@ -5673,6 +5673,6 @@ You must have permission to use the company name, logo, website, etc. before reg
         <image name="square.grid.3x2" catalog="system" width="64" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ceg-yx-Afw"/>
+        <segue reference="M0i-E2-U7z"/>
     </inferredMetricsTieBreakers>
 </document>
