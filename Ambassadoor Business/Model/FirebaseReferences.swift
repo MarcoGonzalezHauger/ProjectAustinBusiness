@@ -449,6 +449,16 @@ func sentOutOffers(pathString: String, templateOffer: TemplateOffer, completion:
     completion(templateOffer, true)
 }
 
+// We do separate Commission and User Amount Sentout Offers too
+func sentOutOffersToOfferPool(pathString: String, templateOffer: TemplateOffer, completion: @escaping (TemplateOffer,Bool) -> ()) {
+    print(templateOffer.posts.count)
+    let offersRef = Database.database().reference().child("OfferPool").child(pathString)
+    var offerDictionary: [String: Any] = [:]
+    offerDictionary = API.serializeTemplateOffer(offer: templateOffer)
+    offersRef.updateChildValues(offerDictionary)
+    completion(templateOffer, true)
+}
+
 func completedOffersToUsers(pathString: String, templateOffer: TemplateOffer) {
     
     let offersRef = Database.database().reference().child("SentOutOffersToUsers").child(pathString)

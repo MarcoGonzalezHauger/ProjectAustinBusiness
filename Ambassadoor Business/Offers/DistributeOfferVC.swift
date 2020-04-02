@@ -292,13 +292,91 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
 	
     @IBAction func distributeAction(sender: UIButton){
 		if canDistribute(alertUser: true) {
-			DistributeOffer()
+			//DistributeOffer()
+            DistributeOfferToOfferPool()
 		} else {
 			YouShallNotPass(SaveButtonView: DistributeButtonview)
 		}
     }
 	
 	var moneyAmount: Double = 0.0
+    
+    
+    func DistributeOfferToOfferPool() {
+        
+        var error = false
+        guard var offerAmount = Double((String((self.moneyText.text?.dropFirst())!))) else {
+            MakeShake(viewToShake: moneyText)
+            YouShallNotPass(SaveButtonView: DistributeButtonview)
+            return
+            
+        }
+        
+        let originalAmount = offerAmount
+        
+        self.templateOffer?.money = originalAmount
+        
+        self.templateOffer?.commission = Singleton.sharedInstance.getCommision()
+        
+        self.templateOffer?.cashPower = originalAmount
+        
+        self.templateOffer?.incresePay = self.increasePayVariable.rawValue
+        
+        self.templateOffer?.influencerFilter = self.influencersFilter
+        
+        let expiryDateAdded = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
+        let dateString = DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: expiryDateAdded, format: "yyyy-MM-dd'T'HH:mm:ss")
+        
+        let expiryDate = DateFormatManager.sharedInstance.getExpiryDate(dateString: dateString)
+        self.templateOffer?.expiredate = expiryDate
+        
+        if Singleton.sharedInstance.getCompanyDetails().referralcode?.count != 0 {
+        self.templateOffer?.isRefferedByInfluencer = true
+        self.templateOffer?.isReferCommissionPaid = false
+        self.templateOffer?.commission = 0.01
+        self.templateOffer?.referralID = Singleton.sharedInstance.getCompanyDetails().referralcode!
+        }
+        let path = Auth.auth().currentUser!.uid + "/" + self.templateOffer!.offer_ID
+        sentOutOffersToOfferPool(pathString: path, templateOffer: self.templateOffer!) { (offer, status) in
+            
+            global.post.removeAll()
+            self.createLocalNotification(notificationName: "reloadOffer", userInfo: [:])
+            self.navigationController?.setNavigationBarHidden(true, animated: false)
+            self.navigationController?.popToRootViewController(animated: true)
+            self.sendTransactionDetailsToBusinessUser(deductedAmount: originalAmount, ambassadoorCommision: Singleton.sharedInstance.getCommision())
+            
+        }
+        
+    }
+    
+    func sendTransactionDetailsToBusinessUser(deductedAmount: Double, ambassadoorCommision: Double) {
+        let userCompany = Singleton.sharedInstance.getCompanyUser()
+        let depositBalance = self.depositValue!.currentBalance! - deductedAmount
+        let totalDeductedAmt = (self.depositValue?.totalDeductedAmount!)! + deductedAmount
+        //Add Transaction Details
+        
+        var cardDetails = [Any]()
+        
+        cardDetails.append(["country":"","expireMonth":"","expireYear":"","last4":"xxxx"])
+                        
+        let transaction = TransactionDetails.init(dictionary: ["amount":String(deductedAmount),"createdAt":DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: Date(), format: "yyyy/MMM/dd HH:mm:ss"),"currencyIsoCode":"USD","type":"paid","updatedAt":DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: Date(), format: "yyyy/MMM/dd HH:mm:ss"),"id":self.templateOffer!.offer_ID,"status":self.templateOffer!.title,"paidDetails":cardDetails,"commission":ambassadoorCommision])
+        
+        let tranObj = API.serializeTransactionDetails(transaction: transaction)
+        
+        self.depositValue?.currentBalance = depositBalance
+        self.depositValue?.totalDeductedAmount = totalDeductedAmt
+        self.depositValue?.lastDeductedAmount = deductedAmount
+        var depositHistory = [Any]()
+        depositHistory.append(contentsOf: self.depositValue!.depositHistory!)
+        depositHistory.append(tranObj)
+        self.depositValue?.depositHistory = depositHistory
+        self.depositValue?.lastTransactionHistory = transaction
+        
+        
+        sendDepositAmount(deposit: self.depositValue!, companyUser: userCompany.userID!) { (deposit, status) in
+            
+        }
+    }
 
 	func DistributeOffer() {
 		var error = false

@@ -66,6 +66,7 @@ class Offer: NSObject {
     var isRefferedByInfluencer: Bool?
     var isReferCommissionPaid: Bool?
     var referralAmount: Double?
+    var referralCommission: Double?
     var referralID: String?
     var allConfirmed: Bool {
         get {
@@ -84,6 +85,12 @@ class Offer: NSObject {
     }
     var ownerUserID: String
     var notify: Bool
+    
+    var cashPower: Double?
+    
+    var influencerFilter: [String: AnyObject]?
+    
+    var incresePay: Double?
     
     var debugInfo: String {
         return "Offer by \(company!.name) for $\(String(money)) that is \(isExpired ? "" : "not ") expired."
@@ -110,6 +117,10 @@ class Offer: NSObject {
         self.referralAmount = dictionary["referralAmount"] as? Double ?? 0.0
         self.referralID = dictionary["referralID"] as? String ?? ""
         self.notify = dictionary["notify"] as? Bool ?? false
+        self.cashPower = dictionary["cashPower"] as? Double ?? 0.0
+        self.referralCommission = dictionary["referralCommission"] as? Double ?? 0.0
+        self.influencerFilter = dictionary["influencerFilter"] as? [String: AnyObject] ?? [:]
+        self.incresePay = dictionary["incresePay"] as? Double ?? 0.0
     }
 }
 
