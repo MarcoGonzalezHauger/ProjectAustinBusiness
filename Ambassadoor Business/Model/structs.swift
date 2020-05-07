@@ -66,6 +66,7 @@ class Offer: NSObject {
     var isRefferedByInfluencer: Bool?
     var isReferCommissionPaid: Bool?
     var referralAmount: Double?
+    var referralCommission: Double?
     var referralID: String?
     var allConfirmed: Bool {
         get {
@@ -83,6 +84,16 @@ class Offer: NSObject {
         return self.expiredate.timeIntervalSinceNow <= 0
     }
     var ownerUserID: String
+    var notify: Bool
+    
+    var cashPower: Double?
+    
+    var influencerFilter: [String: AnyObject]?
+    
+    var incresePay: Double?
+    
+    var companyDetails: [String: Any]?
+    
     
     var debugInfo: String {
         return "Offer by \(company!.name) for $\(String(money)) that is \(isExpired ? "" : "not ") expired."
@@ -108,6 +119,12 @@ class Offer: NSObject {
         self.isReferCommissionPaid = dictionary["isReferCommissionPaid"] as? Bool ?? false
         self.referralAmount = dictionary["referralAmount"] as? Double ?? 0.0
         self.referralID = dictionary["referralID"] as? String ?? ""
+        self.notify = dictionary["notify"] as? Bool ?? false
+        self.cashPower = dictionary["cashPower"] as? Double ?? 0.0
+        self.referralCommission = dictionary["referralCommission"] as? Double ?? 0.0
+        self.influencerFilter = dictionary["influencerFilter"] as? [String: AnyObject] ?? [:]
+        self.incresePay = dictionary["incresePay"] as? Double ?? 0.0
+        self.companyDetails = dictionary["companyDetails"] as? [String: Any] ?? [:]
     }
 }
 
@@ -354,6 +371,7 @@ class CompanyUser: NSObject {
     var isCompanyRegistered: Bool?
     var companyID: String?
     var deviceFIRToken: String?
+    var businessReferral: String?
     
     init(dictionary: [String: Any]) {
         
@@ -364,6 +382,7 @@ class CompanyUser: NSObject {
         self.isCompanyRegistered = dictionary["isCompanyRegistered"] as? Bool
         self.companyID = dictionary["companyID"] as? String
         self.deviceFIRToken = dictionary["deviceFIRToken"] as? String ?? ""
+        self.businessReferral = dictionary["businessReferral"] as? String ?? ""
     }
 }
 

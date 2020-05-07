@@ -20,13 +20,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 	var window: UIWindow?
     
     override init() {
-		FirebaseApp.configure()
-        Database.database().isPersistenceEnabled = false
-		InitializeZipCodeAPI(completed: nil)
+//		FirebaseApp.configure()
+//        Database.database().isPersistenceEnabled = false
+//		InitializeZipCodeAPI(completed: nil)
     }
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
+        FirebaseApp.configure()
+        Database.database().isPersistenceEnabled = false
+        InitializeZipCodeAPI(completed: nil)
         InitializeZipCodeAPI(completed: nil)
         Stripe.setDefaultPublishableKey("pk_live_k9m0LJO9sODGltsithrwmvqH00laWBjcra")
         //BTAppSwitch.setReturnURLScheme("com.develop.sns.paypal")
@@ -73,16 +76,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     }
     
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]){
-        
-    }
-    
+//    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]){
+//
+//    }
+//
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void){
-        
+
     }
-    
+//
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void){
         completionHandler([.badge,.sound, .alert])
+    }
+
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
@@ -197,7 +204,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             
             
         }
-
+//dtHaZhUQEvM:APA91bFMTY0moWZGzoNUxhAEVNdNf5EeOcMpY2PEKOIzZHC758UjmJTCl0HoBK7S9c-bBqiLvCDS6xwwPjJgMErllWGrQa8vGnM7KRb8V5YBWZpsnXH5QlPA3F8QUjV6Ms8rgOWH9bYN
 	func applicationWillTerminate(_ application: UIApplication) {
 		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 		// Saves changes in the application's managed object context before the application terminates.

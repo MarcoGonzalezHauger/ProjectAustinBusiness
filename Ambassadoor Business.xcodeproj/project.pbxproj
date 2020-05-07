@@ -29,6 +29,7 @@
 		B79B1D2E22F2EE8D00F3C660 /* DateFormatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79B1D2D22F2EE8D00F3C660 /* DateFormatManager.swift */; };
 		B7B11FF523242615006711BB /* PlaidTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B11FF423242615006711BB /* PlaidTVCell.swift */; };
 		B7B11FF723242638006711BB /* ConnectedPlaidTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B11FF623242638006711BB /* ConnectedPlaidTVCell.swift */; };
+		B7B517D12411247400DD62DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B7B517D02411247400DD62DE /* GoogleService-Info.plist */; };
 		B7BD39BB22FAAB53008A0496 /* CategoryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BD39BA22FAAB53008A0496 /* CategoryTVC.swift */; };
 		B7BD39BD22FAAE42008A0496 /* CategoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BD39BC22FAAE42008A0496 /* CategoryHeaderView.swift */; };
 		B7C58569234DED3600EB90BB /* InstagramUserTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C58568234DED3600EB90BB /* InstagramUserTVC.swift */; };
@@ -109,6 +110,7 @@
 		B79B1D2D22F2EE8D00F3C660 /* DateFormatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatManager.swift; sourceTree = "<group>"; };
 		B7B11FF423242615006711BB /* PlaidTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaidTVCell.swift; sourceTree = "<group>"; };
 		B7B11FF623242638006711BB /* ConnectedPlaidTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedPlaidTVCell.swift; sourceTree = "<group>"; };
+		B7B517D02411247400DD62DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B7B72E07237C4953002AB168 /* Ambassadoor Business.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Ambassadoor Business.entitlements"; sourceTree = "<group>"; };
 		B7BD39BA22FAAB53008A0496 /* CategoryTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTVC.swift; sourceTree = "<group>"; };
 		B7BD39BC22FAAE42008A0496 /* CategoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryHeaderView.swift; sourceTree = "<group>"; };
@@ -338,8 +340,8 @@
 			children = (
 				B7B72E07237C4953002AB168 /* Ambassadoor Business.entitlements */,
 				B7D030AD23237CA4002B90FF /* Ambassadoor Business-Bridging-Header.h */,
-				E8128C4B23F3630C00703195 /* GoogleService-Info.plist */,
 				E8E54688227BA3E800775A07 /* YourCompany.swift */,
+				B7B517D02411247400DD62DE /* GoogleService-Info.plist */,
 				B7C9FE8B231E485E005580E4 /* Plaid */,
 				E8F8AAC722C8485A0047BF5E /* Offers */,
 				E816AC202282F34000B9D951 /* Money */,
@@ -480,7 +482,7 @@
 				B7FD83ED22F0870F00347E8E /* PostDetailTC.xib in Resources */,
 				B7FD83E922F0844C00347E8E /* AddPostTC.xib in Resources */,
 				B750E78522E5B75F00024CB1 /* Onboarding.storyboard in Resources */,
-				E8128C4C23F3630D00703195 /* GoogleService-Info.plist in Resources */,
+				B7B517D12411247400DD62DE /* GoogleService-Info.plist in Resources */,
 				E8C3694C22161B3200AE12D7 /* Assets.xcassets in Resources */,
 				E8C3694722161B3000AE12D7 /* Main.storyboard in Resources */,
 			);
@@ -742,8 +744,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = BlueIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ambassadoor Business/Ambassadoor Business.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Marco Gonzalez (7D4GHWA4CW)";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = F4W3LUKZFA;
@@ -756,7 +758,7 @@
 				MARKETING_VERSION = 1.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ambassadoor.company;
 				PRODUCT_NAME = "Ambassadoor Business";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = AmbassadoorBusiness;
 				SWIFT_OBJC_BRIDGING_HEADER = "Ambassadoor Business/Ambassadoor Business-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -771,8 +773,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = BlueIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ambassadoor Business/Ambassadoor Business.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Marco Gonzalez (7D4GHWA4CW)";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = F4W3LUKZFA;
@@ -785,7 +787,7 @@
 				MARKETING_VERSION = 1.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ambassadoor.company;
 				PRODUCT_NAME = "Ambassadoor Business";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = AmbassadoorBusiness;
 				SWIFT_OBJC_BRIDGING_HEADER = "Ambassadoor Business/Ambassadoor Business-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
