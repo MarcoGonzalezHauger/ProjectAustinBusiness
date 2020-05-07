@@ -363,7 +363,7 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 		}
 		
 		let expiryDateAdded = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
-		let dateString = DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: expiryDateAdded, format: "yyyy-MM-dd'T'HH:mm:ss")
+		let dateString = DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: expiryDateAdded, format: "yyyy-MM-dd'T'HH:mm:ssZ")
 		
 		let expiryDate = DateFormatManager.sharedInstance.getExpiryDate(dateString: dateString)
 		

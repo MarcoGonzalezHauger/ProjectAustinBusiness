@@ -193,7 +193,7 @@ struct API {
         var offerConSin = ""
         
         if offer.allPostsConfirmedSince != nil {
-           offerConSin = offer.allPostsConfirmedSince!.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss")
+           offerConSin = offer.allPostsConfirmedSince!.toString(dateFormat: "yyyy/MMM/dd HH:mm:ssZ")
         }else{
            offerConSin = ""
         }
@@ -204,9 +204,9 @@ struct API {
             "isCommissionPaid": offer.isCommissionPaid ?? false,
             "company": offer.company?.account_ID as Any,
             "posts": posts,
-            "offerdate": offer.offerdate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss"),
+            "offerdate": offer.offerdate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ssZ"),
             "user_ID": offer.user_ID as Any,
-            "expiredate": offer.expiredate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss"),
+            "expiredate": offer.expiredate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ssZ"),
             "allPostsConfirmedSince": offerConSin,
             "allConfirmed": offer.allConfirmed,
             "isAccepted": offer.isAccepted,
@@ -219,7 +219,10 @@ struct API {
             "notify":offer.notify as Any,
             "cashPower":offer.cashPower as Any,
             "incresePay":offer.incresePay as Any,
-            "influencerFilter":offer.influencerFilter as Any
+            "influencerFilter":offer.influencerFilter as Any,
+            "companyDetails":offer.companyDetails as Any,
+            "accepted":[],
+            "reservedUsers":[] as Any
             ]
         return offerData
         //self.isRefferedByInfluencer = dictionary["isRefferedByInfluencer"] as? Bool ?? false

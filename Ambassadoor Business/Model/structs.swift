@@ -92,6 +92,9 @@ class Offer: NSObject {
     
     var incresePay: Double?
     
+    var companyDetails: [String: Any]?
+    
+    
     var debugInfo: String {
         return "Offer by \(company!.name) for $\(String(money)) that is \(isExpired ? "" : "not ") expired."
     }
@@ -121,6 +124,7 @@ class Offer: NSObject {
         self.referralCommission = dictionary["referralCommission"] as? Double ?? 0.0
         self.influencerFilter = dictionary["influencerFilter"] as? [String: AnyObject] ?? [:]
         self.incresePay = dictionary["incresePay"] as? Double ?? 0.0
+        self.companyDetails = dictionary["companyDetails"] as? [String: Any] ?? [:]
     }
 }
 

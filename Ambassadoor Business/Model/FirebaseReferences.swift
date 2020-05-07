@@ -58,11 +58,11 @@ func serializeOffer(offer: Offer) -> [String: AnyObject] {
         "money": offer.money as AnyObject,
         "company": offer.company?.account_ID as AnyObject,
         "posts": post_IDS as AnyObject,
-        "offerdate": offer.offerdate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss") as AnyObject,
+        "offerdate": offer.offerdate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ssZ") as AnyObject,
         "offer_ID": offer.offer_ID as AnyObject,
         "user_ID": offer.user_ID as AnyObject,
-        "expiredate": offer.expiredate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss") as AnyObject,
-        "allPostsConfirmedSince": offer.allPostsConfirmedSince?.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss") ?? " ",
+        "expiredate": offer.expiredate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ssZ") as AnyObject,
+        "allPostsConfirmedSince": offer.allPostsConfirmedSince?.toString(dateFormat: "yyyy/MMM/dd HH:mm:ssZ") ?? " ",
         "allConfirmed": offer.allConfirmed,
         "isAccepted": offer.isAccepted,
         "isExpired": offer.isExpired,
@@ -212,7 +212,7 @@ func uploadImage(image: UIImage) -> String {
 }
 
 func uploadImageToFIR(image: UIImage, childName: String, path: String, completion: @escaping (String,Bool) -> ()) {
-    let data = image.jpegData(compressionQuality: 0.2)
+    let data = image.resizeImage(image: image, targetSize: CGSize.init(width: 256.0, height: 256.0)).jpegData(compressionQuality: 0.2)
     let fileName = path + ".png"
     let ref = Storage.storage().reference().child(childName).child(fileName)
     ref.putData(data!, metadata: nil, completion: { (metadata, error) in
@@ -251,7 +251,8 @@ func serializeCompany(company: Company) -> [String: Any] {
         "description": company.companyDescription,
         "accountBalance": company.accountBalance,
 		"owner": company.owner_email,
-        "referralcode": company.owner_email
+        "referralcode": company.owner_email,
+        "userId": Auth.auth().currentUser!.uid
     ]
     return companyData
 }
@@ -580,8 +581,8 @@ func getAllTemplateOffers(userID: String, completion: @escaping([TemplateOffer],
                 offer["posts"] = post as AnyObject
                 let conDate = offer["offerdate"] as! String
                 let exDate = offer["expiredate"] as! String
-                let dateCon = DateFormatManager.sharedInstance.getDateFromStringWithFormat(dateString: conDate, format: "yyyy/MMM/dd HH:mm:ss")
-                let dateEx = DateFormatManager.sharedInstance.getDateFromStringWithFormat(dateString: exDate, format: "yyyy/MMM/dd HH:mm:ss")
+                let dateCon = DateFormatManager.sharedInstance.getDateFromStringWithFormat(dateString: conDate, format: "yyyy/MMM/dd HH:mm:ssZ")
+                let dateEx = DateFormatManager.sharedInstance.getDateFromStringWithFormat(dateString: exDate, format: "yyyy/MMM/dd HH:mm:ssZ")
                 offer["offerdate"] = dateCon as AnyObject?
                 offer["expiredate"] = dateEx as AnyObject?
                 template.append(TemplateOffer.init(dictionary: offer))
@@ -1215,6 +1216,7 @@ extension Date
     {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
+        dateFormatter.timeZone = TimeZone(abbreviation: "EST")
         return dateFormatter.string(from: self)
     }
 }
