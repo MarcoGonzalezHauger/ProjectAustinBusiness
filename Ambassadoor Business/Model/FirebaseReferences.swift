@@ -212,8 +212,8 @@ func uploadImage(image: UIImage) -> String {
 }
 
 func uploadImageToFIR(image: UIImage, childName: String, path: String, completion: @escaping (String,Bool) -> ()) {
-    let data = image.resizeImage(image: image, targetSize: CGSize.init(width: 256.0, height: 256.0)).jpegData(compressionQuality: 0.2)
-    let fileName = path + ".png"
+    let data = image.resizeImage(image: image, targetSize: CGSize.init(width: 256.0, height: 256.0)).jpegData(compressionQuality: 1)
+	let fileName = path + ".png"
     let ref = Storage.storage().reference().child(childName).child(fileName)
     ref.putData(data!, metadata: nil, completion: { (metadata, error) in
         if error != nil {
@@ -581,8 +581,8 @@ func getAllTemplateOffers(userID: String, completion: @escaping([TemplateOffer],
                 offer["posts"] = post as AnyObject
                 let conDate = offer["offerdate"] as! String
                 let exDate = offer["expiredate"] as! String
-                let dateCon = DateFormatManager.sharedInstance.getDateFromStringWithFormat(dateString: conDate, format: "yyyy/MMM/dd HH:mm:ssZ")
-                let dateEx = DateFormatManager.sharedInstance.getDateFromStringWithFormat(dateString: exDate, format: "yyyy/MMM/dd HH:mm:ssZ")
+                let dateCon = DateFormatManager.sharedInstance.getDateFromStringWithAutoFormat(dateString: conDate)
+                let dateEx = DateFormatManager.sharedInstance.getDateFromStringWithAutoFormat(dateString: exDate)
                 offer["offerdate"] = dateCon as AnyObject?
                 offer["expiredate"] = dateEx as AnyObject?
                 template.append(TemplateOffer.init(dictionary: offer))

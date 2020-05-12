@@ -61,7 +61,7 @@ class EditCompanyTVC: UITableViewController, ImagePickerDelegate, UITextViewDele
 		
 	override func viewDidLoad() {
         super.viewDidLoad()
-		companyLogo.layer.cornerRadius = 15
+		companyLogo.layer.cornerRadius = companyLogo.bounds.height / 2
 		nameTextBox.text = ThisCompany.name
 		missionTextBox.text = ThisCompany.mission
 		descTextBox.text = ThisCompany.companyDescription

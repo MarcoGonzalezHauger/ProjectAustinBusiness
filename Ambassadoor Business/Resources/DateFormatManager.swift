@@ -94,11 +94,15 @@ class DateFormatManager: NSObject {
         
     }
     
-    func getDateFromStringWithFormat(dateString: String, format: String) -> Date? {
-        let dateFormatter = getDateFormatterWithFormat(format: format)
-        if let dateInString: String = dateString {
-            return dateFormatter.date(from: dateInString)!
-        }
+    func getDateFromStringWithAutoFormat(dateString: String) -> Date? {
+		let options = ["yyyy/MMM/dd HH:mm:ss", "yyyy/MMM/dd HH:mm:ssZ"]
+		for i in options {
+			let dateFormatter = getDateFormatterWithFormat(format: i)
+			if let returner = dateFormatter.date(from: dateString) {
+				return returner
+			}
+		}
+		return nil
     }
 
 }
