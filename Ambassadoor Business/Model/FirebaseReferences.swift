@@ -212,8 +212,8 @@ func uploadImage(image: UIImage) -> String {
 }
 
 func uploadImageToFIR(image: UIImage, childName: String, path: String, completion: @escaping (String,Bool) -> ()) {
-    let data = image.resizeImage(image: image, targetSize: CGSize.init(width: 256.0, height: 256.0)).jpegData(compressionQuality: 0.2)
-    let fileName = path + ".png"
+    let data = image.resizeImage(image: image, targetSize: CGSize.init(width: 256.0, height: 256.0)).jpegData(compressionQuality: 1)
+	let fileName = path + ".png"
     let ref = Storage.storage().reference().child(childName).child(fileName)
     ref.putData(data!, metadata: nil, completion: { (metadata, error) in
         if error != nil {
@@ -468,6 +468,7 @@ func completedOffersToUsers(pathString: String, templateOffer: TemplateOffer) {
     offersRef.updateChildValues(offerDictionary)
 }
 
+
 func sentOutTransactionToInfluencer(pathString: String,transactionData: [String: Any]) {
     
     let transactionRef = Database.database().reference().child("InfluencerTransactions").child(pathString)
@@ -581,8 +582,8 @@ func getAllTemplateOffers(userID: String, completion: @escaping([TemplateOffer],
                 offer["posts"] = post as AnyObject
                 let conDate = offer["offerdate"] as! String
                 let exDate = offer["expiredate"] as! String
-                let dateCon = DateFormatManager.sharedInstance.getDateFromStringWithFormat(dateString: conDate, format: "yyyy/MMM/dd HH:mm:ssZ")
-                let dateEx = DateFormatManager.sharedInstance.getDateFromStringWithFormat(dateString: exDate, format: "yyyy/MMM/dd HH:mm:ssZ")
+                let dateCon = DateFormatManager.sharedInstance.getDateFromStringWithAutoFormat(dateString: conDate)
+                let dateEx = DateFormatManager.sharedInstance.getDateFromStringWithAutoFormat(dateString: exDate)
                 offer["offerdate"] = dateCon as AnyObject?
                 offer["expiredate"] = dateEx as AnyObject?
                 template.append(TemplateOffer.init(dictionary: offer))
@@ -1030,61 +1031,39 @@ func getCurrentCompanyUser(userID: String, completion: @escaping (CompanyUser?,S
 func getUserByReferralCode(referralcode: String,completion: @escaping (User?) -> Void) {
     
     let usersRef = Database.database().reference().child("users")
-    
-    usersRef.queryOrdered(byChild: referralcode).observeSingleEvent(of: .value) { (snapshot) in
         
-        if let dictionary = snapshot.value as? [String: AnyObject] {
+        let query = usersRef.queryOrdered(byChild: "referralcode").queryEqual(toValue: referralcode)
+        
+        query.observeSingleEvent(of: .value) { (snapshot) in
             
-            for values in dictionary.keys {
+            if let dictionary = snapshot.value as? [String: AnyObject] {
                 
-                if let dict = dictionary[values] as? [String: AnyObject] {
-                    
-                    if dict.keys.contains("referralcode") {
-                    
-                    if dict["referralcode"] as! String == referralcode {
-                        
-                        let userInstance = User(dictionary: dict)
-                        if userInstance.referralcode == referralcode {
-                            completion(userInstance)
-                            break
-                        }
-                        
-                    }
-                    }
-                    
-                }
+                let userInstance = User(dictionary: dictionary[dictionary.keys.first!] as! [String: AnyObject])
+                completion(userInstance)
                 
             }
             
-//            let userInstance = User(dictionary: dictionary)
-//            if userInstance.referralcode == referralcode {
-//                completion(userInstance)
-//            }
+        }
+    
+}
+
+func sentReferralAmountToBusiness(referralID: String,completion: @escaping(CompanyUser?)->Void) {
+    
+    let usersRef = Database.database().reference().child("CompanyUser")
+    
+    let query = usersRef.queryOrdered(byChild: "businessReferral").queryEqual(toValue: referralID)
+    
+    query.observeSingleEvent(of: .value) { (snapshot) in
+        
+        if let dictionary = snapshot.value as? [String: AnyObject] {
+            
+            let userInstance = CompanyUser(dictionary: dictionary[dictionary.keys.first!] as! [String: AnyObject])
+            completion(userInstance)
+            
             
         }
         
     }
-    
-//    usersRef.queryOrdered(byChild: referralcode).observe(.childAdded, with: { (snapshot) in
-//
-//        if let dictionary = snapshot.value as? [String: AnyObject] {
-//            let userInstance = User(dictionary: dictionary)
-//            if userInstance.referralcode == referralcode {
-//               completion(userInstance)
-//            }
-//
-//        }
-//
-//    }) { (error) in
-//        completion(nil)
-//    }
-    
-//    usersRef.observeSingleEvent(of: .value, with: { (snapshot) in
-//        if let dictionary = snapshot.value as? [String: AnyObject] {
-//            let userInstance = User(dictionary: dictionary as! [String : AnyObject])
-//            completion(userInstance)
-//        }
-//    }, withCancel: nil)
     
 }
 
@@ -1128,47 +1107,6 @@ func getCompany(companyID: String,completion: @escaping (Company?,String) -> Voi
     
 }
 
-func sentReferralAmountToBusiness(referralID: String,completion: @escaping(CompanyUser?)->Void) {
-    
-    let usersRef = Database.database().reference().child("CompanyUser")
-    
-    let query = usersRef.queryOrdered(byChild: "businessReferral").queryEqual(toValue: referralID)
-    
-    query.observeSingleEvent(of: .value) { (snapshot) in
-        
-        if let dictionary = snapshot.value as? [String: AnyObject] {
-            
-            let userInstance = CompanyUser(dictionary: dictionary[dictionary.keys.first!] as! [String: AnyObject])
-            completion(userInstance)
-            
-//            for values in dictionary.keys {
-//
-//                if let dict = dictionary[values] as? [String: AnyObject] {
-//
-//                    if dict.keys.contains("businessReferral") {
-//
-//                    if dict["businessReferral"] as! String == referralID {
-//
-//                        let userInstance = CompanyUser(dictionary: dict)
-//                         completion(userInstance)
-////                        if userInstance.businessReferral == referralID {
-////                            completion(userInstance)
-////                            break
-////
-////                        }
-//
-//                    }
-//                    }
-//
-//                }
-//
-//            }
-            
-        }
-        
-    }
-    
-}
 
 func sentReferralAmountToInfluencer(referralID: String,completion: @escaping(User?)->Void) {
     

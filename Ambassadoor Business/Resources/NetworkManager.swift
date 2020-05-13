@@ -597,4 +597,32 @@ class NetworkManager {
         
     }
     
+    func sendPushNotificationForreferral(params: [String: AnyObject]){
+        
+        let urlString = "https://us-central1-amassadoor.cloudfunctions.net/" + "sendNotificationToReferralAmoutReceiver"
+        
+        let url = URL(string: urlString)!
+        
+        let session = URLSession.shared
+        var request = URLRequest(url: url)
+        request.httpMethod = "Post"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.cachePolicy = URLRequest.CachePolicy.reloadIgnoringCacheData
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        let task = session.dataTask(with: request) { (data, response, error) in
+            if error == nil {
+            let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+            print("result=",dataString!)
+            }
+            
+        }
+        task.resume()
+    }
+    
 }

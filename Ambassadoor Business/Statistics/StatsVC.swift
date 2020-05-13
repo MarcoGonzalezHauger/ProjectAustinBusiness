@@ -51,6 +51,7 @@ class StatsVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             getCompany(companyID: user) { (company, error) in
                 
                 Singleton.sharedInstance.setCompanyDetails(company: company!)
+				YourCompany = company
             }
             
         }
@@ -176,10 +177,10 @@ class StatsVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             
         }
 		
-//		if !timercreated {
-//			Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.getStatisticsTimerData), userInfo: nil, repeats: true)
-//			timercreated = true
-//		}
+		if !timercreated {
+			Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.getStatisticsTimerData), userInfo: nil, repeats: true)
+			timercreated = true
+		}
         
         
     }

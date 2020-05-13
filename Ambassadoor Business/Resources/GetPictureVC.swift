@@ -96,7 +96,7 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
 		imagePicker.sourceType = .photoLibrary
 		imagePicker.allowsEditing = false
 		
-		scrollView.layer.cornerRadius = 5
+		scrollView.layer.cornerRadius = (view.bounds.width - 40) / 2
     }
 	
 	var alreadyPresented: Bool = false
