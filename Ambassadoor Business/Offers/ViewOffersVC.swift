@@ -83,6 +83,8 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
 		let timer = Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector(self.timerAction(sender:)), userInfo: nil, repeats: true)
 		timer.fire()
         //let user = Singleton.sharedInstance.getCompanyUser().userID!
@@ -94,8 +96,14 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     override func viewWillAppear(_ animated: Bool) {
 		shelf.dataSource = self
 		shelf.delegate = self
-		self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.hideNavigationAction(notification:)), name: Notification.Name.init(rawValue: "hidenavigation"), object: nil)
+		//self.navigationController?.navigationBar.isHidden = true
+        //self.navigationController?.hidesBarsOnTap = true
 		NotificationCenter.default.addObserver(self, selector: #selector(self.reloadOffer(notification:)), name: Notification.Name.init(rawValue: "reloadOffer"), object: nil)
+        
+        
+        
 		getAllTemplateOffers(userID: Auth.auth().currentUser!.uid) { (templateOffers, status) in
 			if status == "success" && templateOffers.count != 0 {
 				global.OfferDrafts.removeAll()
@@ -107,9 +115,16 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
 		}
     }
     
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        //self.navigationController?.navigationBar.isHidden = false
     }
     
     @IBAction func editProducts(_ sender: Any) {

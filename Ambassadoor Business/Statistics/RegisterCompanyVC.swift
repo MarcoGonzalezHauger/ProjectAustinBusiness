@@ -127,6 +127,27 @@ class RegisterCompanyVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITex
 				companyUser.companyID = company.account_ID
 				Singleton.sharedInstance.setCompanyUser(user: companyUser)
 				Singleton.sharedInstance.setCompanyDetails(company: company)
+                
+                if company.referralcode?.count == 6 {
+                    
+                    sentReferralAmountToInfluencer(referralID: company.referralcode!) { (user) in
+                        
+                        let params = ["token":user?.tokenFIR] as [String : AnyObject]
+                        NetworkManager.sharedInstance.sendNotificationReferralConvey(params: params)
+                        
+                    }
+                    
+                }else if company.referralcode?.count == 7 {
+                    
+                    sentReferralAmountToBusiness(referralID: company.referralcode!) { (companyUser) in
+                        
+                        let params = ["token":companyUser!.deviceFIRToken] as [String : AnyObject]
+                        NetworkManager.sharedInstance.sendNotificationReferralConvey(params: params)
+                        
+                    }
+                    
+                }
+                
 				self.dismiss(animated: true, completion: nil)
 			}
 		} else {

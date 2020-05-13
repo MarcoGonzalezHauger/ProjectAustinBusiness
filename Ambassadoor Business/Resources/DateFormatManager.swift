@@ -31,7 +31,7 @@ class DateFormatManager: NSObject {
     
     func getExpiryDateFormat(dateString: String) -> String {
         let dateFormatterGet = DateFormatter()
-        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "MMM dd,yyyy"
@@ -50,10 +50,10 @@ class DateFormatManager: NSObject {
     func getExpiryDate(dateString: String) -> Date {
         
         let dateFormatterGet = DateFormatter()
-        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         
         let dateFormatterPrint = DateFormatter()
-        dateFormatterPrint.dateFormat = "yyyy/MMM/dd HH:mm:ss"
+        dateFormatterPrint.dateFormat = "yyyy/MMM/dd HH:mm:ssZ"
         //dateFormatterPrint.locale = NSLocale(localeIdentifier: kEnUsLocaleIdentifier) as Locale
         dateFormatterPrint.timeZone = TimeZone(abbreviation: "EST")
         //dateFormatterPrint.dateFormat = "MMM, yyyy"
@@ -69,7 +69,7 @@ class DateFormatManager: NSObject {
     
     
     func getCurrentDateString() -> String {
-        let dateFormatter = getDateFormatterWithFormat(format: "yyyy-MM-dd'T'HH:mm:ss")
+        let dateFormatter = getDateFormatterWithFormat(format: "yyyy-MM-dd'T'HH:mm:ssZ")
         let dateString = dateFormatter.string(from: Date())
         return dateString
     }
@@ -94,11 +94,15 @@ class DateFormatManager: NSObject {
         
     }
     
-    func getDateFromStringWithFormat(dateString: String, format: String) -> Date? {
-        let dateFormatter = getDateFormatterWithFormat(format: format)
-        if let dateInString: String = dateString {
-            return dateFormatter.date(from: dateInString)!
-        }
+    func getDateFromStringWithAutoFormat(dateString: String) -> Date? {
+		let options = ["yyyy/MMM/dd HH:mm:ss", "yyyy/MMM/dd HH:mm:ssZ"]
+		for i in options {
+			let dateFormatter = getDateFormatterWithFormat(format: i)
+			if let returner = dateFormatter.date(from: dateString) {
+				return returner
+			}
+		}
+		return nil
     }
 
 }

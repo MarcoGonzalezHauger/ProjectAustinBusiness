@@ -292,13 +292,93 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
 	
     @IBAction func distributeAction(sender: UIButton){
 		if canDistribute(alertUser: true) {
-			DistributeOffer()
+			//DistributeOffer()
+            DistributeOfferToOfferPool()
 		} else {
 			YouShallNotPass(SaveButtonView: DistributeButtonview)
 		}
     }
 	
 	var moneyAmount: Double = 0.0
+    
+    
+    func DistributeOfferToOfferPool() {
+        
+        var error = false
+        guard var offerAmount = Double((String((self.moneyText.text?.dropFirst())!))) else {
+            MakeShake(viewToShake: moneyText)
+            YouShallNotPass(SaveButtonView: DistributeButtonview)
+            return
+            
+        }
+        
+        let originalAmount = offerAmount
+        
+        self.templateOffer?.money = originalAmount
+        
+        self.templateOffer?.commission = Singleton.sharedInstance.getCommision()
+        
+        self.templateOffer?.cashPower = originalAmount
+        
+        self.templateOffer?.incresePay = self.increasePayVariable.rawValue
+        
+        self.templateOffer?.influencerFilter = self.influencersFilter
+        
+        self.templateOffer?.companyDetails = serializeCompany(company: Singleton.sharedInstance.getCompanyDetails())
+        
+        let expiryDateAdded = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
+        let dateString = DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: expiryDateAdded, format: "yyyy-MM-dd'T'HH:mm:ss")
+        
+        let expiryDate = DateFormatManager.sharedInstance.getExpiryDate(dateString: dateString)
+        self.templateOffer?.expiredate = expiryDate
+        
+        if Singleton.sharedInstance.getCompanyDetails().referralcode?.count != 0 {
+        self.templateOffer?.isRefferedByInfluencer = true
+        self.templateOffer?.isReferCommissionPaid = false
+        self.templateOffer?.commission = 0.01
+        self.templateOffer?.referralID = Singleton.sharedInstance.getCompanyDetails().referralcode!
+        }
+        let path = Auth.auth().currentUser!.uid + "/" + self.templateOffer!.offer_ID
+        sentOutOffersToOfferPool(pathString: path, templateOffer: self.templateOffer!) { (offer, status) in
+            
+            global.post.removeAll()
+            self.createLocalNotification(notificationName: "reloadOffer", userInfo: [:])
+            self.navigationController?.setNavigationBarHidden(true, animated: false)
+            self.navigationController?.popToRootViewController(animated: true)
+            self.sendTransactionDetailsToBusinessUser(deductedAmount: originalAmount, ambassadoorCommision: Singleton.sharedInstance.getCommision())
+            
+        }
+        
+    }
+    
+    func sendTransactionDetailsToBusinessUser(deductedAmount: Double, ambassadoorCommision: Double) {
+        let userCompany = Singleton.sharedInstance.getCompanyUser()
+        let depositBalance = self.depositValue!.currentBalance! - deductedAmount
+        let totalDeductedAmt = (self.depositValue?.totalDeductedAmount!)! + deductedAmount
+        //Add Transaction Details
+        
+        var cardDetails = [Any]()
+        
+        cardDetails.append(["country":"","expireMonth":"","expireYear":"","last4":"xxxx"])
+                        
+        let transaction = TransactionDetails.init(dictionary: ["amount":String(deductedAmount),"createdAt":DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: Date(), format: "yyyy/MMM/dd HH:mm:ssZ"),"currencyIsoCode":"USD","type":"paid","updatedAt":DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: Date(), format: "yyyy/MMM/dd HH:mm:ssZ"),"id":self.templateOffer!.offer_ID,"status":self.templateOffer!.title,"paidDetails":cardDetails,"commission":ambassadoorCommision])
+        
+        let tranObj = API.serializeTransactionDetails(transaction: transaction)
+        
+        self.depositValue?.currentBalance = depositBalance
+        self.depositValue?.totalDeductedAmount = totalDeductedAmt
+        self.depositValue?.lastDeductedAmount = deductedAmount
+        var depositHistory = [Any]()
+        depositHistory.append(contentsOf: self.depositValue!.depositHistory!)
+        depositHistory.append(tranObj)
+        self.depositValue?.depositHistory = depositHistory
+        self.depositValue?.lastTransactionHistory = transaction
+        
+        
+        sendDepositAmount(deposit: self.depositValue!, companyUser: userCompany.userID!) { (deposit, status) in
+            
+        }
+    }
 
 	func DistributeOffer() {
 		var error = false
@@ -310,6 +390,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
 		}
 		
 		let originalAmount = offerAmount
+        
 	
 		getFilteredInfluencers(category: self.influencersFilter as! [String : [AnyObject]]) { (errorStatus,userArray) in
 
@@ -328,13 +409,14 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
 				var extractedInfluencer = [User]()
 				var extractedUserID = [String]()
 
-				//MARK: Deducting Ambassadoor Commision
-
+				//MARK: Deducting Ambassadoor Commission
+                /*
 				if Singleton.sharedInstance.getCompanyDetails().referralcode?.count != 0 {
 					self.ambassadoorCommision = offerAmount * Singleton.sharedInstance.getCommision()
 					offerAmount -= self.ambassadoorCommision
-				}
-
+                }
+                */
+                
 				for user in userArray! {
 
 					if user.averageLikes != 0 && user.averageLikes != nil {
@@ -342,8 +424,12 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
 
 						//let influcerMoneyValue = ((Double(calculateCostForUser(offer: self.templateOffer!, user: user, increasePayVariable: self.increasePayVariable.rawValue)) * 100).rounded())/100
 						//NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
-						let influcerMoneyValue = calculateCostForUser(offer: self.templateOffer!, user: user, increasePayVariable: self.increasePayVariable.rawValue)
-						print(user.username	+ " costs " + "\(influcerMoneyValue)")
+
+                    let influcerAmtWithOutCom = calculateCostForUser(offer: self.templateOffer!, user: user, increasePayVariable: self.increasePayVariable.rawValue)
+					print(user.username	+ " costs " + "\(influcerAmtWithOutCom)")
+                    //var influcerMoneyValue = calculateCostForUser(offer: self.templateOffer!, user: user, increasePayVariable: self.increasePayVariable.rawValue)
+                    let influcerMoneyValue = influcerAmtWithOutCom + (influcerAmtWithOutCom * Singleton.sharedInstance.getCommision())
+                    self.ambassadoorCommision += influcerAmtWithOutCom * Singleton.sharedInstance.getCommision()
 
 						if offerAmount >= influcerMoneyValue {
 
@@ -373,7 +459,9 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
 					error = true
 				}
 			} else {
-				error = true
+				//error = true
+                self.NoInfluencers()
+                
 			}
 		}
 		if error {
@@ -407,7 +495,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                 
                 if user?.accountBalance != nil {
                 
-                    amount = user!.accountBalance! + (self.ambassadoorCommision * 0.2)
+                amount = user!.accountBalance! + (self.ambassadoorCommision * 0.2)
                 }else{
                 amount = (self.ambassadoorCommision * 0.2)
                 }
@@ -426,13 +514,23 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
         
     }
     
+    func NoInfluencers() {
+        
+        self.showAlertMessage(title: "Alert", message: "0 influencers found") {
+            
+        }
+        
+    }
+    
 	func DistributeOffersWithFirebase(influencer: [String]?, user: [User]?, deductedAmount: Double, originalAmount: Double) {
         
         var userNotificationArray = [[String: Any]]()
         
-        self.ambassadoorCommision = originalAmount * Singleton.sharedInstance.getCommision()
+        //self.ambassadoorCommision = originalAmount * Singleton.sharedInstance.getCommision()
         
-        self.templateOffer?.money = originalAmount - self.ambassadoorCommision
+        //self.templateOffer?.money = originalAmount - self.ambassadoorCommision
+        self.templateOffer?.money = deductedAmount - self.ambassadoorCommision
+        self.templateOffer?.commission = self.ambassadoorCommision
 		
         let expiryDateAdded = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
         let dateString = DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: expiryDateAdded, format: "yyyy-MM-dd'T'HH:mm:ss")
@@ -465,7 +563,32 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                         
                         
                         template.money = Double(NumberToPrice(Value: calculateCostForUser(offer: self.templateOffer!, user: userValue, increasePayVariable: self.increasePayVariable.rawValue), enforceCents: true).dropFirst())!
-                    cardDetails.append([value:["id":userValue.id,"amount":template.money,"toOffer":template.offer_ID,"name":userValue.name!,"gender":userValue.gender!,"averageLikes":userValue.averageLikes!]])
+                        
+                        // Upadating Every Post Pay Value to offer's Post
+                        let singlePostAmount = Double(template.money / Double(template.posts.count))
+                        
+                        for (index,_) in template.posts.enumerated() {
+                            
+                            template.posts[index].PayAmount = singlePostAmount
+                            
+                        }
+                        
+                        
+                        
+                        template.commission = Double(NumberToPrice(Value: calculateCostForUser(offer: self.templateOffer!, user: userValue, increasePayVariable: self.increasePayVariable.rawValue), enforceCents: true).dropFirst())! * Singleton.sharedInstance.getCommision()
+                        
+                        if Singleton.sharedInstance.getCompanyDetails().referralcode?.count != 0 {
+                            
+                            
+                                
+                                template.isRefferedByInfluencer = true
+                                template.isReferCommissionPaid = false
+                                template.referralAmount = template.commission! * 0.01
+                                template.referralID = Singleton.sharedInstance.getCompanyDetails().referralcode!
+                                
+                            
+                        }
+                        cardDetails.append([value:["id":userValue.id,"amount":template.money,"commission":template.commission,"toOffer":template.offer_ID,"name":userValue.name!,"gender":userValue.gender!,"averageLikes":userValue.averageLikes!]])
                     //Collecting Details For sending Push Notification to Influencers
                     if userValue.tokenFIR != "" && userValue.tokenFIR != nil {
                     userNotificationArray.append(API.serializeUser(user: userValue,amount: template.money))
@@ -510,10 +633,8 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                 let depositBalance = self.depositValue!.currentBalance! - deductedAmount
                 let totalDeductedAmt = (self.depositValue?.totalDeductedAmount!)! + deductedAmount
                 //Add Transaction Details
-                
-                
-                
-                let transaction = TransactionDetails.init(dictionary: ["amount":String(deductedAmount),"createdAt":DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: Date(), format: "yyyy/MMM/dd HH:mm:ss"),"currencyIsoCode":"USD","type":"paid","updatedAt":DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: Date(), format: "yyyy/MMM/dd HH:mm:ss"),"id":self.templateOffer!.offer_ID,"status":self.templateOffer!.title,"paidDetails":cardDetails])
+                                
+                let transaction = TransactionDetails.init(dictionary: ["amount":String(deductedAmount),"createdAt":DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: Date(), format: "yyyy/MMM/dd HH:mm:ssZ"),"currencyIsoCode":"USD","type":"paid","updatedAt":DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: Date(), format: "yyyy/MMM/dd HH:mm:ssZ"),"id":self.templateOffer!.offer_ID,"status":self.templateOffer!.title,"paidDetails":cardDetails,"commission":self.ambassadoorCommision])
                 
                 let tranObj = API.serializeTransactionDetails(transaction: transaction)
                 
@@ -530,21 +651,15 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                 sendDepositAmount(deposit: self.depositValue!, companyUser: userCompany.userID!) { (deposit, status) in
                     self.depositValue = deposit
                 }
+                /*
                 if Singleton.sharedInstance.getCompanyDetails().referralcode?.count != 0 {
                 self.sentOutReferralCommision(referral: Singleton.sharedInstance.getCompanyDetails().referralcode, offerID: self.templateOffer!.offer_ID)
                 }
-                
-//                let distributedUsers = user?.reduce("", { (currentUser, nextUser) -> String in
-//
-//                    return currentUser + "," + nextUser.username!
-//
-//                })
-                
-				
-				
+				*/
                 self.showAlertMessage(title: "Offer Distrubuted", message: "Your offer was sent to \(influencer?.count ?? 0) influencers, totaling \(NumberToPrice(Value: deductedAmount, enforceCents: true)). If you send this Offer again, Ambassadoor will not resend the offer to influencers who already recieved it.") {
                     global.post.removeAll()
                     self.createLocalNotification(notificationName: "reloadOffer", userInfo: [:])
+                    self.navigationController?.setNavigationBarHidden(true, animated: false)
                     self.navigationController?.popToRootViewController(animated: true)
                 }
                 

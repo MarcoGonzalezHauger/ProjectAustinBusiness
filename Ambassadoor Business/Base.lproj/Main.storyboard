@@ -2179,7 +2179,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="803"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tBJ-wX-VOn" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="8" width="398" height="986.5"/>
+                                        <rect key="frame" x="8" y="8" width="398" height="1128.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -2220,6 +2220,40 @@
                                             <constraint firstAttribute="bottom" secondItem="hHa-yW-pqf" secondAttribute="bottom" constant="16" id="Sed-Eq-wnf"/>
                                             <constraint firstItem="xb6-JJ-98D" firstAttribute="top" secondItem="mOH-he-cSw" secondAttribute="top" constant="16" id="jSE-DQ-B1C"/>
                                             <constraint firstItem="hHa-yW-pqf" firstAttribute="leading" secondItem="xb6-JJ-98D" secondAttribute="leading" id="qjj-Ya-gCZ"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qTP-lE-1kc" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                        <rect key="frame" x="12" y="470" width="390" height="118"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oAU-H3-QJV">
+                                                <rect key="frame" x="33.5" y="12" width="323" height="21"/>
+                                                <string key="text">Do your influecners need to be 21 or over?
+</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2Lw-RP-0EK">
+                                                <rect key="frame" x="80.5" y="56" width="229" height="32"/>
+                                                <segments>
+                                                    <segment title="No, just 18+"/>
+                                                    <segment title="Yes, 21 or older"/>
+                                                </segments>
+                                            </segmentedControl>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="118" id="1CH-AA-o1R"/>
+                                            <constraint firstItem="oAU-H3-QJV" firstAttribute="centerX" secondItem="qTP-lE-1kc" secondAttribute="centerX" id="4mz-oD-J5z"/>
+                                            <constraint firstItem="oAU-H3-QJV" firstAttribute="top" secondItem="qTP-lE-1kc" secondAttribute="top" constant="12" id="B41-2h-ORw"/>
+                                            <constraint firstItem="2Lw-RP-0EK" firstAttribute="centerX" secondItem="qTP-lE-1kc" secondAttribute="centerX" id="FJw-kx-eZ1"/>
+                                            <constraint firstItem="2Lw-RP-0EK" firstAttribute="top" secondItem="oAU-H3-QJV" secondAttribute="bottom" constant="23" id="htx-NL-3ol"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -2338,20 +2372,20 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Increase Pay" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FtZ-OF-at4">
-                                        <rect key="frame" x="19" y="462" width="120" height="24"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Increase Influencer Pay" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FtZ-OF-at4">
+                                        <rect key="frame" x="19" y="604" width="220" height="24"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To make influecers more likely to accept your offer." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YWr-2E-GI4">
-                                        <rect key="frame" x="19" y="498" width="376" height="19.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make the deal a little better?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YWr-2E-GI4">
+                                        <rect key="frame" x="19" y="640" width="376" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="None" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VTE-lk-8iS">
-                                        <rect key="frame" x="19" y="524.5" width="72" height="34"/>
+                                        <rect key="frame" x="19" y="666.5" width="72" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="72" id="INW-aD-oPE"/>
                                             <constraint firstAttribute="height" constant="34" id="urO-vO-0td"/>
@@ -2360,7 +2394,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L5g-gF-H96">
-                                        <rect key="frame" x="19" y="560.5" width="72" height="2"/>
+                                        <rect key="frame" x="19" y="702.5" width="72" height="2"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="72" id="7vK-K4-loG"/>
@@ -2371,7 +2405,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jke-BH-289">
-                                        <rect key="frame" x="19" y="570.5" width="376" height="51"/>
+                                        <rect key="frame" x="19" y="712.5" width="376" height="51"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="51" id="VOb-9g-s73"/>
@@ -2431,7 +2465,7 @@
                                         </connections>
                                     </collectionView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distribution Funds" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zc8-G8-FUK">
-                                        <rect key="frame" x="19" y="669.5" width="376" height="26"/>
+                                        <rect key="frame" x="19" y="811.5" width="376" height="26"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="26" id="hfu-0s-ACj"/>
                                         </constraints>
@@ -2440,13 +2474,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How much money would you like to put into distributing this Offer?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0r0-wR-dQM">
-                                        <rect key="frame" x="19" y="703.5" width="376" height="41"/>
+                                        <rect key="frame" x="19" y="845.5" width="376" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="$0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T3a-qp-fL3">
-                                        <rect key="frame" x="68.5" y="768.5" width="277" height="36"/>
+                                        <rect key="frame" x="68.5" y="910.5" width="277" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="277" id="gze-Dx-mnn"/>
                                         </constraints>
@@ -2457,7 +2491,7 @@
                                         </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ambassadoor will take 5%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qv8-3c-cqr">
-                                        <rect key="frame" x="68.5" y="807.5" width="277" height="20"/>
+                                        <rect key="frame" x="68.5" y="949.5" width="277" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="277" id="64v-9N-1cS"/>
                                             <constraint firstAttribute="height" constant="20" id="Hnx-Fs-z5f"/>
@@ -2467,7 +2501,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By pressing Distribute you are agreeing to all terms of service listed here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efS-S7-52K">
-                                        <rect key="frame" x="19" y="877.5" width="376" height="36"/>
+                                        <rect key="frame" x="19" y="1019.5" width="376" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -2476,7 +2510,7 @@
                                         </connections>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a0u-UI-t9c" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                        <rect key="frame" x="19" y="921.5" width="376" height="53"/>
+                                        <rect key="frame" x="19" y="1063.5" width="376" height="53"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i5X-NZ-X0s">
                                                 <rect key="frame" x="0.0" y="0.0" width="376" height="53"/>
@@ -2516,7 +2550,6 @@
                                     <constraint firstItem="Qv8-3c-cqr" firstAttribute="top" secondItem="T3a-qp-fL3" secondAttribute="bottom" constant="3" id="981-aH-YCD"/>
                                     <constraint firstAttribute="trailing" secondItem="efS-S7-52K" secondAttribute="trailing" constant="19" id="9mi-b0-8Gl"/>
                                     <constraint firstAttribute="bottom" secondItem="tBJ-wX-VOn" secondAttribute="bottom" id="C6J-se-tH6"/>
-                                    <constraint firstItem="FtZ-OF-at4" firstAttribute="top" secondItem="dM8-IR-Q4w" secondAttribute="bottom" constant="24" id="Dtd-jL-krs"/>
                                     <constraint firstItem="PXv-Ea-1q5" firstAttribute="centerX" secondItem="s7V-nI-Reb" secondAttribute="centerX" id="Fcp-MD-FBE"/>
                                     <constraint firstItem="FtZ-OF-at4" firstAttribute="leading" secondItem="s7V-nI-Reb" secondAttribute="leading" constant="19" id="Fs2-cG-Yjj"/>
                                     <constraint firstItem="PXv-Ea-1q5" firstAttribute="top" secondItem="s7V-nI-Reb" secondAttribute="top" constant="32" id="GI3-aL-Imc"/>
@@ -2529,6 +2562,7 @@
                                     <constraint firstAttribute="bottom" secondItem="a0u-UI-t9c" secondAttribute="bottom" constant="20" symbolic="YES" id="U4G-D5-sA7"/>
                                     <constraint firstItem="YWr-2E-GI4" firstAttribute="centerX" secondItem="s7V-nI-Reb" secondAttribute="centerX" id="UvH-nn-tN1"/>
                                     <constraint firstItem="Zc8-G8-FUK" firstAttribute="top" secondItem="jke-BH-289" secondAttribute="bottom" constant="48" id="Vds-Xw-reW"/>
+                                    <constraint firstItem="qTP-lE-1kc" firstAttribute="leading" secondItem="KpW-VB-eO9" secondAttribute="leading" constant="12" id="Xgk-65-2fb"/>
                                     <constraint firstItem="a0u-UI-t9c" firstAttribute="top" secondItem="efS-S7-52K" secondAttribute="bottom" constant="8" id="Yb8-4i-ReQ"/>
                                     <constraint firstItem="mOH-he-cSw" firstAttribute="top" secondItem="PXv-Ea-1q5" secondAttribute="bottom" constant="8" id="Yin-et-D2d"/>
                                     <constraint firstAttribute="trailing" secondItem="a0u-UI-t9c" secondAttribute="trailing" constant="19" id="aS4-2p-SJm"/>
@@ -2539,11 +2573,14 @@
                                     <constraint firstItem="VTE-lk-8iS" firstAttribute="top" secondItem="YWr-2E-GI4" secondAttribute="bottom" constant="7" id="elB-E4-48K"/>
                                     <constraint firstItem="0r0-wR-dQM" firstAttribute="top" secondItem="Zc8-G8-FUK" secondAttribute="bottom" constant="8" id="gBz-2S-6tG"/>
                                     <constraint firstItem="T3a-qp-fL3" firstAttribute="centerX" secondItem="s7V-nI-Reb" secondAttribute="centerX" id="i09-pe-5lH"/>
+                                    <constraint firstItem="FtZ-OF-at4" firstAttribute="top" secondItem="qTP-lE-1kc" secondAttribute="bottom" constant="16" id="iDe-f3-lGc"/>
                                     <constraint firstItem="tBJ-wX-VOn" firstAttribute="top" secondItem="s7V-nI-Reb" secondAttribute="top" constant="8" id="igV-s2-l4C"/>
                                     <constraint firstAttribute="trailing" secondItem="YWr-2E-GI4" secondAttribute="trailing" constant="19" id="ktH-df-URu"/>
+                                    <constraint firstItem="qTP-lE-1kc" firstAttribute="top" secondItem="dM8-IR-Q4w" secondAttribute="bottom" constant="32" id="lSd-z7-aGn"/>
                                     <constraint firstItem="L5g-gF-H96" firstAttribute="leading" secondItem="s7V-nI-Reb" secondAttribute="leading" constant="19" id="mVH-Ek-ChM"/>
                                     <constraint firstItem="jke-BH-289" firstAttribute="top" secondItem="L5g-gF-H96" secondAttribute="bottom" constant="8" id="mhj-qL-Im8"/>
                                     <constraint firstItem="0r0-wR-dQM" firstAttribute="leading" secondItem="s7V-nI-Reb" secondAttribute="leading" constant="19" id="tKT-sI-Mgf"/>
+                                    <constraint firstItem="KpW-VB-eO9" firstAttribute="trailing" secondItem="qTP-lE-1kc" secondAttribute="trailing" constant="12" id="tSY-3w-v0w"/>
                                     <constraint firstItem="dM8-IR-Q4w" firstAttribute="top" secondItem="mOH-he-cSw" secondAttribute="bottom" constant="32" id="uak-dn-wZg"/>
                                     <constraint firstItem="YWr-2E-GI4" firstAttribute="leading" secondItem="s7V-nI-Reb" secondAttribute="leading" constant="19" id="uyv-UV-79g"/>
                                     <constraint firstItem="Qv8-3c-cqr" firstAttribute="centerX" secondItem="s7V-nI-Reb" secondAttribute="centerX" id="xCW-Ss-v4B"/>
@@ -2583,7 +2620,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="4286.9565217391309" y="1916.576086956522"/>
+            <point key="canvasLocation" x="4286.9565217391309" y="1916.5178571428571"/>
         </scene>
         <!--WebVC-->
         <scene sceneID="zrd-hb-i5h">
@@ -3000,6 +3037,7 @@ For example, if you list "#sale" and "buy one get one free" the influencer could
                     <connections>
                         <outlet property="InstructionsTextView" destination="ZDC-Ie-qg3" id="s8z-iw-lb5"/>
                         <outlet property="PostTitle" destination="G5c-3o-5Bz" id="lx8-2Y-8Jw"/>
+                        <outlet property="captionInstructionsLabel" destination="ibd-iW-csK" id="PjF-nP-hVY"/>
                         <outlet property="colorBubble" destination="9gd-It-qtM" id="zOn-iW-vdG"/>
                         <outlet property="noHate" destination="Ac6-jT-ytq" id="GDA-1i-93h"/>
                         <outlet property="saveView" destination="qC8-Bp-q4l" id="Fmk-tf-LsW"/>
@@ -3076,8 +3114,8 @@ For example, if you list "#sale" and "buy one get one free" the influencer could
                                     <constraint firstItem="r9S-Zk-Nf4" firstAttribute="leading" secondItem="oDX-3R-NhQ" secondAttribute="leading" id="uPO-Bh-CI1"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crop Image to Square" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wBd-Ay-ju9">
-                                <rect key="frame" x="105.5" y="178" width="203" height="26"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crop Logo to Circle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wBd-Ay-ju9">
+                                <rect key="frame" x="117" y="178" width="180" height="26"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="21"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -3320,7 +3358,7 @@ For example, if you list "#sale" and "buy one get one free" the influencer could
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2YQ-yy-9Nj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-297" y="1943"/>
+            <point key="canvasLocation" x="-272" y="1975"/>
         </scene>
         <!--Transaction DetailsVC-->
         <scene sceneID="TCp-Jm-ubz">
@@ -4531,13 +4569,13 @@ For example, if you list "#sale" and "buy one get one free" the influencer could
                                             <outlet property="delegate" destination="gjA-zh-oKp" id="wI6-JD-tYo"/>
                                         </connections>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Referral Code (Given by Influnecer)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRp-KK-f6Z">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Referral Code (Given by Influnecer / Organizer)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRp-KK-f6Z">
                                         <rect key="frame" x="17" y="305.5" width="380" height="16"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Influencer Referral Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gJF-3f-v6X">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Influencer / Organizer Referral Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gJF-3f-v6X">
                                         <rect key="frame" x="17" y="329.5" width="380" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="4kw-Tr-O4J"/>
@@ -5673,6 +5711,6 @@ You must have permission to use the company name, logo, website, etc. before reg
         <image name="square.grid.3x2" catalog="system" width="64" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ceg-yx-Afw"/>
+        <segue reference="uZX-UA-AAB"/>
     </inferredMetricsTieBreakers>
 </document>

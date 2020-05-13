@@ -54,12 +54,20 @@ class ShadowView: UIView {
 class Offer: NSObject {
     var offer_ID: String
     var money: Double
+    var commission: Double?
+    var isCommissionPaid: Bool?
     var company: Company?
     var posts: [Post]
     var offerdate: Date
     var user_ID: [String]
     var expiredate: Date
     var allPostsConfirmedSince: Date?
+    var isAllPaid: Bool?
+    var isRefferedByInfluencer: Bool?
+    var isReferCommissionPaid: Bool?
+    var referralAmount: Double?
+    var referralCommission: Double?
+    var referralID: String?
     var allConfirmed: Bool {
         get {
             var areConfirmed = true
@@ -76,6 +84,16 @@ class Offer: NSObject {
         return self.expiredate.timeIntervalSinceNow <= 0
     }
     var ownerUserID: String
+    var notify: Bool
+    
+    var cashPower: Double?
+    
+    var influencerFilter: [String: AnyObject]?
+    
+    var incresePay: Double?
+    
+    var companyDetails: [String: Any]?
+    
     
     var debugInfo: String {
         return "Offer by \(company!.name) for $\(String(money)) that is \(isExpired ? "" : "not ") expired."
@@ -94,6 +112,19 @@ class Offer: NSObject {
         self.allPostsConfirmedSince = dictionary["allPostsConfirmedSince"] as? Date
         self.isAccepted = dictionary["isAccepted"] as! Bool
         self.ownerUserID = dictionary["ownerUserID"] as! String
+        self.commission = dictionary["commission"] as? Double
+        self.isCommissionPaid = dictionary["isCommissionPaid"] as? Bool ?? false
+        self.isAllPaid = dictionary["isAllPaid"] as? Bool ?? false
+        self.isRefferedByInfluencer = dictionary["isRefferedByInfluencer"] as? Bool ?? false
+        self.isReferCommissionPaid = dictionary["isReferCommissionPaid"] as? Bool ?? false
+        self.referralAmount = dictionary["referralAmount"] as? Double ?? 0.0
+        self.referralID = dictionary["referralID"] as? String ?? ""
+        self.notify = dictionary["notify"] as? Bool ?? false
+        self.cashPower = dictionary["cashPower"] as? Double ?? 0.0
+        self.referralCommission = dictionary["referralCommission"] as? Double ?? 0.0
+        self.influencerFilter = dictionary["influencerFilter"] as? [String: AnyObject] ?? [:]
+        self.incresePay = dictionary["incresePay"] as? Double ?? 0.0
+        self.companyDetails = dictionary["companyDetails"] as? [String: Any] ?? [:]
     }
 }
 
@@ -235,6 +266,8 @@ struct Post {
     var status: String
 	var hashtags: [String]
 	var keywords: [String]
+    var isPaid: Bool?
+    var PayAmount: Double?
     
 	func isFinished() -> [String] {
 		var returnValue: [String] = []
@@ -338,6 +371,7 @@ class CompanyUser: NSObject {
     var isCompanyRegistered: Bool?
     var companyID: String?
     var deviceFIRToken: String?
+    var businessReferral: String?
     
     init(dictionary: [String: Any]) {
         
@@ -348,6 +382,7 @@ class CompanyUser: NSObject {
         self.isCompanyRegistered = dictionary["isCompanyRegistered"] as? Bool
         self.companyID = dictionary["companyID"] as? String
         self.deviceFIRToken = dictionary["deviceFIRToken"] as? String ?? ""
+        self.businessReferral = dictionary["businessReferral"] as? String ?? ""
     }
 }
 
@@ -468,6 +503,7 @@ class TransactionDetails: NSObject {
     var type: String?
     var currencyIsoCode: String?
     var amount: String?
+    var commission: Double?
     var createdAt: String?
     var updatedAt: String?
     var transactionType: String?
@@ -481,6 +517,7 @@ class TransactionDetails: NSObject {
         self.amount = dictionary["amount"] as? String
         self.createdAt = dictionary["createdAt"] as? String
         self.updatedAt = dictionary["updatedAt"] as? String
+        self.commission = dictionary["commission"] as? Double
         if dictionary.keys.contains("creditCard") {
             if dictionary["creditCard"] != nil {
                 self.cardDetails = dictionary["creditCard"]

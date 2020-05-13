@@ -51,6 +51,7 @@ class StatsVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             getCompany(companyID: user) { (company, error) in
                 
                 Singleton.sharedInstance.setCompanyDetails(company: company!)
+				YourCompany = company
             }
             
         }

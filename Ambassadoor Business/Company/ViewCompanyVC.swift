@@ -28,15 +28,9 @@ class ViewCompanyVC: BaseVC, editDelegate {
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
-		companyLogo.layer.cornerRadius = 10
+		companyLogo.layer.cornerRadius = companyLogo.bounds.height / 2
         self.showActivityIndicator()
-        let user = Singleton.sharedInstance.getCompanyUser().companyID!
-        getCompany(companyID: user) { (company, error) in
-            self.hideActivityIndicator()
-            YourCompany = company
-            self.updateCompanyInfo()
-        }
-		
+		updateCompanyInfo()
     }
 	
 	@IBAction func GoToWebsite(_ sender: Any) {

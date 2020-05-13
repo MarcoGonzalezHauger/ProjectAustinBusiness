@@ -31,11 +31,11 @@ class KeyphraseCell: UITableViewCell {
 		//Contains what the current phrasetext will look like.
 		var currentString: String = phraseText.text!
 		
-		if currentString.count > 50 {
-			currentString = String(currentString.dropLast(currentString.count - 50))
+		if currentString.count > 25 {
+			currentString = String(currentString.dropLast(currentString.count - 25))
 			MakeShake(viewToShake: self, coefficient: 0.2, positiveCoefficient: 0)
 			if !wasTold {
-				delegate?.NotValidWord(words: ["Max Length Reached", "Each phrase may only have a maximum of 50 characters."])
+				delegate?.NotValidWord(words: ["Max Length Reached", "Each phrase may only have a maximum of 25 characters."])
 				wasTold = true
 			}
 		}
@@ -62,11 +62,14 @@ class KeyphraseCell: UITableViewCell {
 		var matchFound = true
 		while(matchFound) {
 			for curse in swearWords {
-				if let thisRange = currentString.range(of: curse, options: .caseInsensitive) {
-					currentString.replaceSubrange(thisRange.lowerBound ..< thisRange.upperBound, with: "")
-					MakeShake(viewToShake: self, coefficient: 0.2)
-					delegate?.NotValidWord(words: ["Text Not Permitted", "The text \"\(curse)\" is not permitted in caption."])
-					continue
+				let check = currentString.replacingOccurrences(of: "#", with: "")
+				if check.lowercased().starts(with: "\(curse.lowercased()) ") || check.lowercased().contains(" \(curse.lowercased()) ") || check.lowercased().hasSuffix(" \(curse)") || check.lowercased() == curse.lowercased() {
+					if let thisRange = currentString.range(of: curse, options: .caseInsensitive) {
+						currentString.replaceSubrange(thisRange.lowerBound ..< thisRange.upperBound, with: "")
+						MakeShake(viewToShake: self, coefficient: 0.2)
+						delegate?.NotValidWord(words: ["Text Not Permitted", "The text \"\(curse)\" is not permitted in caption."])
+						continue
+					}
 				}
 			}
 			matchFound = false
@@ -82,6 +85,8 @@ class AddPostVC: BaseVC, NCDelegate, UITableViewDelegate, UITableViewDataSource,
 	func NotValidWord(words: [String]) {
 		self.showAlertMessage(title: words.first!, message: words.last!){ }
 	}
+	
+	@IBOutlet weak var captionInstructionsLabel: UILabel!
 	
 	func textChanged(at cell: UITableViewCell, to: String) {
 		let ip: IndexPath = shelf.indexPath(for: cell)!
@@ -169,6 +174,7 @@ class AddPostVC: BaseVC, NCDelegate, UITableViewDelegate, UITableViewDataSource,
         self.addDoneButtonOnKeyboard(textView: InstructionsTextView)
         let user = Singleton.sharedInstance.getCompanyUser()
         //let path = Auth.auth().currentUser!.uid + "/" + user.companyID!
+		captionInstructionsLabel.text = "The influencer will need to put all of the phrases and hastags below into the text that goes along with their post on Instagram.\nFor example, if you list \"#sale\" and \"buy one get one free\" the influencer could use the caption: \"buy one get one free at \(YourCompany.name)!! #sale #ad\""
 
         
         // Do any additional setup after loading the view.
@@ -238,7 +244,7 @@ class AddPostVC: BaseVC, NCDelegate, UITableViewDelegate, UITableViewDataSource,
 				}
 			}
 		}
-		let post  = Post.init(image: "", instructions: InstructionsTextView.text!, captionMustInclude: "", products: [], post_ID: "", PostType: PostTypeToText(posttype: .SinglePost), confirmedSince: Date(), isConfirmed: false, hashCaption: "", status: "available", hashtags: hashes, keywords: phrases)
+        let post  = Post.init(image: "", instructions: InstructionsTextView.text!, captionMustInclude: "", products: [], post_ID: "", PostType: PostTypeToText(posttype: .SinglePost), confirmedSince: Date(), isConfirmed: false, hashCaption: "", status: "available", hashtags: hashes, keywords: phrases, isPaid: false, PayAmount: 0.0)
 		getCreatePostUniqueID(param: post) { (postValue, error) in
 			if self.index != nil {
 				global.post[self.index!] = postValue

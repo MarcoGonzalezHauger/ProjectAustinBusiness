@@ -96,7 +96,7 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
 		imagePicker.sourceType = .photoLibrary
 		imagePicker.allowsEditing = false
 		
-		scrollView.layer.cornerRadius = 5
+		scrollView.layer.cornerRadius = (view.bounds.width - 40) / 2
     }
 	
 	var alreadyPresented: Bool = false
@@ -117,7 +117,10 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
 				(newStatus) in
 				debugPrint("status is \(newStatus)")
 				if newStatus ==  PHAuthorizationStatus.authorized {
-					self.present(self.imagePicker, animated: true, completion: nil)
+                    DispatchQueue.main.async {
+                        self.present(self.imagePicker, animated: true, completion: nil)
+                    }
+					
 					print("success")
 				} else {
 					self.dismiss(animated: true, completion: nil)

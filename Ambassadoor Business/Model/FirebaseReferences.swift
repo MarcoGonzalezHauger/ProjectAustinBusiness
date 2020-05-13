@@ -58,11 +58,11 @@ func serializeOffer(offer: Offer) -> [String: AnyObject] {
         "money": offer.money as AnyObject,
         "company": offer.company?.account_ID as AnyObject,
         "posts": post_IDS as AnyObject,
-        "offerdate": offer.offerdate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss") as AnyObject,
+        "offerdate": offer.offerdate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ssZ") as AnyObject,
         "offer_ID": offer.offer_ID as AnyObject,
         "user_ID": offer.user_ID as AnyObject,
-        "expiredate": offer.expiredate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss") as AnyObject,
-        "allPostsConfirmedSince": offer.allPostsConfirmedSince?.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss") ?? " ",
+        "expiredate": offer.expiredate.toString(dateFormat: "yyyy/MMM/dd HH:mm:ssZ") as AnyObject,
+        "allPostsConfirmedSince": offer.allPostsConfirmedSince?.toString(dateFormat: "yyyy/MMM/dd HH:mm:ssZ") ?? " ",
         "allConfirmed": offer.allConfirmed,
         "isAccepted": offer.isAccepted,
         "isExpired": offer.isExpired,
@@ -106,7 +106,7 @@ func CreatePost(param: Post,completion: @escaping (Post,Bool) -> ())  {
     let ref = Database.database().reference().child("post").child(Auth.auth().currentUser!.uid)
     ref.observeSingleEvent(of: .value, with: { (snapshot) in
         let postReference = ref.childByAutoId()
-        let post = Post.init(image: param.image!, instructions: param.instructions, captionMustInclude: param.captionMustInclude!, products: param.products!, post_ID: postReference.key!, PostType: param.PostType, confirmedSince: param.confirmedSince!, isConfirmed: param.isConfirmed, hashCaption: param.hashCaption, status: param.status, hashtags: param.hashtags, keywords: param.keywords)
+        let post = Post.init(image: param.image!, instructions: param.instructions, captionMustInclude: param.captionMustInclude!, products: param.products!, post_ID: postReference.key!, PostType: param.PostType, confirmedSince: param.confirmedSince!, isConfirmed: param.isConfirmed, hashCaption: param.hashCaption, status: param.status, hashtags: param.hashtags, keywords: param.keywords, isPaid: param.isPaid, PayAmount: 0.0)
         let productData = API.serializePost(post: post)
         postReference.updateChildValues(productData)
         completion(post, true)
@@ -118,7 +118,7 @@ func getCreatePostUniqueID(param: Post, completion: @escaping (Post,Bool) -> ())
     
     let ref = Database.database().reference()
     let postReference = ref.childByAutoId()
-	let post = Post.init(image: param.image!, instructions: param.instructions, captionMustInclude: param.captionMustInclude!, products: param.products!, post_ID: postReference.key!, PostType: param.PostType, confirmedSince: param.confirmedSince!, isConfirmed: param.isConfirmed, hashCaption: param.hashCaption, status: param.status, hashtags: param.hashtags, keywords: param.keywords)
+    let post = Post.init(image: param.image!, instructions: param.instructions, captionMustInclude: param.captionMustInclude!, products: param.products!, post_ID: postReference.key!, PostType: param.PostType, confirmedSince: param.confirmedSince!, isConfirmed: param.isConfirmed, hashCaption: param.hashCaption, status: param.status, hashtags: param.hashtags, keywords: param.keywords, isPaid: param.isPaid, PayAmount: 0.0)
     //let productData = API.serializePost(post: post)
     completion(post,true)
 }
@@ -212,8 +212,8 @@ func uploadImage(image: UIImage) -> String {
 }
 
 func uploadImageToFIR(image: UIImage, childName: String, path: String, completion: @escaping (String,Bool) -> ()) {
-    let data = image.jpegData(compressionQuality: 0.2)
-    let fileName = path + ".png"
+    let data = image.resizeImage(image: image, targetSize: CGSize.init(width: 256.0, height: 256.0)).jpegData(compressionQuality: 1)
+	let fileName = path + ".png"
     let ref = Storage.storage().reference().child(childName).child(fileName)
     ref.putData(data!, metadata: nil, completion: { (metadata, error) in
         if error != nil {
@@ -251,7 +251,8 @@ func serializeCompany(company: Company) -> [String: Any] {
         "description": company.companyDescription,
         "accountBalance": company.accountBalance,
 		"owner": company.owner_email,
-        "referralcode": company.owner_email
+        "referralcode": company.owner_email,
+        "userId": Auth.auth().currentUser!.uid
     ]
     return companyData
 }
@@ -439,9 +440,20 @@ func createTemplateOffer(pathString: String,edited: Bool,templateOffer: Template
 }
 
 
-
+// We do separate Commission and User Amount Sentout Offers too
 func sentOutOffers(pathString: String, templateOffer: TemplateOffer, completion: @escaping (TemplateOffer,Bool) -> ()) {
+    print(templateOffer.posts.count)
     let offersRef = Database.database().reference().child("SentOutOffers").child(pathString)
+    var offerDictionary: [String: Any] = [:]
+    offerDictionary = API.serializeTemplateOffer(offer: templateOffer)
+    offersRef.updateChildValues(offerDictionary)
+    completion(templateOffer, true)
+}
+
+// We do separate Commission and User Amount Sentout Offers too
+func sentOutOffersToOfferPool(pathString: String, templateOffer: TemplateOffer, completion: @escaping (TemplateOffer,Bool) -> ()) {
+    print(templateOffer.posts.count)
+    let offersRef = Database.database().reference().child("OfferPool").child(pathString)
     var offerDictionary: [String: Any] = [:]
     offerDictionary = API.serializeTemplateOffer(offer: templateOffer)
     offersRef.updateChildValues(offerDictionary)
@@ -569,8 +581,8 @@ func getAllTemplateOffers(userID: String, completion: @escaping([TemplateOffer],
                 offer["posts"] = post as AnyObject
                 let conDate = offer["offerdate"] as! String
                 let exDate = offer["expiredate"] as! String
-                let dateCon = DateFormatManager.sharedInstance.getDateFromStringWithFormat(dateString: conDate, format: "yyyy/MMM/dd HH:mm:ss")
-                let dateEx = DateFormatManager.sharedInstance.getDateFromStringWithFormat(dateString: exDate, format: "yyyy/MMM/dd HH:mm:ss")
+                let dateCon = DateFormatManager.sharedInstance.getDateFromStringWithAutoFormat(dateString: conDate)
+                let dateEx = DateFormatManager.sharedInstance.getDateFromStringWithAutoFormat(dateString: exDate)
                 offer["offerdate"] = dateCon as AnyObject?
                 offer["expiredate"] = dateEx as AnyObject?
                 template.append(TemplateOffer.init(dictionary: offer))
@@ -601,7 +613,7 @@ func parseTemplateOffer(offer: [String: AnyObject]) -> [Post] {
 			}
 		}
 		
-		let postInitialized = Post.init(image: "", instructions: value["instructions"] as? String ?? "", captionMustInclude: value["captionMustInclude"] as? String, products: productList, post_ID: value["post_ID"] as! String, PostType: value["PostType"] as! String, confirmedSince: value["confirmedSince"] as? Date, isConfirmed: (value["isConfirmed"] != nil), hashCaption: value["hashCaption"] as! String, status: value["status"] as? String ?? "", hashtags: value["hashtags"] as? [String] ?? [], keywords: value["keywords"] as? [String] ?? [])
+        let postInitialized = Post.init(image: "", instructions: value["instructions"] as? String ?? "", captionMustInclude: value["captionMustInclude"] as? String, products: productList, post_ID: value["post_ID"] as! String, PostType: value["PostType"] as! String, confirmedSince: value["confirmedSince"] as? Date, isConfirmed: (value["isConfirmed"] != nil), hashCaption: value["hashCaption"] as! String, status: value["status"] as? String ?? "", hashtags: value["hashtags"] as? [String] ?? [], keywords: value["keywords"] as? [String] ?? [], isPaid: value["isPaid"] as? Bool ?? false, PayAmount: value["PayAmount"] as? Double ?? 0.0)
         postValues.append(postInitialized)
     }
     return postValues
@@ -987,7 +999,7 @@ func serializeCompanyUser(companyUser: CompanyUser) -> [String: Any] {
         "userID": companyUser.userID!,
         "email": companyUser.email!,
         "refreshToken": companyUser.refreshToken!,
-        "token": companyUser.token!,"isCompanyRegistered": companyUser.isCompanyRegistered!,"companyID":companyUser.companyID!]
+        "token": companyUser.token!,"isCompanyRegistered": companyUser.isCompanyRegistered!,"companyID":companyUser.companyID!,"businessReferral": companyUser.businessReferral!]
     return companyUserData
     
 }
@@ -999,6 +1011,9 @@ func getCurrentCompanyUser(userID: String, completion: @escaping (CompanyUser?,S
         // Get user value
         if let value = snapshot.value as? NSDictionary{
            let companyUser = CompanyUser.init(dictionary: value as! [String : Any])
+            companyUser.deviceFIRToken = global.deviceFIRToken
+            let updateRef = Database.database().reference().child("CompanyUser").child(userID)
+            updateRef.updateChildValues(["deviceFIRToken":global.deviceFIRToken])
            completion(companyUser, "")
         }else{
           completion(nil, "error")
@@ -1113,12 +1128,95 @@ func getCompany(companyID: String,completion: @escaping (Company?,String) -> Voi
     
 }
 
+func sentReferralAmountToBusiness(referralID: String,completion: @escaping(CompanyUser?)->Void) {
+    
+    let usersRef = Database.database().reference().child("CompanyUser")
+    
+    let query = usersRef.queryOrdered(byChild: "businessReferral").queryEqual(toValue: referralID)
+    
+    query.observeSingleEvent(of: .value) { (snapshot) in
+        
+        if let dictionary = snapshot.value as? [String: AnyObject] {
+            
+            let userInstance = CompanyUser(dictionary: dictionary[dictionary.keys.first!] as! [String: AnyObject])
+            completion(userInstance)
+            
+//            for values in dictionary.keys {
+//
+//                if let dict = dictionary[values] as? [String: AnyObject] {
+//
+//                    if dict.keys.contains("businessReferral") {
+//
+//                    if dict["businessReferral"] as! String == referralID {
+//
+//                        let userInstance = CompanyUser(dictionary: dict)
+//                         completion(userInstance)
+////                        if userInstance.businessReferral == referralID {
+////                            completion(userInstance)
+////                            break
+////
+////                        }
+//
+//                    }
+//                    }
+//
+//                }
+//
+//            }
+            
+        }
+        
+    }
+    
+}
+
+func sentReferralAmountToInfluencer(referralID: String,completion: @escaping(User?)->Void) {
+    
+    let usersRef = Database.database().reference().child("users")
+    
+    let query = usersRef.queryOrdered(byChild: "referralcode").queryEqual(toValue: referralID)
+    
+    query.observeSingleEvent(of: .value) { (snapshot) in
+        
+        if let dictionary = snapshot.value as? [String: AnyObject] {
+            
+            let userInstance = User(dictionary: dictionary[dictionary.keys.first!] as! [String: AnyObject])
+            completion(userInstance)
+            
+//            for values in dictionary.keys {
+//
+//                if let dict = dictionary[values] as? [String: AnyObject] {
+//
+//                    if dict.keys.contains("referralcode") {
+//
+//                    if dict["referralcode"] as! String == referralID {
+//
+//                        let userInstance = User(dictionary: dict)
+//                        if userInstance.referralcode == referralID {
+//                            completion(userInstance)
+//                            break
+//                        }
+//
+//                    }
+//                    }
+//
+//                }
+//
+//            }
+            
+        }
+        
+    }
+    
+}
+
 extension Date
 {
     func toString( dateFormat format  : String ) -> String
     {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
+        dateFormatter.timeZone = TimeZone(abbreviation: "EST")
         return dateFormatter.string(from: self)
     }
 }
