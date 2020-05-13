@@ -2231,16 +2231,16 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qTP-lE-1kc" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                         <rect key="frame" x="12" y="470" width="390" height="118"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oAU-H3-QJV">
-                                                <rect key="frame" x="33.5" y="12" width="323" height="21"/>
-                                                <string key="text">Do your influecners need to be 21 or over?
-</string>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oAU-H3-QJV">
+                                                <rect key="frame" x="33.5" y="12" width="323" height="41"/>
+                                                <string key="text">Do your influencers need to be 21 or over?
+(Legal drinking age in the United States)</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2Lw-RP-0EK">
-                                                <rect key="frame" x="80.5" y="56" width="229" height="32"/>
+                                                <rect key="frame" x="80.5" y="67" width="229" height="32"/>
                                                 <segments>
                                                     <segment title="No, just 18+"/>
                                                     <segment title="Yes, 21 or older"/>
@@ -2253,7 +2253,7 @@
                                             <constraint firstItem="oAU-H3-QJV" firstAttribute="centerX" secondItem="qTP-lE-1kc" secondAttribute="centerX" id="4mz-oD-J5z"/>
                                             <constraint firstItem="oAU-H3-QJV" firstAttribute="top" secondItem="qTP-lE-1kc" secondAttribute="top" constant="12" id="B41-2h-ORw"/>
                                             <constraint firstItem="2Lw-RP-0EK" firstAttribute="centerX" secondItem="qTP-lE-1kc" secondAttribute="centerX" id="FJw-kx-eZ1"/>
-                                            <constraint firstItem="2Lw-RP-0EK" firstAttribute="top" secondItem="oAU-H3-QJV" secondAttribute="bottom" constant="23" id="htx-NL-3ol"/>
+                                            <constraint firstItem="2Lw-RP-0EK" firstAttribute="top" secondItem="oAU-H3-QJV" secondAttribute="bottom" constant="14" id="htx-NL-3ol"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">

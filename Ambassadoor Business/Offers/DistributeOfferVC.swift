@@ -313,8 +313,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
     
     func DistributeOfferToOfferPool() {
         
-        var error = false
-        guard var offerAmount = Double((String((self.moneyText.text?.dropFirst())!))) else {
+		guard let offerAmount = Double((String((self.moneyText.text?.dropFirst())!))) else {
             MakeShake(viewToShake: moneyText)
             YouShallNotPass(SaveButtonView: DistributeButtonview)
             return
