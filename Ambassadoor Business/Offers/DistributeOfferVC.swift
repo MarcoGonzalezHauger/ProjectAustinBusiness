@@ -313,8 +313,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
     
     func DistributeOfferToOfferPool() {
         
-        var error = false
-        guard var offerAmount = Double((String((self.moneyText.text?.dropFirst())!))) else {
+		guard let offerAmount = Double((String((self.moneyText.text?.dropFirst())!))) else {
             MakeShake(viewToShake: moneyText)
             YouShallNotPass(SaveButtonView: DistributeButtonview)
             return
@@ -325,20 +324,24 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
         
         self.templateOffer?.money = originalAmount
         
-        self.templateOffer?.cashPower = originalAmount
+        //self.templateOffer?.cashPower = originalAmount
         
         self.templateOffer?.commission = Singleton.sharedInstance.getCommision()
         
+        //Reduce Ambassadoor Commission
+        //let cashPower = self.templateOffer?.cashPower
+        let ambassadoorCommission = (originalAmount * Singleton.sharedInstance.getCommision())
+        self.templateOffer?.cashPower = originalAmount - ambassadoorCommission
+        
         if let referral = Singleton.sharedInstance.getCompanyDetails().referralcode{
             
-            let paycomission = self.templateOffer!.cashPower! * 0.01
+            let paycomission = originalAmount * 0.01
             self.PayReferralUser(offer: self.templateOffer!, referralAmount: paycomission, referralID: referral)
             //originalAmount * (1 - 0.01)
-            self.templateOffer?.cashPower = (originalAmount - paycomission)
             self.templateOffer?.referralAmount = paycomission
         }
         self.templateOffer?.incresePay = self.increasePayVariable.rawValue
-        
+    
         self.templateOffer?.influencerFilter = self.influencersFilter
         print("mustBe=",mustBeTwentyOneSegment.selectedSegmentIndex)
         self.templateOffer?.mustBeTwentyOne = mustBeTwentyOneSegment.selectedSegmentIndex == 0 ? false : true
