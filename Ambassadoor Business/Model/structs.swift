@@ -94,6 +94,7 @@ class Offer: NSObject {
     
     var companyDetails: [String: Any]?
     
+    var mustBeTwentyOne: Bool?
     
     var debugInfo: String {
         return "Offer by \(company!.name) for $\(String(money)) that is \(isExpired ? "" : "not ") expired."
@@ -125,6 +126,7 @@ class Offer: NSObject {
         self.influencerFilter = dictionary["influencerFilter"] as? [String: AnyObject] ?? [:]
         self.incresePay = dictionary["incresePay"] as? Double ?? 0.0
         self.companyDetails = dictionary["companyDetails"] as? [String: Any] ?? [:]
+        self.mustBeTwentyOne = dictionary["mustBeTwentyOne"] as? Bool ?? false
     }
 }
 

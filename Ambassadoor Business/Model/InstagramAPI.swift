@@ -222,7 +222,8 @@ struct API {
             "influencerFilter":offer.influencerFilter as Any,
             "companyDetails":offer.companyDetails as Any,
             "accepted":[],
-            "reservedUsers":[] as Any
+            "reservedUsers":[] as Any,
+            "mustBeTwentyOne": offer.mustBeTwentyOne as Any
             ]
         return offerData
         //self.isRefferedByInfluencer = dictionary["isRefferedByInfluencer"] as? Bool ?? false
