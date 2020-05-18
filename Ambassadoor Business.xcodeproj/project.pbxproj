@@ -57,15 +57,14 @@
 		E82F890D22DD30B40036A079 /* CreateCompanyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82F890C22DD30B40036A079 /* CreateCompanyVC.swift */; };
 		E83F378D227CDEE100BA6688 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F378C227CDEE100BA6688 /* SignUpVC.swift */; };
 		E83F378F227CDF3A00BA6688 /* GetPictureVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F378E227CDF3A00BA6688 /* GetPictureVC.swift */; };
+		E844EAC22471DE48000CE74F /* mainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E844EAC12471DE48000CE74F /* mainTabBarController.swift */; };
 		E84600802273A65600CF60F2 /* StandardNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E846007F2273A65600CF60F2 /* StandardNC.swift */; };
-		E84600832273A8CB00CF60F2 /* ProductsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84600822273A8CA00CF60F2 /* ProductsVC.swift */; };
 		E84600852273A92A00CF60F2 /* BusinessLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84600842273A92A00CF60F2 /* BusinessLabel.swift */; };
 		E84600872273AF9100CF60F2 /* ImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84600862273AF9100CF60F2 /* ImageViewExtensions.swift */; };
 		E846008A2273B0B300CF60F2 /* Savvy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84600892273B0B300CF60F2 /* Savvy.swift */; };
 		E8769168236F9A8A0026E07D /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8769166236F9A830026E07D /* LocalAuthentication.framework */; };
 		E878E6EF237B846D00D25553 /* tutorial.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E878E6EE237B846D00D25553 /* tutorial.mp4 */; };
 		E899878323D3B8F20093FC0E /* CurseWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899878223D3B8F20093FC0E /* CurseWords.swift */; };
-		E89C83682277A49400124420 /* ViewProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C83672277A49400124420 /* ViewProductVC.swift */; };
 		E8C3694222161B3000AE12D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C3694122161B3000AE12D7 /* AppDelegate.swift */; };
 		E8C3694422161B3000AE12D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C3694322161B3000AE12D7 /* ViewController.swift */; };
 		E8C3694722161B3000AE12D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8C3694522161B3000AE12D7 /* Main.storyboard */; };
@@ -76,7 +75,6 @@
 		E8C708C7237645EB001699D0 /* FilterTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C708C6237645EB001699D0 /* FilterTypeVC.swift */; };
 		E8C708C923764C51001699D0 /* SelectStatesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C708C823764C51001699D0 /* SelectStatesVC.swift */; };
 		E8E54685227BA19C00775A07 /* ViewCompanyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E54684227BA19C00775A07 /* ViewCompanyVC.swift */; };
-		E8E54687227BA1D600775A07 /* EditCompanyTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E54686227BA1D600775A07 /* EditCompanyTVC.swift */; };
 		E8E54689227BA3E800775A07 /* YourCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E54688227BA3E800775A07 /* YourCompany.swift */; };
 		E8E5468C227BC9E900775A07 /* StatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E5468B227BC9E900775A07 /* StatsVC.swift */; };
 		E8F8AAC922C8492D0047BF5E /* ViewOffersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F8AAC822C8492D0047BF5E /* ViewOffersVC.swift */; };
@@ -138,15 +136,14 @@
 		E82F890C22DD30B40036A079 /* CreateCompanyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCompanyVC.swift; sourceTree = "<group>"; };
 		E83F378C227CDEE100BA6688 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		E83F378E227CDF3A00BA6688 /* GetPictureVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPictureVC.swift; sourceTree = "<group>"; };
+		E844EAC12471DE48000CE74F /* mainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainTabBarController.swift; sourceTree = "<group>"; };
 		E846007F2273A65600CF60F2 /* StandardNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardNC.swift; sourceTree = "<group>"; };
-		E84600822273A8CA00CF60F2 /* ProductsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsVC.swift; sourceTree = "<group>"; };
 		E84600842273A92A00CF60F2 /* BusinessLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessLabel.swift; sourceTree = "<group>"; };
 		E84600862273AF9100CF60F2 /* ImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtensions.swift; sourceTree = "<group>"; };
 		E84600892273B0B300CF60F2 /* Savvy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Savvy.swift; sourceTree = "<group>"; };
 		E8769166236F9A830026E07D /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		E878E6EE237B846D00D25553 /* tutorial.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = tutorial.mp4; sourceTree = "<group>"; };
 		E899878223D3B8F20093FC0E /* CurseWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurseWords.swift; sourceTree = "<group>"; };
-		E89C83672277A49400124420 /* ViewProductVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProductVC.swift; sourceTree = "<group>"; };
 		E8B08C244165BD27DA5136C1 /* Pods_Ambassadoor_Business.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ambassadoor_Business.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8C3693E22161B3000AE12D7 /* Ambassadoor Business.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ambassadoor Business.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8C3694122161B3000AE12D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -160,7 +157,6 @@
 		E8C708C6237645EB001699D0 /* FilterTypeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTypeVC.swift; sourceTree = "<group>"; };
 		E8C708C823764C51001699D0 /* SelectStatesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStatesVC.swift; sourceTree = "<group>"; };
 		E8E54684227BA19C00775A07 /* ViewCompanyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCompanyVC.swift; sourceTree = "<group>"; };
-		E8E54686227BA1D600775A07 /* EditCompanyTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCompanyTVC.swift; sourceTree = "<group>"; };
 		E8E54688227BA3E800775A07 /* YourCompany.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourCompany.swift; sourceTree = "<group>"; };
 		E8E5468B227BC9E900775A07 /* StatsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsVC.swift; sourceTree = "<group>"; };
 		E8F8AAC822C8492D0047BF5E /* ViewOffersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewOffersVC.swift; sourceTree = "<group>"; };
@@ -293,17 +289,9 @@
 				B72CB50722E6E8C100958AE0 /* BaseVC.swift */,
 				B79B1D2D22F2EE8D00F3C660 /* DateFormatManager.swift */,
 				B75EC9A5230ACE4800BA7A7B /* NetworkManager.swift */,
+				E844EAC12471DE48000CE74F /* mainTabBarController.swift */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		E84600812273A8AB00CF60F2 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E84600822273A8CA00CF60F2 /* ProductsVC.swift */,
-				E89C83672277A49400124420 /* ViewProductVC.swift */,
-			);
-			path = Products;
 			sourceTree = "<group>";
 		};
 		E84600882273AFA400CF60F2 /* Extentions */ = {
@@ -347,7 +335,6 @@
 				E8E5468A227BC9D800775A07 /* Statistics */,
 				E8E54683227BA16C00775A07 /* Company */,
 				E84600882273AFA400CF60F2 /* Extentions */,
-				E84600812273A8AB00CF60F2 /* Products */,
 				E846007E2273A5F800CF60F2 /* Resources */,
 				C089A3C32253D4C900ECF3B0 /* Model */,
 				B7FD83E522F07DD900347E8E /* TableviewCell */,
@@ -381,7 +368,6 @@
 			isa = PBXGroup;
 			children = (
 				E8E54684227BA19C00775A07 /* ViewCompanyVC.swift */,
-				E8E54686227BA1D600775A07 /* EditCompanyTVC.swift */,
 			);
 			path = Company;
 			sourceTree = "<group>";
@@ -532,7 +518,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B75EC9A6230ACE4800BA7A7B /* NetworkManager.swift in Sources */,
-				E84600832273A8CB00CF60F2 /* ProductsVC.swift in Sources */,
 				E80B060622A07EA1002B9699 /* DepositVC.swift in Sources */,
 				B706CB4D22E5F3310092FB77 /* SignInVC.swift in Sources */,
 				B7B11FF723242638006711BB /* ConnectedPlaidTVCell.swift in Sources */,
@@ -564,6 +549,7 @@
 				E8FC176223778D9700245932 /* LocationPicker.swift in Sources */,
 				E84600802273A65600CF60F2 /* StandardNC.swift in Sources */,
 				B712C4892306B6C900728758 /* WebVC.swift in Sources */,
+				E844EAC22471DE48000CE74F /* mainTabBarController.swift in Sources */,
 				C0FBFD01226154FC00BADDCD /* categories.swift in Sources */,
 				E83F378D227CDEE100BA6688 /* SignUpVC.swift in Sources */,
 				C089A3C52253D4E500ECF3B0 /* structs.swift in Sources */,
@@ -582,14 +568,12 @@
 				E846008A2273B0B300CF60F2 /* Savvy.swift in Sources */,
 				E8C708C423763EAA001699D0 /* GeolocationTools.swift in Sources */,
 				B79B1D2E22F2EE8D00F3C660 /* DateFormatManager.swift in Sources */,
-				E8E54687227BA1D600775A07 /* EditCompanyTVC.swift in Sources */,
 				B7C9FE8E231E4870005580E4 /* PlaidLinkEnabledVC.swift in Sources */,
 				C05FE2D9225F683E002D3CAA /* FirebaseReferences.swift in Sources */,
 				E8C3694422161B3000AE12D7 /* ViewController.swift in Sources */,
 				B7B11FF523242615006711BB /* PlaidTVCell.swift in Sources */,
 				E8C3694222161B3000AE12D7 /* AppDelegate.swift in Sources */,
 				B7551F2B22F98841001C4974 /* BasePicker.swift in Sources */,
-				E89C83682277A49400124420 /* ViewProductVC.swift in Sources */,
 				C0C9390622614AE3003DC925 /* InstagramAPI.swift in Sources */,
 				E83F378F227CDF3A00BA6688 /* GetPictureVC.swift in Sources */,
 				B799227622F16FA9007E84B0 /* PickUserCVC.swift in Sources */,
@@ -744,7 +728,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Ambassadoor Business/Ambassadoor Business.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = F4W3LUKZFA;
 				INFOPLIST_FILE = "Ambassadoor Business/Info.plist";
@@ -753,7 +737,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.6;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ambassadoor.company;
 				PRODUCT_NAME = "Ambassadoor Business";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -773,7 +757,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Ambassadoor Business/Ambassadoor Business.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = F4W3LUKZFA;
 				INFOPLIST_FILE = "Ambassadoor Business/Info.plist";
@@ -782,7 +766,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.6;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ambassadoor.company;
 				PRODUCT_NAME = "Ambassadoor Business";
 				PROVISIONING_PROFILE_SPECIFIER = "";

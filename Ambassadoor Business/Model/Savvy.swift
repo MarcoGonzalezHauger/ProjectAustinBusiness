@@ -252,13 +252,14 @@ func makeImageCircular(image: UIImage) -> UIImage {
 	ImageLayer.contents = image.cgImage
 	ImageLayer.masksToBounds = true
 	ImageLayer.cornerRadius = image.size.width/2
+	ImageLayer.contentsScale = image.scale
 	
-	UIGraphicsBeginImageContext(image.size)
+	UIGraphicsBeginImageContextWithOptions(image.size, false, image.scale)
 	ImageLayer.render(in: UIGraphicsGetCurrentContext()!)
 	let NewImage = UIGraphicsGetImageFromCurrentImageContext()
 	UIGraphicsEndImageContext()
 	
-	return NewImage!;
+	return NewImage!
 }
 
 func OfferFromID(id: String) -> Offer? {

@@ -45,7 +45,8 @@ class ShadowView: UIView {
 		} else {
 			self.layer.masksToBounds = false
 		}
-        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.layer.cornerRadius).cgPath
+		let rect = CGRect.init(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height + 2)
+        self.layer.shadowPath = UIBezierPath(roundedRect: rect, cornerRadius: self.layer.cornerRadius).cgPath
         
     }
 }
@@ -340,10 +341,10 @@ class Product: NSObject {
 //struct for company
 class Company: NSObject {
     let account_ID: String?
-    let name: String
-    let logo: String?
-    let mission: String
-    let website: String
+    var name: String
+    var logo: String?
+    var mission: String
+    var website: String
 	let owner_email: String
     let companyDescription: String
     var accountBalance: Double
