@@ -42,6 +42,31 @@ class StatsVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
 		view.bringSubviewToFront(statisticDataView)
 		self.statisticDataView.isHidden = false
         
+        let user = Singleton.sharedInstance.getCompanyUser().userID!
+//        getAllDistributedOffers(companyId: user) { (status,offers) in
+//
+//            let offer = offers?.first!
+//
+//            getInfluencersWhoAcceptedOffer(offerID: "-M4Snb4iVRxUEFXi-GEO", companyId: "rkFuQOwQK5hEEUNklmcwhT5Kll82") { (status, users) in
+//
+//            }
+//
+//
+//
+//        }
+        
+//        getInfluencersWhoPostedForOffer(offerID: "-M4Snb4iVRxUEFXi-GEO", companyId: "rkFuQOwQK5hEEUNklmcwhT5Kll82") { (status, postinfo) in
+//
+//            getPostUserDetails(postInfo: postinfo!) { (status, postinfo1) in
+//
+//                getInstagramPostByOffer(postInfo: postinfo1!) { (status, postinfo2) in
+//
+//                }
+//
+//            }
+//
+//        }
+        
         if Singleton.sharedInstance.getCompanyUser().isCompanyRegistered == false {
             self.performSegue(withIdentifier: "toCompanyRegister", sender: self)
         }else{
@@ -75,6 +100,7 @@ class StatsVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             }
             
         }
+        
         
         self.getStatisticsTimerData()
 
