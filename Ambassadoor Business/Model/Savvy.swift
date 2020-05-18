@@ -252,13 +252,14 @@ func makeImageCircular(image: UIImage) -> UIImage {
 	ImageLayer.contents = image.cgImage
 	ImageLayer.masksToBounds = true
 	ImageLayer.cornerRadius = image.size.width/2
+	ImageLayer.contentsScale = image.scale
 	
-	UIGraphicsBeginImageContext(image.size)
+	UIGraphicsBeginImageContextWithOptions(image.size, false, image.scale)
 	ImageLayer.render(in: UIGraphicsGetCurrentContext()!)
 	let NewImage = UIGraphicsGetImageFromCurrentImageContext()
 	UIGraphicsEndImageContext()
 	
-	return NewImage!;
+	return NewImage!
 }
 
 func OfferFromID(id: String) -> Offer? {
@@ -332,4 +333,28 @@ func randomString(length: Int) -> String {
     let finalString = randomStringValue
     
     return finalString
+}
+
+//returns a list of ERRORS
+
+func isDeseralizable(dictionary: [String: AnyObject], type: structType) -> [String] {
+    var necessaryItems: [String] = []
+    var errors: [String] = []
+    switch type {
+    case .offer:
+        necessaryItems = ["status", "money", "companyDetails", "posts", "offer_ID", "offerdate", "ownerUserID", "title", "isAccepted", "expiredate", "cashPower"]
+    case .businessDetails:
+        necessaryItems = ["name", "mission"]
+    }
+    for i in necessaryItems {
+        if dictionary[i] == nil {
+            errors.append("Dictionary[\(i)] returned NIL")
+        }
+    }
+    return errors
+}
+
+enum structType {
+    case offer
+    case businessDetails
 }

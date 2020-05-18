@@ -344,7 +344,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
     
         self.templateOffer?.influencerFilter = self.influencersFilter
         print("mustBe=",mustBeTwentyOneSegment.selectedSegmentIndex)
-        self.templateOffer?.mustBeTwentyOne = mustBeTwentyOneSegment.selectedSegmentIndex == 0 ? false : true
+        self.templateOffer?.mustBeTwentyOne = !(mustBeTwentyOneSegment.selectedSegmentIndex == 0)
         
         self.templateOffer?.companyDetails = serializeCompany(company: Singleton.sharedInstance.getCompanyDetails())
         

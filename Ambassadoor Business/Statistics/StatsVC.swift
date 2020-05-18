@@ -42,6 +42,31 @@ class StatsVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
 		view.bringSubviewToFront(statisticDataView)
 		self.statisticDataView.isHidden = false
         
+        let user = Singleton.sharedInstance.getCompanyUser().userID!
+//        getAllDistributedOffers(companyId: user) { (status,offers) in
+//
+//            let offer = offers?.first!
+//
+//            getInfluencersWhoAcceptedOffer(offerID: "-M4Snb4iVRxUEFXi-GEO", companyId: "rkFuQOwQK5hEEUNklmcwhT5Kll82") { (status, users) in
+//
+//            }
+//
+//
+//
+//        }
+        
+//        getInfluencersWhoPostedForOffer(offerID: "-M4Snb4iVRxUEFXi-GEO", companyId: "rkFuQOwQK5hEEUNklmcwhT5Kll82") { (status, postinfo) in
+//
+//            getPostUserDetails(postInfo: postinfo!) { (status, postinfo1) in
+//
+//                getInstagramPostByOffer(postInfo: postinfo1!) { (status, postinfo2) in
+//
+//                }
+//
+//            }
+//
+//        }
+        
         if Singleton.sharedInstance.getCompanyUser().isCompanyRegistered == false {
             self.performSegue(withIdentifier: "toCompanyRegister", sender: self)
         }else{
@@ -52,9 +77,30 @@ class StatsVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
                 
                 Singleton.sharedInstance.setCompanyDetails(company: company!)
 				YourCompany = company
+				guard let logo = YourCompany.logo else {return}
+				downloadImage(logo) { (image) in
+					
+					
+					let size = CGSize.init(width: 32, height: 32)
+					
+					let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+					
+					UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
+					image?.draw(in: rect)
+					let newImage = UIGraphicsGetImageFromCurrentImageContext()
+					UIGraphicsEndImageContext()
+					
+					if var image = newImage {
+						print(image.scale)
+						image = makeImageCircular(image: image)
+						print(image.scale)
+						self.tabBarController?.viewControllers?.first?.tabBarItem.image = image.withRenderingMode(.alwaysOriginal)
+					}
+				}
             }
             
         }
+        
         
         self.getStatisticsTimerData()
 
