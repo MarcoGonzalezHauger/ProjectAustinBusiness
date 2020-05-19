@@ -221,14 +221,13 @@ class TemplateOffer: Offer {
 	}
 
     override init(dictionary: [String: AnyObject])throws {
-		self.targetCategories = []
 		self.targetCategories = dictionary["targetCategories"] as? [String] ?? []
 		self.category = dictionary["category"] as? [String] ?? []
-		self.title = dictionary["title"] as! String
+		self.title = dictionary["title"] as? String ?? ""
         self.locationFilter = dictionary["locationFilter"] as? String ?? ""
         self.genders = dictionary["genders"] as? [String] ?? []
         self.user_IDs = dictionary["user_IDs"] as? [String] ?? []
-        self.status = dictionary["status"] as! String
+        self.status = dictionary["status"] as? String ?? ""
 		self.lastEdited = FirebaseToDate(object: dictionary["lastEditDate"])
         try super.init(dictionary: dictionary)
     }
@@ -377,13 +376,6 @@ struct PostInfo{
     var datePosted: String?
     var userId: String?
     var offerId: String?
-//    init(dictionary:[String: AnyObject]) {
-//        self.imageUrl = dictionary[""] as? String
-//        //self.userWhoPosted = dictionary[""] as? String
-//        //self.associatedPost = dictionary[""] as? String
-//        self.caption = dictionary[""] as? String
-//        self.datePosted = dictionary[""] as? String
-//    }
 }
 
 class InfluencerInstagramPost: NSObject {
