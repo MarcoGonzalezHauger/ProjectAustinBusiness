@@ -334,3 +334,27 @@ func randomString(length: Int) -> String {
     
     return finalString
 }
+
+//returns a list of ERRORS
+
+func isDeseralizable(dictionary: [String: AnyObject], type: structType) -> [String] {
+    var necessaryItems: [String] = []
+    var errors: [String] = []
+    switch type {
+    case .offer:
+        necessaryItems = ["status", "money", "companyDetails", "posts", "offer_ID", "offerdate", "ownerUserID", "title", "isAccepted", "expiredate", "cashPower"]
+    case .businessDetails:
+        necessaryItems = ["name", "mission"]
+    }
+    for i in necessaryItems {
+        if dictionary[i] == nil {
+            errors.append("Dictionary[\(i)] returned NIL")
+        }
+    }
+    return errors
+}
+
+enum structType {
+    case offer
+    case businessDetails
+}

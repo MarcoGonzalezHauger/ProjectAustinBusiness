@@ -10,7 +10,7 @@ import UIKit
 
 //Protocol for ACCEPTING offers.
 protocol OfferResponse {
-    func OfferAccepted(offer: Offer) -> ()
+	func OfferAccepted(offer: Offer) -> ()
 }
 
 
@@ -97,21 +97,55 @@ class Offer: NSObject {
     
     var mustBeTwentyOne: Bool?
     
+    var accepted: [String]?
+    
+    
     var debugInfo: String {
         return "Offer by \(company!.name) for $\(String(money)) that is \(isExpired ? "" : "not ") expired."
     }
-    init(dictionary: [String: AnyObject]) {
+    init(dictionary: [String: AnyObject]) throws {
+        
+        let err = isDeseralizable(dictionary: dictionary, type: .offer)
+        if err.count > 0 {
+            throw NSError(domain: err.joined(separator: ", "), code: 101, userInfo: ["class": "Offer Class", "value": dictionary])
+        }
+        
         self.money = dictionary["money"] as! Double
         self.company = dictionary["company"] as? Company
-        self.posts = dictionary["posts"] as! [Post]
-        self.offerdate = dictionary["offerdate"] as! Date
+        
+        if let posts = dictionary["posts"] as? [Post]{
+           self.posts = posts
+        }else{
+            
+            let posts = parseTemplateOffer(offer: dictionary)
+            self.posts = posts
+        }
+        
+        if let _ = dictionary["offerdate"] as? Date{
+           self.offerdate = dictionary["offerdate"] as! Date
+        }else{
+            self.offerdate = DateFormatManager.sharedInstance.getDateFromStringWithAutoFormat(dateString: dictionary["offerdate"] as! String)!
+        }
+        
+        
+        //self.offerdate = dictionary["offerdate"] as! Date
         self.user_ID = [String]()
         if let userID = dictionary["user_ID"] as? [String] {
 			self.user_ID = userID
         }
         self.offer_ID = dictionary["offer_ID"] as! String
-        self.expiredate = dictionary["expiredate"] as! Date
-        self.allPostsConfirmedSince = dictionary["allPostsConfirmedSince"] as? Date
+        
+        if let _ = dictionary["allPostsConfirmedSince"] as? Date{
+           self.expiredate = dictionary["expiredate"] as! Date
+        }else{
+           self.expiredate = DateFormatManager.sharedInstance.getDateFromStringWithAutoFormat(dateString: dictionary["expiredate"] as! String)!
+        }
+        
+        if let allpostCon = dictionary["allPostsConfirmedSince"] as? Date{
+           self.allPostsConfirmedSince = allpostCon
+        }else{
+            self.allPostsConfirmedSince = DateFormatManager.sharedInstance.getDateFromStringWithAutoFormat(dateString: dictionary["allPostsConfirmedSince"] as! String) ?? nil
+        }
         self.isAccepted = dictionary["isAccepted"] as! Bool
         self.ownerUserID = dictionary["ownerUserID"] as! String
         self.commission = dictionary["commission"] as? Double
@@ -128,8 +162,23 @@ class Offer: NSObject {
         self.incresePay = dictionary["incresePay"] as? Double ?? 0.0
         self.companyDetails = dictionary["companyDetails"] as? [String: Any] ?? [:]
         self.mustBeTwentyOne = dictionary["mustBeTwentyOne"] as? Bool ?? false
+        
+        if let acceptedUsers = dictionary["accepted"] as? [String]{
+            var actUers = [String]()
+            for accpetedUser in acceptedUsers {
+                if !actUers.contains(accpetedUser){
+                    actUers.append(accpetedUser)
+                }
+            }
+            self.accepted = actUers
+        }else{
+            self.accepted = []
+        }
     }
 }
+
+
+
 
 class TemplateOffer: Offer {
     var targetCategories: [String]
@@ -180,7 +229,7 @@ class TemplateOffer: Offer {
         self.user_IDs = dictionary["user_IDs"] as? [String] ?? []
         self.status = dictionary["status"] as! String
 		self.lastEdited = FirebaseToDate(object: dictionary["lastEditDate"])
-        super.init(dictionary: dictionary)
+        try! super.init(dictionary: dictionary)
     }
 	
 	func GetSummary() -> String {
@@ -319,6 +368,45 @@ struct Post {
 	
 }
 
+struct PostInfo{
+    var imageUrl: String?
+    var userWhoPosted: User?
+    var associatedPost: Post?
+    var caption: String?
+    var datePosted: String?
+    var userId: String?
+    var offerId: String?
+//    init(dictionary:[String: AnyObject]) {
+//        self.imageUrl = dictionary[""] as? String
+//        //self.userWhoPosted = dictionary[""] as? String
+//        //self.associatedPost = dictionary[""] as? String
+//        self.caption = dictionary[""] as? String
+//        self.datePosted = dictionary[""] as? String
+//    }
+}
+
+class InfluencerInstagramPost: NSObject {
+    var caption: String
+    var id: String?
+    var images: String?
+    var like_count: Int?
+    var status: String
+    var timestamp: String
+    var type: String?
+    var username: String
+    
+    init(dictionary: [String: AnyObject]) {
+        self.caption = dictionary["caption"] as! String
+        self.id = dictionary["id"] as? String ?? ""
+        self.images = dictionary["images"] as? String ?? ""
+        self.like_count = dictionary["like_count"] as? Int ?? 0
+        self.status = dictionary["status"] as? String ?? ""
+        self.timestamp = dictionary["timestamp"] as? String ?? ""
+        self.type = dictionary["type"] as? String ?? ""
+        self.username = dictionary["username"] as? String ?? ""
+    }
+}
+
 //struct for product
 class Product: NSObject {
     var product_ID: String?
@@ -340,6 +428,7 @@ class Product: NSObject {
 
 //struct for company
 class Company: NSObject {
+    var userID: String?
     let account_ID: String?
     var name: String
     var logo: String?
@@ -362,6 +451,7 @@ class Company: NSObject {
 		self.companyDescription = dictionary["description"] as! String
 		self.accountBalance = dictionary["accountBalance"] as! Double
 		self.referralcode = dictionary["referralcode"] as? String
+        self.userID = dictionary[""] as? String ?? ""
     }
 }
 
