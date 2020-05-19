@@ -591,7 +591,13 @@ func getAllTemplateOffers(userID: String, completion: @escaping([TemplateOffer],
                 let dateEx = DateFormatManager.sharedInstance.getDateFromStringWithAutoFormat(dateString: exDate)
                 offer["offerdate"] = dateCon as AnyObject?
                 offer["expiredate"] = dateEx as AnyObject?
-                template.append(TemplateOffer.init(dictionary: offer))
+                do {
+                    let temValue = try TemplateOffer.init(dictionary: offer)
+                    template.append(temValue)
+                } catch let error {
+                    print(error)
+                }
+                
             }
             completion(template, "success")
         }else{
@@ -1304,6 +1310,8 @@ func getInstagramPostByOffer(postInfo: [PostInfo], completion: @escaping(_ statu
                 let instaPost = InfluencerInstagramPost.init(dictionary: instaPostDict)
                 
                 postDetail.caption = instaPost.caption
+                
+                postDetail.imageUrl = instaPost.images!
                 
                 modifiedPostInfo.append(postDetail)
                 

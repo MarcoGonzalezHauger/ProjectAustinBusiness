@@ -39,7 +39,7 @@ class StatsVC: BaseVC {
 						self.distributedOffers = rslts
 						self.reloadShelf()
 					} else {
-						getStatsForAllOffers()
+                        self.getStatsForAllOffers()
 					}
 				}
 			}
@@ -72,12 +72,13 @@ class StatsVC: BaseVC {
                 Singleton.sharedInstance.setCompanyDetails(company: company!)
 				YourCompany = company
 				self.setCompanyTabBarItem()
+                self.getStatisticsTimerData()
             }
             
         }
         
         
-        self.getStatisticsTimerData()
+        
 
 	}
     
@@ -113,10 +114,10 @@ class StatsVC: BaseVC {
 		
 		getStatistics()
 		
-		if !timercreated {
-			Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.getStatisticsTimerData), userInfo: nil, repeats: true)
-			timercreated = true
-		}
+//		if !timercreated {
+//			Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.getStatisticsTimerData), userInfo: nil, repeats: true)
+//			timercreated = true
+//		}
         
         
     }
