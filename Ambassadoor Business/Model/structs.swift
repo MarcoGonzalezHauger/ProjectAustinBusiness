@@ -10,7 +10,7 @@ import UIKit
 
 //Protocol for ACCEPTING offers.
 protocol OfferResponse {
-    func OfferAccepted(offer: Offer) -> ()
+	func OfferAccepted(offer: Offer) -> ()
 }
 
 
@@ -135,10 +135,11 @@ class Offer: NSObject {
         }
         self.offer_ID = dictionary["offer_ID"] as! String
         
-        if let _ = dictionary["allPostsConfirmedSince"] as? Date{
+        if let _ = dictionary["expiredate"] as? Date{
            self.expiredate = dictionary["expiredate"] as! Date
         }else{
-           self.expiredate = DateFormatManager.sharedInstance.getDateFromStringWithAutoFormat(dateString: dictionary["expiredate"] as! String)!
+            print(dictionary["expiredate"] as! String)
+            self.expiredate = DateFormatManager.sharedInstance.getDateFromStringWithAutoFormat(dateString: dictionary["expiredate"] as! String) ?? Date()
         }
         
         if let allpostCon = dictionary["allPostsConfirmedSince"] as? Date{
@@ -219,7 +220,7 @@ class TemplateOffer: Offer {
 		return returnValue
 	}
 
-    override init(dictionary: [String: AnyObject]) {
+    override init(dictionary: [String: AnyObject])throws {
 		self.targetCategories = []
 		self.targetCategories = dictionary["targetCategories"] as? [String] ?? []
 		self.category = dictionary["category"] as? [String] ?? []
@@ -229,7 +230,7 @@ class TemplateOffer: Offer {
         self.user_IDs = dictionary["user_IDs"] as? [String] ?? []
         self.status = dictionary["status"] as! String
 		self.lastEdited = FirebaseToDate(object: dictionary["lastEditDate"])
-        try! super.init(dictionary: dictionary)
+        try super.init(dictionary: dictionary)
     }
 	
 	func GetSummary() -> String {
@@ -451,7 +452,7 @@ class Company: NSObject {
 		self.companyDescription = dictionary["description"] as! String
 		self.accountBalance = dictionary["accountBalance"] as! Double
 		self.referralcode = dictionary["referralcode"] as? String
-        self.userID = dictionary[""] as? String ?? ""
+        self.userID = dictionary["userId"] as? String ?? ""
     }
 }
 

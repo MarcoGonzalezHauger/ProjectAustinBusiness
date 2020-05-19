@@ -378,18 +378,24 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 			offer["user_IDs"] = segueOffer?.user_IDs as AnyObject?
 			
 		}
-		
-		let template = TemplateOffer.init(dictionary: offer)
-		var edited = false
-		var path = Auth.auth().currentUser!.uid
-		
-		if self.segueOffer != nil {
-			edited = true
-			path = path + "/" + self.segueOffer!.offer_ID
-			template.offer_ID = self.segueOffer!.offer_ID
-		}
-		
-		createTemplateOffer(pathString: path, edited: edited, templateOffer: template, completion: completion)
+        
+        do {
+            let template = try TemplateOffer.init(dictionary: offer)
+            
+            var edited = false
+            var path = Auth.auth().currentUser!.uid
+            
+            if self.segueOffer != nil {
+                edited = true
+                path = path + "/" + self.segueOffer!.offer_ID
+                template.offer_ID = self.segueOffer!.offer_ID
+            }
+            
+            createTemplateOffer(pathString: path, edited: edited, templateOffer: template, completion: completion)
+        } catch let error {
+            print(error)
+        }
+
 	}
 	
 	func isSavable(alertUser: Bool) -> Bool {
