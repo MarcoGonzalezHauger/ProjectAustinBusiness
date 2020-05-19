@@ -10,7 +10,7 @@ import UIKit
 
 //Protocol for ACCEPTING offers.
 protocol OfferResponse {
-    func OfferAccepted(offer: Offer) -> ()
+	func OfferAccepted(offer: Offer) -> ()
 }
 
 

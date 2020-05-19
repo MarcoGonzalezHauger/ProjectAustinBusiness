@@ -1112,9 +1112,11 @@ func getCompany(companyID: String,completion: @escaping (Company?,String) -> Voi
     
 }
 
-func getAllDistributedOffers(companyId: String, completion: @escaping (_ status: Bool,_ offers: [Offer]?) -> ()){
+func getAllDistributedOffers(completion: @escaping (_ status: Bool,_ offers: [Offer]?) -> ()){
     
-    let offerPoolRef = Database.database().reference().child("OfferPool").child(companyId)
+	guard let id = YourCompany.userID else {return}
+	
+	let offerPoolRef = Database.database().reference().child("OfferPool").child(id)
     
     offerPoolRef.observeSingleEvent(of: .value, with: { (snapshot) in
         
@@ -1135,6 +1137,10 @@ func getAllDistributedOffers(companyId: String, completion: @escaping (_ status:
                 }
             }
             
+			offersList.sort { (offer1, offer2) -> Bool in
+				return offer1.offerdate > offer2.offerdate
+			}
+			
             completion(true, offersList)
             
         }
@@ -1147,146 +1153,103 @@ func getAllDistributedOffers(companyId: String, completion: @escaping (_ status:
     
 }
 
-func getInfluencersWhoAcceptedOffer(offerID: String, companyId: String, completion: @escaping(_ status: Bool, _ users: [User]?)->()){
-    
-    let offerPoolRef = Database.database().reference().child("OfferPool").child(companyId).child(offerID)
-    offerPoolRef.observeSingleEvent(of: .value, with: { (snapshot) in
-        
-        if let offerDict = snapshot.value as? [String: AnyObject]{
-            do {
-                let offer = try Offer.init(dictionary: offerDict)
-                
-                if offer.accepted != nil {
-                    
-                    var users = [User]()
-                    
-                    for (index,userId) in offer.accepted!.enumerated() {
-                        let userRef = Database.database().reference().child("users").child(userId)
-                        
-                        userRef.observeSingleEvent(of: .value, with: { (userSnapshot) in
-                            
-                            if let userDict = userSnapshot.value as? [String: Any]{
-                                
-                                let user = User.init(dictionary: userDict)
-                                users.append(user)
-                            }
-                            
-                            if index == (offer.accepted!.count - 1){
-                                
-                                completion(true, users)
-                                
-                            }
-                            
-                            
-                        }) { (userError) in
-                            completion(false, nil)
-                        }
-                        
-                    }
-                    
-                }
-                
-            } catch let error {
-                print(error)
-            }
-        }
-        
-    }) { (error) in
-        completion(false, nil)
-    }
-    
+func getInfluencersWhoAcceptedOffer(offer: Offer, completion: @escaping(_ status: Bool, _ users: [User]?)->()){
+	if offer.accepted != nil {
+		var users = [User]()
+		for (index,userId) in offer.accepted!.enumerated() {
+			let userRef = Database.database().reference().child("users").child(userId)
+			userRef.observeSingleEvent(of: .value, with: { (userSnapshot) in
+				if let userDict = userSnapshot.value as? [String: Any] {
+					let user = User.init(dictionary: userDict)
+					users.append(user)
+				}
+				if index == (offer.accepted!.count - 1){
+					completion(true, users)
+				}
+				
+			}) { (userError) in
+				completion(false, nil)
+			}
+		}
+	} else {
+		completion(true, [])
+	}
 }
 
-func getInfluencersWhoPostedForOffer(offerID: String, companyId: String, completion: @escaping(_ status: Bool, _ users: [PostInfo]?)->()){
+func getInfluencersWhoPostedForOffer(offer: Offer, completion: @escaping(_ status: Bool, _ users: [PostInfo]?)->()){
    var postInfo = [PostInfo]()
-   let offerPoolRef = Database.database().reference().child("OfferPool").child(companyId).child(offerID)
-    offerPoolRef.observeSingleEvent(of: .value, with: { (snapshot) in
-        
-        if let offerDict = snapshot.value as? [String: AnyObject]{
-            do {
-                let offer = try Offer.init(dictionary: offerDict)
-                
-                if offer.accepted != nil {
-                    
-                   
-                    
-                    for (index,userId) in offer.accepted!.enumerated() {
-                        
-                        
-                        let sentOutOffer = Database.database().reference().child("SentOutOffersToUsers").child(userId).child(offerID)
-                        
-                        sentOutOffer.observeSingleEvent(of: .value, with: { (sentOutAnapshot) in
-                            
-                            
-                            if let sentOutOfferDict = sentOutAnapshot.value as? [String: AnyObject]{
-                                do {
-                                   let sentOutOffer = try Offer.init(dictionary: sentOutOfferDict)
-                                    
-                                    for post in sentOutOffer.posts {
-                                        
-                                        if post.status == "posted"{
-                                            let postInfoValue = PostInfo.init(imageUrl: "", userWhoPosted: nil, associatedPost: post, caption: "", datePosted: "", userId: userId, offerId: offerID)
-                                            postInfo.append(postInfoValue)
-                                        }
-                                        
-                                    }
-                                    
-                                    if index == (offer.accepted!.count - 1){
-                                                                       
-                                        completion(true, postInfo)
-                                    }
-                                    
-                                } catch let error {
-                                    print(error)
-                                }
-                            }
-                            
-                            
-                            /*
-                            let userRef = Database.database().reference().child("users").child(userId)
-                            
-                            userRef.observeSingleEvent(of: .value, with: { (userSnapshot) in
-                                
-                                if let userDict = userSnapshot.value as? [String: Any]{
-                                    
-                                    let user = User.init(dictionary: userDict)
-                                    users.append(user)
-                                    
-                                    //let postInfo = PostInfo.init(dictionary: )
-                                    
-                                }
-                                
-                                if index == (offer.accepted!.count - 1){
-                                    
-                                    //completion(true, users)
-                                    
-                                }
-                                
-                                
-                            }) { (userError) in
-                                completion(false, nil)
-                            }
-                            
-                        */
-                        }) { (sentOutError) in
-                            
-
-
-                            
-                        }
-                        
-                    }
-                    
-                }
-                
-            } catch let error {
-                print(error)
-            }
-        }
-        
-    }) { (error) in
-        completion(false, nil)
-    }
+	if offer.accepted != nil {
+		
+		
+		
+		for (index,userId) in offer.accepted!.enumerated() {
+			
+			
+			let sentOutOffer = Database.database().reference().child("SentOutOffersToUsers").child(userId).child(offer.offer_ID)
+			
+			sentOutOffer.observeSingleEvent(of: .value, with: { (sentOutAnapshot) in
+				
+				
+				if let sentOutOfferDict = sentOutAnapshot.value as? [String: AnyObject]{
+					do {
+						let sentOutOffer = try Offer.init(dictionary: sentOutOfferDict)
+						
+						for post in sentOutOffer.posts {
+							
+							if post.status == "posted"{
+								let postInfoValue = PostInfo.init(imageUrl: "", userWhoPosted: nil, associatedPost: post, caption: "", datePosted: "", userId: userId, offerId: offer.offer_ID)
+								postInfo.append(postInfoValue)
+							}
+							
+						}
+						
+						if index == (offer.accepted!.count - 1){
+							
+							completion(true, postInfo)
+						}
+						
+					} catch let error {
+						print(error)
+					}
+				}
+				
+				
+				/*
+				let userRef = Database.database().reference().child("users").child(userId)
+				
+				userRef.observeSingleEvent(of: .value, with: { (userSnapshot) in
+				
+				if let userDict = userSnapshot.value as? [String: Any]{
+				
+				let user = User.init(dictionary: userDict)
+				users.append(user)
+				
+				//let postInfo = PostInfo.init(dictionary: )
+				
+				}
+				
+				if index == (offer.accepted!.count - 1){
+				
+				//completion(true, users)
+				
+				}
+				
+				
+				}) { (userError) in
+				completion(false, nil)
+				}
+				
+				*/
+			}) { (sentOutError) in
+				
+				
+				
+				
+			}
+			
+		}
+		
+	}
 }
 
 func getPostUserDetails(postInfo: [PostInfo], completion: @escaping(_ status: Bool,_ postInfo: [PostInfo]?)->()) {
