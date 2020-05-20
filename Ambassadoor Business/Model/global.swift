@@ -61,6 +61,9 @@ class CentralVariables {
     var dwollaCustomerInformation = DwollaCustomerInformation()
     
     var deviceFIRToken = ""
+    
+    var cachedImageList = [CachedImages]()
+    var distributedOffers = [OfferStatistic]()
 	
 }
 

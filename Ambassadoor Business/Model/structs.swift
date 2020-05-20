@@ -7,6 +7,7 @@
 //
 import Foundation
 import UIKit
+import CoreData
 
 //Protocol for ACCEPTING offers.
 protocol OfferResponse {
@@ -42,6 +43,7 @@ class ShadowView: UIView {
         self.layer.borderColor = borderColor.cgColor
 		if maskToBounds != -1 {
 			self.layer.masksToBounds = maskToBounds == 1
+            //self.layer.masksToBounds = false
 		} else {
 			self.layer.masksToBounds = false
 		}
@@ -55,6 +57,7 @@ class ShadowView: UIView {
 class Offer: NSObject {
     var offer_ID: String
     var money: Double
+    var originalAmount: Double
     var commission: Double?
     var isCommissionPaid: Bool?
     var company: Company?
@@ -163,6 +166,7 @@ class Offer: NSObject {
         self.incresePay = dictionary["incresePay"] as? Double ?? 0.0
         self.companyDetails = dictionary["companyDetails"] as? [String: Any] ?? [:]
         self.mustBeTwentyOne = dictionary["mustBeTwentyOne"] as? Bool ?? false
+        self.originalAmount = dictionary["originalAmount"] as? Double ?? 0.0
         
         if let acceptedUsers = dictionary["accepted"] as? [String]{
             var actUers = [String]()
@@ -221,14 +225,13 @@ class TemplateOffer: Offer {
 	}
 
     override init(dictionary: [String: AnyObject])throws {
-		self.targetCategories = []
 		self.targetCategories = dictionary["targetCategories"] as? [String] ?? []
 		self.category = dictionary["category"] as? [String] ?? []
-		self.title = dictionary["title"] as! String
+		self.title = dictionary["title"] as? String ?? ""
         self.locationFilter = dictionary["locationFilter"] as? String ?? ""
         self.genders = dictionary["genders"] as? [String] ?? []
         self.user_IDs = dictionary["user_IDs"] as? [String] ?? []
-        self.status = dictionary["status"] as! String
+        self.status = dictionary["status"] as? String ?? ""
 		self.lastEdited = FirebaseToDate(object: dictionary["lastEditDate"])
         try super.init(dictionary: dictionary)
     }
@@ -377,13 +380,6 @@ struct PostInfo{
     var datePosted: String?
     var userId: String?
     var offerId: String?
-//    init(dictionary:[String: AnyObject]) {
-//        self.imageUrl = dictionary[""] as? String
-//        //self.userWhoPosted = dictionary[""] as? String
-//        //self.associatedPost = dictionary[""] as? String
-//        self.caption = dictionary[""] as? String
-//        self.datePosted = dictionary[""] as? String
-//    }
 }
 
 class InfluencerInstagramPost: NSObject {
@@ -663,5 +659,19 @@ struct Section {
         self.categoryData = categoryData
         self.expanded = expanded
         self.selectedAll = selected
+    }
+}
+
+class CachedImages: NSObject {
+    var link: String?
+    var imagedata: Data?
+    var object: NSManagedObject?
+    var date: Date?
+    
+    init(object: NSManagedObject) {
+        self.link = (object.value(forKey: "url") as! NSString) as String
+        self.imagedata = (object.value(forKey: "imagedata") as! Data)
+        self.date = (object.value(forKey: "updatedDate") as? Date ?? Date.getcurrentESTdate())
+        self.object = object
     }
 }
