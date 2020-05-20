@@ -341,8 +341,9 @@ func isDeseralizable(dictionary: [String: AnyObject], type: structType) -> [Stri
     var necessaryItems: [String] = []
     var errors: [String] = []
     switch type {
+        //"companyDetails"
     case .offer:
-        necessaryItems = ["status", "money", "companyDetails", "posts", "offer_ID", "offerdate", "ownerUserID", "title", "isAccepted", "expiredate", "cashPower"]
+        necessaryItems = ["status", "money","posts", "offer_ID", "offerdate", "ownerUserID", "title", "isAccepted", "expiredate"]
     case .businessDetails:
         necessaryItems = ["name", "mission"]
     }
