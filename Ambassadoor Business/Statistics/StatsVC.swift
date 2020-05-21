@@ -160,15 +160,32 @@ class StatsVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
             self.performSegue(withIdentifier: "toCompanyRegister", sender: self)
         } else {
             
-            let user = Singleton.sharedInstance.getCompanyUser().companyID!
+            //let user = Singleton.sharedInstance.getCompanyUser().companyID!
             
-            getCompany(companyID: user) { (company, error) in
+            //getCompany(companyID: user) { (company, error) in
                 
-                Singleton.sharedInstance.setCompanyDetails(company: company!)
-				YourCompany = company
+                //Singleton.sharedInstance.setCompanyDetails(company: company!)
+				//YourCompany = company
 				self.setCompanyTabBarItem()
+            
+            if global.distributedOffers.count != 0 {
+                    
+                    self.NoStatsLabel(true)
+                    self.NoStatsLabel(false)
+                        self.distributedOffers = global.distributedOffers
+                        self.reloadShelf()
+                        self.firstGrab = false
+                    
+                    self.getStatsForAllOffers()
+                
+
+                
+            }else{
+                
                 self.getStatisticsTimerData()
+                
             }
+            //}
             
         }
 		

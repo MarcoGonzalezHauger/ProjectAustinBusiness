@@ -9,6 +9,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 let imageCache = NSCache<NSString, AnyObject>()
 
@@ -77,6 +78,8 @@ public extension UIImageView {
             }.resume()
     }
     
+    
+    
 //    func downloadAndSetImage(_ urlLink: String, isCircle: Bool = true){
 //        self.showActivityIndicator()
 //        self.image = nil
@@ -89,6 +92,25 @@ public extension UIImageView {
 //			}
 //		}
 //    }
+}
+
+func saveCoreData(link: String, data: Data) {
+    
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let context = appDelegate.persistentContainer.viewContext
+    
+    let imageDataEntity = NSEntityDescription.entity(forEntityName: "AppImageData", in: context)
+    let imageData = NSManagedObject(entity: imageDataEntity!, insertInto: context)
+    imageData.setValue(data, forKey: "imagedata")
+    imageData.setValue(link, forKey: "url")
+    imageData.setValue(Date.getcurrentESTdate(), forKey: "updatedDate")
+    let cacheData = CachedImages.init(object: imageData)
+    global.cachedImageList.append(cacheData)
+    saveCoreDataUpdate(object: imageData)
+    
+    
+    
 }
 
 public extension UIImage{
@@ -115,7 +137,7 @@ public extension UIImage{
         return newImage!
     }
 }
-
+/*
 func downloadImage(_ urlLink: String, completed: @escaping (_ image: UIImage?) -> ()){
 	if urlLink.isEmpty {
 		completed(nil)
@@ -144,4 +166,64 @@ func downloadImage(_ urlLink: String, completed: @escaping (_ image: UIImage?) -
 		}
 	}).resume()
 	
+}
+*/
+func downloadImage(_ urlLink: String, completed: @escaping (_ image: UIImage?) -> ()){
+if urlLink.isEmpty {
+    completed(nil)
+    return
+}
+// check cache first
+/*
+if let cachedImage = imageCache.object(forKey: urlLink as NSString) as? UIImage {
+print("CHACHED  : \(urlLink)")
+completed(cachedImage)
+return
+}
+*/
+
+let cachedImage = global.cachedImageList.filter { (cache) -> Bool in
+    return cache.link! == urlLink
+}
+
+if cachedImage.count != 0{
+    
+    if let image = UIImage(data: cachedImage.first!.imagedata!){
+        
+        //print("CHACHED  : \(urlLink)")
+        
+        if let imageData = cachedImage.first!.object {
+            imageData.setValue(Date.getcurrentESTdate(), forKey: "updatedDate")
+            saveCoreDataUpdate(object: imageData)
+        }
+        completed(image)
+        return
+        
+    }
+}
+}
+extension Date {
+    static func getcurrentESTdate()-> Date{
+        let curDateStr = Date.getStringFromDate(date: Date())
+        let currentDate = Date.getDateFromString(date: curDateStr!)
+        return currentDate!
+    }
+    static func getStringFromDate(date:Date) -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "EST")
+        dateFormatter.dateFormat = "yyyy/MMM/dd HH:mm:ssZ"
+        //        dateFormatter.timeZone = TimeZone.current
+        //        dateFormatter.locale = Locale.current
+        return dateFormatter.string(from: date) // replace Date String
+    }
+    
+    static func getDateFromString(date:String) -> Date? {
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeZone = TimeZone(abbreviation: "EST")
+            dateFormatter.dateFormat = "yyyy/MMM/dd HH:mm:ssZ"
+    //        dateFormatter.timeZone = TimeZone.current
+    //        dateFormatter.locale = Locale.current
+            
+            return dateFormatter.date(from: date) // replace Date String
+        }
 }
