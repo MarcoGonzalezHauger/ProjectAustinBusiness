@@ -1180,13 +1180,20 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ymv-Ba-XSo">
+                                                            <rect key="frame" x="12" y="196" width="129" height="34"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                            <state key="normal" title="View Statistics"/>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
                                                         <constraint firstItem="RlA-jb-7Kh" firstAttribute="top" secondItem="pey-fy-Up3" secondAttribute="top" constant="16" id="56E-zo-vvW"/>
                                                         <constraint firstAttribute="bottom" secondItem="NGU-y5-0b6" secondAttribute="bottom" constant="12" id="B3Z-cx-hre"/>
+                                                        <constraint firstItem="ymv-Ba-XSo" firstAttribute="leading" secondItem="pey-fy-Up3" secondAttribute="leading" constant="12" id="B9Q-io-AAi"/>
                                                         <constraint firstItem="NGU-y5-0b6" firstAttribute="leading" secondItem="pey-fy-Up3" secondAttribute="leading" constant="12" id="Emi-KA-gwb"/>
                                                         <constraint firstAttribute="trailing" secondItem="Vx6-d0-ygk" secondAttribute="trailing" constant="8" id="Krb-JT-S1M"/>
+                                                        <constraint firstItem="NGU-y5-0b6" firstAttribute="top" secondItem="ymv-Ba-XSo" secondAttribute="bottom" id="S1H-34-TDh"/>
                                                         <constraint firstAttribute="bottom" secondItem="dQM-OT-Jdm" secondAttribute="bottom" constant="12.5" id="VG2-rg-yRQ"/>
                                                         <constraint firstAttribute="trailing" secondItem="RlA-jb-7Kh" secondAttribute="trailing" constant="16" id="YgU-9A-vvM"/>
                                                         <constraint firstAttribute="trailing" secondItem="dQM-OT-Jdm" secondAttribute="trailing" constant="16" id="iEk-za-NcO"/>
@@ -4016,43 +4023,8 @@ If a business signs up using your Business Referral Code, you will recieve 1% of
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DeH-Sd-bdJ" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                <rect key="frame" x="20" y="786" width="374" height="60"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RgJ-GH-gh4">
-                                        <rect key="frame" x="8" y="8" width="358" height="43"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                        <state key="normal" title="REGISTER">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="registerActionWithSender:" destination="gjA-zh-oKp" eventType="touchUpInside" id="mud-F7-1Jk"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="C8k-eh-bXz"/>
-                                    <constraint firstItem="RgJ-GH-gh4" firstAttribute="leading" secondItem="DeH-Sd-bdJ" secondAttribute="leading" constant="8" id="HDx-4v-apf"/>
-                                    <constraint firstItem="RgJ-GH-gh4" firstAttribute="top" secondItem="DeH-Sd-bdJ" secondAttribute="top" constant="8" id="WLe-45-RnJ"/>
-                                    <constraint firstAttribute="bottom" secondItem="RgJ-GH-gh4" secondAttribute="bottom" constant="9" id="ip9-DT-2f7"/>
-                                    <constraint firstAttribute="trailing" secondItem="RgJ-GH-gh4" secondAttribute="trailing" constant="8" id="zay-iC-22P"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Company" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oE1-w9-lGt">
-                                <rect key="frame" x="124" y="60" width="166" height="25.5"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eiY-DZ-cVe">
-                                <rect key="frame" x="0.0" y="93.5" width="414" height="610"/>
+                                <rect key="frame" x="0.0" y="104" width="414" height="598"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RCf-nl-eWS" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                         <rect key="frame" x="132" y="28" width="150" height="150"/>
@@ -4081,70 +4053,72 @@ If a business signs up using your Business Referral Code, you will recieve 1% of
                                                 <real key="value" value="75"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="ShadowOpacity">
+                                                <real key="value" value="0.20000000000000001"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="ShadowRadius">
+                                                <real key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Basic Company Information" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bk3-1b-N5w">
-                                        <rect key="frame" x="8" y="201" width="274" height="20.5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="274" id="zxj-wq-IUk"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <color key="textColor" red="0.43529411764705883" green="0.44313725490196076" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Basic Info" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bk3-1b-N5w">
+                                        <rect key="frame" x="166.5" y="201" width="81" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2d-kW-J9c">
-                                        <rect key="frame" x="17" y="239.5" width="380" height="16"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <rect key="frame" x="17" y="240" width="380" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your company name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O46-ZW-vCs">
-                                        <rect key="frame" x="17" y="263.5" width="380" height="34"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Company Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O46-ZW-vCs">
+                                        <rect key="frame" x="17" y="266" width="380" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="sLv-Tw-heF"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <outlet property="delegate" destination="gjA-zh-oKp" id="wI6-JD-tYo"/>
                                         </connections>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Referral Code (Given by Influnecer / Business)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRp-KK-f6Z">
-                                        <rect key="frame" x="17" y="305.5" width="380" height="16"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Referral Code (Given by an Influnecer / Business)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRp-KK-f6Z">
+                                        <rect key="frame" x="17" y="308" width="380" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Influencer / Business Referral Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gJF-3f-v6X">
-                                        <rect key="frame" x="17" y="329.5" width="380" height="34"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Referral Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gJF-3f-v6X">
+                                        <rect key="frame" x="17" y="334" width="380" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="4kw-Tr-O4J"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <outlet property="delegate" destination="gjA-zh-oKp" id="0FH-VY-Acg"/>
                                         </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Website" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BqR-7a-flZ">
-                                        <rect key="frame" x="17" y="371.5" width="380" height="16"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <rect key="frame" x="17" y="376" width="380" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your company website" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WSv-wV-qpc">
-                                        <rect key="frame" x="17" y="395.5" width="380" height="34"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Website" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WSv-wV-qpc">
+                                        <rect key="frame" x="17" y="402" width="380" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="Y8q-8m-87y"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="url"/>
                                         <connections>
                                             <outlet property="delegate" destination="gjA-zh-oKp" id="thh-1Q-auw"/>
                                         </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ed-ah-KhM">
-                                        <rect key="frame" x="8" y="447.5" width="398" height="2"/>
+                                        <rect key="frame" x="8" y="454" width="398" height="2"/>
                                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="xj1-ap-ic7"/>
@@ -4153,33 +4127,26 @@ If a business signs up using your Business Referral Code, you will recieve 1% of
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AUB-7J-Imf">
-                                        <rect key="frame" x="8" y="471.5" width="274" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="274" id="WUC-Vq-Nd1"/>
-                                            <constraint firstAttribute="height" constant="30" id="eDv-AM-em3"/>
-                                        </constraints>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Mission" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AUB-7J-Imf">
+                                        <rect key="frame" x="16" y="478" width="145" height="20.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Describe about your company in few lines" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Hf-im-oK5">
-                                        <rect key="frame" x="17" y="509.5" width="380" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="3pb-Uo-YhW"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's your company's mission?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Hf-im-oK5">
+                                        <rect key="frame" x="17" y="506.5" width="380" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ct-yv-bfK" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                        <rect key="frame" x="17" y="538.5" width="380" height="145"/>
+                                        <rect key="frame" x="17" y="532.5" width="380" height="145"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="VRI-CF-w12">
                                                 <rect key="frame" x="0.0" y="0.0" width="380" height="145"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="gjA-zh-oKp" id="7tV-Ne-lV0"/>
@@ -4213,36 +4180,6 @@ If a business signs up using your Business Referral Code, you will recieve 1% of
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2NM-kY-uaZ">
-                                        <rect key="frame" x="8" y="711.5" width="398" height="2"/>
-                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="2" id="rNN-Mg-sDe"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Mission. This should be about one sentence." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FX8-ha-8j5">
-                                        <rect key="frame" x="17" y="728.5" width="380" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="YSl-VG-vHG"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Company Mission" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P9W-VP-cnE">
-                                        <rect key="frame" x="17" y="757.5" width="380" height="34"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="34" id="06l-JA-gB8"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="gjA-zh-oKp" id="Psf-q3-wjA"/>
-                                        </connections>
-                                    </textField>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="WRp-KK-f6Z" firstAttribute="top" secondItem="O46-ZW-vCs" secondAttribute="bottom" constant="8" id="1Fr-nV-OpT"/>
@@ -4250,94 +4187,158 @@ If a business signs up using your Business Referral Code, you will recieve 1% of
                                     <constraint firstItem="E2d-kW-J9c" firstAttribute="leading" secondItem="eiY-DZ-cVe" secondAttribute="leading" constant="17" id="1gD-dJ-lm9"/>
                                     <constraint firstAttribute="trailing" secondItem="3ed-ah-KhM" secondAttribute="trailing" constant="8" id="3NU-5W-TaD"/>
                                     <constraint firstItem="3ed-ah-KhM" firstAttribute="leading" secondItem="eiY-DZ-cVe" secondAttribute="leading" constant="8" id="3kS-Mh-3mG"/>
-                                    <constraint firstItem="FX8-ha-8j5" firstAttribute="centerX" secondItem="eiY-DZ-cVe" secondAttribute="centerX" id="5Tl-fa-tMq"/>
                                     <constraint firstAttribute="trailing" secondItem="O46-ZW-vCs" secondAttribute="trailing" constant="17" id="5VE-qx-O0u"/>
                                     <constraint firstItem="O46-ZW-vCs" firstAttribute="centerX" secondItem="eiY-DZ-cVe" secondAttribute="centerX" id="7Q3-dY-brG"/>
                                     <constraint firstItem="AUB-7J-Imf" firstAttribute="top" secondItem="3ed-ah-KhM" secondAttribute="bottom" constant="22" id="8Lk-77-DIE"/>
-                                    <constraint firstItem="P9W-VP-cnE" firstAttribute="top" secondItem="FX8-ha-8j5" secondAttribute="bottom" constant="8" id="92n-AW-vCI"/>
                                     <constraint firstItem="BqR-7a-flZ" firstAttribute="centerX" secondItem="eiY-DZ-cVe" secondAttribute="centerX" id="9wB-9B-83o"/>
                                     <constraint firstItem="6Hf-im-oK5" firstAttribute="leading" secondItem="eiY-DZ-cVe" secondAttribute="leading" constant="17" id="BMm-G4-b8E"/>
                                     <constraint firstItem="RCf-nl-eWS" firstAttribute="centerX" secondItem="eiY-DZ-cVe" secondAttribute="centerX" id="EWu-Cl-Mp4"/>
                                     <constraint firstItem="WSv-wV-qpc" firstAttribute="leading" secondItem="eiY-DZ-cVe" secondAttribute="leading" constant="17" id="EiQ-lN-8RS"/>
-                                    <constraint firstItem="FX8-ha-8j5" firstAttribute="top" secondItem="2NM-kY-uaZ" secondAttribute="bottom" constant="15" id="F4G-2d-eyf"/>
                                     <constraint firstItem="BqR-7a-flZ" firstAttribute="leading" secondItem="eiY-DZ-cVe" secondAttribute="leading" constant="17" id="Fg6-2p-K0P"/>
                                     <constraint firstItem="3ed-ah-KhM" firstAttribute="top" secondItem="WSv-wV-qpc" secondAttribute="bottom" constant="18" id="Gac-bl-6YO"/>
                                     <constraint firstItem="RCf-nl-eWS" firstAttribute="top" secondItem="eiY-DZ-cVe" secondAttribute="top" constant="28" id="HYk-sV-0XI"/>
-                                    <constraint firstItem="2NM-kY-uaZ" firstAttribute="centerX" secondItem="eiY-DZ-cVe" secondAttribute="centerX" id="MYJ-Uq-vfk"/>
+                                    <constraint firstAttribute="bottom" secondItem="8ct-yv-bfK" secondAttribute="bottom" constant="16" id="I50-I2-boD"/>
                                     <constraint firstItem="E2d-kW-J9c" firstAttribute="centerX" secondItem="eiY-DZ-cVe" secondAttribute="centerX" id="OaU-k5-mLr"/>
                                     <constraint firstItem="6Hf-im-oK5" firstAttribute="centerX" secondItem="eiY-DZ-cVe" secondAttribute="centerX" id="PWY-Ha-Uri"/>
                                     <constraint firstAttribute="trailing" secondItem="WSv-wV-qpc" secondAttribute="trailing" constant="17" id="UeP-ul-0qV"/>
                                     <constraint firstItem="gJF-3f-v6X" firstAttribute="leading" secondItem="eiY-DZ-cVe" secondAttribute="leading" constant="17" id="VlP-T6-Knj"/>
-                                    <constraint firstAttribute="trailing" secondItem="2NM-kY-uaZ" secondAttribute="trailing" constant="8" id="VnZ-e6-Ccd"/>
-                                    <constraint firstAttribute="trailing" secondItem="FX8-ha-8j5" secondAttribute="trailing" constant="17" id="W4x-x4-NaA"/>
                                     <constraint firstItem="WRp-KK-f6Z" firstAttribute="centerX" secondItem="eiY-DZ-cVe" secondAttribute="centerX" id="ZUl-Fw-Kr7"/>
-                                    <constraint firstItem="2NM-kY-uaZ" firstAttribute="top" secondItem="8ct-yv-bfK" secondAttribute="bottom" constant="28" id="aGF-hS-Lze"/>
                                     <constraint firstItem="BqR-7a-flZ" firstAttribute="top" secondItem="gJF-3f-v6X" secondAttribute="bottom" constant="8" id="bsP-rO-CEa"/>
                                     <constraint firstItem="6Hf-im-oK5" firstAttribute="top" secondItem="AUB-7J-Imf" secondAttribute="bottom" constant="8" id="c8r-tR-kgn"/>
-                                    <constraint firstItem="AUB-7J-Imf" firstAttribute="leading" secondItem="eiY-DZ-cVe" secondAttribute="leading" constant="8" id="caP-G6-ZYZ"/>
+                                    <constraint firstItem="AUB-7J-Imf" firstAttribute="leading" secondItem="eiY-DZ-cVe" secondAttribute="leading" constant="16" id="caP-G6-ZYZ"/>
                                     <constraint firstItem="3ed-ah-KhM" firstAttribute="centerX" secondItem="eiY-DZ-cVe" secondAttribute="centerX" id="d1Y-T1-Fse"/>
-                                    <constraint firstItem="FX8-ha-8j5" firstAttribute="leading" secondItem="eiY-DZ-cVe" secondAttribute="leading" constant="17" id="g8Y-Vk-PGZ"/>
                                     <constraint firstItem="O46-ZW-vCs" firstAttribute="leading" secondItem="eiY-DZ-cVe" secondAttribute="leading" constant="17" id="gMG-Eq-jdZ"/>
                                     <constraint firstAttribute="trailing" secondItem="gJF-3f-v6X" secondAttribute="trailing" constant="17" id="i1J-ts-EqN"/>
-                                    <constraint firstItem="2NM-kY-uaZ" firstAttribute="leading" secondItem="eiY-DZ-cVe" secondAttribute="leading" constant="8" id="iEd-Xm-ZA1"/>
                                     <constraint firstItem="E2d-kW-J9c" firstAttribute="top" secondItem="Bk3-1b-N5w" secondAttribute="bottom" constant="18" id="iKH-Mi-Dym"/>
-                                    <constraint firstItem="P9W-VP-cnE" firstAttribute="leading" secondItem="eiY-DZ-cVe" secondAttribute="leading" constant="17" id="lCv-Bt-Pro"/>
                                     <constraint firstItem="WRp-KK-f6Z" firstAttribute="leading" secondItem="eiY-DZ-cVe" secondAttribute="leading" constant="17" id="lWI-ni-mx8"/>
-                                    <constraint firstAttribute="bottom" secondItem="P9W-VP-cnE" secondAttribute="bottom" constant="40" id="mJN-RP-vcJ"/>
                                     <constraint firstItem="Bk3-1b-N5w" firstAttribute="top" secondItem="RCf-nl-eWS" secondAttribute="bottom" constant="23" id="mju-Xt-xsb"/>
                                     <constraint firstItem="WSv-wV-qpc" firstAttribute="top" secondItem="BqR-7a-flZ" secondAttribute="bottom" constant="8" id="nE0-EQ-bKw"/>
                                     <constraint firstItem="WSv-wV-qpc" firstAttribute="centerX" secondItem="eiY-DZ-cVe" secondAttribute="centerX" id="o4P-XC-vS3"/>
                                     <constraint firstItem="8ct-yv-bfK" firstAttribute="centerX" secondItem="eiY-DZ-cVe" secondAttribute="centerX" id="oLF-Qn-KBG"/>
                                     <constraint firstAttribute="trailing" secondItem="8ct-yv-bfK" secondAttribute="trailing" constant="17" id="p1k-CD-PSI"/>
                                     <constraint firstItem="8ct-yv-bfK" firstAttribute="leading" secondItem="eiY-DZ-cVe" secondAttribute="leading" constant="17" id="rKW-CH-IJF"/>
-                                    <constraint firstAttribute="trailing" secondItem="6Hf-im-oK5" secondAttribute="trailing" constant="17" id="soX-Ah-V5T"/>
                                     <constraint firstItem="O46-ZW-vCs" firstAttribute="top" secondItem="E2d-kW-J9c" secondAttribute="bottom" constant="8" id="tpr-rJ-sVx"/>
-                                    <constraint firstAttribute="trailing" secondItem="P9W-VP-cnE" secondAttribute="trailing" constant="17" id="uQm-cS-t95"/>
+                                    <constraint firstItem="Bk3-1b-N5w" firstAttribute="centerX" secondItem="eiY-DZ-cVe" secondAttribute="centerX" id="udh-wq-uZZ"/>
                                     <constraint firstItem="gJF-3f-v6X" firstAttribute="centerX" secondItem="eiY-DZ-cVe" secondAttribute="centerX" id="vU3-Kh-fbd"/>
                                     <constraint firstItem="8ct-yv-bfK" firstAttribute="top" secondItem="6Hf-im-oK5" secondAttribute="bottom" constant="8" id="xrI-ZG-Inz"/>
-                                    <constraint firstItem="P9W-VP-cnE" firstAttribute="centerX" secondItem="eiY-DZ-cVe" secondAttribute="centerX" id="yFK-dd-rno"/>
-                                    <constraint firstItem="Bk3-1b-N5w" firstAttribute="leading" secondItem="eiY-DZ-cVe" secondAttribute="leading" constant="8" id="zUS-pl-rSn"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="ijd-hq-cXL"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="8yn-Dm-1jQ"/>
                             </scrollView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EZj-tb-EJB">
-                                <rect key="frame" x="20" y="715.5" width="374" height="62.5"/>
-                                <string key="text">By pressing "REGISTER" you agree to the terms of service, found at https://www.ambassadoor.co/privacy-policy
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wjI-FX-la3" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="702" width="414" height="200"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DeH-Sd-bdJ" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="90.5" width="374" height="60"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RgJ-GH-gh4">
+                                                <rect key="frame" x="8" y="8" width="358" height="43"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <state key="normal" title="REGISTER">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="registerActionWithSender:" destination="gjA-zh-oKp" eventType="touchUpInside" id="mud-F7-1Jk"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="C8k-eh-bXz"/>
+                                            <constraint firstItem="RgJ-GH-gh4" firstAttribute="leading" secondItem="DeH-Sd-bdJ" secondAttribute="leading" constant="8" id="HDx-4v-apf"/>
+                                            <constraint firstItem="RgJ-GH-gh4" firstAttribute="top" secondItem="DeH-Sd-bdJ" secondAttribute="top" constant="8" id="WLe-45-RnJ"/>
+                                            <constraint firstAttribute="bottom" secondItem="RgJ-GH-gh4" secondAttribute="bottom" constant="9" id="ip9-DT-2f7"/>
+                                            <constraint firstAttribute="trailing" secondItem="RgJ-GH-gh4" secondAttribute="trailing" constant="8" id="zay-iC-22P"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EZj-tb-EJB">
+                                        <rect key="frame" x="20" y="17.5" width="374" height="65"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="65" id="Pr5-W0-ltA"/>
+                                        </constraints>
+                                        <string key="text">By pressing "REGISTER" you agree to the terms of service, found at https://www.ambassadoor.co/terms-of-service
 You must have permission to use the company name, logo, website, etc. before registering.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="EZj-tb-EJB" firstAttribute="leading" secondItem="wjI-FX-la3" secondAttribute="leading" constant="20" id="7q8-8F-4zE"/>
+                                    <constraint firstItem="DeH-Sd-bdJ" firstAttribute="top" secondItem="EZj-tb-EJB" secondAttribute="bottom" constant="8" id="82L-sE-4RK"/>
+                                    <constraint firstAttribute="trailing" secondItem="EZj-tb-EJB" secondAttribute="trailing" constant="20" id="Njw-V9-5w2"/>
+                                    <constraint firstAttribute="bottom" secondItem="DeH-Sd-bdJ" secondAttribute="bottom" constant="49.5" id="cCi-nc-1fJ"/>
+                                    <constraint firstAttribute="height" constant="200" id="dcm-xd-Ltj"/>
+                                    <constraint firstAttribute="trailing" secondItem="DeH-Sd-bdJ" secondAttribute="trailing" constant="20" id="sYF-Qs-Y9j"/>
+                                    <constraint firstItem="DeH-Sd-bdJ" firstAttribute="leading" secondItem="wjI-FX-la3" secondAttribute="leading" constant="20" id="wj2-vl-PNd"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowOpacity">
+                                        <real key="value" value="0.20000000000000001"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowRadius">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gm0-4M-UVA" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="-46" width="414" height="150"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Business Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oE1-w9-lGt">
+                                        <rect key="frame" x="84" y="108" width="246" height="26"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="oE1-w9-lGt" firstAttribute="centerX" secondItem="Gm0-4M-UVA" secondAttribute="centerX" id="XrF-uf-OG8"/>
+                                    <constraint firstAttribute="bottom" secondItem="oE1-w9-lGt" secondAttribute="bottom" constant="16" id="Z4e-up-T0a"/>
+                                    <constraint firstAttribute="height" constant="150" id="gAg-8U-O8L"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowRadius">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowOpacity">
+                                        <real key="value" value="0.20000000000000001"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="DeH-Sd-bdJ" firstAttribute="top" secondItem="EZj-tb-EJB" secondAttribute="bottom" constant="8" id="01M-eX-qzx"/>
                             <constraint firstAttribute="trailing" secondItem="BqR-7a-flZ" secondAttribute="trailing" constant="17" id="1Cs-CH-PSe"/>
                             <constraint firstItem="BqR-7a-flZ" firstAttribute="centerX" secondItem="Fkl-oF-erZ" secondAttribute="centerX" id="25L-Sk-DDq"/>
-                            <constraint firstItem="IsN-ZL-zIG" firstAttribute="trailing" secondItem="DeH-Sd-bdJ" secondAttribute="trailing" constant="20" id="B8m-sI-mFL"/>
+                            <constraint firstItem="IsN-ZL-zIG" firstAttribute="trailing" secondItem="Gm0-4M-UVA" secondAttribute="trailing" id="5Rm-p0-4jx"/>
                             <constraint firstItem="IsN-ZL-zIG" firstAttribute="trailing" secondItem="eiY-DZ-cVe" secondAttribute="trailing" id="BXI-24-eQ9"/>
                             <constraint firstItem="BqR-7a-flZ" firstAttribute="leading" secondItem="Fkl-oF-erZ" secondAttribute="leading" constant="17" id="C8p-Lc-wDu"/>
-                            <constraint firstItem="EZj-tb-EJB" firstAttribute="top" secondItem="eiY-DZ-cVe" secondAttribute="bottom" constant="12" id="HBK-Vl-5gH"/>
-                            <constraint firstItem="IsN-ZL-zIG" firstAttribute="bottom" secondItem="DeH-Sd-bdJ" secondAttribute="bottom" constant="16" id="Ofs-2F-MuZ"/>
-                            <constraint firstItem="eiY-DZ-cVe" firstAttribute="top" secondItem="oE1-w9-lGt" secondAttribute="bottom" constant="8" id="PLt-kQ-zhO"/>
-                            <constraint firstItem="EZj-tb-EJB" firstAttribute="leading" secondItem="IsN-ZL-zIG" secondAttribute="leading" constant="20" id="Rbt-I6-aSL"/>
-                            <constraint firstItem="DeH-Sd-bdJ" firstAttribute="leading" secondItem="IsN-ZL-zIG" secondAttribute="leading" constant="20" id="TFO-Yu-O0X"/>
                             <constraint firstItem="WSv-wV-qpc" firstAttribute="top" secondItem="BqR-7a-flZ" secondAttribute="bottom" constant="8" id="W44-nU-dtS"/>
-                            <constraint firstItem="oE1-w9-lGt" firstAttribute="top" secondItem="IsN-ZL-zIG" secondAttribute="top" constant="16" id="bAs-I0-bGH"/>
+                            <constraint firstItem="Gm0-4M-UVA" firstAttribute="top" secondItem="IsN-ZL-zIG" secondAttribute="top" constant="-90" id="Yko-nr-4Oi"/>
+                            <constraint firstItem="eiY-DZ-cVe" firstAttribute="top" secondItem="Gm0-4M-UVA" secondAttribute="bottom" id="hWw-ld-OCB"/>
                             <constraint firstItem="BqR-7a-flZ" firstAttribute="top" secondItem="gJF-3f-v6X" secondAttribute="bottom" constant="8" id="kCV-nc-pln"/>
+                            <constraint firstItem="Gm0-4M-UVA" firstAttribute="leading" secondItem="IsN-ZL-zIG" secondAttribute="leading" id="kmG-m2-hhI"/>
                             <constraint firstItem="eiY-DZ-cVe" firstAttribute="leading" secondItem="IsN-ZL-zIG" secondAttribute="leading" id="lzE-lq-D3D"/>
-                            <constraint firstItem="oE1-w9-lGt" firstAttribute="centerX" secondItem="IsN-ZL-zIG" secondAttribute="centerX" id="nMs-Nq-lgA"/>
-                            <constraint firstItem="IsN-ZL-zIG" firstAttribute="trailing" secondItem="EZj-tb-EJB" secondAttribute="trailing" constant="20" id="zUh-lQ-QCi"/>
+                            <constraint firstItem="wjI-FX-la3" firstAttribute="trailing" secondItem="IsN-ZL-zIG" secondAttribute="trailing" id="qDZ-w8-wvI"/>
+                            <constraint firstItem="wjI-FX-la3" firstAttribute="top" secondItem="eiY-DZ-cVe" secondAttribute="bottom" id="u0p-q6-4IP"/>
+                            <constraint firstItem="wjI-FX-la3" firstAttribute="leading" secondItem="IsN-ZL-zIG" secondAttribute="leading" id="yDt-lj-Lyl"/>
+                            <constraint firstItem="IsN-ZL-zIG" firstAttribute="bottom" secondItem="wjI-FX-la3" secondAttribute="bottom" constant="-40" id="yfk-MP-itW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IsN-ZL-zIG"/>
                     </view>
                     <connections>
-                        <outlet property="companyDescription" destination="VRI-CF-w12" id="4ge-fD-Uu0"/>
                         <outlet property="companyEmail" destination="gJF-3f-v6X" id="OSh-l7-maM"/>
-                        <outlet property="companyMission" destination="P9W-VP-cnE" id="C9D-wp-5J1"/>
                         <outlet property="companyName" destination="O46-ZW-vCs" id="0ez-PX-zbH"/>
                         <outlet property="companySite" destination="WSv-wV-qpc" id="wf0-NT-Vhk"/>
+                        <outlet property="missionTextView" destination="VRI-CF-w12" id="4ge-fD-Uu0"/>
                         <outlet property="picLogo" destination="Kl9-R9-ukh" id="XtH-Bm-fHo"/>
                         <outlet property="registerButton" destination="RgJ-GH-gh4" id="Hv3-5T-zjC"/>
                         <outlet property="registerButtonView" destination="DeH-Sd-bdJ" id="PMC-HE-wKc"/>
@@ -4347,7 +4348,7 @@ You must have permission to use the company name, logo, website, etc. before reg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZHO-NX-A5s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="383" y="2725"/>
+            <point key="canvasLocation" x="382.60869565217394" y="2724.7767857142858"/>
         </scene>
         <!--Offers-->
         <scene sceneID="ZYz-JP-w9w">
@@ -5249,6 +5250,6 @@ You must have permission to use the company name, logo, website, etc. before reg
         <image name="square.grid.3x2" catalog="system" width="64" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kAw-3T-EW6"/>
+        <segue reference="M0i-E2-U7z"/>
     </inferredMetricsTieBreakers>
 </document>
