@@ -68,32 +68,26 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
 		} else {
 			let cell = shelf.dequeueReusableCell(withIdentifier: "TransactionTrunk") as! TransactionCell
 			let ThisTransaction = transactionHistory[row - 1]
+			var isNegative = false
+			let amt = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
             if ThisTransaction.type == "sale"{
-                let amt = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
 				cell.descriptionLabel.text = "Deposited \(amt) into Ambassadoor"
 				cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
-				cell.shadowBox.ShadowColor = .systemGreen
             }else if ThisTransaction.type == "paid" {
-                let amt = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
                 cell.descriptionLabel.text = "Spent \(amt) to distribute \"\(ThisTransaction.status)\""
 				cell.amountlabel.text = "-\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
-				cell.shadowBox.ShadowColor = .systemRed
+				isNegative = true
             }else if ThisTransaction.type == "refund" {
-                let amt = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
 				cell.descriptionLabel.text = "User Rejected \"\(ThisTransaction.status)\", You have been credited \(amt)"
 				cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
-				cell.shadowBox.ShadowColor = .systemGreen
             }else if ThisTransaction.type == "commissionrefund" {
-                let amt = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
                 cell.descriptionLabel.text = "Ambassadoor Commission Refunded \"\(ThisTransaction.status)\", You have been credited \(amt)"
                 cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
-                cell.shadowBox.ShadowColor = .systemGreen
             }else if ThisTransaction.type == "postrefund" {
-                let amt = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
                 cell.descriptionLabel.text = "Ambassadoor Refunded the single post, You have been credited \(amt)"
-                cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
-                cell.shadowBox.ShadowColor = .systemGreen
+				cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
             }
+			cell.shadowBox.borderColor = isNegative ? .systemRed : .systemGreen
 			return cell
 			
 		}
