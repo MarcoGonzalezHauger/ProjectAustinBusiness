@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kfA-qH-ebm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kfA-qH-ebm">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -31,7 +32,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dqu-R9-PXl">
                                         <rect key="frame" x="0.0" y="0.0" width="382" height="70"/>
                                         <state key="normal" title=" www.google.com" image="globe" catalog="system">
-                                            <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="GoToWebsite:" destination="BYZ-38-t0r" eventType="touchUpInside" id="erZ-JH-Phr"/>
@@ -112,7 +113,7 @@
                                         <real key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" systemColor="placeholderTextColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -164,7 +165,7 @@
                         </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Company" id="WzZ-yK-BdP">
-                        <color key="badgeColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="badgeColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="2au-DB-bzU"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -303,7 +304,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="iUJ-4d-GaA" firstAttribute="leading" secondItem="s75-bl-mfS" secondAttribute="leading" constant="16" id="0fC-FS-0EX"/>
                                                 <constraint firstAttribute="bottom" secondItem="iUJ-4d-GaA" secondAttribute="bottom" constant="5" id="Ekr-JJ-iZT"/>
@@ -312,7 +313,7 @@
                                                 <constraint firstItem="iUJ-4d-GaA" firstAttribute="top" secondItem="s75-bl-mfS" secondAttribute="top" constant="12" id="WxW-34-uJp"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="balanceLabel" destination="7Ie-IZ-CQt" id="JFo-9B-xqm"/>
                                         </connections>
@@ -365,12 +366,12 @@
                                                             <real key="value" value="3"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="ShadowColor">
-                                                            <color key="value" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="value" systemColor="systemGreenColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="8cf-5R-cuc" firstAttribute="top" secondItem="I0i-3c-6ws" secondAttribute="top" constant="5" id="9HY-e5-eB3"/>
                                                 <constraint firstAttribute="trailing" secondItem="8cf-5R-cuc" secondAttribute="trailing" constant="16" id="KId-OF-i0G"/>
@@ -378,7 +379,7 @@
                                                 <constraint firstItem="8cf-5R-cuc" firstAttribute="leading" secondItem="I0i-3c-6ws" secondAttribute="leading" constant="16" id="gCY-zI-LWo"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="amountlabel" destination="AVe-xB-dQW" id="nt3-WH-9Xc"/>
                                             <outlet property="descriptionLabel" destination="5Hl-yY-Jm0" id="4f3-qM-Lje"/>
@@ -431,7 +432,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="T6u-w0-1uw" firstAttribute="leading" secondItem="glP-xf-78Q" secondAttribute="leading" id="Duk-Ic-8mL"/>
                             <constraint firstItem="T6u-w0-1uw" firstAttribute="top" secondItem="lqD-5A-X6p" secondAttribute="top" constant="-42" id="I09-dp-DJA"/>
@@ -648,7 +649,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7D-Ga-6qu">
                                 <rect key="frame" x="0.0" y="70" width="414" height="772"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Isi-jM-sqq">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Isi-jM-sqq" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="230"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posts that were verified:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Trb-a6-kTo">
@@ -657,10 +658,78 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qtl-8B-2FJ" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="8" width="100" height="100"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="6c1-24-EBy"/>
+                                                    <constraint firstAttribute="width" secondItem="Qtl-8B-2FJ" secondAttribute="height" multiplier="1:1" id="mez-y6-5zj"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" name="expiredColor"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="50"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowRadius">
+                                                        <real key="value" value="3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="ShadowColor">
+                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowOpacity">
+                                                        <real key="value" value="0.29999999999999999"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Ziu-8Y-Wz0">
+                                                <rect key="frame" x="149" y="47.5" width="257" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="8Lj-j5-lf6"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# influencers have accepted this offer." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="fgz-gu-MRG">
+                                                <rect key="frame" x="20" y="121" width="374" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="fHv-XY-eVy"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# Influencers have posted for this offer." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iZ9-XK-PK9">
+                                                <rect key="frame" x="20" y="151" width="374" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="GLb-aE-hEj"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
+                                            <constraint firstItem="iZ9-XK-PK9" firstAttribute="top" secondItem="fgz-gu-MRG" secondAttribute="bottom" constant="9" id="6sf-EP-Wbj"/>
+                                            <constraint firstItem="Ziu-8Y-Wz0" firstAttribute="centerY" secondItem="Qtl-8B-2FJ" secondAttribute="centerY" id="8Dp-Gc-A8l"/>
                                             <constraint firstAttribute="height" constant="230" id="AOl-8W-jTa"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ziu-8Y-Wz0" secondAttribute="trailing" constant="8" id="GwU-8r-wUA"/>
+                                            <constraint firstAttribute="trailing" secondItem="iZ9-XK-PK9" secondAttribute="trailing" constant="20" id="Hip-NE-2LX"/>
+                                            <constraint firstItem="iZ9-XK-PK9" firstAttribute="leading" secondItem="Isi-jM-sqq" secondAttribute="leading" constant="20" id="Nbi-G9-Z2G"/>
+                                            <constraint firstItem="Qtl-8B-2FJ" firstAttribute="top" secondItem="Isi-jM-sqq" secondAttribute="top" constant="8" id="Pho-KZ-zWe"/>
+                                            <constraint firstItem="Ziu-8Y-Wz0" firstAttribute="leading" secondItem="Qtl-8B-2FJ" secondAttribute="trailing" constant="29" id="TYl-Az-uoP"/>
+                                            <constraint firstItem="fgz-gu-MRG" firstAttribute="leading" secondItem="Isi-jM-sqq" secondAttribute="leading" constant="20" id="cDe-4t-7tk"/>
+                                            <constraint firstItem="Qtl-8B-2FJ" firstAttribute="leading" secondItem="Isi-jM-sqq" secondAttribute="leading" constant="20" id="fQv-xW-T9K"/>
+                                            <constraint firstItem="fgz-gu-MRG" firstAttribute="top" secondItem="Qtl-8B-2FJ" secondAttribute="bottom" constant="13" id="gQc-Aa-P6q"/>
+                                            <constraint firstItem="Trb-a6-kTo" firstAttribute="top" secondItem="iZ9-XK-PK9" secondAttribute="bottom" constant="29" id="k4a-hS-jyh"/>
+                                            <constraint firstAttribute="trailing" secondItem="fgz-gu-MRG" secondAttribute="trailing" constant="20" id="kRz-P1-Cap"/>
                                             <constraint firstAttribute="bottom" secondItem="Trb-a6-kTo" secondAttribute="bottom" constant="8" id="p34-Yf-9Cr"/>
                                             <constraint firstItem="Trb-a6-kTo" firstAttribute="centerX" secondItem="Isi-jM-sqq" secondAttribute="centerX" id="pjP-UF-n8i"/>
                                         </constraints>
@@ -679,57 +748,109 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="marcogonzalezhauger" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nHX-VF-IHu">
-                                                            <rect key="frame" x="80" y="11" width="302" height="25.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fVX-Xm-1iJ">
-                                                            <rect key="frame" x="8" y="8" width="60" height="60"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="60" id="4w4-52-Umr"/>
-                                                                <constraint firstAttribute="height" constant="60" id="iR9-TN-Cjf"/>
-                                                            </constraints>
-                                                        </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="164 followers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJy-hz-FEt">
                                                             <rect key="frame" x="80" y="38.5" width="107.5" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status: Waiting for image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHN-Fa-q77">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caption #" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHN-Fa-q77">
                                                             <rect key="frame" x="8" y="368" width="398" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="textColor" systemColor="systemGreenColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WfY-Ce-uas">
+                                                            <rect key="frame" x="8" y="76" width="398" height="280"/>
+                                                        </imageView>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="frH-EA-iBA" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                                            <rect key="frame" x="8" y="8" width="60" height="60"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lUc-IF-Cqj">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                                </imageView>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="bottom" secondItem="lUc-IF-Cqj" secondAttribute="bottom" id="Ffe-fD-4c1"/>
+                                                                <constraint firstAttribute="trailing" secondItem="lUc-IF-Cqj" secondAttribute="trailing" id="T7K-c4-roK"/>
+                                                                <constraint firstItem="lUc-IF-Cqj" firstAttribute="leading" secondItem="frH-EA-iBA" secondAttribute="leading" id="YuR-Ol-8r6"/>
+                                                                <constraint firstItem="lUc-IF-Cqj" firstAttribute="top" secondItem="frH-EA-iBA" secondAttribute="top" id="fAp-II-tiy"/>
+                                                                <constraint firstAttribute="height" constant="60" id="fQL-fl-5Td"/>
+                                                                <constraint firstAttribute="width" constant="60" id="tiS-iG-q4S"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="30"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="maskToBounds">
+                                                                    <integer key="value" value="1"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                    <real key="value" value="1"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="ShadowColor">
+                                                                    <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="ShadowRadius">
+                                                                    <real key="value" value="3"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="ShadowOpacity">
+                                                                    <real key="value" value="0.29999999999999999"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="marcogonzalezhauger" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nHX-VF-IHu">
+                                                            <rect key="frame" x="80" y="11" width="202.5" height="25.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="25.5" id="6Xc-Do-sVF"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                            <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="fVX-Xm-1iJ" firstAttribute="leading" secondItem="yZH-gb-nV9" secondAttribute="leading" constant="8" id="7RO-yf-mQD"/>
-                                                        <constraint firstItem="nHX-VF-IHu" firstAttribute="top" secondItem="yZH-gb-nV9" secondAttribute="topMargin" id="D44-c5-Vaj"/>
+                                                        <constraint firstItem="nHX-VF-IHu" firstAttribute="top" secondItem="yZH-gb-nV9" secondAttribute="top" constant="11" id="4ai-lo-tjO"/>
+                                                        <constraint firstItem="WfY-Ce-uas" firstAttribute="leading" secondItem="yZH-gb-nV9" secondAttribute="leading" constant="8" id="83i-QV-apw"/>
+                                                        <constraint firstAttribute="trailing" secondItem="nHX-VF-IHu" secondAttribute="trailing" constant="131.5" id="8bP-s0-bed"/>
                                                         <constraint firstAttribute="bottom" secondItem="AHN-Fa-q77" secondAttribute="bottom" constant="11" id="JWY-7y-Vz1"/>
-                                                        <constraint firstAttribute="trailingMargin" secondItem="nHX-VF-IHu" secondAttribute="trailing" constant="12" id="LyR-Jy-rRU"/>
-                                                        <constraint firstItem="fVX-Xm-1iJ" firstAttribute="top" secondItem="yZH-gb-nV9" secondAttribute="top" constant="8" id="OBZ-IG-sHo"/>
-                                                        <constraint firstItem="nHX-VF-IHu" firstAttribute="leading" secondItem="fVX-Xm-1iJ" secondAttribute="trailing" constant="12" id="Ule-xa-Bel"/>
-                                                        <constraint firstItem="xJy-hz-FEt" firstAttribute="leading" secondItem="fVX-Xm-1iJ" secondAttribute="trailing" constant="12" id="ZQC-1s-xuH"/>
+                                                        <constraint firstItem="frH-EA-iBA" firstAttribute="top" secondItem="yZH-gb-nV9" secondAttribute="top" constant="8" id="OVK-PI-PSD"/>
+                                                        <constraint firstItem="xJy-hz-FEt" firstAttribute="top" secondItem="nHX-VF-IHu" secondAttribute="bottom" constant="2" id="PLu-vd-5Vk"/>
+                                                        <constraint firstItem="WfY-Ce-uas" firstAttribute="top" secondItem="xJy-hz-FEt" secondAttribute="bottom" constant="16.5" id="ZbN-tz-TNC"/>
+                                                        <constraint firstItem="AHN-Fa-q77" firstAttribute="top" secondItem="WfY-Ce-uas" secondAttribute="bottom" constant="12" id="dDw-ge-lOx"/>
                                                         <constraint firstAttribute="trailing" secondItem="AHN-Fa-q77" secondAttribute="trailing" constant="8" id="lpw-c7-QzD"/>
+                                                        <constraint firstItem="nHX-VF-IHu" firstAttribute="leading" secondItem="yZH-gb-nV9" secondAttribute="leading" constant="80" id="n0O-65-6ch"/>
+                                                        <constraint firstItem="frH-EA-iBA" firstAttribute="leading" secondItem="yZH-gb-nV9" secondAttribute="leading" constant="8" id="ou8-Zh-aNp"/>
                                                         <constraint firstItem="AHN-Fa-q77" firstAttribute="leading" secondItem="yZH-gb-nV9" secondAttribute="leading" constant="8" id="tpY-iL-KKE"/>
-                                                        <constraint firstItem="xJy-hz-FEt" firstAttribute="top" secondItem="nHX-VF-IHu" secondAttribute="bottom" constant="2" id="upH-Qp-0tL"/>
+                                                        <constraint firstAttribute="trailing" secondItem="WfY-Ce-uas" secondAttribute="trailing" constant="8" id="uiM-Px-gI9"/>
+                                                        <constraint firstItem="xJy-hz-FEt" firstAttribute="leading" secondItem="yZH-gb-nV9" secondAttribute="leading" constant="80" id="vvt-6g-fhz"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="captionText" destination="AHN-Fa-q77" id="ZW5-v4-rib"/>
+                                                    <outlet property="followersCount" destination="xJy-hz-FEt" id="2bG-X1-Zcj"/>
+                                                    <outlet property="postImage" destination="WfY-Ce-uas" id="fJr-pe-iaa"/>
+                                                    <outlet property="profilePic" destination="lUc-IF-Cqj" id="z6B-78-hdY"/>
+                                                    <outlet property="shadow" destination="frH-EA-iBA" id="9uV-Wb-lnR"/>
+                                                    <outlet property="username" destination="nHX-VF-IHu" id="1A4-QH-rCb"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="8To-SQ-T1h" secondAttribute="bottom" id="2kw-7X-2eq"/>
-                                    <constraint firstAttribute="trailing" secondItem="Isi-jM-sqq" secondAttribute="trailing" id="RIt-Lr-oBr"/>
+                                    <constraint firstAttribute="trailing" secondItem="Isi-jM-sqq" secondAttribute="trailing" id="Hci-mj-Cwe"/>
                                     <constraint firstItem="8To-SQ-T1h" firstAttribute="top" secondItem="Isi-jM-sqq" secondAttribute="bottom" id="Uzt-t1-God"/>
-                                    <constraint firstItem="G7T-z4-kil" firstAttribute="trailing" secondItem="8To-SQ-T1h" secondAttribute="trailing" id="Xrq-5K-u1j"/>
-                                    <constraint firstItem="Isi-jM-sqq" firstAttribute="leading" secondItem="G7T-z4-kil" secondAttribute="leading" id="Zjg-dk-Bmm"/>
-                                    <constraint firstItem="8To-SQ-T1h" firstAttribute="leading" secondItem="G7T-z4-kil" secondAttribute="leading" id="cg3-vP-aeM"/>
-                                    <constraint firstItem="Isi-jM-sqq" firstAttribute="top" secondItem="G7T-z4-kil" secondAttribute="top" id="dWf-33-Jpy"/>
+                                    <constraint firstAttribute="trailing" secondItem="8To-SQ-T1h" secondAttribute="trailing" id="W59-ez-3Bo"/>
+                                    <constraint firstItem="8To-SQ-T1h" firstAttribute="leading" secondItem="x7D-Ga-6qu" secondAttribute="leading" id="Zyd-Io-EEh"/>
+                                    <constraint firstAttribute="bottom" secondItem="8To-SQ-T1h" secondAttribute="bottom" constant="42" id="eVj-SO-CIm"/>
+                                    <constraint firstItem="Isi-jM-sqq" firstAttribute="top" secondItem="x7D-Ga-6qu" secondAttribute="top" id="jEL-fe-dCQ"/>
+                                    <constraint firstItem="Isi-jM-sqq" firstAttribute="leading" secondItem="x7D-Ga-6qu" secondAttribute="leading" id="u1c-2B-1TG"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="U0Z-RH-FHJ"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="G7T-z4-kil"/>
@@ -737,6 +858,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="x7D-Ga-6qu" firstAttribute="centerX" secondItem="AQf-oZ-dnQ" secondAttribute="centerX" id="44a-r6-i2H"/>
                             <constraint firstItem="dwx-MD-iQl" firstAttribute="trailing" secondItem="VCf-4m-FSD" secondAttribute="trailing" id="9PU-Yv-C87"/>
                             <constraint firstItem="dwx-MD-iQl" firstAttribute="trailing" secondItem="x7D-Ga-6qu" secondAttribute="trailing" id="UZM-oN-Z3H"/>
                             <constraint firstItem="Isi-jM-sqq" firstAttribute="width" secondItem="VCf-4m-FSD" secondAttribute="width" id="dnQ-Si-S0S"/>
@@ -751,8 +873,12 @@ Send out an offer and you will be updated in real-time about influencers activit
                     <navigationItem key="navigationItem" id="Wao-nS-X2Z"/>
                     <connections>
                         <outlet property="TVheight" destination="cZh-Vx-0eo" id="gh2-iX-F1Y"/>
+                        <outlet property="acceptedOfferCount" destination="fgz-gu-MRG" id="rgL-op-uwb"/>
                         <outlet property="influencerShelf" destination="8To-SQ-T1h" id="utW-Oi-IJF"/>
+                        <outlet property="pieView" destination="Qtl-8B-2FJ" id="YJA-dS-mwt"/>
+                        <outlet property="postedCount" destination="iZ9-XK-PK9" id="sRi-DJ-0be"/>
                         <outlet property="saleStatsLabel" destination="oYN-Vy-LDO" id="OUc-iX-DxS"/>
+                        <outlet property="statMoneyText" destination="Ziu-8Y-Wz0" id="Wua-LZ-uuw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TgL-14-kQG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -769,7 +895,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Od3-2n-Z1o">
                                 <rect key="frame" x="0.0" y="99" width="414" height="714"/>
-                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="composeButton" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="composeButton" rowHeight="66" id="tKh-lf-tzE" customClass="composeButtonCell" customModule="Ambassadoor_Business" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="66"/>
@@ -785,7 +911,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                             <rect key="frame" x="5" y="5" width="372" height="40"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                             <state key="normal" title="  Compose Offer" image="square.and.pencil" catalog="system">
-                                                                <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>
                                                         </button>
                                                     </subviews>
@@ -816,7 +942,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                 <constraint firstAttribute="bottom" secondItem="6TR-OX-q16" secondAttribute="bottom" constant="8" id="qcT-sa-jJ5"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="composebutton" destination="zou-4p-ZrV" id="pw1-Ig-r3d"/>
                                             <outlet property="composebuttonOutline" destination="6TR-OX-q16" id="piU-pI-1pj"/>
@@ -847,7 +973,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INCOMPLETE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQM-OT-Jdm">
                                                             <rect key="frame" x="273.5" y="230.5" width="92.5" height="17"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                            <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last edited at 8:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGU-y5-0b6">
@@ -890,7 +1016,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                 <constraint firstAttribute="bottom" secondItem="pey-fy-Up3" secondAttribute="bottom" constant="8" id="VLS-LS-lao"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="incompleteLabel" destination="dQM-OT-Jdm" id="guX-Zo-wcK"/>
                                             <outlet property="lastEditedLabel" destination="NGU-y5-0b6" id="uCi-JS-2Cs"/>
@@ -959,7 +1085,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="2up-Df-acd" firstAttribute="bottom" secondItem="Od3-2n-Z1o" secondAttribute="bottom" id="1ya-yC-6Le"/>
                             <constraint firstItem="Od3-2n-Z1o" firstAttribute="top" secondItem="wkc-d6-k1a" secondAttribute="bottom" id="SYn-n6-TPl"/>
@@ -1144,7 +1270,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.3.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dge-cI-ybd">
-                                        <rect key="frame" x="182" y="355.5" width="50" height="24.5"/>
+                                        <rect key="frame" x="182" y="355.5" width="50" height="25"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="28M-Rt-GyY"/>
@@ -1152,7 +1278,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.grid.3x2" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="wof-vM-8M7">
-                                        <rect key="frame" x="182" y="498" width="50" height="25"/>
+                                        <rect key="frame" x="182" y="498" width="50" height="25.5"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="27.5" id="30G-Zy-bbB"/>
@@ -1218,7 +1344,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="76a-qi-rPn" firstAttribute="top" secondItem="Xfr-j1-siK" secondAttribute="top" id="0P7-Uq-693"/>
                                     <constraint firstItem="76a-qi-rPn" firstAttribute="leading" secondItem="Xfr-j1-siK" secondAttribute="leading" id="Ua0-a4-jsK"/>
@@ -1374,7 +1500,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="xb6-JJ-98D" firstAttribute="leading" secondItem="mOH-he-cSw" secondAttribute="leading" constant="8" id="CAF-Kp-Xyy"/>
                                             <constraint firstItem="hHa-yW-pqf" firstAttribute="top" secondItem="xb6-JJ-98D" secondAttribute="bottom" constant="8" id="ELH-Wj-0gq"/>
@@ -1408,7 +1534,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                 </segments>
                                             </segmentedControl>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="118" id="1CH-AA-o1R"/>
                                             <constraint firstItem="oAU-H3-QJV" firstAttribute="centerX" secondItem="qTP-lE-1kc" secondAttribute="centerX" id="4mz-oD-J5z"/>
@@ -1499,7 +1625,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                 </connections>
                                             </switch>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="Brs-WH-xso" firstAttribute="top" secondItem="rJs-bx-JPp" secondAttribute="bottom" constant="16" id="2PM-je-pHs"/>
                                             <constraint firstItem="OXu-3v-Z1m" firstAttribute="centerY" secondItem="Brs-WH-xso" secondAttribute="centerY" id="2mU-ET-ssJ"/>
@@ -1684,7 +1810,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="i5X-NZ-X0s" firstAttribute="top" secondItem="a0u-UI-t9c" secondAttribute="top" id="H03-kD-OlD"/>
                                             <constraint firstAttribute="trailing" secondItem="i5X-NZ-X0s" secondAttribute="trailing" id="eAi-0Q-yGP"/>
@@ -1831,7 +1957,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9gd-It-qtM" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                         <rect key="frame" x="162" y="43" width="90" height="90"/>
-                                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="90" id="qAC-S0-udC"/>
                                             <constraint firstAttribute="width" constant="90" id="tL4-EB-rwK"/>
@@ -2033,7 +2159,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="o4O-uF-jaC" firstAttribute="height" secondItem="g7k-re-55x" secondAttribute="height" id="CNh-Mk-hrl"/>
                                                     <constraint firstAttribute="trailing" secondItem="o4O-uF-jaC" secondAttribute="trailing" id="Ikv-gU-sbd"/>
@@ -2120,7 +2246,7 @@ For example, if you list "#sale" and "buy one get one free" the influencer could
                                         <string key="text">YOU MAY NOT WRITE ANYTHING INCLUDING BUT NOT LIMITED TO ILLIGAL ACTIVITIES, DEFAMATION, HATE SPEECH, OR BULLYING.
 IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                        <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -2169,7 +2295,7 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="58" id="TL4-OG-G8S"/>
                                     <constraint firstAttribute="trailing" secondItem="Wy8-92-gcg" secondAttribute="trailing" id="WmX-pQ-iic"/>
@@ -2654,7 +2780,7 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="3Hg-e1-fHp" firstAttribute="top" secondItem="IAY-Cn-KF0" secondAttribute="bottom" constant="32" id="1tq-Hn-JlL"/>
                                     <constraint firstAttribute="trailing" secondItem="4zP-g3-ljJ" secondAttribute="trailing" constant="8" id="2jG-k5-1zU"/>
@@ -3219,7 +3345,7 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="sPB-Wd-OYn" secondAttribute="bottom" id="1Ch-bL-L0W"/>
                                     <constraint firstAttribute="height" constant="57" id="9Bb-MH-id3"/>
@@ -3539,7 +3665,7 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="K9g-BF-csB" firstAttribute="centerX" secondItem="UsD-Gh-cDL" secondAttribute="centerX" id="8jX-GM-gVa"/>
                                     <constraint firstItem="hZw-D9-NII" firstAttribute="leading" secondItem="UsD-Gh-cDL" secondAttribute="leading" constant="8" id="L4J-w5-uOg"/>
@@ -3752,7 +3878,7 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ed-ah-KhM">
                                         <rect key="frame" x="8" y="447.5" width="398" height="2"/>
-                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="xj1-ap-ic7"/>
                                         </constraints>
@@ -3816,13 +3942,13 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="value" systemColor="placeholderTextColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2NM-kY-uaZ">
                                         <rect key="frame" x="8" y="711.5" width="398" height="2"/>
-                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="rNN-Mg-sDe"/>
                                         </constraints>
@@ -4079,7 +4205,7 @@ You must have permission to use the company name, logo, website, etc. before reg
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECTED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pEg-25-W1R">
                                                 <rect key="frame" x="306" y="211" width="68" height="16"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                                <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -4163,7 +4289,7 @@ You must have permission to use the company name, logo, website, etc. before reg
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECTED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="41R-0K-VB1">
                                                 <rect key="frame" x="306" y="211" width="68" height="16"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                                <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -4248,7 +4374,7 @@ You must have permission to use the company name, logo, website, etc. before reg
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECTED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYw-Wq-puU">
                                                 <rect key="frame" x="306" y="211" width="68" height="16"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                                <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -4383,7 +4509,7 @@ You must have permission to use the company name, logo, website, etc. before reg
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECTED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXl-Mz-Wdo">
                                                             <rect key="frame" x="293" y="26" width="73" height="17"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                            <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -4638,7 +4764,7 @@ You must have permission to use the company name, logo, website, etc. before reg
                                                                 <constraint firstAttribute="height" constant="50" id="e79-rc-Trs"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <state key="normal" image="mappin.slash" catalog="system">
                                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                                             </state>
@@ -4692,10 +4818,10 @@ You must have permission to use the company name, logo, website, etc. before reg
                                                     <rect key="frame" x="16" y="8" width="382" height="49"/>
                                                     <subviews>
                                                         <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y12-rL-uOH">
-                                                            <rect key="frame" x="122" y="13" width="138.5" height="23"/>
+                                                            <rect key="frame" x="125" y="13" width="132.5" height="23"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                             <state key="normal" title=" Add Location" image="mappin" catalog="system">
-                                                                <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>
                                                         </button>
                                                     </subviews>
@@ -4840,21 +4966,24 @@ You must have permission to use the company name, logo, website, etc. before reg
         <image name="Nationwide" width="150" height="150"/>
         <image name="arrowright" width="32" height="32"/>
         <image name="bank" width="600" height="600"/>
-        <image name="chart.pie" catalog="system" width="64" height="60"/>
-        <image name="coloncurrencysign.circle" catalog="system" width="64" height="60"/>
+        <image name="chart.pie" catalog="system" width="64" height="62"/>
+        <image name="coloncurrencysign.circle" catalog="system" width="64" height="62"/>
         <image name="defaultCompany" width="600" height="600"/>
-        <image name="globe" catalog="system" width="64" height="60"/>
+        <image name="globe" catalog="system" width="64" height="62"/>
         <image name="map_pin_area" width="84" height="84"/>
-        <image name="mappin" catalog="system" width="52" height="64"/>
-        <image name="mappin.slash" catalog="system" width="52" height="64"/>
-        <image name="person.3.fill" catalog="system" width="71" height="34"/>
+        <image name="mappin" catalog="system" width="32" height="64"/>
+        <image name="mappin.slash" catalog="system" width="54" height="64"/>
+        <image name="person.3.fill" catalog="system" width="72" height="35"/>
         <image name="rectangle.stack" catalog="system" width="64" height="60"/>
         <image name="remove_item" width="84" height="84"/>
         <image name="right_arrow" width="600" height="600"/>
         <image name="square.and.pencil" catalog="system" width="64" height="58"/>
         <image name="square.grid.3x2" catalog="system" width="64" height="40"/>
+        <namedColor name="expiredColor">
+            <color red="0.78799998760223389" green="0.16099999845027924" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kAw-3T-EW6"/>
+        <segue reference="M0i-E2-U7z"/>
     </inferredMetricsTieBreakers>
 </document>

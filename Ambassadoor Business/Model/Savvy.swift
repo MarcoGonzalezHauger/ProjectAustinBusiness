@@ -12,6 +12,7 @@ import UIKit
 import AVKit
 import AVFoundation
 import Firebase
+import CoreData
 
 func NumberToPrice(Value: Double, enforceCents isBig: Bool = false) -> String {
 	if floor(Value) == Value && isBig == false {
@@ -41,6 +42,19 @@ func GetBackColor() -> UIColor {
 		return .white
 	}
 }
+
+func saveCoreDataUpdate(object: NSManagedObject) {
+    
+    let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+    print(paths[0])
+    do {
+        try object.managedObjectContext?.save()
+    } catch {
+        print("Failed saving")
+    }
+    
+}
+
 
 let impact = UIImpactFeedbackGenerator()
 func UseTapticEngine() {
@@ -353,6 +367,25 @@ func isDeseralizable(dictionary: [String: AnyObject], type: structType) -> [Stri
         }
     }
     return errors
+}
+
+func downloadBeforeLoad() {
+    getAllDistributedOffers { (status, results) in
+        if status {
+            if let results = results {
+                if results.count == 0 {
+                } else {
+                    
+                var rslts: [OfferStatistic] = []
+                for i in results {
+                    rslts.append(OfferStatistic.init(offer: i))
+                }
+                global.distributedOffers = rslts
+        
+                }
+            }
+        }
+    }
 }
 
 enum structType {

@@ -232,11 +232,23 @@ class SignInVC: BaseVC, UITextFieldDelegate {
 							getCurrentCompanyUser(userID: (Auth.auth().currentUser?.uid)!) { (companyUser, error) in
 								if companyUser != nil {
 									Singleton.sharedInstance.setCompanyUser(user: companyUser!)
-									DispatchQueue.main.async(execute: {
-										timer.invalidate()
-										self.hideActivityIndicator()
-										self.instantiateToMainScreen()
-									})
+                                    if Singleton.sharedInstance.getCompanyUser().isCompanyRegistered!{
+                                        
+                                        let user = Singleton.sharedInstance.getCompanyUser().companyID!
+                                        
+                                        getCompany(companyID: user) { (company, error) in
+                                            
+                                            Singleton.sharedInstance.setCompanyDetails(company: company!)
+                                            YourCompany = company
+                                            downloadBeforeLoad()
+                                            DispatchQueue.main.async(execute: {
+                                                timer.invalidate()
+                                                self.hideActivityIndicator()
+                                                self.instantiateToMainScreen()
+                                            })
+                                        }
+                                        
+                                    }
 								}
 								
 							}

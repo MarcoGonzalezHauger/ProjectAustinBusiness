@@ -333,6 +333,8 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
         let ambassadoorCommission = (originalAmount * Singleton.sharedInstance.getCommision())
         self.templateOffer?.cashPower = originalAmount - ambassadoorCommission
         
+        self.templateOffer?.originalAmount = originalAmount - ambassadoorCommission
+        
         if let referral = Singleton.sharedInstance.getCompanyDetails().referralcode{
             
             let paycomission = originalAmount * 0.01

@@ -37,6 +37,7 @@
 		B7C9FE8E231E4870005580E4 /* PlaidLinkEnabledVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C9FE8C231E486F005580E4 /* PlaidLinkEnabledVC.swift */; };
 		B7C9FE8F231E4870005580E4 /* PlaidHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C9FE8D231E486F005580E4 /* PlaidHelper.swift */; };
 		B7CA8455234CB4A600A3223A /* StatisticsStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CA8454234CB4A600A3223A /* StatisticsStruct.swift */; };
+		B7D2FE12247542F00000BFFC /* tutorial.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B7D2FE11247542F00000BFFC /* tutorial.mp4 */; };
 		B7D42099232A9F40009F0FCE /* TransactionInfoTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D42098232A9F40009F0FCE /* TransactionInfoTVCell.swift */; };
 		B7D4209D232AA9A1009F0FCE /* TransactionListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D4209C232AA9A1009F0FCE /* TransactionListVC.swift */; };
 		B7FAB9562350888D00CED248 /* StripeConnectionMKWebview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FAB9552350888C00CED248 /* StripeConnectionMKWebview.swift */; };
@@ -65,7 +66,6 @@
 		E84600872273AF9100CF60F2 /* ImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84600862273AF9100CF60F2 /* ImageViewExtensions.swift */; };
 		E846008A2273B0B300CF60F2 /* Savvy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84600892273B0B300CF60F2 /* Savvy.swift */; };
 		E8769168236F9A8A0026E07D /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8769166236F9A830026E07D /* LocalAuthentication.framework */; };
-		E878E6EF237B846D00D25553 /* tutorial.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E878E6EE237B846D00D25553 /* tutorial.mp4 */; };
 		E899878323D3B8F20093FC0E /* CurseWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899878223D3B8F20093FC0E /* CurseWords.swift */; };
 		E8C3694222161B3000AE12D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C3694122161B3000AE12D7 /* AppDelegate.swift */; };
 		E8C3694422161B3000AE12D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C3694322161B3000AE12D7 /* ViewController.swift */; };
@@ -119,6 +119,7 @@
 		B7C9FE8D231E486F005580E4 /* PlaidHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaidHelper.swift; sourceTree = "<group>"; };
 		B7CA8454234CB4A600A3223A /* StatisticsStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsStruct.swift; sourceTree = "<group>"; };
 		B7D030AD23237CA4002B90FF /* Ambassadoor Business-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ambassadoor Business-Bridging-Header.h"; sourceTree = "<group>"; };
+		B7D2FE11247542F00000BFFC /* tutorial.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = tutorial.mp4; sourceTree = "<group>"; };
 		B7D42098232A9F40009F0FCE /* TransactionInfoTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionInfoTVCell.swift; sourceTree = "<group>"; };
 		B7D4209C232AA9A1009F0FCE /* TransactionListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionListVC.swift; sourceTree = "<group>"; };
 		B7FAB9552350888C00CED248 /* StripeConnectionMKWebview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StripeConnectionMKWebview.swift; sourceTree = "<group>"; };
@@ -146,7 +147,6 @@
 		E84600862273AF9100CF60F2 /* ImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtensions.swift; sourceTree = "<group>"; };
 		E84600892273B0B300CF60F2 /* Savvy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Savvy.swift; sourceTree = "<group>"; };
 		E8769166236F9A830026E07D /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
-		E878E6EE237B846D00D25553 /* tutorial.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = tutorial.mp4; sourceTree = "<group>"; };
 		E899878223D3B8F20093FC0E /* CurseWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurseWords.swift; sourceTree = "<group>"; };
 		E8B08C244165BD27DA5136C1 /* Pods_Ambassadoor_Business.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ambassadoor_Business.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8C3693E22161B3000AE12D7 /* Ambassadoor Business.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ambassadoor Business.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -357,7 +357,7 @@
 				B750E78422E5B75F00024CB1 /* Onboarding.storyboard */,
 				E8C3694122161B3000AE12D7 /* AppDelegate.swift */,
 				E8C3694522161B3000AE12D7 /* Main.storyboard */,
-				E878E6EE237B846D00D25553 /* tutorial.mp4 */,
+				B7D2FE11247542F00000BFFC /* tutorial.mp4 */,
 				E8C3694B22161B3200AE12D7 /* Assets.xcassets */,
 				E8C3694D22161B3200AE12D7 /* LaunchScreen.storyboard */,
 				E8C3695022161B3200AE12D7 /* Info.plist */,
@@ -474,7 +474,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8C3694F22161B3200AE12D7 /* LaunchScreen.storyboard in Resources */,
-				E878E6EF237B846D00D25553 /* tutorial.mp4 in Resources */,
+				B7D2FE12247542F00000BFFC /* tutorial.mp4 in Resources */,
 				B712C487230690B500728758 /* ProductListCell.xib in Resources */,
 				B7551F2F22F99B01001C4974 /* BasePicker.xib in Resources */,
 				B7FD83ED22F0870F00347E8E /* PostDetailTC.xib in Resources */,
