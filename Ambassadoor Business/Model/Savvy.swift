@@ -392,3 +392,41 @@ enum structType {
     case offer
     case businessDetails
 }
+
+func instantiateViewController(storyboard: String, reference: String) -> AnyObject{
+    
+    let mainStoryBoard = UIStoryboard(name: storyboard, bundle: nil)
+    let redViewController = mainStoryBoard.instantiateViewController(withIdentifier: reference)
+    return redViewController
+}
+
+func setHapticMenu(companyUserID: String, amount: Double? = nil) {
+    
+    var shortcutItems = UIApplication.shared.shortcutItems ?? []
+    
+    if amount == nil {
+        
+        getDepositDetails(companyUser: companyUserID) { (deposit, status, error) in
+            
+            var amountDob: Double = 0.0
+            
+            
+            if (error == nil){
+                if status == "success"{
+                    amountDob = deposit!.currentBalance!
+                }
+            }
+            
+            shortcutItems = [UIApplicationShortcutItem.init(type: "com.ambassadoor.offers", localizedTitle: "Offers", localizedSubtitle:nil, icon: nil, userInfo: nil), UIApplicationShortcutItem.init(type: "com.ambassadoor.account", localizedTitle: "Account", localizedSubtitle:nil, icon: nil, userInfo: nil),UIApplicationShortcutItem.init(type: "com.ambassadoor.money", localizedTitle: "Money Page", localizedSubtitle: "Balance: \(NumberToPrice(Value: amountDob, enforceCents: true))", icon: UIApplicationShortcutIcon(type: UIApplicationShortcutIcon.IconType.contact), userInfo: nil)]
+            UIApplication.shared.shortcutItems = shortcutItems
+            
+        }
+        
+    }else{
+        
+        shortcutItems[2] = UIApplicationShortcutItem.init(type: "com.ambassadoor.money", localizedTitle: "Money Page", localizedSubtitle: "Balance: \(NumberToPrice(Value: amount!, enforceCents: true))", icon: UIApplicationShortcutIcon(type: UIApplicationShortcutIcon.IconType.contact), userInfo: nil)
+        UIApplication.shared.shortcutItems = shortcutItems
+    }
+    
+}
+

@@ -8,6 +8,9 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseCore
+import FirebaseInstanceID
 
 enum cellAction {
 	case deposit, withdraw
@@ -131,23 +134,62 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
+//        if global.launchWay == "shortcut"{
+//
+//        //getCurrentCompanyUser(userID: (Auth.auth().currentUser?.uid)!) { (companyUser, error) in
+//            getDepositDetails(companyUser: (Auth.auth().currentUser?.uid)!) { (deposit, status, error) in
+//
+//                transactionHistory.removeAll()
+//
+//
+//                if status == "success" {
+//                    accountBalance = deposit!.currentBalance!
+//                    for value in deposit!.depositHistory! {
+//
+//                        if let valueDetails = value as? NSDictionary {
+//
+//                            transactionHistory.append(Transaction(description: "", details: valueDetails["cardDetails"] as AnyObject, time: valueDetails["updatedAt"] as! String, amount: Double(valueDetails["amount"] as! String)!, type: valueDetails["type"] as! String, status: valueDetails["status"] as? String ?? "", userName: valueDetails["userName"] as? String ?? ""))
+//                        }
+//                    }
+//                    //transactionDelegate = self
+//                    DispatchQueue.main.async(execute: {
+//                        self.shelf.delegate = self
+//                        self.shelf.dataSource = self
+//                        self.shelf.reloadData()
+//                    })
+//                }
+//
+//            }
+//
+//        }else{
+        
         self.getDeepositDetails()
+//        }
     }
 	
 	var shownBefore = false
     
     @objc func getDeepositDetails() {
+        
 		if !shownBefore {
 			accountBalance = 0.0
 			shownBefore = true
 		}
         let user = Singleton.sharedInstance.getCompanyUser()
-        getDepositDetails(companyUser: user.userID!) { (deposit, status, error) in
+        self.getDepositDetailsByUser(user: user)
+    
+    }
+    
+    func getDepositDetailsByUser(user: CompanyUser) {
+        
+        getDepositDetails(companyUser: (Auth.auth().currentUser?.uid)!) { (deposit, status, error) in
             
             if status == "success" {
                 
                 transactionHistory.removeAll()
                 accountBalance = deposit!.currentBalance!
+                setHapticMenu(companyUserID: (Auth.auth().currentUser?.uid)!, amount: accountBalance)
                 for value in deposit!.depositHistory! {
                     
                     if let valueDetails = value as? NSDictionary {
@@ -173,6 +215,8 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
             }
             
         }
+
+        
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

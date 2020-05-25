@@ -192,6 +192,7 @@ class TemplateOffer: Offer {
 	var title: String
     var status: String
 	var lastEdited: Date
+    var isStatistic: Bool
 	
 	func isFinished() -> [String] {
 		var returnValue: [String] = []
@@ -231,6 +232,7 @@ class TemplateOffer: Offer {
         self.user_IDs = dictionary["user_IDs"] as? [String] ?? []
         self.status = dictionary["status"] as? String ?? ""
 		self.lastEdited = FirebaseToDate(object: dictionary["lastEditDate"])
+        self.isStatistic = false
         try super.init(dictionary: dictionary)
     }
 	
@@ -445,7 +447,7 @@ class Company: NSObject {
 		self.owner_email = (dictionary["owner"] as? String) ?? ""
 		self.companyDescription = dictionary["description"] as! String
 		self.accountBalance = dictionary["accountBalance"] as! Double
-		self.referralcode = dictionary["referralcode"] as? String
+		self.referralcode = dictionary["referralcode"] as? String ?? ""
         self.userID = dictionary["userId"] as? String ?? ""
     }
 }

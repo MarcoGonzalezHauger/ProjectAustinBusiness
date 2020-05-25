@@ -355,7 +355,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
         
         let expiryDate = DateFormatManager.sharedInstance.getExpiryDate(dateString: dateString)
         self.templateOffer?.expiredate = expiryDate
-        
+        print(Singleton.sharedInstance.getCompanyDetails().referralcode?.count)
         if Singleton.sharedInstance.getCompanyDetails().referralcode?.count != 0 {
             self.templateOffer?.isRefferedByInfluencer = true
             self.templateOffer?.isReferCommissionPaid = false

@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -367,7 +367,7 @@ Referral Code:</string>
         <!--Main Tab Bar Controller-->
         <scene sceneID="z7h-dm-891">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="kfA-qH-ebm" customClass="mainTabBarController" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabbar" automaticallyAdjustsScrollViewInsets="NO" id="kfA-qH-ebm" customClass="mainTabBarController" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="CMM-rg-WhI">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -1184,6 +1184,9 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                             <rect key="frame" x="12" y="196" width="129" height="34"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                             <state key="normal" title="View Statistics"/>
+                                                            <connections>
+                                                                <action selector="viewStatisticActionWithSender:" destination="6sd-Y8-ShH" eventType="touchUpInside" id="4cN-4l-kOt"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1234,6 +1237,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                             <outlet property="offerName" destination="RlA-jb-7Kh" id="K3D-7c-Qnx"/>
                                             <outlet property="offerviewoutline" destination="pey-fy-Up3" id="2Is-XB-vWp"/>
                                             <outlet property="postDetails" destination="Vx6-d0-ygk" id="67i-Xe-Liv"/>
+                                            <outlet property="viewStatistics" destination="ymv-Ba-XSo" id="Sbx-sy-YVa"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -5237,7 +5241,7 @@ You must have permission to use the company name, logo, website, etc. before reg
         <image name="chart.pie" catalog="system" width="64" height="60"/>
         <image name="coloncurrencysign.circle" catalog="system" width="64" height="60"/>
         <image name="defaultCompany" width="600" height="600"/>
-        <image name="globe" catalog="system" width="64" height="60"/>
+        <image name="globe" catalog="system" width="64" height="62"/>
         <image name="globe" width="75" height="75"/>
         <image name="map_pin_area" width="84" height="84"/>
         <image name="mappin" catalog="system" width="52" height="64"/>
@@ -5250,6 +5254,6 @@ You must have permission to use the company name, logo, website, etc. before reg
         <image name="square.grid.3x2" catalog="system" width="64" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="M0i-E2-U7z"/>
+        <segue reference="kAw-3T-EW6"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -28,6 +28,7 @@
 		B799227622F16FA9007E84B0 /* PickUserCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B799227522F16FA9007E84B0 /* PickUserCVC.swift */; };
 		B799227822F1C511007E84B0 /* AddPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B799227722F1C511007E84B0 /* AddPostVC.swift */; };
 		B79B1D2E22F2EE8D00F3C660 /* DateFormatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79B1D2D22F2EE8D00F3C660 /* DateFormatManager.swift */; };
+		B7AEF2C1247BA81B000AB4A4 /* TempLaunch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7AEF2C0247BA81B000AB4A4 /* TempLaunch.storyboard */; };
 		B7B11FF523242615006711BB /* PlaidTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B11FF423242615006711BB /* PlaidTVCell.swift */; };
 		B7B11FF723242638006711BB /* ConnectedPlaidTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B11FF623242638006711BB /* ConnectedPlaidTVCell.swift */; };
 		B7B517D12411247400DD62DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B7B517D02411247400DD62DE /* GoogleService-Info.plist */; };
@@ -110,6 +111,7 @@
 		B799227522F16FA9007E84B0 /* PickUserCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickUserCVC.swift; sourceTree = "<group>"; };
 		B799227722F1C511007E84B0 /* AddPostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostVC.swift; sourceTree = "<group>"; };
 		B79B1D2D22F2EE8D00F3C660 /* DateFormatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatManager.swift; sourceTree = "<group>"; };
+		B7AEF2C0247BA81B000AB4A4 /* TempLaunch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TempLaunch.storyboard; sourceTree = "<group>"; };
 		B7B11FF423242615006711BB /* PlaidTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaidTVCell.swift; sourceTree = "<group>"; };
 		B7B11FF623242638006711BB /* ConnectedPlaidTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedPlaidTVCell.swift; sourceTree = "<group>"; };
 		B7B517D02411247400DD62DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -359,6 +361,7 @@
 				E8C3694322161B3000AE12D7 /* ViewController.swift */,
 				B774B6E7247284E7007C8699 /* SimplexStatistics */,
 				B750E78422E5B75F00024CB1 /* Onboarding.storyboard */,
+				B7AEF2C0247BA81B000AB4A4 /* TempLaunch.storyboard */,
 				E8C3694122161B3000AE12D7 /* AppDelegate.swift */,
 				E8C3694522161B3000AE12D7 /* Main.storyboard */,
 				B7D2FE11247542F00000BFFC /* tutorial.mp4 */,
@@ -487,6 +490,7 @@
 				B7FD83E922F0844C00347E8E /* AddPostTC.xib in Resources */,
 				B750E78522E5B75F00024CB1 /* Onboarding.storyboard in Resources */,
 				B7B517D12411247400DD62DE /* GoogleService-Info.plist in Resources */,
+				B7AEF2C1247BA81B000AB4A4 /* TempLaunch.storyboard in Resources */,
 				E8C3694C22161B3200AE12D7 /* Assets.xcassets in Resources */,
 				E8C3694722161B3000AE12D7 /* Main.storyboard in Resources */,
 			);
