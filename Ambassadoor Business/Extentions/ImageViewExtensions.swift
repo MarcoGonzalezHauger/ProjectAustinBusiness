@@ -169,39 +169,48 @@ func downloadImage(_ urlLink: String, completed: @escaping (_ image: UIImage?) -
 }
 */
 func downloadImage(_ urlLink: String, completed: @escaping (_ image: UIImage?) -> ()){
-if urlLink.isEmpty {
-    completed(nil)
-    return
+	if urlLink.isEmpty {
+		completed(nil)
+		return
+	}
+	
+	let cachedImage = global.cachedImageList.filter { (cache) -> Bool in
+		return cache.link! == urlLink
+	}
+	
+	if cachedImage.count != 0{
+		
+		if let image = UIImage(data: cachedImage.first!.imagedata!){
+			
+			//print("CHACHED  : \(urlLink)")
+			
+			if let imageData = cachedImage.first!.object {
+				imageData.setValue(Date.getcurrentESTdate(), forKey: "updatedDate")
+				saveCoreDataUpdate(object: imageData)
+			}
+			completed(image)
+			return
+			
+		}
+	} else {
+		let url = URL(string: urlLink)
+		URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+			if let err = error {
+				print(err)
+				completed(nil)
+				return
+			}
+			DispatchQueue.main.async {
+				if let newImage = UIImage(data: data!) {
+					imageCache.setObject(newImage, forKey: urlLink as NSString)
+					completed(newImage)
+					return
+				}
+			}
+		}).resume()
+	}
 }
-// check cache first
-/*
-if let cachedImage = imageCache.object(forKey: urlLink as NSString) as? UIImage {
-print("CHACHED  : \(urlLink)")
-completed(cachedImage)
-return
-}
-*/
 
-let cachedImage = global.cachedImageList.filter { (cache) -> Bool in
-    return cache.link! == urlLink
-}
-
-if cachedImage.count != 0{
-    
-    if let image = UIImage(data: cachedImage.first!.imagedata!){
-        
-        //print("CHACHED  : \(urlLink)")
-        
-        if let imageData = cachedImage.first!.object {
-            imageData.setValue(Date.getcurrentESTdate(), forKey: "updatedDate")
-            saveCoreDataUpdate(object: imageData)
-        }
-        completed(image)
-        return
-        
-    }
-}
-}
 extension Date {
     static func getcurrentESTdate()-> Date{
         let curDateStr = Date.getStringFromDate(date: Date())

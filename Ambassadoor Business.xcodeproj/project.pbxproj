@@ -28,6 +28,7 @@
 		B799227622F16FA9007E84B0 /* PickUserCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B799227522F16FA9007E84B0 /* PickUserCVC.swift */; };
 		B799227822F1C511007E84B0 /* AddPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B799227722F1C511007E84B0 /* AddPostVC.swift */; };
 		B79B1D2E22F2EE8D00F3C660 /* DateFormatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79B1D2D22F2EE8D00F3C660 /* DateFormatManager.swift */; };
+		B7AEF2C1247BA81B000AB4A4 /* TempLaunch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7AEF2C0247BA81B000AB4A4 /* TempLaunch.storyboard */; };
 		B7B11FF523242615006711BB /* PlaidTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B11FF423242615006711BB /* PlaidTVCell.swift */; };
 		B7B11FF723242638006711BB /* ConnectedPlaidTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B11FF623242638006711BB /* ConnectedPlaidTVCell.swift */; };
 		B7B517D12411247400DD62DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B7B517D02411247400DD62DE /* GoogleService-Info.plist */; };
@@ -65,6 +66,8 @@
 		E84600852273A92A00CF60F2 /* BusinessLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84600842273A92A00CF60F2 /* BusinessLabel.swift */; };
 		E84600872273AF9100CF60F2 /* ImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84600862273AF9100CF60F2 /* ImageViewExtensions.swift */; };
 		E846008A2273B0B300CF60F2 /* Savvy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84600892273B0B300CF60F2 /* Savvy.swift */; };
+		E861588024789C8B006D5450 /* ChangeWebsiteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E861587F24789C8B006D5450 /* ChangeWebsiteVC.swift */; };
+		E86158822478A7CD006D5450 /* ReferralInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86158812478A7CD006D5450 /* ReferralInfoVC.swift */; };
 		E8769168236F9A8A0026E07D /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8769166236F9A830026E07D /* LocalAuthentication.framework */; };
 		E899878323D3B8F20093FC0E /* CurseWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899878223D3B8F20093FC0E /* CurseWords.swift */; };
 		E8C3694222161B3000AE12D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C3694122161B3000AE12D7 /* AppDelegate.swift */; };
@@ -108,6 +111,7 @@
 		B799227522F16FA9007E84B0 /* PickUserCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickUserCVC.swift; sourceTree = "<group>"; };
 		B799227722F1C511007E84B0 /* AddPostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostVC.swift; sourceTree = "<group>"; };
 		B79B1D2D22F2EE8D00F3C660 /* DateFormatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatManager.swift; sourceTree = "<group>"; };
+		B7AEF2C0247BA81B000AB4A4 /* TempLaunch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TempLaunch.storyboard; sourceTree = "<group>"; };
 		B7B11FF423242615006711BB /* PlaidTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaidTVCell.swift; sourceTree = "<group>"; };
 		B7B11FF623242638006711BB /* ConnectedPlaidTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedPlaidTVCell.swift; sourceTree = "<group>"; };
 		B7B517D02411247400DD62DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -146,6 +150,8 @@
 		E84600842273A92A00CF60F2 /* BusinessLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessLabel.swift; sourceTree = "<group>"; };
 		E84600862273AF9100CF60F2 /* ImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtensions.swift; sourceTree = "<group>"; };
 		E84600892273B0B300CF60F2 /* Savvy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Savvy.swift; sourceTree = "<group>"; };
+		E861587F24789C8B006D5450 /* ChangeWebsiteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeWebsiteVC.swift; sourceTree = "<group>"; };
+		E86158812478A7CD006D5450 /* ReferralInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralInfoVC.swift; sourceTree = "<group>"; };
 		E8769166236F9A830026E07D /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		E899878223D3B8F20093FC0E /* CurseWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurseWords.swift; sourceTree = "<group>"; };
 		E8B08C244165BD27DA5136C1 /* Pods_Ambassadoor_Business.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ambassadoor_Business.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -355,6 +361,7 @@
 				E8C3694322161B3000AE12D7 /* ViewController.swift */,
 				B774B6E7247284E7007C8699 /* SimplexStatistics */,
 				B750E78422E5B75F00024CB1 /* Onboarding.storyboard */,
+				B7AEF2C0247BA81B000AB4A4 /* TempLaunch.storyboard */,
 				E8C3694122161B3000AE12D7 /* AppDelegate.swift */,
 				E8C3694522161B3000AE12D7 /* Main.storyboard */,
 				B7D2FE11247542F00000BFFC /* tutorial.mp4 */,
@@ -381,6 +388,8 @@
 			isa = PBXGroup;
 			children = (
 				E8E54684227BA19C00775A07 /* ViewCompanyVC.swift */,
+				E861587F24789C8B006D5450 /* ChangeWebsiteVC.swift */,
+				E86158812478A7CD006D5450 /* ReferralInfoVC.swift */,
 			);
 			path = Company;
 			sourceTree = "<group>";
@@ -481,6 +490,7 @@
 				B7FD83E922F0844C00347E8E /* AddPostTC.xib in Resources */,
 				B750E78522E5B75F00024CB1 /* Onboarding.storyboard in Resources */,
 				B7B517D12411247400DD62DE /* GoogleService-Info.plist in Resources */,
+				B7AEF2C1247BA81B000AB4A4 /* TempLaunch.storyboard in Resources */,
 				E8C3694C22161B3200AE12D7 /* Assets.xcassets in Resources */,
 				E8C3694722161B3000AE12D7 /* Main.storyboard in Resources */,
 			);
@@ -556,6 +566,7 @@
 				E8F8AAC922C8492D0047BF5E /* ViewOffersVC.swift in Sources */,
 				E80B060A22A08D49002B9699 /* MoneyField.swift in Sources */,
 				E899878323D3B8F20093FC0E /* CurseWords.swift in Sources */,
+				E86158822478A7CD006D5450 /* ReferralInfoVC.swift in Sources */,
 				B70DEC7C232C2CFA00580FD7 /* TransactionDetailsVC.swift in Sources */,
 				B72CB50A22E7024500958AE0 /* UIViewExtension.swift in Sources */,
 				E80B060822A07F63002B9699 /* WithdrawVC.swift in Sources */,
@@ -565,6 +576,7 @@
 				E84600802273A65600CF60F2 /* StandardNC.swift in Sources */,
 				B712C4892306B6C900728758 /* WebVC.swift in Sources */,
 				E844EAC22471DE48000CE74F /* mainTabBarController.swift in Sources */,
+				E861588024789C8B006D5450 /* ChangeWebsiteVC.swift in Sources */,
 				C0FBFD01226154FC00BADDCD /* categories.swift in Sources */,
 				E83F378D227CDEE100BA6688 /* SignUpVC.swift in Sources */,
 				C089A3C52253D4E500ECF3B0 /* structs.swift in Sources */,

@@ -8,6 +8,9 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseCore
+import FirebaseInstanceID
 
 enum cellAction {
 	case deposit, withdraw
@@ -68,32 +71,26 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
 		} else {
 			let cell = shelf.dequeueReusableCell(withIdentifier: "TransactionTrunk") as! TransactionCell
 			let ThisTransaction = transactionHistory[row - 1]
+			var isNegative = false
+			let amt = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
             if ThisTransaction.type == "sale"{
-                let amt = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
 				cell.descriptionLabel.text = "Deposited \(amt) into Ambassadoor"
 				cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
-				cell.shadowBox.ShadowColor = .systemGreen
             }else if ThisTransaction.type == "paid" {
-                let amt = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
                 cell.descriptionLabel.text = "Spent \(amt) to distribute \"\(ThisTransaction.status)\""
 				cell.amountlabel.text = "-\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
-				cell.shadowBox.ShadowColor = .systemRed
+				isNegative = true
             }else if ThisTransaction.type == "refund" {
-                let amt = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
 				cell.descriptionLabel.text = "User Rejected \"\(ThisTransaction.status)\", You have been credited \(amt)"
 				cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
-				cell.shadowBox.ShadowColor = .systemGreen
             }else if ThisTransaction.type == "commissionrefund" {
-                let amt = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
                 cell.descriptionLabel.text = "Ambassadoor Commission Refunded \"\(ThisTransaction.status)\", You have been credited \(amt)"
                 cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
-                cell.shadowBox.ShadowColor = .systemGreen
             }else if ThisTransaction.type == "postrefund" {
-                let amt = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
                 cell.descriptionLabel.text = "Ambassadoor Refunded the single post, You have been credited \(amt)"
-                cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
-                cell.shadowBox.ShadowColor = .systemGreen
+				cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
             }
+			cell.shadowBox.borderColor = isNegative ? .systemRed : .systemGreen
 			return cell
 			
 		}
@@ -137,23 +134,62 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
+//        if global.launchWay == "shortcut"{
+//
+//        //getCurrentCompanyUser(userID: (Auth.auth().currentUser?.uid)!) { (companyUser, error) in
+//            getDepositDetails(companyUser: (Auth.auth().currentUser?.uid)!) { (deposit, status, error) in
+//
+//                transactionHistory.removeAll()
+//
+//
+//                if status == "success" {
+//                    accountBalance = deposit!.currentBalance!
+//                    for value in deposit!.depositHistory! {
+//
+//                        if let valueDetails = value as? NSDictionary {
+//
+//                            transactionHistory.append(Transaction(description: "", details: valueDetails["cardDetails"] as AnyObject, time: valueDetails["updatedAt"] as! String, amount: Double(valueDetails["amount"] as! String)!, type: valueDetails["type"] as! String, status: valueDetails["status"] as? String ?? "", userName: valueDetails["userName"] as? String ?? ""))
+//                        }
+//                    }
+//                    //transactionDelegate = self
+//                    DispatchQueue.main.async(execute: {
+//                        self.shelf.delegate = self
+//                        self.shelf.dataSource = self
+//                        self.shelf.reloadData()
+//                    })
+//                }
+//
+//            }
+//
+//        }else{
+        
         self.getDeepositDetails()
+//        }
     }
 	
 	var shownBefore = false
     
     @objc func getDeepositDetails() {
+        
 		if !shownBefore {
 			accountBalance = 0.0
 			shownBefore = true
 		}
         let user = Singleton.sharedInstance.getCompanyUser()
-        getDepositDetails(companyUser: user.userID!) { (deposit, status, error) in
+        self.getDepositDetailsByUser(user: user)
+    
+    }
+    
+    func getDepositDetailsByUser(user: CompanyUser) {
+        
+        getDepositDetails(companyUser: (Auth.auth().currentUser?.uid)!) { (deposit, status, error) in
             
             if status == "success" {
                 
                 transactionHistory.removeAll()
                 accountBalance = deposit!.currentBalance!
+                setHapticMenu(companyUserID: (Auth.auth().currentUser?.uid)!, amount: accountBalance)
                 for value in deposit!.depositHistory! {
                     
                     if let valueDetails = value as? NSDictionary {
@@ -179,6 +215,8 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
             }
             
         }
+
+        
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

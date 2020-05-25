@@ -578,10 +578,15 @@ func getAllTemplateOffers(userID: String, completion: @escaping([TemplateOffer],
     
     ref.observeSingleEvent(of: .value, with: { (snapshot) in
         
+        
+        
         if let totalValues = snapshot.value as? NSDictionary{
             var template = [TemplateOffer]()
+            let tempGroup = DispatchGroup()
             
             for value in totalValues.allKeys {
+                tempGroup.enter()
+                print("start =",value)
                 var offer = totalValues[value] as! [String: AnyObject]
                 let post = parseTemplateOffer(offer: offer)
                 offer["posts"] = post as AnyObject
@@ -593,13 +598,44 @@ func getAllTemplateOffers(userID: String, completion: @escaping([TemplateOffer],
                 offer["expiredate"] = dateEx as AnyObject?
                 do {
                     let temValue = try TemplateOffer.init(dictionary: offer)
-                    template.append(temValue)
+                    
+                    if temValue.isFinished() == []{
+                        
+                        let offerPoolRef = Database.database().reference().child("OfferPool").child(userID).child(temValue.offer_ID)
+                        offerPoolRef.observeSingleEvent(of: .value) { (offerPool) in
+                            
+                            if offerPool.exists(){
+                                temValue.isStatistic = true
+                                print("1 =",value)
+                                template.append(temValue)
+                                tempGroup.leave()
+                            }else{
+                                template.append(temValue)
+                                tempGroup.leave()
+                                print("1 =")
+                            }
+                            
+                            
+                            
+                        }
+                        
+                    }else{
+                        template.append(temValue)
+                        tempGroup.leave()
+                        print("end=", value)
+                    }
+                    
+                    
                 } catch let error {
                     print(error)
                 }
                 
             }
-            completion(template, "success")
+            
+            tempGroup.notify(queue: .main) {
+                completion(template, "success")
+            }
+            
         }else{
             completion([], "failure")
         }
