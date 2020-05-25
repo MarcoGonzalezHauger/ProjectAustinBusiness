@@ -21,8 +21,7 @@ class RegisterCompanyVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITex
     @IBOutlet weak var companyName: UITextField!
     @IBOutlet weak var companyEmail: UITextField!
     @IBOutlet weak var companySite: UITextField!
-    @IBOutlet weak var companyDescription: UITextView!
-    @IBOutlet weak var companyMission: UITextField!
+    @IBOutlet weak var missionTextView: UITextView!
     
     var urlString = ""
     var assainedTextField: AnyObject? = nil
@@ -30,8 +29,9 @@ class RegisterCompanyVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITex
     override func viewDidLoad() {
         super.viewDidLoad()
         self.scroll.delegate = self
+		self.picLogo.layer.cornerRadius = 75
         // Do any additional setup after loading the view.
-        self.addDoneButtonOnKeyboard(textView: companyDescription)
+        self.addDoneButtonOnKeyboard(textView: missionTextView)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView){
@@ -48,22 +48,22 @@ class RegisterCompanyVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITex
     // MARK: - Image Picker Delegate
     
     func imagePicked(image: UIImage?, imageUrl: String?) {
-        if image != nil {
-        self.picLogo.setTitle("", for: .normal)
-        self.picLogo.setBackgroundImage(image, for: .normal)
-        self.showActivityIndicator()
-//        self.urlString = uploadImageToFIR(image: image!, path: (Auth.auth().currentUser?.uid)!)
-            uploadImageToFIR(image: image!,childName: "companylogo", path: (Auth.auth().currentUser?.uid)!) { (url, error) in
-                self.hideActivityIndicator()
-                if error == false{
-                self.urlString = url
-                print("URL=",url)
-                }else{
-                self.urlString = ""
-                }
-            }
-        
-        }
+		if image != nil {
+			self.picLogo.setTitle("", for: .normal)
+			self.picLogo.setBackgroundImage(image, for: .normal)
+			self.showActivityIndicator()
+			//        self.urlString = uploadImageToFIR(image: image!, path: (Auth.auth().currentUser?.uid)!)
+			uploadImageToFIR(image: image!,childName: "companylogo", path: (Auth.auth().currentUser?.uid)!) { (url, error) in
+				self.hideActivityIndicator()
+				if error == false{
+					self.urlString = url
+					print("URL=",url)
+				}else{
+					self.urlString = ""
+				}
+			}
+			
+		}
         
     }
     
@@ -71,7 +71,7 @@ class RegisterCompanyVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITex
     
     override func doneButtonAction(){
         
-        self.companyDescription.resignFirstResponder()
+        self.missionTextView.resignFirstResponder()
         let scrollPoint = CGPoint(x: 0, y: 0)
         self.scroll .setContentOffset(scrollPoint, animated: true)
         
@@ -109,8 +109,6 @@ class RegisterCompanyVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITex
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-    
-        
         UIView.animate(withDuration: 0.1) {
             let scrollPoint = CGPoint(x: 0, y: textView.superview!.frame.origin.y)
             self.scroll .setContentOffset(scrollPoint, animated: true)
@@ -121,7 +119,7 @@ class RegisterCompanyVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITex
 	func RegisterCompany() {
 		if CanRegisterCompany(alertUser: true) {
 			showTutorialVideoOnShow = true
-			let companyValue = Company.init(dictionary: ["account_ID":"","name":self.companyName.text!,"logo":self.urlString,"mission":self.companyMission.text!,"website":self.companySite.text!,"owner":self.companyEmail.text!,"description":self.companyDescription.text!,"accountBalance":0.0,"referralcode": self.companyEmail.text!])
+			let companyValue = Company.init(dictionary: ["account_ID":"","name":self.companyName.text!,"logo":self.urlString,"mission":self.missionTextView.text,"website":self.companySite.text!,"owner":self.companyEmail.text!,"description":"","accountBalance":0.0,"referralcode": self.companyEmail.text!])
 			CreateCompany(company: companyValue) { (company) in
 				let companyUser = Singleton.sharedInstance.getCompanyUser()
 				companyUser.companyID = company.account_ID
@@ -157,13 +155,13 @@ class RegisterCompanyVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITex
 	
 	func CanRegisterCompany(alertUser: Bool) -> Bool {
 		if !alertUser {
-			return self.urlString != ""  && self.companyName.text?.count != 0 && isGoodUrl(url: self.companySite.text ?? "") && self.companyDescription.text.count > 0
+			return self.urlString != ""  && self.companyName.text?.count != 0 && isGoodUrl(url: self.companySite.text ?? "") && self.missionTextView.text.count > 0
 		}
 		
 		if self.urlString != "" {
 			if self.companyName.text?.count ?? 0 > 0 {
 				if isGoodUrl(url: self.companySite.text ?? "") {
-					if self.companyDescription.text.count != 0 {
+					if self.missionTextView.text.count != 0 {
 						return true
 					} else {
 						self.showAlertMessage(title: "Alert", message: "Please describe about your company in few lines") {}

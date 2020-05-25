@@ -147,8 +147,6 @@ class Offer: NSObject {
         
         if let allpostCon = dictionary["allPostsConfirmedSince"] as? Date{
            self.allPostsConfirmedSince = allpostCon
-        }else{
-            self.allPostsConfirmedSince = DateFormatManager.sharedInstance.getDateFromStringWithAutoFormat(dateString: dictionary["allPostsConfirmedSince"] as! String) ?? nil
         }
         self.isAccepted = dictionary["isAccepted"] as! Bool
         self.ownerUserID = dictionary["ownerUserID"] as! String

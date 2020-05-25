@@ -11,7 +11,11 @@ import UIKit
 import SDWebImage
 import Firebase
 
-class ViewCompanyVC: BaseVC, ImagePickerDelegate {
+class ViewCompanyVC: BaseVC, ImagePickerDelegate, webChangedDelegate {
+	
+	func websiteChanged(_ newWebsite: String) {
+		website = newWebsite
+	}
 	
 	func imagePicked(image: UIImage?, imageUrl: String?) {
 		if image != nil {
@@ -42,6 +46,7 @@ class ViewCompanyVC: BaseVC, ImagePickerDelegate {
 	@IBOutlet weak var changeWebsite: UIButton!
 	@IBOutlet weak var companyNameInset: NSLayoutConstraint!
 	@IBOutlet weak var visitWebsite: UIButton!
+	@IBOutlet weak var referralLabel: UILabel!
 	
 	var logo: String?
 	var website: String? {
@@ -173,6 +178,7 @@ class ViewCompanyVC: BaseVC, ImagePickerDelegate {
 	
 	func updateCompanyInfo() {
 		
+		referralLabel.text = YourCompany.referralcode
 		website = YourCompany.website
 		logo = YourCompany.logo
 		companyName.text = YourCompany.name
@@ -236,6 +242,10 @@ class ViewCompanyVC: BaseVC, ImagePickerDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if let destination = segue.destination as? GetPictureVC {
 			destination.delegate = self
+		}
+		if let dest = segue.destination as? ChangeWebsiteVC {
+			dest.setDefaultUrl(website)
+			dest.webChangedDelegate = self
 		}
     }
 

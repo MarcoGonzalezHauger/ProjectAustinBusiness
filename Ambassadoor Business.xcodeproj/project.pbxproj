@@ -65,6 +65,8 @@
 		E84600852273A92A00CF60F2 /* BusinessLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84600842273A92A00CF60F2 /* BusinessLabel.swift */; };
 		E84600872273AF9100CF60F2 /* ImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84600862273AF9100CF60F2 /* ImageViewExtensions.swift */; };
 		E846008A2273B0B300CF60F2 /* Savvy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84600892273B0B300CF60F2 /* Savvy.swift */; };
+		E861588024789C8B006D5450 /* ChangeWebsiteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E861587F24789C8B006D5450 /* ChangeWebsiteVC.swift */; };
+		E86158822478A7CD006D5450 /* ReferralInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86158812478A7CD006D5450 /* ReferralInfoVC.swift */; };
 		E8769168236F9A8A0026E07D /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8769166236F9A830026E07D /* LocalAuthentication.framework */; };
 		E899878323D3B8F20093FC0E /* CurseWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899878223D3B8F20093FC0E /* CurseWords.swift */; };
 		E8C3694222161B3000AE12D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C3694122161B3000AE12D7 /* AppDelegate.swift */; };
@@ -146,6 +148,8 @@
 		E84600842273A92A00CF60F2 /* BusinessLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessLabel.swift; sourceTree = "<group>"; };
 		E84600862273AF9100CF60F2 /* ImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtensions.swift; sourceTree = "<group>"; };
 		E84600892273B0B300CF60F2 /* Savvy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Savvy.swift; sourceTree = "<group>"; };
+		E861587F24789C8B006D5450 /* ChangeWebsiteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeWebsiteVC.swift; sourceTree = "<group>"; };
+		E86158812478A7CD006D5450 /* ReferralInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralInfoVC.swift; sourceTree = "<group>"; };
 		E8769166236F9A830026E07D /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		E899878223D3B8F20093FC0E /* CurseWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurseWords.swift; sourceTree = "<group>"; };
 		E8B08C244165BD27DA5136C1 /* Pods_Ambassadoor_Business.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ambassadoor_Business.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -381,6 +385,8 @@
 			isa = PBXGroup;
 			children = (
 				E8E54684227BA19C00775A07 /* ViewCompanyVC.swift */,
+				E861587F24789C8B006D5450 /* ChangeWebsiteVC.swift */,
+				E86158812478A7CD006D5450 /* ReferralInfoVC.swift */,
 			);
 			path = Company;
 			sourceTree = "<group>";
@@ -556,6 +562,7 @@
 				E8F8AAC922C8492D0047BF5E /* ViewOffersVC.swift in Sources */,
 				E80B060A22A08D49002B9699 /* MoneyField.swift in Sources */,
 				E899878323D3B8F20093FC0E /* CurseWords.swift in Sources */,
+				E86158822478A7CD006D5450 /* ReferralInfoVC.swift in Sources */,
 				B70DEC7C232C2CFA00580FD7 /* TransactionDetailsVC.swift in Sources */,
 				B72CB50A22E7024500958AE0 /* UIViewExtension.swift in Sources */,
 				E80B060822A07F63002B9699 /* WithdrawVC.swift in Sources */,
@@ -565,6 +572,7 @@
 				E84600802273A65600CF60F2 /* StandardNC.swift in Sources */,
 				B712C4892306B6C900728758 /* WebVC.swift in Sources */,
 				E844EAC22471DE48000CE74F /* mainTabBarController.swift in Sources */,
+				E861588024789C8B006D5450 /* ChangeWebsiteVC.swift in Sources */,
 				C0FBFD01226154FC00BADDCD /* categories.swift in Sources */,
 				E83F378D227CDEE100BA6688 /* SignUpVC.swift in Sources */,
 				C089A3C52253D4E500ECF3B0 /* structs.swift in Sources */,
