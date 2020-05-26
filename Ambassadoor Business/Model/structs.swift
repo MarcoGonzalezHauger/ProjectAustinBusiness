@@ -193,6 +193,7 @@ class TemplateOffer: Offer {
     var status: String
 	var lastEdited: Date
     var isStatistic: Bool
+    var offerStatistics: OfferStatistic?
 	
 	func isFinished() -> [String] {
 		var returnValue: [String] = []

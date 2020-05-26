@@ -245,18 +245,24 @@ class AddPostVC: BaseVC, NCDelegate, UITableViewDelegate, UITableViewDataSource,
 			}
 		}
         let post  = Post.init(image: "", instructions: InstructionsTextView.text!, captionMustInclude: "", products: [], post_ID: "", PostType: PostTypeToText(posttype: .SinglePost), confirmedSince: Date(), isConfirmed: false, hashCaption: "", status: "available", hashtags: hashes, keywords: phrases, isPaid: false, PayAmount: 0.0)
-		getCreatePostUniqueID(param: post) { (postValue, error) in
-			if self.index != nil {
-				global.post[self.index!] = postValue
-			}else{
-				global.post.append(postValue)
-			}
-
-			self.createLocalNotification(notificationName: "reload", userInfo: [:])
-			if andDismiss {
-				self.navigationController?.popViewController(animated: true)
-			}
-		}
+        
+        if self.index != nil{
+           global.post[self.index!] = post
+            self.createLocalNotification(notificationName: "reload", userInfo: [:])
+            if andDismiss {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }else{
+            
+            getCreatePostUniqueID(param: post) { (postValue, error) in
+                global.post.append(postValue)
+                self.createLocalNotification(notificationName: "reload", userInfo: [:])
+                if andDismiss {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
+            
+        }
 	}
     
     @IBAction override func addLeftAction(sender: UIBarButtonItem) {

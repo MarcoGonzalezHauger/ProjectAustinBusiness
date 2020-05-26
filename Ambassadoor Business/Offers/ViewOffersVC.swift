@@ -79,6 +79,7 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ViewStat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         if indexPath.row != 0 {
             let template = global.OfferDrafts[indexPath.row - 1]
+            template.offerStatistics?.getInformation()
             self.performSegue(withIdentifier: "toCreateOfferView", sender: template)
         }
     }
