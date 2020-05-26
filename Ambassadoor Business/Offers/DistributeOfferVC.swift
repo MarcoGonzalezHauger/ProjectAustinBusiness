@@ -364,7 +364,8 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
         }
         let path = Auth.auth().currentUser!.uid + "/" + self.templateOffer!.offer_ID
         sentOutOffersToOfferPool(pathString: path, templateOffer: self.templateOffer!) { (offer, status) in
-            
+            createTemplateOffer(pathString: path, edited: true, templateOffer: offer) { (tempOffer, status) in
+            }
             global.post.removeAll()
             self.createLocalNotification(notificationName: "reloadOffer", userInfo: [:])
             self.navigationController?.setNavigationBarHidden(true, animated: false)
@@ -506,6 +507,8 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
     
                 amount = user!.accountBalance == nil ? referralAmount : user!.accountBalance! + referralAmount
                 
+                offer.referralID = user?.id
+                
                 updateInfluencerAmountByReferral(user: user!, amount: amount)
                 
                 sentOutTransactionToInfluencer(pathString: (user?.id)!, transactionData: transactionHistory)
@@ -530,7 +533,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                 
                 var depositAmt = 0.0
                 var depositHistory = [Any]()
-                
+                offer.referralID = company!.userID!
                 
                 depositAmt = status == "new" ? referralAmount : deposit!.currentBalance ?? 0.0 + referralAmount
                 
