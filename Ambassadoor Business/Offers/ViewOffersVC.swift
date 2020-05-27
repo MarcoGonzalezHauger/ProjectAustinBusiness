@@ -16,16 +16,33 @@ class composeButtonCell: UITableViewCell {
     @IBOutlet weak var composebutton: UIButton!
 }
 
+protocol ViewStatisticDelegate {
+    func viewStatisticAction(offer: TemplateOffer)
+}
+
 class viewOfferCell: UITableViewCell {
 	@IBOutlet weak var offerviewoutline: UIView!
 	@IBOutlet weak var offerName: UILabel!
 	@IBOutlet weak var postDetails: UILabel!
 	@IBOutlet weak var incompleteLabel: UILabel!
 	@IBOutlet weak var lastEditedLabel: UILabel!
+    @IBOutlet weak var viewStatistics: UIButton!
+    var offer: TemplateOffer?
+    
+    var viewStatistic: ViewStatisticDelegate? = nil
+    
+    @IBAction func viewStatisticAction(sender: UIButton){
+        
+        self.viewStatistic?.viewStatisticAction(offer: offer!)
+        
+    }
 	
 }
 
-class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
+class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ViewStatisticDelegate {
+    func viewStatisticAction(offer: TemplateOffer) {
+        
+    }
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return global.OfferDrafts.count + 1
@@ -40,10 +57,13 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
 		} else {
 			let thisTemplate: TemplateOffer = global.OfferDrafts[indexPath.row - 1]
 			let cell = shelf.dequeueReusableCell(withIdentifier: "offerButton") as! viewOfferCell
+            cell.offer = thisTemplate
 			cell.offerName.text = thisTemplate.title == "" ? "Untitled" : thisTemplate.title
 			cell.offerName.textColor = thisTemplate.title == "" ? UIColor.gray : GetForeColor()
 			cell.postDetails.text = thisTemplate.GetSummary()
 			cell.incompleteLabel.isHidden = thisTemplate.isFinished() == []
+            cell.viewStatistic = self
+            cell.viewStatistics.isHidden = !thisTemplate.isStatistic
 			cell.lastEditedLabel.text = "Last edited " + DateToAgo(date: thisTemplate.lastEdited)
 			return cell
 		}
@@ -51,7 +71,7 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         if indexPath.row == 0 {
-			return 70
+			return 74
         }
 		return 276
     }
@@ -59,6 +79,7 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         if indexPath.row != 0 {
             let template = global.OfferDrafts[indexPath.row - 1]
+            template.offerStatistics?.getInformation()
             self.performSegue(withIdentifier: "toCreateOfferView", sender: template)
         }
     }

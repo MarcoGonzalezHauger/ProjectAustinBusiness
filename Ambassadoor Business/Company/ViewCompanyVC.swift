@@ -178,7 +178,8 @@ class ViewCompanyVC: BaseVC, ImagePickerDelegate, webChangedDelegate {
 	
 	func updateCompanyInfo() {
 		
-		referralLabel.text = YourCompany.referralcode
+		//referralLabel.text = YourCompany.referralcode
+        referralLabel.text = Singleton.sharedInstance.getCompanyUser().businessReferral ?? ""
 		website = YourCompany.website
 		logo = YourCompany.logo
 		companyName.text = YourCompany.name

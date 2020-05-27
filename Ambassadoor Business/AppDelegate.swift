@@ -19,6 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
 	var window: UIWindow?
     
+    enum ShortcutIdentifier: String {
+        case Offers = "com.ambassadoor.offers"
+        case Account = "com.ambassadoor.account"
+        case Money = "com.ambassadoor.money"
+    }
+    
     override init() {
 //		FirebaseApp.configure()
 //        Database.database().isPersistenceEnabled = false
@@ -30,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         FirebaseApp.configure()
         Database.database().isPersistenceEnabled = false
         InitializeZipCodeAPI(completed: nil)
-        InitializeZipCodeAPI(completed: nil)
+        //InitializeZipCodeAPI(completed: nil)
         Stripe.setDefaultPublishableKey("pk_live_k9m0LJO9sODGltsithrwmvqH00laWBjcra")
         //BTAppSwitch.setReturnURLScheme("com.develop.sns.paypal")
         getAdminValues { (error) in
@@ -46,10 +52,123 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
         
+        if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
+            
+            //DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                //global.launchWay = "shortcut"
+//                let viewController = instantiateViewController(storyboard: "Main", reference: "tabbar") as! UITabBarController
+//                self.handleHapticAction(shortcutItem, tabController: viewController)
+//                self.window?.rootViewController = viewController
+                
+            //}
+            autoLoginCheckAction(launchOptions: launchOptions)
+            return false
+            
+            
+        }else{
+           // autoLoginCheckAction(launch: launchOptions)
+            autoLoginCheckAction(launchOptions: launchOptions)
+        }
         
+       
+        
+            
         NotificationCenter.default.addObserver(self, selector: #selector(tokenRefreshNotification(_:)), name: NSNotification.Name.InstanceIDTokenRefresh, object: nil)
+        
 		return true
 	}
+    
+    func autoLoginCheckAction(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
+        
+        if ((Auth.auth().currentUser?.uid) != nil) {
+                            
+//                Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+                    
+                        
+                        getCurrentCompanyUser(userID: (Auth.auth().currentUser?.uid)!) { (companyUser, error) in
+                            if companyUser != nil {
+                                Singleton.sharedInstance.setCompanyUser(user: companyUser!)
+                                if Singleton.sharedInstance.getCompanyUser().isCompanyRegistered!{
+                                    
+                                    let user = Singleton.sharedInstance.getCompanyUser().companyID!
+                                    
+                                    getCompany(companyID: user) { (company, error) in
+                                        
+                                        if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
+                                            
+                                            Singleton.sharedInstance.setCompanyDetails(company: company!)
+                                            YourCompany = company
+                                            
+                                            DispatchQueue.main.async(execute: {
+                                                //self.instantiateToMainScreen()
+                                            let viewController = instantiateViewController(storyboard: "Main", reference: "tabbar") as! UITabBarController
+                                                self.handleHapticAction(shortcutItem, tabController: viewController)
+                                                self.window?.rootViewController = viewController
+                                            })
+                                            
+                                        }else{
+                                        
+                                        Singleton.sharedInstance.setCompanyDetails(company: company!)
+                                        YourCompany = company
+                                        downloadBeforeLoad()
+                                        setHapticMenu(companyUserID: (Auth.auth().currentUser?.uid)!)
+                                        DispatchQueue.main.async(execute: {
+                                            //self.instantiateToMainScreen()
+                                        let viewController = instantiateViewController(storyboard: "Main", reference: "tabbar")
+                                            self.window?.rootViewController = viewController as! UITabBarController
+                                        })
+                                        }
+                                        
+                                    
+                                    }
+                                    
+                                }
+                            }
+                            
+                        }
+                        
+                    
+                    
+                
+                
+            
+            
+        }else{
+            let viewController = instantiateViewController(storyboard: "Onboarding", reference: "signinnavigation")
+            self.window?.rootViewController = viewController as! UITabBarController
+        }
+        
+    }
+    
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void){
+        print(shortcutItem.type)
+        
+        DispatchQueue.main.async(execute: {
+           let viewReference = instantiateViewController(storyboard: "Main", reference: "tabbar") as! UITabBarController
+            self.handleHapticAction(shortcutItem, tabController: viewReference)
+            self.window?.rootViewController = viewReference
+        })
+
+    }
+    
+    func handleHapticAction(_ shortcutItem: UIApplicationShortcutItem, tabController: UITabBarController) {
+        
+        let shortcutType = shortcutItem.type
+        
+        let checkIfIdentifier = ShortcutIdentifier.init(rawValue: shortcutType)
+        
+        switch checkIfIdentifier {
+        case .Offers:
+            tabController.selectedIndex = 3
+        case .Account:
+            tabController.selectedIndex = 0
+        case .Money:
+            tabController.selectedIndex = 1
+        default:
+            tabController.selectedIndex = 1
+        }
+        
+    }
     
     func application(_ application: UIApplication,didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
 

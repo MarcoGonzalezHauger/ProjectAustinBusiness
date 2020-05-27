@@ -8,14 +8,9 @@
 //
 
 import UIKit
-
-enum cellAction {
-	case deposit, withdraw
-}
-
-protocol cellDelegate {
-	func actionSent(action: cellAction)
-}
+import Firebase
+import FirebaseCore
+import FirebaseInstanceID
 
 struct Transaction {
 	let description: String
@@ -27,82 +22,57 @@ struct Transaction {
     let userName: String
 }
 
-class BalanceCell: UITableViewCell {
-	var delegate: cellDelegate?
-	@IBOutlet weak var balanceLabel: UILabel!
-	@IBAction func deposit(_ sender: Any) {
-		delegate?.actionSent(action: .deposit)
-	}
-	@IBAction func withdraw(_ sender: Any) {
-		delegate?.actionSent(action: .withdraw)
-	}
-}
-
 class TransactionCell: UITableViewCell {
 	@IBOutlet weak var descriptionLabel: UILabel!
 	@IBOutlet weak var amountlabel: UILabel!
 	@IBOutlet weak var shadowBox: ShadowView!
 }
 
-class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, TransactionListener, cellDelegate {
+class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, TransactionListener {
 	
-	func actionSent(action: cellAction) {
-		if action == .deposit {
-			//depositVC must appear.
-		} else if action == .withdraw {
-			//withdraw VC must appear.
-		}
-	}
+	@IBOutlet weak var balanceLabel: UILabel!
+	@IBOutlet weak var balBox: ShadowView!
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return transactionHistory.count + 1
+		return transactionHistory.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let row = indexPath.row
-		if row == 0 {
-			let cell = shelf.dequeueReusableCell(withIdentifier: "BalanceBox") as! BalanceCell
-			cell.balanceLabel.text = NumberToPrice(Value: accountBalance, enforceCents: true)
-			cell.delegate = self
-			return cell
-		} else {
-			let cell = shelf.dequeueReusableCell(withIdentifier: "TransactionTrunk") as! TransactionCell
-			let ThisTransaction = transactionHistory[row - 1]
-			var isNegative = false
-			let amt = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
-            if ThisTransaction.type == "sale"{
-				cell.descriptionLabel.text = "Deposited \(amt) into Ambassadoor"
-				cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
-            }else if ThisTransaction.type == "paid" {
-                cell.descriptionLabel.text = "Spent \(amt) to distribute \"\(ThisTransaction.status)\""
-				cell.amountlabel.text = "-\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
-				isNegative = true
-            }else if ThisTransaction.type == "refund" {
-				cell.descriptionLabel.text = "User Rejected \"\(ThisTransaction.status)\", You have been credited \(amt)"
-				cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
-            }else if ThisTransaction.type == "commissionrefund" {
-                cell.descriptionLabel.text = "Ambassadoor Commission Refunded \"\(ThisTransaction.status)\", You have been credited \(amt)"
-                cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
-            }else if ThisTransaction.type == "postrefund" {
-                cell.descriptionLabel.text = "Ambassadoor Refunded the single post, You have been credited \(amt)"
-				cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
-            }
-			cell.shadowBox.borderColor = isNegative ? .systemRed : .systemGreen
-			return cell
-			
+		let cell = shelf.dequeueReusableCell(withIdentifier: "TransactionTrunk") as! TransactionCell
+		let ThisTransaction = transactionHistory[row]
+		
+		
+		
+		
+		
+		let amt = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
+		if ThisTransaction.type == "sale"{
+			cell.descriptionLabel.text = "Deposited \(amt) into Ambassadoor"
+			cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
+		}else if ThisTransaction.type == "paid" {
+			cell.descriptionLabel.text = "Spent \(amt) to distribute \"\(ThisTransaction.status)\""
+			cell.amountlabel.text = "-\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
+		}else if ThisTransaction.type == "refund" {
+			cell.descriptionLabel.text = "User Rejected \"\(ThisTransaction.status)\", You have been credited \(amt)"
+			cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
+		}else if ThisTransaction.type == "commissionrefund" {
+			cell.descriptionLabel.text = "Ambassadoor Commission Refunded \"\(ThisTransaction.status)\", You have been credited \(amt)"
+			cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
+		}else if ThisTransaction.type == "postrefund" {
+			cell.descriptionLabel.text = "Ambassadoor Refunded the single post, You have been credited \(amt)"
+			cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
 		}
+		cell.shadowBox.borderColor = .black // Refer to PowerPoint.
+		return cell
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let row = indexPath.row
-		if row > 0 {
-			
-		}
 		shelf.deselectRow(at: indexPath, animated: false)
 	}
 	
 	func BalanceChange() {
-		shelf.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+		balanceLabel.text = NumberToPrice(Value: accountBalance, enforceCents: true)
 	}
 	
 	func TransactionHistoryChanged() {
@@ -112,20 +82,40 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
 	@IBOutlet weak var shelf: UITableView!
 	
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		let row = indexPath.row
-		if row == 0 {
-			return 230
-		}
-		if row == transactionHistory.count {
-			return 90
-		} else {
-			return 80
-		}
+		return 80
 	}
+	
+	let gradientLayer = CAGradientLayer()
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
         
+		shelf.alwaysBounceVertical = false
+		shelf.contentInset = UIEdgeInsets.init(top: 26, left: 0, bottom: 16, right: 0)
+		
+		var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+
+		gradientLayer.frame = CGRect(x: 0, y: shelf.frame.origin.y - 26.0, width: shelf.bounds.width - 5, height: 26.0)
+		var backColor = GetBackColor()
+		if #available(iOS 13.0, *) {
+			backColor = .secondarySystemBackground
+		}
+		backColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+		
+		let toColor = UIColor.init(red: red, green: green, blue: blue, alpha: 0)
+		
+		gradientLayer.colors = [backColor.cgColor, toColor.cgColor]
+		
+		view.layer.addSublayer(gradientLayer)
+		
+		gradientLayer.zPosition = 1000
+		balBox.layer.zPosition = 1001
+		
+		getDeepositDetails()
+		
         NotificationCenter.default.addObserver(self, selector: #selector(self.getDeepositDetails), name: Notification.Name.init(rawValue: "reloadDeposit"), object: nil)
     }
     
@@ -137,17 +127,25 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
 	var shownBefore = false
     
     @objc func getDeepositDetails() {
+        
 		if !shownBefore {
 			accountBalance = 0.0
 			shownBefore = true
 		}
         let user = Singleton.sharedInstance.getCompanyUser()
-        getDepositDetails(companyUser: user.userID!) { (deposit, status, error) in
+        self.getDepositDetailsByUser(user: user)
+    
+    }
+    
+    func getDepositDetailsByUser(user: CompanyUser) {
+        
+        getDepositDetails(companyUser: (Auth.auth().currentUser?.uid)!) { (deposit, status, error) in
             
             if status == "success" {
                 
                 transactionHistory.removeAll()
                 accountBalance = deposit!.currentBalance!
+                setHapticMenu(companyUserID: (Auth.auth().currentUser?.uid)!, amount: accountBalance)
                 for value in deposit!.depositHistory! {
                     
                     if let valueDetails = value as? NSDictionary {
@@ -173,6 +171,8 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
             }
             
         }
+
+        
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

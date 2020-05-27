@@ -458,11 +458,93 @@ func sentOutOffers(pathString: String, templateOffer: TemplateOffer, completion:
 // We do separate Commission and User Amount Sentout Offers too
 func sentOutOffersToOfferPool(pathString: String, templateOffer: TemplateOffer, completion: @escaping (TemplateOffer,Bool) -> ()) {
     print(templateOffer.posts.count)
+    
     let offersRef = Database.database().reference().child("OfferPool").child(pathString)
-    var offerDictionary: [String: Any] = [:]
-    offerDictionary = API.serializeTemplateOffer(offer: templateOffer)
-    offersRef.updateChildValues(offerDictionary)
-    completion(templateOffer, true)
+    
+    offersRef.observeSingleEvent(of: .value) { (offerPoolSnap) in
+        
+        if offerPoolSnap.exists(){
+           
+            if let offerExisted = offerPoolSnap.value as? [String: AnyObject]{
+                
+                do {
+                    let tempOfferPool = try TemplateOffer.init(dictionary: offerExisted)
+                    print(tempOfferPool.cashPower!)
+                    tempOfferPool.cashPower! += templateOffer.cashPower!
+                    
+                    tempOfferPool.category = templateOffer.category
+                    
+                    tempOfferPool.genders = templateOffer.genders
+                    
+                    tempOfferPool.locationFilter = templateOffer.locationFilter
+                    
+                    tempOfferPool.money += templateOffer.money
+                    
+                    tempOfferPool.originalAmount += templateOffer.originalAmount
+                    
+                    tempOfferPool.commission! += templateOffer.commission!
+                    
+                    tempOfferPool.incresePay! += templateOffer.incresePay!
+                    
+                    tempOfferPool.offerdate = templateOffer.offerdate
+                    
+                    tempOfferPool.referralAmount! += templateOffer.referralAmount!
+                    
+                    tempOfferPool.referralCommission! += templateOffer.referralCommission!
+                    
+                    tempOfferPool.mustBeTwentyOne = templateOffer.mustBeTwentyOne
+                    
+                    tempOfferPool.referralID = templateOffer.referralID
+                    
+                    var updatedPosts = [Post]()
+                    
+                    for postValue in templateOffer.posts {
+                        
+                        var matchingTag = false
+                        
+                        for (index,tempPostValue) in tempOfferPool.posts.enumerated() {
+                            
+                            if tempPostValue.post_ID == postValue.post_ID {
+                               matchingTag = true
+                               tempOfferPool.posts.remove(at: index)
+                                updatedPosts.append(postValue)
+                            }
+                            
+                        }
+                        
+                        if !matchingTag{
+                           updatedPosts.append(postValue)
+                        }
+                        
+                        
+                    }
+                    
+                    
+                    tempOfferPool.posts.append(contentsOf: updatedPosts)
+                    
+                    var offerDictionary: [String: Any] = [:]
+                    offerDictionary = API.serializeTemplateOffer(offer: tempOfferPool)
+                    offersRef.updateChildValues(offerDictionary)
+                    completion(tempOfferPool, true)
+                    
+                    
+                } catch let error {
+                    print(error)
+                }
+                
+            }
+            
+        }else{
+            
+            var offerDictionary: [String: Any] = [:]
+            offerDictionary = API.serializeTemplateOffer(offer: templateOffer)
+            offersRef.updateChildValues(offerDictionary)
+            completion(templateOffer, true)
+            
+        }
+        
+    }
+    
 }
 
 func completedOffersToUsers(pathString: String, templateOffer: TemplateOffer) {
@@ -578,10 +660,15 @@ func getAllTemplateOffers(userID: String, completion: @escaping([TemplateOffer],
     
     ref.observeSingleEvent(of: .value, with: { (snapshot) in
         
+        
+        
         if let totalValues = snapshot.value as? NSDictionary{
             var template = [TemplateOffer]()
+            let tempGroup = DispatchGroup()
             
             for value in totalValues.allKeys {
+                tempGroup.enter()
+                print("start =",value)
                 var offer = totalValues[value] as! [String: AnyObject]
                 let post = parseTemplateOffer(offer: offer)
                 offer["posts"] = post as AnyObject
@@ -593,13 +680,65 @@ func getAllTemplateOffers(userID: String, completion: @escaping([TemplateOffer],
                 offer["expiredate"] = dateEx as AnyObject?
                 do {
                     let temValue = try TemplateOffer.init(dictionary: offer)
-                    template.append(temValue)
+                    
+                    if temValue.isFinished() == []{
+                        
+                        let offerPoolRef = Database.database().reference().child("OfferPool").child(userID).child(temValue.offer_ID)
+                        offerPoolRef.observeSingleEvent(of: .value) { (offerPool) in
+                            
+                            if offerPool.exists(){
+                                temValue.isStatistic = true
+                                print("1 =",value)
+                                template.append(temValue)
+                                
+                                if let offerPoolOffer = offerPool.value as? [String: AnyObject]{
+                                    
+                                    do {
+                                        let offer = try TemplateOffer.init(dictionary: offerPoolOffer)
+                                        let offerStat = OfferStatistic.init(offer: offer)
+                                        temValue.offerStatistics = offerStat
+                                        temValue.offerStatistics?.getInformation()
+                                        
+                                    } catch let error {
+                                        print(error)
+                                    }
+                                    
+                                    //if let accepted = offerPoolOffer["accepted"] as? [String]{
+                                        
+                                       
+                                        
+                                    //}
+                                    
+                                }
+                                
+                                tempGroup.leave()
+                            }else{
+                                template.append(temValue)
+                                tempGroup.leave()
+                                print("1 =")
+                            }
+                            
+                            
+                            
+                        }
+                        
+                    }else{
+                        template.append(temValue)
+                        tempGroup.leave()
+                        print("end=", value)
+                    }
+                    
+                    
                 } catch let error {
                     print(error)
                 }
                 
             }
-            completion(template, "success")
+            
+            tempGroup.notify(queue: .main) {
+                completion(template, "success")
+            }
+            
         }else{
             completion([], "failure")
         }

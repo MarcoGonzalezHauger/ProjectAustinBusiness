@@ -64,6 +64,9 @@ class CentralVariables {
     
     var cachedImageList = [CachedImages]()
     var distributedOffers = [OfferStatistic]()
+    
+    var launchWay = ""
+    
 	
 }
 

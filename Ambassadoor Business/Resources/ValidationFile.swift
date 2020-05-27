@@ -135,12 +135,14 @@ class Singleton {
     
     func setCompanyUser(user: CompanyUser) {
         company = user
+        //UserDefaults.standard.set(user, forKey: "companyuser")
     }
     
     // Get Saved Business User Details
     
     func getCompanyUser() -> CompanyUser {
         return company
+        //return UserDefaults.standard.value(forKey: "companyuser") as! CompanyUser
     }
     
     // Save Company Details of the login Business User
