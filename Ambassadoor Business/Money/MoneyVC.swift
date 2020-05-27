@@ -12,6 +12,16 @@ import Firebase
 import FirebaseCore
 import FirebaseInstanceID
 
+struct Transaction {
+	let description: String
+	let details: AnyObject
+	let time: String
+	let amount: Double
+    let type: String
+    let status: String
+    let userName: String
+}
+
 class TransactionCell: UITableViewCell {
 	@IBOutlet weak var descriptionLabel: UILabel!
 	@IBOutlet weak var amountlabel: UILabel!
@@ -21,6 +31,7 @@ class TransactionCell: UITableViewCell {
 class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, TransactionListener {
 	
 	@IBOutlet weak var balanceLabel: UILabel!
+	@IBOutlet weak var balBox: ShadowView!
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return transactionHistory.count
@@ -74,9 +85,37 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
 		return 80
 	}
 	
+	let gradientLayer = CAGradientLayer()
+	
 	override func viewDidLoad() {
         super.viewDidLoad()
         
+		shelf.alwaysBounceVertical = false
+		shelf.contentInset = UIEdgeInsets.init(top: 26, left: 0, bottom: 16, right: 0)
+		
+		var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+
+		gradientLayer.frame = CGRect(x: 0, y: shelf.frame.origin.y - 26.0, width: shelf.bounds.width - 5, height: 26.0)
+		var backColor = GetBackColor()
+		if #available(iOS 13.0, *) {
+			backColor = .secondarySystemBackground
+		}
+		backColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+		
+		let toColor = UIColor.init(red: red, green: green, blue: blue, alpha: 0)
+		
+		gradientLayer.colors = [backColor.cgColor, toColor.cgColor]
+		
+		view.layer.addSublayer(gradientLayer)
+		
+		gradientLayer.zPosition = 1000
+		balBox.layer.zPosition = 1001
+		
+		getDeepositDetails()
+		
         NotificationCenter.default.addObserver(self, selector: #selector(self.getDeepositDetails), name: Notification.Name.init(rawValue: "reloadDeposit"), object: nil)
     }
     

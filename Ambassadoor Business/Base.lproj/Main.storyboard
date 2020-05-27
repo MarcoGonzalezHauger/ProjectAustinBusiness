@@ -399,7 +399,7 @@ Referral Code:</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PnE-aS-xWp">
-                                <rect key="frame" x="0.0" y="322" width="414" height="491"/>
+                                <rect key="frame" x="0.0" y="302" width="414" height="511"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TransactionTrunk" rowHeight="90" id="jCf-K5-JVn" customClass="TransactionCell" customModule="Ambassadoor_Business" customModuleProvider="target">
@@ -582,7 +582,7 @@ Referral Code:</string>
                         </subviews>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="PnE-aS-xWp" firstAttribute="top" secondItem="iUJ-4d-GaA" secondAttribute="bottom" id="Cb9-db-ckT"/>
+                            <constraint firstItem="PnE-aS-xWp" firstAttribute="top" secondItem="iUJ-4d-GaA" secondAttribute="bottom" constant="-20" id="Cb9-db-ckT"/>
                             <constraint firstItem="T6u-w0-1uw" firstAttribute="leading" secondItem="glP-xf-78Q" secondAttribute="leading" id="Duk-Ic-8mL"/>
                             <constraint firstItem="T6u-w0-1uw" firstAttribute="top" secondItem="lqD-5A-X6p" secondAttribute="top" constant="-42" id="I09-dp-DJA"/>
                             <constraint firstItem="PnE-aS-xWp" firstAttribute="leading" secondItem="lqD-5A-X6p" secondAttribute="leading" id="ME4-hX-7xe"/>
@@ -597,6 +597,7 @@ Referral Code:</string>
                     </view>
                     <tabBarItem key="tabBarItem" title="Money" image="coloncurrencysign.circle" catalog="system" id="4eJ-Ab-8ei"/>
                     <connections>
+                        <outlet property="balBox" destination="iUJ-4d-GaA" id="giO-nv-Sh6"/>
                         <outlet property="balanceLabel" destination="7Ie-IZ-CQt" id="sf5-Z4-vs6"/>
                         <outlet property="shelf" destination="PnE-aS-xWp" id="DRI-yJ-Il2"/>
                     </connections>
@@ -1058,15 +1059,15 @@ Send out an offer and you will be updated in real-time about influencers activit
                                 <rect key="frame" x="0.0" y="99" width="414" height="714"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="composeButton" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="composeButton" rowHeight="66" id="tKh-lf-tzE" customClass="composeButtonCell" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="66"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="composeButton" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="composeButton" rowHeight="74" id="tKh-lf-tzE" customClass="composeButtonCell" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="74"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tKh-lf-tzE" id="ex1-YR-YmR">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="74"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6TR-OX-q16" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="3" width="398" height="60"/>
+                                                    <rect key="frame" x="8" y="7" width="398" height="60"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zou-4p-ZrV">
                                                             <rect key="frame" x="5" y="5" width="388" height="50"/>
@@ -1106,7 +1107,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                             <constraints>
                                                 <constraint firstItem="6TR-OX-q16" firstAttribute="leading" secondItem="ex1-YR-YmR" secondAttribute="leading" constant="8" id="5XJ-VC-Kmm"/>
                                                 <constraint firstAttribute="trailing" secondItem="6TR-OX-q16" secondAttribute="trailing" constant="8" id="mG8-Ib-3LQ"/>
-                                                <constraint firstAttribute="bottom" secondItem="6TR-OX-q16" secondAttribute="bottom" constant="3" id="qcT-sa-jJ5"/>
+                                                <constraint firstAttribute="bottom" secondItem="6TR-OX-q16" secondAttribute="bottom" constant="7" id="qcT-sa-jJ5"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1116,7 +1117,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="offerButton" rowHeight="276" id="6sd-Y8-ShH" customClass="viewOfferCell" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="94" width="414" height="276"/>
+                                        <rect key="frame" x="0.0" y="102" width="414" height="276"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6sd-Y8-ShH" id="8Gu-CU-rgf">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="276"/>
@@ -1291,7 +1292,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s3s-at-Cbl" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2122" y="1229"/>
+            <point key="canvasLocation" x="2121.739130434783" y="1228.7946428571429"/>
         </scene>
         <!--Add OfferVC-->
         <scene sceneID="rJJ-kO-sli">
