@@ -14,7 +14,7 @@ class ReferralInfoVC: UIViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
 
-		referralLabel.text = YourCompany!.referralcode ?? ""
+		referralLabel.text = Singleton.sharedInstance.getCompanyUser().businessReferral ?? ""
     }
 	
 	@IBAction func doneButtonPressed(_ sender: Any) {
