@@ -346,7 +346,8 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 		if isSavable(alertUser: true) {
 			SaveThisOffer { (template, bool1) in
 				self.segueOffer = template
-				self.performSegue(withIdentifier: "toDistributeOffer", sender: template)
+				//self.performSegue(withIdentifier: "toDistributeOffer", sender: template)
+                self.performSegue(withIdentifier: "toLatestDistributeVC", sender: template)
 			}
 		} else {
 			YouShallNotPass(SaveButtonView: saveandSendView)
@@ -500,7 +501,12 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 			let view = segue.destination as! LocationPicker
 			view.locationString = locationFilter
 			view.locationDelegate = self
-		}
+		}else if segue.identifier == "toLatestDistributeVC" {
+            let view = segue.destination as! DistributeVC
+            view.templateOffer = sender as? TemplateOffer
+            
+        }
+        //toLatestDistributeVC
     }
     
 

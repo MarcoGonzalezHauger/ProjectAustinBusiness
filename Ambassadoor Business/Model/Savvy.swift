@@ -386,6 +386,86 @@ func downloadBeforeLoad() {
             }
         }
     }
+    
+    GetAllUsers { (users) in
+        global.allInfluencers.removeAll()
+        global.allInfluencers = users
+    }
+}
+
+func filterApproximation(category: [String:[AnyObject]], users: [User], completion: @escaping(_ status: Bool,_ users: [User]?)->()) {
+    
+    var filteredUsers = [User]()
+    
+    
+    var BusinessFilters = category
+    var filteredCategory = [String]() //all categories in the template offer.
+    
+    if category.keys.contains("categories") {
+        
+        let categoryValueArray = category["categories"] as! [String]
+        
+        filteredCategory.append(contentsOf: categoryValueArray)
+        
+        BusinessFilters.removeValue(forKey: "categories")
+        
+    }
+    
+    for userData in users {
+        
+        let BusinessFilterKeys = BusinessFilters.keys 
+        
+        var categoryMatch = !BusinessFilterKeys.contains("categories")
+        var genderMatch = !BusinessFilterKeys.contains("gender")
+        var locationMatch = !BusinessFilterKeys.contains("zipCode")
+        
+        //Gender filter
+        
+        if !genderMatch {
+            let gender: [String] = BusinessFilters["gender"] as! [String]
+            if let userGender = userData.gender {
+                if gender.contains(userGender) {
+                    genderMatch = true
+                }
+            }
+        }
+        
+        //ZIP CODE
+                        
+        if !locationMatch && genderMatch {
+            let zips: [String] = BusinessFilters["zipCode"] as! [String]
+            if let userZip = userData.zipCode {
+                if zips.contains(userZip) {
+                    locationMatch = true
+                }
+            }
+        }
+        
+        //CATEGORIES
+        
+        if !categoryMatch && locationMatch && genderMatch {
+            let businessCats: [String] = BusinessFilters["categories"] as! [String]
+            if let userCats = userData.categories {
+                //cats = Checks if user is a crazy cat person.
+                //Okay maybe I shouldn't joke when commenting.
+                for userCat in userCats {
+                    let catExistsInBusinessFilter = businessCats.contains(userCat)
+                    if catExistsInBusinessFilter {
+                        categoryMatch = true
+                        break
+                    }
+                }
+            }
+        }
+        
+        if categoryMatch && genderMatch && locationMatch {
+            filteredUsers.append(userData)
+        }
+        
+    }
+    
+    completion(true, filteredUsers)
+    
 }
 
 enum structType {
@@ -428,5 +508,44 @@ func setHapticMenu(companyUserID: String, amount: Double? = nil) {
         UIApplication.shared.shortcutItems = shortcutItems
     }
     
+}
+
+func GetZipsFromLocationFilter(locationFilter: String, completion: @escaping ([String]?) -> ()) {
+    switch locationFilter.components(separatedBy: ":")[0] {
+    case "nw":
+        completion(nil)
+    case "states":
+        let data = locationFilter.components(separatedBy: ":")[1]
+        var returnData: [String] = []
+        var index = 0
+        for stateName in data.components(separatedBy: ",") {
+            GetZipCodesInState(stateShortName: stateName) { (zips1) in
+                returnData.append(contentsOf: zips1)
+                index += 1
+                if index == data.components(separatedBy: ",").count {
+                    completion(returnData)
+                }
+            }
+        }
+    case "radius":
+        let data1 = locationFilter.components(separatedBy: ":")[1]
+        var returnData: [String] = []
+        var index = 0
+        for data in data1.components(separatedBy: ",") {
+            let zip = data.components(separatedBy: "-")[0]
+            let radius = Int(data.components(separatedBy: "-")[1]) ?? 0
+            GetAllZipCodesInRadius(zipCode: zip, radiusInMiles: radius) { (returns, zip, radius) in
+                if let returns = returns {
+                    returnData.append(contentsOf: returns.keys)
+                }
+                index += 1
+                if index >= data1.components(separatedBy: ",").count {
+                    completion(returnData)
+                }
+            }
+        }
+    default:
+        completion(nil)
+    }
 }
 

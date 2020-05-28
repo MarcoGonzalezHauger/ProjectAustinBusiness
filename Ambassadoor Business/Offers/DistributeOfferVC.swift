@@ -184,44 +184,6 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
     
     var zips: [String]?
     
-    func GetZipsFromLocationFilter(locationFilter: String, completion: @escaping ([String]?) -> ()) {
-        switch locationFilter.components(separatedBy: ":")[0] {
-        case "nw":
-            completion(nil)
-        case "states":
-            let data = locationFilter.components(separatedBy: ":")[1]
-            var returnData: [String] = []
-            var index = 0
-            for stateName in data.components(separatedBy: ",") {
-                GetZipCodesInState(stateShortName: stateName) { (zips1) in
-                    returnData.append(contentsOf: zips1)
-                    index += 1
-                    if index == data.components(separatedBy: ",").count {
-                        completion(returnData)
-                    }
-                }
-            }
-        case "radius":
-            let data1 = locationFilter.components(separatedBy: ":")[1]
-            var returnData: [String] = []
-            var index = 0
-            for data in data1.components(separatedBy: ",") {
-                let zip = data.components(separatedBy: "-")[0]
-                let radius = Int(data.components(separatedBy: "-")[1]) ?? 0
-                GetAllZipCodesInRadius(zipCode: zip, radiusInMiles: radius) { (returns, zip, radius) in
-                    if let returns = returns {
-                        returnData.append(contentsOf: returns.keys)
-                    }
-                    index += 1
-                    if index >= data1.components(separatedBy: ",").count {
-                        completion(returnData)
-                    }
-                }
-            }
-        default:
-            completion(nil)
-        }
-    }
     
     @objc override func doneButtonAction() {
         self.moneyText.resignFirstResponder()

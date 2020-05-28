@@ -48,11 +48,11 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
 		
 		let amt = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
 		if ThisTransaction.type == "sale"{
-			cell.descriptionLabel.text = "Deposited \(amt) into Ambassadoor"
-			cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
+			cell.descriptionLabel.text = "Deposited from Credit Card."
+			cell.amountlabel.text = "+\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
             cell.shadowBox.borderColor = .systemGreen
 		}else if ThisTransaction.type == "paid" || ThisTransaction.type == "distributed" {
-			cell.descriptionLabel.text = "Spent \(amt) to distribute \"\(ThisTransaction.status)\""
+			cell.descriptionLabel.text = "Distributed Offer: \"\(ThisTransaction.status)\""
 			cell.amountlabel.text = "-\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
             cell.shadowBox.borderColor = .systemBlue
         }else if ThisTransaction.type == "withdraw"{
@@ -62,16 +62,17 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
         }
         else if ThisTransaction.type == "refund" {
 			cell.descriptionLabel.text = "User Rejected \"\(ThisTransaction.status)\", You have been credited \(amt)"
-			cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
+			cell.amountlabel.text = "+\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
+            cell.shadowBox.borderColor = .systemRed
 		}else if ThisTransaction.type == "commissionrefund" {
 			cell.descriptionLabel.text = "Ambassadoor Commission Refunded \"\(ThisTransaction.status)\", You have been credited \(amt)"
-			cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
+			cell.amountlabel.text = "+\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
 		}else if ThisTransaction.type == "postrefund" {
 			cell.descriptionLabel.text = "Ambassadoor Refunded the single post, You have been credited \(amt)"
-			cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
+			cell.amountlabel.text = "+\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
 		}else if ThisTransaction.type == "referral" {
-            cell.descriptionLabel.text = "Referral Fees from \(ThisTransaction.userName)"
-            cell.amountlabel.text = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
+			cell.descriptionLabel.text = "Referral Fees from \(ThisTransaction.userName)."
+            cell.amountlabel.text = "+\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
             cell.shadowBox.borderColor = .systemGreen
         }
 		//cell.shadowBox.borderColor = .black // Refer to PowerPoint.
