@@ -148,7 +148,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dqu-R9-PXl">
                                         <rect key="frame" x="0.0" y="0.0" width="382" height="70"/>
                                         <state key="normal" title=" www.google.com" image="globe" catalog="system">
-                                            <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="GoToWebsite:" destination="BYZ-38-t0r" eventType="touchUpInside" id="erZ-JH-Phr"/>
@@ -229,7 +229,7 @@
                                         <real key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" systemColor="placeholderTextColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -280,7 +280,7 @@ Referral Code:</string>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="Ojt-AX-N3L" firstAttribute="centerY" secondItem="aeE-AF-t0D" secondAttribute="centerY" id="5RG-vX-ONM"/>
                                     <constraint firstItem="Kbd-Ug-Puv" firstAttribute="centerY" secondItem="aeE-AF-t0D" secondAttribute="centerY" id="70K-LX-zhu"/>
@@ -337,7 +337,7 @@ Referral Code:</string>
                         </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Company" id="WzZ-yK-BdP">
-                        <color key="badgeColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="badgeColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="2au-DB-bzU"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -400,7 +400,7 @@ Referral Code:</string>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PnE-aS-xWp">
                                 <rect key="frame" x="0.0" y="302" width="414" height="511"/>
-                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TransactionTrunk" rowHeight="90" id="jCf-K5-JVn" customClass="TransactionCell" customModule="Ambassadoor_Business" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="90"/>
@@ -456,19 +456,19 @@ Referral Code:</string>
                                                             <real key="value" value="0.80000000000000004"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="value" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="8cf-5R-cuc" firstAttribute="top" secondItem="I0i-3c-6ws" secondAttribute="top" constant="5" id="9HY-e5-eB3"/>
                                                 <constraint firstAttribute="trailing" secondItem="8cf-5R-cuc" secondAttribute="trailing" constant="8" id="KId-OF-i0G"/>
                                                 <constraint firstItem="8cf-5R-cuc" firstAttribute="leading" secondItem="I0i-3c-6ws" secondAttribute="leading" constant="8" id="gCY-zI-LWo"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="amountlabel" destination="AVe-xB-dQW" id="nt3-WH-9Xc"/>
                                             <outlet property="descriptionLabel" destination="5Hl-yY-Jm0" id="4f3-qM-Lje"/>
@@ -580,7 +580,7 @@ Referral Code:</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="PnE-aS-xWp" firstAttribute="top" secondItem="iUJ-4d-GaA" secondAttribute="bottom" constant="-20" id="Cb9-db-ckT"/>
                             <constraint firstItem="T6u-w0-1uw" firstAttribute="leading" secondItem="glP-xf-78Q" secondAttribute="leading" id="Duk-Ic-8mL"/>
@@ -604,7 +604,7 @@ Referral Code:</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sLc-EE-FTZ" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-297.10144927536237" y="1228.7946428571429"/>
+            <point key="canvasLocation" x="-258" y="1215"/>
         </scene>
         <!--StatsVC-->
         <scene sceneID="dY7-vX-u2k">
@@ -1057,7 +1057,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Od3-2n-Z1o">
                                 <rect key="frame" x="0.0" y="99" width="414" height="714"/>
-                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="composeButton" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="composeButton" rowHeight="74" id="tKh-lf-tzE" customClass="composeButtonCell" customModule="Ambassadoor_Business" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="74"/>
@@ -1073,7 +1073,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                             <rect key="frame" x="5" y="5" width="388" height="50"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                             <state key="normal" title="  Compose Offer" image="square.and.pencil" catalog="system">
-                                                                <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>
                                                         </button>
                                                     </subviews>
@@ -1110,7 +1110,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                 <constraint firstAttribute="bottom" secondItem="6TR-OX-q16" secondAttribute="bottom" constant="7" id="qcT-sa-jJ5"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="composebutton" destination="zou-4p-ZrV" id="pw1-Ig-r3d"/>
                                             <outlet property="composebuttonOutline" destination="6TR-OX-q16" id="piU-pI-1pj"/>
@@ -1141,7 +1141,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INCOMPLETE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQM-OT-Jdm">
                                                             <rect key="frame" x="289.5" y="230.5" width="92.5" height="17"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                            <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last edited at 8:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGU-y5-0b6">
@@ -1200,7 +1200,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                 <constraint firstAttribute="bottom" secondItem="pey-fy-Up3" secondAttribute="bottom" constant="8" id="VLS-LS-lao"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="incompleteLabel" destination="dQM-OT-Jdm" id="guX-Zo-wcK"/>
                                             <outlet property="lastEditedLabel" destination="NGU-y5-0b6" id="uCi-JS-2Cs"/>
@@ -1270,7 +1270,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="2up-Df-acd" firstAttribute="bottom" secondItem="Od3-2n-Z1o" secondAttribute="bottom" id="1ya-yC-6Le"/>
                             <constraint firstItem="Od3-2n-Z1o" firstAttribute="top" secondItem="wkc-d6-k1a" secondAttribute="bottom" id="SYn-n6-TPl"/>
@@ -1288,6 +1288,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                         <outlet property="editButton" destination="s5n-YY-g3S" id="mhh-Ao-T1U"/>
                         <outlet property="shelf" destination="Od3-2n-Z1o" id="OtD-Fd-xGv"/>
                         <segue destination="LOf-8t-dcQ" kind="show" identifier="toCreateOfferView" id="PhT-Cd-6fv"/>
+                        <segue destination="Tp9-qn-Qz8" kind="presentation" identifier="OfferlistToStatistics" id="yBa-iP-b84"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s3s-at-Cbl" sceneMemberID="firstResponder"/>
@@ -1529,7 +1530,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="76a-qi-rPn" firstAttribute="top" secondItem="Xfr-j1-siK" secondAttribute="top" id="0P7-Uq-693"/>
                                     <constraint firstItem="76a-qi-rPn" firstAttribute="leading" secondItem="Xfr-j1-siK" secondAttribute="leading" id="Ua0-a4-jsK"/>
@@ -1685,7 +1686,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="xb6-JJ-98D" firstAttribute="leading" secondItem="mOH-he-cSw" secondAttribute="leading" constant="8" id="CAF-Kp-Xyy"/>
                                             <constraint firstItem="hHa-yW-pqf" firstAttribute="top" secondItem="xb6-JJ-98D" secondAttribute="bottom" constant="8" id="ELH-Wj-0gq"/>
@@ -1719,7 +1720,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                 </segments>
                                             </segmentedControl>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="118" id="1CH-AA-o1R"/>
                                             <constraint firstItem="oAU-H3-QJV" firstAttribute="centerX" secondItem="qTP-lE-1kc" secondAttribute="centerX" id="4mz-oD-J5z"/>
@@ -1810,7 +1811,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                 </connections>
                                             </switch>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="Brs-WH-xso" firstAttribute="top" secondItem="rJs-bx-JPp" secondAttribute="bottom" constant="16" id="2PM-je-pHs"/>
                                             <constraint firstItem="OXu-3v-Z1m" firstAttribute="centerY" secondItem="Brs-WH-xso" secondAttribute="centerY" id="2mU-ET-ssJ"/>
@@ -1995,7 +1996,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="i5X-NZ-X0s" firstAttribute="top" secondItem="a0u-UI-t9c" secondAttribute="top" id="H03-kD-OlD"/>
                                             <constraint firstAttribute="trailing" secondItem="i5X-NZ-X0s" secondAttribute="trailing" id="eAi-0Q-yGP"/>
@@ -2142,7 +2143,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9gd-It-qtM" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                         <rect key="frame" x="162" y="43" width="90" height="90"/>
-                                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="90" id="qAC-S0-udC"/>
                                             <constraint firstAttribute="width" constant="90" id="tL4-EB-rwK"/>
@@ -2344,7 +2345,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="o4O-uF-jaC" firstAttribute="height" secondItem="g7k-re-55x" secondAttribute="height" id="CNh-Mk-hrl"/>
                                                     <constraint firstAttribute="trailing" secondItem="o4O-uF-jaC" secondAttribute="trailing" id="Ikv-gU-sbd"/>
@@ -2431,7 +2432,7 @@ For example, if you list "#sale" and "buy one get one free" the influencer could
                                         <string key="text">YOU MAY NOT WRITE ANYTHING INCLUDING BUT NOT LIMITED TO ILLIGAL ACTIVITIES, DEFAMATION, HATE SPEECH, OR BULLYING.
 IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                        <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -2480,7 +2481,7 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="58" id="TL4-OG-G8S"/>
                                     <constraint firstAttribute="trailing" secondItem="Wy8-92-gcg" secondAttribute="trailing" id="WmX-pQ-iic"/>
@@ -3029,7 +3030,7 @@ If a business signs up using your Business Referral Code, you will recieve 1% of
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="3Hg-e1-fHp" firstAttribute="top" secondItem="IAY-Cn-KF0" secondAttribute="bottom" constant="32" id="1tq-Hn-JlL"/>
                                     <constraint firstAttribute="trailing" secondItem="4zP-g3-ljJ" secondAttribute="trailing" constant="8" id="2jG-k5-1zU"/>
@@ -3595,7 +3596,7 @@ If a business signs up using your Business Referral Code, you will recieve 1% of
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="sPB-Wd-OYn" secondAttribute="bottom" id="1Ch-bL-L0W"/>
                                     <constraint firstAttribute="height" constant="57" id="9Bb-MH-id3"/>
@@ -3915,7 +3916,7 @@ If a business signs up using your Business Referral Code, you will recieve 1% of
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="K9g-BF-csB" firstAttribute="centerX" secondItem="UsD-Gh-cDL" secondAttribute="centerX" id="8jX-GM-gVa"/>
                                     <constraint firstItem="hZw-D9-NII" firstAttribute="leading" secondItem="UsD-Gh-cDL" secondAttribute="leading" constant="8" id="L4J-w5-uOg"/>
@@ -4095,7 +4096,7 @@ If a business signs up using your Business Referral Code, you will recieve 1% of
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ed-ah-KhM">
                                         <rect key="frame" x="8" y="454" width="398" height="2"/>
-                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="xj1-ap-ic7"/>
                                         </constraints>
@@ -4152,7 +4153,7 @@ If a business signs up using your Business Referral Code, you will recieve 1% of
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="value" systemColor="placeholderTextColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
@@ -4449,7 +4450,7 @@ You must have permission to use the company name, logo, website, etc. before reg
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECTED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pEg-25-W1R">
                                                 <rect key="frame" x="306" y="211" width="68" height="16"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                                <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -4533,7 +4534,7 @@ You must have permission to use the company name, logo, website, etc. before reg
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECTED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="41R-0K-VB1">
                                                 <rect key="frame" x="306" y="211" width="68" height="16"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                                <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -4618,7 +4619,7 @@ You must have permission to use the company name, logo, website, etc. before reg
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECTED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYw-Wq-puU">
                                                 <rect key="frame" x="306" y="211" width="68" height="16"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                                <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -4753,7 +4754,7 @@ You must have permission to use the company name, logo, website, etc. before reg
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECTED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXl-Mz-Wdo">
                                                             <rect key="frame" x="293" y="26" width="73" height="17"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                            <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -5008,7 +5009,7 @@ You must have permission to use the company name, logo, website, etc. before reg
                                                                 <constraint firstAttribute="height" constant="50" id="e79-rc-Trs"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <state key="normal" image="mappin.slash" catalog="system">
                                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                                             </state>
@@ -5065,7 +5066,7 @@ You must have permission to use the company name, logo, website, etc. before reg
                                                             <rect key="frame" x="122" y="13" width="138.5" height="23"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                             <state key="normal" title=" Add Location" image="mappin" catalog="system">
-                                                                <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>
                                                         </button>
                                                     </subviews>
@@ -5213,8 +5214,8 @@ You must have permission to use the company name, logo, website, etc. before reg
         <image name="chart.pie" catalog="system" width="64" height="60"/>
         <image name="coloncurrencysign.circle" catalog="system" width="64" height="60"/>
         <image name="defaultCompany" width="600" height="600"/>
-        <image name="globe" catalog="system" width="64" height="60"/>
         <image name="globe" width="75" height="75"/>
+        <image name="globe" catalog="system" width="64" height="62"/>
         <image name="map_pin_area" width="84" height="84"/>
         <image name="mappin" catalog="system" width="52" height="64"/>
         <image name="mappin.slash" catalog="system" width="52" height="64"/>
@@ -5227,5 +5228,6 @@ You must have permission to use the company name, logo, website, etc. before reg
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="kAw-3T-EW6"/>
+        <segue reference="yBa-iP-b84"/>
     </inferredMetricsTieBreakers>
 </document>

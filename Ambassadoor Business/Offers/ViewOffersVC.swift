@@ -42,6 +42,8 @@ class viewOfferCell: UITableViewCell {
 class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ViewStatisticDelegate {
     func viewStatisticAction(offer: TemplateOffer) {
         
+        self.performSegue(withIdentifier: "OfferlistToStatistics", sender: offer.offerStatistics)
+        
     }
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -207,6 +209,9 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ViewStat
         if segue.identifier == "toCreateOfferView"{
             let view = segue.destination as! AddOfferVC
             view.segueOffer = sender as? TemplateOffer
+        }else if segue.identifier == "OfferlistToStatistics"{
+            let view = segue.destination as! ViewOfferStatisticVC
+            view.stat = (sender as! OfferStatistic)
         }
     }
 }

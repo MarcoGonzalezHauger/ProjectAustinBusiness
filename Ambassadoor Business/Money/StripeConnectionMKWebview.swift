@@ -19,7 +19,7 @@ class StripeConnectionMKWebview: BaseVC, WKNavigationDelegate {
     var withDrawAmount = 0.00
     
 
-    let url = URL(string: "https://dashboard.stripe.com/express/oauth/authorize?response_type=code&client_id=ca_FrDIP5fLBXnTWCJTkPzngRUquWqrzKZh&scope=read_write") 
+    let url = URL(string: "https://dashboard.stripe.com/express/oauth/authorize?response_type=code&client_id=\(API.Stripeclient_id)&scope=read_write")
 
     
     override func viewDidLoad() {
@@ -69,7 +69,9 @@ class StripeConnectionMKWebview: BaseVC, WKNavigationDelegate {
             if url.absoluteString.hasPrefix("https://connect.stripe.com/connect/default_new/oauth/test?") || url.absoluteString.hasPrefix("https://connect.stripe.com/connect/default/oauth/test?"){
                     print("SUCCESS")
 //                    self.dismiss(animated: true, completion: nil)
-                    
+                /*
+                if url.absoluteString.hasPrefix("https://www.ambassadoor.co/paid?") || url.absoluteString.hasPrefix("https://www.ambassadoor.co/paid?code="){
+                    */
                     if let range = url.absoluteString.range(of: "code=") {
                         let code = url.absoluteString[range.upperBound...]
                         print(code) // prints "123.456.7891"
@@ -89,7 +91,7 @@ class StripeConnectionMKWebview: BaseVC, WKNavigationDelegate {
     
     func getAccountID(code: String) {
 
-        let params = ["client_secret":"sk_live_KwcqGxImMq4fosE3n7QMycBw00eMO7si8E","code":code,"grant_type":"authorization_code"] as [String: AnyObject]
+        let params = ["client_secret": API.Stripeclient_secret,"code":code,"grant_type":"authorization_code"] as [String: AnyObject]
         self.showActivityIndicator()
         NetworkManager.sharedInstance.getAccountID(params: params) { (status, error, data) in
             let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
@@ -192,7 +194,7 @@ class StripeConnectionMKWebview: BaseVC, WKNavigationDelegate {
             
             //let cardDetails = ["last4":stripeID,"expireMonth":"00","expireYear":"00","country":"US"] as [String : Any]
             
-            let transactionDict = ["id":stripeID,"status":"success","type":"paid","currencyIsoCode":"usd","amount":String(depositedAmount),"createdAt":DateFormatManager.sharedInstance.getCurrentDateString(),"updatedAt":DateFormatManager.sharedInstance.getCurrentDateString(),"transactionType":"card","cardDetails":cardDetails,"commission":0.0] as [String : Any]
+            let transactionDict = ["id":stripeID,"status":"success","type":"withdraw","currencyIsoCode":"usd","amount":String(depositedAmount),"createdAt":DateFormatManager.sharedInstance.getCurrentDateString(),"updatedAt":DateFormatManager.sharedInstance.getCurrentDateString(),"transactionType":"card","cardDetails":cardDetails,"commission":0.0] as [String : Any]
             
             
             if status == "new" {

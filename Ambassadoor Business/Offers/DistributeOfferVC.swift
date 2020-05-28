@@ -386,7 +386,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
         
         cardDetails.append(["country":"","expireMonth":"","expireYear":"","last4":"xxxx"])
         
-        let transaction = TransactionDetails.init(dictionary: ["amount":String(deductedAmount),"createdAt":DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: Date(), format: "yyyy/MMM/dd HH:mm:ssZ"),"currencyIsoCode":"USD","type":"paid","updatedAt":DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: Date(), format: "yyyy/MMM/dd HH:mm:ssZ"),"id":self.templateOffer!.offer_ID,"status":self.templateOffer!.title,"paidDetails":cardDetails,"commission":ambassadoorCommision])
+        let transaction = TransactionDetails.init(dictionary: ["amount":String(deductedAmount),"createdAt":DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: Date(), format: "yyyy/MMM/dd HH:mm:ssZ"),"currencyIsoCode":"USD","type":"distributed","updatedAt":DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: Date(), format: "yyyy/MMM/dd HH:mm:ssZ"),"id":self.templateOffer!.offer_ID,"status":self.templateOffer!.title,"paidDetails":cardDetails,"commission":ambassadoorCommision])
         
         let tranObj = API.serializeTransactionDetails(transaction: transaction)
         
@@ -537,7 +537,7 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
                 
                 depositAmt = status == "new" ? referralAmount : deposit!.currentBalance ?? 0.0 + referralAmount
                 
-                let transactionDict = ["id":referralID,"userName":company!.email!,"status":"success","offerName":offer.title,"type":"refund","currencyIsoCode":"USD","amount":depositAmt,"createdAt":DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: Date(), format: "yyyy/MMM/dd HH:mm:ssZ"),"updatedAt":DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: Date(), format: "yyyy/MMM/dd HH:mm:ssZ"),"transactionType":"referral","cardDetails":cardDetails] as [String : Any]
+                let transactionDict = ["id":referralID,"userName":company!.email!,"status":"success","offerName":offer.title,"type":"referral","currencyIsoCode":"USD","amount":depositAmt,"createdAt":DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: Date(), format: "yyyy/MMM/dd HH:mm:ssZ"),"updatedAt":DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: Date(), format: "yyyy/MMM/dd HH:mm:ssZ"),"transactionType":"referral","cardDetails":cardDetails] as [String : Any]
                 
                 let transactionObj = TransactionDetails.init(dictionary: transactionDict)
                 
