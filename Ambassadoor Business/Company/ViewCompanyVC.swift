@@ -113,8 +113,10 @@ class ViewCompanyVC: BaseVC, ImagePickerDelegate, webChangedDelegate {
 		companyMission.isEditable = isCurrentlyEditing
 		companyName.isEnabled = isCurrentlyEditing
 		changeWebsite.isHidden = !isCurrentlyEditing
-		missionView.borderWidth = isCurrentlyEditing ? 1 : 0
-		companyName.borderStyle = isCurrentlyEditing ? .roundedRect : .none
+//		missionView.borderWidth = isCurrentlyEditing ? 1 : 0
+		missionView.borderWidth = 1
+//		companyName.borderStyle = isCurrentlyEditing ? .roundedRect : .none
+		companyName.borderStyle = .roundedRect
 		
 		if wasPressed {
 			DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
