@@ -167,7 +167,7 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
         getDepositDetails(companyUser: (Auth.auth().currentUser?.uid)!) { (deposit, status, error) in
             
             if status == "success" {
-                
+                transactionDelegate = self
                 transactionHistory.removeAll()
                 accountBalance = deposit!.currentBalance!
                 setHapticMenu(companyUserID: (Auth.auth().currentUser?.uid)!, amount: accountBalance)
@@ -178,7 +178,6 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
                         transactionHistory.append(Transaction(description: "", details: valueDetails["cardDetails"] as AnyObject, time: valueDetails["updatedAt"] as! String, amount: Double(valueDetails["amount"] as! String)!, type: valueDetails["type"] as! String, status: valueDetails["status"] as? String ?? "", userName: valueDetails["userName"] as? String ?? ""))
                     }
                 }
-                transactionDelegate = self
                 DispatchQueue.main.async(execute: {
                     self.shelf.delegate = self
                     self.shelf.dataSource = self
