@@ -241,6 +241,16 @@ class BaseVC: UIViewController {
         
     }
     
+    func addleftBarButtonAction() {
+        let leftButton: UIBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .done, target: self, action: #selector(self.addPopAction(sender:)))
+        //let leftButton: UIBarButtonItem = UIBarButtonItem.init(title: nil, style: .plain, target: self, action: #selector(self.addPopAction(sender:)))
+        self.navigationItem.leftBarButtonItem = leftButton
+    }
+    
+    @IBAction func addPopAction(sender: UIBarButtonItem){
+        
+    }
+    
     @IBAction func addLeftAction(sender: UIBarButtonItem){
         
     }
@@ -272,14 +282,14 @@ class BaseVC: UIViewController {
         label.frame = CGRect(x: 0, y: 0, width: 250, height: 36)
         label.backgroundColor = UIColor.clear
         label.text =  title
-        label.font = UIFont.systemFont(ofSize: 18.0, weight: .semibold)
+        label.font = UIFont.systemFont(ofSize: 20.0, weight: .semibold)
         label.textColor = UIColor.black
         label.textAlignment = .center
         label.isUserInteractionEnabled = true
         
         container.addSubview(label)
         self.navigationItem.titleView = container
-        
+        self.navigationController?.interactivePopGestureRecognizer?.delegate=nil
     }
     
     func addPickerToolBar(textField: UITextField,object: [String]) -> BasePicker {

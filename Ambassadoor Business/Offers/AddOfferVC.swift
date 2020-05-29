@@ -56,9 +56,7 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 	}
     
 	override func viewDidAppear(_ animated: Bool) {
-		if let nc = self.navigationController as? StandardNC {
-			nc.tempDelegate = self
-		}
+		
 	}
 	
     override func viewDidLoad() {
@@ -309,8 +307,17 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
     //MARK: - Data Components
     
     func setBasicComponents() {
-        self.addLeftButtonText(text: "Back")
-        self.customizeNavigationBar()
+        self.addleftBarButtonAction()
+        
+        if let nc = self.navigationController as? StandardNC {
+            nc.tempDelegate = self
+        }
+        
+    }
+    
+    @IBAction override func addPopAction(sender: UIBarButtonItem) {
+        SaveThisOffer() {_,_ in }
+        self.navigationController?.popViewController(animated: true)
     }
     
     //MARK: -Textfield Delegate
@@ -319,6 +326,8 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
         textField.resignFirstResponder()
         return true
     }
+    
+    
     
     @objc override func keyboardWasShown(notification : NSNotification) {
         

@@ -19,19 +19,32 @@ class StandardNC: UINavigationController, UIGestureRecognizerDelegate {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.interactivePopGestureRecognizer?.delegate = self
+        self.interactivePopGestureRecognizer?.delegate = self
+        
 	}
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+    }
+    
 	
-	func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-		if(self.viewControllers.count > 1){
-			if let td = tempDelegate {
-				return td.shouldAllowBack()
-			}
-			return true
-		} else {
-			self.dismiss(animated: true, completion: nil)
-			return false
-		}
-	}
-	
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool{
+        if(self.viewControllers.count > 1){
+            if let td = tempDelegate {
+                return td.shouldAllowBack()
+            }
+            return true
+        } else {
+            self.dismiss(animated: true, completion: nil)
+            return false
+        }
+        
+    }
+    
+    
 }

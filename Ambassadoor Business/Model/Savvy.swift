@@ -391,6 +391,34 @@ func downloadBeforeLoad() {
         global.allInfluencers.removeAll()
         global.allInfluencers = users
     }
+    
+    getAllTemplateOffers(userID: Auth.auth().currentUser!.uid) { (templateOffers, status) in
+        
+        if status == "success" && templateOffers.count != 0 {
+            global.OfferDrafts.removeAll()
+            global.OfferDrafts.append(contentsOf: templateOffers)
+        }
+        
+    }
+    
+    getDepositDetails(companyUser: (Auth.auth().currentUser?.uid)!) { (deposit, status, error) in
+        
+        if status == "success" {
+            
+            transactionHistory.removeAll()
+            global.accountBalance = deposit!.currentBalance!
+            setHapticMenu(companyUserID: (Auth.auth().currentUser?.uid)!, amount: accountBalance)
+            for value in deposit!.depositHistory! {
+                
+                if let valueDetails = value as? NSDictionary {
+                    
+                    transactionHistory.append(Transaction(description: "", details: valueDetails["cardDetails"] as AnyObject, time: valueDetails["updatedAt"] as! String, amount: Double(valueDetails["amount"] as! String)!, type: valueDetails["type"] as! String, status: valueDetails["status"] as? String ?? "", userName: valueDetails["userName"] as? String ?? ""))
+                }
+            }
+            
+        }
+        
+    }
 }
 
 func filterApproximation(category: [String:[AnyObject]], users: [User], completion: @escaping(_ status: Bool,_ users: [User]?)->()) {
