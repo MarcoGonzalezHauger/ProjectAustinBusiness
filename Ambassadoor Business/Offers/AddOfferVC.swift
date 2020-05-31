@@ -56,9 +56,7 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 	}
     
 	override func viewDidAppear(_ animated: Bool) {
-		if let nc = self.navigationController as? StandardNC {
-			nc.tempDelegate = self
-		}
+		
 	}
 	
     override func viewDidLoad() {
@@ -309,8 +307,17 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
     //MARK: - Data Components
     
     func setBasicComponents() {
-        self.addLeftButtonText(text: "Back")
-        self.customizeNavigationBar()
+        self.addleftBarButtonAction()
+        
+        if let nc = self.navigationController as? StandardNC {
+            nc.tempDelegate = self
+        }
+        
+    }
+    
+    @IBAction override func addPopAction(sender: UIBarButtonItem) {
+        SaveThisOffer() {_,_ in }
+        self.navigationController?.popViewController(animated: true)
     }
     
     //MARK: -Textfield Delegate
@@ -319,6 +326,8 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
         textField.resignFirstResponder()
         return true
     }
+    
+    
     
     @objc override func keyboardWasShown(notification : NSNotification) {
         
@@ -346,7 +355,8 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 		if isSavable(alertUser: true) {
 			SaveThisOffer { (template, bool1) in
 				self.segueOffer = template
-				self.performSegue(withIdentifier: "toDistributeOffer", sender: template)
+				//self.performSegue(withIdentifier: "toDistributeOffer", sender: template)
+                self.performSegue(withIdentifier: "toLatestDistributeVC", sender: template)
 			}
 		} else {
 			YouShallNotPass(SaveButtonView: saveandSendView)
@@ -500,7 +510,12 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 			let view = segue.destination as! LocationPicker
 			view.locationString = locationFilter
 			view.locationDelegate = self
-		}
+		}else if segue.identifier == "toLatestDistributeVC" {
+            let view = segue.destination as! DistributeVC
+            view.templateOffer = sender as? TemplateOffer
+            
+        }
+        //toLatestDistributeVC
     }
     
 
