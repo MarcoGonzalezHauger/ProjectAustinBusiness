@@ -67,6 +67,9 @@ class CentralVariables {
     
     var launchWay = ""
     
+    var allInfluencers = [User]()
+    
+    var accountBalance = 0.0
 	
 }
 

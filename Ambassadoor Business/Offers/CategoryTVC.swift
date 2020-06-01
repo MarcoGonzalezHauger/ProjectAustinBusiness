@@ -33,7 +33,7 @@ class CategoryTVC: UITableViewController, ExpandableHeaderViewDelegate, NCDelega
         
         categoryListArray = [Section]()
         categoryList.append(contentsOf: categoryListArray)
-        self.customizeNavigationBar()
+//        self.customizeNavigationBar()
         self.addRightButton()
         self.addLeftButton()
         // Uncomment the following line to preserve selection between presentations
@@ -41,6 +41,8 @@ class CategoryTVC: UITableViewController, ExpandableHeaderViewDelegate, NCDelega
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        
     }
     
 	override func viewDidAppear(_ animated: Bool) {

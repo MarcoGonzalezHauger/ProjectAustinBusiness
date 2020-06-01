@@ -386,6 +386,114 @@ func downloadBeforeLoad() {
             }
         }
     }
+    
+    GetAllUsers { (users) in
+        global.allInfluencers.removeAll()
+        global.allInfluencers = users
+    }
+    
+    getAllTemplateOffers(userID: Auth.auth().currentUser!.uid) { (templateOffers, status) in
+        
+        if status == "success" && templateOffers.count != 0 {
+            global.OfferDrafts.removeAll()
+            global.OfferDrafts.append(contentsOf: templateOffers)
+        }
+        
+    }
+    
+    getDepositDetails(companyUser: (Auth.auth().currentUser?.uid)!) { (deposit, status, error) in
+        
+        if status == "success" {
+            
+            transactionHistory.removeAll()
+            global.accountBalance = deposit!.currentBalance!
+            setHapticMenu(companyUserID: (Auth.auth().currentUser?.uid)!, amount: accountBalance)
+            for value in deposit!.depositHistory! {
+                
+                if let valueDetails = value as? NSDictionary {
+                    
+                    transactionHistory.append(Transaction(description: "", details: valueDetails["cardDetails"] as AnyObject, time: valueDetails["updatedAt"] as! String, amount: Double(valueDetails["amount"] as! String)!, type: valueDetails["type"] as! String, status: valueDetails["status"] as? String ?? "", userName: valueDetails["userName"] as? String ?? ""))
+                }
+            }
+            
+        }
+        
+    }
+}
+
+func filterApproximation(category: [String:[AnyObject]], users: [User], completion: @escaping(_ status: Bool,_ users: [User]?)->()) {
+    
+    var filteredUsers = [User]()
+    
+    
+    var BusinessFilters = category
+//    var filteredCategory = [String]() //all categories in the template offer.
+//    
+//    if category.keys.contains("categories") {
+//        
+//        let categoryValueArray = category["categories"] as! [String]
+//        
+//        filteredCategory.append(contentsOf: categoryValueArray)
+//        
+//        BusinessFilters.removeValue(forKey: "categories")
+//        
+//    }
+    
+    for userData in users {
+        
+        let BusinessFilterKeys = BusinessFilters.keys 
+        
+        var categoryMatch = !BusinessFilterKeys.contains("categories")
+        var genderMatch = !BusinessFilterKeys.contains("gender")
+        var locationMatch = !BusinessFilterKeys.contains("zipCode")
+        
+        //Gender filter
+        
+        if !genderMatch {
+            let gender: [String] = BusinessFilters["gender"] as! [String]
+            if let userGender = userData.gender {
+                if gender.contains(userGender) {
+                    genderMatch = true
+                }
+            }
+        }
+        
+        //ZIP CODE
+                        
+        if !locationMatch && genderMatch {
+            let zips: [String] = BusinessFilters["zipCode"] as! [String]
+            if let userZip = userData.zipCode {
+                if zips.contains(userZip) {
+                    locationMatch = true
+                }
+            }
+        }
+        
+        //CATEGORIES
+        
+        if !categoryMatch && locationMatch && genderMatch {
+            let businessCats: [String] = BusinessFilters["categories"] as! [String]
+            if let userCats = userData.categories {
+                //cats = Checks if user is a crazy cat person.
+                //Okay maybe I shouldn't joke when commenting.
+                for userCat in userCats {
+                    let catExistsInBusinessFilter = businessCats.contains(userCat)
+                    if catExistsInBusinessFilter {
+                        categoryMatch = true
+                        break
+                    }
+                }
+            }
+        }
+        
+        if categoryMatch && genderMatch && locationMatch {
+            filteredUsers.append(userData)
+        }
+        
+    }
+    
+    completion(true, filteredUsers)
+    
 }
 
 enum structType {
@@ -403,8 +511,8 @@ func instantiateViewController(storyboard: String, reference: String) -> AnyObje
 func setHapticMenu(companyUserID: String, amount: Double? = nil) {
     
     var shortcutItems = UIApplication.shared.shortcutItems ?? []
-    
-    if amount == nil {
+	
+	if amount == nil || shortcutItems.count == 0 {
         
         getDepositDetails(companyUser: companyUserID) { (deposit, status, error) in
             
@@ -412,21 +520,62 @@ func setHapticMenu(companyUserID: String, amount: Double? = nil) {
             
             
             if (error == nil){
-                if status == "success"{
+                if status == "success" {
                     amountDob = deposit!.currentBalance!
                 }
             }
             
-            shortcutItems = [UIApplicationShortcutItem.init(type: "com.ambassadoor.offers", localizedTitle: "Offers", localizedSubtitle:nil, icon: nil, userInfo: nil), UIApplicationShortcutItem.init(type: "com.ambassadoor.account", localizedTitle: "Account", localizedSubtitle:nil, icon: nil, userInfo: nil),UIApplicationShortcutItem.init(type: "com.ambassadoor.money", localizedTitle: "Money Page", localizedSubtitle: "Balance: \(NumberToPrice(Value: amountDob, enforceCents: true))", icon: UIApplicationShortcutIcon(type: UIApplicationShortcutIcon.IconType.contact), userInfo: nil)]
+			shortcutItems = [UIApplicationShortcutItem.init(type: "com.ambassadoor.offers", localizedTitle: "Offers", localizedSubtitle:nil, icon: UIApplicationShortcutIcon(type: UIApplicationShortcutIcon.IconType.compose), userInfo: nil),
+							 UIApplicationShortcutItem.init(type: "com.ambassadoor.account", localizedTitle: "Account", localizedSubtitle:nil, icon: UIApplicationShortcutIcon(type: UIApplicationShortcutIcon.IconType.contact), userInfo: nil),
+							 UIApplicationShortcutItem.init(type: "com.ambassadoor.money", localizedTitle: "Money", localizedSubtitle: "Balance: \(NumberToPrice(Value: amountDob, enforceCents: true))", icon: UIApplicationShortcutIcon(type: UIApplicationShortcutIcon.IconType.home), userInfo: nil)]
             UIApplication.shared.shortcutItems = shortcutItems
             
         }
         
     }else{
         
-        shortcutItems[2] = UIApplicationShortcutItem.init(type: "com.ambassadoor.money", localizedTitle: "Money Page", localizedSubtitle: "Balance: \(NumberToPrice(Value: amount!, enforceCents: true))", icon: UIApplicationShortcutIcon(type: UIApplicationShortcutIcon.IconType.contact), userInfo: nil)
+        shortcutItems[2] = UIApplicationShortcutItem.init(type: "com.ambassadoor.money", localizedTitle: "Money", localizedSubtitle: "Balance: \(NumberToPrice(Value: amount!, enforceCents: true))", icon: UIApplicationShortcutIcon(type: UIApplicationShortcutIcon.IconType.home), userInfo: nil)
         UIApplication.shared.shortcutItems = shortcutItems
     }
     
+}
+
+func GetZipsFromLocationFilter(locationFilter: String, completion: @escaping ([String]?) -> ()) {
+    switch locationFilter.components(separatedBy: ":")[0] {
+    case "nw":
+        completion(nil)
+    case "states":
+        let data = locationFilter.components(separatedBy: ":")[1]
+        var returnData: [String] = []
+        var index = 0
+        for stateName in data.components(separatedBy: ",") {
+            GetZipCodesInState(stateShortName: stateName) { (zips1) in
+                returnData.append(contentsOf: zips1)
+                index += 1
+                if index == data.components(separatedBy: ",").count {
+                    completion(returnData)
+                }
+            }
+        }
+    case "radius":
+        let data1 = locationFilter.components(separatedBy: ":")[1]
+        var returnData: [String] = []
+        var index = 0
+        for data in data1.components(separatedBy: ",") {
+            let zip = data.components(separatedBy: "-")[0]
+            let radius = Int(data.components(separatedBy: "-")[1]) ?? 0
+            GetAllZipCodesInRadius(zipCode: zip, radiusInMiles: radius) { (returns, zip, radius) in
+                if let returns = returns {
+                    returnData.append(contentsOf: returns.keys)
+                }
+                index += 1
+                if index >= data1.components(separatedBy: ",").count {
+                    completion(returnData)
+                }
+            }
+        }
+    default:
+        completion(nil)
+    }
 }
 

@@ -89,7 +89,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
-                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="2qw-ia-czn" secondAttribute="trailing" constant="8" id="SzN-6L-4K6"/>
                     <constraint firstItem="2qw-ia-czn" firstAttribute="top" secondItem="rv2-QX-nzv" secondAttribute="top" constant="7" id="ZWC-GO-5R3"/>
@@ -97,6 +97,7 @@
                     <constraint firstAttribute="bottom" secondItem="2qw-ia-czn" secondAttribute="bottom" constant="7" id="tqO-7a-OaO"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="colorBubble" destination="Mcv-v5-YcY" id="hIK-pb-Gva"/>
                 <outlet property="inCompleteLabel" destination="qnV-H1-cZF" id="B2C-Og-zr5"/>
