@@ -400,8 +400,12 @@ func downloadBeforeLoad() {
         }
         
     }
+    setDepositDetails()
     
-    getDepositDetails(companyUser: (Auth.auth().currentUser?.uid)!) { (deposit, status, error) in
+}
+
+func setDepositDetails() {
+        getDepositDetails(companyUser: (Auth.auth().currentUser?.uid)!) { (deposit, status, error) in
         
         if status == "success" {
             
