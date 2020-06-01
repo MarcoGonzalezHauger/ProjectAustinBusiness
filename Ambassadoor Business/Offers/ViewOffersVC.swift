@@ -103,14 +103,16 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ViewStat
     @objc func timerAction(sender: AnyObject) {
         shelf.reloadData()
     }
-    
+	
+	@IBOutlet weak var editButton: UIBarButtonItem!
+	
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.navigationController?.navigationBar.isHidden = true
         //self.navigationController?.setNavigationBarHidden(true, animated: true)
         //self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-        self.addNavigationBarTitleView(title: "Your Offers", image: UIImage())
-        self.addRightButtonText(text: "Edit")
+//        self.addNavigationBarTitleView(title: "Your Offers", image: UIImage())
+//        self.addRightButtonText(text: "Edit")
         
         let timer = Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector(self.timerAction(sender:)), userInfo: nil, repeats: true)
         timer.fire()
@@ -120,16 +122,14 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ViewStat
         
     }
     
-    override func addRightAction(sender: UIBarButtonItem) {
-        
-        isEdit = !isEdit
+	@IBAction func editPressed(_ sender: Any) {
+		isEdit = !isEdit
         UIView.animate(withDuration: 0.5) {
             //self.editButton.setTitle(self.isEdit ? "Done" : "Edit", for: .normal)
-            self.addRightButtonText(text: self.isEdit ? "Done" : "Edit")
+			self.editButton.title = self.isEdit ? "Done" : "Edit"
         }
         shelf.setEditing(isEdit, animated: true)
-        
-    }
+	}
     
     override func viewWillAppear(_ animated: Bool) {
         shelf.dataSource = self

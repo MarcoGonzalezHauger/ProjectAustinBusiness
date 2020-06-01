@@ -150,7 +150,7 @@ class StatsVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.getStatisticsTimerData), name: Notification.Name.init(rawValue: "reloadstatics"), object: nil)
 		statShelf.delegate = self
 		statShelf.dataSource = self
 		

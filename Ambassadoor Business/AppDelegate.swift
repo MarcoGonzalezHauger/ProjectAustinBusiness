@@ -37,7 +37,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         Database.database().isPersistenceEnabled = false
         InitializeZipCodeAPI(completed: nil)
         //InitializeZipCodeAPI(completed: nil)
-        Stripe.setDefaultPublishableKey("pk_live_k9m0LJO9sODGltsithrwmvqH00laWBjcra")
+        //pk_test_8Rwst6t9gr25jXYXC4NHmiZK001i78iYO7
+        Stripe.setDefaultPublishableKey("pk_test_8Rwst6t9gr25jXYXC4NHmiZK001i78iYO7")
+        //Stripe.setDefaultPublishableKey("pk_live_k9m0LJO9sODGltsithrwmvqH00laWBjcra")
         //BTAppSwitch.setReturnURLScheme("com.develop.sns.paypal")
         getAdminValues { (error) in
            print("fd=",Singleton.sharedInstance.getAdminFS())

@@ -143,7 +143,7 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
 						
 			let depositAmount: Double =  Double(amountOfMoneyInCents) / 100
 			
-			let totalAmount = (((depositAmount * 1.027 + 0.3) * 100).rounded()) / 100
+			let totalAmount = (((depositAmount * 1.029 + 0.3) * 100).rounded()) / 100
 			
 			self.creditAmount = totalAmount
 			

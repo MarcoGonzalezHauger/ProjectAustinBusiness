@@ -140,13 +140,14 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
             getDeepositDetails()
             
         }
-		
-        NotificationCenter.default.addObserver(self, selector: #selector(self.getDeepositDetails), name: Notification.Name.init(rawValue: "reloadDeposit"), object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(self.getDeepositDetails), name: Notification.Name.init(rawValue: "reloadDeposit"), object: nil)
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         //self.getDeepositDetails()
+         
     }
 	
 	var shownBefore = false
