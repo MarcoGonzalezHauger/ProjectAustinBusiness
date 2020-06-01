@@ -427,17 +427,17 @@ func filterApproximation(category: [String:[AnyObject]], users: [User], completi
     
     
     var BusinessFilters = category
-    var filteredCategory = [String]() //all categories in the template offer.
-    
-    if category.keys.contains("categories") {
-        
-        let categoryValueArray = category["categories"] as! [String]
-        
-        filteredCategory.append(contentsOf: categoryValueArray)
-        
-        BusinessFilters.removeValue(forKey: "categories")
-        
-    }
+//    var filteredCategory = [String]() //all categories in the template offer.
+//    
+//    if category.keys.contains("categories") {
+//        
+//        let categoryValueArray = category["categories"] as! [String]
+//        
+//        filteredCategory.append(contentsOf: categoryValueArray)
+//        
+//        BusinessFilters.removeValue(forKey: "categories")
+//        
+//    }
     
     for userData in users {
         
@@ -511,8 +511,8 @@ func instantiateViewController(storyboard: String, reference: String) -> AnyObje
 func setHapticMenu(companyUserID: String, amount: Double? = nil) {
     
     var shortcutItems = UIApplication.shared.shortcutItems ?? []
-    
-    if amount == nil {
+	
+	if amount == nil || shortcutItems.count == 0 {
         
         getDepositDetails(companyUser: companyUserID) { (deposit, status, error) in
             
@@ -520,19 +520,21 @@ func setHapticMenu(companyUserID: String, amount: Double? = nil) {
             
             
             if (error == nil){
-                if status == "success"{
+                if status == "success" {
                     amountDob = deposit!.currentBalance!
                 }
             }
             
-            shortcutItems = [UIApplicationShortcutItem.init(type: "com.ambassadoor.offers", localizedTitle: "Offers", localizedSubtitle:nil, icon: nil, userInfo: nil), UIApplicationShortcutItem.init(type: "com.ambassadoor.account", localizedTitle: "Account", localizedSubtitle:nil, icon: nil, userInfo: nil),UIApplicationShortcutItem.init(type: "com.ambassadoor.money", localizedTitle: "Money Page", localizedSubtitle: "Balance: \(NumberToPrice(Value: amountDob, enforceCents: true))", icon: UIApplicationShortcutIcon(type: UIApplicationShortcutIcon.IconType.contact), userInfo: nil)]
+			shortcutItems = [UIApplicationShortcutItem.init(type: "com.ambassadoor.offers", localizedTitle: "Offers", localizedSubtitle:nil, icon: UIApplicationShortcutIcon(type: UIApplicationShortcutIcon.IconType.compose), userInfo: nil),
+							 UIApplicationShortcutItem.init(type: "com.ambassadoor.account", localizedTitle: "Account", localizedSubtitle:nil, icon: UIApplicationShortcutIcon(type: UIApplicationShortcutIcon.IconType.contact), userInfo: nil),
+							 UIApplicationShortcutItem.init(type: "com.ambassadoor.money", localizedTitle: "Money", localizedSubtitle: "Balance: \(NumberToPrice(Value: amountDob, enforceCents: true))", icon: UIApplicationShortcutIcon(type: UIApplicationShortcutIcon.IconType.home), userInfo: nil)]
             UIApplication.shared.shortcutItems = shortcutItems
             
         }
         
     }else{
         
-        shortcutItems[2] = UIApplicationShortcutItem.init(type: "com.ambassadoor.money", localizedTitle: "Money Page", localizedSubtitle: "Balance: \(NumberToPrice(Value: amount!, enforceCents: true))", icon: UIApplicationShortcutIcon(type: UIApplicationShortcutIcon.IconType.contact), userInfo: nil)
+        shortcutItems[2] = UIApplicationShortcutItem.init(type: "com.ambassadoor.money", localizedTitle: "Money", localizedSubtitle: "Balance: \(NumberToPrice(Value: amount!, enforceCents: true))", icon: UIApplicationShortcutIcon(type: UIApplicationShortcutIcon.IconType.home), userInfo: nil)
         UIApplication.shared.shortcutItems = shortcutItems
     }
     

@@ -33,7 +33,7 @@ class CategoryTVC: UITableViewController, ExpandableHeaderViewDelegate, NCDelega
         
         categoryListArray = [Section]()
         categoryList.append(contentsOf: categoryListArray)
-        self.customizeNavigationBar()
+//        self.customizeNavigationBar()
         self.addRightButton()
         self.addLeftButton()
         // Uncomment the following line to preserve selection between presentations

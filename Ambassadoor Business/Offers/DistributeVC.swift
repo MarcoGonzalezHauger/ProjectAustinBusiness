@@ -10,7 +10,19 @@ import UIKit
 import FirebaseAuth
 import Firebase
 
-class DistributeVC: BaseVC, changedDelegate {
+class DistributeVC: BaseVC, changedDelegate, missingMoneyDelegate {
+	
+	func changeCashPowerAndRetry(_ newCashPower: Double) {
+		amountOfMoneyInCents = Int(newCashPower * 100)
+        money.moneyValue = amountOfMoneyInCents
+        moneyChanged()
+        attemptDistribution()
+	}
+	
+	func RetryDistribution() {
+        attemptDistribution()
+	}
+	
     
     @IBOutlet weak var categorySwitch: UISwitch!
     @IBOutlet weak var locationSwitch: UISwitch!
@@ -46,19 +58,19 @@ class DistributeVC: BaseVC, changedDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.addNavigationBarTitleView(title: "Distribute Offer", image: UIImage())
+//        self.addNavigationBarTitleView(title: "Distribute Offer", image: UIImage())
         updateIncreasePayLabel()
         money.changedDelegate = self
         money.moneyValue = amountOfMoneyInCents
         moneyChanged()
         self.addDoneButtonOnKeyboard(textField: self.money)
         SetComissionText()
-        updateFilterApproximation()
         
-        self.influencersFilter["gender"] = templateOffer?.genders as AnyObject?
-        self.influencersFilter["categories"] = templateOffer?.category as AnyObject?
-        self.updateFilterApproximation()
-        self.getDeepositDetails()
+        influencersFilter["gender"] = templateOffer?.genders as AnyObject?
+        influencersFilter["categories"] = templateOffer?.category as AnyObject?
+        updateFilterApproximation()
+        getDeepositDetails()
+		setSwitchLabels()
         
         if let templateOffer = templateOffer {
             GetZipsFromLocationFilter(locationFilter: templateOffer.locationFilter) { (zips1) in
@@ -69,15 +81,64 @@ class DistributeVC: BaseVC, changedDelegate {
                         self.updateFilterApproximation()
                     }
                 }
-                
             }
         }
     }
+	
+	@IBOutlet weak var categoryLabel: UILabel!
+	@IBOutlet weak var locationLabel: UILabel!
+	@IBOutlet weak var genderFilter: UILabel!
+	
+	func setSwitchLabels() {
+		//category Label
+		
+		categoryLabel.text = "Category Filter (\(templateOffer!.category.count) Categor\(templateOffer!.category.count == 1 ? "y" : "ies"))"
+		
+		//location filter
+		
+		let locationFilter = templateOffer!.locationFilter
+		switch locationFilter.components(separatedBy: ":")[0] {
+		case "nw":
+			locationLabel.text = "Location Filter (Nationwide)"
+		case "states":
+			let stateList = GetListOfStates()
+			let data = locationFilter.components(separatedBy: ":")[1]
+			var returnData: [String] = []
+			for stateName in data.components(separatedBy: ",") {
+				returnData.append(stateList.filter { (state1) -> Bool in
+					return state1.shortName == stateName
+					}[0].name)
+			}
+			locationLabel.text = "Location Filter (\(returnData.count) State\(returnData.count == 1 ? "" : "s"))"
+		case "radius":
+			let data1 = locationFilter.components(separatedBy: ":")[1]
+			var returnData: [String] = []
+			for data in data1.components(separatedBy: ",") {
+				let zip = data.components(separatedBy: "-")[0]
+				let radius = Int(data.components(separatedBy: "-")[1]) ?? 0
+				returnData.append("A \(radius) mile radius around \(zip)")
+			}
+			locationLabel.text = "Location Filter (\(returnData.count) \(returnData.count == 1 ? "radius" : "radii") selected)"
+		default:
+			break
+		}
+		
+		//gender label
+		
+		if templateOffer!.genders.count > 1 {
+			genderFilter.text = "Gender Filter (All Included)"
+		} else {
+			genderFilter.text = "Gender Filter (\(templateOffer!.genders.joined(separator: ", ")) only)"
+		}
+	}
     
     @IBOutlet weak var avaliableInfluencerLabel: UILabel!
     
     func SetAvaliableInfluencers(_ numberOfInfluencers: Double) {
         avaliableInfluencerLabel.textColor = numberOfInfluencers < 8 ? .systemRed : .systemBlue
+		if numberOfInfluencers < 8 {
+			MakeShake(viewToShake: avaliableInfluencerLabel, coefficient: 0.2)
+		}
         avaliableInfluencerLabel.text = "\(NumberToStringWithCommas(number: numberOfInfluencers))"
     }
     
@@ -120,13 +181,13 @@ class DistributeVC: BaseVC, changedDelegate {
             
             if sender.isOn {
                 self.influencersFilter.removeValue(forKey: "categories")
-                self.influencersFilter["categories"] = templateOffer?.category as AnyObject?
+				self.influencersFilter["categories"] = templateOffer?.category as AnyObject?
             }else{
                 self.influencersFilter.removeValue(forKey: "categories")
             }
             
         }
-        print(self.influencersFilter)
+//        print(self.influencersFilter)
         updateFilterApproximation()
     }
     
@@ -142,10 +203,10 @@ class DistributeVC: BaseVC, changedDelegate {
     func getIncreasePay() -> Double {
         let val = Double(increasePaySlider.value)
         var newVal: Double = 1.0
-        if val > 1 {
+        if val < 1 {
             newVal = 1 + (val / 10)
-        } else if val < 1 {
-            newVal = 1.1 + (val * 0.9)
+        } else if val > 1 {
+            newVal = 1.1 + ((val - 1) * 0.9)
         } else {
             newVal = 1.1
         }
@@ -158,7 +219,7 @@ class DistributeVC: BaseVC, changedDelegate {
         } else if getIncreasePay() == 2 {
             increasePayLabel.text = "Double"
         } else {
-            increasePayLabel.text = "+\(floor((getIncreasePay() - 1) * 100))%"
+            increasePayLabel.text = "+\(Int(floor((getIncreasePay() - 1) * 100)))%"
         }
         updateReturnsLabels()
     }
@@ -173,22 +234,28 @@ class DistributeVC: BaseVC, changedDelegate {
     @IBOutlet weak var ExpectedReturns: UILabel!
     @IBOutlet weak var ExpectedPROFIT: UILabel!
     var amountOfMoneyInCents: Int = 10000
+	
     func changed() {
         editMode = .manual
         amountOfMoneyInCents = money.moneyValue
         moneyChanged()
     }
+	
     var editMode: EditingMode = .manual
     @IBOutlet weak var money: MoneyField!
+	
     override func doneButtonAction() {
         self.money.removeTarget(self, action: #selector(self.TrackBarTracked(_:)), for: .editingDidEnd)
         self.money.resignFirstResponder()
         self.money.addTarget(self, action: #selector(self.TrackBarTracked(_:)), for: .editingDidEnd)
     }
+	
     func updateReturnsLabels() {
-        let centsToBeUsedOnLabels: Int = Int(floor(Double(amountOfMoneyInCents) / getIncreasePay()))
-        ExpectedReturns.text = "Expected Return: \(LocalPriceGetter(Value: Int(Double(centsToBeUsedOnLabels) * 5.85)))"
-        ExpectedPROFIT.text = "Expected Profit: \(LocalPriceGetter(Value: Int(Double(amountOfMoneyInCents) * (5.85 - getIncreasePay()))))"
+		let commission = Singleton.sharedInstance.getCommision()
+        let centsToBeUsedOnLabels: Int = Int(floor((Double(amountOfMoneyInCents) / getIncreasePay()) * (1 - commission)))
+		let returns = Int(Double(centsToBeUsedOnLabels) * 5.85)
+        ExpectedReturns.text = "Expected Return: \(LocalPriceGetter(Value: returns))"
+        ExpectedPROFIT.text = "Expected Profit: \(LocalPriceGetter(Value: returns - amountOfMoneyInCents))"
     }
     
     func moneyChanged() {
@@ -208,6 +275,7 @@ class DistributeVC: BaseVC, changedDelegate {
         }
         updateReturnsLabels()
     }
+	
     func LocalPriceGetter(Value: Int) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
@@ -215,6 +283,7 @@ class DistributeVC: BaseVC, changedDelegate {
         
         return formatter.string(from: NSNumber(value: amount))!
     }
+	
     @IBAction func TrackBarTracked(_ sender: Any) {
         editMode = .slider
         let value = Double(moneySlider.value)
@@ -232,15 +301,18 @@ class DistributeVC: BaseVC, changedDelegate {
         print(getDesiredCashPower())
         print(getIncreasePay())
         print(getMustBe21())
-        if canDistribute(alertUser: true) {
+        attemptDistribution()
+        
+    }
+	
+	func attemptDistribution() {
+		if canDistribute(alertUser: true) {
             //DistributeOffer()
             self.DistributeOfferToOfferPool()
         } else {
             YouShallNotPass(SaveButtonView: DistributeButtonview)
         }
-        
-        
-    }
+	}
     
     
     func DistributeOfferToOfferPool() {
@@ -324,7 +396,7 @@ class DistributeVC: BaseVC, changedDelegate {
     }
     
     func canDistribute(alertUser: Bool) -> Bool {
-        if getDesiredCashPower() != 0{
+        if getDesiredCashPower() != 0 {
             let offerAmount = getDesiredCashPower()
             if offerAmount > 0 {
                 if self.depositValue != nil {
@@ -332,26 +404,22 @@ class DistributeVC: BaseVC, changedDelegate {
                         if (offerAmount < self.depositValue!.currentBalance!) {
                             return true
                         } else {
-                            self.showAlertMessage(title: "Alert", message: "Please enter your offer amount below than deposit amount or deposit more money and try again!") {
-                                
-                            }
+							performSegue(withIdentifier: "toMissingMoney", sender: self)
                         }
                     }
-                }else {
+                } else {
                     
-                    self.showAlertMessage(title: "Deposit", message: "You must have money in your Ambassdaoor account to pay influnecers.") {
-                        
-                    }
+					performSegue(withIdentifier: "toMissingMoney", sender: self)
                     
                 }
                 
-            }else{
+            } else {
                 self.showAlertMessage(title: "Enter Amount", message: "Enter how much money you would like to spend distributing your offer.") {
                     
                 }
             }
-        }else{
-            self.showAlertMessage(title: "Enter Amount", message: "Enter how much money you would like to spend distributing your offer.") {
+        } else {
+            self.showAlertMessage(title: "No Budget", message: "You did not select a budget for the offer.") {
                 
             }
         }
@@ -478,6 +546,12 @@ class DistributeVC: BaseVC, changedDelegate {
             let view = segue.destination as! WebVC
             view.urlString = "https://www.ambassadoor.co/terms-of-service"
         }
+		if segue.identifier == "toMissingMoney" {
+			let view = segue.destination as! missingMoneyVC
+			view.desiredCashPower = Double(amountOfMoneyInCents) / 100
+			view.avaliableFunds = self.depositValue!.currentBalance ?? 0
+			view.delegate = self
+		}
     }
     
 }

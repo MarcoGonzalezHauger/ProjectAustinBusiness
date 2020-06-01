@@ -12,12 +12,13 @@ import FirebaseAuth
 
 class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, PickerDelegate, selectedCategoryDelegate, NCDelegate, LocationFilterDelegate {
 	
+	@IBOutlet weak var navTop: UINavigationItem!
 	func LocationFilterChosen(filter: String) {
 		locationFilter = filter
 	}
 
 	func shouldAllowBack() -> Bool {
-		SaveThisOffer() {_,_ in }
+		saveOffer()
 		return true
 	}
     
@@ -80,6 +81,7 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
         
         if let segueOffer = segueOffer {
             
+			navTop.title = segueOffer.title
             self.offerName.text = segueOffer.title
 			locationFilter = segueOffer.locationFilter
 			if segueOffer.genders.count > 1 {
@@ -101,6 +103,10 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 		}
         
     }
+	
+	@IBAction func titleEdited(_ sender: Any) {
+		navTop.title = offerName.text
+	}
 	
 	//used to set the textifield text and the label below it on location fitler information.
 	func TitleAndTagLineforLocationFilter(filter: String) -> [String] {
@@ -307,7 +313,7 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
     //MARK: - Data Components
     
     func setBasicComponents() {
-        self.addleftBarButtonAction()
+//        self.addleftBarButtonAction()
         
         if let nc = self.navigationController as? StandardNC {
             nc.tempDelegate = self
@@ -483,12 +489,18 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 		self.showActivityIndicator()
 	}
 	
-	@IBAction override func addLeftAction(sender: UIBarButtonItem) {
+//	@IBAction override func addLeftAction(sender: UIBarButtonItem) {
+//		SaveThisOffer { (template, bool1) in
+//			self.createLocalNotification(notificationName: "reloadOffer", userInfo: [:])
+//				global.post.removeAll()
+//            self.navigationController?.setNavigationBarHidden(true, animated: false)
+//			self.navigationController?.popViewController(animated: true)
+//		}
+//	}
+	
+	func saveOffer() {
 		SaveThisOffer { (template, bool1) in
 			self.createLocalNotification(notificationName: "reloadOffer", userInfo: [:])
-				global.post.removeAll()
-            self.navigationController?.setNavigationBarHidden(true, animated: false)
-			self.navigationController?.popViewController(animated: true)
 		}
 	}
 	

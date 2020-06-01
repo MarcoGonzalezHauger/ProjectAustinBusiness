@@ -145,7 +145,8 @@ class AddPostVC: BaseVC, NCDelegate, UITableViewDelegate, UITableViewDataSource,
     @IBOutlet weak var InstructionsTextView: UITextView!
     @IBOutlet weak var scroll: UIScrollView!
     @IBOutlet weak var saveView: ShadowView!
-    
+	@IBOutlet weak var navItem: UINavigationItem!
+	
     var postType: TypeofPost?
     var productCollection = [Product]()
     
@@ -157,9 +158,9 @@ class AddPostVC: BaseVC, NCDelegate, UITableViewDelegate, UITableViewDataSource,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.customizeNavigationBar()
+//        self.customizeNavigationBar()
         //self.addLeftButtonText(text: "Back")
-        addleftBarButtonAction()
+//        addleftBarButtonAction()
         SetNumber(number: (index ?? global.post.count) + 1)
         if index != nil {
             let post = global.post[index!]
@@ -187,6 +188,7 @@ class AddPostVC: BaseVC, NCDelegate, UITableViewDelegate, UITableViewDataSource,
     
     func SetNumber(number: Int) {
         PostTitle.text = "Post \(number)"
+		navItem.title = "Post \(number)"
         switch number {
         case 1: colorBubble.backgroundColor = .systemBlue
         case 2: colorBubble.backgroundColor = .systemYellow
