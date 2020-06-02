@@ -86,6 +86,7 @@ class missingMoneyVC: BaseVC,STPAddCardViewControllerDelegate, STPAuthentication
     }
 	
 	@IBAction func payTheDifference(_ sender: Any) {
+		UseTapticEngine()
 		//1: Display the Credit Card VC that's used on the deposit tab for the amount "actualCharge"
         self.addCardViewController.delegate = self
         let navigationController = UINavigationController(rootViewController: self.addCardViewController)
@@ -251,25 +252,25 @@ class missingMoneyVC: BaseVC,STPAddCardViewControllerDelegate, STPAuthentication
                         
                         deposit?.depositHistory = depositHistory
                         
-                        sendDepositAmount(deposit: deposit!, companyUser: Auth.auth().currentUser!.uid) { (modifiedDeposit, status) in
-//                            self.createLocalNotification(notificationName: "reloadDeposit", userInfo: [:])
-                            accountBalance = (deposit!.currentBalance!)
-                            for value in deposit!.depositHistory! {
-                            
-                            if let valueDetails = value as? NSDictionary {
-                            
-                            transactionHistory.append(Transaction(description: "", details: valueDetails["cardDetails"] as AnyObject, time: valueDetails["updatedAt"] as! String, amount: Double(valueDetails["amount"] as! String)!, type: valueDetails["type"] as! String, status: valueDetails["status"] as? String ?? "", userName: valueDetails["userName"] as? String ?? ""))
-                                
-                            }
-                                
-                            }
-                            self.delegate?.RetryDistribution(deposit: deposit!)
-                            self.createLocalNotification(notificationName: "reloadDeposit", userInfo: [:])
-                            DispatchQueue.main.async(execute: {
-                                self.dismiss(animated: true, completion: nil)
-                            })
-                        }
-                        
+						sendDepositAmount(deposit: deposit!, companyUser: Auth.auth().currentUser!.uid) { (modifiedDeposit, status) in
+							//                            self.createLocalNotification(notificationName: "reloadDeposit", userInfo: [:])
+							accountBalance = (deposit!.currentBalance!)
+							for value in deposit!.depositHistory! {
+								
+								if let valueDetails = value as? NSDictionary {
+									
+									transactionHistory.append(Transaction(description: "", details: valueDetails["cardDetails"] as AnyObject, time: valueDetails["updatedAt"] as! String, amount: Double(valueDetails["amount"] as! String)!, type: valueDetails["type"] as! String, status: valueDetails["status"] as? String ?? "", userName: valueDetails["userName"] as? String ?? ""))
+									
+								}
+								
+							}
+							self.delegate?.RetryDistribution(deposit: deposit!)
+							self.createLocalNotification(notificationName: "reloadDeposit", userInfo: [:])
+							DispatchQueue.main.async(execute: {
+								self.dismiss(animated: true, completion: nil)
+							})
+						}
+						
                     }
                     else{
                         
@@ -287,12 +288,14 @@ class missingMoneyVC: BaseVC,STPAddCardViewControllerDelegate, STPAuthentication
     }
 	
 	@IBAction func distributeWithoutFullBudget(_ sender: Any) {
+		UseTapticEngine()
 		dismiss(animated: true) {
 			self.delegate?.changeCashPowerAndRetry(self.avaliableFunds)
 		}
 	}
 	
 	@IBAction func cancelDistribution(_ sender: Any) {
+		UseTapticEngine()
 		dismiss(animated: true, completion: nil)
 	}
 	
