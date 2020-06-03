@@ -252,25 +252,33 @@ class missingMoneyVC: BaseVC,STPAddCardViewControllerDelegate, STPAuthentication
                         
                         deposit?.depositHistory = depositHistory
                         
-						sendDepositAmount(deposit: deposit!, companyUser: Auth.auth().currentUser!.uid) { (modifiedDeposit, status) in
-							//                            self.createLocalNotification(notificationName: "reloadDeposit", userInfo: [:])
-							accountBalance = (deposit!.currentBalance!)
-							for value in deposit!.depositHistory! {
-								
-								if let valueDetails = value as? NSDictionary {
-									
-									transactionHistory.append(Transaction(description: "", details: valueDetails["cardDetails"] as AnyObject, time: valueDetails["updatedAt"] as! String, amount: Double(valueDetails["amount"] as! String)!, type: valueDetails["type"] as! String, status: valueDetails["status"] as? String ?? "", userName: valueDetails["userName"] as? String ?? ""))
-									
-								}
-								
-							}
-							self.delegate?.RetryDistribution(deposit: deposit!)
-							self.createLocalNotification(notificationName: "reloadDeposit", userInfo: [:])
-							DispatchQueue.main.async(execute: {
-								self.dismiss(animated: true, completion: nil)
-							})
-						}
-						
+                        sendDepositAmount(deposit: deposit!, companyUser: Auth.auth().currentUser!.uid) { (modifiedDeposit, status) in
+//                            self.createLocalNotification(notificationName: "reloadDeposit", userInfo: [:])
+                            accountBalance = (deposit!.currentBalance!)
+                            for value in deposit!.depositHistory! {
+                            
+                            if let valueDetails = value as? NSDictionary {
+                                
+                                var amount = 0.0
+                                
+                                if let amt = valueDetails["amount"] as? String {
+                                    amount = Double(amt)!
+                                }else if let amt = valueDetails["amount"] as? Double{
+                                   amount = amt
+                                }
+                            
+                            transactionHistory.append(Transaction(description: "", details: valueDetails["cardDetails"] as AnyObject, time: valueDetails["updatedAt"] as! String, amount: amount, type: valueDetails["type"] as! String, status: valueDetails["status"] as? String ?? "", userName: valueDetails["userName"] as? String ?? ""))
+                                
+                            }
+                                
+                            }
+                            self.delegate?.RetryDistribution(deposit: deposit!)
+                            self.createLocalNotification(notificationName: "reloadDeposit", userInfo: [:])
+                            DispatchQueue.main.async(execute: {
+                                self.dismiss(animated: true, completion: nil)
+                            })
+                        }
+                        
                     }
                     else{
                         

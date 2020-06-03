@@ -416,7 +416,15 @@ func setDepositDetails() {
                 
                 if let valueDetails = value as? NSDictionary {
                     
-                    transactionHistory.append(Transaction(description: "", details: valueDetails["cardDetails"] as AnyObject, time: valueDetails["updatedAt"] as! String, amount: Double(valueDetails["amount"] as! String)!, type: valueDetails["type"] as! String, status: valueDetails["status"] as? String ?? "", userName: valueDetails["userName"] as? String ?? ""))
+                    var amount = 0.0
+                    
+                    if let amt = valueDetails["amount"] as? String {
+                        amount = Double(amt)!
+                    }else if let amt = valueDetails["amount"] as? Double{
+                       amount = amt
+                    }
+                    
+                    transactionHistory.append(Transaction(description: "", details: valueDetails["cardDetails"] as AnyObject, time: valueDetails["updatedAt"] as! String, amount: amount, type: valueDetails["type"] as! String, status: valueDetails["status"] as? String ?? "", userName: valueDetails["userName"] as? String ?? ""))
                 }
             }
             

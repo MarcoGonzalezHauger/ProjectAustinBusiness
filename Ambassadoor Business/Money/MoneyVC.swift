@@ -74,6 +74,14 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
 			cell.descriptionLabel.text = "Referral Fees from \(ThisTransaction.userName)."
             cell.amountlabel.text = "+\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
             cell.shadowBox.borderColor = .systemGreen
+        }else if ThisTransaction.type == "Amber-ADD" {
+            cell.descriptionLabel.text = "Ambassadoor Added."
+            cell.amountlabel.text = "+\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
+            cell.shadowBox.borderColor = .systemGreen
+        }else if ThisTransaction.type == "Amber-REDUCE"{
+            cell.descriptionLabel.text = "Ambassadoor deducted."
+            cell.amountlabel.text = "-\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
+            cell.shadowBox.borderColor = .systemRed
         }
 		//cell.shadowBox.borderColor = .black // Refer to PowerPoint.
 		return cell
@@ -176,7 +184,15 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
                     
                     if let valueDetails = value as? NSDictionary {
                         
-                        transactionHistory.append(Transaction(description: "", details: valueDetails["cardDetails"] as AnyObject, time: valueDetails["updatedAt"] as! String, amount: Double(valueDetails["amount"] as! String)!, type: valueDetails["type"] as! String, status: valueDetails["status"] as? String ?? "", userName: valueDetails["userName"] as? String ?? ""))
+                        var amount = 0.0
+                        
+                        if let amt = valueDetails["amount"] as? String {
+                            amount = Double(amt)!
+                        }else if let amt = valueDetails["amount"] as? Double{
+                           amount = amt
+                        }
+                        
+                        transactionHistory.append(Transaction(description: "", details: valueDetails["cardDetails"] as AnyObject, time: valueDetails["updatedAt"] as! String, amount: amount, type: valueDetails["type"] as! String, status: valueDetails["status"] as? String ?? "", userName: valueDetails["userName"] as? String ?? ""))
                     }
                 }
                 DispatchQueue.main.async(execute: {
