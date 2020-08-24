@@ -10,7 +10,17 @@ import UIKit
 import FirebaseAuth
 import Firebase
 
-class DistributeVC: BaseVC, changedDelegate, missingMoneyDelegate {
+class DistributeVC: BaseVC, changedDelegate, missingMoneyDelegate, dismissSuccessVC {
+    func dismissedSuccess() {
+        self.tabBarController?.selectedIndex = 2
+        
+        global.post.removeAll()
+        self.createLocalNotification(notificationName: "reloadOffer", userInfo: [:])
+        self.createLocalNotification(notificationName: "reloadstatics", userInfo: [:])
+        self.navigationController?.popToRootViewController(animated: true)
+        
+    }
+    
 	
 	func changeCashPowerAndRetry(_ newCashPower: Double) {
 		amountOfMoneyInCents = Int(newCashPower * 100)
@@ -19,7 +29,8 @@ class DistributeVC: BaseVC, changedDelegate, missingMoneyDelegate {
         attemptDistribution()
 	}
 	
-	func RetryDistribution() {
+    func RetryDistribution(deposit: Deposit) {
+        self.depositValue = deposit
         attemptDistribution()
 	}
 	
@@ -59,6 +70,7 @@ class DistributeVC: BaseVC, changedDelegate, missingMoneyDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.addNavigationBarTitleView(title: "Distribute Offer", image: UIImage())
+        getDeepositDetails()
         updateIncreasePayLabel()
         money.changedDelegate = self
         money.moneyValue = amountOfMoneyInCents
@@ -69,7 +81,7 @@ class DistributeVC: BaseVC, changedDelegate, missingMoneyDelegate {
         influencersFilter["gender"] = templateOffer?.genders as AnyObject?
         influencersFilter["categories"] = templateOffer?.category as AnyObject?
         updateFilterApproximation()
-        getDeepositDetails()
+        
 		setSwitchLabels()
         
         if let templateOffer = templateOffer {
@@ -252,7 +264,7 @@ class DistributeVC: BaseVC, changedDelegate, missingMoneyDelegate {
 	
     func updateReturnsLabels() {
 		let commission = Singleton.sharedInstance.getCommision()
-        let centsToBeUsedOnLabels: Int = Int(floor((Double(amountOfMoneyInCents) / getIncreasePay()) * (1 - commission)))
+        let centsToBeUsedOnLabels: Int = Int((Double(amountOfMoneyInCents) / getIncreasePay()) * (1 - commission))
 		let returns = Int(Double(centsToBeUsedOnLabels) * 5.85)
         ExpectedReturns.text = "Expected Return: \(LocalPriceGetter(Value: returns))"
         ExpectedPROFIT.text = "Expected Profit: \(LocalPriceGetter(Value: returns - amountOfMoneyInCents))"
@@ -277,6 +289,9 @@ class DistributeVC: BaseVC, changedDelegate, missingMoneyDelegate {
     }
 	
     func LocalPriceGetter(Value: Int) -> String {
+		if Value <= 0 {
+			return "$0.00"
+		}
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
         let amount = Double(Value/100) + Double(Value % 100)/100
@@ -372,12 +387,15 @@ class DistributeVC: BaseVC, changedDelegate, missingMoneyDelegate {
         let path = Auth.auth().currentUser!.uid + "/" + self.templateOffer!.offer_ID
         sentOutOffersToOfferPool(pathString: path, templateOffer: self.templateOffer!) { (offer, status) in
             createTemplateOffer(pathString: path, edited: true, templateOffer: offer) { (tempOffer, status) in
-            }
+            }/*
             global.post.removeAll()
             self.createLocalNotification(notificationName: "reloadOffer", userInfo: [:])
-            self.navigationController?.setNavigationBarHidden(true, animated: false)
             self.navigationController?.popToRootViewController(animated: true)
+            */
             self.sendTransactionDetailsToBusinessUser(deductedAmount: originalAmount, ambassadoorCommision: Singleton.sharedInstance.getCommision())
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "toSucessVC", sender: self)
+            }
             
         }
         
@@ -551,7 +569,10 @@ class DistributeVC: BaseVC, changedDelegate, missingMoneyDelegate {
 			view.desiredCashPower = Double(amountOfMoneyInCents) / 100
 			view.avaliableFunds = self.depositValue!.currentBalance ?? 0
 			view.delegate = self
-		}
+        }else if segue.identifier == "toSucessVC"{
+            let view = segue.destination as! SuccessVC
+            view.delegate = self
+        }
     }
     
 }
