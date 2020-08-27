@@ -227,27 +227,45 @@ class SignInVC: BaseVC, UITextFieldDelegate {
 
 							UserDefaults.standard.set(self.emailText.text, forKey: "userEmail")
 							UserDefaults.standard.set(self.passwordText.text, forKey: "userPass")
+                            UserDefaults.standard.set((Auth.auth().currentUser?.uid)!, forKey: "userid")
 							print("userdefaults set.")
 							
 							getCurrentCompanyUser(userID: (Auth.auth().currentUser?.uid)!) { (companyUser, error) in
 								if companyUser != nil {
 									Singleton.sharedInstance.setCompanyUser(user: companyUser!)
-                                    if Singleton.sharedInstance.getCompanyUser().isCompanyRegistered!{
+                                    
+                                    
+                                    if let isRegistered =  Singleton.sharedInstance.getCompanyUser().isCompanyRegistered{
                                         
-                                        let user = Singleton.sharedInstance.getCompanyUser().companyID!
-                                        
-                                        getCompany(companyID: user) { (company, error) in
+                                        if isRegistered{
                                             
-                                            Singleton.sharedInstance.setCompanyDetails(company: company!)
-                                            YourCompany = company
-                                            downloadBeforeLoad()
+                                            let user = Singleton.sharedInstance.getCompanyUser().companyID!
+                                            
+                                            getCompany(companyID: user) { (company, error) in
+                                                
+                                                Singleton.sharedInstance.setCompanyDetails(company: company!)
+                                                YourCompany = company
+                                                downloadBeforeLoad()
+                                                DispatchQueue.main.async(execute: {
+                                                    timer.invalidate()
+                                                    self.hideActivityIndicator()
+                                                    self.instantiateToMainScreen()
+                                                })
+                                            }
+                                            
+                                        }else{
                                             DispatchQueue.main.async(execute: {
                                                 timer.invalidate()
                                                 self.hideActivityIndicator()
                                                 self.instantiateToMainScreen()
                                             })
                                         }
-                                        
+                                    }else{
+                                        DispatchQueue.main.async(execute: {
+                                            timer.invalidate()
+                                            self.hideActivityIndicator()
+                                            self.instantiateToMainScreen()
+                                        })
                                     }
 								}
 								
