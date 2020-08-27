@@ -264,7 +264,7 @@ class DistributeVC: BaseVC, changedDelegate, missingMoneyDelegate, dismissSucces
 	
     func updateReturnsLabels() {
 		let commission = Singleton.sharedInstance.getCommision()
-        let centsToBeUsedOnLabels: Int = Int(floor((Double(amountOfMoneyInCents) / getIncreasePay()) * (1 - commission)))
+        let centsToBeUsedOnLabels: Int = Int((Double(amountOfMoneyInCents) / getIncreasePay()) * (1 - commission))
 		let returns = Int(Double(centsToBeUsedOnLabels) * 5.85)
         ExpectedReturns.text = "Expected Return: \(LocalPriceGetter(Value: returns))"
         ExpectedPROFIT.text = "Expected Profit: \(LocalPriceGetter(Value: returns - amountOfMoneyInCents))"
@@ -289,6 +289,9 @@ class DistributeVC: BaseVC, changedDelegate, missingMoneyDelegate, dismissSucces
     }
 	
     func LocalPriceGetter(Value: Int) -> String {
+		if Value <= 0 {
+			return "$0.00"
+		}
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
         let amount = Double(Value/100) + Double(Value % 100)/100

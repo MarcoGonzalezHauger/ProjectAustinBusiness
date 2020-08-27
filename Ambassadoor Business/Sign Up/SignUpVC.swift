@@ -135,6 +135,7 @@ class SignUpVC: BaseVC, UITextFieldDelegate {
 
 								UserDefaults.standard.set(self.emailText.text, forKey: "userEmail")
 								UserDefaults.standard.set(self.passwordText.text, forKey: "userPass")
+                                UserDefaults.standard.set(user.uid, forKey: "userid")
                                 
                                 let referralCode = randomString(length: 7)
 								

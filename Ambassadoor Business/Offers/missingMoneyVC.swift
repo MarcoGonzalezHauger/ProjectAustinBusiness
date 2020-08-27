@@ -86,6 +86,7 @@ class missingMoneyVC: BaseVC,STPAddCardViewControllerDelegate, STPAuthentication
     }
 	
 	@IBAction func payTheDifference(_ sender: Any) {
+		UseTapticEngine()
 		//1: Display the Credit Card VC that's used on the deposit tab for the amount "actualCharge"
         self.addCardViewController.delegate = self
         let navigationController = UINavigationController(rootViewController: self.addCardViewController)
@@ -295,12 +296,14 @@ class missingMoneyVC: BaseVC,STPAddCardViewControllerDelegate, STPAuthentication
     }
 	
 	@IBAction func distributeWithoutFullBudget(_ sender: Any) {
+		UseTapticEngine()
 		dismiss(animated: true) {
 			self.delegate?.changeCashPowerAndRetry(self.avaliableFunds)
 		}
 	}
 	
 	@IBAction func cancelDistribution(_ sender: Any) {
+		UseTapticEngine()
 		dismiss(animated: true, completion: nil)
 	}
 	

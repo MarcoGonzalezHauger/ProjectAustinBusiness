@@ -16,8 +16,8 @@ import Stripe
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-
-	var window: UIWindow?
+    
+    var window: UIWindow?
     
     enum ShortcutIdentifier: String {
         case Offers = "com.ambassadoor.offers"
@@ -26,13 +26,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     override init() {
-//		FirebaseApp.configure()
-//        Database.database().isPersistenceEnabled = false
-//		InitializeZipCodeAPI(completed: nil)
+        //		FirebaseApp.configure()
+        //        Database.database().isPersistenceEnabled = false
+        //		InitializeZipCodeAPI(completed: nil)
     }
-
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		// Override point for customization after application launch.
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Override point for customization after application launch.
         FirebaseApp.configure()
         Database.database().isPersistenceEnabled = false
         InitializeZipCodeAPI(completed: nil)
@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         Stripe.setDefaultPublishableKey("pk_live_k9m0LJO9sODGltsithrwmvqH00laWBjcra")
         //BTAppSwitch.setReturnURLScheme("com.develop.sns.paypal")
         getAdminValues { (error) in
-           print("fd=",Singleton.sharedInstance.getAdminFS())
+            print("fd=",Singleton.sharedInstance.getAdminFS())
         }
         UNUserNotificationCenter.current().delegate = self
         let center = UNUserNotificationCenter.current()
@@ -54,103 +54,183 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
         
-        if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
+        if (launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem) != nil {
             
             //DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                //global.launchWay = "shortcut"
-//                let viewController = instantiateViewController(storyboard: "Main", reference: "tabbar") as! UITabBarController
-//                self.handleHapticAction(shortcutItem, tabController: viewController)
-//                self.window?.rootViewController = viewController
-                
+            //global.launchWay = "shortcut"
+            //                let viewController = instantiateViewController(storyboard: "Main", reference: "tabbar") as! UITabBarController
+            //                self.handleHapticAction(shortcutItem, tabController: viewController)
+            //                self.window?.rootViewController = viewController
+            
             //}
-            autoLoginCheckAction(launchOptions: launchOptions)
+            //autoLoginCheckAction(launchOptions: launchOptions)
+            self.autoLogin(launchOptions: launchOptions)
             return false
             
             
         }else{
-           // autoLoginCheckAction(launch: launchOptions)
-            autoLoginCheckAction(launchOptions: launchOptions)
+            // autoLoginCheckAction(launch: launchOptions)
+            //autoLoginCheckAction(launchOptions: launchOptions)
+            self.autoLogin(launchOptions: launchOptions)
         }
         
-       
         
-            
+        
+        
         NotificationCenter.default.addObserver(self, selector: #selector(tokenRefreshNotification(_:)), name: NSNotification.Name.InstanceIDTokenRefresh, object: nil)
         
-		return true
-	}
+        return true
+    }
+    
+    
+    func autoLogin(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
+        
+        if let token = UserDefaults.standard.object(forKey: "userid") as? String{
+            
+            if token != "" {
+                
+                if let email = UserDefaults.standard.object(forKey: "userEmail") as? String{
+                    
+                    if let password = UserDefaults.standard.object(forKey: "userPass") as? String{
+                        
+                        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+                            if error == nil {
+                                
+                                self.autoLoginCheckAction(launchOptions: launchOptions)
+                        
+                            }else{
+                                self.moveLoginScreen()
+                            }
+                            
+                        }
+                        
+                    }else{
+                        self.moveLoginScreen()
+                    }
+                    
+                }else{
+                    self.moveLoginScreen()
+                }
+                
+            }else{
+                self.moveLoginScreen()
+            }
+
+        }else{
+            self.moveLoginScreen()
+        }
+        
+        
+    }
+    
     
     func autoLoginCheckAction(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         
         if ((Auth.auth().currentUser?.uid) != nil) {
-                            
-//                Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+            
+            //                Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+            
+            
+            getCurrentCompanyUser(userID: (Auth.auth().currentUser?.uid)!) { (companyUser, error) in
+                if companyUser != nil {
+                    Singleton.sharedInstance.setCompanyUser(user: companyUser!)
                     
+                    if let user = Singleton.sharedInstance.getCompanyUser().companyID {
                         
-                        getCurrentCompanyUser(userID: (Auth.auth().currentUser?.uid)!) { (companyUser, error) in
-                            if companyUser != nil {
-                                Singleton.sharedInstance.setCompanyUser(user: companyUser!)
-                                if Singleton.sharedInstance.getCompanyUser().isCompanyRegistered!{
+                        
+                        if let isRegistered =  Singleton.sharedInstance.getCompanyUser().isCompanyRegistered {
+                            
+                            if isRegistered && user != "" {
+                                
+                                getCompany(companyID: user) { (company, error) in
                                     
-                                    let user = Singleton.sharedInstance.getCompanyUser().companyID!
-                                    
-                                    getCompany(companyID: user) { (company, error) in
+                                    if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
                                         
-                                        if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
-                                            
-                                            Singleton.sharedInstance.setCompanyDetails(company: company!)
-                                            YourCompany = company
-                                            
-                                            DispatchQueue.main.async(execute: {
-                                                //self.instantiateToMainScreen()
+                                        Singleton.sharedInstance.setCompanyDetails(company: company!)
+                                        YourCompany = company
+                                        
+                                        DispatchQueue.main.async(execute: {
+                                            //self.instantiateToMainScreen()
                                             let viewController = instantiateViewController(storyboard: "Main", reference: "tabbar") as! UITabBarController
-                                                self.handleHapticAction(shortcutItem, tabController: viewController)
-                                                self.window?.rootViewController = viewController
-                                            })
-                                            
-                                        }else{
+                                            self.handleHapticAction(shortcutItem, tabController: viewController)
+                                            self.window?.rootViewController = viewController
+                                        })
+                                        
+                                    }else{
                                         
                                         Singleton.sharedInstance.setCompanyDetails(company: company!)
                                         YourCompany = company
                                         downloadBeforeLoad()
                                         setHapticMenu(companyUserID: (Auth.auth().currentUser?.uid)!)
-                                        DispatchQueue.main.async(execute: {
-                                            //self.instantiateToMainScreen()
-                                        let viewController = instantiateViewController(storyboard: "Main", reference: "tabbar")
-                                            self.window?.rootViewController = viewController as! UITabBarController
-                                        })
-                                        }
-                                        
-                                    
+                                        self.moveMainScreen()
                                     }
                                     
+                                    
                                 }
+                                
+                            }else{
+                                
+                                self.moveMainScreen()
+                                
                             }
+                            
+                        }else{
+                            
+                            self.moveMainScreen()
                             
                         }
                         
+                    }else{
+                        
+                        self.moveMainScreen()
+                        
+                    }
                     
                     
+                }else{
+                    self.moveLoginScreen()
+                }
                 
-                
+            }
+            
+            
+            
+            
+            
             
             
         }else{
-            let viewController = instantiateViewController(storyboard: "Onboarding", reference: "signinnavigation")
-            self.window?.rootViewController = viewController as! UITabBarController
+            self.moveLoginScreen()
         }
         
     }
+    
+    func moveMainScreen() {
+        
+        DispatchQueue.main.async(execute: {
+            let viewController = instantiateViewController(storyboard: "Main", reference: "tabbar")
+            self.window?.rootViewController = viewController as! UITabBarController
+        })
+        
+    }
+    
+    func moveLoginScreen() {
+        DispatchQueue.main.async(execute: {
+            let viewController = instantiateViewController(storyboard: "Onboarding", reference: "signinnavigation")
+            self.window?.rootViewController = viewController as! UINavigationController
+        })
+    }
+    
     
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void){
         print(shortcutItem.type)
         
         DispatchQueue.main.async(execute: {
-           let viewReference = instantiateViewController(storyboard: "Main", reference: "tabbar") as! UITabBarController
+            let viewReference = instantiateViewController(storyboard: "Main", reference: "tabbar") as! UITabBarController
             self.handleHapticAction(shortcutItem, tabController: viewReference)
             self.window?.rootViewController = viewReference
         })
-
+        
     }
     
     func handleHapticAction(_ shortcutItem: UIApplicationShortcutItem, tabController: UITabBarController) {
@@ -173,7 +253,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func application(_ application: UIApplication,didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-
+        
         let deviceTokenString1 = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
         print("deviceToken1=",deviceTokenString1)
         
@@ -190,205 +270,205 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     
-
+    
     //Called if unable to register for APNS.
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-
-
+        
+        
     }
     
-//    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]){
-//
-//    }
-//
+    //    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]){
+    //
+    //    }
+    //
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void){
-
+        
     }
-//
+    //
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void){
         completionHandler([.badge,.sound, .alert])
     }
-
+    
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-
+        
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-//        if url.scheme?.localizedCaseInsensitiveCompare("com.develop.sns.paypal") == .orderedSame {
-//            return BTAppSwitch.handleOpen(url, options: options)
-//        }
+        //        if url.scheme?.localizedCaseInsensitiveCompare("com.develop.sns.paypal") == .orderedSame {
+        //            return BTAppSwitch.handleOpen(url, options: options)
+        //        }
         return false
     }
-
-	func applicationWillResignActive(_ application: UIApplication) {
-		// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-		// Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
-	}
-
-	func applicationDidEnterBackground(_ application: UIApplication) {
-		// Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-		// If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-	}
-
-	func applicationWillEnterForeground(_ application: UIApplication) {
-		// Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-	}
-
-	func applicationDidBecomeActive(_ application: UIApplication) {
-		// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    func applicationWillResignActive(_ application: UIApplication) {
+        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
+        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
+        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    }
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         self.versionUpdateValidation()
-	}
+    }
     
-//    func versionUpdateValidation(){
-//        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
-//
-//        let ref = Database.database().reference().child("LatestAppVersion").child("Businessversion")
-//        ref.observeSingleEvent(of: .value, with: { (snapshot) in
-//
-//            let latestVersion = snapshot.value as! String
-//            if (latestVersion == appVersion) {
-//
-//            }else{
-//                let alertMessage = "A new version of Application is available, Please update to version " + latestVersion;
-//
-//                let topWindow: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
-//                topWindow?.rootViewController = UIViewController()
-//                topWindow?.windowLevel = UIWindow.Level.alert + 1
-//                let alert = UIAlertController(title: "Update is avaliable", message: alertMessage, preferredStyle: .alert)
-//                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "confirm"), style: .cancel, handler: {(_ action: UIAlertAction) -> Void in
-//                    // continue your work
-//
-//                    // important to hide the window after work completed.
-//                    // this also keeps a reference to the window until the action is invoked.
-//                    topWindow?.isHidden = true // if you want to hide the topwindow then use this
-//                    //            topWindow? = nil // if you want to hide the topwindow then use this
-//
-//                    if let url = URL(string: "itms-apps://itunes.apple.com/app"),
-//                        UIApplication.shared.canOpenURL(url){
-//                        if #available(iOS 10.0, *) {
-//                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-//                        } else {
-//                            UIApplication.shared.openURL(url)
-//                        }
-//                    }
-//
-//
-//                }))
-//                topWindow?.makeKeyAndVisible()
-//                topWindow?.rootViewController?.present(alert, animated: true, completion: nil)
-//
-//            }
-//        })
-//    }
+    //    func versionUpdateValidation(){
+    //        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+    //
+    //        let ref = Database.database().reference().child("LatestAppVersion").child("Businessversion")
+    //        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+    //
+    //            let latestVersion = snapshot.value as! String
+    //            if (latestVersion == appVersion) {
+    //
+    //            }else{
+    //                let alertMessage = "A new version of Application is available, Please update to version " + latestVersion;
+    //
+    //                let topWindow: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
+    //                topWindow?.rootViewController = UIViewController()
+    //                topWindow?.windowLevel = UIWindow.Level.alert + 1
+    //                let alert = UIAlertController(title: "Update is avaliable", message: alertMessage, preferredStyle: .alert)
+    //                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "confirm"), style: .cancel, handler: {(_ action: UIAlertAction) -> Void in
+    //                    // continue your work
+    //
+    //                    // important to hide the window after work completed.
+    //                    // this also keeps a reference to the window until the action is invoked.
+    //                    topWindow?.isHidden = true // if you want to hide the topwindow then use this
+    //                    //            topWindow? = nil // if you want to hide the topwindow then use this
+    //
+    //                    if let url = URL(string: "itms-apps://itunes.apple.com/app"),
+    //                        UIApplication.shared.canOpenURL(url){
+    //                        if #available(iOS 10.0, *) {
+    //                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    //                        } else {
+    //                            UIApplication.shared.openURL(url)
+    //                        }
+    //                    }
+    //
+    //
+    //                }))
+    //                topWindow?.makeKeyAndVisible()
+    //                topWindow?.rootViewController?.present(alert, animated: true, completion: nil)
+    //
+    //            }
+    //        })
+    //    }
     
-        func versionUpdateValidation(){
-
-                let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+    func versionUpdateValidation(){
+        
+        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+        
+        let ref = Database.database().reference().child("LatestAppVersion").child("Businessversion")
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            let latestVersion = snapshot.value as! String
+            let versionCompare = appVersion!.compare(latestVersion, options: .numeric)
+            if versionCompare == .orderedDescending || versionCompare == .orderedSame {
                 
-                let ref = Database.database().reference().child("LatestAppVersion").child("Businessversion")
-                ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            }else{
+                let alertMessage = "A new version of Application is available, Please update to version " + latestVersion;
+                
+                let topWindow: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
+                topWindow?.rootViewController = UIViewController()
+                topWindow?.windowLevel = UIWindow.Level.alert + 1
+                let alert = UIAlertController(title: "Update is avaliable", message: alertMessage, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "confirm"), style: .cancel, handler: {(_ action: UIAlertAction) -> Void in
+                    // continue your work
                     
-                    let latestVersion = snapshot.value as! String
-                    let versionCompare = appVersion!.compare(latestVersion, options: .numeric)
-                    if versionCompare == .orderedDescending || versionCompare == .orderedSame {
-                        
-                    }else{
-                        let alertMessage = "A new version of Application is available, Please update to version " + latestVersion;
-
-                        let topWindow: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
-                        topWindow?.rootViewController = UIViewController()
-                        topWindow?.windowLevel = UIWindow.Level.alert + 1
-                        let alert = UIAlertController(title: "Update is avaliable", message: alertMessage, preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "confirm"), style: .cancel, handler: {(_ action: UIAlertAction) -> Void in
-                            // continue your work
-                            
-                            // important to hide the window after work completed.
-                            // this also keeps a reference to the window until the action is invoked.
-                            topWindow?.isHidden = true // if you want to hide the topwindow then use this
-                            //            topWindow? = nil // if you want to hide the topwindow then use this
-                                                        
-                            if let url = URL(string: "itms-apps://itunes.apple.com/app"),
-                                UIApplication.shared.canOpenURL(url){
-                                if #available(iOS 10.0, *) {
-                                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                                } else {
-                                    UIApplication.shared.openURL(url)
-                                }
-                            }
-                            
-                            
-                        }))
-                        topWindow?.makeKeyAndVisible()
-                        topWindow?.rootViewController?.present(alert, animated: true, completion: nil)
+                    // important to hide the window after work completed.
+                    // this also keeps a reference to the window until the action is invoked.
+                    topWindow?.isHidden = true // if you want to hide the topwindow then use this
+                    //            topWindow? = nil // if you want to hide the topwindow then use this
+                    
+                    if let url = URL(string: "itms-apps://itunes.apple.com/app"),
+                        UIApplication.shared.canOpenURL(url){
+                        if #available(iOS 10.0, *) {
+                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                        } else {
+                            UIApplication.shared.openURL(url)
+                        }
                     }
-                })
-            
-            
-        }
-//dtHaZhUQEvM:APA91bFMTY0moWZGzoNUxhAEVNdNf5EeOcMpY2PEKOIzZHC758UjmJTCl0HoBK7S9c-bBqiLvCDS6xwwPjJgMErllWGrQa8vGnM7KRb8V5YBWZpsnXH5QlPA3F8QUjV6Ms8rgOWH9bYN
-	func applicationWillTerminate(_ application: UIApplication) {
-		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-		// Saves changes in the application's managed object context before the application terminates.
-		self.saveContext()
-	}
+                    
+                    
+                }))
+                topWindow?.makeKeyAndVisible()
+                topWindow?.rootViewController?.present(alert, animated: true, completion: nil)
+            }
+        })
+        
+        
+    }
+    //dtHaZhUQEvM:APA91bFMTY0moWZGzoNUxhAEVNdNf5EeOcMpY2PEKOIzZHC758UjmJTCl0HoBK7S9c-bBqiLvCDS6xwwPjJgMErllWGrQa8vGnM7KRb8V5YBWZpsnXH5QlPA3F8QUjV6Ms8rgOWH9bYN
+    func applicationWillTerminate(_ application: UIApplication) {
+        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        // Saves changes in the application's managed object context before the application terminates.
+        self.saveContext()
+    }
     
-        @objc func tokenRefreshNotification(_ notification: Notification) {
-            
-    
-            InstanceID.instanceID().instanceID { (result, error) in
-                if let error = error {
-                    print("Error fetching remote instange ID: \(error)")
-                } else if let result = result {
-                    print("Remote instance ID token: \(result.token)")
-                    global.deviceFIRToken = result.token;
-                }
+    @objc func tokenRefreshNotification(_ notification: Notification) {
+        
+        
+        InstanceID.instanceID().instanceID { (result, error) in
+            if let error = error {
+                print("Error fetching remote instange ID: \(error)")
+            } else if let result = result {
+                print("Remote instance ID token: \(result.token)")
+                global.deviceFIRToken = result.token;
             }
         }
-
-	// MARK: - Core Data stack
-
-	lazy var persistentContainer: NSPersistentContainer = {
-	    /*
-	     The persistent container for the application. This implementation
-	     creates and returns a container, having loaded the store for the
-	     application to it. This property is optional since there are legitimate
-	     error conditions that could cause the creation of the store to fail.
-	    */
-	    let container = NSPersistentContainer(name: "Ambassadoor_Business")
-	    container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-	        if let error = error as NSError? {
-	            // Replace this implementation with code to handle the error appropriately.
-	            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-	             
-	            /*
-	             Typical reasons for an error here include:
-	             * The parent directory does not exist, cannot be created, or disallows writing.
-	             * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-	             * The device is out of space.
-	             * The store could not be migrated to the current model version.
-	             Check the error message to determine what the actual problem was.
-	             */
-	            fatalError("Unresolved error \(error), \(error.userInfo)")
-	        }
-	    })
-	    return container
-	}()
-
-	// MARK: - Core Data Saving support
-
-	func saveContext () {
-	    let context = persistentContainer.viewContext
-	    if context.hasChanges {
-	        do {
-	            try context.save()
-	        } catch {
-	            // Replace this implementation with code to handle the error appropriately.
-	            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-	            let nserror = error as NSError
-	            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-	        }
-	    }
-	}
-
+    }
+    
+    // MARK: - Core Data stack
+    
+    lazy var persistentContainer: NSPersistentContainer = {
+        /*
+         The persistent container for the application. This implementation
+         creates and returns a container, having loaded the store for the
+         application to it. This property is optional since there are legitimate
+         error conditions that could cause the creation of the store to fail.
+         */
+        let container = NSPersistentContainer(name: "Ambassadoor_Business")
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                
+                /*
+                 Typical reasons for an error here include:
+                 * The parent directory does not exist, cannot be created, or disallows writing.
+                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
+                 * The device is out of space.
+                 * The store could not be migrated to the current model version.
+                 Check the error message to determine what the actual problem was.
+                 */
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
+    
+    // MARK: - Core Data Saving support
+    
+    func saveContext () {
+        let context = persistentContainer.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+    }
+    
 }
 

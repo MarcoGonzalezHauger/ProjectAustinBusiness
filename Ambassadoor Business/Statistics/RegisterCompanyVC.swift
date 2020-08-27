@@ -125,6 +125,7 @@ class RegisterCompanyVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITex
 				companyUser.companyID = company.account_ID
 				Singleton.sharedInstance.setCompanyUser(user: companyUser)
 				Singleton.sharedInstance.setCompanyDetails(company: company)
+                YourCompany = company
                 
                 if company.referralcode?.count == 6 {
                     
