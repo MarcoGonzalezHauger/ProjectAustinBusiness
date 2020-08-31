@@ -188,6 +188,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     
                     
                 }else{
+                    do{
+                    try Auth.auth().signOut()
+                    }catch let error{
+                        print(error)
+                    }
                     self.moveLoginScreen()
                 }
                 
