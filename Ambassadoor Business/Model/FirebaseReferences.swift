@@ -1171,6 +1171,9 @@ func getCurrentCompanyUser(userID: String,signInButton: UIButton? = nil, complet
             updateRef.updateChildValues(["deviceFIRToken":global.deviceFIRToken])
            completion(companyUser, "")
         }else{
+            Auth.auth().currentUser?.delete(completion: { (error) in
+                
+            })
           completion(nil, "error")
         }
     }) { (error) in

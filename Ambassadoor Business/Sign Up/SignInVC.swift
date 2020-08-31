@@ -270,26 +270,54 @@ class SignInVC: BaseVC, UITextFieldDelegate {
                                         })
                                     }
                                 }else{
-                                    do{
-                                    try Auth.auth().signOut()
-                                    }catch let error{
-                                        print(error)
+                                    self.showAlertMessage(title: "Alert", message: "No user found. The user may have been deleted") {
+                                        
                                     }
                                 }
 								
 							}
                             
                         }else{
+                            
                             timer.invalidate()
                             self.hideActivityIndicator()
                             self.signInButton.setTitle("Sign In", for: .normal)
                             print("error=",error!)
-							MakeShake(viewToShake: self.signInButton)
-							self.passwordline.backgroundColor = .red
-							self.usernameLine.backgroundColor = .red
+                            MakeShake(viewToShake: self.signInButton)
+                            
+                            let err = error! as NSError
+                            print(err.domain)
+                            
+                            if err.code == 17011{
+                                
+                                self.usernameLine.backgroundColor = .red
+                                self.passwordline.backgroundColor = .red
+                                
+                                self.showAlertMessage(title: "Alert", message: "No user found. The user may have been deleted") {
+                                    
+                                }
+                                
+                            }else if err.code == 17020{
+                                self.showAlertMessage(title: "Alert", message: "The Internet connection appears to be offline") {
+                                    
+                                }
+                            }else if err.code == 17009{
+                                self.usernameLine.backgroundColor = .systemBlue
+                                self.passwordline.backgroundColor = .red
+                                
+                                self.showAlertMessage(title: "Alert", message: "The password is invalid") {
+                                    
+                                }
+                                
+                            }
+                            
+                            
+							
                         }
                         
                     }
+                    
+                    
                     
                 } else {
                     MakeShake(viewToShake: signInButton)
