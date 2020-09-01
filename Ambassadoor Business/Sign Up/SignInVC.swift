@@ -204,6 +204,7 @@ class SignInVC: BaseVC, UITextFieldDelegate {
 	}
 	
     @objc func timerAction(sender: AnyObject){
+        Database.database().reference().cancelDisconnectOperations()
         self.showActivityIndicator()
     }
     
@@ -220,6 +221,7 @@ class SignInVC: BaseVC, UITextFieldDelegate {
 					//self.showActivityIndicator()
 					let timer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(self.timerAction(sender:)), userInfo: nil, repeats: false)
 					signInButton.setTitle("Signing In..", for: .normal)
+                    
 					Auth.auth().signIn(withEmail: emailText.text!, password: passwordText.text!) { (user, error) in
 						self.emailText.resignFirstResponder()
 						self.passwordText.resignFirstResponder()
@@ -230,7 +232,7 @@ class SignInVC: BaseVC, UITextFieldDelegate {
                             UserDefaults.standard.set((Auth.auth().currentUser?.uid)!, forKey: "userid")
 							print("userdefaults set.")
 							
-							getCurrentCompanyUser(userID: (Auth.auth().currentUser?.uid)!) { (companyUser, error) in
+                            getCurrentCompanyUser(userID: (Auth.auth().currentUser?.uid)!, signInButton: self.signInButton) { (companyUser, error) in
 								if companyUser != nil {
 									Singleton.sharedInstance.setCompanyUser(user: companyUser!)
                                     
@@ -241,7 +243,7 @@ class SignInVC: BaseVC, UITextFieldDelegate {
                                             
                                             let user = Singleton.sharedInstance.getCompanyUser().companyID!
                                             
-                                            getCompany(companyID: user) { (company, error) in
+                                            getCompany(companyID: user, signInButton: self.signInButton) { (company, error) in
                                                 
                                                 Singleton.sharedInstance.setCompanyDetails(company: company!)
                                                 YourCompany = company
@@ -267,21 +269,55 @@ class SignInVC: BaseVC, UITextFieldDelegate {
                                             self.instantiateToMainScreen()
                                         })
                                     }
-								}
+                                }else{
+                                    self.showAlertMessage(title: "Alert", message: "No user found. The user may have been deleted") {
+                                        
+                                    }
+                                }
 								
 							}
                             
                         }else{
+                            
                             timer.invalidate()
                             self.hideActivityIndicator()
                             self.signInButton.setTitle("Sign In", for: .normal)
                             print("error=",error!)
-							MakeShake(viewToShake: self.signInButton)
-							self.passwordline.backgroundColor = .red
-							self.usernameLine.backgroundColor = .red
+                            MakeShake(viewToShake: self.signInButton)
+                            
+                            let err = error! as NSError
+                            print(err.domain)
+                            
+                            if err.code == 17011{
+                                
+                                self.usernameLine.backgroundColor = .red
+                                self.passwordline.backgroundColor = .red
+                                
+                                self.showAlertMessage(title: "Alert", message: "No user found. The user may have been deleted") {
+                                    
+                                }
+                                
+                            }else if err.code == 17020{
+                                self.showAlertMessage(title: "Alert", message: "The Internet connection appears to be offline") {
+                                    
+                                }
+                            }else if err.code == 17009{
+                                self.usernameLine.backgroundColor = .systemBlue
+                                self.passwordline.backgroundColor = .red
+                                
+                                self.showAlertMessage(title: "Alert", message: "The password is invalid") {
+                                    
+                                }
+                                
+                            }
+                            
+                            
+							
                         }
                         
                     }
+                    
+                    
                     
                 } else {
                     MakeShake(viewToShake: signInButton)

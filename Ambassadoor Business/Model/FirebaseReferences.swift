@@ -1155,11 +1155,15 @@ func serializeCompanyUser(companyUser: CompanyUser) -> [String: Any] {
     
 }
 //
-func getCurrentCompanyUser(userID: String, completion: @escaping (CompanyUser?,String) -> Void) {
+func getCurrentCompanyUser(userID: String,signInButton: UIButton? = nil, completion: @escaping (CompanyUser?,String) -> Void) {
     
-    let ref = Database.database().reference()
-    ref.child("CompanyUser").child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
+    var isGetData: Bool = false
+    
+    let ref = Database.database().reference().ref.child("CompanyUser").child(userID)
+    
+    ref.observeSingleEvent(of: .value, with: { (snapshot) in
         // Get user value
+        isGetData = true
         if let value = snapshot.value as? NSDictionary{
            let companyUser = CompanyUser.init(dictionary: value as! [String : Any])
             companyUser.deviceFIRToken = global.deviceFIRToken
@@ -1167,12 +1171,23 @@ func getCurrentCompanyUser(userID: String, completion: @escaping (CompanyUser?,S
             updateRef.updateChildValues(["deviceFIRToken":global.deviceFIRToken])
            completion(companyUser, "")
         }else{
+            Auth.auth().currentUser?.delete(completion: { (error) in
+                
+            })
           completion(nil, "error")
         }
     }) { (error) in
         print(error.localizedDescription)
+        }
+    if signInButton != nil{
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+        if !isGetData{
+            signInButton!.setTitle("Sign In", for: .normal)
+            ref.removeAllObservers()
+        }
+       //completion(nil, "error")
     }
-    
+    }
     
 }
 
@@ -1241,10 +1256,12 @@ func getAdminValues(completion: @escaping (String) -> Void) {
 }
 
 //
-func getCompany(companyID: String,completion: @escaping (Company?,String) -> Void) {
+func getCompany(companyID: String,signInButton: UIButton? = nil,completion: @escaping (Company?,String) -> Void) {
     let user = Auth.auth().currentUser!.uid
-    Database.database().reference().child("companies").child(user).child(companyID).observeSingleEvent(of: .value, with: { (snapshot) in
-        
+    let ref = Database.database().reference().child("companies").child(user).child(companyID)
+    var isGetData: Bool = false
+    ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            isGetData = true
             if let value = snapshot.value as? NSDictionary{
                 let company = Company.init(dictionary: value as! [String : Any])
                 completion(company,"")
@@ -1253,6 +1270,18 @@ func getCompany(companyID: String,completion: @escaping (Company?,String) -> Voi
         }
     }) { (error) in
         
+    }
+    
+    if signInButton != nil{
+    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+        
+        if !isGetData{
+            signInButton!.setTitle("Sign In", for: .normal)
+            ref.removeAllObservers()
+            completion(nil, "error")
+            
+        }
+    }
     }
     
 }
