@@ -567,7 +567,12 @@ class DistributeVC: BaseVC, changedDelegate, missingMoneyDelegate, dismissSucces
 		if segue.identifier == "toMissingMoney" {
 			let view = segue.destination as! missingMoneyVC
 			view.desiredCashPower = Double(amountOfMoneyInCents) / 100
-			view.avaliableFunds = self.depositValue!.currentBalance ?? 0
+            if self.depositValue != nil {
+               view.avaliableFunds = self.depositValue!.currentBalance ?? 0
+            }else{
+              view.avaliableFunds = 0
+            }
+			
 			view.delegate = self
         }else if segue.identifier == "toSucessVC"{
             let view = segue.destination as! SuccessVC
