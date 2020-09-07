@@ -31,11 +31,11 @@ class KeyphraseCell: UITableViewCell {
         //Contains what the current phrasetext will look like.
         var currentString: String = phraseText.text!
         
-        if currentString.count > 25 {
-            currentString = String(currentString.dropLast(currentString.count - 25))
+        if currentString.count > 75 {
+            currentString = String(currentString.dropLast(currentString.count - 75))
             MakeShake(viewToShake: self, coefficient: 0.2, positiveCoefficient: 0)
             if !wasTold {
-                delegate?.NotValidWord(words: ["Max Length Reached", "Each phrase may only have a maximum of 25 characters."])
+                delegate?.NotValidWord(words: ["Max Length Reached", "Each phrase may only have a maximum of 75 characters."])
                 wasTold = true
             }
         }
