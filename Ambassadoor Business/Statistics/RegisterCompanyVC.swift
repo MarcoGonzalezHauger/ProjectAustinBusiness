@@ -146,7 +146,7 @@ class RegisterCompanyVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITex
                     }
                     
                 }
-                
+                TimerListener.scheduleUpdateBalanceTimer()
 				self.dismiss(animated: true, completion: nil)
 			}
 		} else {

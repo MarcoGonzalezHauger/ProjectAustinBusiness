@@ -247,6 +247,7 @@ class SignInVC: BaseVC, UITextFieldDelegate {
                                                 
                                                 Singleton.sharedInstance.setCompanyDetails(company: company!)
                                                 YourCompany = company
+                                                TimerListener.scheduleUpdateBalanceTimer()
                                                 downloadBeforeLoad()
                                                 DispatchQueue.main.async(execute: {
                                                     timer.invalidate()
