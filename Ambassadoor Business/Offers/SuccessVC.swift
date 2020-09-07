@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 protocol dismissSuccessVC {
     func dismissedSuccess()
@@ -24,7 +26,7 @@ class SuccessVC: BaseVC {
     
     @IBAction func doneAction(sender: UIButton){
         //self.navigationController?.setNavigationBarHidden(true, animated: false)
-        setDepositDetails()
+        setDepositDetails(userID: (Auth.auth().currentUser?.uid)!)
         self.dismiss(animated: true, completion: nil)
         delegate?.dismissedSuccess()
         //self.navigationController?.popToRootViewController(animated: true)

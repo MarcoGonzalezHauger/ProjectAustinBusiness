@@ -400,17 +400,18 @@ func downloadBeforeLoad() {
         }
         
     }
-    setDepositDetails()
+    setDepositDetails(userID: (Auth.auth().currentUser?.uid)!)
     
 }
 
-func setDepositDetails() {
-        getDepositDetails(companyUser: (Auth.auth().currentUser?.uid)!) { (deposit, status, error) in
+func setDepositDetails(userID: String) {
+        getDepositDetails(companyUser: userID) { (deposit, status, error) in
         
         if status == "success" {
             
             transactionHistory.removeAll()
             global.accountBalance = deposit!.currentBalance!
+            accountBalance = global.accountBalance
             setHapticMenu(companyUserID: (Auth.auth().currentUser?.uid)!, amount: accountBalance)
             for value in deposit!.depositHistory! {
                 
@@ -431,6 +432,8 @@ func setDepositDetails() {
         }
         
     }
+    
+    //accountBalance = Double(arc4random() % 1000)
 }
 
 func filterApproximation(category: [String:[AnyObject]], users: [User], completion: @escaping(_ status: Bool,_ users: [User]?)->()) {

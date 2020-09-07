@@ -133,9 +133,8 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
 		
 		gradientLayer.zPosition = 1000
 		balBox.layer.zPosition = 1001
-        
+        transactionDelegate = self
         if transactionHistory.count != 0{
-            transactionDelegate = self
             shownBefore = true
             accountBalance = global.accountBalance
             DispatchQueue.main.async(execute: {
@@ -149,13 +148,14 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
             
         }
 		NotificationCenter.default.addObserver(self, selector: #selector(self.getDeepositDetails), name: Notification.Name.init(rawValue: "reloadDeposit"), object: nil)
+        
+        
        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         //self.getDeepositDetails()
-         
     }
 	
 	var shownBefore = false
@@ -176,7 +176,7 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
         getDepositDetails(companyUser: (Auth.auth().currentUser?.uid)!) { (deposit, status, error) in
             
             if status == "success" {
-                transactionDelegate = self
+               // transactionDelegate = self
                 transactionHistory.removeAll()
                 accountBalance = deposit!.currentBalance!
                 setHapticMenu(companyUserID: (Auth.auth().currentUser?.uid)!, amount: accountBalance)
@@ -202,7 +202,7 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
                 })
             }else{
                 
-                transactionDelegate = self
+               // transactionDelegate = self
                 DispatchQueue.main.async(execute: {
                     self.shelf.delegate = self
                     self.shelf.dataSource = self

@@ -71,7 +71,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }else{
             // autoLoginCheckAction(launch: launchOptions)
             //autoLoginCheckAction(launchOptions: launchOptions)
-            self.autoLogin(launchOptions: launchOptions)
+            //self.autoLogin(launchOptions: launchOptions)
+            self.moveLoginScreen()
         }
         
         
