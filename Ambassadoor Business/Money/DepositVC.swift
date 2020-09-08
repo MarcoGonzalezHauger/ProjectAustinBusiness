@@ -19,6 +19,8 @@ enum EditingMode {
 //BTViewControllerPresentingDelegate, BTAppSwitchDelegate,
 class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPAuthenticationContext, STPPaymentContextDelegate {
     
+    
+    
     //MARK:- Stripe Connection Delegate
     
     func paymentContext(_ paymentContext: STPPaymentContext, didFailToLoadWithError error: Error) {
@@ -29,7 +31,7 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
         
     }
     
-    func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPErrorBlock) {
+    func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPPaymentStatusBlock) {
         
     }
     
@@ -205,11 +207,13 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
            
             NetworkManager.sharedInstance.postAmountToServerThroughStripe(params: params) { (status, error, data) in
                 
-                let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
                 
-				print("dataString=",dataString ?? "nil")
                 
                 if error == nil {
+                    
+                    let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+                    
+                    print("dataString=",dataString ?? "nil")
                     
                     do {
                         let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: AnyObject]
@@ -259,7 +263,7 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
         let paymentIntentParams = STPPaymentIntentParams(clientSecret: clientSecret)
         let paymentManager = STPPaymentHandler.shared()
         paymentIntentParams.paymentMethodId = paymentMethodParams.stripeId
-        paymentManager.confirmPayment(paymentIntentParams, with: self) { (status, paymentIntent, error) in
+        paymentManager.confirmPayment(withParams: paymentIntentParams, authenticationContext: self) { (status, paymentIntent, error) in
             DispatchQueue.main.async {
                 self.addCardViewController.dismiss(animated: true, completion: nil)
             }

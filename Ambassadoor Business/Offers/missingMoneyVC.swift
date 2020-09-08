@@ -16,6 +16,8 @@ protocol missingMoneyDelegate {
 }
 
 class missingMoneyVC: BaseVC,STPAddCardViewControllerDelegate, STPAuthenticationContext, STPPaymentContextDelegate {
+    
+    
     func addCardViewControllerDidCancel(_ addCardViewController: STPAddCardViewController) {
         dismiss(animated: true)
     }
@@ -32,7 +34,7 @@ class missingMoneyVC: BaseVC,STPAddCardViewControllerDelegate, STPAuthentication
         
     }
     
-    func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPErrorBlock) {
+    func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPPaymentStatusBlock) {
         
     }
     
@@ -50,6 +52,8 @@ class missingMoneyVC: BaseVC,STPAddCardViewControllerDelegate, STPAuthentication
         
 
     }
+    
+    
     
 
 	@IBOutlet weak var amountMissingLabel: UILabel!
@@ -164,7 +168,7 @@ class missingMoneyVC: BaseVC,STPAddCardViewControllerDelegate, STPAuthentication
         let paymentIntentParams = STPPaymentIntentParams(clientSecret: clientSecret)
         let paymentManager = STPPaymentHandler.shared()
         paymentIntentParams.paymentMethodId = paymentMethodParams.stripeId
-        paymentManager.confirmPayment(paymentIntentParams, with: self) { (status, paymentIntent, error) in
+        paymentManager.confirmPayment(withParams: paymentIntentParams, authenticationContext: self) { (status, paymentIntent, error) in
             
             switch (status) {
             case .failed: break
