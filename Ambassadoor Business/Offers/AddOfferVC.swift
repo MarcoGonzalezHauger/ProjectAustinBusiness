@@ -168,6 +168,7 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 	@objc func reloadProduct(notification: Notification) {
 		print("Post edited.")
 		reloadTableViewHeight()
+		postTableView.reloadData()
 	}
 	
 	func reloadTableViewHeight() {
@@ -517,7 +518,6 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 		SaveThisOffer { (template, bool1) in
 			//self.createLocalNotification(notificationName: "reloadOffer", userInfo: [:])
             //reloadYourOffer
-            self.navigationController?.popViewController(animated: true)
             self.createLocalNotification(notificationName: "reloadYourOffer", userInfo: [:])
 		}
 	}

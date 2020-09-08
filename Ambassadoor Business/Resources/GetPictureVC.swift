@@ -112,9 +112,10 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
 		case .authorized:
 			self.present(self.imagePicker, animated: true, completion: nil)
 			print("Access is granted by user")
-		case .limited:
-			self.present(self.imagePicker, animated: true, completion: nil)
-			print("Access LIMITED but granted.")
+			//only for NEW iOS Beta.
+//		case .limited:
+//			self.present(self.imagePicker, animated: true, completion: nil)
+//			print("Access LIMITED but granted.")
 		case .notDetermined:
 			PHPhotoLibrary.requestAuthorization({
 				(newStatus) in

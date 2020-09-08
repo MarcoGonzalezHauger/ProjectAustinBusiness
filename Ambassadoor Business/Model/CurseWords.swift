@@ -59,6 +59,6 @@ let swearWords = [
 "twat",
 "vagina",
 "wank",
-"whore",
-"ambassadoor" //We don't want other businesses making Ambassadoor offers.
+"whore"
+//"ambassadoor" //We don't want other businesses making Ambassadoor offers.
 ]
