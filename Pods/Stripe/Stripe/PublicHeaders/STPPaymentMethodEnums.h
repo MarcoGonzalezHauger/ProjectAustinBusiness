@@ -16,15 +16,60 @@ typedef NS_ENUM(NSUInteger, STPPaymentMethodType) {
     STPPaymentMethodTypeCard,
     
     /**
+    An Alipay payment method.
+    */
+    STPPaymentMethodTypeAlipay,
+    
+    /**
      An iDEAL payment method.
      */
     STPPaymentMethodTypeiDEAL,
     
     /**
+     An FPX payment method.
+     */
+    STPPaymentMethodTypeFPX,
+    
+    /**
      A card present payment method.
      */
     STPPaymentMethodTypeCardPresent,
+
+    /**
+     A SEPA Debit payment method.
+     */
+    STPPaymentMethodTypeSEPADebit,
+
+    /**
+     An AU BECS Debit payment method.
+     */
+    STPPaymentMethodTypeAUBECSDebit,
     
+    /**
+     A Bacs Debit payment method.
+     */
+    STPPaymentMethodTypeBacsDebit,
+
+    /**
+     A giropay payment method.
+     */
+    STPPaymentMethodTypeGiropay,
+
+    /**
+     A Przelewy24 Debit payment method.
+     */
+    STPPaymentMethodTypePrzelewy24,
+
+    /**
+     An EPS payment method.
+     */
+    STPPaymentMethodTypeEPS,
+
+    /**
+    A Bancontact payment method.
+    */
+    STPPaymentMethodTypeBancontact,
+
     /**
      An unknown type.
      */

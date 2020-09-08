@@ -14,7 +14,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class STPIntentAction;
+@class STPIntentAction, STPPaymentIntentLastPaymentError, STPPaymentIntentShippingDetails;
 
 /**
  A PaymentIntent tracks the process of collecting a payment from your customer.
@@ -117,6 +117,16 @@ NS_ASSUME_NONNULL_BEGIN
  Use on_session if you intend to only reuse the payment method when the customer is in your checkout flow. Use off_session if your customer may or may not be in your checkout flow.
  */
 @property (nonatomic, readonly) STPPaymentIntentSetupFutureUsage setupFutureUsage;
+
+/**
+ The payment error encountered in the previous PaymentIntent confirmation.
+ */
+@property (nonatomic, nullable, readonly) STPPaymentIntentLastPaymentError *lastPaymentError;
+
+/**
+ Shipping information for this PaymentIntent.
+ */
+@property (nonatomic, nullable, readonly) STPPaymentIntentShippingDetails *shipping;
 
 #pragma mark - Deprecated
 

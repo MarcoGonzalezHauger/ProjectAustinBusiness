@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		991B755A990D3FC6E4FE2863 /* Pods_Ambassadoor_Business.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43232CCE7767D24B796A1AAB /* Pods_Ambassadoor_Business.framework */; };
 		B706CB4D22E5F3310092FB77 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B706CB4C22E5F3310092FB77 /* SignInVC.swift */; };
 		B706CB4F22E5F7860092FB77 /* ValidationFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B706CB4E22E5F7860092FB77 /* ValidationFile.swift */; };
 		B706CB5122E60DC20092FB77 /* ForgetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B706CB5022E60DC20092FB77 /* ForgetPasswordVC.swift */; };
@@ -49,7 +50,6 @@
 		B7FD83E922F0844C00347E8E /* AddPostTC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7FD83E822F0844C00347E8E /* AddPostTC.xib */; };
 		B7FD83EB22F0866B00347E8E /* PostDetailTC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FD83EA22F0866B00347E8E /* PostDetailTC.swift */; };
 		B7FD83ED22F0870F00347E8E /* PostDetailTC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7FD83EC22F0870F00347E8E /* PostDetailTC.xib */; };
-		BCDF66E8A0F6D35ADA169613 /* Pods_Ambassadoor_Business.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8B08C244165BD27DA5136C1 /* Pods_Ambassadoor_Business.framework */; };
 		C05FE2D9225F683E002D3CAA /* FirebaseReferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FE2D8225F683E002D3CAA /* FirebaseReferences.swift */; };
 		C05FE2DB225F687C002D3CAA /* global.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FE2DA225F687C002D3CAA /* global.swift */; };
 		C089A3C52253D4E500ECF3B0 /* structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089A3C42253D4E500ECF3B0 /* structs.swift */; };
@@ -92,8 +92,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		795D821481779CC29C258337 /* Pods-Ambassadoor Business.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ambassadoor Business.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ambassadoor Business/Pods-Ambassadoor Business.release.xcconfig"; sourceTree = "<group>"; };
-		A45971C7211F5A5D8A81F8A9 /* Pods-Ambassadoor Business.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ambassadoor Business.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ambassadoor Business/Pods-Ambassadoor Business.debug.xcconfig"; sourceTree = "<group>"; };
+		228FAE77575D48623186C102 /* Pods-Ambassadoor Business.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ambassadoor Business.release.xcconfig"; path = "Target Support Files/Pods-Ambassadoor Business/Pods-Ambassadoor Business.release.xcconfig"; sourceTree = "<group>"; };
+		43232CCE7767D24B796A1AAB /* Pods_Ambassadoor_Business.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ambassadoor_Business.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6FB1485BA06735A80E39C68 /* Pods-Ambassadoor Business.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ambassadoor Business.debug.xcconfig"; path = "Target Support Files/Pods-Ambassadoor Business/Pods-Ambassadoor Business.debug.xcconfig"; sourceTree = "<group>"; };
 		B706CB4C22E5F3310092FB77 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		B706CB4E22E5F7860092FB77 /* ValidationFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationFile.swift; sourceTree = "<group>"; };
 		B706CB5022E60DC20092FB77 /* ForgetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordVC.swift; sourceTree = "<group>"; };
@@ -161,7 +162,6 @@
 		E8769166236F9A830026E07D /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		E899878223D3B8F20093FC0E /* CurseWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurseWords.swift; sourceTree = "<group>"; };
 		E8AC6869247F602A0046B2FA /* DistributeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistributeVC.swift; sourceTree = "<group>"; };
-		E8B08C244165BD27DA5136C1 /* Pods_Ambassadoor_Business.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ambassadoor_Business.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8BDFC9C2484711A00E2DCA7 /* missingMoneyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = missingMoneyVC.swift; sourceTree = "<group>"; };
 		E8C3693E22161B3000AE12D7 /* Ambassadoor Business.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ambassadoor Business.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8C3694122161B3000AE12D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -188,7 +188,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8769168236F9A8A0026E07D /* LocalAuthentication.framework in Frameworks */,
-				BCDF66E8A0F6D35ADA169613 /* Pods_Ambassadoor_Business.framework in Frameworks */,
+				991B755A990D3FC6E4FE2863 /* Pods_Ambassadoor_Business.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,18 +199,9 @@
 			isa = PBXGroup;
 			children = (
 				E8769166236F9A830026E07D /* LocalAuthentication.framework */,
-				E8B08C244165BD27DA5136C1 /* Pods_Ambassadoor_Business.framework */,
+				43232CCE7767D24B796A1AAB /* Pods_Ambassadoor_Business.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		A58A348E5F8CC11CB11487F1 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				A45971C7211F5A5D8A81F8A9 /* Pods-Ambassadoor Business.debug.xcconfig */,
-				795D821481779CC29C258337 /* Pods-Ambassadoor Business.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		B7551F2922F98817001C4974 /* DataPickerClasses */ = {
@@ -280,6 +271,16 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		CC48B249CB6DE037BF7A37D1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B6FB1485BA06735A80E39C68 /* Pods-Ambassadoor Business.debug.xcconfig */,
+				228FAE77575D48623186C102 /* Pods-Ambassadoor Business.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		E816AC202282F34000B9D951 /* Money */ = {
 			isa = PBXGroup;
 			children = (
@@ -335,8 +336,8 @@
 			children = (
 				E8C3694022161B3000AE12D7 /* Ambassadoor Business */,
 				E8C3693F22161B3000AE12D7 /* Products */,
-				A58A348E5F8CC11CB11487F1 /* Pods */,
 				89E5CAE2B32FDBDFE060CC9E /* Frameworks */,
+				CC48B249CB6DE037BF7A37D1 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -440,11 +441,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E8C3695322161B3200AE12D7 /* Build configuration list for PBXNativeTarget "Ambassadoor Business" */;
 			buildPhases = (
-				5F723FB15A250A1DC63BD70B /* [CP] Check Pods Manifest.lock */,
+				69600FEFD4E872596BAE6EC3 /* [CP] Check Pods Manifest.lock */,
 				E8C3693A22161B3000AE12D7 /* Sources */,
 				E8C3693B22161B3000AE12D7 /* Frameworks */,
 				E8C3693C22161B3000AE12D7 /* Resources */,
-				D1CC777ECFFC90FA5FE945A2 /* [CP] Embed Pods Frameworks */,
+				8D558317809B5FEA34C0AE84 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -511,16 +512,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5F723FB15A250A1DC63BD70B /* [CP] Check Pods Manifest.lock */ = {
+		69600FEFD4E872596BAE6EC3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Ambassadoor Business-checkManifestLockResult.txt",
 			);
@@ -529,7 +534,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D1CC777ECFFC90FA5FE945A2 /* [CP] Embed Pods Frameworks */ = {
+		8D558317809B5FEA34C0AE84 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -765,7 +770,7 @@
 		};
 		E8C3695422161B3200AE12D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A45971C7211F5A5D8A81F8A9 /* Pods-Ambassadoor Business.debug.xcconfig */;
+			baseConfigurationReference = B6FB1485BA06735A80E39C68 /* Pods-Ambassadoor Business.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = BlueIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -782,6 +787,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0.2;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ambassadoor.company;
 				PRODUCT_NAME = "Ambassadoor Business";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -794,7 +800,7 @@
 		};
 		E8C3695522161B3200AE12D7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 795D821481779CC29C258337 /* Pods-Ambassadoor Business.release.xcconfig */;
+			baseConfigurationReference = 228FAE77575D48623186C102 /* Pods-Ambassadoor Business.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = BlueIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -811,6 +817,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0.2;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ambassadoor.company;
 				PRODUCT_NAME = "Ambassadoor Business";
 				PROVISIONING_PROFILE_SPECIFIER = "";

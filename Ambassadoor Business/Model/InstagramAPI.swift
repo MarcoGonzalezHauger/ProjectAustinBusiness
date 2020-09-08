@@ -28,8 +28,9 @@ struct API {
     
     static var instagramProfileData: [String: AnyObject] = [:]
     
-    static var kBaseURL = "https://us-central1-amassadoor.cloudfunctions.net/"
-    
+    //static var kBaseURL = "https://us-central1-amassadoor.cloudfunctions.net/"
+    static var kBaseURL = "http://localhost:5000/amassadoor/us-central1/"
+    //http://localhost:5000/amassadoor/us-central1/postStripeIDToServer
     static var kDwollaClient_id = "CijOdBYNcHDSwXjkf4PnsXjHBYSgKdgc7TdfoDNUZiNvOPfAst"
     
     static var kDwollaClient_secret = "m8oCRchilXnkR3eFAKlNuQWFqv9zROJX0CkD5aiys1H3nmvQMb"
