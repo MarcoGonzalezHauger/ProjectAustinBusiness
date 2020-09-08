@@ -177,7 +177,11 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 			self.postTableView.reloadData()
 		}
 	}
-	
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        //NotificationCenter.default.addObserver(self, selector: #selector(self.getDeepositDetails), name: Notification.Name.init(rawValue: "reloadyourOffers"), object: nil)
+    }
 	
 	
 	//MARK: -Table Delegates
@@ -362,6 +366,7 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 			SaveThisOffer { (template, bool1) in
 				self.segueOffer = template
 				//self.performSegue(withIdentifier: "toDistributeOffer", sender: template)
+                self.createLocalNotification(notificationName: "reloadYourOffer", userInfo: [:])
                 self.performSegue(withIdentifier: "toLatestDistributeVC", sender: template)
 			}
 		} else {
@@ -408,6 +413,7 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
             }
             
             createTemplateOffer(pathString: path, edited: edited, templateOffer: template, completion: completion)
+            
         } catch let error {
             print(error)
         }
@@ -500,7 +506,9 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 	
 	func saveOffer() {
 		SaveThisOffer { (template, bool1) in
-			self.createLocalNotification(notificationName: "reloadOffer", userInfo: [:])
+			//self.createLocalNotification(notificationName: "reloadOffer", userInfo: [:])
+            //reloadYourOffer
+            self.createLocalNotification(notificationName: "reloadYourOffer", userInfo: [:])
 		}
 	}
 	

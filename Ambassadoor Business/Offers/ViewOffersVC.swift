@@ -139,7 +139,7 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ViewStat
         //        NotificationCenter.default.addObserver(self, selector: #selector(self.hideNavigationAction(notification:)), name: Notification.Name.init(rawValue: "hidenavigation"), object: nil)
         //self.navigationController?.navigationBar.isHidden = true
         //self.navigationController?.hidesBarsOnTap = true
-        NotificationCenter.default.addObserver(self, selector: #selector(self.reloadOffer(notification:)), name: Notification.Name.init(rawValue: "reloadOffer"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.reloadOffer(notification:)), name: Notification.Name.init(rawValue: "reloadYourOffer"), object: nil)
         
         if global.OfferDrafts.count != 0{
             
