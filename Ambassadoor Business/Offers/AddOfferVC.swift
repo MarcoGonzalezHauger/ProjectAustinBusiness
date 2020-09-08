@@ -57,7 +57,9 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 	}
     
 	override func viewDidAppear(_ animated: Bool) {
-		
+		if let nc = self.navigationController as? StandardNC {
+            nc.tempDelegate = self
+        }
 	}
 	
     override func viewDidLoad() {
@@ -186,6 +188,7 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         //NotificationCenter.default.addObserver(self, selector: #selector(self.getDeepositDetails), name: Notification.Name.init(rawValue: "reloadyourOffers"), object: nil)
+        
     }
 	
 	
@@ -514,6 +517,7 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 		SaveThisOffer { (template, bool1) in
 			//self.createLocalNotification(notificationName: "reloadOffer", userInfo: [:])
             //reloadYourOffer
+            self.navigationController?.popViewController(animated: true)
             self.createLocalNotification(notificationName: "reloadYourOffer", userInfo: [:])
 		}
 	}
