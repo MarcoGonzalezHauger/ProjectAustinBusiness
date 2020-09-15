@@ -96,7 +96,12 @@ class AddPostVC: BaseVC, NCDelegate, UITableViewDelegate, UITableViewDataSource,
     
     func deleteThis(cell: UITableViewCell) {
         if phraseList.count <= 1 {
-            MakeShake(viewToShake: cell)
+			if let newcell = (cell as? KeyphraseCell) {
+				newcell.phraseText.text = ""
+				MakeShake(viewToShake: cell, coefficient: 0.2)
+			} else {
+				MakeShake(viewToShake: cell)
+			}
             return
         }
         let ip: IndexPath = shelf.indexPath(for: cell)!
@@ -184,6 +189,7 @@ class AddPostVC: BaseVC, NCDelegate, UITableViewDelegate, UITableViewDataSource,
         
     }
     
+	
     @IBOutlet weak var PostTitle: UILabel!
     
     func SetNumber(number: Int) {
@@ -269,14 +275,16 @@ class AddPostVC: BaseVC, NCDelegate, UITableViewDelegate, UITableViewDataSource,
             
         }
     }
-    
     //    @IBAction override func addLeftAction(sender: UIBarButtonItem) {
     //		SaveThisPost(andDismiss: true)
     //	}
-    
-    @IBAction override func addPopAction(sender: UIBarButtonItem) {
-        SaveThisPost(andDismiss: true)
-    }
+	
+	override func willMove(toParent parent: UIViewController?) {
+		super.willMove(toParent: parent)
+		if parent == nil {
+			SaveThisPost(andDismiss: false)
+		}
+	}
     
     override func viewDidAppear(_ animated: Bool) {
         UIView.transition(with: noHate, duration: 2, options: .transitionCrossDissolve, animations: {

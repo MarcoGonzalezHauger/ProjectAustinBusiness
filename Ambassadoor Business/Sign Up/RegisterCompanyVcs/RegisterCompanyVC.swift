@@ -11,7 +11,22 @@ import FirebaseAuth
 
 var showTutorialVideoOnShow = false
 
-class RegisterCompanyVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITextViewDelegate, UIScrollViewDelegate {
+protocol RegisterCompanySegmentDelegate {
+    func registerStepSegmentIndex(index: Int)
+}
+
+protocol DismissDelegate {
+    func dismisRegisterPage()
+}
+
+class RegisterCompanyVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITextViewDelegate, UIScrollViewDelegate, PageViewDelegate, DismissDelegate {
+    func pageViewIndexDidChangedelegate(index: Int) {
+        self.stepSegmentControl.selectedSegmentIndex = index
+    }
+    
+    func dismisRegisterPage(){
+        self.dismiss(animated: true, completion: nil)
+    }
     
     @IBOutlet weak var scroll: UIScrollView!
     @IBOutlet weak var picLogo: UIButton!
@@ -23,8 +38,12 @@ class RegisterCompanyVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITex
     @IBOutlet weak var companySite: UITextField!
     @IBOutlet weak var missionTextView: UITextView!
     
+    @IBOutlet weak var stepSegmentControl: UISegmentedControl!
+    
     var urlString = ""
     var assainedTextField: AnyObject? = nil
+    
+    var registerCompanyPVCDelegate: RegisterCompanySegmentDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,6 +99,10 @@ class RegisterCompanyVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITex
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? GetPictureVC {
             destination.delegate = self
+        }else if segue.identifier == "PageView"{
+            let view = segue.destination as! RegisterCompanyPVC
+            view.pageViewDidChange = self
+            view.parentReference = self
         }
     }
     

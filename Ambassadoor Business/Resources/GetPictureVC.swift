@@ -111,11 +111,15 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
 		switch photoAuthorizationStatus {
 		case .authorized:
 			self.present(self.imagePicker, animated: true, completion: nil)
-			debugPrint("Access is granted by user")
+			print("Access is granted by user")
+			//only for NEW iOS Beta.
+//		case .limited:
+//			self.present(self.imagePicker, animated: true, completion: nil)
+//			print("Access LIMITED but granted.")
 		case .notDetermined:
 			PHPhotoLibrary.requestAuthorization({
 				(newStatus) in
-				debugPrint("status is \(newStatus)")
+				print("status is \(newStatus)")
 				if newStatus ==  PHAuthorizationStatus.authorized {
                     DispatchQueue.main.async {
                         self.present(self.imagePicker, animated: true, completion: nil)
@@ -133,6 +137,8 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
 		case .denied:
 			self.dismiss(animated: true, completion: nil)
 			debugPrint("User has denied the permission.")
+		default:
+			print("err")
 		}
 		alreadyPresented = true
 	}

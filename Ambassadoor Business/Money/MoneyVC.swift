@@ -33,14 +33,20 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
 	@IBOutlet weak var balanceLabel: UILabel!
 	@IBOutlet weak var balBox: ShadowView!
 	
+	func GetTransactionHistory() -> [Transaction] {
+		var transHistory: [Transaction] = transactionHistory
+		transHistory.sort{$0.time > $1.time}
+		return transHistory
+	}
+	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return transactionHistory.count
+		return GetTransactionHistory().count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let row = indexPath.row
 		let cell = shelf.dequeueReusableCell(withIdentifier: "TransactionTrunk") as! TransactionCell
-		let ThisTransaction = transactionHistory[row]
+		let ThisTransaction = GetTransactionHistory()[row]
 		
 		
 		
@@ -134,7 +140,7 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
 		gradientLayer.zPosition = 1000
 		balBox.layer.zPosition = 1001
         transactionDelegate = self
-        if transactionHistory.count != 0{
+        if GetTransactionHistory().count != 0{
             shownBefore = true
             accountBalance = global.accountBalance
             DispatchQueue.main.async(execute: {
