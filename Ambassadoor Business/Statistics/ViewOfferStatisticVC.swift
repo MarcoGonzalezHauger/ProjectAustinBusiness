@@ -107,15 +107,15 @@ class ViewOfferStatisticVC: UIViewController, UITableViewDelegate, UITableViewDa
         let pieChartView = StaticsPie()
         pieChartView.frame = CGRect(x: 0, y: 0, width: self.pieView.frame.size.width, height: self.pieView.frame.size.height)
 		let money = self.stat!.offer.originalAmount == 0.0 ? self.stat!.offer.money : self.stat!.offer.originalAmount
-        let cashPower = (money - self.stat!.offer.cashPower!)
+		let cashPower = self.stat!.offer.cashPower!
         pieChartView.segments = [
-			OfferStatusSegment(color: .lightGray, value: CGFloat(cashPower)),
+			OfferStatusSegment(color: GetBackColor(), value: CGFloat(money) - CGFloat(cashPower)),
             OfferStatusSegment(color: UIColor.init(red: 1, green: 227/255, blue: 35/255, alpha: 1), value: CGFloat(money)),
            
         ]
         self.pieView.addSubview(pieChartView)
         
-        self.statMoneyText.text = "\(NumberToPrice(Value: cashPower)) of \(NumberToPrice(Value: money)) used so far."
+        self.statMoneyText.text = "\(NumberToPrice(Value: cashPower))/\(NumberToPrice(Value: money)) left."
         self.acceptedOfferCount.text = "\(self.stat!.acceptedCount) influencer\(self.stat!.acceptedCount == 1 ? "" : "s") have accepted so far."
         self.postedCount.text = "\(self.stat!.posted.count) influencer\(self.stat!.posted.count == 1 ? "" : "s") have posted so far."
     }

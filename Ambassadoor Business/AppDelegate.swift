@@ -393,7 +393,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     topWindow?.isHidden = true // if you want to hide the topwindow then use this
                     //            topWindow? = nil // if you want to hide the topwindow then use this
                     
-                    if let url = URL(string: "itms-apps://itunes.apple.com/app"),
+                    if let url = URL(string: "itms-apps://itunes.apple.com/app/ambassadoor-business/id1483207154"),
                         UIApplication.shared.canOpenURL(url){
                         if #available(iOS 10.0, *) {
                             UIApplication.shared.open(url, options: [:], completionHandler: nil)
