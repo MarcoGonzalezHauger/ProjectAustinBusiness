@@ -117,6 +117,10 @@ class SignUpVC: BaseVC, UITextFieldDelegate {
     }
 	
 	func CreateAccount() {
+        
+        //self.instantiateToMainScreen()
+        
+        
 		if emailText.text?.count != 0 {
         
         if Validation.sharedInstance.isValidEmail(emailStr: emailText.text!){
@@ -182,6 +186,8 @@ class SignUpVC: BaseVC, UITextFieldDelegate {
 			
 			usernameLine.backgroundColor = .red
         }
+        
+        
 	}
 
 }

@@ -159,7 +159,7 @@ class StatsVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         if Singleton.sharedInstance.getCompanyUser().isCompanyRegistered == false {
             self.performSegue(withIdentifier: "toCompanyRegister", sender: self)
         } else {
-            
+            self.performSegue(withIdentifier: "toCompanyRegister", sender: self)
             //let user = Singleton.sharedInstance.getCompanyUser().companyID!
             
             //getCompany(companyID: user) { (company, error) in

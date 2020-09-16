@@ -26,6 +26,12 @@
 		B761DA242321352100587F28 /* DwollaUserInformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B761DA232321352100587F28 /* DwollaUserInformationVC.swift */; };
 		B774B6E924728ADA007C8699 /* SimplexStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B774B6E824728ADA007C8699 /* SimplexStatistics.swift */; };
 		B788D6F422E8931100FA59BA /* RegisterCompanyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B788D6F322E8931100FA59BA /* RegisterCompanyVC.swift */; };
+		B78B39EA25109BA500829F31 /* RegisterCompanyPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78B39E925109BA500829F31 /* RegisterCompanyPVC.swift */; };
+		B78B39ED2510D49400829F31 /* ReferralVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78B39EC2510D49400829F31 /* ReferralVC.swift */; };
+		B78B39EF2510D65B00829F31 /* ComapanyBasicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78B39EE2510D65B00829F31 /* ComapanyBasicVC.swift */; };
+		B78B39F12510D67C00829F31 /* CompanyWebsiteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78B39F02510D67C00829F31 /* CompanyWebsiteVC.swift */; };
+		B78B39F32510D69800829F31 /* CompanyMissionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78B39F22510D69800829F31 /* CompanyMissionVC.swift */; };
+		B78B39F52510D6B000829F31 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78B39F42510D6B000829F31 /* RegisterVC.swift */; };
 		B79308FE23015C3E001BB47A /* DistributeOfferVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79308FD23015C3E001BB47A /* DistributeOfferVC.swift */; };
 		B799227622F16FA9007E84B0 /* PickUserCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B799227522F16FA9007E84B0 /* PickUserCVC.swift */; };
 		B799227822F1C511007E84B0 /* AddPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B799227722F1C511007E84B0 /* AddPostVC.swift */; };
@@ -113,6 +119,12 @@
 		B761DA232321352100587F28 /* DwollaUserInformationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DwollaUserInformationVC.swift; sourceTree = "<group>"; };
 		B774B6E824728ADA007C8699 /* SimplexStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplexStatistics.swift; sourceTree = "<group>"; };
 		B788D6F322E8931100FA59BA /* RegisterCompanyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCompanyVC.swift; sourceTree = "<group>"; };
+		B78B39E925109BA500829F31 /* RegisterCompanyPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCompanyPVC.swift; sourceTree = "<group>"; };
+		B78B39EC2510D49400829F31 /* ReferralVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralVC.swift; sourceTree = "<group>"; };
+		B78B39EE2510D65B00829F31 /* ComapanyBasicVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComapanyBasicVC.swift; sourceTree = "<group>"; };
+		B78B39F02510D67C00829F31 /* CompanyWebsiteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyWebsiteVC.swift; sourceTree = "<group>"; };
+		B78B39F22510D69800829F31 /* CompanyMissionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyMissionVC.swift; sourceTree = "<group>"; };
+		B78B39F42510D6B000829F31 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		B79308FD23015C3E001BB47A /* DistributeOfferVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistributeOfferVC.swift; sourceTree = "<group>"; };
 		B799227522F16FA9007E84B0 /* PickUserCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickUserCVC.swift; sourceTree = "<group>"; };
 		B799227722F1C511007E84B0 /* AddPostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostVC.swift; sourceTree = "<group>"; };
@@ -221,6 +233,20 @@
 			path = SimplexStatistics;
 			sourceTree = "<group>";
 		};
+		B78B39EB2510D41A00829F31 /* RegisterCompanyVcs */ = {
+			isa = PBXGroup;
+			children = (
+				B788D6F322E8931100FA59BA /* RegisterCompanyVC.swift */,
+				B78B39E925109BA500829F31 /* RegisterCompanyPVC.swift */,
+				B78B39EC2510D49400829F31 /* ReferralVC.swift */,
+				B78B39EE2510D65B00829F31 /* ComapanyBasicVC.swift */,
+				B78B39F02510D67C00829F31 /* CompanyWebsiteVC.swift */,
+				B78B39F22510D69800829F31 /* CompanyMissionVC.swift */,
+				B78B39F42510D6B000829F31 /* RegisterVC.swift */,
+			);
+			path = RegisterCompanyVcs;
+			sourceTree = "<group>";
+		};
 		B799227422F16F1E007E84B0 /* CollectionCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,6 +327,7 @@
 				B706CB4C22E5F3310092FB77 /* SignInVC.swift */,
 				B706CB5022E60DC20092FB77 /* ForgetPasswordVC.swift */,
 				E82F890C22DD30B40036A079 /* CreateCompanyVC.swift */,
+				B78B39EB2510D41A00829F31 /* RegisterCompanyVcs */,
 			);
 			path = "Sign Up";
 			sourceTree = "<group>";
@@ -407,7 +434,6 @@
 			isa = PBXGroup;
 			children = (
 				E8E5468B227BC9E900775A07 /* StatsVC.swift */,
-				B788D6F322E8931100FA59BA /* RegisterCompanyVC.swift */,
 				B712C48A2306DA7900728758 /* StaticsPie.swift */,
 				B7CA8454234CB4A600A3223A /* StatisticsStruct.swift */,
 				E83F1C5324748D9400EA216B /* ViewOfferStatisticVC.swift */,
@@ -563,6 +589,7 @@
 				B7B11FF723242638006711BB /* ConnectedPlaidTVCell.swift in Sources */,
 				E8C708C7237645EB001699D0 /* FilterTypeVC.swift in Sources */,
 				B7BD39BB22FAAB53008A0496 /* CategoryTVC.swift in Sources */,
+				B78B39EA25109BA500829F31 /* RegisterCompanyPVC.swift in Sources */,
 				B706CB5122E60DC20092FB77 /* ForgetPasswordVC.swift in Sources */,
 				B7FD83E722F07E1800347E8E /* AddPostTC.swift in Sources */,
 				B712C48B2306DA7900728758 /* StaticsPie.swift in Sources */,
@@ -576,6 +603,7 @@
 				E82F890D22DD30B40036A079 /* CreateCompanyVC.swift in Sources */,
 				B788D6F422E8931100FA59BA /* RegisterCompanyVC.swift in Sources */,
 				C05FE2DB225F687C002D3CAA /* global.swift in Sources */,
+				B78B39F12510D67C00829F31 /* CompanyWebsiteVC.swift in Sources */,
 				E816AC222282F3E200B9D951 /* MoneyVC.swift in Sources */,
 				E8C708C923764C51001699D0 /* SelectStatesVC.swift in Sources */,
 				B712C485230690A700728758 /* ProductListCell.swift in Sources */,
@@ -604,12 +632,14 @@
 				E84600852273A92A00CF60F2 /* BusinessLabel.swift in Sources */,
 				B7C58569234DED3600EB90BB /* InstagramUserTVC.swift in Sources */,
 				E8FC17642377A70100245932 /* SelectRadiiVC.swift in Sources */,
+				B78B39F32510D69800829F31 /* CompanyMissionVC.swift in Sources */,
 				B761DA242321352100587F28 /* DwollaUserInformationVC.swift in Sources */,
 				B72CB50822E6E8C100958AE0 /* BaseVC.swift in Sources */,
 				B7FD83E322F072F800347E8E /* AddOfferVC.swift in Sources */,
 				B706CB4F22E5F7860092FB77 /* ValidationFile.swift in Sources */,
 				B79308FE23015C3E001BB47A /* DistributeOfferVC.swift in Sources */,
 				B7FD83EB22F0866B00347E8E /* PostDetailTC.swift in Sources */,
+				B78B39ED2510D49400829F31 /* ReferralVC.swift in Sources */,
 				E846008A2273B0B300CF60F2 /* Savvy.swift in Sources */,
 				E8C708C423763EAA001699D0 /* GeolocationTools.swift in Sources */,
 				B79B1D2E22F2EE8D00F3C660 /* DateFormatManager.swift in Sources */,
@@ -622,6 +652,8 @@
 				E8AC686A247F602A0046B2FA /* DistributeVC.swift in Sources */,
 				C0C9390622614AE3003DC925 /* InstagramAPI.swift in Sources */,
 				B7AED6952484FD4F003EBFD0 /* SuccessVC.swift in Sources */,
+				B78B39F52510D6B000829F31 /* RegisterVC.swift in Sources */,
+				B78B39EF2510D65B00829F31 /* ComapanyBasicVC.swift in Sources */,
 				E83F378F227CDF3A00BA6688 /* GetPictureVC.swift in Sources */,
 				B799227622F16FA9007E84B0 /* PickUserCVC.swift in Sources */,
 				E8C3694A22161B3000AE12D7 /* Ambassadoor_Business.xcdatamodeld in Sources */,
@@ -778,7 +810,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = F4W3LUKZFA;
+				DEVELOPMENT_TEAM = JMBR2RF2B8;
 				INFOPLIST_FILE = "Ambassadoor Business/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -787,7 +819,7 @@
 				);
 				MARKETING_VERSION = 2.0.4;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ambassadoor.company;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ambassadoor.secure;
 				PRODUCT_NAME = "Ambassadoor Business";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Ambassadoor Business/Ambassadoor Business-Bridging-Header.h";
@@ -808,7 +840,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = F4W3LUKZFA;
+				DEVELOPMENT_TEAM = JMBR2RF2B8;
 				INFOPLIST_FILE = "Ambassadoor Business/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -817,7 +849,7 @@
 				);
 				MARKETING_VERSION = 2.0.4;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ambassadoor.company;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ambassadoor.secure;
 				PRODUCT_NAME = "Ambassadoor Business";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Ambassadoor Business/Ambassadoor Business-Bridging-Header.h";

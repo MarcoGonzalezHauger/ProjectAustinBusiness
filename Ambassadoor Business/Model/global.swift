@@ -70,6 +70,8 @@ class CentralVariables {
     var allInfluencers = [User]()
     
     var accountBalance = 0.0
+    
+    var registerCompanyDetails: RegisterCompanyDetails = RegisterCompanyDetails(referralCode: "", imageUrl: "", companyName: "", companyWebsite: "", companyMission: "")
 	
 }
 

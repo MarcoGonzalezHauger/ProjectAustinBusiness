@@ -676,3 +676,11 @@ class CachedImages: NSObject {
         self.object = object
     }
 }
+
+struct RegisterCompanyDetails {
+    var referralCode: String
+    var imageUrl: String
+    var companyName: String
+    var companyWebsite: String
+    var companyMission: String
+}
