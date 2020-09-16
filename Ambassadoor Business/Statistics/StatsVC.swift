@@ -156,17 +156,16 @@ class StatsVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
 		
         //let user = Singleton.sharedInstance.getCompanyUser().userID!
         
-        if Singleton.sharedInstance.getCompanyUser().isCompanyRegistered == false {
-            self.performSegue(withIdentifier: "toCompanyRegister", sender: self)
-        } else {
-            self.performSegue(withIdentifier: "toCompanyRegister", sender: self)
+        if Singleton.sharedInstance.getCompanyUser().isCompanyRegistered == true {
+            
+            //self.performSegue(withIdentifier: "toCompanyRegister", sender: self)
             //let user = Singleton.sharedInstance.getCompanyUser().companyID!
             
             //getCompany(companyID: user) { (company, error) in
                 
                 //Singleton.sharedInstance.setCompanyDetails(company: company!)
-				//YourCompany = company
-				self.setCompanyTabBarItem()
+                //YourCompany = company
+                self.setCompanyTabBarItem()
             
             if global.distributedOffers.count != 0 {
                     
@@ -186,7 +185,10 @@ class StatsVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
                 
             }
             //}
-            
+        } else {
+
+            self.performSegue(withIdentifier: "toCompanyRegister", sender: self)
+
         }
 		
 		timer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(self.getStatisticsTimerData), userInfo: nil, repeats: true)
