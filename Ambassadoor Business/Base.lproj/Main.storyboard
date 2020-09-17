@@ -761,8 +761,9 @@ Send out an offer and you will be updated in real-time about influencers activit
                     <connections>
                         <outlet property="noStatsLabel" destination="VUx-34-Z2T" id="jv6-HW-Jg1"/>
                         <outlet property="statShelf" destination="Ix2-hY-MN5" id="ciD-Mx-l51"/>
-                        <segue destination="gjA-zh-oKp" kind="presentation" identifier="toCompanyRegister" modalPresentationStyle="fullScreen" id="pxx-F9-g2n"/>
+                        <segue destination="gjA-zh-oKp" kind="presentation" identifier="" modalPresentationStyle="fullScreen" id="pxx-F9-g2n"/>
                         <segue destination="Tp9-qn-Qz8" kind="presentation" identifier="toStatInfo" id="S7s-bK-fF5"/>
+                        <segue destination="4dS-Jj-IID" kind="presentation" identifier="toCompanyRegister" id="3rP-Ma-XiR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QX0-N9-naM" sceneMemberID="firstResponder"/>
@@ -3586,7 +3587,7 @@ If a business signs up using your Business Referral Code, you will recieve 1% of
                                             </imageView>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="CDI-uu-0ek">
                                                 <rect key="frame" x="28" y="334.33333333333331" width="319" height="31"/>
-                                                <color key="minimumTrackTintColor" red="1" green="0.78264808250679208" blue="0.16586509369590752" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="minimumTrackTintColor" name="AmbDarkPurple"/>
                                                 <color key="maximumTrackTintColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                                 <connections>
                                                     <action selector="TrackBarTracked:" destination="O4w-dI-Pg0" eventType="valueChanged" id="MwC-tc-vQK"/>
@@ -4748,6 +4749,69 @@ If a business signs up using your Business Referral Code, you will recieve 1% of
             </objects>
             <point key="canvasLocation" x="382.60869565217394" y="538.85869565217399"/>
         </scene>
+        <!--Register NewVC-->
+        <scene sceneID="VxH-i3-lto">
+            <objects>
+                <viewController id="4dS-Jj-IID" customClass="RegisterNewVC" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FLK-Ky-PaJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xlG-SM-Z1M">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="648"/>
+                                <connections>
+                                    <segue destination="Ad4-ei-ya0" kind="embed" identifier="PageView" id="EBv-9E-sBd"/>
+                                </connections>
+                            </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HZu-HH-mxN" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="648" width="375" height="130"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 1/5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Spw-tO-Xl0">
+                                        <rect key="frame" x="145.33333333333334" y="24" width="84.333333333333343" height="26.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="Spw-tO-Xl0" firstAttribute="top" secondItem="HZu-HH-mxN" secondAttribute="top" constant="24" id="MkP-Ec-Fid"/>
+                                    <constraint firstAttribute="height" constant="130" id="jIp-Wh-MGe"/>
+                                    <constraint firstItem="Spw-tO-Xl0" firstAttribute="centerX" secondItem="HZu-HH-mxN" secondAttribute="centerX" id="qma-Xs-ggh"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowOpacity">
+                                        <real key="value" value="0.40000000000000002"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="cjr-Gf-lk0" firstAttribute="trailing" secondItem="xlG-SM-Z1M" secondAttribute="trailing" id="1E5-cm-07X"/>
+                            <constraint firstItem="xlG-SM-Z1M" firstAttribute="leading" secondItem="cjr-Gf-lk0" secondAttribute="leading" id="3s8-jM-pTz"/>
+                            <constraint firstItem="HZu-HH-mxN" firstAttribute="leading" secondItem="cjr-Gf-lk0" secondAttribute="leading" id="8Mz-d5-ffV"/>
+                            <constraint firstItem="HZu-HH-mxN" firstAttribute="top" secondItem="xlG-SM-Z1M" secondAttribute="bottom" id="8da-zb-jtK"/>
+                            <constraint firstAttribute="bottom" secondItem="HZu-HH-mxN" secondAttribute="bottom" constant="-20" id="A5R-yF-eWC"/>
+                            <constraint firstItem="cjr-Gf-lk0" firstAttribute="trailing" secondItem="HZu-HH-mxN" secondAttribute="trailing" id="A6e-AQ-I4Y"/>
+                            <constraint firstItem="xlG-SM-Z1M" firstAttribute="top" secondItem="FLK-Ky-PaJ" secondAttribute="topMargin" id="DAp-gk-5G7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cjr-Gf-lk0"/>
+                    </view>
+                    <connections>
+                        <outlet property="stepSegment" destination="Spw-tO-Xl0" id="M5P-i6-LVy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="78y-QO-0KR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-346.39999999999998" y="2729.5566502463057"/>
+        </scene>
         <!--Register CompanyVC-->
         <scene sceneID="87L-S9-8wL">
             <objects>
@@ -4756,7 +4820,7 @@ If a business signs up using your Business Referral Code, you will recieve 1% of
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eiY-DZ-cVe">
+                            <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eiY-DZ-cVe">
                                 <rect key="frame" x="0.0" y="104" width="375" height="514"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RCf-nl-eWS" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
@@ -5030,11 +5094,11 @@ You must have permission to use the company name, logo, website, etc. before reg
                                             <constraint firstAttribute="height" constant="31" id="Uag-V9-ri7"/>
                                         </constraints>
                                         <segments>
-                                            <segment title="Step 1"/>
-                                            <segment title="Step 2"/>
-                                            <segment title="Step 3"/>
-                                            <segment title="Step 4"/>
-                                            <segment title="Step 5"/>
+                                            <segment title="1"/>
+                                            <segment title="2"/>
+                                            <segment title="3"/>
+                                            <segment title="4"/>
+                                            <segment title="5"/>
                                         </segments>
                                     </segmentedControl>
                                 </subviews>
@@ -5056,9 +5120,9 @@ You must have permission to use the company name, logo, website, etc. before reg
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oB4-gz-SD0">
-                                <rect key="frame" x="0.0" y="112" width="375" height="656"/>
+                                <rect key="frame" x="0.0" y="104" width="375" height="708"/>
                                 <connections>
-                                    <segue destination="Ad4-ei-ya0" kind="embed" identifier="PageView" id="Iab-65-cvC"/>
+                                    <segue destination="Ad4-ei-ya0" kind="embed" identifier="" id="Iab-65-cvC"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -5067,13 +5131,13 @@ You must have permission to use the company name, logo, website, etc. before reg
                             <constraint firstAttribute="trailing" secondItem="BqR-7a-flZ" secondAttribute="trailing" constant="17" id="1Cs-CH-PSe"/>
                             <constraint firstItem="oB4-gz-SD0" firstAttribute="trailing" secondItem="IsN-ZL-zIG" secondAttribute="trailing" id="253-sM-gzZ"/>
                             <constraint firstItem="BqR-7a-flZ" firstAttribute="centerX" secondItem="Fkl-oF-erZ" secondAttribute="centerX" id="25L-Sk-DDq"/>
-                            <constraint firstItem="IsN-ZL-zIG" firstAttribute="bottom" secondItem="oB4-gz-SD0" secondAttribute="bottom" constant="10" id="3Pi-Fj-jN7"/>
+                            <constraint firstAttribute="bottom" secondItem="oB4-gz-SD0" secondAttribute="bottom" id="3Pi-Fj-jN7"/>
                             <constraint firstItem="IsN-ZL-zIG" firstAttribute="trailing" secondItem="Gm0-4M-UVA" secondAttribute="trailing" id="5Rm-p0-4jx"/>
                             <constraint firstItem="IsN-ZL-zIG" firstAttribute="trailing" secondItem="eiY-DZ-cVe" secondAttribute="trailing" id="BXI-24-eQ9"/>
                             <constraint firstItem="BqR-7a-flZ" firstAttribute="leading" secondItem="Fkl-oF-erZ" secondAttribute="leading" constant="17" id="C8p-Lc-wDu"/>
                             <constraint firstItem="oB4-gz-SD0" firstAttribute="leading" secondItem="IsN-ZL-zIG" secondAttribute="leading" id="Gvs-86-QKa"/>
                             <constraint firstItem="WSv-wV-qpc" firstAttribute="top" secondItem="BqR-7a-flZ" secondAttribute="bottom" constant="8" id="W44-nU-dtS"/>
-                            <constraint firstItem="oB4-gz-SD0" firstAttribute="top" secondItem="Gm0-4M-UVA" secondAttribute="bottom" constant="8" id="WSM-XL-UD2"/>
+                            <constraint firstItem="oB4-gz-SD0" firstAttribute="top" secondItem="Gm0-4M-UVA" secondAttribute="bottom" id="WSM-XL-UD2"/>
                             <constraint firstItem="Gm0-4M-UVA" firstAttribute="top" secondItem="IsN-ZL-zIG" secondAttribute="top" constant="-90" id="Yko-nr-4Oi"/>
                             <constraint firstItem="eiY-DZ-cVe" firstAttribute="top" secondItem="Gm0-4M-UVA" secondAttribute="bottom" id="hWw-ld-OCB"/>
                             <constraint firstItem="BqR-7a-flZ" firstAttribute="top" secondItem="gJF-3f-v6X" secondAttribute="bottom" constant="8" id="kCV-nc-pln"/>
@@ -5121,66 +5185,161 @@ You must have permission to use the company name, logo, website, etc. before reg
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ZM-UL-ysl">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Referral Code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u0N-Gc-W5F">
-                                        <rect key="frame" x="35" y="155" width="307" height="21"/>
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Were you referred by an influencer or business?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u0N-Gc-W5F">
+                                        <rect key="frame" x="6" y="88" width="363" height="45.666666666666657"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="qSU-sD-hvs"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="23" id="sYc-Tv-96R"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="19"/>
-                                        <color key="textColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="19"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p60-cW-3Eh" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                        <rect key="frame" x="32" y="188" width="310" height="41"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yst-tR-1qN">
+                                        <rect key="frame" x="0.0" y="262.66666666666669" width="375" height="60"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="AMBER0T" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4yU-dN-wmc">
-                                                <rect key="frame" x="0.0" y="0.0" width="310" height="41"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="19"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <connections>
-                                                    <outlet property="delegate" destination="n7v-IG-emb" id="7Qi-g7-pw3"/>
-                                                </connections>
-                                            </textField>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p60-cW-3Eh" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                                <rect key="frame" x="16" y="9.6666666666666288" width="343" height="41"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ABC123" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4yU-dN-wmc">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="41"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="19"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="n7v-IG-emb" id="7Qi-g7-pw3"/>
+                                                        </connections>
+                                                    </textField>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="4yU-dN-wmc" secondAttribute="bottom" id="4VD-YE-OZl"/>
+                                                    <constraint firstItem="4yU-dN-wmc" firstAttribute="leading" secondItem="p60-cW-3Eh" secondAttribute="leading" id="6gC-ED-xvc"/>
+                                                    <constraint firstItem="4yU-dN-wmc" firstAttribute="top" secondItem="p60-cW-3Eh" secondAttribute="top" id="ErU-dg-9Q7"/>
+                                                    <constraint firstAttribute="trailing" secondItem="4yU-dN-wmc" secondAttribute="trailing" id="F9s-as-oaf"/>
+                                                    <constraint firstAttribute="height" constant="41" id="vBb-DW-mMV"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowOpacity">
+                                                        <real key="value" value="0.20000000000000001"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowRadius">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" name="AmbPurple"/>
                                         <constraints>
-                                            <constraint firstItem="4yU-dN-wmc" firstAttribute="top" secondItem="p60-cW-3Eh" secondAttribute="top" id="LaI-hw-F1h"/>
-                                            <constraint firstAttribute="trailing" secondItem="4yU-dN-wmc" secondAttribute="trailing" id="QMe-xM-43G"/>
-                                            <constraint firstAttribute="height" constant="41" id="X3N-mv-Hb6"/>
-                                            <constraint firstItem="4yU-dN-wmc" firstAttribute="leading" secondItem="p60-cW-3Eh" secondAttribute="leading" id="ks6-Kg-am3"/>
-                                            <constraint firstAttribute="bottom" secondItem="4yU-dN-wmc" secondAttribute="bottom" id="nTS-0b-bSG"/>
+                                            <constraint firstAttribute="height" constant="60" id="NtR-A9-6aE"/>
+                                            <constraint firstAttribute="trailing" secondItem="p60-cW-3Eh" secondAttribute="trailing" constant="16" id="OjA-Fa-UNj"/>
+                                            <constraint firstItem="p60-cW-3Eh" firstAttribute="top" secondItem="Yst-tR-1qN" secondAttribute="top" constant="9.6699999999999999" id="XoR-CW-N4j"/>
+                                            <constraint firstItem="p60-cW-3Eh" firstAttribute="leading" secondItem="Yst-tR-1qN" secondAttribute="leading" constant="16" id="gPd-vg-b3O"/>
+                                            <constraint firstAttribute="bottom" secondItem="p60-cW-3Eh" secondAttribute="bottom" constant="9.3300000000000001" id="vWD-2x-Zd8"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="skb-Vk-r5i">
-                                        <rect key="frame" x="284" y="52" width="58" height="30"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in their referral code right here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7UK-pf-Ba8">
+                                        <rect key="frame" x="8" y="233" width="359" height="21.666666666666657"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="Itc-Y6-yW7"/>
-                                            <constraint firstAttribute="width" constant="58" id="cNk-eW-qZT"/>
+                                            <constraint firstAttribute="height" constant="21.670000000000002" id="gmt-nW-bZs"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
-                                        <state key="normal" title="Skip"/>
-                                        <connections>
-                                            <action selector="skipActionWithSender:" destination="n7v-IG-emb" eventType="touchUpInside" id="EQG-HA-mGL"/>
-                                        </connections>
-                                    </button>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="DDW-bK-7dm">
+                                        <rect key="frame" x="37" y="354" width="300" height="50"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="keU-MX-Ggg" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="142" height="50"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jeq-eM-eLQ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="142" height="50"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                                        <state key="normal" title="Skip">
+                                                            <color key="titleColor" name="AmbPurple"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="skipActionWithSender:" destination="n7v-IG-emb" eventType="touchUpInside" id="5N4-tC-yA8"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="jeq-eM-eLQ" firstAttribute="top" secondItem="keU-MX-Ggg" secondAttribute="top" id="VpZ-GV-3mN"/>
+                                                    <constraint firstItem="jeq-eM-eLQ" firstAttribute="leading" secondItem="keU-MX-Ggg" secondAttribute="leading" id="hBd-0g-4kk"/>
+                                                    <constraint firstAttribute="bottom" secondItem="jeq-eM-eLQ" secondAttribute="bottom" id="hQG-zT-Ocs"/>
+                                                    <constraint firstAttribute="trailing" secondItem="jeq-eM-eLQ" secondAttribute="trailing" id="k3K-3O-vn4"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowOpacity">
+                                                        <real key="value" value="0.20000000000000001"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowRadius">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tOe-n3-g6m" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                                <rect key="frame" x="158" y="0.0" width="142" height="50"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="skb-Vk-r5i">
+                                                        <rect key="frame" x="0.0" y="0.0" width="142" height="50"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                                        <state key="normal" title="Save &amp; Next">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="skipActionWithSender:" destination="n7v-IG-emb" eventType="touchUpInside" id="EQG-HA-mGL"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" name="AmbPurple"/>
+                                                <constraints>
+                                                    <constraint firstItem="skb-Vk-r5i" firstAttribute="top" secondItem="tOe-n3-g6m" secondAttribute="top" id="FJu-6g-N1h"/>
+                                                    <constraint firstAttribute="bottom" secondItem="skb-Vk-r5i" secondAttribute="bottom" id="KX6-tZ-F6g"/>
+                                                    <constraint firstItem="skb-Vk-r5i" firstAttribute="leading" secondItem="tOe-n3-g6m" secondAttribute="leading" id="eGk-Fw-F9H"/>
+                                                    <constraint firstAttribute="trailing" secondItem="skb-Vk-r5i" secondAttribute="trailing" id="ge8-hG-2gn"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowOpacity">
+                                                        <real key="value" value="0.20000000000000001"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowRadius">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Ceb-Yu-elu"/>
+                                            <constraint firstAttribute="width" constant="300" id="n3Y-PS-zS6"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="p60-cW-3Eh" firstAttribute="leading" secondItem="4ZM-UL-ysl" secondAttribute="leading" constant="32" id="0gg-1h-Jvf"/>
-                                    <constraint firstItem="u0N-Gc-W5F" firstAttribute="centerX" secondItem="4ZM-UL-ysl" secondAttribute="centerX" constant="1" id="Er3-Cj-XXl"/>
-                                    <constraint firstAttribute="trailing" secondItem="p60-cW-3Eh" secondAttribute="trailing" constant="33" id="Ft5-Be-dgY"/>
-                                    <constraint firstAttribute="trailing" secondItem="skb-Vk-r5i" secondAttribute="trailing" constant="33" id="K3w-bH-1yq"/>
-                                    <constraint firstAttribute="bottom" secondItem="p60-cW-3Eh" secondAttribute="bottom" constant="583" id="Nvw-Uv-syC"/>
-                                    <constraint firstAttribute="trailing" secondItem="u0N-Gc-W5F" secondAttribute="trailing" constant="33" id="Q5z-eS-MV9"/>
-                                    <constraint firstItem="p60-cW-3Eh" firstAttribute="top" secondItem="u0N-Gc-W5F" secondAttribute="bottom" constant="12" id="cCX-vM-Qbv"/>
-                                    <constraint firstItem="skb-Vk-r5i" firstAttribute="top" secondItem="4ZM-UL-ysl" secondAttribute="top" constant="52" id="dGY-9a-QJb"/>
-                                    <constraint firstItem="u0N-Gc-W5F" firstAttribute="top" secondItem="4ZM-UL-ysl" secondAttribute="top" constant="155" id="fWa-BC-1db"/>
-                                    <constraint firstItem="u0N-Gc-W5F" firstAttribute="leading" secondItem="4ZM-UL-ysl" secondAttribute="leading" constant="35" id="p0X-a1-CUE"/>
+                                    <constraint firstItem="7UK-pf-Ba8" firstAttribute="centerX" secondItem="4ZM-UL-ysl" secondAttribute="centerX" id="0FL-IC-PXQ"/>
+                                    <constraint firstItem="DDW-bK-7dm" firstAttribute="leading" secondItem="4ZM-UL-ysl" secondAttribute="leading" constant="37" id="3lI-Jh-zrJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="DDW-bK-7dm" secondAttribute="trailing" constant="38" id="9ph-Xd-hVc"/>
+                                    <constraint firstAttribute="trailing" secondItem="7UK-pf-Ba8" secondAttribute="trailing" constant="8" id="9r5-Ki-VNg"/>
+                                    <constraint firstItem="DDW-bK-7dm" firstAttribute="top" secondItem="Yst-tR-1qN" secondAttribute="bottom" constant="31.329999999999998" id="Iq1-bv-JAm"/>
+                                    <constraint firstAttribute="trailing" secondItem="u0N-Gc-W5F" secondAttribute="trailing" constant="6" id="J8V-Fz-DaA"/>
+                                    <constraint firstAttribute="trailing" secondItem="Yst-tR-1qN" secondAttribute="trailing" id="Kby-td-qks"/>
+                                    <constraint firstAttribute="bottom" secondItem="Yst-tR-1qN" secondAttribute="bottom" constant="489.32999999999998" id="KiG-IE-CaI"/>
+                                    <constraint firstItem="7UK-pf-Ba8" firstAttribute="top" secondItem="u0N-Gc-W5F" secondAttribute="bottom" constant="99.329999999999998" id="UyN-LX-hJU"/>
+                                    <constraint firstItem="Yst-tR-1qN" firstAttribute="top" secondItem="7UK-pf-Ba8" secondAttribute="bottom" constant="8" id="Ztl-Cl-fgp"/>
+                                    <constraint firstItem="Yst-tR-1qN" firstAttribute="leading" secondItem="4ZM-UL-ysl" secondAttribute="leading" id="fId-1F-gBo"/>
+                                    <constraint firstItem="Yst-tR-1qN" firstAttribute="centerX" secondItem="4ZM-UL-ysl" secondAttribute="centerX" id="mRh-bO-PrH"/>
+                                    <constraint firstItem="7UK-pf-Ba8" firstAttribute="leading" secondItem="4ZM-UL-ysl" secondAttribute="leading" constant="8" id="reM-2t-O5J"/>
+                                    <constraint firstItem="u0N-Gc-W5F" firstAttribute="leading" secondItem="4ZM-UL-ysl" secondAttribute="leading" constant="6" id="tPD-ve-3xI"/>
+                                    <constraint firstItem="u0N-Gc-W5F" firstAttribute="top" secondItem="4ZM-UL-ysl" secondAttribute="top" constant="88" id="xjK-bR-jSA"/>
+                                    <constraint firstItem="u0N-Gc-W5F" firstAttribute="centerX" secondItem="4ZM-UL-ysl" secondAttribute="centerX" id="zMl-u5-LO9"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="wVV-Qa-j6z"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="OdH-Oe-OxR"/>
@@ -5188,10 +5347,10 @@ You must have permission to use the company name, logo, website, etc. before reg
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="4ZM-UL-ysl" firstAttribute="leading" secondItem="mpf-Y8-SDK" secondAttribute="leading" id="8YZ-Bw-weO"/>
-                            <constraint firstAttribute="bottom" secondItem="4ZM-UL-ysl" secondAttribute="bottom" id="htm-hU-2JT"/>
-                            <constraint firstAttribute="trailing" secondItem="4ZM-UL-ysl" secondAttribute="trailing" id="lLc-iF-2Rg"/>
-                            <constraint firstItem="4ZM-UL-ysl" firstAttribute="top" secondItem="mpf-Y8-SDK" secondAttribute="top" id="zOY-QY-FXZ"/>
+                            <constraint firstAttribute="trailing" secondItem="4ZM-UL-ysl" secondAttribute="trailing" id="9Ug-78-RMc"/>
+                            <constraint firstItem="4ZM-UL-ysl" firstAttribute="leading" secondItem="mpf-Y8-SDK" secondAttribute="leading" id="VJX-JR-QlH"/>
+                            <constraint firstAttribute="bottom" secondItem="4ZM-UL-ysl" secondAttribute="bottom" id="VeA-OQ-DRk"/>
+                            <constraint firstItem="4ZM-UL-ysl" firstAttribute="top" secondItem="mpf-Y8-SDK" secondAttribute="top" id="nU7-Bt-syH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BRV-Y7-xvZ"/>
                     </view>
@@ -6088,14 +6247,14 @@ You must have permission to use the company name, logo, website, etc. before reg
                                 </view>
                                 <blurEffect style="regular"/>
                             </visualEffectView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your offer is now ready for nano-influencers!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="K4R-cD-e1e">
-                                <rect key="frame" x="16" y="150" width="343" height="20.333333333333343"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You offer can now be accepted by nano-influencers!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="K4R-cD-e1e">
+                                <rect key="frame" x="16" y="150" width="343" height="40.666666666666657"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="enB-i6-69c">
-                                <rect key="frame" x="16" y="200.33333333333334" width="343" height="81.333333333333343"/>
+                                <rect key="frame" x="16" y="220.66666666666666" width="343" height="81.333333333333343"/>
                                 <string key="text">Check in the Statistics Page to get real-time information on how your offer is doing. You will also be able to see posts by influencers there.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -6187,19 +6346,21 @@ You must have permission to use the company name, logo, website, etc. before reg
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Mp-VR-b3I" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                        <rect key="frame" x="112.66666666666669" y="52" width="150" height="150"/>
+                                        <rect key="frame" x="125" y="159.66666666666666" width="125" height="124.99999999999997"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VvR-08-yUM">
-                                                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="Pick Logo"/>
+                                                <state key="normal" title="Pick Logo">
+                                                    <color key="titleColor" name="AmbPurple"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="logoControlActionWithSender:" destination="wtU-jN-GPe" eventType="touchUpInside" id="hA8-IK-bWc"/>
                                                 </connections>
                                             </button>
-                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="gbP-zo-Tdo">
-                                                <rect key="frame" x="64.999999999999986" y="65" width="20" height="20"/>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="gbP-zo-Tdo">
+                                                <rect key="frame" x="52.666666666666657" y="52.666666666666686" width="20" height="20"/>
                                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="fE0-Xd-1gP"/>
@@ -6210,18 +6371,18 @@ You must have permission to use the company name, logo, website, etc. before reg
                                         </subviews>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="gbP-zo-Tdo" firstAttribute="centerX" secondItem="7Mp-VR-b3I" secondAttribute="centerX" id="8tu-oQ-ZaH"/>
-                                            <constraint firstAttribute="trailing" secondItem="VvR-08-yUM" secondAttribute="trailing" id="Qii-8n-JUg"/>
-                                            <constraint firstItem="VvR-08-yUM" firstAttribute="top" secondItem="7Mp-VR-b3I" secondAttribute="top" id="kUh-Yt-L7d"/>
-                                            <constraint firstAttribute="bottom" secondItem="VvR-08-yUM" secondAttribute="bottom" id="mHd-Fa-85e"/>
-                                            <constraint firstItem="VvR-08-yUM" firstAttribute="leading" secondItem="7Mp-VR-b3I" secondAttribute="leading" id="t1t-61-ihm"/>
-                                            <constraint firstAttribute="height" constant="150" id="uyp-fa-pqS"/>
-                                            <constraint firstAttribute="width" constant="150" id="vHm-xu-fAy"/>
-                                            <constraint firstItem="gbP-zo-Tdo" firstAttribute="centerY" secondItem="7Mp-VR-b3I" secondAttribute="centerY" id="y9D-3K-ER1"/>
+                                            <constraint firstAttribute="width" constant="125" id="O2O-vG-Lax"/>
+                                            <constraint firstAttribute="trailing" secondItem="VvR-08-yUM" secondAttribute="trailing" id="OYm-2u-aA1"/>
+                                            <constraint firstItem="VvR-08-yUM" firstAttribute="top" secondItem="7Mp-VR-b3I" secondAttribute="top" id="Rhx-zW-lVm"/>
+                                            <constraint firstAttribute="bottom" secondItem="VvR-08-yUM" secondAttribute="bottom" id="Rqv-sv-OtM"/>
+                                            <constraint firstItem="VvR-08-yUM" firstAttribute="leading" secondItem="7Mp-VR-b3I" secondAttribute="leading" id="dA1-kd-JU8"/>
+                                            <constraint firstItem="gbP-zo-Tdo" firstAttribute="centerX" secondItem="7Mp-VR-b3I" secondAttribute="centerX" id="f4Y-vX-20i"/>
+                                            <constraint firstItem="gbP-zo-Tdo" firstAttribute="centerY" secondItem="7Mp-VR-b3I" secondAttribute="centerY" id="ni1-pJ-oxU"/>
+                                            <constraint firstAttribute="height" constant="125" id="pKP-zF-RSf"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="75"/>
+                                                <real key="value" value="62.5"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="ShadowOpacity">
@@ -6235,23 +6396,14 @@ You must have permission to use the company name, logo, website, etc. before reg
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Your Company Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uzc-mz-Qy2">
-                                        <rect key="frame" x="35" y="275" width="305" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="OPO-ia-Skm"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
-                                        <color key="textColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6hu-Fa-Epp" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                        <rect key="frame" x="32" y="304" width="309" height="41"/>
+                                        <rect key="frame" x="32" y="316.66666666666669" width="311" height="41"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ABC private limited" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4M2-TC-SY4">
-                                                <rect key="frame" x="0.0" y="3" width="309" height="34"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Company Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4M2-TC-SY4">
+                                                <rect key="frame" x="0.0" y="3" width="311" height="34"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="wtU-jN-GPe" id="0eH-E4-ahU"/>
                                                 </connections>
@@ -6259,31 +6411,126 @@ You must have permission to use the company name, logo, website, etc. before reg
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="4M2-TC-SY4" secondAttribute="bottom" constant="4" id="2K5-rD-vFG"/>
-                                            <constraint firstAttribute="trailing" secondItem="4M2-TC-SY4" secondAttribute="trailing" id="BF7-TY-Xfd"/>
-                                            <constraint firstAttribute="height" constant="41" id="GIi-NY-Kt5"/>
-                                            <constraint firstItem="4M2-TC-SY4" firstAttribute="leading" secondItem="6hu-Fa-Epp" secondAttribute="leading" id="izI-IP-9L8"/>
-                                            <constraint firstItem="4M2-TC-SY4" firstAttribute="top" secondItem="6hu-Fa-Epp" secondAttribute="top" constant="3" id="jHy-c8-ArA"/>
+                                            <constraint firstAttribute="trailing" secondItem="4M2-TC-SY4" secondAttribute="trailing" id="A0V-DA-aBK"/>
+                                            <constraint firstItem="4M2-TC-SY4" firstAttribute="top" secondItem="6hu-Fa-Epp" secondAttribute="top" constant="3" id="Km1-ja-eAj"/>
+                                            <constraint firstItem="4M2-TC-SY4" firstAttribute="leading" secondItem="6hu-Fa-Epp" secondAttribute="leading" id="dN2-EN-g33"/>
+                                            <constraint firstAttribute="height" constant="41" id="jNX-wQ-med"/>
+                                            <constraint firstAttribute="bottom" secondItem="4M2-TC-SY4" secondAttribute="bottom" constant="4" id="kHP-dl-LjT"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="ShadowOpacity">
+                                                <real key="value" value="0.20000000000000001"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="ShadowRadius">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Business Name &amp; Logo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uzc-mz-Qy2">
+                                        <rect key="frame" x="8" y="90" width="359" height="21.666666666666671"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21.670000000000002" id="mWh-IV-k0m"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="MhL-eB-HeO">
+                                        <rect key="frame" x="37.666666666666657" y="389.66666666666669" width="300" height="50"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ADM-5A-1I9" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="142" height="50"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Hn-Bf-aXQ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="142" height="50"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                                        <state key="normal" title="Back">
+                                                            <color key="titleColor" name="AmbPurple"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="backActionWithSender:" destination="wtU-jN-GPe" eventType="touchUpInside" id="Ckw-Yq-iit"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="0Hn-Bf-aXQ" firstAttribute="leading" secondItem="ADM-5A-1I9" secondAttribute="leading" id="FVI-i7-xve"/>
+                                                    <constraint firstItem="0Hn-Bf-aXQ" firstAttribute="top" secondItem="ADM-5A-1I9" secondAttribute="top" id="IdM-Z4-X6u"/>
+                                                    <constraint firstAttribute="bottom" secondItem="0Hn-Bf-aXQ" secondAttribute="bottom" id="VEf-kL-cyv"/>
+                                                    <constraint firstAttribute="trailing" secondItem="0Hn-Bf-aXQ" secondAttribute="trailing" id="Zcc-PM-0Mi"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowOpacity">
+                                                        <real key="value" value="0.20000000000000001"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowRadius">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SxY-JS-npX" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                                <rect key="frame" x="158" y="0.0" width="142" height="50"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vI5-eV-znC">
+                                                        <rect key="frame" x="0.0" y="0.0" width="142" height="50"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                                        <state key="normal" title="Save &amp; Next">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="saveNextActionWithSender:" destination="wtU-jN-GPe" eventType="touchUpInside" id="NKJ-Rl-3rQ"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" name="AmbPurple"/>
+                                                <constraints>
+                                                    <constraint firstItem="vI5-eV-znC" firstAttribute="leading" secondItem="SxY-JS-npX" secondAttribute="leading" id="Aue-uK-pIl"/>
+                                                    <constraint firstItem="vI5-eV-znC" firstAttribute="top" secondItem="SxY-JS-npX" secondAttribute="top" id="LVN-Kn-Ugy"/>
+                                                    <constraint firstAttribute="bottom" secondItem="vI5-eV-znC" secondAttribute="bottom" id="TY7-bq-oi6"/>
+                                                    <constraint firstAttribute="trailing" secondItem="vI5-eV-znC" secondAttribute="trailing" id="h95-at-N1A"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowOpacity">
+                                                        <real key="value" value="0.20000000000000001"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowRadius">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="ceX-fz-NrT"/>
+                                            <constraint firstAttribute="height" constant="50" id="s36-O2-UcJ"/>
+                                            <constraint firstAttribute="width" constant="300" id="soj-fQ-jeT"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="Uzc-mz-Qy2" firstAttribute="top" secondItem="7Mp-VR-b3I" secondAttribute="bottom" constant="73" id="3PI-eX-efd"/>
-                                    <constraint firstItem="6hu-Fa-Epp" firstAttribute="leading" secondItem="9aC-Pk-LCh" secondAttribute="leading" constant="32" id="4vc-gk-1Lp"/>
-                                    <constraint firstItem="Uzc-mz-Qy2" firstAttribute="centerX" secondItem="9aC-Pk-LCh" secondAttribute="centerX" id="DAc-Sm-Koy"/>
-                                    <constraint firstAttribute="trailing" secondItem="Uzc-mz-Qy2" secondAttribute="trailing" constant="33" id="GHs-Rb-r3n"/>
-                                    <constraint firstItem="7Mp-VR-b3I" firstAttribute="top" secondItem="8LZ-Ws-BB7" secondAttribute="top" constant="52" id="MxX-UN-N96"/>
-                                    <constraint firstItem="Uzc-mz-Qy2" firstAttribute="leading" secondItem="9aC-Pk-LCh" secondAttribute="leading" constant="35" id="Yct-Rg-UI0"/>
-                                    <constraint firstAttribute="trailing" secondItem="6hu-Fa-Epp" secondAttribute="trailing" constant="32" id="mg2-Tu-O5Z"/>
-                                    <constraint firstAttribute="bottom" secondItem="6hu-Fa-Epp" secondAttribute="bottom" constant="467" id="waT-Iz-H8O"/>
-                                    <constraint firstItem="6hu-Fa-Epp" firstAttribute="top" secondItem="Uzc-mz-Qy2" secondAttribute="bottom" constant="8" id="xJ6-FL-OjQ"/>
-                                    <constraint firstItem="7Mp-VR-b3I" firstAttribute="centerX" secondItem="9aC-Pk-LCh" secondAttribute="centerX" id="xiO-vH-jTb"/>
+                                    <constraint firstItem="MhL-eB-HeO" firstAttribute="top" secondItem="6hu-Fa-Epp" secondAttribute="bottom" constant="32" id="6OY-xE-GDH"/>
+                                    <constraint firstItem="6hu-Fa-Epp" firstAttribute="top" secondItem="7Mp-VR-b3I" secondAttribute="bottom" constant="32" id="6QS-i4-zIT"/>
+                                    <constraint firstItem="Uzc-mz-Qy2" firstAttribute="centerX" secondItem="9aC-Pk-LCh" secondAttribute="centerX" id="8QY-mu-pVP"/>
+                                    <constraint firstAttribute="trailing" secondItem="Uzc-mz-Qy2" secondAttribute="trailing" constant="8" id="HON-bR-E1C"/>
+                                    <constraint firstItem="MhL-eB-HeO" firstAttribute="leading" secondItem="9aC-Pk-LCh" secondAttribute="leading" constant="37.670000000000002" id="LXX-0l-qKr"/>
+                                    <constraint firstAttribute="bottom" secondItem="6hu-Fa-Epp" secondAttribute="bottom" constant="454.32999999999998" id="U7K-jP-CkP"/>
+                                    <constraint firstItem="Uzc-mz-Qy2" firstAttribute="top" secondItem="9aC-Pk-LCh" secondAttribute="top" constant="90" id="Z08-VX-tXl"/>
+                                    <constraint firstItem="Uzc-mz-Qy2" firstAttribute="leading" secondItem="9aC-Pk-LCh" secondAttribute="leading" constant="8" id="dQL-Ia-ZRB"/>
+                                    <constraint firstAttribute="trailing" secondItem="MhL-eB-HeO" secondAttribute="trailing" constant="37.329999999999998" id="dnR-YU-KGU"/>
+                                    <constraint firstItem="7Mp-VR-b3I" firstAttribute="centerX" secondItem="9aC-Pk-LCh" secondAttribute="centerX" id="r9r-rc-ePN"/>
+                                    <constraint firstItem="7Mp-VR-b3I" firstAttribute="top" secondItem="Uzc-mz-Qy2" secondAttribute="bottom" constant="48" id="uCu-Yo-MhX"/>
+                                    <constraint firstItem="6hu-Fa-Epp" firstAttribute="leading" secondItem="9aC-Pk-LCh" secondAttribute="leading" constant="32" id="ujW-cQ-Mt5"/>
+                                    <constraint firstItem="6hu-Fa-Epp" firstAttribute="centerX" secondItem="9aC-Pk-LCh" secondAttribute="centerX" id="xzl-tx-B0F"/>
+                                    <constraint firstAttribute="trailing" secondItem="6hu-Fa-Epp" secondAttribute="trailing" constant="32" id="yWm-Xi-rbK"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="skr-vY-tfY"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="8LZ-Ws-BB7"/>
@@ -6291,16 +6538,18 @@ You must have permission to use the company name, logo, website, etc. before reg
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="9aC-Pk-LCh" secondAttribute="trailing" id="2FS-x7-0ZJ"/>
-                            <constraint firstItem="9aC-Pk-LCh" firstAttribute="top" secondItem="D2M-yO-R4H" secondAttribute="top" id="SSq-2Q-MoV"/>
-                            <constraint firstItem="9aC-Pk-LCh" firstAttribute="leading" secondItem="D2M-yO-R4H" secondAttribute="leading" id="W6O-XD-SKf"/>
-                            <constraint firstAttribute="bottom" secondItem="9aC-Pk-LCh" secondAttribute="bottom" id="vq1-J7-dk3"/>
+                            <constraint firstItem="9aC-Pk-LCh" firstAttribute="top" secondItem="D2M-yO-R4H" secondAttribute="top" id="9H4-7a-ojr"/>
+                            <constraint firstAttribute="trailing" secondItem="9aC-Pk-LCh" secondAttribute="trailing" id="bFa-5r-eXx"/>
+                            <constraint firstItem="9aC-Pk-LCh" firstAttribute="leading" secondItem="D2M-yO-R4H" secondAttribute="leading" id="gQ7-nK-J6H"/>
+                            <constraint firstAttribute="bottom" secondItem="9aC-Pk-LCh" secondAttribute="bottom" id="o76-8e-TiW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HQr-Oa-4oU"/>
                     </view>
                     <connections>
                         <outlet property="activity" destination="gbP-zo-Tdo" id="Xyo-ns-Ij1"/>
                         <outlet property="companyName" destination="4M2-TC-SY4" id="Kpz-aS-TrB"/>
+                        <outlet property="companyNameShadow" destination="6hu-Fa-Epp" id="zST-qZ-rzR"/>
+                        <outlet property="imageShadow" destination="7Mp-VR-b3I" id="vZZ-db-m4W"/>
                         <outlet property="picLogo" destination="VvR-08-yUM" id="UaZ-rJ-pvE"/>
                         <outlet property="scroll" destination="9aC-Pk-LCh" id="6qm-S2-N9O"/>
                         <segue destination="qx2-bm-vmK" kind="presentation" identifier="toGetPictureVC" id="Ahh-gg-2wY"/>
@@ -6318,27 +6567,43 @@ You must have permission to use the company name, logo, website, etc. before reg
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bnM-IR-zvX">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tLt-R4-Nfk">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="RqJ-V6-buk">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="regular"/>
+                            </visualEffectView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9NO-tg-yeL">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Company Website" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cNS-Um-8zj">
-                                        <rect key="frame" x="35" y="161" width="305" height="21"/>
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Got a website?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cNS-Um-8zj">
+                                        <rect key="frame" x="35" y="200" width="305" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="d4k-nr-CPi"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="19"/>
-                                        <color key="textColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ski-bu-bia" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                        <rect key="frame" x="32" y="195" width="309" height="41"/>
+                                        <rect key="frame" x="32" y="285" width="309" height="41"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="https://www.google.com" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SdD-EU-R5c">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="www.website.com" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SdD-EU-R5c">
                                                 <rect key="frame" x="0.0" y="0.0" width="309" height="41"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="19"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                 <connections>
+                                                    <action selector="edited:" destination="ezV-XM-S8L" eventType="editingChanged" id="JZ1-ak-iAj"/>
                                                     <outlet property="delegate" destination="ezV-XM-S8L" id="zqh-p6-tuJ"/>
                                                 </connections>
                                             </textField>
@@ -6355,19 +6620,102 @@ You must have permission to use the company name, logo, website, etc. before reg
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="ShadowOpacity">
+                                                <real key="value" value="0.20000000000000001"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="ShadowRadius">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="QS1-nE-rFK">
+                                        <rect key="frame" x="37.666666666666657" y="390" width="300" height="50"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s7P-DW-iyL" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="142" height="50"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MeA-xl-bep">
+                                                        <rect key="frame" x="0.0" y="0.0" width="142" height="50"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                                        <state key="normal" title="Back">
+                                                            <color key="titleColor" name="AmbPurple"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="backActionWithSender:" destination="ezV-XM-S8L" eventType="touchUpInside" id="VMs-xC-18c"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="MeA-xl-bep" secondAttribute="bottom" id="Afx-2h-uTZ"/>
+                                                    <constraint firstItem="MeA-xl-bep" firstAttribute="leading" secondItem="s7P-DW-iyL" secondAttribute="leading" id="EDF-FN-Jr5"/>
+                                                    <constraint firstItem="MeA-xl-bep" firstAttribute="top" secondItem="s7P-DW-iyL" secondAttribute="top" id="FM9-Qu-xiN"/>
+                                                    <constraint firstAttribute="trailing" secondItem="MeA-xl-bep" secondAttribute="trailing" id="swv-SF-INx"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowOpacity">
+                                                        <real key="value" value="0.20000000000000001"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowRadius">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bby-mM-bOk" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                                <rect key="frame" x="158" y="0.0" width="142" height="50"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xiY-Sy-dAu">
+                                                        <rect key="frame" x="0.0" y="0.0" width="142" height="50"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                                        <state key="normal" title="Save &amp; Next">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="saveNextActionWithSender:" destination="ezV-XM-S8L" eventType="touchUpInside" id="iOj-cn-GBb"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" name="AmbPurple"/>
+                                                <constraints>
+                                                    <constraint firstItem="xiY-Sy-dAu" firstAttribute="top" secondItem="Bby-mM-bOk" secondAttribute="top" id="6qn-mF-5wV"/>
+                                                    <constraint firstAttribute="bottom" secondItem="xiY-Sy-dAu" secondAttribute="bottom" id="6r5-ot-gLJ"/>
+                                                    <constraint firstItem="xiY-Sy-dAu" firstAttribute="leading" secondItem="Bby-mM-bOk" secondAttribute="leading" id="ORC-iG-eCN"/>
+                                                    <constraint firstAttribute="trailing" secondItem="xiY-Sy-dAu" secondAttribute="trailing" id="PTl-eh-B6u"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowOpacity">
+                                                        <real key="value" value="0.20000000000000001"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowRadius">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="dV9-cc-hna"/>
+                                            <constraint firstAttribute="height" constant="50" id="k1v-Ic-KJi"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Ski-bu-bia" secondAttribute="trailing" constant="32" id="29b-5z-uH2"/>
                                     <constraint firstItem="cNS-Um-8zj" firstAttribute="leading" secondItem="9NO-tg-yeL" secondAttribute="leading" constant="35" id="Lgi-Rf-j1c"/>
                                     <constraint firstAttribute="trailing" secondItem="cNS-Um-8zj" secondAttribute="trailing" constant="33" id="Ljx-HJ-V86"/>
+                                    <constraint firstItem="QS1-nE-rFK" firstAttribute="centerX" secondItem="9NO-tg-yeL" secondAttribute="centerX" id="MH4-66-8KJ"/>
                                     <constraint firstAttribute="bottom" secondItem="Ski-bu-bia" secondAttribute="bottom" constant="576" id="U5E-eS-0lo"/>
-                                    <constraint firstItem="Ski-bu-bia" firstAttribute="top" secondItem="cNS-Um-8zj" secondAttribute="bottom" constant="13" id="V0F-hk-MG8"/>
+                                    <constraint firstItem="Ski-bu-bia" firstAttribute="top" secondItem="cNS-Um-8zj" secondAttribute="bottom" constant="64" id="V0F-hk-MG8"/>
                                     <constraint firstItem="cNS-Um-8zj" firstAttribute="centerX" secondItem="9NO-tg-yeL" secondAttribute="centerX" id="YYU-Py-8eo"/>
-                                    <constraint firstItem="cNS-Um-8zj" firstAttribute="top" secondItem="9NO-tg-yeL" secondAttribute="top" constant="161" id="aaZ-Tg-sJu"/>
+                                    <constraint firstItem="cNS-Um-8zj" firstAttribute="top" secondItem="9NO-tg-yeL" secondAttribute="top" constant="200" id="aaZ-Tg-sJu"/>
                                     <constraint firstItem="Ski-bu-bia" firstAttribute="leading" secondItem="9NO-tg-yeL" secondAttribute="leading" constant="32" id="oEd-vV-ypQ"/>
+                                    <constraint firstItem="QS1-nE-rFK" firstAttribute="top" secondItem="Ski-bu-bia" secondAttribute="bottom" constant="64" id="olM-gE-7kx"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="PGo-OK-E4c"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="oM9-TN-PAB"/>
@@ -6375,15 +6723,25 @@ You must have permission to use the company name, logo, website, etc. before reg
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="bnM-IR-zvX" firstAttribute="trailing" secondItem="cPC-jf-p9n" secondAttribute="trailing" id="5gR-Rd-2fH"/>
+                            <constraint firstAttribute="bottom" secondItem="bnM-IR-zvX" secondAttribute="bottom" id="9gn-xS-7c0"/>
+                            <constraint firstItem="bnM-IR-zvX" firstAttribute="leading" secondItem="cPC-jf-p9n" secondAttribute="leading" id="CDr-a5-b5V"/>
                             <constraint firstAttribute="trailing" secondItem="9NO-tg-yeL" secondAttribute="trailing" id="HX6-eg-3gR"/>
                             <constraint firstItem="9NO-tg-yeL" firstAttribute="top" secondItem="mTj-cS-JNm" secondAttribute="top" id="Pwk-HI-3BY"/>
                             <constraint firstAttribute="bottom" secondItem="9NO-tg-yeL" secondAttribute="bottom" id="Xkq-98-e4E"/>
                             <constraint firstItem="9NO-tg-yeL" firstAttribute="leading" secondItem="mTj-cS-JNm" secondAttribute="leading" id="Zdq-gd-tJ2"/>
+                            <constraint firstAttribute="bottom" secondItem="tLt-R4-Nfk" secondAttribute="bottom" id="bYk-a4-jWQ"/>
+                            <constraint firstItem="bnM-IR-zvX" firstAttribute="top" secondItem="mTj-cS-JNm" secondAttribute="top" id="bZu-1a-mFx"/>
+                            <constraint firstItem="tLt-R4-Nfk" firstAttribute="trailing" secondItem="cPC-jf-p9n" secondAttribute="trailing" id="eei-By-yQi"/>
+                            <constraint firstItem="tLt-R4-Nfk" firstAttribute="leading" secondItem="cPC-jf-p9n" secondAttribute="leading" id="mTQ-P7-738"/>
+                            <constraint firstItem="tLt-R4-Nfk" firstAttribute="top" secondItem="mTj-cS-JNm" secondAttribute="top" id="tBT-XA-GpE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cPC-jf-p9n"/>
                     </view>
                     <connections>
                         <outlet property="scroll" destination="9NO-tg-yeL" id="mWc-8e-tHj"/>
+                        <outlet property="webView" destination="bnM-IR-zvX" id="FZ8-IO-Tbt"/>
+                        <outlet property="websiteShadow" destination="Ski-bu-bia" id="FrR-ga-B0Q"/>
                         <outlet property="websiteText" destination="SdD-EU-R5c" id="Lmd-Aa-IzO"/>
                     </connections>
                 </viewController>
@@ -6400,43 +6758,38 @@ You must have permission to use the company name, logo, website, etc. before reg
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5mc-3p-aZ2" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                <rect key="frame" x="16" y="90" width="343" height="184"/>
+                                <rect key="frame" x="16" y="283" width="343" height="126"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7h-U3-9Kz">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="184"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7h-U3-9Kz">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="126"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <string key="text">By pressing "REGISTER" you agree to the terms of service, found at https://www.ambassadoor.co/terms-of-service
-You must have permission to use the company name, logo, website, etc. before registering.</string>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
+Also, you must have permission to use the company name, logo, and website before registering.</string>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="Q7h-U3-9Kz" firstAttribute="top" secondItem="5mc-3p-aZ2" secondAttribute="top" id="Du9-bF-MsQ"/>
                                     <constraint firstAttribute="trailing" secondItem="Q7h-U3-9Kz" secondAttribute="trailing" id="O6l-Qx-bvL"/>
-                                    <constraint firstAttribute="height" constant="184" id="ZEc-MW-YEB"/>
                                     <constraint firstAttribute="bottom" secondItem="Q7h-U3-9Kz" secondAttribute="bottom" id="hrx-Xb-ALc"/>
                                     <constraint firstItem="Q7h-U3-9Kz" firstAttribute="leading" secondItem="5mc-3p-aZ2" secondAttribute="leading" id="i03-Ef-a2U"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="ShadowOpacity">
-                                        <real key="value" value="0.5"/>
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="ShadowRadius">
                                         <real key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="ShadowColor">
-                                        <color key="value" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HUz-cz-bJc" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                <rect key="frame" x="16" y="718" width="343" height="60"/>
+                                <rect key="frame" x="16" y="441" width="343" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ku-TE-88s">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="60"/>
@@ -6450,7 +6803,7 @@ You must have permission to use the company name, logo, website, etc. before reg
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="AmbPurple"/>
                                 <constraints>
                                     <constraint firstItem="7Ku-TE-88s" firstAttribute="top" secondItem="HUz-cz-bJc" secondAttribute="top" id="CjY-NQ-mkU"/>
                                     <constraint firstItem="7Ku-TE-88s" firstAttribute="leading" secondItem="HUz-cz-bJc" secondAttribute="leading" id="L7g-bX-jQH"/>
@@ -6463,27 +6816,24 @@ You must have permission to use the company name, logo, website, etc. before reg
                                         <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="ShadowOpacity">
-                                        <real key="value" value="0.5"/>
+                                        <real key="value" value="0.20000000000000001"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="ShadowRadius">
                                         <real key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="ShadowColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="HUz-cz-bJc" firstAttribute="leading" secondItem="Ru5-f6-Cb9" secondAttribute="leading" constant="16" id="8iA-7t-WtH"/>
                             <constraint firstItem="5mc-3p-aZ2" firstAttribute="centerX" secondItem="fJg-PN-HR2" secondAttribute="centerX" id="Ai9-db-f2m"/>
                             <constraint firstItem="5mc-3p-aZ2" firstAttribute="leading" secondItem="Ru5-f6-Cb9" secondAttribute="leading" constant="16" id="C62-5h-lAj"/>
-                            <constraint firstItem="5mc-3p-aZ2" firstAttribute="top" secondItem="Ru5-f6-Cb9" secondAttribute="top" constant="46" id="CYA-ST-Qr6"/>
                             <constraint firstItem="HUz-cz-bJc" firstAttribute="centerX" secondItem="fJg-PN-HR2" secondAttribute="centerX" id="Luh-Ez-hai"/>
+                            <constraint firstItem="HUz-cz-bJc" firstAttribute="top" secondItem="5mc-3p-aZ2" secondAttribute="bottom" constant="32" id="PU7-vs-VHq"/>
                             <constraint firstItem="Ru5-f6-Cb9" firstAttribute="trailing" secondItem="5mc-3p-aZ2" secondAttribute="trailing" constant="16" id="VHD-HX-vFH"/>
                             <constraint firstItem="Ru5-f6-Cb9" firstAttribute="trailing" secondItem="HUz-cz-bJc" secondAttribute="trailing" constant="16" id="XrE-nD-z7K"/>
-                            <constraint firstItem="HUz-cz-bJc" firstAttribute="bottom" secondItem="Ru5-f6-Cb9" secondAttribute="bottom" id="vNx-L8-HeC"/>
+                            <constraint firstItem="5mc-3p-aZ2" firstAttribute="centerY" secondItem="fJg-PN-HR2" secondAttribute="centerY" constant="-60" id="aUd-wM-Dnl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ru5-f6-Cb9"/>
                     </view>
@@ -6494,7 +6844,7 @@ You must have permission to use the company name, logo, website, etc. before reg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YyO-qc-NiG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3325.5999999999999" y="3408.6206896551726"/>
+            <point key="canvasLocation" x="3210" y="3409"/>
         </scene>
         <!--Company MissionVC-->
         <scene sceneID="CYm-Cr-tna">
@@ -6531,33 +6881,107 @@ You must have permission to use the company name, logo, website, etc. before reg
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="5"/>
+                                                <real key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="ShadowOpacity">
-                                                <real key="value" value="0.5"/>
+                                                <real key="value" value="0.20000000000000001"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="ShadowRadius">
-                                                <real key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="ShadowColor">
-                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <real key="value" value="3"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Mission" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p6h-5a-7E0">
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Mission" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p6h-5a-7E0">
                                         <rect key="frame" x="31" y="134" width="313" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="fyD-py-TXF"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="19"/>
-                                        <color key="textColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                        <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="9Yk-JQ-uBt">
+                                        <rect key="frame" x="37.666666666666657" y="387" width="300" height="50"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Xf-FQ-W3M" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="142" height="50"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pgr-5p-T5F">
+                                                        <rect key="frame" x="0.0" y="0.0" width="142" height="50"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                                        <state key="normal" title="Back">
+                                                            <color key="titleColor" name="AmbPurple"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="backActionWithSender:" destination="RTb-kT-hAf" eventType="touchUpInside" id="38l-X5-ijF"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="pgr-5p-T5F" firstAttribute="leading" secondItem="0Xf-FQ-W3M" secondAttribute="leading" id="6w3-Lo-o4m"/>
+                                                    <constraint firstAttribute="trailing" secondItem="pgr-5p-T5F" secondAttribute="trailing" id="XvW-ap-dCG"/>
+                                                    <constraint firstAttribute="bottom" secondItem="pgr-5p-T5F" secondAttribute="bottom" id="lW0-rg-RRV"/>
+                                                    <constraint firstItem="pgr-5p-T5F" firstAttribute="top" secondItem="0Xf-FQ-W3M" secondAttribute="top" id="mmM-of-408"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowOpacity">
+                                                        <real key="value" value="0.20000000000000001"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowRadius">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VKo-a4-O70" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                                <rect key="frame" x="158" y="0.0" width="142" height="50"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2KX-mg-sDX">
+                                                        <rect key="frame" x="0.0" y="0.0" width="142" height="50"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                                        <state key="normal" title="Save &amp; Next">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="saveNextActionWithSender:" destination="RTb-kT-hAf" eventType="touchUpInside" id="BfG-nP-FPn"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" name="AmbPurple"/>
+                                                <constraints>
+                                                    <constraint firstItem="2KX-mg-sDX" firstAttribute="leading" secondItem="VKo-a4-O70" secondAttribute="leading" id="S0X-OC-I7y"/>
+                                                    <constraint firstItem="2KX-mg-sDX" firstAttribute="top" secondItem="VKo-a4-O70" secondAttribute="top" id="rXp-Sd-XlF"/>
+                                                    <constraint firstAttribute="bottom" secondItem="2KX-mg-sDX" secondAttribute="bottom" id="u21-i8-EdT"/>
+                                                    <constraint firstAttribute="trailing" secondItem="2KX-mg-sDX" secondAttribute="trailing" id="y2m-jB-Ojm"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowOpacity">
+                                                        <real key="value" value="0.20000000000000001"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowRadius">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Sgh-c4-1fL"/>
+                                            <constraint firstAttribute="width" constant="300" id="xlV-e7-EJP"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="UYv-si-8TA" firstAttribute="leading" secondItem="g1w-HE-nyv" secondAttribute="leading" constant="31" id="Bfz-2c-aAn"/>
+                                    <constraint firstItem="9Yk-JQ-uBt" firstAttribute="top" secondItem="UYv-si-8TA" secondAttribute="bottom" constant="32" id="Pn5-9L-Wl3"/>
                                     <constraint firstAttribute="bottom" secondItem="UYv-si-8TA" secondAttribute="bottom" constant="457" id="Pq6-QT-dS3"/>
+                                    <constraint firstItem="9Yk-JQ-uBt" firstAttribute="centerX" secondItem="say-B2-pn9" secondAttribute="centerX" id="VBp-M3-puG"/>
                                     <constraint firstItem="g1w-HE-nyv" firstAttribute="trailing" secondItem="UYv-si-8TA" secondAttribute="trailing" constant="30" id="dmy-Mg-yoj"/>
                                     <constraint firstItem="p6h-5a-7E0" firstAttribute="leading" secondItem="say-B2-pn9" secondAttribute="leading" constant="31" id="goE-3F-OQY"/>
                                     <constraint firstAttribute="trailing" secondItem="p6h-5a-7E0" secondAttribute="trailing" constant="30" id="ldF-0R-HoT"/>
@@ -6579,6 +7003,7 @@ You must have permission to use the company name, logo, website, etc. before reg
                         <viewLayoutGuide key="safeArea" id="wOi-S7-uea"/>
                     </view>
                     <connections>
+                        <outlet property="missionShadow" destination="UYv-si-8TA" id="vmV-hd-mCx"/>
                         <outlet property="missionText" destination="i7l-Ml-Gf7" id="CWS-SN-0Hf"/>
                         <outlet property="scroll" destination="say-B2-pn9" id="uz4-Kd-XGS"/>
                     </connections>
@@ -6587,10 +7012,26 @@ You must have permission to use the company name, logo, website, etc. before reg
             </objects>
             <point key="canvasLocation" x="2519.1999999999998" y="3408.6206896551726"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="38o-kh-g6u">
+            <objects>
+                <viewController id="bze-dL-fd8" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Tum-v2-vM7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="pSJ-5A-ucM"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k9G-gf-YAN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1282" y="2625"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="EBv-9E-sBd"/>
         <segue reference="Ahh-gg-2wY"/>
-        <segue reference="yBa-iP-b84"/>
+        <segue reference="S7s-bK-fF5"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="BusinsessSignIn" width="400" height="400"/>
@@ -6614,6 +7055,12 @@ You must have permission to use the company name, logo, website, etc. before reg
         <image name="remove_item" width="84" height="84"/>
         <image name="right_arrow" width="600" height="600"/>
         <image name="square.and.pencil" catalog="system" width="128" height="118"/>
+        <namedColor name="AmbDarkPurple">
+            <color red="0.53299999237060547" green="0.32899999618530273" blue="0.81599998474121094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AmbPurple">
+            <color red="0.6470000147819519" green="0.36899998784065247" blue="0.9179999828338623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="expiredColor">
             <color red="0.78799998760223389" green="0.16099999845027924" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
