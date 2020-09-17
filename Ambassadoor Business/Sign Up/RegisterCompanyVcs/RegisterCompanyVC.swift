@@ -19,6 +19,10 @@ protocol DismissDelegate {
     func dismisRegisterPage()
 }
 
+protocol DebugDelegate {
+    func somethingMissing()
+}
+
 class RegisterCompanyVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITextViewDelegate, UIScrollViewDelegate, PageViewDelegate, DismissDelegate {
     func pageViewIndexDidChangedelegate(index: Int) {
         self.stepSegmentControl.selectedSegmentIndex = index
@@ -44,6 +48,7 @@ class RegisterCompanyVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITex
     var assainedTextField: AnyObject? = nil
     
     var registerCompanyPVCDelegate: RegisterCompanySegmentDelegate?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,7 +107,7 @@ class RegisterCompanyVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITex
         }else if segue.identifier == "PageView"{
             let view = segue.destination as! RegisterCompanyPVC
             view.pageViewDidChange = self
-            view.parentReference = self
+            //view.parentReference = self
         }
     }
     

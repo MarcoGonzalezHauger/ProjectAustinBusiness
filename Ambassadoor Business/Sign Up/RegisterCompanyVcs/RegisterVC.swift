@@ -13,10 +13,10 @@ class RegisterVC: BaseVC {
     @IBOutlet weak var registerBtn: UIButton!
     @IBOutlet weak var registerShadow: ShadowView!
     var dismissDelegate: DismissDelegate?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -60,7 +60,7 @@ class RegisterVC: BaseVC {
             YouShallNotPass(SaveButtonView: registerShadow)
         }
         
-       // self.dismissDelegate!.dismisRegisterPage()
+        // self.dismissDelegate!.dismisRegisterPage()
     }
     
     func CanRegisterCompany(alertUser: Bool) -> Bool {
@@ -89,15 +89,15 @@ class RegisterVC: BaseVC {
         return false
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

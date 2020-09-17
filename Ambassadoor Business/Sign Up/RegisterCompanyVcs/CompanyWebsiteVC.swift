@@ -7,18 +7,40 @@
 //
 
 import UIKit
+import WebKit
 
 class CompanyWebsiteVC: BaseVC, UITextFieldDelegate {
     
     @IBOutlet weak var scroll: UIScrollView!
     @IBOutlet weak var websiteText: UITextField!
+    @IBOutlet weak var webView: WKWebView!
+    
+    @IBOutlet weak var websiteShadow: ShadowView!
     
     var pageIdentifyIndexDelegate: PageIndexDelegate?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addDoneButtonOnKeyboard(textField: self.websiteText)
+        
         // Do any additional setup after loading the view.
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        scroll.addGestureRecognizer(tap)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+    }
+    
+    @objc func dismissKeyboard() {
+        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+        scroll.contentInset = contentInset
+        scroll.endEditing(true)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
@@ -28,13 +50,18 @@ class CompanyWebsiteVC: BaseVC, UITextFieldDelegate {
     }
     
     func checkIfWebsiteEntered() {
+        
+        let thisUrl = GetURL()
+        
+        if isGoodUrl(url: thisUrl?.absoluteString ?? "") && websiteText.text?.count != 0{
             
-            if isGoodUrl(url: websiteText.text!) && websiteText.text?.count != 0{
-                global.registerCompanyDetails.companyWebsite = websiteText.text!
-                self.pageIdentifyIndexDelegate?.PageIndex(index: (self.view.tag + 1), viewController: self)
-            }else{
-                self.showAlertMessage(title: "Alert", message: "Please enter a valid website") {}
-            }
+            global.registerCompanyDetails.companyWebsite = thisUrl!.absoluteString
+            self.pageIdentifyIndexDelegate?.PageIndex(index: (self.view.tag + 1), viewController: self)
+        }else{
+            
+            MakeShake(viewToShake: self.websiteShadow)
+            //self.showAlertMessage(title: "Alert", message: "Please enter a valid website") {}
+        }
         
     }
     
@@ -56,26 +83,58 @@ class CompanyWebsiteVC: BaseVC, UITextFieldDelegate {
         
     }
     
-
+    
     override func doneButtonAction(){
         
         self.websiteText.resignFirstResponder()
         let scrollPoint = CGPoint(x: 0, y: 0)
         self.scroll .setContentOffset(scrollPoint, animated: true)
         
-        self.checkIfWebsiteEntered()
+        //self.checkIfWebsiteEntered()
         
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func saveNextAction(sender: UIButton){
+        self.checkIfWebsiteEntered()
     }
-    */
-
+    
+    @IBAction func backAction(sender: UIButton){
+        self.pageIdentifyIndexDelegate?.PageIndex(index: (self.view.tag - 1), viewController: self)
+    }
+    
+    @IBAction func edited(_ sender: Any) {
+        updateBack()
+    }
+    
+    func updateBack() {
+        let thisUrl = GetURL()
+        if global.registerCompanyDetails.companyWebsite != thisUrl?.absoluteString {
+            if let url = thisUrl {
+                webView.load(URLRequest(url: url))
+                global.registerCompanyDetails.companyWebsite = url.absoluteString
+            }
+        }
+    }
+    
+    func GetURL() -> URL? {
+        var returnValue = websiteText.text!
+        if !returnValue.lowercased().hasPrefix("http") {
+            if !returnValue.lowercased().hasPrefix("www.") {
+                returnValue = "http://www." + returnValue
+            }
+        }
+        return URL.init(string: returnValue)
+    }
+    
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
