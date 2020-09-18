@@ -37,7 +37,7 @@ class CompanyMissionVC: BaseVC, UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         UIView.animate(withDuration: 0.1) {
-            let scrollPoint = CGPoint(x: 0, y: textView.superview!.frame.origin.y)
+            let scrollPoint = CGPoint(x: 0, y: textView.superview!.frame.origin.y - 30)
             self.scroll .setContentOffset(scrollPoint, animated: true)
         }
         
