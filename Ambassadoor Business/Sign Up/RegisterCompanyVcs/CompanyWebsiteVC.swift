@@ -121,7 +121,9 @@ class CompanyWebsiteVC: BaseVC, UITextFieldDelegate {
         if !returnValue.lowercased().hasPrefix("http") {
             if !returnValue.lowercased().hasPrefix("www.") {
                 returnValue = "http://www." + returnValue
-            }
+			} else {
+				returnValue = "http://" + returnValue
+			}
         }
         return URL.init(string: returnValue)
     }

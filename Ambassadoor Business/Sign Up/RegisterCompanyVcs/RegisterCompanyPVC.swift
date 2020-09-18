@@ -59,7 +59,7 @@ class RegisterCompanyPVC: UIPageViewController, UIPageViewControllerDataSource, 
     
     //Allows for returning of VC when string is inputted.
     func newVC(VC: String) -> UIViewController {
-        let NewVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: VC)
+        let NewVC = UIStoryboard(name: "RegisterCompany", bundle: nil).instantiateViewController(withIdentifier: VC)
         self.setDelegateForAllControllers(viewController: NewVC)
         return NewVC
     }
@@ -78,6 +78,7 @@ class RegisterCompanyPVC: UIPageViewController, UIPageViewControllerDataSource, 
             controller.pageIdentifyIndexDelegate = self
         }else if let controller = viewController as? RegisterVC{
             controller.dismissDelegate = parentReference
+            controller.pageIdentifyIndexDelegate = self
         }
         
     }
