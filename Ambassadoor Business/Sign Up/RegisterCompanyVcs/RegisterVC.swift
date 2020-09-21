@@ -12,6 +12,7 @@ class RegisterVC: BaseVC {
     
     @IBOutlet weak var registerBtn: UIButton!
     @IBOutlet weak var registerShadow: ShadowView!
+    var pageIdentifyIndexDelegate: PageIndexDelegate?
     var dismissDelegate: DismissDelegate?
     
     override func viewDidLoad() {
@@ -87,6 +88,10 @@ class RegisterVC: BaseVC {
         }
         
         return false
+    }
+    
+    @IBAction func backAction(sender: UIButton){
+        self.pageIdentifyIndexDelegate?.PageIndex(index: (self.view.tag - 1), viewController: self)
     }
     
     

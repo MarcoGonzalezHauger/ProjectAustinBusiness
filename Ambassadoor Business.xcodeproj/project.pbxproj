@@ -24,6 +24,8 @@
 		B75EC9A6230ACE4800BA7A7B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75EC9A5230ACE4800BA7A7B /* NetworkManager.swift */; };
 		B75F7A852506476300D14675 /* TimerListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75F7A842506476300D14675 /* TimerListener.swift */; };
 		B761DA242321352100587F28 /* DwollaUserInformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B761DA232321352100587F28 /* DwollaUserInformationVC.swift */; };
+		B770B8112514A5E700724465 /* RegisterCompany.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B770B8102514A5E700724465 /* RegisterCompany.storyboard */; };
+		B770B8132514EACD00724465 /* Company.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B770B8122514EACD00724465 /* Company.storyboard */; };
 		B774B6E924728ADA007C8699 /* SimplexStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B774B6E824728ADA007C8699 /* SimplexStatistics.swift */; };
 		B7787EF425132BBC00098A92 /* RegisterNewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7787EF325132BBC00098A92 /* RegisterNewVC.swift */; };
 		B788D6F422E8931100FA59BA /* RegisterCompanyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B788D6F322E8931100FA59BA /* RegisterCompanyVC.swift */; };
@@ -118,6 +120,8 @@
 		B75EC9A5230ACE4800BA7A7B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		B75F7A842506476300D14675 /* TimerListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerListener.swift; sourceTree = "<group>"; };
 		B761DA232321352100587F28 /* DwollaUserInformationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DwollaUserInformationVC.swift; sourceTree = "<group>"; };
+		B770B8102514A5E700724465 /* RegisterCompany.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegisterCompany.storyboard; sourceTree = "<group>"; };
+		B770B8122514EACD00724465 /* Company.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Company.storyboard; sourceTree = "<group>"; };
 		B774B6E824728ADA007C8699 /* SimplexStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplexStatistics.swift; sourceTree = "<group>"; };
 		B7787EF325132BBC00098A92 /* RegisterNewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNewVC.swift; sourceTree = "<group>"; };
 		B788D6F322E8931100FA59BA /* RegisterCompanyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCompanyVC.swift; sourceTree = "<group>"; };
@@ -399,10 +403,12 @@
 				B799227422F16F1E007E84B0 /* CollectionCell */,
 				E8C3694322161B3000AE12D7 /* ViewController.swift */,
 				B774B6E7247284E7007C8699 /* SimplexStatistics */,
+				E8C3694122161B3000AE12D7 /* AppDelegate.swift */,
 				B750E78422E5B75F00024CB1 /* Onboarding.storyboard */,
 				B7AEF2C0247BA81B000AB4A4 /* TempLaunch.storyboard */,
-				E8C3694122161B3000AE12D7 /* AppDelegate.swift */,
+				B770B8122514EACD00724465 /* Company.storyboard */,
 				E8C3694522161B3000AE12D7 /* Main.storyboard */,
+				B770B8102514A5E700724465 /* RegisterCompany.storyboard */,
 				B7D2FE11247542F00000BFFC /* tutorial.mp4 */,
 				E8C3694B22161B3200AE12D7 /* Assets.xcassets */,
 				E8C3694D22161B3200AE12D7 /* LaunchScreen.storyboard */,
@@ -532,7 +538,9 @@
 				B750E78522E5B75F00024CB1 /* Onboarding.storyboard in Resources */,
 				B7B517D12411247400DD62DE /* GoogleService-Info.plist in Resources */,
 				B7AEF2C1247BA81B000AB4A4 /* TempLaunch.storyboard in Resources */,
+				B770B8112514A5E700724465 /* RegisterCompany.storyboard in Resources */,
 				E8C3694C22161B3200AE12D7 /* Assets.xcassets in Resources */,
+				B770B8132514EACD00724465 /* Company.storyboard in Resources */,
 				E8C3694722161B3000AE12D7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
