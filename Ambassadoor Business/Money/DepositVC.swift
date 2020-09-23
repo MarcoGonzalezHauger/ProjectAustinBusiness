@@ -50,6 +50,7 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
     func addCardViewController(_ addCardViewController: STPAddCardViewController, didCreatePaymentMethod paymentMethod: STPPaymentMethod, completion: @escaping STPErrorBlock) {
         
         // Getting payment Method Stripe ID and convert Amount Dollor to Cents(Stripe access cents only) and send to firebase server.
+        //let params = ["stripeID":paymentMethod.stripeId,"amount":(self.creditAmount * 100.00),"mode":"test"] as [String : Any]
         let params = ["stripeID":paymentMethod.stripeId,"amount":(self.creditAmount * 100.00)] as [String : Any]
         self.depositAmountToWalletThroughStripe(params: params, paymentMethodParams: paymentMethod)
         
@@ -204,6 +205,8 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
     func depositAmountToWalletThroughStripe(params: [String: Any],paymentMethodParams: STPPaymentMethod) {
         
         //if params["amount"] as! String != "" && params["amount"] as! String != "0.00" {
+        
+        //self.stripePaymentMethod(clientSecret: clientSecret, paymentMethodParams: paymentMethodParams)
            
             NetworkManager.sharedInstance.postAmountToServerThroughStripe(params: params) { (status, error, data) in
                 
@@ -246,6 +249,18 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
                         
                     }
                     
+                }else{
+                    DispatchQueue.main.async(execute: {
+                    
+                    self.addCardViewController.dismiss(animated: true, completion: nil)
+                    self.addCardViewController = STPAddCardViewController()
+                    })
+                    
+                    self.showAlertMessage(title: "Error", message: "Something Wrong!. Please try again later.") {
+                    }
+                        
+                        
+                    
                 }
                 
             }
@@ -264,18 +279,22 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
         let paymentManager = STPPaymentHandler.shared()
         paymentIntentParams.paymentMethodId = paymentMethodParams.stripeId
         paymentManager.confirmPayment(withParams: paymentIntentParams, authenticationContext: self) { (status, paymentIntent, error) in
-            DispatchQueue.main.async {
-                self.addCardViewController.dismiss(animated: true, completion: nil)
-            }
+            
             switch (status) {
-            case .failed: break
+            case .failed:
             // Handle error
-            case .canceled: break
+            self.dismissStripeController()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.showAlertMessage(title: "Alert", message: "Payment Failed. Try Again Later") {
+                }
+            }
+            
+            case .canceled:
             // Handle cancel
+                self.dismissStripeController()
             case .succeeded:
                 // Payment Intent is confirmed
-                
-                
+                self.dismissStripeController()
                 getDepositDetails(companyUser: Auth.auth().currentUser!.uid) { (deposit, status, error) in
                     /*var userID: String?
                      var currentBalance: Double?
@@ -368,6 +387,13 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
             
         }
         
+    }
+    
+    func dismissStripeController() {
+        DispatchQueue.main.async {
+            self.addCardViewController.dismiss(animated: true, completion: nil)
+            self.addCardViewController = STPAddCardViewController()
+        }
     }
     
     func depositAmountToWallet(params: [String: AnyObject]) {

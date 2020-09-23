@@ -14,8 +14,8 @@ struct API {
         static var Stripeclient_id = "ca_FrDIP5fLBXnTWCJTkPzngRUquWqrzKZh"
         static var Stripeclient_secret = "sk_live_KwcqGxImMq4fosE3n7QMycBw00eMO7si8E"
         //demo
-    //    static var Stripeclient_id = "ca_FrDIyMuhEQEpU7K8z6tsPNMwKJ2f6AiM"
-    //    static var Stripeclient_secret = "sk_test_zrg6oDehYkCJIVAA4oe5LrWD00mNP6IImr"
+        //static var Stripeclient_id = "ca_FrDIyMuhEQEpU7K8z6tsPNMwKJ2f6AiM"
+        //static var Stripeclient_secret = "sk_test_zrg6oDehYkCJIVAA4oe5LrWD00mNP6IImr"
     
     static let INSTAGRAM_AUTHURL = "https://api.instagram.com/oauth/authorize/"
     static let INSTAGRAM_CLIENT_ID = "fa083c34de6847ff95db596d75ef1c31"
@@ -28,8 +28,8 @@ struct API {
     
     static var instagramProfileData: [String: AnyObject] = [:]
     
-    //static var kBaseURL = "https://us-central1-amassadoor.cloudfunctions.net/"
-    static var kBaseURL = "http://localhost:5000/amassadoor/us-central1/"
+    static var kBaseURL = "https://us-central1-amassadoor.cloudfunctions.net/"
+    //static var kBaseURL = "http://localhost:5000/amassadoor/us-central1/"
     //http://localhost:5000/amassadoor/us-central1/postStripeIDToServer
     static var kDwollaClient_id = "CijOdBYNcHDSwXjkf4PnsXjHBYSgKdgc7TdfoDNUZiNvOPfAst"
     

@@ -68,11 +68,12 @@ class StripeConnectionMKWebview: BaseVC, WKNavigationDelegate {
                 print(url.absoluteString)
             /*
             if url.absoluteString.hasPrefix("https://connect.stripe.com/connect/default_new/oauth/test?") || url.absoluteString.hasPrefix("https://connect.stripe.com/connect/default/oauth/test?"){
-             */
+             
                     
-//                    self.dismiss(animated: true, completion: nil)
+                */
                 
                 if url.absoluteString.hasPrefix("https://www.ambassadoor.co/paid?") || url.absoluteString.hasPrefix("https://www.ambassadoor.co/paid?code="){
+                
                     
                     print("SUCCESS")
                     
