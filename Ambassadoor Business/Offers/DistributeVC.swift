@@ -350,9 +350,12 @@ class DistributeVC: BaseVC, changedDelegate, missingMoneyDelegate, dismissSucces
         //Reduce Ambassadoor Commission
         //let cashPower = self.templateOffer?.cashPower
         let ambassadoorCommission = (originalAmount * Singleton.sharedInstance.getCommision())
+        //edited on 1 Oct by ram
         self.templateOffer?.cashPower = originalAmount - ambassadoorCommission
         
+        //edited on 1 Oct by ram
         self.templateOffer?.originalAmount = originalAmount - ambassadoorCommission
+        //self.templateOffer?.originalAmount = originalAmount
         
         if let referral = Singleton.sharedInstance.getCompanyDetails().referralcode{
             
