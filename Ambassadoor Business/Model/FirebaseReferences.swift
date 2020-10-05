@@ -764,7 +764,7 @@ func parseTemplateOffer(offer: [String: AnyObject]) -> [Post] {
 			}
 		}
 		
-        let postInitialized = Post.init(image: "", instructions: value["instructions"] as? String ?? "", captionMustInclude: value["captionMustInclude"] as? String, products: productList, post_ID: value["post_ID"] as! String, PostType: value["PostType"] as! String, confirmedSince: value["confirmedSince"] as? Date, isConfirmed: (value["isConfirmed"] != nil), hashCaption: value["hashCaption"] as! String, status: value["status"] as? String ?? "", hashtags: value["hashtags"] as? [String] ?? [], keywords: value["keywords"] as? [String] ?? [], isPaid: value["isPaid"] as? Bool ?? false, PayAmount: value["PayAmount"] as? Double ?? 0.0)
+        let postInitialized = Post.init(image: "", instructions: value["instructions"] as? String ?? "", captionMustInclude: value["captionMustInclude"] as? String, products: productList, post_ID: value["post_ID"] as! String, PostType: value["PostType"] as! String, confirmedSince: value["confirmedSince"] as? Date, isConfirmed: (value["isConfirmed"] as? Bool ?? false), hashCaption: value["hashCaption"] as! String, status: value["status"] as? String ?? "", hashtags: value["hashtags"] as? [String] ?? [], keywords: value["keywords"] as? [String] ?? [], isPaid: value["isPaid"] as? Bool ?? false, PayAmount: value["PayAmount"] as? Double ?? 0.0)
         postValues.append(postInitialized)
     }
     return postValues
