@@ -472,6 +472,8 @@ func sentOutOffersToOfferPool(pathString: String, templateOffer: TemplateOffer, 
                     print(tempOfferPool.cashPower!)
                     tempOfferPool.cashPower! += templateOffer.cashPower!
                     
+                    //tempOfferPool.accepted = templateOffer.accepted
+                    
                     tempOfferPool.category = templateOffer.category
                     
                     tempOfferPool.genders = templateOffer.genders

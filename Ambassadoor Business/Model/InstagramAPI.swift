@@ -231,7 +231,7 @@ struct API {
             "incresePay":offer.incresePay as Any,
             "influencerFilter":offer.influencerFilter as Any,
             "companyDetails":offer.companyDetails as Any,
-            "accepted":[],
+            "accepted":offer.accepted!,
             "reservedUsers":[] as Any,
             "mustBeTwentyOne": offer.mustBeTwentyOne as Any,
             "originalAmount" : offer.originalAmount as Any
