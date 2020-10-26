@@ -249,11 +249,36 @@ class SignInVC: BaseVC, UITextFieldDelegate {
                                                 YourCompany = company
                                                 TimerListener.scheduleUpdateBalanceTimer()
                                                 downloadBeforeLoad()
-                                                DispatchQueue.main.async(execute: {
-                                                    timer.invalidate()
-                                                    self.hideActivityIndicator()
-                                                    self.instantiateToMainScreen()
-                                                })
+                                                
+                                                getAllDistributedOffers { (status, results) in
+                                                    if status {
+                                                        if let results = results {
+                                                            if results.count == 0 {
+                                                            } else {
+                                                                
+                                                            var rslts: [OfferStatistic] = []
+                                                            for i in results {
+                                                                rslts.append(OfferStatistic.init(offer: i))
+                                                            }
+                                                            global.distributedOffers = rslts
+                                                    
+                                                            }
+                                                        }
+                                                        
+                                                        DispatchQueue.main.async(execute: {
+                                                            timer.invalidate()
+                                                            self.hideActivityIndicator()
+                                                            self.instantiateToMainScreen()
+                                                        })
+                                                        
+                                                    }
+                                                }
+                                                
+//                                                DispatchQueue.main.async(execute: {
+//                                                    timer.invalidate()
+//                                                    self.hideActivityIndicator()
+//                                                    self.instantiateToMainScreen()
+//                                                })
                                             }
                                             
                                         }else{
