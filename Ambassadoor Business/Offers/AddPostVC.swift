@@ -159,6 +159,8 @@ class AddPostVC: BaseVC, NCDelegate, UITableViewDelegate, UITableViewDataSource,
     var productSelectedArray = [Int]()
     var phraseList: [String] = []
     
+    var buttonClickTag = 0;
+    
     @IBOutlet weak var colorBubble: ShadowView!
     
     override func viewDidLoad() {
@@ -229,6 +231,7 @@ class AddPostVC: BaseVC, NCDelegate, UITableViewDelegate, UITableViewDataSource,
     //MARK: - Data Components
     
     @IBAction func savePost(sender: UIButton){
+        buttonClickTag = 1
         SaveThisPost(andDismiss: true)
     }
     
@@ -282,7 +285,9 @@ class AddPostVC: BaseVC, NCDelegate, UITableViewDelegate, UITableViewDataSource,
 	override func willMove(toParent parent: UIViewController?) {
 		super.willMove(toParent: parent)
 		if parent == nil {
+            if buttonClickTag == 0{
 			SaveThisPost(andDismiss: false)
+            }
 		}
 	}
     

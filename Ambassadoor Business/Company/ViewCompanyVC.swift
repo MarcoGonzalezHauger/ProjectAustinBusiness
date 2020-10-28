@@ -10,6 +10,7 @@
 import UIKit
 import SDWebImage
 import Firebase
+import Photos
 
 class ViewCompanyVC: BaseVC, ImagePickerDelegate, webChangedDelegate {
 	
@@ -108,6 +109,67 @@ class ViewCompanyVC: BaseVC, ImagePickerDelegate, webChangedDelegate {
 		}
 		updateIsEditing()
 	}
+    
+    @IBAction func changeImageAction(sender: UIButton) {
+        
+        let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
+        
+        switch photoAuthorizationStatus {
+        case .authorized:
+           DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "fromCompanytoGetPicture", sender: self)
+            }
+            debugPrint("It is not determined until now")
+        case .restricted:
+            self.showNotificationForAuthorization()
+        case .denied:
+            self.showNotificationForAuthorization()
+        default:
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "fromCompanytoGetPicture", sender: self)
+            }
+        }
+        
+        //self.performSegue(withIdentifier: "fromCompanytoGetPicture", sender: self)
+    }
+    
+    func showNotificationForAuthorization() {
+        
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.getNotificationSettings { (settings) in
+            DispatchQueue.main.async {
+                if settings.authorizationStatus != .authorized {
+                    openAppSettings(index: 1)
+                } else {
+                    openAppSettings(index: 1)
+                    self.photoLibrarySettingsNotification()
+                }
+            }
+        }
+        
+    }
+    
+    func photoLibrarySettingsNotification() {
+        
+        let notificationCenter = UNUserNotificationCenter.current()
+        let content = UNMutableNotificationContent()
+        
+        content.title = "Ambassadoor Settings"
+        content.body = "You must enable Photo Access to upload a logo. Allow access here."
+        content.sound = nil
+        content.badge = nil
+        
+    
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.2, repeats: false)
+        let identifier = "photolibrarysettings"
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+    
+        notificationCenter.add(request) { (error) in
+            if let error = error {
+                print("Error \(error.localizedDescription)")
+            }
+        }
+    }
 	
 	func updateIsEditing() {
 		companyMission.isEditable = isCurrentlyEditing

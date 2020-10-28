@@ -27,7 +27,7 @@ class SignInVC: BaseVC, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("roundup",(1.056756 * 100).rounded()/100)
-		
+        //It is used to identify app went back from app setting Options
 		registerButton.layer.cornerRadius = 10
 		
 		

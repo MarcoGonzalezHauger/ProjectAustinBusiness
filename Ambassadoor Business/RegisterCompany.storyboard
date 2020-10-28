@@ -127,7 +127,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="skipActionWithSender:" destination="fSV-b6-ZGA" eventType="touchUpInside" id="j1P-tW-zxs"/>
+                                                            <action selector="saveNextActionWithSender:" destination="fSV-b6-ZGA" eventType="touchUpInside" id="6dJ-QG-LiR"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -190,6 +190,7 @@
                         <viewLayoutGuide key="safeArea" id="xw2-Am-k5s"/>
                     </view>
                     <connections>
+                        <outlet property="referralShadow" destination="IXa-Wt-Btw" id="qqe-eH-3c4"/>
                         <outlet property="referralText" destination="ZSm-YY-CIc" id="GTJ-kr-Ndn"/>
                         <outlet property="scroll" destination="jJf-v8-NHl" id="PUv-Ee-hlr"/>
                     </connections>

@@ -9,6 +9,15 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import Photos
+
+func openAppSettings(index: Int) {
+    if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+    UserDefaults.standard.set(true, forKey: "openSettings")
+    UserDefaults.standard.set(index, forKey: "opensettingsIndex")
+    UIApplication.shared.open(settingsURL)
+    }
+}
 
 class ComapanyBasicVC: BaseVC,ImagePickerDelegate, UITextFieldDelegate, DebugDelegate {
     func somethingMissing() {
@@ -55,7 +64,63 @@ class ComapanyBasicVC: BaseVC,ImagePickerDelegate, UITextFieldDelegate, DebugDel
     }
     
     @IBAction func logoControlAction(sender: UIButton){
-        self.performSegue(withIdentifier: "toGetPictureVC", sender: self)
+        
+        let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
+                
+                switch photoAuthorizationStatus {
+                case .authorized:
+                   DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "toGetPictureVC", sender: self)
+                    }
+                    debugPrint("It is not determined until now")
+                case .restricted:
+                    self.showNotificationForAuthorization()
+                case .denied:
+                    self.showNotificationForAuthorization()
+                default:
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "toGetPictureVC", sender: self)
+                    }
+                }
+    }
+
+    
+    func showNotificationForAuthorization() {
+        
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.getNotificationSettings { (settings) in
+            DispatchQueue.main.async {
+                if settings.authorizationStatus != .authorized {
+                    openAppSettings(index: 0)
+                } else {
+                    openAppSettings(index: 0)
+                    self.photoLibrarySettingsNotification()
+                }
+            }
+        }
+        
+    }
+    
+    func photoLibrarySettingsNotification() {
+        
+        let notificationCenter = UNUserNotificationCenter.current()
+        let content = UNMutableNotificationContent()
+        
+        content.title = "Ambassadoor Settings"
+        content.body = "You must enable Photo Access to upload a logo. Allow access here."
+        content.sound = nil
+        content.badge = nil
+        
+    
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.2, repeats: false)
+        let identifier = "photolibrarysettings"
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+    
+        notificationCenter.add(request) { (error) in
+            if let error = error {
+                print("Error \(error.localizedDescription)")
+            }
+        }
     }
     
     // MARK: - Image Picker Delegate
