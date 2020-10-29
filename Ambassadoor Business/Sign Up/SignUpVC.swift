@@ -32,10 +32,11 @@ class SignUpVC: BaseVC, UITextFieldDelegate {
     var companyUser: CompanyUser!
     
     var assainedTextField: UITextField? = nil
+    
+    var emailString: String = ""
+    var passwordString: String = ""
 
-    
-    
-	
+
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -131,8 +132,32 @@ class SignUpVC: BaseVC, UITextFieldDelegate {
                     self.hideActivityIndicator()
 					self.emailText.resignFirstResponder()
 					self.passwordText.resignFirstResponder()
+                    
+                    self.emailString = self.emailText.text!
+                    self.passwordString = self.passwordText.text!
+                    
 					if error == nil {
-						let user = Auth.auth().currentUser!
+						//let user = Auth.auth().currentUser!
+                        
+                        Auth.auth().currentUser?.sendEmailVerification { (error) in
+                            
+                            if error == nil{
+                                DispatchQueue.main.async {
+                                    
+                                self.performSegue(withIdentifier: "fromSignup", sender: self)
+                                    
+                                }
+                            }else{
+                                
+                                self.showAlertMessage(title: "Alert", message: (error?.localizedDescription)!) {
+                                    
+                                }
+                                
+                            }
+                          
+                        }
+                        
+                        /*
 						user.getIDToken(completion: { (token, error) in
 							
 							if error == nil {
@@ -151,7 +176,7 @@ class SignUpVC: BaseVC, UITextFieldDelegate {
 							}
 							
 						})
-						
+						*/
 						print("You have successfully signed up")
 						
 						
@@ -189,5 +214,14 @@ class SignUpVC: BaseVC, UITextFieldDelegate {
         
         
 	}
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "fromSignup" {
+            let view = segue.destination as! VerifyEmailVC
+            view.emailString = self.emailString
+            view.passwordString = self.passwordString
+            view.identifySegue = "fromSignup"
+        }
+    }
 
 }

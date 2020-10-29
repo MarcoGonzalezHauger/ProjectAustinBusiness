@@ -53,6 +53,8 @@ class CompanyWebsiteVC: BaseVC, UITextFieldDelegate {
         
         let thisUrl = GetURL()
         
+        if thisUrl != nil {
+        
         if isGoodUrl(url: thisUrl?.absoluteString ?? "") && websiteText.text?.count != 0{
             
             global.registerCompanyDetails.companyWebsite = thisUrl!.absoluteString
@@ -61,6 +63,12 @@ class CompanyWebsiteVC: BaseVC, UITextFieldDelegate {
             
             MakeShake(viewToShake: self.websiteShadow)
             //self.showAlertMessage(title: "Alert", message: "Please enter a valid website") {}
+        }
+        }else{
+            
+            MakeShake(viewToShake: self.websiteShadow)
+//            self.showAlertMessage(title: "Alert", message: "Please enter a valid website") {}
+            
         }
         
     }

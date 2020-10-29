@@ -27,6 +27,7 @@ class ComapanyBasicVC: BaseVC,ImagePickerDelegate, UITextFieldDelegate, DebugDel
     
     @IBOutlet weak var picLogo: UIButton!
     var urlString = ""
+    var isImageLoading = false
     
     @IBOutlet weak var activity: UIActivityIndicatorView!
     @IBOutlet weak var imageShadow: ShadowView!
@@ -38,7 +39,6 @@ class ComapanyBasicVC: BaseVC,ImagePickerDelegate, UITextFieldDelegate, DebugDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.activity.isHidden = true
         self.picLogo.layer.cornerRadius = 62.5
         self.picLogo.layer.masksToBounds = true
         
@@ -50,11 +50,11 @@ class ComapanyBasicVC: BaseVC,ImagePickerDelegate, UITextFieldDelegate, DebugDel
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
+        self.activity.isHidden = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        
+        self.activity.isHidden = true
     }
     
     @objc func dismissKeyboard() {
@@ -64,6 +64,8 @@ class ComapanyBasicVC: BaseVC,ImagePickerDelegate, UITextFieldDelegate, DebugDel
     }
     
     @IBAction func logoControlAction(sender: UIButton){
+        
+        if !self.isImageLoading {
         
         let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
                 
@@ -82,6 +84,11 @@ class ComapanyBasicVC: BaseVC,ImagePickerDelegate, UITextFieldDelegate, DebugDel
                         self.performSegue(withIdentifier: "toGetPictureVC", sender: self)
                     }
                 }
+        }else{
+            self.showAlertMessage(title: "Alert", message: "Please wait!. Image is uploading") {
+                
+            }
+        }
     }
 
     
@@ -126,16 +133,21 @@ class ComapanyBasicVC: BaseVC,ImagePickerDelegate, UITextFieldDelegate, DebugDel
     // MARK: - Image Picker Delegate
     
     func imagePicked(image: UIImage?, imageUrl: String?) {
+        
         if image != nil {
             self.picLogo.setTitle("", for: .normal)
             self.picLogo.setBackgroundImage(image, for: .normal)
-            self.activity.isHidden = false
             //        self.urlString = uploadImageToFIR(image: image!, path: (Auth.auth().currentUser?.uid)!)
             //w33OBske4KYNVNFk60NiKoSXw6v1
             //(Auth.auth().currentUser?.uid)!
             //"w33OBske4KYNVNFk60NiKoSXw6v1"
+            self.activity.isHidden = false
+            self.activity.startAnimating()
+            self.isImageLoading = true
             uploadImageToFIR(image: image!,childName: "companylogo", path: (Auth.auth().currentUser?.uid)!) { (url, error) in
                 self.activity.isHidden = true
+                self.activity.stopAnimating()
+                self.isImageLoading = false
                 if error == false{
                     self.urlString = url
                     print("URL=",url)
@@ -144,6 +156,9 @@ class ComapanyBasicVC: BaseVC,ImagePickerDelegate, UITextFieldDelegate, DebugDel
                 }
             }
             
+        }else{
+            self.isImageLoading = false
+            self.activity.isHidden = true
         }
         
     }
@@ -206,11 +221,23 @@ class ComapanyBasicVC: BaseVC,ImagePickerDelegate, UITextFieldDelegate, DebugDel
     }
     
     @IBAction func saveNextAction(sender: UIButton){
+        if !self.isImageLoading{
         self.checkIfDetailGiven()
+        }else{
+        self.showAlertMessage(title: "Alert", message: "Please wait!. Image is uploading") {
+                
+            }
+        }
     }
     
     @IBAction func backAction(sender: UIButton){
+        if !self.isImageLoading{
         self.pageIdentifyIndexDelegate?.PageIndex(index: (self.view.tag - 1), viewController: self)
+        }else{
+            self.showAlertMessage(title: "Alert", message: "Please wait!. Image is uploading") {
+                
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

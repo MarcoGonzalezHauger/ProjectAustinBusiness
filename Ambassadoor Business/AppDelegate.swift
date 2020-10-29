@@ -108,7 +108,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
                             if error == nil {
                                 
-                                self.autoLoginCheckAction(launchOptions: launchOptions)
+                                if let user = Auth.auth().currentUser {
+                                    
+                                    if user.isEmailVerified{
+                                        
+                                        self.autoLoginCheckAction(launchOptions: launchOptions)
+                                        
+                                    }else{
+                                        self.moveLoginScreen()
+                                    }
+                                    
+                                }else{
+                                    self.moveLoginScreen()
+                                }
+                                
+                                
                         
                             }else{
                                 self.moveLoginScreen()

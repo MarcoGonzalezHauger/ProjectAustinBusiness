@@ -23,6 +23,10 @@ class SignInVC: BaseVC, UITextFieldDelegate {
 	
     var keyboardHeight: CGFloat = 0.00
     var assainedTextField: UITextField? = nil
+    
+    var emailString = ""
+    var passwordString = ""
+    
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +54,11 @@ class SignInVC: BaseVC, UITextFieldDelegate {
 			bioAuthButton.isHidden = true
 		}
 		
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        self.signInButton.setTitle("Sign In", for: .normal)
     }
 	
 	override func doneButtonAction() {
@@ -226,6 +235,13 @@ class SignInVC: BaseVC, UITextFieldDelegate {
 						self.emailText.resignFirstResponder()
 						self.passwordText.resignFirstResponder()
 						if error == nil {
+                            
+                            let userVal = Auth.auth().currentUser!
+                            
+                            self.emailString = self.emailText.text!
+                            self.passwordString = self.passwordText.text!
+                            
+                            if userVal.isEmailVerified {
 
 							UserDefaults.standard.set(self.emailText.text, forKey: "userEmail")
 							UserDefaults.standard.set(self.passwordText.text, forKey: "userPass")
@@ -271,6 +287,12 @@ class SignInVC: BaseVC, UITextFieldDelegate {
                                                             self.instantiateToMainScreen()
                                                         })
                                                         
+                                                    }else{
+                                                        DispatchQueue.main.async(execute: {
+                                                            timer.invalidate()
+                                                            self.hideActivityIndicator()
+                                                            self.instantiateToMainScreen()
+                                                        })
                                                     }
                                                 }
                                                 
@@ -296,12 +318,40 @@ class SignInVC: BaseVC, UITextFieldDelegate {
                                         })
                                     }
                                 }else{
-                                    self.showAlertMessage(title: "Alert", message: "No user found. The user may have been deleted") {
-                                        
-                                    }
+//                                    self.showAlertMessage(title: "Alert", message: "No user found. The user may have been deleted") {
+//
+//                                    }
+                                    DispatchQueue.main.async(execute: {
+                                        timer.invalidate()
+                                        self.hideActivityIndicator()
+                                        self.instantiateToMainScreen()
+                                    })
+                                    
                                 }
 								
 							}
+                            
+                            }else{
+                                
+                                Auth.auth().currentUser?.sendEmailVerification { (error) in
+                                    
+                                    if error == nil{
+                                        DispatchQueue.main.async {
+                                            
+                                        self.performSegue(withIdentifier: "fromSignin", sender: self)
+                                            
+                                        }
+                                    }else{
+                                        self.signInButton.setTitle("Sign In", for: .normal)
+                                        self.showAlertMessage(title: "Alert", message: (error?.localizedDescription)!) {
+                                            
+                                        }
+                                        
+                                    }
+                                  
+                                }
+                                
+                            }
                             
                         }else{
                             
@@ -369,6 +419,15 @@ class SignInVC: BaseVC, UITextFieldDelegate {
             
         })
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "fromSignin" {
+            let view = segue.destination as! VerifyEmailVC
+            view.emailString = self.emailString
+            view.passwordString = self.passwordString
+            view.identifySegue = "fromSignin"
+        }
     }
 
 }

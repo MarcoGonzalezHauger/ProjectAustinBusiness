@@ -47,7 +47,6 @@ class RegisterCompanyVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITex
     
     var urlString = ""
     var assainedTextField: AnyObject? = nil
-    
     var registerCompanyPVCDelegate: RegisterCompanySegmentDelegate?
     
 
