@@ -19,122 +19,123 @@ class SignInVC: BaseVC, UITextFieldDelegate {
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var scroll: UIScrollView!
-	@IBOutlet weak var bioAuthButton: UIButton!
-	
+    @IBOutlet weak var bioAuthButton: UIButton!
+    
     var keyboardHeight: CGFloat = 0.00
     var assainedTextField: UITextField? = nil
     
     var emailString = ""
     var passwordString = ""
+    var companyUser: CompanyUser!
     
-	
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("roundup",(1.056756 * 100).rounded()/100)
         //It is used to identify app went back from app setting Options
-		registerButton.layer.cornerRadius = 10
-		
-		
-		
-		addDoneButtonOnKeyboard(textField: emailText)
-		addDoneButtonOnKeyboard(textField: passwordText)
-		
+        registerButton.layer.cornerRadius = 10
+        
+        
+        
+        addDoneButtonOnKeyboard(textField: emailText)
+        addDoneButtonOnKeyboard(textField: passwordText)
+        
         // Do any additional setup after loading the view.
-		
-		if userInfoExists() {
-			switch GetBiometricType() {
-			case .touch:
-				bioAuthButton.setImage(UIImage(named: "touchid"), for: .normal)
-			case .face:
-				bioAuthButton.setImage(UIImage(named: "faceid"), for: .normal)
-			default:
-				bioAuthButton.isHidden = true
-			}
-		} else {
-			bioAuthButton.isHidden = true
-		}
-		
+        
+        if userInfoExists() {
+            switch GetBiometricType() {
+            case .touch:
+                bioAuthButton.setImage(UIImage(named: "touchid"), for: .normal)
+            case .face:
+                bioAuthButton.setImage(UIImage(named: "faceid"), for: .normal)
+            default:
+                bioAuthButton.isHidden = true
+            }
+        } else {
+            bioAuthButton.isHidden = true
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         self.signInButton.setTitle("Sign In", for: .normal)
     }
-	
-	override func doneButtonAction() {
-		view.endEditing(true)
-	}
-	
-	func userInfoExists() -> Bool {
-		return UserDefaults.standard.string(forKey: "userEmail") != nil && UserDefaults.standard.string(forKey: "userPass") != nil
-	}
-	
-	enum BiometricType {
-		case none
-		case touch
-		case face
-	}
-	
-	@IBAction func doBioAuth(_ sender: Any) {
-		bioAuth()
-	}
-	
-	func GetBiometricType() -> BiometricType {
-		let authContext = LAContext()
-		if #available(iOS 11, *) {
-			let _ = authContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
-			switch(authContext.biometryType) {
-			case .none:
-				return .none
-			case .touchID:
-				return .touch
-			case .faceID:
-				return .face
-			}
-		} else {
-			return authContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) ? .touch : .none
-		}
-	}
-	
-	func bioAuth() {
-		print("Bio Auth started")
-		let lac = LAContext()
-		var authError: NSError?
-		let reasonString = "Log into Ambassadoor Business"
-		if lac.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
-			print("Can Evaluate.")
-			lac.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reasonString) { success, evaluateError in
-				if success {
-					DispatchQueue.main.async {
-						if let newEmail = UserDefaults.standard.string(forKey: "userEmail") {
-							if let pass = UserDefaults.standard.string(forKey: "userPass") {
-								self.emailText.text = newEmail
-								self.passwordText.text = pass
-								self.signInAction(sender: self.signInButton)
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-	
-	//UserDefaults.standard.set(name, forKey: "name")
-	//let name = NSUserDefaults.standard.string(forKey: "name")
-	
-	var firstTime = false
-	
-	override func viewDidAppear(_ animated: Bool) {
-		print("appeared.")
-		if firstTime {
-			return
-		}
-		print("checking defaults.")
-		if userInfoExists() {
-			bioAuth()
-		}
-		firstTime = true
-	}
+    
+    override func doneButtonAction() {
+        view.endEditing(true)
+    }
+    
+    func userInfoExists() -> Bool {
+        return UserDefaults.standard.string(forKey: "userEmail") != nil && UserDefaults.standard.string(forKey: "userPass") != nil
+    }
+    
+    enum BiometricType {
+        case none
+        case touch
+        case face
+    }
+    
+    @IBAction func doBioAuth(_ sender: Any) {
+        bioAuth()
+    }
+    
+    func GetBiometricType() -> BiometricType {
+        let authContext = LAContext()
+        if #available(iOS 11, *) {
+            let _ = authContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
+            switch(authContext.biometryType) {
+            case .none:
+                return .none
+            case .touchID:
+                return .touch
+            case .faceID:
+                return .face
+            }
+        } else {
+            return authContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) ? .touch : .none
+        }
+    }
+    
+    func bioAuth() {
+        print("Bio Auth started")
+        let lac = LAContext()
+        var authError: NSError?
+        let reasonString = "Log into Ambassadoor Business"
+        if lac.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
+            print("Can Evaluate.")
+            lac.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reasonString) { success, evaluateError in
+                if success {
+                    DispatchQueue.main.async {
+                        if let newEmail = UserDefaults.standard.string(forKey: "userEmail") {
+                            if let pass = UserDefaults.standard.string(forKey: "userPass") {
+                                self.emailText.text = newEmail
+                                self.passwordText.text = pass
+                                self.signInAction(sender: self.signInButton)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    //UserDefaults.standard.set(name, forKey: "name")
+    //let name = NSUserDefaults.standard.string(forKey: "name")
+    
+    var firstTime = false
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("appeared.")
+        if firstTime {
+            return
+        }
+        print("checking defaults.")
+        if userInfoExists() {
+            bioAuth()
+        }
+        firstTime = true
+    }
     
     @objc override func keyboardWasShown(notification : NSNotification) {
         
@@ -177,12 +178,12 @@ class SignInVC: BaseVC, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
-		if textField == emailText {
-			passwordText.becomeFirstResponder()
-		} else {
-			signInAction(sender: signInButton)
-			textField.resignFirstResponder()
-		}
+        if textField == emailText {
+            passwordText.becomeFirstResponder()
+        } else {
+            signInAction(sender: signInButton)
+            textField.resignFirstResponder()
+        }
         return true
     }
     
@@ -191,14 +192,14 @@ class SignInVC: BaseVC, UITextFieldDelegate {
         self.assainedTextField = textField
         
     }
-	
-	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-		
-		if textField == emailText && string.contains(" ") {
-			return false
-		}
-		return true
-	}
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField == emailText && string.contains(" ") {
+            return false
+        }
+        return true
+    }
     
     @IBAction func createAccountAction(sender: UIButton){
         DispatchQueue.main.async(execute: {
@@ -207,34 +208,34 @@ class SignInVC: BaseVC, UITextFieldDelegate {
             
         })
     }
-	
-	@IBAction func tapped(_ sender: Any) {
-		view.endEditing(true)
-	}
-	
+    
+    @IBAction func tapped(_ sender: Any) {
+        view.endEditing(true)
+    }
+    
     @objc func timerAction(sender: AnyObject){
         Database.database().reference().cancelDisconnectOperations()
         self.showActivityIndicator()
     }
     
-	@IBOutlet weak var usernameLine: UILabel!
-	@IBOutlet weak var passwordline: UILabel!
-	
-	@IBAction func signInAction(sender: UIButton){
+    @IBOutlet weak var usernameLine: UILabel!
+    @IBOutlet weak var passwordline: UILabel!
+    
+    @IBAction func signInAction(sender: UIButton){
         
         if emailText.text?.count != 0 {
             
             if Validation.sharedInstance.isValidEmail(emailStr: emailText.text!){
                 
-				if passwordText.text?.count != 0 {
-					//self.showActivityIndicator()
-					let timer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(self.timerAction(sender:)), userInfo: nil, repeats: false)
-					signInButton.setTitle("Signing In..", for: .normal)
+                if passwordText.text?.count != 0 {
+                    //self.showActivityIndicator()
+                    let timer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(self.timerAction(sender:)), userInfo: nil, repeats: false)
+                    signInButton.setTitle("Signing In..", for: .normal)
                     
-					Auth.auth().signIn(withEmail: emailText.text!, password: passwordText.text!) { (user, error) in
-						self.emailText.resignFirstResponder()
-						self.passwordText.resignFirstResponder()
-						if error == nil {
+                    Auth.auth().signIn(withEmail: emailText.text!, password: passwordText.text!) { (user, error) in
+                        self.emailText.resignFirstResponder()
+                        self.passwordText.resignFirstResponder()
+                        if error == nil {
                             
                             let userVal = Auth.auth().currentUser!
                             
@@ -242,67 +243,74 @@ class SignInVC: BaseVC, UITextFieldDelegate {
                             self.passwordString = self.passwordText.text!
                             
                             if userVal.isEmailVerified {
-
-							UserDefaults.standard.set(self.emailText.text, forKey: "userEmail")
-							UserDefaults.standard.set(self.passwordText.text, forKey: "userPass")
-                            UserDefaults.standard.set((Auth.auth().currentUser?.uid)!, forKey: "userid")
-							print("userdefaults set.")
-							
-                            getCurrentCompanyUser(userID: (Auth.auth().currentUser?.uid)!, signInButton: self.signInButton) { (companyUser, error) in
-								if companyUser != nil {
-									Singleton.sharedInstance.setCompanyUser(user: companyUser!)
-                                    
-                                    
-                                    if let isRegistered =  Singleton.sharedInstance.getCompanyUser().isCompanyRegistered{
+                                
+                                UserDefaults.standard.set(self.emailText.text, forKey: "userEmail")
+                                UserDefaults.standard.set(self.passwordText.text, forKey: "userPass")
+                                UserDefaults.standard.set((Auth.auth().currentUser?.uid)!, forKey: "userid")
+                                print("userdefaults set.")
+                                
+                                getCurrentCompanyUser(userID: (Auth.auth().currentUser?.uid)!, signInButton: self.signInButton) { (companyUser, error) in
+                                    if companyUser != nil {
+                                        Singleton.sharedInstance.setCompanyUser(user: companyUser!)
                                         
-                                        if isRegistered{
+                                        
+                                        if let isRegistered =  Singleton.sharedInstance.getCompanyUser().isCompanyRegistered{
                                             
-                                            let user = Singleton.sharedInstance.getCompanyUser().companyID!
-                                            
-                                            getCompany(companyID: user, signInButton: self.signInButton) { (company, error) in
+                                            if isRegistered{
                                                 
-                                                Singleton.sharedInstance.setCompanyDetails(company: company!)
-                                                YourCompany = company
-                                                TimerListener.scheduleUpdateBalanceTimer()
-                                                downloadBeforeLoad()
+                                                let user = Singleton.sharedInstance.getCompanyUser().companyID!
                                                 
-                                                getAllDistributedOffers { (status, results) in
-                                                    if status {
-                                                        if let results = results {
-                                                            if results.count == 0 {
-                                                            } else {
-                                                                
-                                                            var rslts: [OfferStatistic] = []
-                                                            for i in results {
-                                                                rslts.append(OfferStatistic.init(offer: i))
-                                                            }
-                                                            global.distributedOffers = rslts
+                                                getCompany(companyID: user, signInButton: self.signInButton) { (company, error) in
                                                     
+                                                    Singleton.sharedInstance.setCompanyDetails(company: company!)
+                                                    YourCompany = company
+                                                    TimerListener.scheduleUpdateBalanceTimer()
+                                                    downloadBeforeLoad()
+                                                    
+                                                    getAllDistributedOffers { (status, results) in
+                                                        if status {
+                                                            if let results = results {
+                                                                if results.count == 0 {
+                                                                } else {
+                                                                    
+                                                                    var rslts: [OfferStatistic] = []
+                                                                    for i in results {
+                                                                        rslts.append(OfferStatistic.init(offer: i))
+                                                                    }
+                                                                    global.distributedOffers = rslts
+                                                                    
+                                                                }
                                                             }
+                                                            
+                                                            DispatchQueue.main.async(execute: {
+                                                                timer.invalidate()
+                                                                self.hideActivityIndicator()
+                                                                self.instantiateToMainScreen()
+                                                            })
+                                                            
+                                                        }else{
+                                                            DispatchQueue.main.async(execute: {
+                                                                timer.invalidate()
+                                                                self.hideActivityIndicator()
+                                                                self.instantiateToMainScreen()
+                                                            })
                                                         }
-                                                        
-                                                        DispatchQueue.main.async(execute: {
-                                                            timer.invalidate()
-                                                            self.hideActivityIndicator()
-                                                            self.instantiateToMainScreen()
-                                                        })
-                                                        
-                                                    }else{
-                                                        DispatchQueue.main.async(execute: {
-                                                            timer.invalidate()
-                                                            self.hideActivityIndicator()
-                                                            self.instantiateToMainScreen()
-                                                        })
                                                     }
+                                                    
+                                                    //                                                DispatchQueue.main.async(execute: {
+                                                    //                                                    timer.invalidate()
+                                                    //                                                    self.hideActivityIndicator()
+                                                    //                                                    self.instantiateToMainScreen()
+                                                    //                                                })
                                                 }
                                                 
-//                                                DispatchQueue.main.async(execute: {
-//                                                    timer.invalidate()
-//                                                    self.hideActivityIndicator()
-//                                                    self.instantiateToMainScreen()
-//                                                })
+                                            }else{
+                                                DispatchQueue.main.async(execute: {
+                                                    timer.invalidate()
+                                                    self.hideActivityIndicator()
+                                                    self.instantiateToMainScreen()
+                                                })
                                             }
-                                            
                                         }else{
                                             DispatchQueue.main.async(execute: {
                                                 timer.invalidate()
@@ -311,26 +319,11 @@ class SignInVC: BaseVC, UITextFieldDelegate {
                                             })
                                         }
                                     }else{
-                                        DispatchQueue.main.async(execute: {
-                                            timer.invalidate()
-                                            self.hideActivityIndicator()
-                                            self.instantiateToMainScreen()
-                                        })
+                                        self.updateCompanyUserData(timer: timer)
                                     }
-                                }else{
-//                                    self.showAlertMessage(title: "Alert", message: "No user found. The user may have been deleted") {
-//
-//                                    }
-                                    DispatchQueue.main.async(execute: {
-                                        timer.invalidate()
-                                        self.hideActivityIndicator()
-                                        self.instantiateToMainScreen()
-                                    })
                                     
                                 }
-								
-							}
-                            
+                                
                             }else{
                                 
                                 Auth.auth().currentUser?.sendEmailVerification { (error) in
@@ -338,7 +331,7 @@ class SignInVC: BaseVC, UITextFieldDelegate {
                                     if error == nil{
                                         DispatchQueue.main.async {
                                             
-                                        self.performSegue(withIdentifier: "fromSignin", sender: self)
+                                            self.performSegue(withIdentifier: "fromSignin", sender: self)
                                             
                                         }
                                     }else{
@@ -348,7 +341,7 @@ class SignInVC: BaseVC, UITextFieldDelegate {
                                         }
                                         
                                     }
-                                  
+                                    
                                 }
                                 
                             }
@@ -388,7 +381,7 @@ class SignInVC: BaseVC, UITextFieldDelegate {
                             }
                             
                             
-							
+                            
                         }
                         
                     }
@@ -397,21 +390,55 @@ class SignInVC: BaseVC, UITextFieldDelegate {
                     
                 } else {
                     MakeShake(viewToShake: signInButton)
-					passwordline.backgroundColor = .red
-					
-				}
-			} else {
-				MakeShake(viewToShake: signInButton)
-				usernameLine.backgroundColor = .red
-			}
-		} else {
-			MakeShake(viewToShake: signInButton)
-			usernameLine.backgroundColor = .red
-		}
-		
-	}
-	
-	@IBAction func forgetPasswordAction(sender: UIButton){
+                    passwordline.backgroundColor = .red
+                    
+                }
+            } else {
+                MakeShake(viewToShake: signInButton)
+                usernameLine.backgroundColor = .red
+            }
+        } else {
+            MakeShake(viewToShake: signInButton)
+            usernameLine.backgroundColor = .red
+        }
+        
+    }
+    
+    func updateCompanyUserData(timer: Timer) {
+        
+        let user = Auth.auth().currentUser!
+        user.getIDToken(completion: { (token, error) in
+            
+            var tokenVal = ""
+            
+            if error == nil {
+                if token != nil{
+                    tokenVal = token!
+                }
+            }
+            
+            UserDefaults.standard.set(self.emailString, forKey: "userEmail")
+            UserDefaults.standard.set(self.passwordString, forKey: "userPass")
+            UserDefaults.standard.set(user.uid, forKey: "userid")
+            
+            let referralCode = randomString(length: 7)
+            
+            self.companyUser = CompanyUser.init(dictionary: ["userID":user.uid,"token":tokenVal,"email":user.email!,"refreshToken":user.refreshToken!,"isCompanyRegistered":false,"companyID": "", "deviceFIRToken": global.deviceFIRToken, "businessReferral": referralCode])
+            
+            let userDetails = CreateCompanyUser(companyUser: self.companyUser)
+            Singleton.sharedInstance.setCompanyUser(user: userDetails)
+            DispatchQueue.main.async(execute: {
+                timer.invalidate()
+                self.hideActivityIndicator()
+                self.instantiateToMainScreen()
+            })
+            
+            
+        })
+        
+    }
+    
+    @IBAction func forgetPasswordAction(sender: UIButton){
         
         DispatchQueue.main.async(execute: {
             
@@ -429,5 +456,5 @@ class SignInVC: BaseVC, UITextFieldDelegate {
             view.identifySegue = "fromSignin"
         }
     }
-
+    
 }

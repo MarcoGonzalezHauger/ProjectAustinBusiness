@@ -118,6 +118,7 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
 	func LocalPriceGetter(Value: Int) -> String {
 		let formatter = NumberFormatter()
 		formatter.numberStyle = .currency
+        formatter.locale = Locale(identifier: "en_US")
 		let amount = Double(Value/100) + Double(Value % 100)/100
 		
 		return formatter.string(from: NSNumber(value: amount))!

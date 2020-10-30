@@ -150,10 +150,13 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ViewStat
             getAllTemplateOffers(userID: Auth.auth().currentUser!.uid) { (templateOffers, status) in
                 if status == "success" && templateOffers.count != 0 {
                     global.OfferDrafts.removeAll()
+                    self.editButton.isEnabled = true
                     global.OfferDrafts.append(contentsOf: templateOffers)
                     DispatchQueue.main.async(execute: {
                         self.shelf.reloadData()
                     })
+                }else{
+                    self.editButton.isEnabled = false
                 }
             }
             

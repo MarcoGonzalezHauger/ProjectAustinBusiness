@@ -12,7 +12,7 @@ import SDWebImage
 import Firebase
 import Photos
 
-class ViewCompanyVC: BaseVC, ImagePickerDelegate, webChangedDelegate {
+class ViewCompanyVC: BaseVC, ImagePickerDelegate, webChangedDelegate, UITextFieldDelegate {
 	
 	func websiteChanged(_ newWebsite: String) {
 		website = newWebsite
@@ -174,6 +174,7 @@ class ViewCompanyVC: BaseVC, ImagePickerDelegate, webChangedDelegate {
 	func updateIsEditing() {
 		companyMission.isEditable = isCurrentlyEditing
 		companyName.isEnabled = isCurrentlyEditing
+        companyName.delegate = self
 		changeWebsite.isHidden = !isCurrentlyEditing
 //		missionView.borderWidth = isCurrentlyEditing ? 1 : 0
 		missionView.borderWidth = 1
@@ -207,10 +208,20 @@ class ViewCompanyVC: BaseVC, ImagePickerDelegate, webChangedDelegate {
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
+        self.addDoneButtonOnKeyboard(textView: self.companyMission)
 		companyLogo.layer.cornerRadius = companyLogo.bounds.height / 2
         self.showActivityIndicator()
 		updateCompanyInfo()
 		updateIsEditing()
+    }
+    
+    override func doneButtonAction() {
+        self.companyMission.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        textField.resignFirstResponder()
+        return true
     }
 	
 	@IBAction func GoToWebsite(_ sender: Any) {

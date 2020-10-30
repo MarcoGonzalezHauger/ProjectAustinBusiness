@@ -79,8 +79,8 @@ class MoneyField: UITextField, UITextFieldDelegate {
 	func updateAmount() -> String? {
 		let formatter = NumberFormatter()
 		formatter.numberStyle = .currency
+        formatter.locale = Locale(identifier: "en_US")
 		let amount = Double(moneyValue/100) + Double(moneyValue%100)/100
-		
 		return formatter.string(from: NSNumber(value: amount))
 	}
 
