@@ -173,6 +173,7 @@ class ViewCompanyVC: BaseVC, ImagePickerDelegate, webChangedDelegate, UITextFiel
 	
 	func updateIsEditing() {
 		companyMission.isEditable = isCurrentlyEditing
+        companyMission.isUserInteractionEnabled = isCurrentlyEditing
 		companyName.isEnabled = isCurrentlyEditing
         companyName.delegate = self
 		changeWebsite.isHidden = !isCurrentlyEditing

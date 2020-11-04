@@ -625,7 +625,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b4b-jK-qou" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                 <rect key="frame" x="16" y="325" width="382" height="126"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hjH-oP-Z2H">
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hjH-oP-Z2H">
                                         <rect key="frame" x="0.0" y="0.0" width="382" height="126"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <string key="text">By pressing "REGISTER" you agree to the terms of service, found at https://www.ambassadoor.co/terms-of-service
@@ -742,6 +742,7 @@ Also, you must have permission to use the company name, logo, and website before
                     <connections>
                         <outlet property="registerBtn" destination="afn-e2-5KE" id="czT-jl-6fs"/>
                         <outlet property="registerShadow" destination="ff9-gD-VSq" id="j66-cR-rUB"/>
+                        <outlet property="termsConditionText" destination="hjH-oP-Z2H" id="Rr9-SP-gNN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3kl-Xy-HhM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
