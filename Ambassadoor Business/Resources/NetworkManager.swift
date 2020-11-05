@@ -87,7 +87,7 @@ class NetworkManager {
     }
     
     func postAmountToServerThroughStripe(params: [String: Any],completion: @escaping (_ status: String, _ error: String?, _ dataValue: Data?) -> Void) {
-        
+        //postStripeIDToServer
         let urlString = API.kBaseURL + "postStripeIDToServer"
         
         let url = URL(string: urlString)

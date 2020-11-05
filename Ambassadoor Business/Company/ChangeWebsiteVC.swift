@@ -13,7 +13,7 @@ protocol webChangedDelegate {
 	func websiteChanged(_ newWebsite: String)
 }
 
-class ChangeWebsiteVC: UIViewController {
+class ChangeWebsiteVC: BaseVC {
 
 	var webChangedDelegate: webChangedDelegate?
 	@IBOutlet weak var webTextView: UITextField!
@@ -45,7 +45,22 @@ class ChangeWebsiteVC: UIViewController {
 	}
 	
 	@IBAction func saveButtonPressed(_ sender: Any) {
-		webChangedDelegate?.websiteChanged(GetURL()!.absoluteString)
+        
+        
+        if !isGoodUrl(url: GetURL()!.absoluteString) || GetURL()!.absoluteString == "http://www.com" || GetURL()!.absoluteString == "https://www.com"{
+            
+           self.showAlertMessage(title: "Alert", message: "Please enter valid website") {
+                          
+           }
+            
+        }else{
+            
+            webChangedDelegate?.websiteChanged(GetURL()!.absoluteString)
+                       dismiss(animated: true, completion: nil)
+            
+            
+            
+        }
 	}
 	
 	@IBAction func donePressed(_ sender: Any) {
@@ -60,20 +75,28 @@ class ChangeWebsiteVC: UIViewController {
 	func updateBack() {
 		let thisUrl = GetURL()
 		doneButton.isHidden = thisUrl == nil
+        
 		if loadedPage != thisUrl?.absoluteString {
 			if let url = thisUrl {
 				webView.load(URLRequest(url: url))
 				loadedPage = url.absoluteString
 			}
 		}
+        
+        
+        
 	}
 	
 	func GetURL() -> URL? {
 		var returnValue = webTextView.text!
 		if !returnValue.lowercased().hasPrefix("http") {
 			if !returnValue.lowercased().hasPrefix("www.") {
+                
 				returnValue = "http://www." + returnValue
-			}
+            }
+            else{
+                returnValue = "http://" + returnValue
+            }
 		}
 		return URL.init(string: returnValue)
 	}

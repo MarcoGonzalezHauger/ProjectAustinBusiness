@@ -84,9 +84,11 @@ class ViewCompanyVC: BaseVC, ImagePickerDelegate, webChangedDelegate, UITextFiel
 			print("before: \(result)")
 			
 			switch result.split(separator: ".").count {
+                
 			case 1: result = "www.\(result).com"
 			case 2: result = "www.\(result)"
 			default: break
+                
 			}
 			
 
