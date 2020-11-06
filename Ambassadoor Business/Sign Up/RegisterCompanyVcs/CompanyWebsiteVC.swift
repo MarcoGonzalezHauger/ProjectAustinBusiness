@@ -55,7 +55,7 @@ class CompanyWebsiteVC: BaseVC, UITextFieldDelegate {
         
         if thisUrl != nil{
             
-            if thisUrl!.absoluteString == "http://www.com" || thisUrl!.absoluteString == "https://www.com"{
+            if thisUrl!.absoluteString == "http://www.com" || thisUrl!.absoluteString == "https://www.com" || thisUrl!.absoluteString == "http://.com" || thisUrl!.absoluteString == "https://.com" || GetURL()!.absoluteString == "http://www..com" || GetURL()!.absoluteString == "https://www..com" {
                 
                 MakeShake(viewToShake: self.websiteShadow)
                 

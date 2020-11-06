@@ -46,8 +46,9 @@ class ChangeWebsiteVC: BaseVC {
 	
 	@IBAction func saveButtonPressed(_ sender: Any) {
         
+        let thhh = GetURL()!.absoluteString
         
-        if !isGoodUrl(url: GetURL()!.absoluteString) || GetURL()!.absoluteString == "http://www.com" || GetURL()!.absoluteString == "https://www.com"{
+        if !isGoodUrl(url: GetURL()!.absoluteString) || GetURL()!.absoluteString == "http://www.com" || GetURL()!.absoluteString == "https://www.com" || GetURL()!.absoluteString == "http://.com" || GetURL()!.absoluteString == "https://.com" || GetURL()!.absoluteString == "http://www..com" || GetURL()!.absoluteString == "https://www..com"{
             
            self.showAlertMessage(title: "Alert", message: "Please enter valid website") {
                           
