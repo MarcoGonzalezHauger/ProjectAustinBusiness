@@ -157,6 +157,7 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
 			let TotalString = NumberToPrice(Value: totalAmount, enforceCents: true)
 			
 			self.showAlertMessageForDestruction(title: "Alert", message: "You will deposit \(DepositString) into your Ambassadoor Money Account.\n Total Amount (including fees) that will be charged is \(TotalString).", cancelTitle: "OK", destructionTitle: "Cancel", completion: {
+                self.addCardViewController = STPAddCardViewController()
 				self.addCardViewController.delegate = self
 				let navigationController = UINavigationController(rootViewController: self.addCardViewController)
 				self.present(navigationController, animated: true)
