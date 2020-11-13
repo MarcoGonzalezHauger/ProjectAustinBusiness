@@ -1260,6 +1260,7 @@ func getAdminValues(completion: @escaping (String) -> Void) {
 //
 func getCompany(companyID: String,signInButton: UIButton? = nil,completion: @escaping (Company?,String) -> Void) {
     let user = Auth.auth().currentUser!.uid
+    //let user = "GoQjJPCnHBVRTc5PxfnjohUWcVw2"
     let ref = Database.database().reference().child("companies").child(user).child(companyID)
     var isGetData: Bool = false
     ref.observeSingleEvent(of: .value, with: { (snapshot) in

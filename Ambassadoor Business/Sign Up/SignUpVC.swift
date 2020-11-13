@@ -46,6 +46,11 @@ class SignUpVC: BaseVC, UITextFieldDelegate {
 		addDoneButtonOnKeyboard(textField: passwordText)
 		
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.registerButton.isUserInteractionEnabled = true
+    }
 	
 	@IBAction func nextButtonClicked(_ sender: Any) {
 		passwordText.becomeFirstResponder()
@@ -128,6 +133,7 @@ class SignUpVC: BaseVC, UITextFieldDelegate {
             
             if passwordText.text?.count != 0 {
                 self.showActivityIndicator()
+                self.registerButton.isUserInteractionEnabled = false
                 Auth.auth().createUser(withEmail: emailText.text!, password: passwordText.text!) { (user, error) in
                     self.hideActivityIndicator()
 					self.emailText.resignFirstResponder()
@@ -140,10 +146,10 @@ class SignUpVC: BaseVC, UITextFieldDelegate {
 						//let user = Auth.auth().currentUser!
                         
                         Auth.auth().currentUser?.sendEmailVerification { (error) in
-                            
+                            self.registerButton.isUserInteractionEnabled = true
                             if error == nil{
                                 DispatchQueue.main.async {
-                                    
+                                
                                 self.performSegue(withIdentifier: "fromSignup", sender: self)
                                     
                                 }
@@ -181,7 +187,7 @@ class SignUpVC: BaseVC, UITextFieldDelegate {
 						
 						
                     }else{
-                        
+                        self.registerButton.isUserInteractionEnabled = true
 						print("SIGN UP error")
                         self.showAlertMessage(title: "Alert", message: (error?.localizedDescription)!) {
                             

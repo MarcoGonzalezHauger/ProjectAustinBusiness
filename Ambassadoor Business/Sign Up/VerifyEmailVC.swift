@@ -28,6 +28,7 @@ class VerifyEmailVC: BaseVC {
     
     @IBAction func verifyEmailAction(sender: UIButton){
         
+        
         if identifySegue == "fromSignup"{
             
             self.fromSignUp()

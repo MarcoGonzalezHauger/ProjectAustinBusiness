@@ -140,13 +140,14 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ViewStat
         //self.navigationController?.navigationBar.isHidden = true
         //self.navigationController?.hidesBarsOnTap = true
         NotificationCenter.default.addObserver(self, selector: #selector(self.reloadOffer(notification:)), name: Notification.Name.init(rawValue: "reloadYourOffer"), object: nil)
-        
+// Test Purpose
         if global.OfferDrafts.count != 0{
             
             self.shelf.reloadData()
             
         }else{
-            
+         //   let checkID = "GoQjJPCnHBVRTc5PxfnjohUWcVw2"
+        //Auth.auth().currentUser!.uid
             getAllTemplateOffers(userID: Auth.auth().currentUser!.uid) { (templateOffers, status) in
                 if status == "success" && templateOffers.count != 0 {
                     global.OfferDrafts.removeAll()

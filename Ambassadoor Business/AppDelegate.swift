@@ -38,8 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         InitializeZipCodeAPI(completed: nil)
         //InitializeZipCodeAPI(completed: nil)
         //pk_test_8Rwst6t9gr25jXYXC4NHmiZK001i78iYO7
-        Stripe.setDefaultPublishableKey("pk_test_8Rwst6t9gr25jXYXC4NHmiZK001i78iYO7")
-        //Stripe.setDefaultPublishableKey("pk_live_k9m0LJO9sODGltsithrwmvqH00laWBjcra")
+        //Stripe.setDefaultPublishableKey("pk_test_8Rwst6t9gr25jXYXC4NHmiZK001i78iYO7")
+        Stripe.setDefaultPublishableKey("pk_live_k9m0LJO9sODGltsithrwmvqH00laWBjcra")
         //BTAppSwitch.setReturnURLScheme("com.develop.sns.paypal")
         getAdminValues { (error) in
             print("fd=",Singleton.sharedInstance.getAdminFS())
@@ -156,6 +156,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             
             //                Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             
+            //let checkID = "GoQjJPCnHBVRTc5PxfnjohUWcVw2"
+            
+            //(Auth.auth().currentUser?.uid)!
             
             getCurrentCompanyUser(userID: (Auth.auth().currentUser?.uid)!) { (companyUser, error) in
                 if companyUser != nil {
