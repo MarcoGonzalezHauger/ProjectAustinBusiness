@@ -3919,17 +3919,13 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                                     <outlet property="delegate" destination="KJO-s8-gzg" id="FWr-8c-RCP"/>
                                 </connections>
                             </tableView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="$0.00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XZs-2w-uy4">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="$0.00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XZs-2w-uy4" customClass="MoneyField" customModule="Ambassadoor_Business" customModuleProvider="target">
                                 <rect key="frame" x="20" y="200" width="335" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="PCT-Rh-JQh"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                                <connections>
-                                    <action selector="editingChanged:" destination="KJO-s8-gzg" eventType="editingChanged" id="LyQ-jn-Sjh"/>
-                                    <outlet property="delegate" destination="KJO-s8-gzg" id="rNd-xO-0oR"/>
-                                </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d3I-w2-iLp" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                 <rect key="frame" x="10" y="713" width="355" height="57"/>
@@ -3990,7 +3986,7 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                     <connections>
                         <outlet property="bankTableView" destination="6xs-Cn-5oQ" id="deV-20-qcK"/>
                         <outlet property="depositBalance" destination="3f1-9Q-oJg" id="Pr7-xp-eKy"/>
-                        <outlet property="moneyText" destination="XZs-2w-uy4" id="drj-aE-Qf1"/>
+                        <outlet property="money" destination="XZs-2w-uy4" id="5Hd-Tx-RFa"/>
                         <segue destination="d7H-cy-3zn" kind="presentation" identifier="toDwollaUserInfo" modalPresentationStyle="fullScreen" id="Lsj-u6-zb8"/>
                         <segue destination="a6e-TZ-iiZ" kind="presentation" identifier="toTransactionDetails" modalPresentationStyle="fullScreen" id="EEl-qX-bF1"/>
                         <segue destination="fpT-LZ-Ylw" kind="presentation" identifier="stripeconnect" modalPresentationStyle="fullScreen" id="2gn-9z-8Y2"/>
@@ -5691,7 +5687,7 @@ You must have permission to use the company name, logo, website, etc. before reg
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="S7s-bK-fF5"/>
+        <segue reference="yBa-iP-b84"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="BusinsessSignIn" width="400" height="400"/>

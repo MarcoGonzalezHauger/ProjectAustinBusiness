@@ -159,6 +159,8 @@ class AddPostVC: BaseVC, NCDelegate, UITableViewDelegate, UITableViewDataSource,
     var productSelectedArray = [Int]()
     var phraseList: [String] = []
     
+    var buttonClickTag = 0;
+    
     @IBOutlet weak var colorBubble: ShadowView!
     
     override func viewDidLoad() {
@@ -229,7 +231,27 @@ class AddPostVC: BaseVC, NCDelegate, UITableViewDelegate, UITableViewDataSource,
     //MARK: - Data Components
     
     @IBAction func savePost(sender: UIButton){
+        if canSaveIncomplete() {
+        buttonClickTag = 1
         SaveThisPost(andDismiss: true)
+        }else{
+        self.showAlertMessage(title: "Alert", message: "Please enter the instructions or add pharses") {
+            
+        }
+        }
+    }
+    
+    func canSaveIncomplete() -> Bool {
+        if InstructionsTextView.text.count == 0 && phraseList.count == 1{
+            if phraseList.first == ""{
+            return false
+            }else{
+            return true
+            }
+           
+        }else{
+           return true
+        }
     }
     
     func SaveThisPost(andDismiss: Bool) {
@@ -282,7 +304,14 @@ class AddPostVC: BaseVC, NCDelegate, UITableViewDelegate, UITableViewDataSource,
 	override func willMove(toParent parent: UIViewController?) {
 		super.willMove(toParent: parent)
 		if parent == nil {
+            
+            if canSaveIncomplete(){
+            if buttonClickTag == 0{
 			SaveThisPost(andDismiss: false)
+            }
+            }else{
+                
+            }
 		}
 	}
     

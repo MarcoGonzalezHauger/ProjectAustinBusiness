@@ -472,6 +472,8 @@ func sentOutOffersToOfferPool(pathString: String, templateOffer: TemplateOffer, 
                     print(tempOfferPool.cashPower!)
                     tempOfferPool.cashPower! += templateOffer.cashPower!
                     
+                    //tempOfferPool.accepted = templateOffer.accepted
+                    
                     tempOfferPool.category = templateOffer.category
                     
                     tempOfferPool.genders = templateOffer.genders
@@ -764,7 +766,7 @@ func parseTemplateOffer(offer: [String: AnyObject]) -> [Post] {
 			}
 		}
 		
-        let postInitialized = Post.init(image: "", instructions: value["instructions"] as? String ?? "", captionMustInclude: value["captionMustInclude"] as? String, products: productList, post_ID: value["post_ID"] as! String, PostType: value["PostType"] as! String, confirmedSince: value["confirmedSince"] as? Date, isConfirmed: (value["isConfirmed"] != nil), hashCaption: value["hashCaption"] as! String, status: value["status"] as? String ?? "", hashtags: value["hashtags"] as? [String] ?? [], keywords: value["keywords"] as? [String] ?? [], isPaid: value["isPaid"] as? Bool ?? false, PayAmount: value["PayAmount"] as? Double ?? 0.0)
+        let postInitialized = Post.init(image: "", instructions: value["instructions"] as? String ?? "", captionMustInclude: value["captionMustInclude"] as? String, products: productList, post_ID: value["post_ID"] as! String, PostType: value["PostType"] as! String, confirmedSince: value["confirmedSince"] as? Date, isConfirmed: (value["isConfirmed"] as? Bool ?? false), hashCaption: value["hashCaption"] as! String, status: value["status"] as? String ?? "", hashtags: value["hashtags"] as? [String] ?? [], keywords: value["keywords"] as? [String] ?? [], isPaid: value["isPaid"] as? Bool ?? false, PayAmount: value["PayAmount"] as? Double ?? 0.0)
         postValues.append(postInitialized)
     }
     return postValues
@@ -1171,9 +1173,9 @@ func getCurrentCompanyUser(userID: String,signInButton: UIButton? = nil, complet
             updateRef.updateChildValues(["deviceFIRToken":global.deviceFIRToken])
            completion(companyUser, "")
         }else{
-            Auth.auth().currentUser?.delete(completion: { (error) in
-                
-            })
+//            Auth.auth().currentUser?.delete(completion: { (error) in
+//
+//            })
           completion(nil, "error")
         }
     }) { (error) in
@@ -1258,6 +1260,7 @@ func getAdminValues(completion: @escaping (String) -> Void) {
 //
 func getCompany(companyID: String,signInButton: UIButton? = nil,completion: @escaping (Company?,String) -> Void) {
     let user = Auth.auth().currentUser!.uid
+    //let user = "GoQjJPCnHBVRTc5PxfnjohUWcVw2"
     let ref = Database.database().reference().child("companies").child(user).child(companyID)
     var isGetData: Bool = false
     ref.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -1307,6 +1310,9 @@ func getAllDistributedOffers(completion: @escaping (_ status: Bool,_ offers: [Te
 				return offer1.offerdate > offer2.offerdate
 			}
             completion(true, offersList)
+        }else{
+            let offersList = [TemplateOffer]()
+           completion(false, offersList)
         }
     }) { (error) in
         completion(false, nil)
@@ -1433,6 +1439,59 @@ func sentReferralAmountToInfluencer(referralID: String,completion: @escaping(Use
     
 }
 
+func checkIfInfluencerReferralExist(referralID: String,completion: @escaping(Bool)->Void) {
+    
+    let usersRef = Database.database().reference().child("users")
+    
+    let query = usersRef.queryOrdered(byChild: "referralcode").queryEqual(toValue: referralID)
+    
+    query.observeSingleEvent(of: .value) { (snapshot) in
+        
+//        if let dictionary = snapshot.value as? [String: AnyObject] {
+//
+//            let userInstance = User(dictionary: dictionary[dictionary.keys.first!] as! [String: AnyObject])
+//            completion(userInstance)
+//
+//
+//        }
+        
+        if snapshot.exists(){
+            
+            completion(true)
+            
+        }else{
+            completion(false)
+        }
+        
+    }
+    
+}
+
+func checkIfBusinessReferralExist(referralID: String,completion: @escaping(Bool)->Void) {
+    
+    let usersRef = Database.database().reference().child("CompanyUser")
+    
+    let query = usersRef.queryOrdered(byChild: "businessReferral").queryEqual(toValue: referralID)
+    
+    query.observeSingleEvent(of: .value) { (snapshot) in
+        
+//        if let dictionary = snapshot.value as? [String: AnyObject] {
+//
+//            let userInstance = CompanyUser(dictionary: dictionary[dictionary.keys.first!] as! [String: AnyObject])
+//            completion(userInstance)
+//
+//
+//        }
+        
+        if snapshot.exists(){
+           completion(true)
+        }else{
+           completion(false)
+        }
+        
+    }
+    
+}
 
 
 extension Date

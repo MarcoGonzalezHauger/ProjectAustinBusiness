@@ -53,14 +53,32 @@ class CompanyWebsiteVC: BaseVC, UITextFieldDelegate {
         
         let thisUrl = GetURL()
         
-        if isGoodUrl(url: thisUrl?.absoluteString ?? "") && websiteText.text?.count != 0{
+        if thisUrl != nil{
             
-            global.registerCompanyDetails.companyWebsite = thisUrl!.absoluteString
-            self.pageIdentifyIndexDelegate?.PageIndex(index: (self.view.tag + 1), viewController: self)
+            if thisUrl!.absoluteString == "http://www.com" || thisUrl!.absoluteString == "https://www.com" || thisUrl!.absoluteString == "http://.com" || thisUrl!.absoluteString == "https://.com" || GetURL()!.absoluteString == "http://www..com" || GetURL()!.absoluteString == "https://www..com" {
+                
+                MakeShake(viewToShake: self.websiteShadow)
+                
+            }else{
+                
+                if isGoodUrl(url: thisUrl?.absoluteString ?? "") && websiteText.text?.count != 0{
+                    
+                    global.registerCompanyDetails.companyWebsite = thisUrl!.absoluteString
+                    self.pageIdentifyIndexDelegate?.PageIndex(index: (self.view.tag + 1), viewController: self)
+                }else{
+                    
+                    MakeShake(viewToShake: self.websiteShadow)
+                    //self.showAlertMessage(title: "Alert", message: "Please enter a valid website") {}
+                }
+                
+            }
+        
+            
         }else{
             
             MakeShake(viewToShake: self.websiteShadow)
-            //self.showAlertMessage(title: "Alert", message: "Please enter a valid website") {}
+//            self.showAlertMessage(title: "Alert", message: "Please enter a valid website") {}
+            
         }
         
     }

@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import Photos
 
 var showTutorialVideoOnShow = false
 
@@ -46,7 +47,6 @@ class RegisterCompanyVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITex
     
     var urlString = ""
     var assainedTextField: AnyObject? = nil
-    
     var registerCompanyPVCDelegate: RegisterCompanySegmentDelegate?
     
 
@@ -66,7 +66,64 @@ class RegisterCompanyVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITex
     }
     
     @IBAction func logoControlAction(sender: UIButton){
-        self.performSegue(withIdentifier: "toGetPictureVC", sender: self)
+        
+        let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
+        
+        switch photoAuthorizationStatus {
+        case .authorized:
+           DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "toGetPictureVC", sender: self)
+            }
+            debugPrint("It is not determined until now")
+        case .restricted:
+            self.showNotificationForAuthorization()
+        case .denied:
+            self.showNotificationForAuthorization()
+        default:
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "toGetPictureVC", sender: self)
+            }
+        }
+        
+        //self.performSegue(withIdentifier: "toGetPictureVC", sender: self)
+    }
+    
+    func showNotificationForAuthorization() {
+        
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.getNotificationSettings { (settings) in
+            DispatchQueue.main.async {
+                if settings.authorizationStatus != .authorized {
+                    openAppSettings(index: 0)
+                } else {
+                    openAppSettings(index: 0)
+                    self.photoLibrarySettingsNotification()
+                }
+            }
+        }
+        
+    }
+    
+    func photoLibrarySettingsNotification() {
+        
+        let notificationCenter = UNUserNotificationCenter.current()
+        let content = UNMutableNotificationContent()
+        
+        content.title = "Ambassadoor Settings"
+        content.body = "You must enable Photo Access to upload a logo. Allow access here."
+        content.sound = nil
+        content.badge = nil
+        
+    
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.2, repeats: false)
+        let identifier = "photolibrarysettings"
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+    
+        notificationCenter.add(request) { (error) in
+            if let error = error {
+                print("Error \(error.localizedDescription)")
+            }
+        }
     }
     
     // MARK: - Image Picker Delegate

@@ -47,6 +47,7 @@ class missingMoneyVC: BaseVC,STPAddCardViewControllerDelegate, STPAuthentication
         // Getting payment Method Stripe ID and convert Amount Dollor to Cents(Stripe access cents only) and send to firebase server.
         //actualCharge
         //(self.actualCharge * 100.00)
+        //let params = ["stripeID":paymentMethod.stripeId,"amount":(Int((self.actualCharge * 100.00).rounded())),"mode":"test"] as [String : Any]
         let params = ["stripeID":paymentMethod.stripeId,"amount":(self.actualCharge * 100.00)] as [String : Any]
         self.depositAmountToWalletThroughStripe(params: params, paymentMethodParams: paymentMethod)
         
@@ -92,6 +93,7 @@ class missingMoneyVC: BaseVC,STPAddCardViewControllerDelegate, STPAuthentication
 	@IBAction func payTheDifference(_ sender: Any) {
 		UseTapticEngine()
 		//1: Display the Credit Card VC that's used on the deposit tab for the amount "actualCharge"
+        self.addCardViewController = STPAddCardViewController()
         self.addCardViewController.delegate = self
         let navigationController = UINavigationController(rootViewController: self.addCardViewController)
         self.present(navigationController, animated: true)
@@ -138,10 +140,28 @@ class missingMoneyVC: BaseVC,STPAddCardViewControllerDelegate, STPAuthentication
                                         
                                     }else{
                                         
+                                        DispatchQueue.main.async(execute: {
+                                        
+                                        self.addCardViewController.dismiss(animated: true, completion: nil)
+                                        self.addCardViewController = STPAddCardViewController()
+                                        })
+                                        
+                                        self.showAlertMessage(title: "Error", message: "Something Wrong!. Please try again later.") {
+                                        }
+                                        
                                     }
                                     
                                   
                                     
+                                }else{
+                                    DispatchQueue.main.async(execute: {
+                                    
+                                    self.addCardViewController.dismiss(animated: true, completion: nil)
+                                    self.addCardViewController = STPAddCardViewController()
+                                    })
+                                    
+                                    self.showAlertMessage(title: "Error", message: "Something Wrong!. Please try again later.") {
+                                    }
                                 }
                                 
                             }
@@ -149,8 +169,26 @@ class missingMoneyVC: BaseVC,STPAddCardViewControllerDelegate, STPAuthentication
                             
                         } catch _ {
                             
+                            DispatchQueue.main.async(execute: {
+                            
+                            self.addCardViewController.dismiss(animated: true, completion: nil)
+                            self.addCardViewController = STPAddCardViewController()
+                            })
+                            
+                            self.showAlertMessage(title: "Error", message: "Something Wrong!. Please try again later.") {
+                            }
+                            
                         }
                         
+                    }else{
+                        DispatchQueue.main.async(execute: {
+                        
+                        self.addCardViewController.dismiss(animated: true, completion: nil)
+                        self.addCardViewController = STPAddCardViewController()
+                        })
+                        
+                        self.showAlertMessage(title: "Error", message: "Something Wrong!. Please try again later.") {
+                        }
                     }
                     
                 }

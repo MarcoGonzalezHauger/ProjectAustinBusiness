@@ -95,7 +95,6 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
 		imagePicker.delegate = self
 		imagePicker.sourceType = .photoLibrary
 		imagePicker.allowsEditing = false
-		
 		scrollView.layer.cornerRadius = (view.bounds.width - 40) / 2
     }
 	
@@ -127,16 +126,22 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
 					
 					print("success")
 				} else {
+                    DispatchQueue.main.async {
 					self.dismiss(animated: true, completion: nil)
+                    }
 				}
 			})
 			debugPrint("It is not determined until now")
 		case .restricted:
+            DispatchQueue.main.async {
 			self.dismiss(animated: true, completion: nil)
 			debugPrint("User do not have access to photo album.")
+            }
 		case .denied:
+            DispatchQueue.main.async {
 			self.dismiss(animated: true, completion: nil)
 			debugPrint("User has denied the permission.")
+            }
 		default:
 			print("err")
 		}

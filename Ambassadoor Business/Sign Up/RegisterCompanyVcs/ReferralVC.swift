@@ -15,6 +15,9 @@ class ReferralVC: BaseVC, UITextFieldDelegate, DebugDelegate,UIGestureRecognizer
     @IBOutlet weak var scroll: UIScrollView!
     @IBOutlet weak var referralText: UITextField!
     
+    @IBOutlet weak var referralShadow: ShadowView!
+    @IBOutlet weak var topText: UILabel!
+    
     var pageIdentifyIndexDelegate: PageIndexDelegate?
     
     override func viewDidLoad() {
@@ -50,21 +53,181 @@ class ReferralVC: BaseVC, UITextFieldDelegate, DebugDelegate,UIGestureRecognizer
     
     func checkIfReferralApplied() {
         
+        if referralText.text!.count != 0{
+            
+            if referralText.text?.count == 6 || referralText.text?.count == 7 {
+                
+                if referralText.text?.count == 6 {
+                    
+                    checkIfInfluencerReferralExist(referralID: referralText.text!.uppercased()) { (status) in
+                        if status{
+                            
+                            DispatchQueue.main.async {
+                                
+                                if instancePageViewController!.OrderedVC.count == 1 {
+                                    instancePageViewController!.OrderedVC.append(instancePageViewController!.newVC(VC: "companyinfo"))
+                                }
+                                global.registerCompanyDetails.referralCode = self.referralText.text!
+                                self.pageIdentifyIndexDelegate?.PageIndex(index: (self.view.tag + 1), viewController: self)
+                                
+                            }
+                            
+                        }else{
+                            
+                            MakeShake(viewToShake: self.referralShadow)
+                            
+                            self.showAlertMessage(title: "Alert", message: "Referral code does not exist") {
+                                
+                            }
+                            
+                        }
+                    }
+                    
+                }else if referralText.text?.count == 7{
+                    checkIfBusinessReferralExist(referralID: referralText.text!.uppercased()) { (status) in
+                        if status{
+                            
+                            DispatchQueue.main.async {
+                                
+                                if instancePageViewController!.OrderedVC.count == 1 {
+                                    instancePageViewController!.OrderedVC.append(instancePageViewController!.newVC(VC: "companyinfo"))
+                                }
+                                global.registerCompanyDetails.referralCode = self.referralText.text!
+                                self.pageIdentifyIndexDelegate?.PageIndex(index: (self.view.tag + 1), viewController: self)
+                                
+                            }
+                            
+                        }else{
+                            
+                            MakeShake(viewToShake: self.referralShadow)
+                            
+                            self.showAlertMessage(title: "Alert", message: "Referral code does not exist") {
+                                
+                            }
+                            
+                        }
+                    }
+                }
+            
+            
+            }else{
+                
+                MakeShake(viewToShake: referralShadow)
+                
+                self.showAlertMessage(title: "Alert", message: "Invalid referral code") {
+                    
+                }
+                
+            }
+            
+        }else{
+            
+            MakeShake(viewToShake: referralShadow)
+            
+            self.showAlertMessage(title: "Alert", message: "Please enter the referral code") {
+                
+            }
+            
+        }
         
-        global.registerCompanyDetails.referralCode = referralText.text!
         
-        self.pageIdentifyIndexDelegate?.PageIndex(index: (self.view.tag + 1), viewController: self)
+//        global.registerCompanyDetails.referralCode = referralText.text!
+//
+//        self.pageIdentifyIndexDelegate?.PageIndex(index: (self.view.tag + 1), viewController: self)
         // self.pageIdentifyIndexDelegate?.PageIndex(index: (self.view.tag + 1), viewController: self)
         
     }
     
     @IBAction func skipAction(sender: UIButton) {
         
+        referralText.text = ""
+        
         if instancePageViewController!.OrderedVC.count == 1 {
             instancePageViewController!.OrderedVC.append(instancePageViewController!.newVC(VC: "companyinfo"))
         }
         global.registerCompanyDetails.referralCode = referralText.text!
         self.pageIdentifyIndexDelegate?.PageIndex(index: (self.view.tag + 1), viewController: self)
+    }
+    
+    @IBAction func saveNextAction(sender: UIButton){
+        
+        if referralText.text!.count != 0{
+            
+            if referralText.text?.count == 6 || referralText.text?.count == 7 {
+                
+                if referralText.text?.count == 6 {
+                    
+                    checkIfInfluencerReferralExist(referralID: referralText.text!.uppercased()) { (status) in
+                        if status{
+                            
+                            DispatchQueue.main.async {
+                                
+                                if instancePageViewController!.OrderedVC.count == 1 {
+                                    instancePageViewController!.OrderedVC.append(instancePageViewController!.newVC(VC: "companyinfo"))
+                                }
+                                global.registerCompanyDetails.referralCode = self.referralText.text!
+                                self.pageIdentifyIndexDelegate?.PageIndex(index: (self.view.tag + 1), viewController: self)
+                                
+                            }
+                            
+                        }else{
+                            
+                            MakeShake(viewToShake: self.referralShadow)
+                            
+                            self.showAlertMessage(title: "Alert", message: "Referral code does not exist") {
+                                
+                            }
+                            
+                        }
+                    }
+                    
+                }else if referralText.text?.count == 7{
+                    checkIfBusinessReferralExist(referralID: referralText.text!.uppercased()) { (status) in
+                        if status{
+                            
+                            DispatchQueue.main.async {
+                                
+                                if instancePageViewController!.OrderedVC.count == 1 {
+                                    instancePageViewController!.OrderedVC.append(instancePageViewController!.newVC(VC: "companyinfo"))
+                                }
+                                global.registerCompanyDetails.referralCode = self.referralText.text!
+                                self.pageIdentifyIndexDelegate?.PageIndex(index: (self.view.tag + 1), viewController: self)
+                                
+                            }
+                            
+                        }else{
+                            
+                            MakeShake(viewToShake: self.referralShadow)
+                            
+                            self.showAlertMessage(title: "Alert", message: "Referral code does not exist") {
+                                
+                            }
+                            
+                        }
+                    }
+                }
+            
+            
+            }else{
+                
+                MakeShake(viewToShake: referralShadow)
+                
+                self.showAlertMessage(title: "Alert", message: "Invalid referral code") {
+                    
+                }
+                
+            }
+            
+        }else{
+            
+            MakeShake(viewToShake: referralShadow)
+            
+            self.showAlertMessage(title: "Alert", message: "Please enter the referral code") {
+                
+            }
+            
+        }
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -72,17 +72,18 @@ class Offer: NSObject {
     var referralAmount: Double?
     var referralCommission: Double?
     var referralID: String?
-    var allConfirmed: Bool {
-        get {
-            var areConfirmed = true
-            for x : Post in posts {
-                if x.isConfirmed == false {
-                    areConfirmed = false
-                }
-            }
-            return areConfirmed
-        }
-    }
+    var allConfirmed: Bool?
+//    var allConfirmed: Bool {
+//        get {
+//            var areConfirmed = true
+//            for x : Post in posts {
+//                if x.isConfirmed == false {
+//                    areConfirmed = false
+//                }
+//            }
+//            return areConfirmed
+//        }
+//    }
     var isAccepted: Bool
     var isExpired: Bool {
         return self.expiredate.timeIntervalSinceNow <= 0
@@ -165,6 +166,8 @@ class Offer: NSObject {
         self.companyDetails = dictionary["companyDetails"] as? [String: Any] ?? [:]
         self.mustBeTwentyOne = dictionary["mustBeTwentyOne"] as? Bool ?? false
         self.originalAmount = dictionary["originalAmount"] as? Double ?? 0.0
+        
+        self.allConfirmed = dictionary["allConfirmed"] as? Bool ?? false
         
         if let acceptedUsers = dictionary["accepted"] as? [String]{
             var actUers = [String]()
@@ -318,7 +321,7 @@ struct Post {
     let PostType: String
     //let PostType: TypeofPost
     var confirmedSince: Date?
-    var isConfirmed: Bool
+    var isConfirmed: Bool?
     var hashCaption: String
     var status: String
 	var hashtags: [String]

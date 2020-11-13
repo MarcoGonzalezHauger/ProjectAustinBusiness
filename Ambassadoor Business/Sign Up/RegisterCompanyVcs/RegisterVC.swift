@@ -15,13 +15,45 @@ class RegisterVC: BaseVC {
     var pageIdentifyIndexDelegate: PageIndexDelegate?
     var dismissDelegate: DismissDelegate?
     
+    @IBOutlet weak var termsConditionText: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //By pressing "REGISTER" you agree to the terms of service, found at //https://www.ambassadoor.co/terms-of-service
+        //Also, you must have permission to use the company name, logo, and website before registering.
         // Do any additional setup after loading the view.
+        
+        let firstNormalText = "By pressing \"REGISTER\" you agree to the terms of service, found at "
+        let attributedString = NSMutableAttributedString(string:firstNormalText)
+        
+        let linkedText = "https://www.ambassadoor.co/terms-of-service"
+        let attrs = [NSAttributedString.Key.font : UIFont(name: "HelveticaNeue", size: 21.0)!,NSAttributedString.Key.underlineStyle: NSUnderlineStyle.thick.rawValue, NSAttributedString.Key.foregroundColor : UIColor.systemBlue] as [NSAttributedString.Key : Any]
+        let boldString = NSMutableAttributedString(string: linkedText, attributes:attrs)
+        
+        let secondNormalText = " Also, you must have permission to use the company name, logo, and website before registering."
+        let secondAttribute = NSMutableAttributedString(string:secondNormalText)
+        
+        attributedString.append(boldString)
+        attributedString.append(secondAttribute)
+        
+        self.termsConditionText.attributedText = attributedString
+        
+        self.termsConditionText.isUserInteractionEnabled = true
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.openTermsCondition(sender:)))
+        tapGesture.numberOfTapsRequired = 1
+        tapGesture.numberOfTouchesRequired = 1
+        self.termsConditionText.addGestureRecognizer(tapGesture)
+        
     }
     
-    
+    @objc func openTermsCondition(sender: UITapGestureRecognizer){
+        
+        if let url = URL(string: "https://www.ambassadoor.co/terms-of-service") {
+            UIApplication.shared.open(url)
+        }
+        
+    }
     
     @IBAction func RegisterCompany(sender: UIButton) {
         

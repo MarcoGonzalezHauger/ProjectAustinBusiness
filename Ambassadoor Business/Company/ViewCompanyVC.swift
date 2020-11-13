@@ -10,8 +10,9 @@
 import UIKit
 import SDWebImage
 import Firebase
+import Photos
 
-class ViewCompanyVC: BaseVC, ImagePickerDelegate, webChangedDelegate {
+class ViewCompanyVC: BaseVC, ImagePickerDelegate, webChangedDelegate, UITextFieldDelegate {
 	
 	func websiteChanged(_ newWebsite: String) {
 		website = newWebsite
@@ -83,9 +84,11 @@ class ViewCompanyVC: BaseVC, ImagePickerDelegate, webChangedDelegate {
 			print("before: \(result)")
 			
 			switch result.split(separator: ".").count {
+                
 			case 1: result = "www.\(result).com"
 			case 2: result = "www.\(result)"
 			default: break
+                
 			}
 			
 
@@ -108,10 +111,73 @@ class ViewCompanyVC: BaseVC, ImagePickerDelegate, webChangedDelegate {
 		}
 		updateIsEditing()
 	}
+    
+    @IBAction func changeImageAction(sender: UIButton) {
+        
+        let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
+        
+        switch photoAuthorizationStatus {
+        case .authorized:
+           DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "fromCompanytoGetPicture", sender: self)
+            }
+            debugPrint("It is not determined until now")
+        case .restricted:
+            self.showNotificationForAuthorization()
+        case .denied:
+            self.showNotificationForAuthorization()
+        default:
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "fromCompanytoGetPicture", sender: self)
+            }
+        }
+        
+        //self.performSegue(withIdentifier: "fromCompanytoGetPicture", sender: self)
+    }
+    
+    func showNotificationForAuthorization() {
+        
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.getNotificationSettings { (settings) in
+            DispatchQueue.main.async {
+                if settings.authorizationStatus != .authorized {
+                    openAppSettings(index: 1)
+                } else {
+                    openAppSettings(index: 1)
+                    self.photoLibrarySettingsNotification()
+                }
+            }
+        }
+        
+    }
+    
+    func photoLibrarySettingsNotification() {
+        
+        let notificationCenter = UNUserNotificationCenter.current()
+        let content = UNMutableNotificationContent()
+        
+        content.title = "Ambassadoor Settings"
+        content.body = "You must enable Photo Access to upload a logo. Allow access here."
+        content.sound = nil
+        content.badge = nil
+        
+    
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.2, repeats: false)
+        let identifier = "photolibrarysettings"
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+    
+        notificationCenter.add(request) { (error) in
+            if let error = error {
+                print("Error \(error.localizedDescription)")
+            }
+        }
+    }
 	
 	func updateIsEditing() {
 		companyMission.isEditable = isCurrentlyEditing
+        companyMission.isUserInteractionEnabled = isCurrentlyEditing
 		companyName.isEnabled = isCurrentlyEditing
+        companyName.delegate = self
 		changeWebsite.isHidden = !isCurrentlyEditing
 //		missionView.borderWidth = isCurrentlyEditing ? 1 : 0
 		missionView.borderWidth = 1
@@ -145,10 +211,20 @@ class ViewCompanyVC: BaseVC, ImagePickerDelegate, webChangedDelegate {
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
+        self.addDoneButtonOnKeyboard(textView: self.companyMission)
 		companyLogo.layer.cornerRadius = companyLogo.bounds.height / 2
         self.showActivityIndicator()
 		updateCompanyInfo()
 		updateIsEditing()
+    }
+    
+    override func doneButtonAction() {
+        self.companyMission.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        textField.resignFirstResponder()
+        return true
     }
 	
 	@IBAction func GoToWebsite(_ sender: Any) {

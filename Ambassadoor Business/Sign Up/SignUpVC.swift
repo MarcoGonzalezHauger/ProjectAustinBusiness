@@ -32,10 +32,11 @@ class SignUpVC: BaseVC, UITextFieldDelegate {
     var companyUser: CompanyUser!
     
     var assainedTextField: UITextField? = nil
+    
+    var emailString: String = ""
+    var passwordString: String = ""
 
-    
-    
-	
+
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -44,6 +45,11 @@ class SignUpVC: BaseVC, UITextFieldDelegate {
 		addDoneButtonOnKeyboard(textField: emailText)
 		addDoneButtonOnKeyboard(textField: passwordText)
 		
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.registerButton.isUserInteractionEnabled = true
     }
 	
 	@IBAction func nextButtonClicked(_ sender: Any) {
@@ -127,12 +133,37 @@ class SignUpVC: BaseVC, UITextFieldDelegate {
             
             if passwordText.text?.count != 0 {
                 self.showActivityIndicator()
+                self.registerButton.isUserInteractionEnabled = false
                 Auth.auth().createUser(withEmail: emailText.text!, password: passwordText.text!) { (user, error) in
                     self.hideActivityIndicator()
 					self.emailText.resignFirstResponder()
 					self.passwordText.resignFirstResponder()
+                    
+                    self.emailString = self.emailText.text!
+                    self.passwordString = self.passwordText.text!
+                    
 					if error == nil {
-						let user = Auth.auth().currentUser!
+						//let user = Auth.auth().currentUser!
+                        
+                        Auth.auth().currentUser?.sendEmailVerification { (error) in
+                            self.registerButton.isUserInteractionEnabled = true
+                            if error == nil{
+                                DispatchQueue.main.async {
+                                
+                                self.performSegue(withIdentifier: "fromSignup", sender: self)
+                                    
+                                }
+                            }else{
+                                
+                                self.showAlertMessage(title: "Alert", message: (error?.localizedDescription)!) {
+                                    
+                                }
+                                
+                            }
+                          
+                        }
+                        
+                        /*
 						user.getIDToken(completion: { (token, error) in
 							
 							if error == nil {
@@ -151,12 +182,12 @@ class SignUpVC: BaseVC, UITextFieldDelegate {
 							}
 							
 						})
-						
+						*/
 						print("You have successfully signed up")
 						
 						
                     }else{
-                        
+                        self.registerButton.isUserInteractionEnabled = true
 						print("SIGN UP error")
                         self.showAlertMessage(title: "Alert", message: (error?.localizedDescription)!) {
                             
@@ -189,5 +220,14 @@ class SignUpVC: BaseVC, UITextFieldDelegate {
         
         
 	}
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "fromSignup" {
+            let view = segue.destination as! VerifyEmailVC
+            view.emailString = self.emailString
+            view.passwordString = self.passwordString
+            view.identifySegue = "fromSignup"
+        }
+    }
 
 }

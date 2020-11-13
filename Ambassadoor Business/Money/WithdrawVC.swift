@@ -10,38 +10,64 @@
 import UIKit
 import Firebase
 
-class WithdrawVC: PlaidLinkEnabledVC,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate {
+class WithdrawVC: PlaidLinkEnabledVC,UITableViewDelegate,UITableViewDataSource,changedDelegate  {
+    func changed() {
+        editMode = .manual
+        amountOfMoneyInCents = money.moneyValue
+        moneyChanged()
+    }
+    
     
     @IBOutlet weak var bankTableView: UITableView!
     @IBOutlet weak var depositBalance: UITextField!
     
-    @IBOutlet weak var moneyText: UITextField!
+    @IBOutlet weak var money: MoneyField!
     
     var dwollaFSList = [DwollaCustomerFSList]()
     
+    var editMode: EditingMode = .manual
+    
+    var amountOfMoneyInCents: Int = 0
+    
+    var amountOfDepositInCents: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		addDoneButtonOnKeyboard(textField: moneyText)
+        money.changedDelegate = self
+        money.moneyValue = amountOfMoneyInCents
+        moneyChanged()
+		addDoneButtonOnKeyboard(textField: money)
     }
 	
 	override func doneButtonAction() {
-		moneyText.resignFirstResponder()
+		money.resignFirstResponder()
 	}
+    
+    func moneyChanged() {
+        if editMode == .manual {
+            let value = amountOfMoneyInCents
+            if value > 1000000 {
+            } else if value >= 100000 {
+            } else if value >= 10000 {
+            } else {
+            }
+        }
+        
+    }
 	
-	@IBAction func editingChanged(_ sender: Any) {
-		let formatter = NumberFormatter()
-		var doubleAmt = Double(moneyText.text!.dropFirst())
-        formatter.maximumFractionDigits = 2
-		if String(moneyText.text!.dropFirst()) != formatter.string(from: doubleAmt! as NSNumber) {
-			moneyText.text! = "$\(formatter.string(from: doubleAmt! as NSNumber)!)"
-		}
-        formatter.minimumFractionDigits = 2
-		doubleAmt = Double(moneyText.text!.dropFirst())
-		if doubleAmt ?? 0 > accountBalance {
-			moneyText.text = "$\(formatter.string(from: accountBalance as NSNumber)!)"
-		}
-	}
+//	@IBAction func editingChanged(_ sender: Any) {
+//		let formatter = NumberFormatter()
+//		var doubleAmt = Double(moneyText.text!.dropFirst())
+//        formatter.maximumFractionDigits = 2
+//		if String(moneyText.text!.dropFirst()) != formatter.string(from: doubleAmt! as NSNumber) {
+//			moneyText.text! = "$\(formatter.string(from: doubleAmt! as NSNumber)!)"
+//		}
+//        formatter.minimumFractionDigits = 2
+//		doubleAmt = Double(moneyText.text!.dropFirst())
+//		if doubleAmt ?? 0 > accountBalance {
+//			moneyText.text = "$\(formatter.string(from: accountBalance as NSNumber)!)"
+//		}
+//	}
 	
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -60,14 +86,22 @@ class WithdrawVC: PlaidLinkEnabledVC,UITableViewDelegate,UITableViewDataSource,U
     
     @IBAction func normalWithDrawAction(sender: UIButton){
         
-        if moneyText.text?.count != 0 {
-            let doubleAmt = Double(moneyText.text!.dropFirst())
-            let amountVal = doubleAmt! * 100
+        if self.amountOfDepositInCents >= self.amountOfMoneyInCents{
+        
+        if amountOfMoneyInCents != 0 {
+            let doubleAmt = Double(amountOfMoneyInCents) / 100
+            let amountVal = doubleAmt
         
             self.performSegue(withIdentifier: "stripeconnect", sender: amountVal)
             
         }else{
             self.showAlertMessage(title: "Alert", message: "Please Enter Some Amount") {
+                
+            }
+        }
+            
+        }else{
+            self.showAlertMessage(title: "Alert", message: "Your withdraw amount more than your balance") {
                 
             }
         }
@@ -79,11 +113,14 @@ class WithdrawVC: PlaidLinkEnabledVC,UITableViewDelegate,UITableViewDataSource,U
             
             if status == "success" {
                 
-                self.depositBalance.text = NumberToPrice(Value: deposit!.currentBalance!, enforceCents: true)
+                self.amountOfDepositInCents = Int(deposit!.currentBalance! * 100)
                 
-
-            
-        }
+                self.depositBalance.text = NumberToPrice(Value: deposit!.currentBalance!, enforceCents: true)
+            }else{
+                
+                self.depositBalance.text = NumberToPrice(Value: 0, enforceCents: true)
+                self.amountOfDepositInCents = 0
+            }
     }
         
     }
@@ -317,27 +354,27 @@ class WithdrawVC: PlaidLinkEnabledVC,UITableViewDelegate,UITableViewDataSource,U
         return true
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool{
-        if textField == self.moneyText {
-            if string == "" {
-                if self.moneyText.text!.count == 2 {
-                    self.moneyText.text = ""
-                }
-                
-            }else{
-                if (self.moneyText.text?.first == "$"){
-                    //self.offerRate.text = self.offerRate.text!
-                }else{
-                    self.moneyText.text = "$" + self.moneyText.text!
-                }
-                
-            }
-            return true
-            
-        }else{
-            return true
-        }
-    }
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool{
+//        if textField == self.moneyText {
+//            if string == "" {
+//                if self.moneyText.text!.count == 2 {
+//                    self.moneyText.text = ""
+//                }
+//
+//            }else{
+//                if (self.moneyText.text?.first == "$"){
+//                    //self.offerRate.text = self.offerRate.text!
+//                }else{
+//                    self.moneyText.text = "$" + self.moneyText.text!
+//                }
+//
+//            }
+//            return true
+//
+//        }else{
+//            return true
+//        }
+//    }
 
     
 	

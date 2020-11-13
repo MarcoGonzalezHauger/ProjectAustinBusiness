@@ -370,6 +370,7 @@ func isDeseralizable(dictionary: [String: AnyObject], type: structType) -> [Stri
 }
 
 func downloadBeforeLoad() {
+    /*
     getAllDistributedOffers { (status, results) in
         if status {
             if let results = results {
@@ -386,7 +387,7 @@ func downloadBeforeLoad() {
             }
         }
     }
-    
+    */
     GetAllUsers { (users) in
         global.allInfluencers.removeAll()
         global.allInfluencers = users

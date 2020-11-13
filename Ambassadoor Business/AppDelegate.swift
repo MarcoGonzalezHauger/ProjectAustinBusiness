@@ -72,7 +72,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // autoLoginCheckAction(launch: launchOptions)
             //autoLoginCheckAction(launchOptions: launchOptions)
             //self.autoLogin(launchOptions: launchOptions)
-            self.moveLoginScreen()
+            //self.moveLoginScreen()
+            //UserDefaults.standard.set(true, forKey: "openSettings")
+            if let checkBool = UserDefaults.standard.object(forKey: "openSettings") as? Bool{
+                if checkBool{
+                   UserDefaults.standard.set(false, forKey: "openSettings")
+                   self.autoLogin(launchOptions: launchOptions)
+                }else{
+                   self.moveLoginScreen()
+                }
+            }else{
+                self.moveLoginScreen()
+            }
         }
         
         
@@ -97,7 +108,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
                             if error == nil {
                                 
-                                self.autoLoginCheckAction(launchOptions: launchOptions)
+                                if let user = Auth.auth().currentUser {
+                                    
+                                    if user.isEmailVerified{
+                                        
+                                        self.autoLoginCheckAction(launchOptions: launchOptions)
+                                        
+                                    }else{
+                                        self.moveLoginScreen()
+                                    }
+                                    
+                                }else{
+                                    self.moveLoginScreen()
+                                }
+                                
+                                
                         
                             }else{
                                 self.moveLoginScreen()
@@ -131,6 +156,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             
             //                Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             
+            //let checkID = "GoQjJPCnHBVRTc5PxfnjohUWcVw2"
+            
+            //(Auth.auth().currentUser?.uid)!
             
             getCurrentCompanyUser(userID: (Auth.auth().currentUser?.uid)!) { (companyUser, error) in
                 if companyUser != nil {
@@ -163,7 +191,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                         YourCompany = company
                                         downloadBeforeLoad()
                                         setHapticMenu(companyUserID: (Auth.auth().currentUser?.uid)!)
-                                        self.moveMainScreen()
+                                        
+                                        if let openSettingIndex = UserDefaults.standard.object(forKey: "opensettingsIndex") as? Int{
+                                            if openSettingIndex == 1{
+                                               self.moveMainScreen(index: openSettingIndex)
+                                            }else{
+                                               self.moveMainScreen()
+                                            }
+                                        }else{
+                                              self.moveMainScreen()
+                                        }
+                                        
+                                        
                                     }
                                     
                                     
@@ -211,11 +250,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
     }
     
-    func moveMainScreen() {
+    func moveMainScreen(index: Int? = nil) {
         
         DispatchQueue.main.async(execute: {
-            let viewController = instantiateViewController(storyboard: "Main", reference: "tabbar")
-            self.window?.rootViewController = viewController as! UITabBarController
+            let viewController = instantiateViewController(storyboard: "Main", reference: "tabbar") as! UITabBarController
+            if index != nil {
+                if index == 1 {
+                    viewController.selectedIndex = 0
+                }
+            }
+            self.window?.rootViewController = viewController
         })
         
     }
@@ -303,7 +347,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         //        if url.scheme?.localizedCaseInsensitiveCompare("com.develop.sns.paypal") == .orderedSame {
         //            return BTAppSwitch.handleOpen(url, options: options)
         //        }
-        return false
+        return true
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

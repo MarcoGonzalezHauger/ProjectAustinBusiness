@@ -9,6 +9,15 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import Photos
+
+func openAppSettings(index: Int) {
+    if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+    UserDefaults.standard.set(true, forKey: "openSettings")
+    UserDefaults.standard.set(index, forKey: "opensettingsIndex")
+    UIApplication.shared.open(settingsURL)
+    }
+}
 
 class ComapanyBasicVC: BaseVC,ImagePickerDelegate, UITextFieldDelegate, DebugDelegate {
     func somethingMissing() {
@@ -18,6 +27,7 @@ class ComapanyBasicVC: BaseVC,ImagePickerDelegate, UITextFieldDelegate, DebugDel
     
     @IBOutlet weak var picLogo: UIButton!
     var urlString = ""
+    var isImageLoading = false
     
     @IBOutlet weak var activity: UIActivityIndicatorView!
     @IBOutlet weak var imageShadow: ShadowView!
@@ -29,7 +39,6 @@ class ComapanyBasicVC: BaseVC,ImagePickerDelegate, UITextFieldDelegate, DebugDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.activity.isHidden = true
         self.picLogo.layer.cornerRadius = 62.5
         self.picLogo.layer.masksToBounds = true
         
@@ -41,11 +50,11 @@ class ComapanyBasicVC: BaseVC,ImagePickerDelegate, UITextFieldDelegate, DebugDel
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
+        self.activity.isHidden = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        
+        self.activity.isHidden = true
     }
     
     @objc func dismissKeyboard() {
@@ -55,22 +64,90 @@ class ComapanyBasicVC: BaseVC,ImagePickerDelegate, UITextFieldDelegate, DebugDel
     }
     
     @IBAction func logoControlAction(sender: UIButton){
-        self.performSegue(withIdentifier: "toGetPictureVC", sender: self)
+        
+        if !self.isImageLoading {
+        
+        let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
+                
+                switch photoAuthorizationStatus {
+                case .authorized:
+                   DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "toGetPictureVC", sender: self)
+                    }
+                    debugPrint("It is not determined until now")
+                case .restricted:
+                    self.showNotificationForAuthorization()
+                case .denied:
+                    self.showNotificationForAuthorization()
+                default:
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "toGetPictureVC", sender: self)
+                    }
+                }
+        }else{
+            self.showAlertMessage(title: "Alert", message: "Please wait!. Image is uploading") {
+                
+            }
+        }
+    }
+
+    
+    func showNotificationForAuthorization() {
+        
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.getNotificationSettings { (settings) in
+            DispatchQueue.main.async {
+                if settings.authorizationStatus != .authorized {
+                    openAppSettings(index: 0)
+                } else {
+                    openAppSettings(index: 0)
+                    self.photoLibrarySettingsNotification()
+                }
+            }
+        }
+        
+    }
+    
+    func photoLibrarySettingsNotification() {
+        
+        let notificationCenter = UNUserNotificationCenter.current()
+        let content = UNMutableNotificationContent()
+        
+        content.title = "Ambassadoor Settings"
+        content.body = "You must enable Photo Access to upload a logo. Allow access here."
+        content.sound = nil
+        content.badge = nil
+        
+    
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.2, repeats: false)
+        let identifier = "photolibrarysettings"
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+    
+        notificationCenter.add(request) { (error) in
+            if let error = error {
+                print("Error \(error.localizedDescription)")
+            }
+        }
     }
     
     // MARK: - Image Picker Delegate
     
     func imagePicked(image: UIImage?, imageUrl: String?) {
+        
         if image != nil {
             self.picLogo.setTitle("", for: .normal)
             self.picLogo.setBackgroundImage(image, for: .normal)
-            self.activity.isHidden = false
             //        self.urlString = uploadImageToFIR(image: image!, path: (Auth.auth().currentUser?.uid)!)
             //w33OBske4KYNVNFk60NiKoSXw6v1
             //(Auth.auth().currentUser?.uid)!
             //"w33OBske4KYNVNFk60NiKoSXw6v1"
+            self.activity.isHidden = false
+            self.activity.startAnimating()
+            self.isImageLoading = true
             uploadImageToFIR(image: image!,childName: "companylogo", path: (Auth.auth().currentUser?.uid)!) { (url, error) in
                 self.activity.isHidden = true
+                self.activity.stopAnimating()
+                self.isImageLoading = false
                 if error == false{
                     self.urlString = url
                     print("URL=",url)
@@ -79,6 +156,9 @@ class ComapanyBasicVC: BaseVC,ImagePickerDelegate, UITextFieldDelegate, DebugDel
                 }
             }
             
+        }else{
+            self.isImageLoading = false
+            self.activity.isHidden = true
         }
         
     }
@@ -141,11 +221,23 @@ class ComapanyBasicVC: BaseVC,ImagePickerDelegate, UITextFieldDelegate, DebugDel
     }
     
     @IBAction func saveNextAction(sender: UIButton){
+        if !self.isImageLoading{
         self.checkIfDetailGiven()
+        }else{
+        self.showAlertMessage(title: "Alert", message: "Please wait!. Image is uploading") {
+                
+            }
+        }
     }
     
     @IBAction func backAction(sender: UIButton){
+        if !self.isImageLoading{
         self.pageIdentifyIndexDelegate?.PageIndex(index: (self.view.tag - 1), viewController: self)
+        }else{
+            self.showAlertMessage(title: "Alert", message: "Please wait!. Image is uploading") {
+                
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

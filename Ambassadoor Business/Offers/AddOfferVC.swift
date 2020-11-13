@@ -184,6 +184,12 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 			self.postTableView.layoutIfNeeded()
 			self.postTableView.reloadData()
 		}
+        
+        if count == 0{
+            self.editButton.isEnabled = false
+        }else{
+            self.editButton.isEnabled = true
+        }
 	}
     
     override func viewWillAppear(_ animated: Bool) {
