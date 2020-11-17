@@ -51,9 +51,9 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
         
         // Getting payment Method Stripe ID and convert Amount Dollor to Cents(Stripe access cents only) and send to firebase server.
         //MARK: Test Mode
-        //let params = ["stripeID":paymentMethod.stripeId,"amount":(self.creditAmount * 100.00),"mode":"test"] as [String : Any]
+        let params = ["stripeID":paymentMethod.stripeId,"amount":(self.creditAmount * 100.00),"mode":"test"] as [String : Any]
         //MARK: LIVE Stripe
-        let params = ["stripeID":paymentMethod.stripeId,"amount":(self.creditAmount * 100.00)] as [String : Any]
+        //let params = ["stripeID":paymentMethod.stripeId,"amount":(self.creditAmount * 100.00)] as [String : Any]
         self.depositAmountToWalletThroughStripe(params: params, paymentMethodParams: paymentMethod)
         
 
