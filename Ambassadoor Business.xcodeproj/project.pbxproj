@@ -54,6 +54,7 @@
 		B7D2FE12247542F00000BFFC /* tutorial.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B7D2FE11247542F00000BFFC /* tutorial.mp4 */; };
 		B7D42099232A9F40009F0FCE /* TransactionInfoTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D42098232A9F40009F0FCE /* TransactionInfoTVCell.swift */; };
 		B7D4209D232AA9A1009F0FCE /* TransactionListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D4209C232AA9A1009F0FCE /* TransactionListVC.swift */; };
+		B7F4BA5D25668682000F7EA4 /* InfluencerListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F4BA5C25668682000F7EA4 /* InfluencerListVC.swift */; };
 		B7FAB9562350888D00CED248 /* StripeConnectionMKWebview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FAB9552350888C00CED248 /* StripeConnectionMKWebview.swift */; };
 		B7FD83E322F072F800347E8E /* AddOfferVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FD83E222F072F800347E8E /* AddOfferVC.swift */; };
 		B7FD83E722F07E1800347E8E /* AddPostTC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FD83E622F07E1800347E8E /* AddPostTC.swift */; };
@@ -153,6 +154,7 @@
 		B7D2FE11247542F00000BFFC /* tutorial.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = tutorial.mp4; sourceTree = "<group>"; };
 		B7D42098232A9F40009F0FCE /* TransactionInfoTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionInfoTVCell.swift; sourceTree = "<group>"; };
 		B7D4209C232AA9A1009F0FCE /* TransactionListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionListVC.swift; sourceTree = "<group>"; };
+		B7F4BA5C25668682000F7EA4 /* InfluencerListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfluencerListVC.swift; sourceTree = "<group>"; };
 		B7FAB9552350888C00CED248 /* StripeConnectionMKWebview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StripeConnectionMKWebview.swift; sourceTree = "<group>"; };
 		B7FD83E222F072F800347E8E /* AddOfferVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOfferVC.swift; sourceTree = "<group>"; };
 		B7FD83E622F07E1800347E8E /* AddPostTC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostTC.swift; sourceTree = "<group>"; };
@@ -449,6 +451,7 @@
 				B712C48A2306DA7900728758 /* StaticsPie.swift */,
 				B7CA8454234CB4A600A3223A /* StatisticsStruct.swift */,
 				E83F1C5324748D9400EA216B /* ViewOfferStatisticVC.swift */,
+				B7F4BA5C25668682000F7EA4 /* InfluencerListVC.swift */,
 			);
 			path = Statistics;
 			sourceTree = "<group>";
@@ -616,6 +619,7 @@
 				B7BD39BD22FAAE42008A0496 /* CategoryHeaderView.swift in Sources */,
 				E82F890D22DD30B40036A079 /* CreateCompanyVC.swift in Sources */,
 				B788D6F422E8931100FA59BA /* RegisterCompanyVC.swift in Sources */,
+				B7F4BA5D25668682000F7EA4 /* InfluencerListVC.swift in Sources */,
 				C05FE2DB225F687C002D3CAA /* global.swift in Sources */,
 				B78B39F12510D67C00829F31 /* CompanyWebsiteVC.swift in Sources */,
 				E816AC222282F3E200B9D951 /* MoneyVC.swift in Sources */,

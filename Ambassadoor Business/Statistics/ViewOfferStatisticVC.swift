@@ -57,6 +57,8 @@ class InfluencerStatCell: UITableViewCell {
 class ViewOfferStatisticVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 	
 	@IBOutlet weak var saleStatsLabel: UILabel!
+    
+    @IBOutlet weak var viewUsersBtn: UIButton!
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		//TVheight.constant = cellHeight * CGFloat(stat!.posted.count)
@@ -117,12 +119,24 @@ class ViewOfferStatisticVC: UIViewController, UITableViewDelegate, UITableViewDa
         
         self.statMoneyText.text = "\(NumberToPrice(Value: cashPower))/\(NumberToPrice(Value: money)) left."
         self.acceptedOfferCount.text = "\(self.stat!.acceptedCount) influencer\(self.stat!.acceptedCount == 1 ? "" : "s") have accepted so far."
+        self.viewUsersBtn.isHidden = self.stat!.acceptedCount == 0 ? true : false
         self.postedCount.text = "\(self.stat!.posted.count) influencer\(self.stat!.posted.count == 1 ? "" : "s") have posted so far."
+    }
+    
+    @IBAction func viewUsers(sender: UIButton){
+        self.performSegue(withIdentifier: "fromStaticDetails", sender: self)
     }
 	
 	@IBAction func dismissView(_ sender: Any) {
 		self.dismiss(animated: true, completion: nil)
 	}
 	
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let influencerList = segue.destination as? InfluencerListVC{
+            influencerList.acceptedUserList = self.stat!.accepted
+        }
+        
+    }
 
 }

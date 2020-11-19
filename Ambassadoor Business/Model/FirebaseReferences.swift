@@ -486,7 +486,7 @@ func sentOutOffersToOfferPool(pathString: String, templateOffer: TemplateOffer, 
                     
                     tempOfferPool.commission! += templateOffer.commission!
                     
-                    tempOfferPool.incresePay! += templateOffer.incresePay!
+                    tempOfferPool.incresePay! = templateOffer.incresePay!
                     
                     tempOfferPool.offerdate = templateOffer.offerdate
                     
