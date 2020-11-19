@@ -51,9 +51,9 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
         
         // Getting payment Method Stripe ID and convert Amount Dollor to Cents(Stripe access cents only) and send to firebase server.
         //MARK: Test Mode
-        //let params = ["stripeID":paymentMethod.stripeId,"amount":(self.creditAmount * 100.00),"mode":"test"] as [String : Any]
+        let params = ["stripeID":paymentMethod.stripeId,"amount":(self.creditAmount * 100.00),"mode":"test"] as [String : Any]
         //MARK: LIVE Stripe
-        let params = ["stripeID":paymentMethod.stripeId,"amount":(self.creditAmount * 100.00)] as [String : Any]
+        //let params = ["stripeID":paymentMethod.stripeId,"amount":(self.creditAmount * 100.00)] as [String : Any]
         self.depositAmountToWalletThroughStripe(params: params, paymentMethodParams: paymentMethod)
         
 
@@ -321,11 +321,11 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
 					let depositedAmount = Double(self.amountOfMoneyInCents) / 100
                     
                     let cardDetails = ["last4":(paymentMethodParams.card?.last4)!,"expireMonth":(paymentMethodParams.card?.expMonth)!,"expireYear":(paymentMethodParams.card?.expYear)!,"country":(paymentMethodParams.card?.country)!] as [String : Any]
-                    print(paymentIntent?.created?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss") as Any)
+                    print(paymentIntent?.created?.toString(dateFormat: "yyyy-MM-dd HH:mm:ssZ") as Any)
                     
                     
                     
-                    let transactionDict = ["id":(paymentIntent?.stripeId)!,"status":String(paymentIntent!.status.rawValue),"type":"sale","currencyIsoCode":paymentIntent!.currency,"amount":String(depositedAmount),"createdAt":(paymentIntent!.created?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss"))!,"updatedAt":(paymentIntent?.created?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss"))!,"transactionType":"card","cardDetails":cardDetails,"commission":0.0] as [String : Any]
+                    let transactionDict = ["id":(paymentIntent?.stripeId)!,"status":String(paymentIntent!.status.rawValue),"type":"sale","currencyIsoCode":paymentIntent!.currency,"amount":String(depositedAmount),"createdAt":(paymentIntent!.created?.toString(dateFormat: "yyyy-MM-dd HH:mm:ssZ"))!,"updatedAt":(paymentIntent?.created?.toString(dateFormat: "yyyy-MM-dd HH:mm:ssZ"))!,"transactionType":"card","cardDetails":cardDetails,"commission":0.0] as [String : Any]
 
                     
                     if status == "new" {

@@ -104,5 +104,16 @@ class DateFormatManager: NSObject {
 		}
 		return nil
     }
+    
+    func getDateFromStringWithAutoMonthFormat(dateString: String) -> Date? {
+        let options = ["yyyy/MM/dd HH:mm:ss", "yyyy/MM/dd HH:mm:ssZ"]
+        for i in options {
+            let dateFormatter = getDateFormatterWithFormat(format: i)
+            if let returner = dateFormatter.date(from: dateString) {
+                return returner
+            }
+        }
+        return nil
+    }
 
 }

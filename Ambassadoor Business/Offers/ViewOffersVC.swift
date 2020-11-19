@@ -142,7 +142,7 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ViewStat
         NotificationCenter.default.addObserver(self, selector: #selector(self.reloadOffer(notification:)), name: Notification.Name.init(rawValue: "reloadYourOffer"), object: nil)
 // Test Purpose
         if global.OfferDrafts.count != 0{
-            
+            self.editButton.isEnabled = true
             self.shelf.reloadData()
             
         }else{
@@ -214,6 +214,7 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ViewStat
         
         getAllTemplateOffers(userID: Auth.auth().currentUser!.uid) { (templateOffers, status) in
             if status == "success" && templateOffers.count != 0 {
+                self.editButton.isEnabled = true
                 global.OfferDrafts.removeAll()
                 global.OfferDrafts.append(contentsOf: templateOffers)
                 DispatchQueue.main.async(execute: {
@@ -221,6 +222,7 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ViewStat
                 })
             }else{
                 global.OfferDrafts.removeAll()
+                self.editButton.isEnabled = false
                 DispatchQueue.main.async(execute: {
                     self.shelf.reloadData()
                 })
