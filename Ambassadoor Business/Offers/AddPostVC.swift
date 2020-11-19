@@ -277,9 +277,12 @@ class AddPostVC: BaseVC, NCDelegate, UITableViewDelegate, UITableViewDataSource,
                 }
             }
         }
-        let post  = Post.init(image: "", instructions: InstructionsTextView.text!, captionMustInclude: "", products: [], post_ID: "", PostType: PostTypeToText(posttype: .SinglePost), confirmedSince: Date(), isConfirmed: false, hashCaption: "", status: "available", hashtags: hashes, keywords: phrases, isPaid: false, PayAmount: 0.0)
+        var post  = Post.init(image: "", instructions: InstructionsTextView.text!, captionMustInclude: "", products: [], post_ID: "", PostType: PostTypeToText(posttype: .SinglePost), confirmedSince: Date(), isConfirmed: false, hashCaption: "", status: "available", hashtags: hashes, keywords: phrases, isPaid: false, PayAmount: 0.0)
         
         if self.index != nil{
+            
+            let editedPost = global.post[self.index!]
+            post.post_ID = editedPost.post_ID
             global.post[self.index!] = post
             self.createLocalNotification(notificationName: "reload", userInfo: [:])
             if andDismiss {
