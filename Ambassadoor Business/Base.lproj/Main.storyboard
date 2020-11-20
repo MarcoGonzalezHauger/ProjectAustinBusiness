@@ -487,51 +487,22 @@ Send out an offer and you will be updated in real-time about influencers activit
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="220"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posts that were verified:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Trb-a6-kTo">
-                                                <rect key="frame" x="96" y="151" width="183" height="61"/>
+                                                <rect key="frame" x="96" y="191.66666666666669" width="183" height="20.333333333333343"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qtl-8B-2FJ" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="8" width="50" height="50"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="6c1-24-EBy"/>
-                                                    <constraint firstAttribute="width" secondItem="Qtl-8B-2FJ" secondAttribute="height" multiplier="1:1" id="mez-y6-5zj"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="0.0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="25"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowRadius">
-                                                        <real key="value" value="3"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="ShadowColor">
-                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowOpacity">
-                                                        <real key="value" value="0.5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$/$ used" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Ziu-8Y-Wz0">
-                                                <rect key="frame" x="90" y="22.666666666666671" width="277" height="21"/>
+                                                <rect key="frame" x="16" y="40" width="351" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="8Lj-j5-lf6"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# influencers have accepted this offer." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="fgz-gu-MRG">
-                                                <rect key="frame" x="20" y="71" width="293" height="21"/>
+                                                <rect key="frame" x="20" y="105.66666666666666" width="293" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="fHv-XY-eVy"/>
                                                 </constraints>
@@ -540,7 +511,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# Influencers have posted for this offer." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iZ9-XK-PK9">
-                                                <rect key="frame" x="20" y="101" width="335" height="21"/>
+                                                <rect key="frame" x="20" y="141.66666666666666" width="335" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="GLb-aE-hEj"/>
                                                 </constraints>
@@ -549,9 +520,9 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uji-6x-71V" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                                <rect key="frame" x="321" y="65.666666666666657" width="46" height="32"/>
+                                                <rect key="frame" x="321" y="100.33333333333334" width="46" height="32"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFR-lE-dtq">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFR-lE-dtq">
                                                         <rect key="frame" x="0.0" y="0.0" width="46" height="32"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
@@ -563,7 +534,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="QFR-lE-dtq" secondAttribute="trailing" id="1dp-lj-azL"/>
                                                     <constraint firstAttribute="height" constant="32" id="FNX-yH-33X"/>
@@ -588,26 +559,61 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="skK-TC-Ghy" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="8" width="359" height="16"/>
+                                                <subviews>
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LFH-Dp-arM" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="90" height="16"/>
+                                                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="90" id="98b-Xy-BZ6"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="LFH-Dp-arM" firstAttribute="top" secondItem="skK-TC-Ghy" secondAttribute="top" id="B6m-z1-kaL"/>
+                                                    <constraint firstItem="LFH-Dp-arM" firstAttribute="leading" secondItem="skK-TC-Ghy" secondAttribute="leading" id="EgH-0w-33i"/>
+                                                    <constraint firstAttribute="bottom" secondItem="LFH-Dp-arM" secondAttribute="bottom" id="MLh-Yj-Ega"/>
+                                                    <constraint firstAttribute="height" constant="16" id="YWK-WA-Qeh"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowOpacity">
+                                                        <real key="value" value="0.20000000000000001"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="ShadowRadius">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="iZ9-XK-PK9" firstAttribute="top" secondItem="fgz-gu-MRG" secondAttribute="bottom" constant="9" id="6sf-EP-Wbj"/>
-                                            <constraint firstItem="Ziu-8Y-Wz0" firstAttribute="centerY" secondItem="Qtl-8B-2FJ" secondAttribute="centerY" id="8Dp-Gc-A8l"/>
+                                            <constraint firstItem="iZ9-XK-PK9" firstAttribute="top" secondItem="fgz-gu-MRG" secondAttribute="bottom" constant="15" id="6sf-EP-Wbj"/>
                                             <constraint firstAttribute="height" constant="220" id="AOl-8W-jTa"/>
                                             <constraint firstAttribute="trailing" secondItem="Ziu-8Y-Wz0" secondAttribute="trailing" constant="8" id="GwU-8r-wUA"/>
                                             <constraint firstAttribute="trailing" secondItem="iZ9-XK-PK9" secondAttribute="trailing" constant="20" id="Hip-NE-2LX"/>
                                             <constraint firstItem="iZ9-XK-PK9" firstAttribute="leading" secondItem="Isi-jM-sqq" secondAttribute="leading" constant="20" id="Nbi-G9-Z2G"/>
-                                            <constraint firstItem="Qtl-8B-2FJ" firstAttribute="top" secondItem="Isi-jM-sqq" secondAttribute="top" constant="8" id="Pho-KZ-zWe"/>
                                             <constraint firstItem="Uji-6x-71V" firstAttribute="leading" secondItem="fgz-gu-MRG" secondAttribute="trailing" constant="8" id="S3a-wJ-umK"/>
-                                            <constraint firstItem="Ziu-8Y-Wz0" firstAttribute="leading" secondItem="Qtl-8B-2FJ" secondAttribute="trailing" constant="20" id="TYl-Az-uoP"/>
                                             <constraint firstAttribute="trailing" secondItem="Uji-6x-71V" secondAttribute="trailing" constant="8" id="UVs-ur-T6e"/>
                                             <constraint firstItem="fgz-gu-MRG" firstAttribute="leading" secondItem="Isi-jM-sqq" secondAttribute="leading" constant="20" id="cDe-4t-7tk"/>
-                                            <constraint firstItem="Qtl-8B-2FJ" firstAttribute="leading" secondItem="Isi-jM-sqq" secondAttribute="leading" constant="20" id="fQv-xW-T9K"/>
-                                            <constraint firstItem="fgz-gu-MRG" firstAttribute="top" secondItem="Qtl-8B-2FJ" secondAttribute="bottom" constant="13" id="gQc-Aa-P6q"/>
+                                            <constraint firstItem="Uji-6x-71V" firstAttribute="centerY" secondItem="fgz-gu-MRG" secondAttribute="centerY" id="ehN-RO-Hsm"/>
+                                            <constraint firstItem="skK-TC-Ghy" firstAttribute="top" secondItem="Isi-jM-sqq" secondAttribute="top" constant="8" id="gz2-tR-Ngh"/>
+                                            <constraint firstItem="Ziu-8Y-Wz0" firstAttribute="leading" secondItem="Isi-jM-sqq" secondAttribute="leading" constant="16" id="haT-5X-8Ll"/>
                                             <constraint firstItem="Trb-a6-kTo" firstAttribute="top" secondItem="iZ9-XK-PK9" secondAttribute="bottom" constant="29" id="k4a-hS-jyh"/>
-                                            <constraint firstItem="Uji-6x-71V" firstAttribute="top" secondItem="Ziu-8Y-Wz0" secondAttribute="bottom" constant="22.329999999999998" id="oGD-pW-vfd"/>
+                                            <constraint firstItem="skK-TC-Ghy" firstAttribute="leading" secondItem="Isi-jM-sqq" secondAttribute="leading" constant="8" id="lGQ-Iq-T3q"/>
                                             <constraint firstAttribute="bottom" secondItem="Trb-a6-kTo" secondAttribute="bottom" constant="8" id="p34-Yf-9Cr"/>
+                                            <constraint firstAttribute="trailing" secondItem="skK-TC-Ghy" secondAttribute="trailing" constant="8" id="pbr-6t-BD5"/>
                                             <constraint firstItem="Trb-a6-kTo" firstAttribute="centerX" secondItem="Isi-jM-sqq" secondAttribute="centerX" id="pjP-UF-n8i"/>
+                                            <constraint firstItem="Ziu-8Y-Wz0" firstAttribute="top" secondItem="skK-TC-Ghy" secondAttribute="bottom" constant="16" id="yR9-9u-dYz"/>
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8To-SQ-T1h">
@@ -749,8 +755,10 @@ Send out an offer and you will be updated in real-time about influencers activit
                     <connections>
                         <outlet property="TVheight" destination="cZh-Vx-0eo" id="gh2-iX-F1Y"/>
                         <outlet property="acceptedOfferCount" destination="fgz-gu-MRG" id="rgL-op-uwb"/>
+                        <outlet property="barView" destination="skK-TC-Ghy" id="wRI-55-SMK"/>
+                        <outlet property="goldBar" destination="LFH-Dp-arM" id="tHn-vL-Hos"/>
+                        <outlet property="goldBarWidth" destination="98b-Xy-BZ6" id="2RB-UO-bUc"/>
                         <outlet property="influencerShelf" destination="8To-SQ-T1h" id="utW-Oi-IJF"/>
-                        <outlet property="pieView" destination="Qtl-8B-2FJ" id="YJA-dS-mwt"/>
                         <outlet property="postedCount" destination="iZ9-XK-PK9" id="sRi-DJ-0be"/>
                         <outlet property="saleStatsLabel" destination="oYN-Vy-LDO" id="OUc-iX-DxS"/>
                         <outlet property="statMoneyText" destination="Ziu-8Y-Wz0" id="Wua-LZ-uuw"/>
@@ -773,7 +781,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rr3-Wf-NPo">
                                 <rect key="frame" x="0.0" y="60" width="375" height="664"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="influencer" rowHeight="85" id="1Za-4I-V6F" customClass="InfluencerListCell" customModule="Ambassadoor_Business" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="85"/>
@@ -807,7 +815,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                 </imageView>
                                                             </subviews>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
                                                                 <constraint firstItem="Nqe-bT-S0G" firstAttribute="leading" secondItem="0t9-DK-Tbk" secondAttribute="leading" id="TAU-vP-5h1"/>
                                                                 <constraint firstAttribute="bottom" secondItem="Nqe-bT-S0G" secondAttribute="bottom" id="YwB-KS-OmT"/>
@@ -824,7 +832,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="zn1-9j-gCp" secondAttribute="trailing" constant="8" id="0hO-EL-jFf"/>
                                                         <constraint firstItem="h81-N1-R1T" firstAttribute="leading" secondItem="0t9-DK-Tbk" secondAttribute="trailing" constant="8" id="2c7-E5-Zyg"/>
@@ -881,7 +889,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yxv-Q0-1cK">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9JK-bj-xOe">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9JK-bj-xOe">
                                         <rect key="frame" x="8" y="10" width="95" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="95" id="0nQ-cp-jUG"/>
@@ -894,7 +902,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="9JK-bj-xOe" firstAttribute="leading" secondItem="Yxv-Q0-1cK" secondAttribute="leading" constant="8" id="U0H-1X-gAs"/>
                                     <constraint firstAttribute="height" constant="50" id="akg-OQ-pF3"/>
@@ -902,7 +910,8 @@ Send out an offer and you will be updated in real-time about influencers activit
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="91E-1V-aH1"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="rr3-Wf-NPo" secondAttribute="trailing" id="1jZ-2Q-zHn"/>
                             <constraint firstAttribute="trailing" secondItem="Yxv-Q0-1cK" secondAttribute="trailing" id="8Wr-hV-syu"/>
@@ -912,7 +921,6 @@ Send out an offer and you will be updated in real-time about influencers activit
                             <constraint firstAttribute="bottom" secondItem="rr3-Wf-NPo" secondAttribute="bottom" constant="34" id="p9j-ld-fC2"/>
                             <constraint firstItem="Yxv-Q0-1cK" firstAttribute="top" secondItem="0JD-yf-0Xs" secondAttribute="top" id="uC8-MZ-cAD"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="91E-1V-aH1"/>
                     </view>
                     <connections>
                         <outlet property="influencerListTable" destination="rr3-Wf-NPo" id="rhQ-H5-CZy"/>
@@ -4221,7 +4229,7 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9F6-4Q-DjZ">
-                                <rect key="frame" x="0.0" y="73" width="414" height="739"/>
+                                <rect key="frame" x="0.0" y="73" width="375" height="739"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MeV-QO-0Tj">
                                         <rect key="frame" x="8" y="8" width="398" height="40"/>
@@ -4456,10 +4464,10 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                                 <viewLayoutGuide key="frameLayoutGuide" id="hub-Jb-9dW"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UsD-Gh-cDL">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="72"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Information" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K9g-BF-csB">
-                                        <rect key="frame" x="94" y="26" width="226" height="21"/>
+                                        <rect key="frame" x="74.666666666666686" y="26" width="226" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="0cS-M8-IuP"/>
                                             <constraint firstAttribute="width" constant="226" id="a05-na-5Qq"/>
@@ -4490,7 +4498,7 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MmN-91-YMp">
-                                <rect key="frame" x="0.0" y="759" width="414" height="53"/>
+                                <rect key="frame" x="0.0" y="759" width="375" height="53"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="LXc-49-j6t"/>
@@ -5993,6 +6001,9 @@ You must have permission to use the company name, logo, website, etc. before reg
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tableCellGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

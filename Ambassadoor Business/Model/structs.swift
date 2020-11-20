@@ -255,7 +255,7 @@ class TemplateOffer: Offer {
 			index += 1
 		}
 		lines.append("")
-		lines.append("Has been sent to \(user_IDs.count) influencer\(user_IDs.count != 1 ? "s" : "").")
+		//lines.append("Has been sent to \(user_IDs.count) influencer\(user_IDs.count != 1 ? "s" : "").")
 		return lines.joined(separator: "\n")
 	}
 }

@@ -82,7 +82,6 @@ class ViewOfferStatisticVC: UIViewController, UITableViewDelegate, UITableViewDa
 	@IBOutlet weak var TVheight: NSLayoutConstraint!
 	var stat: OfferStatistic?
     
-    @IBOutlet weak var pieView: ShadowView!
     @IBOutlet weak var statMoneyText: UILabel!
     
     @IBOutlet weak var acceptedOfferCount: UILabel!
@@ -95,8 +94,8 @@ class ViewOfferStatisticVC: UIViewController, UITableViewDelegate, UITableViewDa
 		influencerShelf.dataSource = self
 		saleStatsLabel.text = "\"" + stat!.offer.title + "\" Statistics"
         self.updateTableConstraints()
-        self.setPieChart()
-		wasVerifiedLabel.text = stat!.posted.count == 0 ? "No posts were verifeid yet.\nYou will see them here when they are." : "Posts that were verified:"
+        self.setBarGraph()
+		wasVerifiedLabel.text = stat!.posted.count == 0 ? "No posts were verified yet.\nYou will see them here when they are." : "Posts that were verified:"
     }
     
 		func updateTableConstraints() {
@@ -104,19 +103,17 @@ class ViewOfferStatisticVC: UIViewController, UITableViewDelegate, UITableViewDa
         influencerShelf.layoutIfNeeded()
         influencerShelf.updateConstraints()
     }
-    
-    func setPieChart() {
-        let pieChartView = StaticsPie()
-        pieChartView.frame = CGRect(x: 0, y: 0, width: self.pieView.frame.size.width, height: self.pieView.frame.size.height)
+	
+	@IBOutlet weak var barView: ShadowView!
+	@IBOutlet weak var goldBar: ShadowView!
+	@IBOutlet weak var goldBarWidth: NSLayoutConstraint!
+	
+    func setBarGraph() {
 		let money = self.stat!.offer.originalAmount == 0.0 ? self.stat!.offer.money : self.stat!.offer.originalAmount
 		let cashPower = self.stat!.offer.cashPower!
-        pieChartView.segments = [
-			OfferStatusSegment(color: GetBackColor(), value: CGFloat(money) - CGFloat(cashPower)),
-            OfferStatusSegment(color: UIColor.init(red: 1, green: 227/255, blue: 35/255, alpha: 1), value: CGFloat(money)),
-           
-        ]
-        self.pieView.addSubview(pieChartView)
         
+		goldBarWidth.constant = barView.bounds.width * CGFloat((cashPower / money))
+		
         self.statMoneyText.text = "\(NumberToPrice(Value: cashPower))/\(NumberToPrice(Value: money)) left."
         self.acceptedOfferCount.text = "\(self.stat!.acceptedCount) influencer\(self.stat!.acceptedCount == 1 ? "" : "s") have accepted so far."
         self.viewUsersBtn.isHidden = self.stat!.acceptedCount == 0 ? true : false
