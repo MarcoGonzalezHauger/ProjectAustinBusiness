@@ -392,6 +392,7 @@ func downloadBeforeLoad() {
         global.allInfluencers.removeAll()
         global.allInfluencers = users
     }
+    //Auth.auth().currentUser!.uid
     
     getAllTemplateOffers(userID: Auth.auth().currentUser!.uid) { (templateOffers, status) in
         
@@ -401,6 +402,7 @@ func downloadBeforeLoad() {
         }
         
     }
+    //(Auth.auth().currentUser?.uid)!
     setDepositDetails(userID: (Auth.auth().currentUser?.uid)!)
     
 }
@@ -413,6 +415,7 @@ func setDepositDetails(userID: String) {
             transactionHistory.removeAll()
             global.accountBalance = deposit!.currentBalance!
             accountBalance = global.accountBalance
+            //(Auth.auth().currentUser?.uid)!
             setHapticMenu(companyUserID: (Auth.auth().currentUser?.uid)!, amount: accountBalance)
             for value in deposit!.depositHistory! {
                 

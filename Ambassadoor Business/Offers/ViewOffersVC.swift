@@ -146,7 +146,7 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ViewStat
             self.shelf.reloadData()
             
         }else{
-         //   let checkID = "GoQjJPCnHBVRTc5PxfnjohUWcVw2"
+        //   let checkID = "GoQjJPCnHBVRTc5PxfnjohUWcVw2"
         //Auth.auth().currentUser!.uid
             getAllTemplateOffers(userID: Auth.auth().currentUser!.uid) { (templateOffers, status) in
                 if status == "success" && templateOffers.count != 0 {

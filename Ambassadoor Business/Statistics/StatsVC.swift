@@ -96,7 +96,8 @@ class StatsVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
 		let info = distributedOffers[indexPath.row]
 		cell.offername.text = info.offer.title
 		cell.acceptedLabel.text = "\(info.acceptedCount) influencer\(info.acceptedCount == 1 ? "" : "s") have accepted so far."
-		cell.postedLabel.text = "\(info.posted.count) influencer\(info.posted.count == 1 ? "" : "s") have posted so far."
+		//cell.postedLabel.text = "\(info.posted.count) influencer\(info.posted.count == 1 ? "" : "s") have posted so far."
+        cell.postedLabel.text = "\(info.posted.count) post\(info.posted.count == 1 ? "" : "s") have posted so far."
 		return cell
 	}
 	

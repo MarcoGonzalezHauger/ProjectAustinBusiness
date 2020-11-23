@@ -37,19 +37,19 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
     func GetTransactionHistory() -> [Transaction] {
         
         var transHistory: [Transaction] = transactionHistory
-        transHistory.sort{DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: $0.time)! > DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: $1.time)!}
+		transHistory.sort{$0.time > $1.time}
         return transHistory
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return transactionHistory.count
+        return GetTransactionHistory().count
         //return GetTransactionHistory().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
         let cell = shelf.dequeueReusableCell(withIdentifier: "TransactionTrunk") as! TransactionCell
-        let ThisTransaction = transactionHistory[row]
+        let ThisTransaction = GetTransactionHistory()[row]
         
         //let ThisTransaction = GetTransactionHistory()[row]
         let date = DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: ThisTransaction.time)
@@ -185,7 +185,7 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
     }
     
     func getDepositDetailsByUser(user: CompanyUser) {
-        
+        //(Auth.auth().currentUser?.uid)!
         getDepositDetails(companyUser: (Auth.auth().currentUser?.uid)!) { (deposit, status, error) in
             
             if status == "success" {

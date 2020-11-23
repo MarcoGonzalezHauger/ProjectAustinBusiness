@@ -248,7 +248,8 @@ class SignInVC: BaseVC, UITextFieldDelegate {
                                 UserDefaults.standard.set(self.passwordText.text, forKey: "userPass")
                                 UserDefaults.standard.set((Auth.auth().currentUser?.uid)!, forKey: "userid")
                                 print("userdefaults set.")
-                                
+                                //GoQjJPCnHBVRTc5PxfnjohUWcVw2
+                                //(Auth.auth().currentUser?.uid)!
                                 getCurrentCompanyUser(userID: (Auth.auth().currentUser?.uid)!, signInButton: self.signInButton) { (companyUser, error) in
                                     if companyUser != nil {
                                         Singleton.sharedInstance.setCompanyUser(user: companyUser!)

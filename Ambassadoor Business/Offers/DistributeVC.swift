@@ -406,6 +406,7 @@ class DistributeVC: BaseVC, changedDelegate, missingMoneyDelegate, dismissSucces
     
     @objc func getDeepositDetails() {
         let user = Singleton.sharedInstance.getCompanyUser()
+        //user.userID!
         getDepositDetails(companyUser: user.userID!) { (deposit, status, error) in
             
             if status == "success" {

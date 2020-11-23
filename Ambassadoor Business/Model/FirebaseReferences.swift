@@ -782,7 +782,7 @@ func sendDepositAmount(deposit: Deposit,companyUser: String,completion: @escapin
 }
 
 func getDepositDetails(companyUser: String,completion: @escaping(Deposit?,String,Error?) -> Void) {
-    
+    //companyUser
     let ref = Database.database().reference().child("BusinessDeposit").child(companyUser)
     ref.observeSingleEvent(of: .value, with: { (snapshot) in
         
@@ -804,6 +804,8 @@ func getStatisticsData(completion: @escaping([Statistics]?,String,Error?) -> Voi
     
     let ref = Database.database().reference().child("SentOutOffers").child(Auth.auth().currentUser!.uid)
     
+	var attempted = 0
+	
     ref.observeSingleEvent(of: .value, with: { (snapshot) in
         var staticsArray = [Statistics]()
         
@@ -840,15 +842,11 @@ func getStatisticsData(completion: @escaping([Statistics]?,String,Error?) -> Voi
                                     staticsArray.append(object)
                                 }
                                 
-                                if index == (totalValues.allKeys.count - 1) {
-                                    
-                                    if userIDIndex == (userIDs.count - 1) {
-                                        
-                                        completion(staticsArray, "success", nil)
-                                        
-                                    }
-                                    
-                                }
+								attempted += 1
+								
+								if attempted >= totalValues.allKeys.count {
+									completion(staticsArray, "success", nil)
+								}
                                 
                             }) { (error) in
                                 
@@ -1292,6 +1290,7 @@ func getCompany(companyID: String,signInButton: UIButton? = nil,completion: @esc
 func getAllDistributedOffers(completion: @escaping (_ status: Bool,_ offers: [TemplateOffer]?) -> ()){
 	guard let YourCompany = YourCompany else {return}
 	guard let id = YourCompany.userID else {return}
+   // let id = "GoQjJPCnHBVRTc5PxfnjohUWcVw2"
 	let offerPoolRef = Database.database().reference().child("OfferPool").child(id)
     offerPoolRef.observeSingleEvent(of: .value, with: { (snapshot) in
         if let allOfferDict = snapshot.value as? [String: [String:AnyObject]]{
@@ -1322,14 +1321,18 @@ func getAllDistributedOffers(completion: @escaping (_ status: Bool,_ offers: [Te
 func getInfluencersWhoAcceptedOffer(offer: Offer, completion: @escaping(_ status: Bool, _ users: [User]?)->()){
 	if offer.accepted != nil {
 		var users = [User]()
-		for (index,userId) in offer.accepted!.enumerated() {
+        var countTag = 0
+        
+        for (_,userId) in offer.accepted!.enumerated() {
 			let userRef = Database.database().reference().child("users").child(userId)
 			userRef.observeSingleEvent(of: .value, with: { (userSnapshot) in
+                
+                countTag += 1
 				if let userDict = userSnapshot.value as? [String: Any] {
 					let user = User.init(dictionary: userDict)
 					users.append(user)
 				}
-				if index == (offer.accepted!.count - 1){
+				if countTag >= offer.accepted!.count {
 					completion(true, users)
 				}
 				
@@ -1345,19 +1348,21 @@ func getInfluencersWhoAcceptedOffer(offer: Offer, completion: @escaping(_ status
 func getInfluencersWhoPostedForOffer(offer: Offer, completion: @escaping(_ status: Bool, _ users: [PostInfo]?)->()){
    var postInfo = [PostInfo]()
 	if offer.accepted != nil {
-		for (index,userId) in offer.accepted!.enumerated() {
+		var attempted = 0
+        for (_,userId) in offer.accepted!.enumerated() {
 			let sentOutOffer = Database.database().reference().child("SentOutOffersToUsers").child(userId).child(offer.offer_ID)
 			sentOutOffer.observeSingleEvent(of: .value, with: { (sentOutAnapshot) in
 			if let sentOutOfferDict = sentOutAnapshot.value as? [String: AnyObject]{
 					do {
 						let sentOutOffer = try Offer.init(dictionary: sentOutOfferDict)
 						for post in sentOutOffer.posts {
-							if post.status == "posted"{
+							if post.status == "posted" || post.status == "verified" || post.status == "paid" {
 								let postInfoValue = PostInfo.init(imageUrl: "", userWhoPosted: nil, associatedPost: post, caption: "", datePosted: "", userId: userId, offerId: offer.offer_ID)
 								postInfo.append(postInfoValue)
 							}
 						}
-						if index == (offer.accepted!.count - 1){
+						attempted += 1
+						if attempted >= offer.accepted!.count {
 							completion(true, postInfo)
 						}
 					} catch let error {
@@ -1392,7 +1397,7 @@ func getPostUserDetails(postInfo: [PostInfo], completion: @escaping(_ status: Bo
                     
                 }
                 
-                if index == (postInfo.count - 1){
+				if modifiedPostInfo.count >= postInfo.count {
                     
                     completion(true, modifiedPostInfo)
                     
@@ -1408,6 +1413,7 @@ func getPostUserDetails(postInfo: [PostInfo], completion: @escaping(_ status: Bo
 
 func getInstagramPostByOffer(postInfo: [PostInfo], completion: @escaping(_ status: Bool,_ postInfo: [PostInfo]?)->()) {
 	var modifiedPostInfo = [PostInfo]()
+	var attempted = 0
 	for (index,post) in postInfo.enumerated() {
 		var postDetail = post
 		let instaRef = Database.database().reference().child("InfluencerInstagramPost").child(postDetail.userId!).child(postDetail.offerId!).child(postDetail.associatedPost!.post_ID)
@@ -1418,7 +1424,8 @@ func getInstagramPostByOffer(postInfo: [PostInfo], completion: @escaping(_ statu
 				postDetail.imageUrl = instaPost.images!
 				modifiedPostInfo.append(postDetail)
 			}
-			if index == (postInfo.count - 1){
+			attempted += 1
+			if attempted == postInfo.count {
 				completion(true, modifiedPostInfo)
 			}
 		}, withCancel: { (error) in })

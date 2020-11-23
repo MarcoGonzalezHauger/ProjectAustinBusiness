@@ -47,7 +47,7 @@ class VerifyEmailVC: BaseVC {
             
             let user = Auth.auth().currentUser!
             
-            if user.isEmailVerified{
+            if user.isEmailVerified {
                 
                 UserDefaults.standard.set(self.emailString, forKey: "userEmail")
                 UserDefaults.standard.set(self.passwordString, forKey: "userPass")
