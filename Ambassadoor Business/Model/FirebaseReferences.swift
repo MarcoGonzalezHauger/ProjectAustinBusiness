@@ -1299,7 +1299,9 @@ func getAllDistributedOffers(completion: @escaping (_ status: Bool,_ offers: [Te
                 if isDeseralizable(dictionary: offerDict, type: .offer).count == 0{
                     do {
                         let offer = try TemplateOffer.init(dictionary: offerDict)
+                       // if offer.offer_ID == "-MGirAckIGCn5IqxPqmb"{
                         offersList.append(offer)
+                        //}
                     } catch let error {
                         print(error)
                     }
@@ -1352,6 +1354,8 @@ func getInfluencersWhoPostedForOffer(offer: Offer, completion: @escaping(_ statu
         for (_,userId) in offer.accepted!.enumerated() {
 			let sentOutOffer = Database.database().reference().child("SentOutOffersToUsers").child(userId).child(offer.offer_ID)
 			sentOutOffer.observeSingleEvent(of: .value, with: { (sentOutAnapshot) in
+                
+                attempted += 1
 			if let sentOutOfferDict = sentOutAnapshot.value as? [String: AnyObject]{
 					do {
 						let sentOutOffer = try Offer.init(dictionary: sentOutOfferDict)
@@ -1361,7 +1365,7 @@ func getInfluencersWhoPostedForOffer(offer: Offer, completion: @escaping(_ statu
 								postInfo.append(postInfoValue)
 							}
 						}
-						attempted += 1
+						
 						if attempted >= offer.accepted!.count {
 							completion(true, postInfo)
 						}
@@ -1369,7 +1373,11 @@ func getInfluencersWhoPostedForOffer(offer: Offer, completion: @escaping(_ statu
 						print(error)
 					}
 				}
-			}) { (sentOutError) in }
+			}) { (sentOutError) in
+                
+                
+                
+            }
 			
 		}
 		
