@@ -119,6 +119,8 @@ class DistributeOfferVC: BaseVC,UICollectionViewDelegate,UICollectionViewDataSou
     
     @objc func getDeepositDetails() {
         let user = Singleton.sharedInstance.getCompanyUser()
+        //GoQjJPCnHBVRTc5PxfnjohUWcVw2
+        //user.userID!
         getDepositDetails(companyUser: user.userID!) { (deposit, status, error) in
             
             if status == "success" {

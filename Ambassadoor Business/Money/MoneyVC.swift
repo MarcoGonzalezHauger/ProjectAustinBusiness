@@ -185,7 +185,7 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
     }
     
     func getDepositDetailsByUser(user: CompanyUser) {
-        
+        //(Auth.auth().currentUser?.uid)!
         getDepositDetails(companyUser: (Auth.auth().currentUser?.uid)!) { (deposit, status, error) in
             
             if status == "success" {

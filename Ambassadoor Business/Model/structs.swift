@@ -495,11 +495,11 @@ class Deposit: NSObject {
     init(dictionary: [String: Any]) {
         
         self.userID = dictionary["userID"] as? String
-        self.currentBalance = dictionary["currentBalance"] as? Double
-        self.totalDepositAmount = dictionary["totalDepositAmount"] as? Double
-        self.totalDeductedAmount = dictionary["totalDeductedAmount"] as? Double
-        self.lastDeductedAmount = dictionary["lastDeductedAmount"] as? Double
-        self.lastDepositedAmount = dictionary["lastDepositedAmount"] as? Double
+        self.currentBalance = dictionary["currentBalance"] as? Double ?? 0.0
+        self.totalDepositAmount = dictionary["totalDepositAmount"] as? Double ?? 0.0
+        self.totalDeductedAmount = dictionary["totalDeductedAmount"] as? Double ?? 0.0
+        self.lastDeductedAmount = dictionary["lastDeductedAmount"] as? Double ?? 0.0
+        self.lastDepositedAmount = dictionary["lastDepositedAmount"] as? Double ?? 0.0
         self.lastTransactionHistory = TransactionDetails.init(dictionary: dictionary["lastTransactionHistory"] as! [String : Any])
         self.depositHistory = dictionary["depositHistory"] as? [Any]
         

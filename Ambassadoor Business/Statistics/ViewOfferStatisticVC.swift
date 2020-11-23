@@ -117,7 +117,8 @@ class ViewOfferStatisticVC: UIViewController, UITableViewDelegate, UITableViewDa
         self.statMoneyText.text = "\(NumberToPrice(Value: cashPower))/\(NumberToPrice(Value: money)) left."
         self.acceptedOfferCount.text = "\(self.stat!.acceptedCount) influencer\(self.stat!.acceptedCount == 1 ? "" : "s") have accepted so far."
         self.viewUsersBtn.isHidden = self.stat!.acceptedCount == 0 ? true : false
-        self.postedCount.text = "\(self.stat!.posted.count) influencer\(self.stat!.posted.count == 1 ? "" : "s") have posted so far."
+        self.postedCount.text = "\(self.stat!.posted.count) post\(self.stat!.posted.count == 1 ? "" : "s") have posted so far."
+       // self.postedCount.text = "\(self.stat!.posted.count) influencer\(self.stat!.posted.count == 1 ? "" : "s") have posted so far."
     }
     
     @IBAction func viewUsers(sender: UIButton){

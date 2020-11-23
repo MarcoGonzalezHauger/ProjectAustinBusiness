@@ -782,7 +782,7 @@ func sendDepositAmount(deposit: Deposit,companyUser: String,completion: @escapin
 }
 
 func getDepositDetails(companyUser: String,completion: @escaping(Deposit?,String,Error?) -> Void) {
-    
+    //companyUser
     let ref = Database.database().reference().child("BusinessDeposit").child(companyUser)
     ref.observeSingleEvent(of: .value, with: { (snapshot) in
         
@@ -1290,6 +1290,7 @@ func getCompany(companyID: String,signInButton: UIButton? = nil,completion: @esc
 func getAllDistributedOffers(completion: @escaping (_ status: Bool,_ offers: [TemplateOffer]?) -> ()){
 	guard let YourCompany = YourCompany else {return}
 	guard let id = YourCompany.userID else {return}
+   // let id = "GoQjJPCnHBVRTc5PxfnjohUWcVw2"
 	let offerPoolRef = Database.database().reference().child("OfferPool").child(id)
     offerPoolRef.observeSingleEvent(of: .value, with: { (snapshot) in
         if let allOfferDict = snapshot.value as? [String: [String:AnyObject]]{
@@ -1320,14 +1321,18 @@ func getAllDistributedOffers(completion: @escaping (_ status: Bool,_ offers: [Te
 func getInfluencersWhoAcceptedOffer(offer: Offer, completion: @escaping(_ status: Bool, _ users: [User]?)->()){
 	if offer.accepted != nil {
 		var users = [User]()
-		for (index,userId) in offer.accepted!.enumerated() {
+        var countTag = 0
+        
+        for (_,userId) in offer.accepted!.enumerated() {
 			let userRef = Database.database().reference().child("users").child(userId)
 			userRef.observeSingleEvent(of: .value, with: { (userSnapshot) in
+                
+                countTag += 1
 				if let userDict = userSnapshot.value as? [String: Any] {
 					let user = User.init(dictionary: userDict)
 					users.append(user)
 				}
-				if users.count >= offer.accepted!.count {
+				if countTag >= offer.accepted!.count {
 					completion(true, users)
 				}
 				
@@ -1344,14 +1349,14 @@ func getInfluencersWhoPostedForOffer(offer: Offer, completion: @escaping(_ statu
    var postInfo = [PostInfo]()
 	if offer.accepted != nil {
 		var attempted = 0
-		for (index,userId) in offer.accepted!.enumerated() {
+        for (_,userId) in offer.accepted!.enumerated() {
 			let sentOutOffer = Database.database().reference().child("SentOutOffersToUsers").child(userId).child(offer.offer_ID)
 			sentOutOffer.observeSingleEvent(of: .value, with: { (sentOutAnapshot) in
 			if let sentOutOfferDict = sentOutAnapshot.value as? [String: AnyObject]{
 					do {
 						let sentOutOffer = try Offer.init(dictionary: sentOutOfferDict)
 						for post in sentOutOffer.posts {
-							if post.status == "posted" || post.status == "verified" {
+							if post.status == "posted" || post.status == "verified" || post.status == "paid" {
 								let postInfoValue = PostInfo.init(imageUrl: "", userWhoPosted: nil, associatedPost: post, caption: "", datePosted: "", userId: userId, offerId: offer.offer_ID)
 								postInfo.append(postInfoValue)
 							}
