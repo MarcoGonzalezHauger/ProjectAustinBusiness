@@ -35,13 +35,13 @@ class OfferStatistic: NSObject {
 				}
 			}
 		}
-		getInfluencersWhoPostedForOffer(offer: offer) { (status, results) in
+		getInfluencersWhoPostedForOffer(offer: offer) { (status, postresults) in
 			if status {
-				if let results = results {
-					self.posted = results
-					getPostUserDetails(postInfo: self.posted) { (status, results) in
+				if let postresults = postresults {
+					self.posted = postresults
+					getPostUserDetails(postInfo: self.posted) { (status, postUserResults) in
 						if status {
-							if let results = results {
+							if let results = postUserResults {
 								for r in results {
 									let i = self.posted.firstIndex { (postinfo) -> Bool in
 										return postinfo.userId == r.userId && postinfo.associatedPost?.post_ID == r.associatedPost?.post_ID
@@ -191,10 +191,11 @@ class StatsVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
             self.performSegue(withIdentifier: "toCompanyRegister", sender: self)
 
         }
+        
 		
 		timer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(self.getStatisticsTimerData), userInfo: nil, repeats: true)
 		timer?.fire()
-		
+
 		reloadTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.reloadShelf), userInfo: nil, repeats: true)
 		reloadTimer?.fire()
 
