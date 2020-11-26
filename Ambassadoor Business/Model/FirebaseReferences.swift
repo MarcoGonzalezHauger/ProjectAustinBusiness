@@ -1322,27 +1322,44 @@ func getAllDistributedOffers(completion: @escaping (_ status: Bool,_ offers: [Te
 
 func getInfluencersWhoAcceptedOffer(offer: Offer, completion: @escaping(_ status: Bool, _ users: [User]?)->()){
 	if offer.accepted != nil {
-		var users = [User]()
-        var countTag = 0
         
-        for (_,userId) in offer.accepted!.enumerated() {
-			let userRef = Database.database().reference().child("users").child(userId)
-            print("post1",userRef)
-			userRef.observeSingleEvent(of: .value, with: { (userSnapshot) in
+        
+       let filteredFinalUser = global.allInfluencers.filter { (user) -> Bool in
+            
+           let filteredUser = offer.accepted!.filter({ (userId) -> Bool in
                 
-                countTag += 1
-				if let userDict = userSnapshot.value as? [String: Any] {
-					let user = User.init(dictionary: userDict)
-					users.append(user)
-				}
-				if countTag >= offer.accepted!.count {
-					completion(true, users)
-				}
-				
-			}) { (userError) in
-				completion(false, nil)
-			}
-		}
+                return user.id == userId
+                
+            })
+            
+            return filteredUser.count != 0 ? true : false
+            
+        }
+        
+        completion(true, filteredFinalUser)
+        
+        
+//		var users = [User]()
+//        var countTag = 0
+//
+//        for (_,userId) in offer.accepted!.enumerated() {
+//			let userRef = Database.database().reference().child("users").child(userId)
+//            print("post1",userRef)
+//			userRef.observeSingleEvent(of: .value, with: { (userSnapshot) in
+//
+//                countTag += 1
+//				if let userDict = userSnapshot.value as? [String: Any] {
+//					let user = User.init(dictionary: userDict)
+//					users.append(user)
+//				}
+//				if countTag >= offer.accepted!.count {
+//					completion(true, users)
+//				}
+//
+//			}) { (userError) in
+//				completion(false, nil)
+//			}
+//		}
 	} else {
 		completion(true, [])
 	}

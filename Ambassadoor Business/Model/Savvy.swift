@@ -388,10 +388,7 @@ func downloadBeforeLoad() {
         }
     }
     */
-    GetAllUsers { (users) in
-        global.allInfluencers.removeAll()
-        global.allInfluencers = users
-    }
+    
     //Auth.auth().currentUser!.uid
     
     getAllTemplateOffers(userID: Auth.auth().currentUser!.uid) { (templateOffers, status) in
@@ -405,6 +402,13 @@ func downloadBeforeLoad() {
     //(Auth.auth().currentUser?.uid)!
     setDepositDetails(userID: (Auth.auth().currentUser?.uid)!)
     
+}
+
+func getGlobalAllInfluencers() {
+    GetAllUsers { (users) in
+        global.allInfluencers.removeAll()
+        global.allInfluencers = users
+    }
 }
 
 func setDepositDetails(userID: String) {
