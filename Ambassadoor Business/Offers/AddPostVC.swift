@@ -15,7 +15,7 @@ protocol deletePhrase {
     func NotValidWord(words: [String])
 }
 
-class KeyphraseCell: UITableViewCell {
+class KeyphraseCell: UITableViewCell, UITextFieldDelegate {
     var delegate: deletePhrase?
     var wasTold = false
     @IBOutlet weak var phraseText: UITextField!
@@ -77,6 +77,20 @@ class KeyphraseCell: UITableViewCell {
         
         phraseText.text = currentString
         delegate?.textChanged(at: self, to: currentString)
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if (textField.text?.hasPrefix("#"))! {
+            
+            let rawString = string
+             let range = rawString.rangeOfCharacter(from: .whitespaces)
+            if ((textField.text?.count)! == 0 && range  != nil)
+            || ((textField.text?.count)! > 0 && range != nil)  {
+                return false
+            }
+            
+        }
+    return true
     }
 }
 
