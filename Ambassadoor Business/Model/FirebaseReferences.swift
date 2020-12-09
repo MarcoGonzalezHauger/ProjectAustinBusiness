@@ -1322,26 +1322,44 @@ func getAllDistributedOffers(completion: @escaping (_ status: Bool,_ offers: [Te
 
 func getInfluencersWhoAcceptedOffer(offer: Offer, completion: @escaping(_ status: Bool, _ users: [User]?)->()){
 	if offer.accepted != nil {
-		var users = [User]()
-        var countTag = 0
         
-        for (_,userId) in offer.accepted!.enumerated() {
-			let userRef = Database.database().reference().child("users").child(userId)
-			userRef.observeSingleEvent(of: .value, with: { (userSnapshot) in
+        
+       let filteredFinalUser = global.allInfluencers.filter { (user) -> Bool in
+            
+           let filteredUser = offer.accepted!.filter({ (userId) -> Bool in
                 
-                countTag += 1
-				if let userDict = userSnapshot.value as? [String: Any] {
-					let user = User.init(dictionary: userDict)
-					users.append(user)
-				}
-				if countTag >= offer.accepted!.count {
-					completion(true, users)
-				}
-				
-			}) { (userError) in
-				completion(false, nil)
-			}
-		}
+                return user.id == userId
+                
+            })
+            
+            return filteredUser.count != 0 ? true : false
+            
+        }
+        
+        completion(true, filteredFinalUser)
+        
+        
+//		var users = [User]()
+//        var countTag = 0
+//
+//        for (_,userId) in offer.accepted!.enumerated() {
+//			let userRef = Database.database().reference().child("users").child(userId)
+//            print("post1",userRef)
+//			userRef.observeSingleEvent(of: .value, with: { (userSnapshot) in
+//
+//                countTag += 1
+//				if let userDict = userSnapshot.value as? [String: Any] {
+//					let user = User.init(dictionary: userDict)
+//					users.append(user)
+//				}
+//				if countTag >= offer.accepted!.count {
+//					completion(true, users)
+//				}
+//
+//			}) { (userError) in
+//				completion(false, nil)
+//			}
+//		}
 	} else {
 		completion(true, [])
 	}
@@ -1353,6 +1371,7 @@ func getInfluencersWhoPostedForOffer(offer: Offer, completion: @escaping(_ statu
 		var attempted = 0
         for (_,userId) in offer.accepted!.enumerated() {
 			let sentOutOffer = Database.database().reference().child("SentOutOffersToUsers").child(userId).child(offer.offer_ID)
+            print("post2",sentOutOffer)
 			sentOutOffer.observeSingleEvent(of: .value, with: { (sentOutAnapshot) in
                 
                 attempted += 1
@@ -1393,6 +1412,7 @@ func getPostUserDetails(postInfo: [PostInfo], completion: @escaping(_ status: Bo
             var postDetail = post
             
             let userRef = Database.database().reference().child("users").child(post.userId!)
+            print("post3",userRef)
             
             userRef.observeSingleEvent(of: .value, with: { (snapshot) in
                 
@@ -1425,6 +1445,8 @@ func getInstagramPostByOffer(postInfo: [PostInfo], completion: @escaping(_ statu
 	for (index,post) in postInfo.enumerated() {
 		var postDetail = post
 		let instaRef = Database.database().reference().child("InfluencerInstagramPost").child(postDetail.userId!).child(postDetail.offerId!).child(postDetail.associatedPost!.post_ID)
+        
+        print("post4",instaRef)
 		instaRef.observeSingleEvent(of: .value, with: { (snapshot) in
 			if let instaPostDict = snapshot.value as? [String: AnyObject]{
 				let instaPost = InfluencerInstagramPost.init(dictionary: instaPostDict)

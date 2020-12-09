@@ -59,6 +59,7 @@ class ViewOfferStatisticVC: UIViewController, UITableViewDelegate, UITableViewDa
 	@IBOutlet weak var saleStatsLabel: UILabel!
     
     @IBOutlet weak var viewUsersBtn: UIButton!
+    @IBOutlet weak var viewUsersShadow: ShadowView!
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		//TVheight.constant = cellHeight * CGFloat(stat!.posted.count)

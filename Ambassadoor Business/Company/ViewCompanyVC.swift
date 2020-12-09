@@ -82,14 +82,31 @@ class ViewCompanyVC: BaseVC, ImagePickerDelegate, webChangedDelegate, UITextFiel
 			}
 			
 			print("before: \(result)")
+            
+           let checkContained = result.range(of: "\\b\("www.")\\b", options: .regularExpression) != nil
+            
+            if result.hasPrefix("www.") {
+                
+               //result = result.replacingOccurrences(of: "www.", with: "")
+              result = String(result.dropFirst("www.".count))
+                
+            }
+            
+            if !result.hasPrefix("www."){
+                result = "www." + result
+            }
+            
+            if !result.hasSuffix(".com"){
+               result = result + ".com"
+            }
 			
-			switch result.split(separator: ".").count {
-                
-			case 1: result = "www.\(result).com"
-			case 2: result = "www.\(result)"
-			default: break
-                
-			}
+//			switch result.split(separator: ".").count {
+//
+//			case 1: result = "www.\(result).com"
+//			case 2: result = "www.\(result)"
+//			default: break
+//
+//			}
 			
 
 			visitWebsite.isEnabled = true

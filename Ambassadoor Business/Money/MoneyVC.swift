@@ -20,6 +20,7 @@ struct Transaction {
     let type: String
     let status: String
     let userName: String
+    let date: Date?
 }
 
 class TransactionCell: UITableViewCell {
@@ -37,7 +38,8 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
     func GetTransactionHistory() -> [Transaction] {
         
         var transHistory: [Transaction] = transactionHistory
-		transHistory.sort{$0.time > $1.time}
+//		transHistory.sort{$0.time < $1.time}
+        transHistory.sort{$0.date!.compare($1.date!) == .orderedDescending}
         return transHistory
     }
     
@@ -205,26 +207,26 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
                             amount = amt
                         }
                         
-                        transactionHistory.append(Transaction(description: "", details: valueDetails["cardDetails"] as AnyObject, time: valueDetails["updatedAt"] as! String, amount: amount, type: valueDetails["type"] as! String, status: valueDetails["status"] as? String ?? "", userName: valueDetails["userName"] as? String ?? ""))
+                        transactionHistory.append(Transaction(description: "", details: valueDetails["cardDetails"] as AnyObject, time: valueDetails["updatedAt"] as! String, amount: amount, type: valueDetails["type"] as! String, status: valueDetails["status"] as? String ?? "", userName: valueDetails["userName"] as? String ?? "", date: DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: valueDetails["updatedAt"] as! String)))
                     }
                 }
                 
                 //                let transSort = transactionHistory.sort{DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: $0.time)! > DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: $1.time)!}
                 
-                let transSort = transactionHistory.sorted { (SeqOne, SeqTwo) -> Bool in
-                    
-                    if DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: SeqOne.time)
-                        != nil && DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: SeqTwo.time) != nil{
-                        return DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: SeqOne.time)! >
-                            DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: SeqTwo.time)!
-                        
-                    }else{
-                        return false
-                    }
-                    
-                }
+//                let transSort = transactionHistory.sorted { (SeqOne, SeqTwo) -> Bool in
+//                    
+//                    if DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: SeqOne.time)
+//                        != nil && DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: SeqTwo.time) != nil{
+//                        return DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: SeqOne.time)! >
+//                            DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: SeqTwo.time)!
+//                        
+//                    }else{
+//                        return false
+//                    }
+//                    
+//                }
                 
-                transactionHistory.append(contentsOf: transSort)
+//                transactionHistory.append(contentsOf: transSort)
                 
                 DispatchQueue.main.async(execute: {
                     self.shelf.delegate = self

@@ -47,8 +47,8 @@ class missingMoneyVC: BaseVC,STPAddCardViewControllerDelegate, STPAuthentication
         // Getting payment Method Stripe ID and convert Amount Dollor to Cents(Stripe access cents only) and send to firebase server.
         //actualCharge
         //(self.actualCharge * 100.00)
-        let params = ["stripeID":paymentMethod.stripeId,"amount":(Int((self.actualCharge * 100.00).rounded())),"mode":"test"] as [String : Any]
-        //let params = ["stripeID":paymentMethod.stripeId,"amount":(self.actualCharge * 100.00)] as [String : Any]
+        //let params = ["stripeID":paymentMethod.stripeId,"amount":(Int((self.actualCharge * 100.00).rounded())),"mode":"test"] as [String : Any]
+        let params = ["stripeID":paymentMethod.stripeId,"amount":(self.actualCharge * 100.00)] as [String : Any]
         self.depositAmountToWalletThroughStripe(params: params, paymentMethodParams: paymentMethod)
         
 
@@ -241,11 +241,11 @@ class missingMoneyVC: BaseVC,STPAddCardViewControllerDelegate, STPAuthentication
                     let depositedAmount = Double(self.actualCharge)
                     
                     let cardDetails = ["last4":(paymentMethodParams.card?.last4)!,"expireMonth":(paymentMethodParams.card?.expMonth)!,"expireYear":(paymentMethodParams.card?.expYear)!,"country":(paymentMethodParams.card?.country)!] as [String : Any]
-                    print(paymentIntent?.created?.toString(dateFormat: "yyyy-MM-dd HH:mm:ss") as Any)
+                    print(paymentIntent?.created?.toString(dateFormat: "yyyy/MMM/dd HH:mm:ssZ") as Any)
                     
                     
                     
-                    let transactionDict = ["id":(paymentIntent?.stripeId)!,"status":String(paymentIntent!.status.rawValue),"type":"sale","currencyIsoCode":paymentIntent!.currency,"amount":String(depositedAmount),"createdAt":(paymentIntent!.created?.toString(dateFormat: "yyyy-MM-dd HH:mm:ssZ"))!,"updatedAt":(paymentIntent?.created?.toString(dateFormat: "yyyy-MM-dd HH:mm:ssZ"))!,"transactionType":"card","cardDetails":cardDetails,"commission":0.0] as [String : Any]
+                    let transactionDict = ["id":(paymentIntent?.stripeId)!,"status":String(paymentIntent!.status.rawValue),"type":"sale","currencyIsoCode":paymentIntent!.currency,"amount":String(depositedAmount),"createdAt":(paymentIntent!.created?.toString(dateFormat: "yyyy/MMM/dd HH:mm:ssZ"))!,"updatedAt":(paymentIntent?.created?.toString(dateFormat: "yyyy/MMM/dd HH:mm:ssZ"))!,"transactionType":"card","cardDetails":cardDetails,"commission":0.0] as [String : Any]
 
                     
                     if status == "new" {
@@ -309,7 +309,7 @@ class missingMoneyVC: BaseVC,STPAddCardViewControllerDelegate, STPAuthentication
                                    amount = amt
                                 }
                             
-                            transactionHistory.append(Transaction(description: "", details: valueDetails["cardDetails"] as AnyObject, time: valueDetails["updatedAt"] as! String, amount: amount, type: valueDetails["type"] as! String, status: valueDetails["status"] as? String ?? "", userName: valueDetails["userName"] as? String ?? ""))
+                                transactionHistory.append(Transaction(description: "", details: valueDetails["cardDetails"] as AnyObject, time: valueDetails["updatedAt"] as! String, amount: amount, type: valueDetails["type"] as! String, status: valueDetails["status"] as? String ?? "", userName: valueDetails["userName"] as? String ?? "", date: DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: valueDetails["updatedAt"] as! String)))
                                 
                             }
                                 

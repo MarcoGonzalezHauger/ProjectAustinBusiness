@@ -362,9 +362,16 @@ class DistributeVC: BaseVC, changedDelegate, missingMoneyDelegate, dismissSucces
             if referral != "" {
                 
                 let paycomission = originalAmount * 0.01
-                self.PayReferralUser(offer: self.templateOffer!, referralAmount: paycomission, referralID: referral)
+                self.templateOffer?.cashPower = ((self.templateOffer?.cashPower)! - paycomission)
+                //self.PayReferralUser(offer: self.templateOffer!, referralAmount: paycomission, referralID: referral)
                 //originalAmount * (1 - 0.01)
                 self.templateOffer?.referralAmount = paycomission
+                
+                self.templateOffer?.isRefferedByInfluencer = true
+                self.templateOffer?.isReferCommissionPaid = false
+                self.templateOffer?.commission = 0.01
+                self.templateOffer?.referralID = Singleton.sharedInstance.getCompanyDetails().referralcode!
+                
             }
         }
         self.templateOffer?.incresePay = getIncreasePay()
@@ -380,13 +387,13 @@ class DistributeVC: BaseVC, changedDelegate, missingMoneyDelegate, dismissSucces
         
         let expiryDate = DateFormatManager.sharedInstance.getExpiryDate(dateString: dateString)
         self.templateOffer?.expiredate = expiryDate
-        print(Singleton.sharedInstance.getCompanyDetails().referralcode?.count)
-        if Singleton.sharedInstance.getCompanyDetails().referralcode?.count != 0 {
-            self.templateOffer?.isRefferedByInfluencer = true
-            self.templateOffer?.isReferCommissionPaid = false
-            self.templateOffer?.commission = 0.01
-            self.templateOffer?.referralID = Singleton.sharedInstance.getCompanyDetails().referralcode!
-        }
+//        print(Singleton.sharedInstance.getCompanyDetails().referralcode?.count)
+//        if Singleton.sharedInstance.getCompanyDetails().referralcode?.count != 0 {
+//            self.templateOffer?.isRefferedByInfluencer = true
+//            self.templateOffer?.isReferCommissionPaid = false
+//            self.templateOffer?.commission = 0.01
+//            self.templateOffer?.referralID = Singleton.sharedInstance.getCompanyDetails().referralcode!
+//        }
         let path = Auth.auth().currentUser!.uid + "/" + self.templateOffer!.offer_ID
         sentOutOffersToOfferPool(pathString: path, templateOffer: self.templateOffer!) { (offer, status) in
             createTemplateOffer(pathString: path, edited: true, templateOffer: offer) { (tempOffer, status) in

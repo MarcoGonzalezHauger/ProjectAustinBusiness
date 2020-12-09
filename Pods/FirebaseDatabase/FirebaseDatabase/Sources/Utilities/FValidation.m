@@ -96,6 +96,7 @@ NSString *const kInvalidKeyCharacters = @"[].#$/";
     });
 
     NSString *tempPath = pathString;
+    NSLog(@"good=%@",tempPath);
     // HACK: Obj-C regex are kinda' slow.  Do a plain string search first before
     // bothering with the regex.
     if ([pathString rangeOfString:@".info"].location != NSNotFound) {

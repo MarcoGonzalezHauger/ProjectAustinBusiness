@@ -75,7 +75,8 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ViewStat
         if indexPath.row == 0 {
             return 74
         }
-        return 276
+        //return 276
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
@@ -113,7 +114,8 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ViewStat
         //self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
 //        self.addNavigationBarTitleView(title: "Your Offers", image: UIImage())
 //        self.addRightButtonText(text: "Edit")
-        
+        self.shelf.estimatedRowHeight = 276
+        self.shelf.rowHeight = UITableView.automaticDimension
         let timer = Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector(self.timerAction(sender:)), userInfo: nil, repeats: true)
         timer.fire()
         //let user = Singleton.sharedInstance.getCompanyUser().userID!
