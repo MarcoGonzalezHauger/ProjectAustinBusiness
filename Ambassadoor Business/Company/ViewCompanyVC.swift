@@ -96,9 +96,9 @@ class ViewCompanyVC: BaseVC, ImagePickerDelegate, webChangedDelegate, UITextFiel
                 result = "www." + result
             }
             
-            if !result.hasSuffix(".com"){
-               result = result + ".com"
-            }
+//            if !result.hasSuffix(".com"){
+//               result = result + ".com"
+//            }
 			
 //			switch result.split(separator: ".").count {
 //
