@@ -56,6 +56,9 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 		}
 	}
     
+    var loadeDetailedDelegate: checkDetailedViewLoaded?
+    
+    
 	override func viewDidAppear(_ animated: Bool) {
 		if let nc = self.navigationController as? StandardNC {
             nc.tempDelegate = self
@@ -65,6 +68,7 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        //self.loadeDetailedDelegate?.loadedDetailView()
         NotificationCenter.default.addObserver(self, selector: #selector(self.reloadProduct(notification:)), name: Notification.Name.init(rawValue: "reload"), object: nil)
         
         let picker = self.addPickerToolBar(textField: gender, object: ["Male","Female","Other","All"])
@@ -82,12 +86,17 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
     
     func fillEditedInfo() {
         
+        //self.navTop.leftBarButtonItem
         if let segueOffer = segueOffer {
             
 			navTop.title = segueOffer.title
-            //@marco Add suitable title 
-            let leftButton: UIBarButtonItem = UIBarButtonItem.init(title: "Back", style: UIBarButtonItem.Style.done, target: self, action: #selector(self.addPopAction(sender:)))
-            self.navTop.leftBarButtonItem = leftButton
+            //@marco Add suitable title
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                self.navTop.leftBarButtonItem = nil
+            }else{
+                let leftButton: UIBarButtonItem = UIBarButtonItem.init(title: "Back", style: UIBarButtonItem.Style.done, target: self, action: #selector(self.addPopAction(sender:)))
+                self.navTop.leftBarButtonItem = leftButton
+            }
             
             self.offerName.text = segueOffer.title
 			locationFilter = segueOffer.locationFilter
@@ -104,6 +113,8 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 		} else {
 			locationFilter = "nw"
 			self.gender.text = "All"
+            self.offerName.text = ""
+            navTop.title = ""
 			setCategoryLabels()
 			global.post = []
 			reloadTableViewHeight()

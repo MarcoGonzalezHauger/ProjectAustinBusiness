@@ -39,7 +39,15 @@ class viewOfferCell: UITableViewCell {
     
 }
 
-class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ViewStatisticDelegate {
+protocol checkDetailedViewLoaded {
+    func loadedDetailView()
+}
+
+class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ViewStatisticDelegate, checkDetailedViewLoaded {
+    func loadedDetailView() {
+        setInitialDetailViewData()
+    }
+    
     func viewStatisticAction(offer: TemplateOffer) {
         
         self.performSegue(withIdentifier: "OfferlistToStatistics", sender: offer.offerStatistics)
@@ -80,16 +88,60 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ViewStat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        if indexPath.row != 0 {
-            let template = global.OfferDrafts[indexPath.row - 1]
-            template.offerStatistics?.getInformation()
-            self.performSegue(withIdentifier: "toCreateOfferView", sender: template)
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            
+            if let splitVC = self.splitViewController{
+            
+            if let detailNVC = splitVC.viewControllers[1] as? UINavigationController {
+                
+                if let detailVC = detailNVC.topViewController as? AddOfferVC{
+                detailVC.loadeDetailedDelegate = nil
+                if indexPath.row != 0 {
+                let template = global.OfferDrafts[indexPath.row - 1]
+                template.offerStatistics?.getInformation()
+                detailVC.segueOffer = template
+                detailVC.viewDidLoad()
+                }else{
+                detailVC.segueOffer = nil
+                detailVC.viewDidLoad()
+                }
+                }
+                
+            }
+            
         }
+            
+        }else{
+            
+            if indexPath.row != 0 {
+                let template = global.OfferDrafts[indexPath.row - 1]
+                template.offerStatistics?.getInformation()
+                self.performSegue(withIdentifier: "toCreateOfferView", sender: template)
+            }
+            
+        }
+        
     }
     
     @objc func composeAction(sender: UIButton){
         global.post.removeAll()
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            
+            if let splitVC = self.splitViewController{
+            
+            if let detailNVC = splitVC.viewControllers[1] as? UINavigationController {
+                
+                if let detailVC = detailNVC.topViewController as? AddOfferVC{
+                detailVC.loadeDetailedDelegate = nil
+                detailVC.segueOffer = nil
+                detailVC.viewDidLoad()
+                }
+            }
+        }
+        }else{
         self.performSegue(withIdentifier: "toCreateOfferView", sender: nil)
+        }
     }
     
     @objc func editAction(sender: UIButton){
@@ -146,7 +198,8 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ViewStat
         if global.OfferDrafts.count != 0{
             self.editButton.isEnabled = true
             self.shelf.reloadData()
-            
+            //self.setDetailedLoadDelegate()
+            self.setInitialDetailViewData()
         }else{
         //   let checkID = "GoQjJPCnHBVRTc5PxfnjohUWcVw2"
         //Auth.auth().currentUser!.uid
@@ -158,6 +211,8 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ViewStat
                     DispatchQueue.main.async(execute: {
                         self.shelf.reloadData()
                     })
+                    //self.setDetailedLoadDelegate()
+                    self.setInitialDetailViewData()
                 }else{
                     self.editButton.isEnabled = false
                 }
@@ -166,7 +221,48 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ViewStat
         }
     }
     
-    
+    func setDetailedLoadDelegate() {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            
+            if let splitVC = self.splitViewController{
+            
+            if let detailNVC = splitVC.viewControllers[1] as? UINavigationController {
+                
+                if let detailVC = detailNVC.topViewController as? AddOfferVC{
+                    
+                    detailVC.loadeDetailedDelegate = self
+                
+                }
+                
+            }
+            
+        }
+            
+        }
+    }
+        
+    func setInitialDetailViewData() {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            
+            if let splitVC = self.splitViewController{
+            
+            if let detailNVC = splitVC.viewControllers[1] as? UINavigationController {
+                
+                if let detailVC = detailNVC.topViewController as? AddOfferVC{
+                detailVC.loadeDetailedDelegate = nil
+                let template = global.OfferDrafts.first
+                template!.offerStatistics?.getInformation()
+                detailVC.segueOffer = template
+                //detailVC.viewDidLoad()
+                
+                }
+                
+            }
+            
+        }
+            
+        }
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)

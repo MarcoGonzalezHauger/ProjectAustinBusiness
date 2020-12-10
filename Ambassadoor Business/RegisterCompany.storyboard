@@ -29,10 +29,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zdE-96-GJt">
-                                        <rect key="frame" x="20" y="262.5" width="375" height="60"/>
+                                        <rect key="frame" x="0.0" y="262.5" width="415" height="60"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IXa-Wt-Btw" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="9.5" width="343" height="41"/>
+                                                <rect key="frame" x="36" y="9.5" width="343" height="41"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ABC123" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZSm-YY-CIc">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="41"/>
@@ -68,9 +68,9 @@
                                         <constraints>
                                             <constraint firstItem="IXa-Wt-Btw" firstAttribute="top" secondItem="zdE-96-GJt" secondAttribute="top" constant="9.6699999999999999" id="4Ii-UP-DlV"/>
                                             <constraint firstAttribute="bottom" secondItem="IXa-Wt-Btw" secondAttribute="bottom" constant="9.3300000000000001" id="CK1-dL-Mg1"/>
-                                            <constraint firstItem="IXa-Wt-Btw" firstAttribute="leading" secondItem="zdE-96-GJt" secondAttribute="leading" constant="16" id="KWs-e5-gcF"/>
+                                            <constraint firstItem="IXa-Wt-Btw" firstAttribute="leading" secondItem="zdE-96-GJt" secondAttribute="leading" constant="36" id="KWs-e5-gcF"/>
                                             <constraint firstAttribute="height" constant="60" id="pzI-T8-XIm"/>
-                                            <constraint firstAttribute="trailing" secondItem="IXa-Wt-Btw" secondAttribute="trailing" constant="16" id="vju-wW-y7D"/>
+                                            <constraint firstAttribute="trailing" secondItem="IXa-Wt-Btw" secondAttribute="trailing" constant="36" id="vju-wW-y7D"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in their referral code right here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yjw-bQ-nde">
@@ -159,7 +159,6 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="zdE-96-GJt" secondAttribute="trailing" constant="19" id="66I-Ly-NR2"/>
                                     <constraint firstAttribute="trailing" secondItem="lj2-OG-rHp" secondAttribute="trailing" constant="25" id="9Iv-7p-8vl"/>
                                     <constraint firstItem="9hD-TI-I7q" firstAttribute="leading" secondItem="jJf-v8-NHl" secondAttribute="leading" constant="57" id="J1a-gF-0OZ"/>
                                     <constraint firstAttribute="trailing" secondItem="Yjw-bQ-nde" secondAttribute="trailing" constant="27" id="Jv5-9d-Wgz"/>
@@ -167,7 +166,7 @@
                                     <constraint firstItem="lj2-OG-rHp" firstAttribute="centerX" secondItem="jJf-v8-NHl" secondAttribute="centerX" constant="0.5" id="Onw-Pt-97F"/>
                                     <constraint firstItem="lj2-OG-rHp" firstAttribute="leading" secondItem="jJf-v8-NHl" secondAttribute="leading" constant="26" id="RFr-a5-0lc"/>
                                     <constraint firstAttribute="bottom" secondItem="zdE-96-GJt" secondAttribute="bottom" constant="573.5" id="SV3-wM-VXh"/>
-                                    <constraint firstItem="zdE-96-GJt" firstAttribute="leading" secondItem="jJf-v8-NHl" secondAttribute="leading" constant="20" id="TZC-fi-ibX"/>
+                                    <constraint firstItem="zdE-96-GJt" firstAttribute="leading" secondItem="jJf-v8-NHl" secondAttribute="leading" id="TZC-fi-ibX"/>
                                     <constraint firstItem="lj2-OG-rHp" firstAttribute="top" secondItem="jJf-v8-NHl" secondAttribute="top" constant="88" id="cTL-Mf-CZp"/>
                                     <constraint firstItem="Yjw-bQ-nde" firstAttribute="centerX" secondItem="jJf-v8-NHl" secondAttribute="centerX" constant="0.5" id="ee8-RX-1Lh"/>
                                     <constraint firstItem="zdE-96-GJt" firstAttribute="centerX" secondItem="jJf-v8-NHl" secondAttribute="centerX" constant="0.5" id="gcZ-0O-Kwb"/>
@@ -932,8 +931,8 @@ Also, you must have permission to use the company name, logo, and website before
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ATF-7U-h8N" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="786" width="414" height="130"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 1/5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hhX-OW-5qu">
-                                        <rect key="frame" x="165" y="24" width="84.5" height="26.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hhX-OW-5qu">
+                                        <rect key="frame" x="176" y="24" width="62" height="27"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>

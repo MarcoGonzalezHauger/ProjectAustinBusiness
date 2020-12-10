@@ -10,6 +10,35 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--StandardNC-->
+        <scene sceneID="tbj-ZN-K1s">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="vbS-3Y-Pwd" customClass="StandardNC" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xba-Ai-NCQ">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="053-Mc-EGV" kind="relationship" relationship="rootViewController" id="e0I-Rf-BNn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CSb-pl-mfd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="593" y="2781"/>
+        </scene>
+        <!--Statistics-->
+        <scene sceneID="xij-H4-sYd">
+            <objects>
+                <splitViewController id="BbY-PQ-CdV" customClass="CustomSplitVC" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Statistics" image="StatsIcon" id="ojO-EP-PEZ"/>
+                    <connections>
+                        <segue destination="vbS-3Y-Pwd" kind="relationship" relationship="masterViewController" id="dFL-5U-lr1"/>
+                        <segue destination="Tp9-qn-Qz8" kind="relationship" relationship="detailViewController" id="78f-c2-6GO"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fkj-gJ-YTR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-359" y="2781"/>
+        </scene>
         <!--companydetailsVC-->
         <scene sceneID="tg7-3c-GTW">
             <objects>
@@ -39,13 +68,13 @@
                     <connections>
                         <segue destination="04D-1u-Qfa" kind="relationship" relationship="viewControllers" id="JfA-IY-Lfl"/>
                         <segue destination="g8f-wY-PKV" kind="relationship" relationship="viewControllers" id="Iy1-Na-xox"/>
-                        <segue destination="8qU-Gw-MMY" kind="relationship" relationship="viewControllers" id="aky-2j-vUD"/>
-                        <segue destination="XTi-du-dH5" kind="relationship" relationship="viewControllers" id="NBg-RE-EJ4"/>
+                        <segue destination="BbY-PQ-CdV" kind="relationship" relationship="viewControllers" id="d1n-4M-P5R"/>
+                        <segue destination="dZX-er-bUv" kind="relationship" relationship="viewControllers" id="G7n-hg-aH7"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2QY-4w-fxw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="383" y="-220"/>
+            <point key="canvasLocation" x="-359" y="-361"/>
         </scene>
         <!--Money-->
         <scene sceneID="ziG-wZ-SNt">
@@ -58,25 +87,28 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PnE-aS-xWp">
                                 <rect key="frame" x="0.0" y="302" width="375" height="427"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="500" id="qq8-og-PBk"/>
+                                </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TransactionTrunk" rowHeight="110" id="jCf-K5-JVn" customClass="TransactionCell" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="110"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TransactionTrunk" rowHeight="85" id="jCf-K5-JVn" customClass="TransactionCell" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jCf-K5-JVn" id="I0i-3c-6ws">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8cf-5R-cuc" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="5" width="359" height="90"/>
+                                                    <rect key="frame" x="8" y="5" width="359" height="70"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You paid $9.99 to hire 3 influencers" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5Hl-yY-Jm0">
-                                                            <rect key="frame" x="15" y="8" width="224" height="60"/>
+                                                            <rect key="frame" x="15" y="8" width="224" height="54"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-$9.99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="AVe-xB-dQW">
-                                                            <rect key="frame" x="244" y="8" width="100" height="60"/>
+                                                            <rect key="frame" x="244" y="12" width="100" height="27"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="100" id="Mon-iG-D2B"/>
                                                             </constraints>
@@ -84,8 +116,8 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5a-Qq-rtV">
-                                                            <rect key="frame" x="146" y="70" width="198" height="15"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date/Time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5a-Qq-rtV">
+                                                            <rect key="frame" x="146" y="43" width="198" height="15"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="15" id="UtZ-L7-LNl"/>
                                                                 <constraint firstAttribute="width" constant="198" id="Uxv-ZE-2Be"/>
@@ -98,15 +130,15 @@
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
                                                         <constraint firstItem="5Hl-yY-Jm0" firstAttribute="leading" secondItem="8cf-5R-cuc" secondAttribute="leading" constant="15" id="20e-vq-6TB"/>
-                                                        <constraint firstAttribute="height" constant="90" id="6Im-KI-xT8"/>
+                                                        <constraint firstAttribute="height" constant="70" id="6Im-KI-xT8"/>
                                                         <constraint firstAttribute="trailing" secondItem="r5a-Qq-rtV" secondAttribute="trailing" constant="15" id="6Sr-np-AWC"/>
                                                         <constraint firstAttribute="trailing" secondItem="AVe-xB-dQW" secondAttribute="trailing" constant="15" id="7Iq-ux-WTs"/>
-                                                        <constraint firstAttribute="bottom" secondItem="5Hl-yY-Jm0" secondAttribute="bottom" constant="22" id="MzA-e1-03M"/>
-                                                        <constraint firstAttribute="bottom" secondItem="AVe-xB-dQW" secondAttribute="bottom" constant="22" id="j0d-PS-Uje"/>
+                                                        <constraint firstAttribute="bottom" secondItem="5Hl-yY-Jm0" secondAttribute="bottom" constant="8" id="MzA-e1-03M"/>
                                                         <constraint firstItem="5Hl-yY-Jm0" firstAttribute="top" secondItem="8cf-5R-cuc" secondAttribute="top" constant="8" id="jww-Tb-qeW"/>
-                                                        <constraint firstItem="AVe-xB-dQW" firstAttribute="top" secondItem="8cf-5R-cuc" secondAttribute="top" constant="8" id="tFr-9K-p45"/>
+                                                        <constraint firstItem="AVe-xB-dQW" firstAttribute="top" secondItem="8cf-5R-cuc" secondAttribute="top" constant="12" id="tFr-9K-p45"/>
                                                         <constraint firstItem="AVe-xB-dQW" firstAttribute="leading" secondItem="5Hl-yY-Jm0" secondAttribute="trailing" constant="5" id="u7V-6e-OIS"/>
-                                                        <constraint firstAttribute="bottom" secondItem="r5a-Qq-rtV" secondAttribute="bottom" constant="5" id="xA6-ci-YWP"/>
+                                                        <constraint firstItem="r5a-Qq-rtV" firstAttribute="top" secondItem="AVe-xB-dQW" secondAttribute="bottom" constant="4" id="ucd-ui-1cd"/>
+                                                        <constraint firstAttribute="bottom" secondItem="r5a-Qq-rtV" secondAttribute="bottom" constant="12" id="xA6-ci-YWP"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -146,6 +178,16 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="qq8-og-PBk"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="qq8-og-PBk"/>
+                                    </mask>
+                                </variation>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iUJ-4d-GaA" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                 <rect key="frame" x="8" y="107" width="359" height="215"/>
@@ -251,18 +293,23 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="iUJ-4d-GaA" firstAttribute="width" secondItem="PnE-aS-xWp" secondAttribute="width" constant="-16" id="1Un-fc-nx7"/>
                             <constraint firstItem="PnE-aS-xWp" firstAttribute="top" secondItem="iUJ-4d-GaA" secondAttribute="bottom" constant="-20" id="Cb9-db-ckT"/>
                             <constraint firstItem="T6u-w0-1uw" firstAttribute="leading" secondItem="glP-xf-78Q" secondAttribute="leading" id="Duk-Ic-8mL"/>
                             <constraint firstItem="T6u-w0-1uw" firstAttribute="top" secondItem="lqD-5A-X6p" secondAttribute="top" constant="-42" id="I09-dp-DJA"/>
-                            <constraint firstItem="PnE-aS-xWp" firstAttribute="leading" secondItem="lqD-5A-X6p" secondAttribute="leading" id="ME4-hX-7xe"/>
-                            <constraint firstAttribute="trailing" secondItem="iUJ-4d-GaA" secondAttribute="trailing" constant="8" id="NOd-yv-quI"/>
                             <constraint firstItem="lqD-5A-X6p" firstAttribute="bottom" secondItem="PnE-aS-xWp" secondAttribute="bottom" id="OU1-y1-4Df"/>
                             <constraint firstItem="lqD-5A-X6p" firstAttribute="trailing" secondItem="T6u-w0-1uw" secondAttribute="trailing" id="bvG-0L-4dU"/>
-                            <constraint firstItem="lqD-5A-X6p" firstAttribute="trailing" secondItem="PnE-aS-xWp" secondAttribute="trailing" id="cQf-RM-rfs"/>
-                            <constraint firstItem="iUJ-4d-GaA" firstAttribute="leading" secondItem="lqD-5A-X6p" secondAttribute="leading" constant="8" id="gfJ-RC-wbo"/>
+                            <constraint firstItem="PnE-aS-xWp" firstAttribute="centerX" secondItem="glP-xf-78Q" secondAttribute="centerX" id="cWS-nZ-zJP"/>
                             <constraint firstItem="iUJ-4d-GaA" firstAttribute="top" secondItem="T6u-w0-1uw" secondAttribute="bottom" constant="8" id="gk4-ya-FKh"/>
+                            <constraint firstItem="PnE-aS-xWp" firstAttribute="leading" secondItem="lqD-5A-X6p" secondAttribute="leading" id="qkV-mE-zpL"/>
+                            <constraint firstItem="iUJ-4d-GaA" firstAttribute="centerX" secondItem="glP-xf-78Q" secondAttribute="centerX" id="rde-mT-Dv5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lqD-5A-X6p"/>
+                        <variation key="widthClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="qkV-mE-zpL"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Money" image="MoneyIcon" id="4eJ-Ab-8ei"/>
                     <connections>
@@ -768,7 +815,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TgL-14-kQG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1376.8" y="1228.8177339901479"/>
+            <point key="canvasLocation" x="1159" y="1285"/>
         </scene>
         <!--Influencer ListVC-->
         <scene sceneID="bJQ-FP-VSL">
@@ -927,7 +974,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NYN-Ep-aY2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1296.8" y="513.54679802955673"/>
+            <point key="canvasLocation" x="2006" y="1228"/>
         </scene>
         <!--Your Offers-->
         <scene sceneID="p31-Gk-Pea">
@@ -1133,18 +1180,45 @@ Send out an offer and you will be updated in real-time about influencers activit
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s3s-at-Cbl" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2527" y="1265"/>
+            <point key="canvasLocation" x="1684" y="-55"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="6Ny-ku-veB">
+            <objects>
+                <viewController id="ARg-hT-ixd" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zO2-ni-X01">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select an offer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xuk-sK-WrW">
+                                <rect key="frame" x="132" y="395.66666666666669" width="111" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="xuk-sK-WrW" firstAttribute="centerX" secondItem="zO2-ni-X01" secondAttribute="centerX" id="0nv-L8-BwI"/>
+                            <constraint firstItem="xuk-sK-WrW" firstAttribute="centerY" secondItem="zO2-ni-X01" secondAttribute="centerY" id="QDy-dx-Kud"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="TCs-xM-iIj"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KoF-zc-hH6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="823" y="-1938"/>
         </scene>
         <!--Add OfferVC-->
         <scene sceneID="rJJ-kO-sli">
             <objects>
                 <viewController id="LOf-8t-dcQ" customClass="AddOfferVC" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AvY-rL-0gr">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1312"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b8P-61-ypZ">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="1263"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="1351"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Offer Name (only you will see this)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXP-gn-dXA">
                                         <rect key="frame" x="76.333333333333343" y="30" width="261.66666666666663" height="21"/>
@@ -1168,7 +1242,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3c2-kS-e9D">
-                                        <rect key="frame" x="8" y="445.33333333333337" width="398" height="34"/>
+                                        <rect key="frame" x="8" y="445.33333333333331" width="398" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="ZdF-rZ-3xD"/>
                                         </constraints>
@@ -1255,7 +1329,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                         </connections>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Desired Location of Influencer sadkf hasklf jhasklfj h asflk jh asdlfk jhasdlfk jh aslkdjfh asdf " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOX-C5-OgT">
-                                        <rect key="frame" x="8" y="487.33333333333337" width="398" height="33.666666666666629"/>
+                                        <rect key="frame" x="8" y="487.33333333333331" width="398" height="33.666666666666686"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1388,7 +1462,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                 <viewLayoutGuide key="frameLayoutGuide" id="K4j-HZ-BP0"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xfr-j1-siK" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                <rect key="frame" x="20" y="1159" width="374" height="58"/>
+                                <rect key="frame" x="20" y="1247" width="374" height="58"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="76a-qi-rPn">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="58"/>
@@ -1467,14 +1541,14 @@ Send out an offer and you will be updated in real-time about influencers activit
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3195.6521739130435" y="2084.5982142857142"/>
+            <point key="canvasLocation" x="2894" y="1700"/>
         </scene>
         <!--CategoryTVC-->
         <scene sceneID="4cJ-hr-o67">
             <objects>
                 <tableViewController id="kwG-IA-asn" customClass="CategoryTVC" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" allowsMultipleSelection="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="1" id="98w-0h-6kA">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <color key="sectionIndexColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1513,6 +1587,51 @@ Send out an offer and you will be updated in real-time about influencers activit
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qpq-Yo-V37" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2084" y="2150"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="rCd-Yf-vAV">
+            <objects>
+                <navigationController id="VOy-k3-J51" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="74z-zh-h0M">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="OP9-5o-lqN" kind="relationship" relationship="rootViewController" id="CZY-zR-M6U"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uwC-7L-jtg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2206" y="-1733"/>
+        </scene>
+        <!--Offers-->
+        <scene sceneID="DyU-je-KcM">
+            <objects>
+                <splitViewController id="dZX-er-bUv" customClass="CustomSplitVC" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Offers" image="OffersIcon" id="Pjf-t2-i0l"/>
+                    <connections>
+                        <segue destination="VOy-k3-J51" kind="relationship" relationship="masterViewController" id="M6E-dr-3Cc"/>
+                        <segue destination="7Jy-zi-hRi" kind="relationship" relationship="detailViewController" id="vmE-yU-ww5"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r4V-tw-vkX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1399" y="-1180"/>
+        </scene>
+        <!--Offers-->
+        <scene sceneID="GW2-9h-xti">
+            <objects>
+                <splitViewController presentsWithGesture="NO" id="Gd7-cu-py0" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Offers" image="OffersIcon" id="oLI-Lx-Nkg"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="XTi-du-dH5" kind="relationship" relationship="masterViewController" id="pki-iV-mcs"/>
+                        <segue destination="ARg-hT-ixd" kind="relationship" relationship="detailViewController" id="wFD-l7-9wL"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jct-Ce-RyB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-764" y="-1938"/>
         </scene>
         <!--Missing MoneyVC-->
         <scene sceneID="fIz-OO-Dsw">
@@ -2206,11 +2325,11 @@ to distribute with the desired budget.</string>
             <objects>
                 <viewController id="cYR-2c-rAu" customClass="DistributeVC" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="R6H-ty-tfE">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1312"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kpt-B2-2wb">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="1312"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="1400"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JTS-yn-ZSV">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1265"/>
@@ -2231,7 +2350,7 @@ to distribute with the desired budget.</string>
                                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="31"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category Filter (21 selected)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zbi-Ds-QtF">
-                                                                        <rect key="frame" x="57" y="5.3333333333333144" width="325" height="20.333333333333332"/>
+                                                                        <rect key="frame" x="57" y="5.3333333333333357" width="325" height="20.333333333333332"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -2255,10 +2374,10 @@ to distribute with the desired budget.</string>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YMt-Sw-Hrt">
-                                                                <rect key="frame" x="0.0" y="39" width="382" height="31"/>
+                                                                <rect key="frame" x="0.0" y="38.999999999999993" width="382" height="31.000000000000007"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Filter (3 radiuses selected)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n56-dB-Wbt">
-                                                                        <rect key="frame" x="57" y="5.3333333333333144" width="325" height="20.333333333333332"/>
+                                                                        <rect key="frame" x="57" y="5.3333333333333428" width="325" height="20.333333333333332"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -2342,7 +2461,7 @@ to distribute with the desired budget.</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bJ2-gX-ndr" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="195.33333333333331" width="398" height="106.33333333333331"/>
+                                                <rect key="frame" x="8" y="195.33333333333334" width="398" height="106.33333333333334"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="With your filters, approximatly" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A3U-kM-4ns">
                                                         <rect key="frame" x="96.666666666666686" y="8" width="205" height="18"/>
@@ -2351,7 +2470,7 @@ to distribute with the desired budget.</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="influencers will be able to accept this offer." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7L-Sx-YMS">
-                                                        <rect key="frame" x="52.666666666666657" y="80.333333333333371" width="293" height="18"/>
+                                                        <rect key="frame" x="52.666666666666657" y="80.333333333333343" width="293" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -2455,7 +2574,7 @@ to distribute with the desired budget.</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8f5-2Y-Ufl" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="498.66666666666663" width="398" height="174"/>
+                                                <rect key="frame" x="8" y="498.66666666666674" width="398" height="174"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dyz-me-pSN">
                                                         <rect key="frame" x="16" y="11.999999999999996" width="366" height="40.666666666666657"/>
@@ -2466,12 +2585,12 @@ Increase their pay by:</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+10%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVB-go-EUv">
-                                                        <rect key="frame" x="162.66666666666666" y="68.666666666666742" width="72.666666666666657" height="32.333333333333343"/>
+                                                        <rect key="frame" x="162.66666666666666" y="68.666666666666686" width="72.666666666666657" height="32.333333333333343"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="FY1-ud-ngp">
-                                                        <rect key="frame" x="14" y="126" width="370" height="31"/>
+                                                        <rect key="frame" x="14" y="125.99999999999994" width="370" height="31"/>
                                                         <color key="minimumTrackTintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <connections>
                                                             <action selector="increasePayChanged:" destination="cYR-2c-rAu" eventType="valueChanged" id="27m-J0-Ulx"/>
@@ -2549,7 +2668,7 @@ Increase their pay by:</string>
                                                         </constraints>
                                                     </stackView>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="Uxx-QJ-MmH">
-                                                        <rect key="frame" x="14" y="301.66666666666663" width="370" height="31"/>
+                                                        <rect key="frame" x="14" y="301.66666666666674" width="370" height="31"/>
                                                         <color key="minimumTrackTintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="maximumTrackTintColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                                         <connections>
@@ -2783,11 +2902,11 @@ Increase their pay by:</string>
             <objects>
                 <viewController id="xUV-2f-92G" customClass="AddPostVC" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MSA-C0-BJi">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="gbF-5S-nc7">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9gd-It-qtM" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                         <rect key="frame" x="142.66666666666666" y="43" width="90" height="90"/>
@@ -3117,7 +3236,7 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                                 <viewLayoutGuide key="frameLayoutGuide" id="f29-qR-kmY"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qC8-Bp-q4l" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                <rect key="frame" x="20" y="571" width="335" height="58"/>
+                                <rect key="frame" x="20" y="659" width="335" height="58"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wy8-92-gcg">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="58"/>
@@ -3184,26 +3303,38 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mg5-SF-9QI">
-                                <rect key="frame" x="20" y="213.66666666666663" width="335" height="335"/>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nyq-ek-ell">
+                                <rect key="frame" x="20" y="228.66666666666663" width="335" height="335"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IA9-mV-LG1">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mg5-SF-9QI">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="335"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IA9-mV-LG1">
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="300" id="L27-07-t3U"/>
+                                                    <constraint firstAttribute="width" constant="300" id="V7q-JM-Q2O"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="300" id="L27-07-t3U"/>
-                                            <constraint firstAttribute="width" constant="300" id="V7q-JM-Q2O"/>
+                                            <constraint firstItem="IA9-mV-LG1" firstAttribute="leading" secondItem="mg5-SF-9QI" secondAttribute="leading" id="6QD-Iq-KHi"/>
+                                            <constraint firstAttribute="bottom" secondItem="IA9-mV-LG1" secondAttribute="bottom" id="IOd-1K-4SA"/>
+                                            <constraint firstItem="IA9-mV-LG1" firstAttribute="top" secondItem="mg5-SF-9QI" secondAttribute="top" id="Sp9-4y-J0S"/>
+                                            <constraint firstAttribute="trailing" secondItem="IA9-mV-LG1" secondAttribute="trailing" id="fIG-fg-u2X"/>
                                         </constraints>
-                                    </imageView>
+                                    </scrollView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstItem="IA9-mV-LG1" firstAttribute="leading" secondItem="mg5-SF-9QI" secondAttribute="leading" id="6QD-Iq-KHi"/>
-                                    <constraint firstAttribute="bottom" secondItem="IA9-mV-LG1" secondAttribute="bottom" id="IOd-1K-4SA"/>
-                                    <constraint firstItem="IA9-mV-LG1" firstAttribute="top" secondItem="mg5-SF-9QI" secondAttribute="top" id="Sp9-4y-J0S"/>
-                                    <constraint firstAttribute="trailing" secondItem="IA9-mV-LG1" secondAttribute="trailing" id="fIG-fg-u2X"/>
-                                    <constraint firstAttribute="width" secondItem="mg5-SF-9QI" secondAttribute="height" id="paX-Hh-We9"/>
+                                    <constraint firstItem="mg5-SF-9QI" firstAttribute="top" secondItem="Nyq-ek-ell" secondAttribute="top" id="D6g-Mm-ReX"/>
+                                    <constraint firstAttribute="width" secondItem="Nyq-ek-ell" secondAttribute="height" multiplier="1:1" id="EGs-7c-2ze"/>
+                                    <constraint firstItem="mg5-SF-9QI" firstAttribute="leading" secondItem="Nyq-ek-ell" secondAttribute="leading" id="KrT-s0-YdP"/>
+                                    <constraint firstAttribute="trailing" secondItem="mg5-SF-9QI" secondAttribute="trailing" id="QUQ-ez-wsH"/>
+                                    <constraint firstAttribute="bottom" secondItem="mg5-SF-9QI" secondAttribute="bottom" id="tO8-7Y-UPN"/>
                                 </constraints>
-                            </scrollView>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oDX-3R-NhQ">
                                 <rect key="frame" x="0.0" y="728" width="375" height="50"/>
                                 <subviews>
@@ -3242,7 +3373,7 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crop Logo to Circle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wBd-Ay-ju9">
-                                <rect key="frame" x="97.666666666666686" y="155.66666666666666" width="180" height="26"/>
+                                <rect key="frame" x="97.666666666666686" y="170.66666666666666" width="180" height="26"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="21"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -3258,16 +3389,16 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Nyq-ek-ell" firstAttribute="centerY" secondItem="oEW-CC-fTP" secondAttribute="centerY" constant="-10" id="1Zt-8a-tfg"/>
                             <constraint firstItem="86W-8j-Lpf" firstAttribute="trailing" secondItem="VYB-TM-Zu1" secondAttribute="trailing" id="80J-Nk-f8R"/>
                             <constraint firstItem="VYB-TM-Zu1" firstAttribute="trailing" secondItem="oDX-3R-NhQ" secondAttribute="trailing" id="8QI-TY-ky5"/>
+                            <constraint firstItem="VYB-TM-Zu1" firstAttribute="trailing" secondItem="Nyq-ek-ell" secondAttribute="trailing" constant="20" id="91D-pp-GHY"/>
                             <constraint firstItem="wBd-Ay-ju9" firstAttribute="centerX" secondItem="VYB-TM-Zu1" secondAttribute="centerX" id="BHA-Py-Oem"/>
                             <constraint firstItem="86W-8j-Lpf" firstAttribute="leading" secondItem="VYB-TM-Zu1" secondAttribute="leading" id="PMg-Qf-Faj"/>
-                            <constraint firstItem="mg5-SF-9QI" firstAttribute="centerY" secondItem="oEW-CC-fTP" secondAttribute="centerY" constant="-25" id="SRz-ZH-ZzV"/>
-                            <constraint firstItem="mg5-SF-9QI" firstAttribute="trailing" secondItem="VYB-TM-Zu1" secondAttribute="trailing" constant="-20" id="SvX-jp-p7v"/>
+                            <constraint firstItem="Nyq-ek-ell" firstAttribute="leading" secondItem="VYB-TM-Zu1" secondAttribute="leading" constant="20" id="RRV-Yd-LfG"/>
                             <constraint firstItem="oDX-3R-NhQ" firstAttribute="bottom" secondItem="VYB-TM-Zu1" secondAttribute="bottom" id="UeY-w2-NYz"/>
-                            <constraint firstItem="mg5-SF-9QI" firstAttribute="top" secondItem="wBd-Ay-ju9" secondAttribute="bottom" constant="32" id="kF5-3x-huB"/>
+                            <constraint firstItem="Nyq-ek-ell" firstAttribute="top" secondItem="wBd-Ay-ju9" secondAttribute="bottom" constant="32" id="fzj-tj-GwF"/>
                             <constraint firstItem="86W-8j-Lpf" firstAttribute="top" secondItem="oEW-CC-fTP" secondAttribute="top" id="omJ-Qh-Yjn"/>
-                            <constraint firstItem="mg5-SF-9QI" firstAttribute="leading" secondItem="VYB-TM-Zu1" secondAttribute="leading" constant="20" id="qnz-3d-gHd"/>
                             <constraint firstItem="oDX-3R-NhQ" firstAttribute="leading" secondItem="VYB-TM-Zu1" secondAttribute="leading" id="tvB-zq-nZn"/>
                             <constraint firstAttribute="bottom" secondItem="86W-8j-Lpf" secondAttribute="bottom" id="vHj-Qg-zKy"/>
                         </constraints>
@@ -3280,6 +3411,7 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                         <outlet property="imageView" destination="IA9-mV-LG1" id="aog-y0-yIM"/>
                         <outlet property="imgHeight" destination="L27-07-t3U" id="EZN-V5-coz"/>
                         <outlet property="imgWidth" destination="V7q-JM-Q2O" id="f8j-so-cIG"/>
+                        <outlet property="outView" destination="Nyq-ek-ell" id="PKW-aR-d0c"/>
                         <outlet property="scrollView" destination="mg5-SF-9QI" id="V3F-BL-mjx"/>
                     </connections>
                 </viewController>
@@ -4935,11 +5067,10 @@ You must have permission to use the company name, logo, website, etc. before reg
             </objects>
             <point key="canvasLocation" x="823" y="1618"/>
         </scene>
-        <!--Offers-->
+        <!--Navigation Controller-->
         <scene sceneID="ZYz-JP-w9w">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XTi-du-dH5" customClass="StandardNC" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Offers" image="OffersIcon" id="gOi-NE-iHA"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XTi-du-dH5" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="51B-jP-QQh">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -4952,7 +5083,7 @@ You must have permission to use the company name, logo, website, etc. before reg
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dH9-hO-mdY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2122" y="538"/>
+            <point key="canvasLocation" x="-764" y="-1247"/>
         </scene>
         <!--Filter TypeVC-->
         <scene sceneID="1tl-hQ-5Ua">
@@ -5522,6 +5653,22 @@ You must have permission to use the company name, logo, website, etc. before reg
             </objects>
             <point key="canvasLocation" x="3196" y="538"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="P0M-hA-knn">
+            <objects>
+                <navigationController id="7Jy-zi-hRi" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9xn-xC-Kek">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="LOf-8t-dcQ" kind="relationship" relationship="rootViewController" id="E7a-DG-gcW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x2I-qW-fBC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2442" y="-860"/>
+        </scene>
         <!--Select RadiiVC-->
         <scene sceneID="W7W-Yw-3t1">
             <objects>
@@ -5557,7 +5704,7 @@ You must have permission to use the company name, logo, website, etc. before reg
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DeF-Of-9X6">
                                                             <rect key="frame" x="16" y="6.6666666666666643" width="196.66666666666666" height="71"/>
                                                             <subviews>
-                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zip Code" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O1o-XU-UnB">
+                                                                <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zip Code" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O1o-XU-UnB">
                                                                     <rect key="frame" x="89" y="0.0" width="107.66666666666669" height="34"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="postal-code"/>
@@ -5565,13 +5712,13 @@ You must have permission to use the company name, logo, website, etc. before reg
                                                                         <action selector="zipChanged:" destination="XoO-IN-buL" eventType="editingChanged" id="Gta-Z8-ouW"/>
                                                                     </connections>
                                                                 </textField>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSv-vy-YMO">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSv-vy-YMO">
                                                                     <rect key="frame" x="0.0" y="5.3333333333333357" width="73" height="23"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="in Miles" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JsN-Xc-K10">
+                                                                <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="in Miles" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JsN-Xc-K10">
                                                                     <rect key="frame" x="89" y="37" width="107.66666666666669" height="34"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -5579,7 +5726,7 @@ You must have permission to use the company name, logo, website, etc. before reg
                                                                         <action selector="milesChanged:" destination="XoO-IN-buL" eventType="editingChanged" id="nsl-LJ-Uc6"/>
                                                                     </connections>
                                                                 </textField>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Radius" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SF8-uo-ngt">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Radius" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SF8-uo-ngt">
                                                                     <rect key="frame" x="0.0" y="42.333333333333336" width="58" height="23.000000000000007"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                                     <nil key="textColor"/>
@@ -5921,9 +6068,43 @@ You must have permission to use the company name, logo, website, etc. before reg
             </objects>
             <point key="canvasLocation" x="-1282" y="2625"/>
         </scene>
+        <!--Offers-->
+        <scene sceneID="Ke8-4S-6FG">
+            <objects>
+                <viewController id="DzT-g4-nuV" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HxG-6E-5jJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KIY-Ki-sfP">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <connections>
+                                    <segue destination="Gd7-cu-py0" kind="embed" id="ln3-PK-29q"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="KIY-Ki-sfP" firstAttribute="leading" secondItem="HxG-6E-5jJ" secondAttribute="leading" id="2PY-2k-mj7"/>
+                            <constraint firstAttribute="bottom" secondItem="KIY-Ki-sfP" secondAttribute="bottom" id="cqx-Yr-qWo"/>
+                            <constraint firstAttribute="trailing" secondItem="KIY-Ki-sfP" secondAttribute="trailing" id="dgj-3e-kr2"/>
+                            <constraint firstItem="KIY-Ki-sfP" firstAttribute="top" secondItem="HxG-6E-5jJ" secondAttribute="top" id="f0b-wQ-IIQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VWL-DX-hrA"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Offers" image="OffersIcon" id="75v-mH-3Cx"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wRF-Na-mgG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1857" y="-1667"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="yBa-iP-b84"/>
+        <segue reference="E7a-DG-gcW"/>
+        <segue reference="LAC-YR-YEa"/>
+        <segue reference="S7s-bK-fF5"/>
+        <segue reference="e0I-Rf-BNn"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="BusinessGradient" width="1000" height="2000"/>

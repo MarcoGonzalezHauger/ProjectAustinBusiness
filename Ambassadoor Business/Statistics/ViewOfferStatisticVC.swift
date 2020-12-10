@@ -91,12 +91,16 @@ class ViewOfferStatisticVC: UIViewController, UITableViewDelegate, UITableViewDa
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		influencerShelf.delegate = self
-		influencerShelf.dataSource = self
-		saleStatsLabel.text = "\"" + stat!.offer.title + "\" Statistics"
+        if stat != nil {
+        influencerShelf.delegate = self
+        influencerShelf.dataSource = self
+        influencerShelf.reloadData()
+        saleStatsLabel.text = "\"" + stat!.offer.title + "\" Statistics"
         self.updateTableConstraints()
         self.setBarGraph()
-		wasVerifiedLabel.text = stat!.posted.count == 0 ? "No posts were verified yet.\nYou will see them here when they are." : "Posts that were verified:"
+        wasVerifiedLabel.text = stat!.posted.count == 0 ? "No posts were verified yet.\nYou will see them here when they are." : "Posts that were verified:"
+        }
+        
     }
     
 		func updateTableConstraints() {

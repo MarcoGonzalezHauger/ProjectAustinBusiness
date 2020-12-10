@@ -87,6 +87,7 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
 	}
 	
 	let imagePicker = UIImagePickerController()
+	@IBOutlet weak var outView: UIView!
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,12 +96,13 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
 		imagePicker.delegate = self
 		imagePicker.sourceType = .photoLibrary
 		imagePicker.allowsEditing = false
-		scrollView.layer.cornerRadius = (view.bounds.width - 40) / 2
+		outView.layer.cornerRadius = outView.bounds.width / 2
     }
 	
 	var alreadyPresented: Bool = false
 	
 	override func viewDidAppear(_ animated: Bool) {
+		outView.layer.cornerRadius = outView.bounds.width / 2
 		if alreadyPresented {
 			return
 		}

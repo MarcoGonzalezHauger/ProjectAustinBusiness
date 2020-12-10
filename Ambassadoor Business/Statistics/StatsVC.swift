@@ -86,9 +86,23 @@ class StatsVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
 	var statToPass: OfferStatistic!
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            
+            if let splitVC = self.splitViewController{
+                            
+                if let detailVC = splitVC.viewControllers[1] as? ViewOfferStatisticVC{
+                statToPass = distributedOffers[indexPath.row]
+                detailVC.stat = statToPass
+                detailVC.viewDidLoad()
+                
+                }
+        }
+            
+        }else{
 		statToPass = distributedOffers[indexPath.row]
 		performSegue(withIdentifier: "toStatInfo", sender: self)
 		tableView.deselectRow(at: indexPath, animated: true)
+        }
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -129,11 +143,28 @@ class StatsVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
 							self.firstGrab = false
 						}
 						self.getStatsForAllOffers()
+                        self.setInitialDetailViewData()
 					}
 				}
 			}
 		}
 	}
+    
+    func setInitialDetailViewData() {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            
+            if let splitVC = self.splitViewController{
+                            
+                if let detailVC = splitVC.viewControllers[1] as? ViewOfferStatisticVC{
+                statToPass = distributedOffers[0]
+                detailVC.stat = statToPass
+                detailVC.viewDidLoad()
+                
+                }
+        }
+            
+        }
+    }
 	
 	func NoStatsLabel(_ setVisible: Bool) {
 		noStatsLabel.isHidden = !setVisible
@@ -177,7 +208,7 @@ class StatsVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
                         self.firstGrab = false
                     
                     self.getStatsForAllOffers()
-                
+                    setInitialDetailViewData()
 
                 
             }else{
