@@ -89,12 +89,25 @@ class StatsVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         if UIDevice.current.userInterfaceIdiom == .pad {
             
             if let splitVC = self.splitViewController{
-                            
-                if let detailVC = splitVC.viewControllers[1] as? ViewOfferStatisticVC{
-                statToPass = distributedOffers[indexPath.row]
-                detailVC.stat = statToPass
-                detailVC.viewDidLoad()
                 
+                if splitVC.viewControllers.count == 1{
+                    /*
+                    if let detailVC = splitVC.viewControllers[0] as? ViewOfferStatisticVC{
+                    statToPass = distributedOffers[indexPath.row]
+                    detailVC.stat = statToPass
+                    detailVC.viewDidLoad()
+                    }
+                    */
+                    statToPass = distributedOffers[indexPath.row]
+                    performSegue(withIdentifier: "toStatInfo", sender: self)
+                    tableView.deselectRow(at: indexPath, animated: true)
+                    
+                }else{
+                    if let detailVC = splitVC.viewControllers[1] as? ViewOfferStatisticVC{
+                    statToPass = distributedOffers[indexPath.row]
+                    detailVC.stat = statToPass
+                    detailVC.viewDidLoad()
+                    }
                 }
         }
             
@@ -154,12 +167,25 @@ class StatsVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         if UIDevice.current.userInterfaceIdiom == .pad {
             
             if let splitVC = self.splitViewController{
-                            
+                
+                print("split==",splitVC.viewControllers.count)
+                
+                if splitVC.viewControllers.count == 1{
+                    
+                    if let detailVC = splitVC.viewControllers[0] as? ViewOfferStatisticVC{
+                    statToPass = distributedOffers[0]
+                    detailVC.stat = statToPass
+                    detailVC.viewDidLoad()
+                    }
+                    
+                }else{
+                
                 if let detailVC = splitVC.viewControllers[1] as? ViewOfferStatisticVC{
                 statToPass = distributedOffers[0]
                 detailVC.stat = statToPass
                 detailVC.viewDidLoad()
                 
+                }
                 }
         }
             

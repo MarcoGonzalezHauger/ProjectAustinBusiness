@@ -92,23 +92,48 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ViewStat
         if UIDevice.current.userInterfaceIdiom == .pad {
             
             if let splitVC = self.splitViewController{
-            
-            if let detailNVC = splitVC.viewControllers[1] as? UINavigationController {
                 
-                if let detailVC = detailNVC.topViewController as? AddOfferVC{
-                detailVC.loadeDetailedDelegate = nil
-                if indexPath.row != 0 {
-                let template = global.OfferDrafts[indexPath.row - 1]
-                template.offerStatistics?.getInformation()
-                detailVC.segueOffer = template
-                detailVC.viewDidLoad()
+                if splitVC.viewControllers.count == 1{
+                    /*
+                    if let detailNVC = splitVC.viewControllers[1] as? UINavigationController {
+                        
+                        if let detailVC = detailNVC.topViewController as? AddOfferVC{
+                        detailVC.loadeDetailedDelegate = nil
+                        if indexPath.row != 0 {
+                        let template = global.OfferDrafts[indexPath.row - 1]
+                        template.offerStatistics?.getInformation()
+                        detailVC.segueOffer = template
+                        detailVC.viewDidLoad()
+                        }else{
+                        detailVC.segueOffer = nil
+                        detailVC.viewDidLoad()
+                        }
+                        }
+                        
+                    }
+                    */
+                    let template = global.OfferDrafts[indexPath.row - 1]
+                    template.offerStatistics?.getInformation()
+                    self.performSegue(withIdentifier: "toCreateOfferView", sender: template)
+                    
                 }else{
-                detailVC.segueOffer = nil
-                detailVC.viewDidLoad()
+                    if let detailNVC = splitVC.viewControllers[1] as? UINavigationController {
+                        
+                        if let detailVC = detailNVC.topViewController as? AddOfferVC{
+                        detailVC.loadeDetailedDelegate = nil
+                        if indexPath.row != 0 {
+                        let template = global.OfferDrafts[indexPath.row - 1]
+                        template.offerStatistics?.getInformation()
+                        detailVC.segueOffer = template
+                        detailVC.viewDidLoad()
+                        }else{
+                        detailVC.segueOffer = nil
+                        detailVC.viewDidLoad()
+                        }
+                        }
+                        
+                    }
                 }
-                }
-                
-            }
             
         }
             
@@ -246,18 +271,37 @@ class ViewOffersVC: BaseVC, UITableViewDelegate, UITableViewDataSource, ViewStat
             
             if let splitVC = self.splitViewController{
             
-            if let detailNVC = splitVC.viewControllers[1] as? UINavigationController {
-                
-                if let detailVC = detailNVC.topViewController as? AddOfferVC{
-                detailVC.loadeDetailedDelegate = nil
-                let template = global.OfferDrafts.first
-                template!.offerStatistics?.getInformation()
-                detailVC.segueOffer = template
-                //detailVC.viewDidLoad()
-                
+                if splitVC.viewControllers.count == 1{
+                    if let detailNVC = splitVC.viewControllers[0] as? UINavigationController {
+                        
+                        if let detailVC = detailNVC.topViewController as? AddOfferVC{
+                        detailVC.loadeDetailedDelegate = nil
+                        let template = global.OfferDrafts.first
+                        template!.offerStatistics?.getInformation()
+                        detailVC.segueOffer = template
+                        //detailVC.viewDidLoad()
+                        
+                        }
+                        
+                    }
+                }else{
+                    
+                    if let detailNVC = splitVC.viewControllers[1] as? UINavigationController {
+                        
+                        if let detailVC = detailNVC.topViewController as? AddOfferVC{
+                        detailVC.loadeDetailedDelegate = nil
+                        let template = global.OfferDrafts.first
+                        template!.offerStatistics?.getInformation()
+                        detailVC.segueOffer = template
+                        //detailVC.viewDidLoad()
+                        
+                        }
+                        
+                    }
+                    
                 }
                 
-            }
+            
             
         }
             
