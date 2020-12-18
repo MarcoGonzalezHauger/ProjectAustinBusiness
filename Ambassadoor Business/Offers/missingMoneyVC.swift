@@ -47,8 +47,8 @@ class missingMoneyVC: BaseVC,STPAddCardViewControllerDelegate, STPAuthentication
         // Getting payment Method Stripe ID and convert Amount Dollor to Cents(Stripe access cents only) and send to firebase server.
         //actualCharge
         //(self.actualCharge * 100.00)
-        let params = ["stripeID":paymentMethod.stripeId,"amount":(Int((self.actualCharge * 100.00).rounded())),"mode":"test"] as [String : Any]
-        //let params = ["stripeID":paymentMethod.stripeId,"amount":(self.actualCharge * 100.00)] as [String : Any]
+        //let params = ["stripeID":paymentMethod.stripeId,"amount":(Int((self.actualCharge * 100.00).rounded())),"mode":"test"] as [String : Any]
+        let params = ["stripeID":paymentMethod.stripeId,"amount":(self.actualCharge * 100.00)] as [String : Any]
         self.depositAmountToWalletThroughStripe(params: params, paymentMethodParams: paymentMethod)
         
 
