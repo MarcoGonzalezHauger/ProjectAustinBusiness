@@ -91,15 +91,15 @@
                                     <constraint firstAttribute="width" constant="500" id="qq8-og-PBk"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TransactionTrunk" rowHeight="85" id="jCf-K5-JVn" customClass="TransactionCell" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="85"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TransactionTrunk" rowHeight="95" id="jCf-K5-JVn" customClass="TransactionCell" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="95"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jCf-K5-JVn" id="I0i-3c-6ws">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="95"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8cf-5R-cuc" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="5" width="359" height="70"/>
+                                                    <rect key="frame" x="8" y="5" width="359" height="80"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You paid $9.99 to hire 3 influencers" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5Hl-yY-Jm0">
                                                             <rect key="frame" x="15" y="8" width="224" height="54"/>
@@ -108,7 +108,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-$9.99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="AVe-xB-dQW">
-                                                            <rect key="frame" x="244" y="12" width="100" height="27"/>
+                                                            <rect key="frame" x="244" y="12" width="100" height="47"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="100" id="Mon-iG-D2B"/>
                                                             </constraints>
@@ -117,7 +117,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date/Time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5a-Qq-rtV">
-                                                            <rect key="frame" x="146" y="43" width="198" height="15"/>
+                                                            <rect key="frame" x="146" y="63" width="198" height="15"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="15" id="UtZ-L7-LNl"/>
                                                                 <constraint firstAttribute="width" constant="198" id="Uxv-ZE-2Be"/>
@@ -130,15 +130,15 @@
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
                                                         <constraint firstItem="5Hl-yY-Jm0" firstAttribute="leading" secondItem="8cf-5R-cuc" secondAttribute="leading" constant="15" id="20e-vq-6TB"/>
-                                                        <constraint firstAttribute="height" constant="70" id="6Im-KI-xT8"/>
+                                                        <constraint firstAttribute="height" constant="80" id="6Im-KI-xT8"/>
                                                         <constraint firstAttribute="trailing" secondItem="r5a-Qq-rtV" secondAttribute="trailing" constant="15" id="6Sr-np-AWC"/>
                                                         <constraint firstAttribute="trailing" secondItem="AVe-xB-dQW" secondAttribute="trailing" constant="15" id="7Iq-ux-WTs"/>
-                                                        <constraint firstAttribute="bottom" secondItem="5Hl-yY-Jm0" secondAttribute="bottom" constant="8" id="MzA-e1-03M"/>
+                                                        <constraint firstAttribute="bottom" secondItem="5Hl-yY-Jm0" secondAttribute="bottom" constant="18" id="MzA-e1-03M"/>
                                                         <constraint firstItem="5Hl-yY-Jm0" firstAttribute="top" secondItem="8cf-5R-cuc" secondAttribute="top" constant="8" id="jww-Tb-qeW"/>
                                                         <constraint firstItem="AVe-xB-dQW" firstAttribute="top" secondItem="8cf-5R-cuc" secondAttribute="top" constant="12" id="tFr-9K-p45"/>
                                                         <constraint firstItem="AVe-xB-dQW" firstAttribute="leading" secondItem="5Hl-yY-Jm0" secondAttribute="trailing" constant="5" id="u7V-6e-OIS"/>
                                                         <constraint firstItem="r5a-Qq-rtV" firstAttribute="top" secondItem="AVe-xB-dQW" secondAttribute="bottom" constant="4" id="ucd-ui-1cd"/>
-                                                        <constraint firstAttribute="bottom" secondItem="r5a-Qq-rtV" secondAttribute="bottom" constant="12" id="xA6-ci-YWP"/>
+                                                        <constraint firstAttribute="bottom" secondItem="r5a-Qq-rtV" secondAttribute="bottom" constant="2" id="xA6-ci-YWP"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -526,7 +526,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                     <constraint firstAttribute="height" constant="90" id="hPD-WD-3us"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7D-Ga-6qu">
+                            <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7D-Ga-6qu">
                                 <rect key="frame" x="0.0" y="90" width="375" height="668"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Isi-jM-sqq" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
@@ -684,11 +684,17 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caption #" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHN-Fa-q77">
                                                             <rect key="frame" x="8" y="417.33333333333331" width="359" height="21.666666666666686"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21.666666666666686" id="hzo-Qn-1uh"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WfY-Ce-uas">
                                                             <rect key="frame" x="8" y="76" width="359" height="329.33333333333331"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="329.33333333333331" id="PUa-LQ-0Li"/>
+                                                            </constraints>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="frH-EA-iBA" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                             <rect key="frame" x="8" y="8" width="60" height="60"/>
@@ -802,6 +808,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                         <outlet property="TVheight" destination="cZh-Vx-0eo" id="gh2-iX-F1Y"/>
                         <outlet property="acceptedOfferCount" destination="fgz-gu-MRG" id="rgL-op-uwb"/>
                         <outlet property="barView" destination="skK-TC-Ghy" id="wRI-55-SMK"/>
+                        <outlet property="baseScroll" destination="x7D-Ga-6qu" id="kC1-ji-CUo"/>
                         <outlet property="goldBar" destination="LFH-Dp-arM" id="tHn-vL-Hos"/>
                         <outlet property="goldBarWidth" destination="98b-Xy-BZ6" id="2RB-UO-bUc"/>
                         <outlet property="influencerShelf" destination="8To-SQ-T1h" id="utW-Oi-IJF"/>

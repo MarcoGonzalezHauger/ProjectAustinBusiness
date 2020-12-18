@@ -112,8 +112,24 @@ class VerifyEmailVC: BaseVC {
                             })
                         }
                     }else{
-                        DispatchQueue.main.async(execute: {
-                            self.instantiateToMainScreen()
+                        
+                        user.getIDToken(completion: { (token, error) in
+                            
+                            if error == nil {
+                                
+                                UserDefaults.standard.set(self.emailString, forKey: "userEmail")
+                                UserDefaults.standard.set(self.passwordString, forKey: "userPass")
+                                UserDefaults.standard.set(user.uid, forKey: "userid")
+                                
+                                let referralCode = randomString(length: 7)
+                                
+                                self.companyUser = CompanyUser.init(dictionary: ["userID":user.uid,"token":token!,"email":user.email!,"refreshToken":user.refreshToken!,"isCompanyRegistered":false,"companyID": "", "deviceFIRToken": global.deviceFIRToken, "businessReferral": referralCode])
+                                
+                                let userDetails = CreateCompanyUser(companyUser: self.companyUser)
+                                Singleton.sharedInstance.setCompanyUser(user: userDetails)
+                                self.instantiateToMainScreen()
+                            }
+                            
                         })
                     }
                     
@@ -173,7 +189,13 @@ class VerifyEmailVC: BaseVC {
     }
     
     @IBAction func popToprevious(sender: UIButton){
-        self.navigationController?.popViewController(animated: true)
+        
+        if let navCon = self.navigationController{
+                navCon.popViewController(animated: true)
+        }else{
+                self.dismiss(animated: true, completion: nil)
+        }
+        
     }
     
     /*

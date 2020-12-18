@@ -69,7 +69,8 @@ class ViewOfferStatisticVC: UIViewController, UITableViewDelegate, UITableViewDa
 	let cellHeight: CGFloat = 450
 	
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return cellHeight
+		//return cellHeight
+        return UITableView.automaticDimension
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -88,10 +89,15 @@ class ViewOfferStatisticVC: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var acceptedOfferCount: UILabel!
     @IBOutlet weak var postedCount: UILabel!
 	@IBOutlet weak var wasVerifiedLabel: UILabel!
+    
+    @IBOutlet weak var baseScroll: UIScrollView!
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.influencerShelf.estimatedRowHeight = cellHeight
+        self.influencerShelf.rowHeight = UITableView.automaticDimension
         if stat != nil {
+        baseScroll.isHidden = false
         influencerShelf.delegate = self
         influencerShelf.dataSource = self
         influencerShelf.reloadData()
@@ -99,8 +105,18 @@ class ViewOfferStatisticVC: UIViewController, UITableViewDelegate, UITableViewDa
         self.updateTableConstraints()
         self.setBarGraph()
         wasVerifiedLabel.text = stat!.posted.count == 0 ? "No posts were verified yet.\nYou will see them here when they are." : "Posts that were verified:"
+        }else{
+            baseScroll.isHidden = true
         }
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if stat != nil {
+            baseScroll.isHidden = false
+        }else{
+            baseScroll.isHidden = true
+        }
     }
     
 		func updateTableConstraints() {
@@ -127,7 +143,13 @@ class ViewOfferStatisticVC: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func viewUsers(sender: UIButton){
-        self.performSegue(withIdentifier: "fromStaticDetails", sender: self)
+        
+        if self.stat != nil {
+            if self.stat!.accepted.count > 0 {
+                self.performSegue(withIdentifier: "fromStaticDetails", sender: self)
+            }
+        }
+        
     }
 	
 	@IBAction func dismissView(_ sender: Any) {

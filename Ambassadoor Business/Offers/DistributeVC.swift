@@ -462,9 +462,9 @@ class DistributeVC: BaseVC, changedDelegate, missingMoneyDelegate, dismissSucces
         let totalDeductedAmt = (self.depositValue?.totalDeductedAmount!)! + deductedAmount
         //Add Transaction Details
         
-        var cardDetails = [Any]()
+        var cardDetails = [String: Any]()
         
-        cardDetails.append(["country":"","expireMonth":"","expireYear":"","last4":"xxxx"])
+        cardDetails = ["country":"","expireMonth":"","expireYear":"","last4":"xxxx"]
         
         let transaction = TransactionDetails.init(dictionary: ["amount":String(deductedAmount),"createdAt":DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: Date(), format: "yyyy/MMM/dd HH:mm:ssZ"),"currencyIsoCode":"USD","type":"distributed","updatedAt":DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: Date(), format: "yyyy/MMM/dd HH:mm:ssZ"),"id":self.templateOffer!.offer_ID,"status":self.templateOffer!.title,"paidDetails":cardDetails,"commission":ambassadoorCommision])
         

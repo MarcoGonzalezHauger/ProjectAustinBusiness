@@ -1530,6 +1530,47 @@ func checkIfBusinessReferralExist(referralID: String,completion: @escaping(Bool)
     
 }
 
+func getInfluencerReferral(referralID: String,completion: @escaping(Bool,User?)->Void) {
+    
+    let usersRef = Database.database().reference().child("users")
+    
+    let query = usersRef.queryOrdered(byChild: "referralcode").queryEqual(toValue: referralID)
+    
+    query.observeSingleEvent(of: .value) { (snapshot) in
+        
+        if let dictionary = snapshot.value as? [String: AnyObject] {
+
+            let userInstance = User(dictionary: dictionary[dictionary.keys.first!] as! [String: AnyObject])
+            completion(true, userInstance)
+
+        }else{
+            completion(false, nil)
+        }
+        
+    }
+    
+}
+
+func getBusinessReferral(referralID: String,completion: @escaping(Bool, CompanyUser?)->Void) {
+    
+    let usersRef = Database.database().reference().child("CompanyUser")
+    
+    let query = usersRef.queryOrdered(byChild: "businessReferral").queryEqual(toValue: referralID)
+    
+    query.observeSingleEvent(of: .value) { (snapshot) in
+        
+        if let dictionary = snapshot.value as? [String: AnyObject] {
+
+            let userInstance = CompanyUser(dictionary: dictionary[dictionary.keys.first!] as! [String: AnyObject])
+            completion(true, userInstance)
+
+        }else{
+            completion(false, nil)
+        }
+        
+    }
+    
+}
 
 extension Date
 {
