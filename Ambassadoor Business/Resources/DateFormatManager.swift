@@ -95,12 +95,18 @@ class DateFormatManager: NSObject {
     }
     
     func getDateFromStringWithAutoFormat(dateString: String) -> Date? {
-		let options = ["yyyy/MMM/dd HH:mm:ss", "yyyy/MMM/dd HH:mm:ssZ"]
+        //2020/May/13 14:38:02-0400
+        print("ddd=",dateString)
+		let options = ["yyyy/MMM/dd HH:mm:ss", "yyyy/MMM/dd HH:mm:ssZ", "yyyy/MMM/dd HH:mm:ss a", "yyyy/MMM/dd HH:mm:ssZ a"]
 		for i in options {
 			let dateFormatter = getDateFormatterWithFormat(format: i)
-			if let returner = dateFormatter.date(from: dateString) {
-				return returner
-			}
+            if let returner = dateFormatter.date(from: dateString) {
+                return returner
+            }
+//			if let returner = dateFormatter.date(from: dateString) {
+//				return returner
+//			}
+            //2020/Dec/17 14:13:56-0500
 		}
 		return nil
     }
