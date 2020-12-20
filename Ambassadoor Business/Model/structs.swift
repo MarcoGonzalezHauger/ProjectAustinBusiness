@@ -128,6 +128,7 @@ class Offer: NSObject {
         if let _ = dictionary["offerdate"] as? Date{
            self.offerdate = dictionary["offerdate"] as! Date
         }else{
+			print("BEFORE CRASH \(dictionary["offerdate"])")
             self.offerdate = DateFormatManager.sharedInstance.getDateFromStringWithAutoFormat(dateString: dictionary["offerdate"] as! String)!
         }
         
