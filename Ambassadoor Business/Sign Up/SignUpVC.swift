@@ -70,7 +70,8 @@ class SignUpVC: BaseVC, UITextFieldDelegate {
 	}
     
 	@IBAction func Cancelled(_ sender: Any) {
-		self.navigationController?.popViewController(animated: true)
+		//self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
 	}
 	
     @objc override func keyboardWasShown(notification : NSNotification) {

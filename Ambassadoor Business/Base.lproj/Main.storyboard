@@ -92,15 +92,15 @@
                                     <constraint firstAttribute="width" constant="500" id="qq8-og-PBk"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TransactionTrunk" rowHeight="85" id="jCf-K5-JVn" customClass="TransactionCell" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="428" height="85"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TransactionTrunk" rowHeight="95" id="jCf-K5-JVn" customClass="TransactionCell" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="428" height="95"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jCf-K5-JVn" id="I0i-3c-6ws">
-                                            <rect key="frame" x="0.0" y="0.0" width="428" height="85"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="428" height="95"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8cf-5R-cuc" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="5" width="412" height="70"/>
+                                                    <rect key="frame" x="8" y="5" width="412" height="80"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You paid $9.99 to hire 3 influencers" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5Hl-yY-Jm0">
                                                             <rect key="frame" x="15" y="8" width="277" height="54"/>
@@ -109,7 +109,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-$9.99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="AVe-xB-dQW">
-                                                            <rect key="frame" x="297" y="12" width="100" height="27"/>
+                                                            <rect key="frame" x="297" y="12" width="100" height="47"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="100" id="Mon-iG-D2B"/>
                                                             </constraints>
@@ -118,7 +118,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date/Time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5a-Qq-rtV">
-                                                            <rect key="frame" x="199" y="43" width="198" height="15"/>
+                                                            <rect key="frame" x="199" y="63" width="198" height="15"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="15" id="UtZ-L7-LNl"/>
                                                                 <constraint firstAttribute="width" constant="198" id="Uxv-ZE-2Be"/>
@@ -131,15 +131,15 @@
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstItem="5Hl-yY-Jm0" firstAttribute="leading" secondItem="8cf-5R-cuc" secondAttribute="leading" constant="15" id="20e-vq-6TB"/>
-                                                        <constraint firstAttribute="height" constant="70" id="6Im-KI-xT8"/>
+                                                        <constraint firstAttribute="height" constant="80" id="6Im-KI-xT8"/>
                                                         <constraint firstAttribute="trailing" secondItem="r5a-Qq-rtV" secondAttribute="trailing" constant="15" id="6Sr-np-AWC"/>
                                                         <constraint firstAttribute="trailing" secondItem="AVe-xB-dQW" secondAttribute="trailing" constant="15" id="7Iq-ux-WTs"/>
-                                                        <constraint firstAttribute="bottom" secondItem="5Hl-yY-Jm0" secondAttribute="bottom" constant="8" id="MzA-e1-03M"/>
+                                                        <constraint firstAttribute="bottom" secondItem="5Hl-yY-Jm0" secondAttribute="bottom" constant="18" id="MzA-e1-03M"/>
                                                         <constraint firstItem="5Hl-yY-Jm0" firstAttribute="top" secondItem="8cf-5R-cuc" secondAttribute="top" constant="8" id="jww-Tb-qeW"/>
                                                         <constraint firstItem="AVe-xB-dQW" firstAttribute="top" secondItem="8cf-5R-cuc" secondAttribute="top" constant="12" id="tFr-9K-p45"/>
                                                         <constraint firstItem="AVe-xB-dQW" firstAttribute="leading" secondItem="5Hl-yY-Jm0" secondAttribute="trailing" constant="5" id="u7V-6e-OIS"/>
                                                         <constraint firstItem="r5a-Qq-rtV" firstAttribute="top" secondItem="AVe-xB-dQW" secondAttribute="bottom" constant="4" id="ucd-ui-1cd"/>
-                                                        <constraint firstAttribute="bottom" secondItem="r5a-Qq-rtV" secondAttribute="bottom" constant="12" id="xA6-ci-YWP"/>
+                                                        <constraint firstAttribute="bottom" secondItem="r5a-Qq-rtV" secondAttribute="bottom" constant="2" id="xA6-ci-YWP"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -527,7 +527,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                     <constraint firstAttribute="height" constant="90" id="hPD-WD-3us"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7D-Ga-6qu">
+                            <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7D-Ga-6qu">
                                 <rect key="frame" x="0.0" y="90" width="428" height="782"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Isi-jM-sqq" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
@@ -685,11 +685,17 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caption #" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHN-Fa-q77">
                                                             <rect key="frame" x="8" y="417.33333333333331" width="412" height="21.666666666666686"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21.666666666666686" id="hzo-Qn-1uh"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WfY-Ce-uas">
                                                             <rect key="frame" x="8" y="76" width="412" height="329.33333333333331"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="329.33333333333331" id="PUa-LQ-0Li"/>
+                                                            </constraints>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="frH-EA-iBA" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                             <rect key="frame" x="8" y="8" width="60" height="60"/>
@@ -803,6 +809,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                         <outlet property="TVheight" destination="cZh-Vx-0eo" id="gh2-iX-F1Y"/>
                         <outlet property="acceptedOfferCount" destination="fgz-gu-MRG" id="rgL-op-uwb"/>
                         <outlet property="barView" destination="skK-TC-Ghy" id="wRI-55-SMK"/>
+                        <outlet property="baseScroll" destination="x7D-Ga-6qu" id="kC1-ji-CUo"/>
                         <outlet property="goldBar" destination="LFH-Dp-arM" id="tHn-vL-Hos"/>
                         <outlet property="goldBarWidth" destination="98b-Xy-BZ6" id="2RB-UO-bUc"/>
                         <outlet property="influencerShelf" destination="8To-SQ-T1h" id="utW-Oi-IJF"/>
@@ -1215,11 +1222,11 @@ Send out an offer and you will be updated in real-time about influencers activit
             <objects>
                 <viewController id="LOf-8t-dcQ" customClass="AddOfferVC" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AvY-rL-0gr">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1400"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1312"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b8P-61-ypZ">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="1351"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="1263"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Offer Name (only you will see this)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXP-gn-dXA">
                                         <rect key="frame" x="77" y="30" width="260" height="21"/>
@@ -1243,7 +1250,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3c2-kS-e9D">
-                                        <rect key="frame" x="8" y="445.33333333333331" width="398" height="34"/>
+                                        <rect key="frame" x="8" y="445.33333333333337" width="398" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="ZdF-rZ-3xD"/>
                                         </constraints>
@@ -1330,7 +1337,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                         </connections>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Desired Location of Influencer sadkf hasklf jhasklfj h asflk jh asdlfk jhasdlfk jh aslkdjfh asdf " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOX-C5-OgT">
-                                        <rect key="frame" x="8" y="487.33333333333331" width="398" height="33.666666666666686"/>
+                                        <rect key="frame" x="8" y="487.33333333333337" width="398" height="33.666666666666629"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1463,7 +1470,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                 <viewLayoutGuide key="frameLayoutGuide" id="K4j-HZ-BP0"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xfr-j1-siK" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                <rect key="frame" x="20" y="1247" width="374" height="58"/>
+                                <rect key="frame" x="20" y="1159" width="374" height="58"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="76a-qi-rPn">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="58"/>
@@ -1549,7 +1556,7 @@ Send out an offer and you will be updated in real-time about influencers activit
             <objects>
                 <tableViewController id="kwG-IA-asn" customClass="CategoryTVC" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" allowsMultipleSelection="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="1" id="98w-0h-6kA">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="838"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <color key="sectionIndexColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2326,11 +2333,11 @@ to distribute with the desired budget.</string>
             <objects>
                 <viewController id="cYR-2c-rAu" customClass="DistributeVC" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="R6H-ty-tfE">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1400"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1312"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kpt-B2-2wb">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="1400"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="1312"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JTS-yn-ZSV">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1265"/>
@@ -2351,7 +2358,7 @@ to distribute with the desired budget.</string>
                                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="31"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category Filter (21 selected)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zbi-Ds-QtF">
-                                                                        <rect key="frame" x="57" y="5.3333333333333357" width="325" height="20.333333333333332"/>
+                                                                        <rect key="frame" x="57" y="5.3333333333333144" width="325" height="20.333333333333332"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -2375,10 +2382,10 @@ to distribute with the desired budget.</string>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YMt-Sw-Hrt">
-                                                                <rect key="frame" x="0.0" y="38.999999999999993" width="382" height="31.000000000000007"/>
+                                                                <rect key="frame" x="0.0" y="39" width="382" height="31"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Filter (3 radiuses selected)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n56-dB-Wbt">
-                                                                        <rect key="frame" x="57" y="5.3333333333333428" width="325" height="20.333333333333332"/>
+                                                                        <rect key="frame" x="57" y="5.3333333333333144" width="325" height="20.333333333333332"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -2462,7 +2469,7 @@ to distribute with the desired budget.</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bJ2-gX-ndr" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="195.33333333333334" width="398" height="106.33333333333334"/>
+                                                <rect key="frame" x="8" y="195.33333333333331" width="398" height="106.33333333333331"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="With your filters, approximatly" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A3U-kM-4ns">
                                                         <rect key="frame" x="96.666666666666671" y="8" width="204.66666666666663" height="18"/>
@@ -2471,7 +2478,7 @@ to distribute with the desired budget.</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="influencers will be able to accept this offer." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7L-Sx-YMS">
-                                                        <rect key="frame" x="52.666666666666657" y="80.333333333333343" width="293" height="18"/>
+                                                        <rect key="frame" x="52.666666666666657" y="80.333333333333371" width="293" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -2575,7 +2582,7 @@ to distribute with the desired budget.</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8f5-2Y-Ufl" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="498.66666666666674" width="398" height="174"/>
+                                                <rect key="frame" x="8" y="498.66666666666663" width="398" height="174"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dyz-me-pSN">
                                                         <rect key="frame" x="16" y="11.999999999999996" width="366" height="40.666666666666657"/>
@@ -2586,12 +2593,12 @@ Increase their pay by:</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+10%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVB-go-EUv">
-                                                        <rect key="frame" x="162.33333333333334" y="68.666666666666686" width="73.333333333333343" height="32.333333333333343"/>
+                                                        <rect key="frame" x="162.33333333333334" y="68.666666666666742" width="73.333333333333343" height="32.333333333333343"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="FY1-ud-ngp">
-                                                        <rect key="frame" x="14" y="125.99999999999994" width="370" height="31"/>
+                                                        <rect key="frame" x="14" y="126" width="370" height="31"/>
                                                         <color key="minimumTrackTintColor" systemColor="systemGreenColor"/>
                                                         <connections>
                                                             <action selector="increasePayChanged:" destination="cYR-2c-rAu" eventType="valueChanged" id="27m-J0-Ulx"/>
@@ -2669,7 +2676,7 @@ Increase their pay by:</string>
                                                         </constraints>
                                                     </stackView>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="Uxx-QJ-MmH">
-                                                        <rect key="frame" x="14" y="301.66666666666674" width="370" height="31"/>
+                                                        <rect key="frame" x="14" y="301.66666666666663" width="370" height="31"/>
                                                         <color key="minimumTrackTintColor" systemColor="systemBlueColor"/>
                                                         <color key="maximumTrackTintColor" systemColor="scrollViewTexturedBackgroundColor"/>
                                                         <connections>
@@ -2903,11 +2910,11 @@ Increase their pay by:</string>
             <objects>
                 <viewController id="xUV-2f-92G" customClass="AddPostVC" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MSA-C0-BJi">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="838"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="gbF-5S-nc7">
-                                <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                                <rect key="frame" x="0.0" y="0.0" width="428" height="838"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9gd-It-qtM" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                         <rect key="frame" x="169" y="43" width="90" height="90"/>
@@ -3237,7 +3244,7 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                                 <viewLayoutGuide key="frameLayoutGuide" id="f29-qR-kmY"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qC8-Bp-q4l" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                <rect key="frame" x="20" y="773" width="388" height="58"/>
+                                <rect key="frame" x="20" y="685" width="388" height="58"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wy8-92-gcg">
                                         <rect key="frame" x="0.0" y="0.0" width="388" height="58"/>
@@ -6102,7 +6109,7 @@ You must have permission to use the company name, logo, website, etc. before reg
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="E7a-DG-gcW"/>
+        <segue reference="PhT-Cd-6fv"/>
         <segue reference="LAC-YR-YEa"/>
         <segue reference="S7s-bK-fF5"/>
         <segue reference="e0I-Rf-BNn"/>

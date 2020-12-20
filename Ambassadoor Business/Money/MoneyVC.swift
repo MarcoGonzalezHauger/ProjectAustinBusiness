@@ -21,6 +21,7 @@ struct Transaction {
     let status: String
     let userName: String
     let date: Date?
+    let id: String?
 }
 
 class TransactionCell: UITableViewCell {
@@ -86,9 +87,12 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
             cell.descriptionLabel.text = "Ambassadoor Refunded the single post, You have been credited \(amt)"
             cell.amountlabel.text = "+\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
         }else if ThisTransaction.type == "referral" {
-            cell.descriptionLabel.text = "Referral Fees from \(ThisTransaction.userName)."
+            //cell.descriptionLabel.text = "Referral Fees from \(ThisTransaction.userName)."
             cell.amountlabel.text = "+\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
             cell.shadowBox.borderColor = .systemGreen
+            //"JKWJJE"
+            //self.getReferralUser(cell: cell, referralCode: "JKWJJE")
+            self.getReferralUser(cell: cell, referralCode: ThisTransaction.id!)
         }else if ThisTransaction.type == "Amber-ADD" {
             cell.descriptionLabel.text = "Ambassadoor Added."
             cell.amountlabel.text = "+\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
@@ -100,6 +104,35 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
         }
         //cell.shadowBox.borderColor = .black // Refer to PowerPoint.
         return cell
+    }
+    
+    func getReferralUser(cell: TransactionCell, referralCode: String) {
+        
+        
+        if referralCode.count == 6{
+            
+            getInfluencerReferral(referralID: referralCode) { (status, user) in
+                 if status && user != nil {
+                   cell.descriptionLabel.text = "Referral Fees from \((user?.username)!)"
+                 }else{
+                    cell.descriptionLabel.text = "Referral Amount"
+                }
+            }
+            
+        }else if referralCode.count == 7{
+            
+            getBusinessReferral(referralID: referralCode) { (status, user) in
+                if status && user != nil {
+                    cell.descriptionLabel.text = "Referral Fees from \((user?.email)!)"
+                }else{
+                    cell.descriptionLabel.text = "Referral Amount"
+                }
+            }
+            
+        }else{
+                cell.descriptionLabel.text = "Referral Amount"
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -117,7 +150,7 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
     @IBOutlet weak var shelf: UITableView!
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return 85.0
+		return 95.0
     }
     
     let gradientLayer = CAGradientLayer()
@@ -207,7 +240,7 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
                             amount = amt
                         }
                         
-                        transactionHistory.append(Transaction(description: "", details: valueDetails["cardDetails"] as AnyObject, time: valueDetails["updatedAt"] as! String, amount: amount, type: valueDetails["type"] as! String, status: valueDetails["status"] as? String ?? "", userName: valueDetails["userName"] as? String ?? "", date: DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: valueDetails["updatedAt"] as! String)))
+                        transactionHistory.append(Transaction(description: "", details: valueDetails["cardDetails"] as AnyObject, time: valueDetails["updatedAt"] as! String, amount: amount, type: valueDetails["type"] as! String, status: valueDetails["status"] as? String ?? "", userName: valueDetails["userName"] as? String ?? "", date: DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: valueDetails["updatedAt"] as! String), id: valueDetails["id"] as? String ?? ""))
                     }
                 }
                 

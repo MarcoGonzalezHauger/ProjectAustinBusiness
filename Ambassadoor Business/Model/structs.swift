@@ -169,11 +169,16 @@ class Offer: NSObject {
         
         self.allConfirmed = dictionary["allConfirmed"] as? Bool ?? false
         
-        if let acceptedUsers = dictionary["accepted"] as? [String]{
+        if let acceptedUsers = dictionary["accepted"] as? [AnyObject]{
             var actUers = [String]()
             for accpetedUser in acceptedUsers {
-                if !actUers.contains(accpetedUser){
-                    actUers.append(accpetedUser)
+                
+                if let actString = accpetedUser as? String {
+                    
+                    if !actUers.contains(actString){
+                        actUers.append(actString)
+                    }
+                    
                 }
             }
             self.accepted = actUers
