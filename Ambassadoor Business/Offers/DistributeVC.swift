@@ -430,10 +430,17 @@ class DistributeVC: BaseVC, changedDelegate, missingMoneyDelegate, dismissSucces
             if offerAmount > 0 {
                 if self.depositValue != nil {
                     if self.depositValue!.currentBalance != nil {
-						if (offerAmount - 0.01 <= self.depositValue!.currentBalance!) {
-                            return true
-                        } else {
-							performSegue(withIdentifier: "toMissingMoney", sender: self)
+                        
+                        if self.depositValue!.currentBalance! > 0.0 {
+                            
+                            if (offerAmount - 0.01 <= self.depositValue!.currentBalance!) {
+                                return true
+                            } else {
+                                performSegue(withIdentifier: "toMissingMoney", sender: self)
+                            }
+                            
+                        }else{
+                            performSegue(withIdentifier: "toMissingMoney", sender: self)
                         }
                     }
                 } else {

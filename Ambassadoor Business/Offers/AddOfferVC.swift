@@ -415,7 +415,7 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 		
 		let expiryDate = DateFormatManager.sharedInstance.getExpiryDate(dateString: dateString)
 		
-        var offer = ["offer_ID":"","money":0.0,"commission":0.0,"isCommissionPaid": false,"company":Singleton.sharedInstance.getCompanyDetails(),"posts":global.post,"offerdate":Date(),"user_ID":[],"expiredate":expiryDate,"allPostsConfirmedSince":nil,"allConfirmed":false,"isAccepted":false,"isExpired":false,"ownerUserID":Auth.auth().currentUser!.uid,"category":self.selectedCategoryArray,"locationFilter":locationFilter,"genders":genderArray,"title":self.offerName.text!,"targetCategories":["Other"],"user_IDs":[],"status":"available", "lastEditDate": DateToFirebase(date: Date()),"isAllPaid":false,"isRefferedByInfluencer":false,"isReferCommissionPaid":false,"referralAmount":0.0,"referralID":""] as [String : AnyObject]
+        var offer = ["offer_ID":"","money":0.0,"commission":0.0,"isCommissionPaid": false,"company":Singleton.sharedInstance.getCompanyDetails(),"posts":global.post,"offerdate":Date(),"user_ID":[],"expiredate":expiryDate,"allPostsConfirmedSince":nil,"allConfirmed":false,"isAccepted":false,"isExpired":false,"ownerUserID":Auth.auth().currentUser!.uid,"category":self.selectedCategoryArray,"locationFilter":locationFilter,"genders":genderArray,"title":self.offerName.text!.trimmingCharacters(in: .whitespacesAndNewlines),"targetCategories":["Other"],"user_IDs":[],"status":"available", "lastEditDate": DateToFirebase(date: Date()),"isAllPaid":false,"isRefferedByInfluencer":false,"isReferCommissionPaid":false,"referralAmount":0.0,"referralID":""] as [String : AnyObject]
         
         //self.isRefferedByInfluencer = dictionary["isRefferedByInfluencer"] as? Bool ?? false
         //self.isReferCommissionPaid = dictionary["isReferCommissionPaid"] as? Bool ?? false
@@ -449,9 +449,9 @@ class AddOfferVC: BaseVC, UITableViewDelegate, UITableViewDataSource, UICollecti
 	
 	func isSavable(alertUser: Bool) -> Bool {
 		if !alertUser {
-			return self.offerName.text?.count != 0 && locationFilter != "" && locationFilter != "" && self.gender.text?.count != 0 && self.selectedCategoryArray.count != 0
+			return self.offerName.text?.count != 0 && self.offerName.text?.trimmingCharacters(in: .whitespacesAndNewlines).count != 0 && locationFilter != "" && locationFilter != "" && self.gender.text?.count != 0 && self.selectedCategoryArray.count != 0
 		}
-		if self.offerName.text?.count != 0 {
+        if self.offerName.text?.count != 0 && self.offerName.text?.trimmingCharacters(in: .whitespacesAndNewlines).count != 0 {
 			if locationFilter != "" {
 				if self.gender.text?.count != 0 {
 					if self.selectedCategoryArray.count != 0 {

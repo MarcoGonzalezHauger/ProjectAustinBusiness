@@ -131,8 +131,9 @@ class ViewOfferStatisticVC: UIViewController, UITableViewDelegate, UITableViewDa
 	
     func setBarGraph() {
 		let money = self.stat!.offer.originalAmount == 0.0 ? self.stat!.offer.money : self.stat!.offer.originalAmount
+//        let money = self.stat!.offer.money == 0.0 ? self.stat!.offer.originalAmount : self.stat!.offer.money
 		let cashPower = self.stat!.offer.cashPower!
-        
+        print(CGFloat((cashPower / money)))
 		goldBarWidth.constant = barView.bounds.width * CGFloat((cashPower / money))
 		
         self.statMoneyText.text = "\(NumberToPrice(Value: cashPower))/\(NumberToPrice(Value: money)) left."
