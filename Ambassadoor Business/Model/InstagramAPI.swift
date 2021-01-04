@@ -9,6 +9,9 @@ import Foundation
 
 struct API {
     
+        // Test
+        static var isForTesting = true
+    
     //Stripe account live and demo client ID and secret ID
         //Live
         static var Stripeclient_id = "ca_FrDIP5fLBXnTWCJTkPzngRUquWqrzKZh"
@@ -151,6 +154,7 @@ struct API {
         //offerData["commission"] = 0.0
         offerData["refundedOn"] = ""
 		offerData["lastEditDate"] = DateToFirebase(date: offer.lastEdited)
+        offerData["isForTesting"] = API.isForTesting
         return offerData
     }
     

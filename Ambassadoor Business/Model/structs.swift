@@ -480,6 +480,8 @@ class CompanyUser: NSObject {
     var companyID: String?
     var deviceFIRToken: String?
     var businessReferral: String?
+    var isForTesting: Bool
+    
     
     init(dictionary: [String: Any]) {
         
@@ -491,6 +493,7 @@ class CompanyUser: NSObject {
         self.companyID = dictionary["companyID"] as? String
         self.deviceFIRToken = dictionary["deviceFIRToken"] as? String ?? ""
         self.businessReferral = dictionary["businessReferral"] as? String ?? ""
+        self.isForTesting = dictionary["isForTesting"] as? Bool ?? false
     }
 }
 

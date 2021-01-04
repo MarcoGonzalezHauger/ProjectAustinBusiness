@@ -254,6 +254,7 @@ class SignInVC: BaseVC, UITextFieldDelegate {
                                     if companyUser != nil {
                                         Singleton.sharedInstance.setCompanyUser(user: companyUser!)
                                         
+                                        if companyUser!.isForTesting == true {
                                         
                                         if let isRegistered =  Singleton.sharedInstance.getCompanyUser().isCompanyRegistered{
                                             
@@ -312,6 +313,9 @@ class SignInVC: BaseVC, UITextFieldDelegate {
                                                     self.instantiateToMainScreen()
                                                 })
                                             }
+                                            
+                                            
+                                            
                                         }else{
                                             DispatchQueue.main.async(execute: {
                                                 timer.invalidate()
@@ -319,6 +323,16 @@ class SignInVC: BaseVC, UITextFieldDelegate {
                                                 self.instantiateToMainScreen()
                                             })
                                         }
+                                    }else{
+                                        DispatchQueue.main.async(execute: {
+                                            timer.invalidate()
+                                            self.hideActivityIndicator()
+                                        })
+                                        self.signInButton.setTitle("Sign In", for: .normal)
+                                        self.showAlertMessage(title: "Alert", message: "This account is not a test account") {
+                                            
+                                        }
+                                    }
                                     }else{
                                         self.updateCompanyUserData(timer: timer)
                                     }

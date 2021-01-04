@@ -53,7 +53,7 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
         //MARK: Test Mode
         //let params = ["stripeID":paymentMethod.stripeId,"amount":(self.creditAmount * 100.00),"mode":"test"] as [String : Any]
         //MARK: LIVE Stripe
-        let params = ["stripeID":paymentMethod.stripeId,"amount":(self.creditAmount * 100.00)] as [String : Any]
+        let params = ["stripeID":paymentMethod.stripeId,"amount":(self.creditAmount * 100.00), "mode": API.isForTesting == true ? "test" : "live"] as [String : Any]
         self.depositAmountToWalletThroughStripe(params: params, paymentMethodParams: paymentMethod)
         
 
