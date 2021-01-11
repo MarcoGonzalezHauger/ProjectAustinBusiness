@@ -16,6 +16,8 @@ protocol deletePhrase {
 }
 
 class KeyphraseCell: UITableViewCell, UITextFieldDelegate {
+    
+    var addpostRef: AddPostVC? = nil
     var delegate: deletePhrase?
     var wasTold = false
     @IBOutlet weak var phraseText: UITextField!
@@ -23,6 +25,44 @@ class KeyphraseCell: UITableViewCell, UITextFieldDelegate {
     @IBAction func deletePhrase(_ sender: Any) {
         delegate?.deleteThis(cell: self)
     }
+    
+    override func awakeFromNib() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown), name: UIResponder.keyboardWillShowNotification, object: phraseText)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: phraseText)
+    }
+    
+    @objc func keyboardWasShown(notification : NSNotification) {
+        
+ //       if let key = notification.object as? UITextField {
+ //           if key == phraseText {
+                
+                let userInfo = notification.userInfo!
+                var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+                keyboardFrame = addpostRef!.view.convert(keyboardFrame, from: nil)
+                
+                var contentInset:UIEdgeInsets = addpostRef!.scroll.contentInset
+                contentInset.bottom = keyboardFrame.size.height + 25
+                addpostRef!.scroll.contentInset = contentInset
+                
+  //          }
+  //      }
+        
+        
+        
+    }
+    
+    @objc func keyboardWillHide(notification:NSNotification){
+        
+//        if let key = notification.object as? UITextField {
+//        if key == phraseText {
+            
+            let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+            addpostRef!.scroll.contentInset = contentInset
+            
+//            }
+ //       }
+    }
+    
     @IBAction func returnEntered(_ sender: Any) {
         (sender as! UITextField).resignFirstResponder()
     }
@@ -149,6 +189,7 @@ class AddPostVC: BaseVC, NCDelegate, UITableViewDelegate, UITableViewDataSource,
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "phraseCell") as! KeyphraseCell
+        cell.addpostRef = self
         cell.phraseText.text = phraseList[indexPath.row]
         cell.delegate = self
         return cell
@@ -222,11 +263,12 @@ class AddPostVC: BaseVC, NCDelegate, UITableViewDelegate, UITableViewDataSource,
     @objc override func keyboardWasShown(notification : NSNotification) {
         
         let userInfo = notification.userInfo!
+        
         var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
         
         var contentInset:UIEdgeInsets = self.scroll.contentInset
-        contentInset.bottom = keyboardFrame.size.height
+        contentInset.bottom = keyboardFrame.size.height + 25
         scroll.contentInset = contentInset
         
     }

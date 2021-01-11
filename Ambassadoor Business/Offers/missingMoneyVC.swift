@@ -48,7 +48,7 @@ class missingMoneyVC: BaseVC,STPAddCardViewControllerDelegate, STPAuthentication
         //actualCharge
         //(self.actualCharge * 100.00)
         //let params = ["stripeID":paymentMethod.stripeId,"amount":(Int((self.actualCharge * 100.00).rounded())),"mode":"test"] as [String : Any]
-        let params = ["stripeID":paymentMethod.stripeId,"amount":(self.actualCharge * 100.00)] as [String : Any]
+        let params = ["stripeID":paymentMethod.stripeId,"amount":(self.actualCharge * 100.00), "mode": API.isForTesting == true ? "test" : "live"] as [String : Any]
         self.depositAmountToWalletThroughStripe(params: params, paymentMethodParams: paymentMethod)
         
 

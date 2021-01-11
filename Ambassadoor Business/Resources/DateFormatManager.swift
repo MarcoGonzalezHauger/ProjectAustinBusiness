@@ -97,7 +97,7 @@ class DateFormatManager: NSObject {
     func getDateFromStringWithAutoFormat(dateString: String) -> Date? {
         //2020/May/13 14:38:02-0400
         print("ddd=",dateString)
-		let options = ["yyyy/MMM/dd HH:mm:ss", "yyyy/MMM/dd HH:mm:ssZ", "yyyy/MMM/dd HH:mm:ss a", "yyyy/MMM/dd HH:mm:ssZ a"]
+		let options = ["yyyy/MMM/dd HH:mm:ss", "yyyy/MMM/dd HH:mm:ssZ", "yyyy/MMM/dd HH:mm:ss a", "yyyy/MMM/dd HH:mm:ssZ a", "yyyy-mm-dd HH:mm:ssZ", "yyyy-mm-dd HH:mm:ss"]
 		for i in options {
 			let dateFormatter = getDateFormatterWithFormat(format: i)
             if let returner = dateFormatter.date(from: dateString) {
@@ -112,7 +112,7 @@ class DateFormatManager: NSObject {
     }
     
     func getDateFromStringWithAutoMonthFormat(dateString: String) -> Date? {
-        let options = ["yyyy/MMM/dd HH:mm:ss", "yyyy/MMM/dd HH:mm:ssZ"]
+        let options = ["yyyy/MMM/dd HH:mm:ss", "yyyy/MMM/dd HH:mm:ssZ", "yyyy/MMM/dd HH:mm:ss a", "yyyy/MMM/dd HH:mm:ssZ a", "yyyy-mm-dd HH:mm:ssZ", "yyyy-mm-dd HH:mm:ss"]
         for i in options {
             let dateFormatter = getDateFormatterWithFormat(format: i)
             if let returner = dateFormatter.date(from: dateString) {

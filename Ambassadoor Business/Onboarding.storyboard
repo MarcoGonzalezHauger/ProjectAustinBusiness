@@ -126,7 +126,7 @@
                                                     <constraint firstAttribute="width" constant="180" id="cWt-ZW-7uU"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="Forgot you password?"/>
+                                                <state key="normal" title="Forgot your password?"/>
                                                 <connections>
                                                     <action selector="forgetPasswordActionWithSender:" destination="kAN-Z2-zIi" eventType="touchUpInside" id="Bzp-Kk-jly"/>
                                                 </connections>
@@ -632,7 +632,7 @@
             <objects>
                 <viewController id="JFM-4V-Lmv" customClass="VerifyEmailVC" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vc4-kL-fbL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="LGM-lw-o8T">
@@ -649,7 +649,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYC-OE-Nh4">
-                                        <rect key="frame" x="16" y="236.66666666666669" width="382" height="91"/>
+                                        <rect key="frame" x="16" y="241.66666666666669" width="382" height="91"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="74" id="VyU-ji-Hnc"/>
                                         </constraints>
@@ -673,7 +673,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="lIs-sZ-rUf"/>
                             </scrollView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5lc-kc-p0e" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                <rect key="frame" x="10" y="728" width="394" height="70"/>
+                                <rect key="frame" x="10" y="782" width="394" height="70"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wl7-9p-8c6">
                                         <rect key="frame" x="10" y="10" width="374" height="50"/>
@@ -708,7 +708,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vVP-9a-rQD">
-                                <rect key="frame" x="10" y="7" width="65" height="30"/>
+                                <rect key="frame" x="10" y="51" width="65" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="sCR-1c-l64"/>
                                     <constraint firstAttribute="width" constant="65" id="xZx-Yc-7sv"/>
@@ -753,7 +753,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xdN-ue-zdU"/>
+        <segue reference="7FS-uX-oT2"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="BusinessWelcome" width="125" height="125"/>

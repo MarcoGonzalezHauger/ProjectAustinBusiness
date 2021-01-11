@@ -1150,7 +1150,7 @@ func serializeCompanyUser(companyUser: CompanyUser) -> [String: Any] {
         "userID": companyUser.userID!,
         "email": companyUser.email!,
         "refreshToken": companyUser.refreshToken!,
-        "token": companyUser.token!,"isCompanyRegistered": companyUser.isCompanyRegistered!,"companyID":companyUser.companyID!,"businessReferral": companyUser.businessReferral!]
+        "token": companyUser.token!,"isCompanyRegistered": companyUser.isCompanyRegistered!,"companyID":companyUser.companyID!,"businessReferral": companyUser.businessReferral!, "isForTesting": API.isForTesting]
     return companyUserData
     
 }
