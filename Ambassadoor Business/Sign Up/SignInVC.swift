@@ -28,6 +28,8 @@ class SignInVC: BaseVC, UITextFieldDelegate {
     var passwordString = ""
     var companyUser: CompanyUser!
     
+    var stringOne: String? = nil
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -222,6 +224,7 @@ class SignInVC: BaseVC, UITextFieldDelegate {
     @IBOutlet weak var passwordline: UILabel!
     
     @IBAction func signInAction(sender: UIButton){
+                
         
         if emailText.text?.count != 0 {
             
@@ -254,7 +257,7 @@ class SignInVC: BaseVC, UITextFieldDelegate {
                                     if companyUser != nil {
                                         Singleton.sharedInstance.setCompanyUser(user: companyUser!)
                                         
-                                        if companyUser!.isForTesting == true {
+//                                        if companyUser!.isForTesting == false {
                                         
                                         if let isRegistered =  Singleton.sharedInstance.getCompanyUser().isCompanyRegistered{
                                             
@@ -323,16 +326,16 @@ class SignInVC: BaseVC, UITextFieldDelegate {
                                                 self.instantiateToMainScreen()
                                             })
                                         }
-                                    }else{
-                                        DispatchQueue.main.async(execute: {
-                                            timer.invalidate()
-                                            self.hideActivityIndicator()
-                                        })
-                                        self.signInButton.setTitle("Sign In", for: .normal)
-                                        self.showAlertMessage(title: "Alert", message: "This account is not a test account") {
-                                            
-                                        }
-                                    }
+//                                    }else{
+//                                        DispatchQueue.main.async(execute: {
+//                                            timer.invalidate()
+//                                            self.hideActivityIndicator()
+//                                        })
+//                                        self.signInButton.setTitle("Sign In", for: .normal)
+//                                        self.showAlertMessage(title: "Alert", message: "This account is not a test account") {
+//
+//                                        }
+//                                    }
                                     }else{
                                         self.updateCompanyUserData(timer: timer)
                                     }

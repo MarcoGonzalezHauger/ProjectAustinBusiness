@@ -40,11 +40,11 @@
 		B799227822F1C511007E84B0 /* AddPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B799227722F1C511007E84B0 /* AddPostVC.swift */; };
 		B79B1D2E22F2EE8D00F3C660 /* DateFormatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79B1D2D22F2EE8D00F3C660 /* DateFormatManager.swift */; };
 		B79EA0AA2581FD9800E3AFB1 /* CustomSplitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79EA0A92581FD9800E3AFB1 /* CustomSplitVC.swift */; };
+		B7A65CAB25ADA1E50071785F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B7A65CAA25ADA1E50071785F /* GoogleService-Info.plist */; };
 		B7AED6952484FD4F003EBFD0 /* SuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AED6942484FD4F003EBFD0 /* SuccessVC.swift */; };
 		B7AEF2C1247BA81B000AB4A4 /* TempLaunch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7AEF2C0247BA81B000AB4A4 /* TempLaunch.storyboard */; };
 		B7B11FF523242615006711BB /* PlaidTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B11FF423242615006711BB /* PlaidTVCell.swift */; };
 		B7B11FF723242638006711BB /* ConnectedPlaidTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B11FF623242638006711BB /* ConnectedPlaidTVCell.swift */; };
-		B7B517D12411247400DD62DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B7B517D02411247400DD62DE /* GoogleService-Info.plist */; };
 		B7BD39BB22FAAB53008A0496 /* CategoryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BD39BA22FAAB53008A0496 /* CategoryTVC.swift */; };
 		B7BD39BD22FAAE42008A0496 /* CategoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BD39BC22FAAE42008A0496 /* CategoryHeaderView.swift */; };
 		B7C58569234DED3600EB90BB /* InstagramUserTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C58568234DED3600EB90BB /* InstagramUserTVC.swift */; };
@@ -139,11 +139,11 @@
 		B799227722F1C511007E84B0 /* AddPostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostVC.swift; sourceTree = "<group>"; };
 		B79B1D2D22F2EE8D00F3C660 /* DateFormatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatManager.swift; sourceTree = "<group>"; };
 		B79EA0A92581FD9800E3AFB1 /* CustomSplitVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSplitVC.swift; sourceTree = "<group>"; };
+		B7A65CAA25ADA1E50071785F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B7AED6942484FD4F003EBFD0 /* SuccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessVC.swift; sourceTree = "<group>"; };
 		B7AEF2C0247BA81B000AB4A4 /* TempLaunch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TempLaunch.storyboard; sourceTree = "<group>"; };
 		B7B11FF423242615006711BB /* PlaidTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaidTVCell.swift; sourceTree = "<group>"; };
 		B7B11FF623242638006711BB /* ConnectedPlaidTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedPlaidTVCell.swift; sourceTree = "<group>"; };
-		B7B517D02411247400DD62DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B7B72E07237C4953002AB168 /* Ambassadoor Business.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Ambassadoor Business.entitlements"; sourceTree = "<group>"; };
 		B7BD39BA22FAAB53008A0496 /* CategoryTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTVC.swift; sourceTree = "<group>"; };
 		B7BD39BC22FAAE42008A0496 /* CategoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryHeaderView.swift; sourceTree = "<group>"; };
@@ -395,7 +395,7 @@
 				B7B72E07237C4953002AB168 /* Ambassadoor Business.entitlements */,
 				B7D030AD23237CA4002B90FF /* Ambassadoor Business-Bridging-Header.h */,
 				E8E54688227BA3E800775A07 /* YourCompany.swift */,
-				B7B517D02411247400DD62DE /* GoogleService-Info.plist */,
+				B7A65CAA25ADA1E50071785F /* GoogleService-Info.plist */,
 				B7C9FE8B231E485E005580E4 /* Plaid */,
 				E8F8AAC722C8485A0047BF5E /* Offers */,
 				E816AC202282F34000B9D951 /* Money */,
@@ -489,6 +489,7 @@
 				E8C3693B22161B3000AE12D7 /* Frameworks */,
 				E8C3693C22161B3000AE12D7 /* Resources */,
 				8D558317809B5FEA34C0AE84 /* [CP] Embed Pods Frameworks */,
+				B7A65CA525AD743C0071785F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -538,6 +539,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7A65CAB25ADA1E50071785F /* GoogleService-Info.plist in Resources */,
 				E8C3694F22161B3200AE12D7 /* LaunchScreen.storyboard in Resources */,
 				B7D2FE12247542F00000BFFC /* tutorial.mp4 in Resources */,
 				B712C487230690B500728758 /* ProductListCell.xib in Resources */,
@@ -545,7 +547,6 @@
 				B7FD83ED22F0870F00347E8E /* PostDetailTC.xib in Resources */,
 				B7FD83E922F0844C00347E8E /* AddPostTC.xib in Resources */,
 				B750E78522E5B75F00024CB1 /* Onboarding.storyboard in Resources */,
-				B7B517D12411247400DD62DE /* GoogleService-Info.plist in Resources */,
 				B7AEF2C1247BA81B000AB4A4 /* TempLaunch.storyboard in Resources */,
 				B770B8112514A5E700724465 /* RegisterCompany.storyboard in Resources */,
 				E8C3694C22161B3200AE12D7 /* Assets.xcassets in Resources */,
@@ -595,6 +596,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Ambassadoor Business/Pods-Ambassadoor Business-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		B7A65CA525AD743C0071785F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -740,6 +758,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Marco Gonzalez (7D4GHWA4CW)";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -801,6 +820,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Marco Gonzalez (7D4GHWA4CW)";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -830,11 +850,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = BlueIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ambassadoor Business/Ambassadoor Business.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 13;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = JMBR2RF2B8;
+				DEVELOPMENT_TEAM = F4W3LUKZFA;
 				INFOPLIST_FILE = "Ambassadoor Business/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -843,9 +864,9 @@
 				);
 				MARKETING_VERSION = 2.0.7;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.develop.companyTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ambassadoor.company;
 				PRODUCT_NAME = "Ambassadoor Business";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = AmbassadoorBusiness;
 				SWIFT_OBJC_BRIDGING_HEADER = "Ambassadoor Business/Ambassadoor Business-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -860,11 +881,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = BlueIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ambassadoor Business/Ambassadoor Business.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = JMBR2RF2B8;
+				DEVELOPMENT_TEAM = F4W3LUKZFA;
 				INFOPLIST_FILE = "Ambassadoor Business/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -873,9 +894,9 @@
 				);
 				MARKETING_VERSION = 2.0.7;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.develop.companyTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ambassadoor.company;
 				PRODUCT_NAME = "Ambassadoor Business";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = AmbassadoorBusiness;
 				SWIFT_OBJC_BRIDGING_HEADER = "Ambassadoor Business/Ambassadoor Business-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -6,11 +6,13 @@ target 'Ambassadoor Business' do
   use_frameworks!
 
   # Pods for Ambassadoor Business
-  pod 'Firebase/Core'
+  pod 'Firebase/CoreOnly'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
   pod 'Firebase/Messaging'
+  pod 'Firebase/Crashlytics'
+  pod 'Firebase/Analytics'
   pod 'SDWebImage'
   #pod 'Braintree'
   #pod 'BraintreeDropIn'
