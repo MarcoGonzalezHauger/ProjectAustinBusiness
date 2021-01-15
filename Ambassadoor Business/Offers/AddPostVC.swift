@@ -366,7 +366,7 @@ class AddPostVC: BaseVC, NCDelegate, UITableViewDelegate, UITableViewDataSource,
             
             if canSaveIncomplete(){
             if buttonClickTag == 0{
-			SaveThisPost(andDismiss: false)
+			//SaveThisPost(andDismiss: false)
             }
             }else{
                 

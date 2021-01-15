@@ -1556,7 +1556,7 @@ Send out an offer and you will be updated in real-time about influencers activit
             <objects>
                 <tableViewController id="kwG-IA-asn" customClass="CategoryTVC" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" allowsMultipleSelection="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="1" id="98w-0h-6kA">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="838"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <color key="sectionIndexColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2593,13 +2593,13 @@ Increase their pay by:</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+10%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVB-go-EUv">
-                                                        <rect key="frame" x="162.33333333333334" y="68.666666666666742" width="73.333333333333343" height="32.333333333333343"/>
+                                                        <rect key="frame" x="162.66666666666666" y="68.666666666666742" width="72.666666666666657" height="32.333333333333343"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="FY1-ud-ngp">
                                                         <rect key="frame" x="14" y="126" width="370" height="31"/>
-                                                        <color key="minimumTrackTintColor" systemColor="systemGreenColor"/>
+                                                        <color key="minimumTrackTintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <connections>
                                                             <action selector="increasePayChanged:" destination="cYR-2c-rAu" eventType="valueChanged" id="27m-J0-Ulx"/>
                                                         </connections>
@@ -2677,8 +2677,8 @@ Increase their pay by:</string>
                                                     </stackView>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="Uxx-QJ-MmH">
                                                         <rect key="frame" x="14" y="301.66666666666663" width="370" height="31"/>
-                                                        <color key="minimumTrackTintColor" systemColor="systemBlueColor"/>
-                                                        <color key="maximumTrackTintColor" systemColor="scrollViewTexturedBackgroundColor"/>
+                                                        <color key="minimumTrackTintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="maximumTrackTintColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                                         <connections>
                                                             <action selector="TrackBarTracked:" destination="cYR-2c-rAu" eventType="valueChanged" id="1Es-DR-Wmd"/>
                                                         </connections>
@@ -2910,11 +2910,11 @@ Increase their pay by:</string>
             <objects>
                 <viewController id="xUV-2f-92G" customClass="AddPostVC" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MSA-C0-BJi">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="838"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="gbF-5S-nc7">
-                                <rect key="frame" x="0.0" y="0.0" width="428" height="838"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9gd-It-qtM" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                         <rect key="frame" x="169" y="43" width="90" height="90"/>
@@ -3244,7 +3244,7 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                                 <viewLayoutGuide key="frameLayoutGuide" id="f29-qR-kmY"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qC8-Bp-q4l" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                <rect key="frame" x="20" y="685" width="388" height="58"/>
+                                <rect key="frame" x="20" y="571" width="335" height="58"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wy8-92-gcg">
                                         <rect key="frame" x="0.0" y="0.0" width="388" height="58"/>
@@ -6111,7 +6111,7 @@ You must have permission to use the company name, logo, website, etc. before reg
     <inferredMetricsTieBreakers>
         <segue reference="PhT-Cd-6fv"/>
         <segue reference="LAC-YR-YEa"/>
-        <segue reference="S7s-bK-fF5"/>
+        <segue reference="yBa-iP-b84"/>
         <segue reference="e0I-Rf-BNn"/>
     </inferredMetricsTieBreakers>
     <resources>

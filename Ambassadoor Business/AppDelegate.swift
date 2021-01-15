@@ -13,6 +13,7 @@ import FirebaseCore
 import FirebaseInstanceID
 //import Braintree
 import Stripe
+import FirebaseCrashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -36,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         FirebaseApp.configure()
         Database.database().isPersistenceEnabled = false
+        Crashlytics.crashlytics()
         InitializeZipCodeAPI(completed: nil)
         //InitializeZipCodeAPI(completed: nil)
         //pk_test_8Rwst6t9gr25jXYXC4NHmiZK001i78iYO7

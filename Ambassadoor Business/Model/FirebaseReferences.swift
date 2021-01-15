@@ -738,6 +738,9 @@ func getAllTemplateOffers(userID: String, completion: @escaping([TemplateOffer],
             }
             
             tempGroup.notify(queue: .main) {
+                
+                template.sort{$0.lastEdited.compare($1.lastEdited) == .orderedDescending}
+                
                 completion(template, "success")
             }
             

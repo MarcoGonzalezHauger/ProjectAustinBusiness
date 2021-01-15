@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jms-e6-Lq9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jms-e6-Lq9">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -31,7 +30,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L5I-q2-J0s">
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L5I-q2-J0s">
                                             <rect key="frame" x="351" y="10" width="47" height="35"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                             <state key="normal" title="Done"/>
@@ -47,7 +46,7 @@
                                 </view>
                                 <blurEffect style="regular"/>
                             </visualEffectView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xDj-Nc-L0f">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xDj-Nc-L0f">
                                 <rect key="frame" x="16" y="10" width="59" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="Cancel"/>
@@ -72,7 +71,6 @@
                                 </connections>
                             </textField>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="QQx-9U-5R3"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="UoK-BU-61U" firstAttribute="top" secondItem="mOX-WZ-uKl" secondAttribute="topMargin" id="2bS-on-nbh"/>
@@ -91,6 +89,7 @@
                             <constraint firstItem="Jlv-ry-jhF" firstAttribute="top" secondItem="QQx-9U-5R3" secondAttribute="top" id="ptE-iH-hA6"/>
                             <constraint firstItem="GxS-Wh-bz9" firstAttribute="top" secondItem="mTX-ZL-mEE" secondAttribute="bottom" constant="80" id="vBI-Th-fgc"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="QQx-9U-5R3"/>
                     </view>
                     <connections>
                         <outlet property="doneButton" destination="L5I-q2-J0s" id="Tsj-iX-vxL"/>
@@ -115,14 +114,14 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultCompany" translatesAutoresizingMaskIntoConstraints="NO" id="haY-J6-4AN">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="haY-J6-4AN" secondAttribute="height" multiplier="1:1" id="TH3-GN-gFZ"/>
                                             <constraint firstAttribute="width" constant="100" id="iyZ-Ld-TpZ"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="haY-J6-4AN" firstAttribute="top" secondItem="2gS-Jg-zC2" secondAttribute="top" id="CJU-Bd-9qk"/>
                                     <constraint firstItem="haY-J6-4AN" firstAttribute="leading" secondItem="2gS-Jg-zC2" secondAttribute="leading" id="KOU-PF-cqw"/>
@@ -147,14 +146,14 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rcm-w3-3Zt">
                                         <rect key="frame" x="0.0" y="0.0" width="390" height="70"/>
                                         <state key="normal" title=" www.google.com" image="globe" catalog="system">
-                                            <color key="titleColor" systemColor="linkColor"/>
+                                            <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="GoToWebsite:" destination="jms-e6-Lq9" eventType="touchUpInside" id="VQB-wX-52t"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="Rcm-w3-3Zt" firstAttribute="top" secondItem="zic-Yh-ccf" secondAttribute="top" id="08Y-6T-v5B"/>
                                     <constraint firstItem="Rcm-w3-3Zt" firstAttribute="leading" secondItem="zic-Yh-ccf" secondAttribute="leading" id="5Ws-DA-WgG"/>
@@ -184,7 +183,7 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SwX-hY-IjS">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SwX-hY-IjS">
                                 <rect key="frame" x="137" y="175" width="140" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="39" id="beg-bC-HSO"/>
@@ -201,12 +200,12 @@
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Company Mission!" translatesAutoresizingMaskIntoConstraints="NO" id="GeM-V6-zP8">
                                         <rect key="frame" x="0.0" y="0.0" width="390" height="112"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="GeM-V6-zP8" secondAttribute="trailing" id="69h-Jr-ogj"/>
                                     <constraint firstItem="GeM-V6-zP8" firstAttribute="leading" secondItem="DAC-yF-pJJ" secondAttribute="leading" id="92G-k2-wgy"/>
@@ -228,11 +227,11 @@
                                         <real key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" systemColor="placeholderTextColor"/>
+                                        <color key="value" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Voe-ml-R4l">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Voe-ml-R4l">
                                 <rect key="frame" x="147.5" y="474" width="119" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="39" id="mya-QF-kEJ"/>
@@ -244,7 +243,7 @@
                                     <segue destination="IHR-Y9-9EW" kind="presentation" id="b1M-hA-hdo"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1rx-Mc-kXF">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1rx-Mc-kXF">
                                 <rect key="frame" x="352" y="54" width="50" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="PXA-2U-pSk"/>
@@ -282,7 +281,7 @@ Referral Code:</string>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="9I6-vC-x8L" secondAttribute="bottom" id="Efb-Vx-So7"/>
                                     <constraint firstItem="9I6-vC-x8L" firstAttribute="top" secondItem="sob-Xm-iHY" secondAttribute="top" id="HeJ-zO-T5V"/>
@@ -318,15 +317,27 @@ Referral Code:</string>
                                     </mask>
                                 </variation>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0d-HA-zGY">
+                                <rect key="frame" x="12" y="54" width="74" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="tLU-kW-7QM"/>
+                                    <constraint firstAttribute="width" constant="74" id="xvN-qk-NQe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="Sign Out"/>
+                                <connections>
+                                    <action selector="signOutActionWithSender:" destination="jms-e6-Lq9" eventType="touchUpInside" id="j9g-rC-QBz"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="BHr-bB-bJP"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Voe-ml-R4l" firstAttribute="top" secondItem="zic-Yh-ccf" secondAttribute="bottom" constant="8" id="0N3-bC-OWn"/>
                             <constraint firstItem="CFT-5e-X5H" firstAttribute="width" secondItem="sob-Xm-iHY" secondAttribute="width" id="0no-00-l99"/>
                             <constraint firstItem="zic-Yh-ccf" firstAttribute="centerX" secondItem="BHr-bB-bJP" secondAttribute="centerX" id="2Bi-Ps-3Rw"/>
                             <constraint firstItem="Voe-ml-R4l" firstAttribute="centerX" secondItem="rGd-pw-gZv" secondAttribute="centerX" id="2bF-ty-ryS"/>
+                            <constraint firstItem="b0d-HA-zGY" firstAttribute="leading" secondItem="BHr-bB-bJP" secondAttribute="leading" constant="12" id="4gu-k3-LRS"/>
                             <constraint firstItem="zic-Yh-ccf" firstAttribute="leading" secondItem="CFT-5e-X5H" secondAttribute="leading" id="CwB-Ra-stY"/>
                             <constraint firstItem="SwX-hY-IjS" firstAttribute="top" secondItem="2gS-Jg-zC2" secondAttribute="bottom" constant="3" id="I9i-Eb-hNf"/>
                             <constraint firstItem="DAC-yF-pJJ" firstAttribute="width" secondItem="CFT-5e-X5H" secondAttribute="width" id="Jer-dd-5Ky"/>
@@ -336,6 +347,7 @@ Referral Code:</string>
                             <constraint firstItem="2gS-Jg-zC2" firstAttribute="top" secondItem="BHr-bB-bJP" secondAttribute="top" constant="28" id="Zph-cY-WJg"/>
                             <constraint firstItem="sob-Xm-iHY" firstAttribute="centerX" secondItem="rGd-pw-gZv" secondAttribute="centerX" id="bVq-Hm-KEB"/>
                             <constraint firstItem="DAC-yF-pJJ" firstAttribute="centerX" secondItem="CFT-5e-X5H" secondAttribute="centerX" id="beq-EO-Hd5"/>
+                            <constraint firstItem="b0d-HA-zGY" firstAttribute="top" secondItem="BHr-bB-bJP" secondAttribute="top" constant="10" id="gVd-b5-3KT"/>
                             <constraint firstItem="1rx-Mc-kXF" firstAttribute="top" secondItem="BHr-bB-bJP" secondAttribute="top" constant="10" id="jqj-Ch-6EJ"/>
                             <constraint firstItem="sob-Xm-iHY" firstAttribute="leading" secondItem="BHr-bB-bJP" secondAttribute="leading" constant="12" id="jsZ-6P-HiN"/>
                             <constraint firstItem="CFT-5e-X5H" firstAttribute="top" secondItem="2gS-Jg-zC2" secondAttribute="bottom" constant="50" id="nWP-37-T8h"/>
@@ -346,6 +358,7 @@ Referral Code:</string>
                             <constraint firstItem="zic-Yh-ccf" firstAttribute="top" secondItem="DAC-yF-pJJ" secondAttribute="bottom" constant="16" id="wlW-cl-Ngh"/>
                             <constraint firstItem="2gS-Jg-zC2" firstAttribute="centerX" secondItem="rGd-pw-gZv" secondAttribute="centerX" id="yoj-mm-v6D"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="BHr-bB-bJP"/>
                         <variation key="widthClass=regular">
                             <mask key="constraints">
                                 <exclude reference="jsZ-6P-HiN"/>
@@ -381,7 +394,7 @@ Referral Code:</string>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-1361" y="508"/>
+            <point key="canvasLocation" x="-1362.3188405797102" y="507.58928571428567"/>
         </scene>
         <!--imagepicker-->
         <scene sceneID="lRg-2n-pCA">
@@ -400,7 +413,7 @@ Referral Code:</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use your Business Referral Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LvN-9m-uvu">
-                                <rect key="frame" x="82.5" y="70" width="249" height="21"/>
+                                <rect key="frame" x="82" y="70" width="250.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -422,7 +435,7 @@ If a business signs up using your Business Referral Code, you will recieve 1% of
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ttc-OP-ZGe">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ttc-OP-ZGe">
                                 <rect key="frame" x="16" y="10" width="47" height="35"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                 <state key="normal" title="Done"/>
@@ -432,8 +445,7 @@ If a business signs up using your Business Referral Code, you will recieve 1% of
                                 </connections>
                             </button>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="ywA-0d-q9F"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="ywA-0d-q9F" firstAttribute="trailing" secondItem="muJ-K4-imv" secondAttribute="trailing" constant="24" id="1tR-fx-gi4"/>
                             <constraint firstItem="muJ-K4-imv" firstAttribute="top" secondItem="OHV-d2-qjS" secondAttribute="bottom" constant="8" id="FlD-ea-AKd"/>
@@ -445,6 +457,7 @@ If a business signs up using your Business Referral Code, you will recieve 1% of
                             <constraint firstItem="LvN-9m-uvu" firstAttribute="top" secondItem="ywA-0d-q9F" secondAttribute="top" constant="70" id="ijL-PK-xf6"/>
                             <constraint firstItem="muJ-K4-imv" firstAttribute="leading" secondItem="ywA-0d-q9F" secondAttribute="leading" constant="24" id="rsk-c5-Eqh"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="ywA-0d-q9F"/>
                     </view>
                     <connections>
                         <outlet property="referralLabel" destination="OHV-d2-qjS" id="mYn-9X-7Z2"/>
@@ -459,17 +472,5 @@ If a business signs up using your Business Referral Code, you will recieve 1% of
         <image name="defaultCompany" width="600" height="600"/>
         <image name="globe" width="75" height="75"/>
         <image name="globe" catalog="system" width="128" height="121"/>
-        <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="placeholderTextColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

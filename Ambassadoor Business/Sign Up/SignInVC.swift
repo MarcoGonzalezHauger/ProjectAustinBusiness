@@ -28,6 +28,8 @@ class SignInVC: BaseVC, UITextFieldDelegate {
     var passwordString = ""
     var companyUser: CompanyUser!
     
+    var stringOne: String? = nil
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -222,6 +224,7 @@ class SignInVC: BaseVC, UITextFieldDelegate {
     @IBOutlet weak var passwordline: UILabel!
     
     @IBAction func signInAction(sender: UIButton){
+                
         
         if emailText.text?.count != 0 {
             
@@ -254,157 +257,157 @@ class SignInVC: BaseVC, UITextFieldDelegate {
                                     if companyUser != nil {
                                         Singleton.sharedInstance.setCompanyUser(user: companyUser!)
                                         
-//										if companyUser!.isForTesting == true {
-											
-											if let isRegistered =  Singleton.sharedInstance.getCompanyUser().isCompanyRegistered{
-												
-												if isRegistered{
-													
-													let user = Singleton.sharedInstance.getCompanyUser().companyID!
-													
-													getCompany(companyID: user, signInButton: self.signInButton) { (company, error) in
-														
-														Singleton.sharedInstance.setCompanyDetails(company: company!)
-														YourCompany = company
-														TimerListener.scheduleUpdateBalanceTimer()
-														downloadBeforeLoad()
-														
-														getAllDistributedOffers { (status, results) in
-															if status {
-																if let results = results {
-																	if results.count == 0 {
-																	} else {
-																		
-																		var rslts: [OfferStatistic] = []
-																		for i in results {
-																			rslts.append(OfferStatistic.init(offer: i))
-																		}
-																		global.distributedOffers = rslts
-																		
-																	}
-																}
-																
-																DispatchQueue.main.async(execute: {
-																	timer.invalidate()
-																	self.hideActivityIndicator()
-																	self.instantiateToMainScreen()
-																})
-																
-															}else{
-																DispatchQueue.main.async(execute: {
-																	timer.invalidate()
-																	self.hideActivityIndicator()
-																	self.instantiateToMainScreen()
-																})
-															}
-														}
-														
-														//                                                DispatchQueue.main.async(execute: {
-														//                                                    timer.invalidate()
-														//                                                    self.hideActivityIndicator()
-														//                                                    self.instantiateToMainScreen()
-														//                                                })
-													}
-													
-												}else{
-													DispatchQueue.main.async(execute: {
-														timer.invalidate()
-														self.hideActivityIndicator()
-														self.instantiateToMainScreen()
-													})
-												}
-												
-												
-												
-											}else{
-												DispatchQueue.main.async(execute: {
-													timer.invalidate()
-													self.hideActivityIndicator()
-													self.instantiateToMainScreen()
-												})
-											}
-//										}else{
-//											DispatchQueue.main.async(execute: {
-//												timer.invalidate()
-//												self.hideActivityIndicator()
-//											})
-//											self.signInButton.setTitle("Sign In", for: .normal)
-//											self.showAlertMessage(title: "Alert", message: "This account is not a test account") {
+//                                        if companyUser!.isForTesting == false {
+                                        
+                                        if let isRegistered =  Singleton.sharedInstance.getCompanyUser().isCompanyRegistered{
+                                            
+                                            if isRegistered{
+                                                
+                                                let user = Singleton.sharedInstance.getCompanyUser().companyID!
+                                                
+                                                getCompany(companyID: user, signInButton: self.signInButton) { (company, error) in
+                                                    
+                                                    Singleton.sharedInstance.setCompanyDetails(company: company!)
+                                                    YourCompany = company
+                                                    TimerListener.scheduleUpdateBalanceTimer()
+                                                    downloadBeforeLoad()
+                                                    
+                                                    getAllDistributedOffers { (status, results) in
+                                                        if status {
+                                                            if let results = results {
+                                                                if results.count == 0 {
+                                                                } else {
+                                                                    
+                                                                    var rslts: [OfferStatistic] = []
+                                                                    for i in results {
+                                                                        rslts.append(OfferStatistic.init(offer: i))
+                                                                    }
+                                                                    global.distributedOffers = rslts
+                                                                    
+                                                                }
+                                                            }
+                                                            
+                                                            DispatchQueue.main.async(execute: {
+                                                                timer.invalidate()
+                                                                self.hideActivityIndicator()
+                                                                self.instantiateToMainScreen()
+                                                            })
+                                                            
+                                                        }else{
+                                                            DispatchQueue.main.async(execute: {
+                                                                timer.invalidate()
+                                                                self.hideActivityIndicator()
+                                                                self.instantiateToMainScreen()
+                                                            })
+                                                        }
+                                                    }
+                                                    
+                                                    //                                                DispatchQueue.main.async(execute: {
+                                                    //                                                    timer.invalidate()
+                                                    //                                                    self.hideActivityIndicator()
+                                                    //                                                    self.instantiateToMainScreen()
+                                                    //                                                })
+                                                }
+                                                
+                                            }else{
+                                                DispatchQueue.main.async(execute: {
+                                                    timer.invalidate()
+                                                    self.hideActivityIndicator()
+                                                    self.instantiateToMainScreen()
+                                                })
+                                            }
+                                            
+                                            
+                                            
+                                        }else{
+                                            DispatchQueue.main.async(execute: {
+                                                timer.invalidate()
+                                                self.hideActivityIndicator()
+                                                self.instantiateToMainScreen()
+                                            })
+                                        }
+//                                    }else{
+//                                        DispatchQueue.main.async(execute: {
+//                                            timer.invalidate()
+//                                            self.hideActivityIndicator()
+//                                        })
+//                                        self.signInButton.setTitle("Sign In", for: .normal)
+//                                        self.showAlertMessage(title: "Alert", message: "This account is not a test account") {
 //
-//											}
-//										}
-									}else{
-										self.updateCompanyUserData(timer: timer)
-									}
-									
-								}
-								
-							}else{
-								
-								Auth.auth().currentUser?.sendEmailVerification { (error) in
-									
-									if error == nil{
-										DispatchQueue.main.async {
-											
-											self.performSegue(withIdentifier: "fromSignin", sender: self)
-											
-										}
-									}else{
-										self.signInButton.setTitle("Sign In", for: .normal)
-										self.showAlertMessage(title: "Alert", message: (error?.localizedDescription)!) {
-											
-										}
-										
-									}
-									
-								}
-								
-							}
-							
-						}else{
-							
-							timer.invalidate()
-							self.hideActivityIndicator()
-							self.signInButton.setTitle("Sign In", for: .normal)
-							print("error=",error!)
-							MakeShake(viewToShake: self.signInButton)
-							
-							let err = error! as NSError
-							print(err.domain)
-							
-							if err.code == 17011{
-								
-								self.usernameLine.backgroundColor = .red
-								self.passwordline.backgroundColor = .red
-								
-								self.showAlertMessage(title: "Alert", message: "No user found. The user may have been deleted") {
-									
-								}
-								
-							}else if err.code == 17020{
-								self.showAlertMessage(title: "Alert", message: "The Internet connection appears to be offline") {
-									
-								}
-							}else if err.code == 17009{
-								self.usernameLine.backgroundColor = .systemBlue
-								self.passwordline.backgroundColor = .red
-								
-								self.showAlertMessage(title: "Alert", message: "The password is invalid") {
-									
-								}
-								
-							}
-							
-							
-							
-						}
-						
-					}
-					
-					
-					
-				} else {
-					MakeShake(viewToShake: signInButton)
+//                                        }
+//                                    }
+                                    }else{
+                                        self.updateCompanyUserData(timer: timer)
+                                    }
+                                    
+                                }
+                                
+                            }else{
+                                
+                                Auth.auth().currentUser?.sendEmailVerification { (error) in
+                                    
+                                    if error == nil{
+                                        DispatchQueue.main.async {
+                                            
+                                            self.performSegue(withIdentifier: "fromSignin", sender: self)
+                                            
+                                        }
+                                    }else{
+                                        self.signInButton.setTitle("Sign In", for: .normal)
+                                        self.showAlertMessage(title: "Alert", message: (error?.localizedDescription)!) {
+                                            
+                                        }
+                                        
+                                    }
+                                    
+                                }
+                                
+                            }
+                            
+                        }else{
+                            
+                            timer.invalidate()
+                            self.hideActivityIndicator()
+                            self.signInButton.setTitle("Sign In", for: .normal)
+                            print("error=",error!)
+                            MakeShake(viewToShake: self.signInButton)
+                            
+                            let err = error! as NSError
+                            print(err.domain)
+                            
+                            if err.code == 17011{
+                                
+                                self.usernameLine.backgroundColor = .red
+                                self.passwordline.backgroundColor = .red
+                                
+                                self.showAlertMessage(title: "Alert", message: "No user found. The user may have been deleted") {
+                                    
+                                }
+                                
+                            }else if err.code == 17020{
+                                self.showAlertMessage(title: "Alert", message: "The Internet connection appears to be offline") {
+                                    
+                                }
+                            }else if err.code == 17009{
+                                self.usernameLine.backgroundColor = .systemBlue
+                                self.passwordline.backgroundColor = .red
+                                
+                                self.showAlertMessage(title: "Alert", message: "The password is invalid") {
+                                    
+                                }
+                                
+                            }
+                            
+                            
+                            
+                        }
+                        
+                    }
+                    
+                    
+                    
+                } else {
+                    MakeShake(viewToShake: signInButton)
                     passwordline.backgroundColor = .red
                     
                 }

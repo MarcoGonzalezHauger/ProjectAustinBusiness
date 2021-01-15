@@ -235,6 +235,23 @@ class ViewCompanyVC: BaseVC, ImagePickerDelegate, webChangedDelegate, UITextFiel
 		updateIsEditing()
     }
     
+    @IBAction func signOutAction(sender: UIButton){
+        
+        YourCompany = nil
+        global.accountBalance = 0.0
+        UserDefaults.standard.removeObject(forKey: "userid")
+        UserDefaults.standard.removeObject(forKey: "userPass")
+        UserDefaults.standard.removeObject(forKey: "userEmail")
+        UIApplication.shared.shortcutItems?.removeAll()
+        Singleton.sharedInstance.companyDetails = nil
+        Singleton.sharedInstance.company = CompanyUser.init(dictionary: [:])
+        let signInStoryBoard = UIStoryboard(name: "Onboarding", bundle: nil)
+        let loginVC = signInStoryBoard.instantiateInitialViewController()
+        let appDel: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDel.window?.rootViewController = loginVC
+        
+    }
+    
     override func doneButtonAction() {
         self.companyMission.resignFirstResponder()
     }

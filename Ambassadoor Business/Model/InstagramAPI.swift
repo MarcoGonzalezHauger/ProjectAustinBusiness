@@ -10,7 +10,7 @@ import Foundation
 struct API {
     
         // Test
-        static var isForTesting = true
+        static var isForTesting = false
     
     //Stripe account live and demo client ID and secret ID
         //Live
