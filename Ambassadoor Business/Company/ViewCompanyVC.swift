@@ -281,24 +281,31 @@ class ViewCompanyVC: BaseVC, ImagePickerDelegate, webChangedDelegate, UITextFiel
 		companyMission.text = YourCompany.mission
 //		companyDescription.text = YourCompany.companyDescription
         self.companyLogo.sd_setImage(with: URL.init(string: YourCompany.logo!), placeholderImage: UIImage(named: "defaultProduct"))
-		downloadImage(YourCompany.logo!) { (image) in
-			
-			
-			let size = CGSize.init(width: 32, height: 32)
-			
-			let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-			
-			UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
-			image?.draw(in: rect)
-			let newImage = UIGraphicsGetImageFromCurrentImageContext()
-			UIGraphicsEndImageContext()
-			
-			if var image = newImage {
-				print(image.scale)
-				image = makeImageCircular(image: image)
-				print(image.scale)
-				self.tabBarItem.image = image.withRenderingMode(.alwaysOriginal)
+		setCompanyTabBarItem()
+	}
+	
+	func setCompanyTabBarItem() {
+		guard let YourCompany = YourCompany else {return}
+		guard let logo = YourCompany.logo else {return}
+		downloadImage(logo) { (image) in
+			DispatchQueue.main.async {
+				let size = CGSize.init(width: 32, height: 32)
+				
+				let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+				
+				UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
+				image?.draw(in: rect)
+				let newImage = UIGraphicsGetImageFromCurrentImageContext()
+				UIGraphicsEndImageContext()
+				
+				if var image = newImage {
+					print(image.scale)
+					image = makeImageCircular(image: image)
+					print(image.scale)
+					self.tabBarController?.viewControllers?.first?.tabBarItem.image = image.withRenderingMode(.alwaysOriginal)
+				}
 			}
+			
 		}
 	}
 	
