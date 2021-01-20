@@ -453,7 +453,7 @@ class Company: NSObject {
     let companyDescription: String
     var accountBalance: Double
     var referralcode: String?
-    
+    var isForTesting: Bool
     
     
     init(dictionary: [String: Any]) {
@@ -467,6 +467,7 @@ class Company: NSObject {
 		self.accountBalance = dictionary["accountBalance"] as! Double
 		self.referralcode = dictionary["referralcode"] as? String ?? ""
         self.userID = dictionary["userId"] as? String ?? ""
+        self.isForTesting = dictionary["isForTesting"] as? Bool ?? false
     }
 }
 
