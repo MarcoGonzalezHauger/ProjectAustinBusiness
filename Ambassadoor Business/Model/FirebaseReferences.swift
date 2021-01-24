@@ -257,7 +257,8 @@ func serializeCompany(company: Company) -> [String: Any] {
         "accountBalance": company.accountBalance,
 		"owner": company.owner_email,
         "referralcode": company.owner_email,
-        "userId": Auth.auth().currentUser!.uid
+        "userId": Auth.auth().currentUser!.uid,
+        "isForTesting": API.isForTesting
     ]
     return companyData
 }

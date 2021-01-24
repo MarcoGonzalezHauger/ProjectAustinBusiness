@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		991B755A990D3FC6E4FE2863 /* Pods_Ambassadoor_Business.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43232CCE7767D24B796A1AAB /* Pods_Ambassadoor_Business.framework */; };
+		B703D92425B72EAA003C7F37 /* Money.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B703D92325B72EAA003C7F37 /* Money.storyboard */; };
+		B703D92625B737D3003C7F37 /* Statistics.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B703D92525B737D3003C7F37 /* Statistics.storyboard */; };
 		B706CB4D22E5F3310092FB77 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B706CB4C22E5F3310092FB77 /* SignInVC.swift */; };
 		B706CB4F22E5F7860092FB77 /* ValidationFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B706CB4E22E5F7860092FB77 /* ValidationFile.swift */; };
 		B706CB5122E60DC20092FB77 /* ForgetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B706CB5022E60DC20092FB77 /* ForgetPasswordVC.swift */; };
@@ -107,6 +109,8 @@
 		228FAE77575D48623186C102 /* Pods-Ambassadoor Business.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ambassadoor Business.release.xcconfig"; path = "Target Support Files/Pods-Ambassadoor Business/Pods-Ambassadoor Business.release.xcconfig"; sourceTree = "<group>"; };
 		43232CCE7767D24B796A1AAB /* Pods_Ambassadoor_Business.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ambassadoor_Business.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6FB1485BA06735A80E39C68 /* Pods-Ambassadoor Business.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ambassadoor Business.debug.xcconfig"; path = "Target Support Files/Pods-Ambassadoor Business/Pods-Ambassadoor Business.debug.xcconfig"; sourceTree = "<group>"; };
+		B703D92325B72EAA003C7F37 /* Money.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Money.storyboard; sourceTree = "<group>"; };
+		B703D92525B737D3003C7F37 /* Statistics.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Statistics.storyboard; sourceTree = "<group>"; };
 		B706CB4C22E5F3310092FB77 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		B706CB4E22E5F7860092FB77 /* ValidationFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationFile.swift; sourceTree = "<group>"; };
 		B706CB5022E60DC20092FB77 /* ForgetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordVC.swift; sourceTree = "<group>"; };
@@ -417,6 +421,8 @@
 				B770B8122514EACD00724465 /* Company.storyboard */,
 				E8C3694522161B3000AE12D7 /* Main.storyboard */,
 				B770B8102514A5E700724465 /* RegisterCompany.storyboard */,
+				B703D92325B72EAA003C7F37 /* Money.storyboard */,
+				B703D92525B737D3003C7F37 /* Statistics.storyboard */,
 				B7D2FE11247542F00000BFFC /* tutorial.mp4 */,
 				E8C3694B22161B3200AE12D7 /* Assets.xcassets */,
 				E8C3694D22161B3200AE12D7 /* LaunchScreen.storyboard */,
@@ -542,6 +548,8 @@
 				B7A65CAB25ADA1E50071785F /* GoogleService-Info.plist in Resources */,
 				E8C3694F22161B3200AE12D7 /* LaunchScreen.storyboard in Resources */,
 				B7D2FE12247542F00000BFFC /* tutorial.mp4 in Resources */,
+				B703D92625B737D3003C7F37 /* Statistics.storyboard in Resources */,
+				B703D92425B72EAA003C7F37 /* Money.storyboard in Resources */,
 				B712C487230690B500728758 /* ProductListCell.xib in Resources */,
 				B7551F2F22F99B01001C4974 /* BasePicker.xib in Resources */,
 				B7FD83ED22F0870F00347E8E /* PostDetailTC.xib in Resources */,

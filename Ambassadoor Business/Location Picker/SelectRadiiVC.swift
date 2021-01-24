@@ -13,7 +13,7 @@ struct radii {
 	var radius: Int
 }
 
-class RadiusCell: UITableViewCell {
+class RadiusCell: UITableViewCell, UITextFieldDelegate {
 	var delegate: RadiusDelegate?
 	var ip: IndexPath {
 		return delegate!.getMyIndexPath(cell: self)
@@ -33,6 +33,27 @@ class RadiusCell: UITableViewCell {
 		delegate?.removeLocation(indexPath: ip)
 	}
 	
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == zipCode {
+            let maxLength = 7
+            let currentString: NSString = (textField.text ?? "") as NSString
+            let newString: NSString =
+                currentString.replacingCharacters(in: range, with: string) as NSString
+            return newString.length <= maxLength
+        }else if textField == Miles {
+            
+            let currentString: NSString = (textField.text ?? "") as NSString
+            let newString: NSString =
+                currentString.replacingCharacters(in: range, with: string) as NSString
+            
+            let miles = Int(newString as String) ?? 0
+            
+            return miles <= 50
+        }else{
+            return true
+        }
+        
+    }
 }
 
 protocol RadiusDelegate {
