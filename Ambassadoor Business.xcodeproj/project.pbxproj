@@ -49,6 +49,23 @@
 		B7B11FF723242638006711BB /* ConnectedPlaidTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B11FF623242638006711BB /* ConnectedPlaidTVCell.swift */; };
 		B7BD39BB22FAAB53008A0496 /* CategoryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BD39BA22FAAB53008A0496 /* CategoryTVC.swift */; };
 		B7BD39BD22FAAE42008A0496 /* CategoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BD39BC22FAAE42008A0496 /* CategoryHeaderView.swift */; };
+		B7C293B525ECE423004A723B /* InProgress functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C293A425ECE404004A723B /* InProgress functions.swift */; };
+		B7C293B625ECE423004A723B /* AdminValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C293A525ECE406004A723B /* AdminValues.swift */; };
+		B7C293B725ECE423004A723B /* Interests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C293A625ECE408004A723B /* Interests.swift */; };
+		B7C293B825ECE423004A723B /* Offer Distribution Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C293A725ECE40A004A723B /* Offer Distribution Functions.swift */; };
+		B7C293B925ECE423004A723B /* Business Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C293A825ECE40C004A723B /* Business Structs.swift */; };
+		B7C293BA25ECE423004A723B /* UpdateToFirebase Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C293A925ECE40E004A723B /* UpdateToFirebase Ext.swift */; };
+		B7C293BB25ECE423004A723B /* Port.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C293AA25ECE410004A723B /* Port.swift */; };
+		B7C293BC25ECE423004A723B /* Influencer Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C293AB25ECE412004A723B /* Influencer Structs.swift */; };
+		B7C293BD25ECE423004A723B /* Inititialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C293AC25ECE414004A723B /* Inititialization.swift */; };
+		B7C293BE25ECE423004A723B /* Public Data Algo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C293AD25ECE416004A723B /* Public Data Algo.swift */; };
+		B7C293BF25ECE423004A723B /* CalculatedValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C293AE25ECE418004A723B /* CalculatedValues.swift */; };
+		B7C293C025ECE423004A723B /* Offer Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C293AF25ECE41A004A723B /* Offer Structs.swift */; };
+		B7C293C125ECE423004A723B /* New Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C293B025ECE41C004A723B /* New Globals.swift */; };
+		B7C293C225ECE423004A723B /* Useful UI Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C293B125ECE41D004A723B /* Useful UI Functions.swift */; };
+		B7C293C325ECE423004A723B /* Social Interactions ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C293B225ECE41F004A723B /* Social Interactions ext.swift */; };
+		B7C293C425ECE423004A723B /* UniversalDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C293B325ECE421004A723B /* UniversalDate.swift */; };
+		B7C293C525ECE423004A723B /* OfferPool algo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C293B425ECE423004A723B /* OfferPool algo.swift */; };
 		B7C58569234DED3600EB90BB /* InstagramUserTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C58568234DED3600EB90BB /* InstagramUserTVC.swift */; };
 		B7C9FE8E231E4870005580E4 /* PlaidLinkEnabledVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C9FE8C231E486F005580E4 /* PlaidLinkEnabledVC.swift */; };
 		B7C9FE8F231E4870005580E4 /* PlaidHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C9FE8D231E486F005580E4 /* PlaidHelper.swift */; };
@@ -151,6 +168,23 @@
 		B7B72E07237C4953002AB168 /* Ambassadoor Business.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Ambassadoor Business.entitlements"; sourceTree = "<group>"; };
 		B7BD39BA22FAAB53008A0496 /* CategoryTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTVC.swift; sourceTree = "<group>"; };
 		B7BD39BC22FAAE42008A0496 /* CategoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryHeaderView.swift; sourceTree = "<group>"; };
+		B7C293A425ECE404004A723B /* InProgress functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "InProgress functions.swift"; sourceTree = "<group>"; };
+		B7C293A525ECE406004A723B /* AdminValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminValues.swift; sourceTree = "<group>"; };
+		B7C293A625ECE408004A723B /* Interests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interests.swift; sourceTree = "<group>"; };
+		B7C293A725ECE40A004A723B /* Offer Distribution Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Offer Distribution Functions.swift"; sourceTree = "<group>"; };
+		B7C293A825ECE40C004A723B /* Business Structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Business Structs.swift"; sourceTree = "<group>"; };
+		B7C293A925ECE40E004A723B /* UpdateToFirebase Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UpdateToFirebase Ext.swift"; sourceTree = "<group>"; };
+		B7C293AA25ECE410004A723B /* Port.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Port.swift; sourceTree = "<group>"; };
+		B7C293AB25ECE412004A723B /* Influencer Structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Influencer Structs.swift"; sourceTree = "<group>"; };
+		B7C293AC25ECE414004A723B /* Inititialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inititialization.swift; sourceTree = "<group>"; };
+		B7C293AD25ECE416004A723B /* Public Data Algo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Public Data Algo.swift"; sourceTree = "<group>"; };
+		B7C293AE25ECE418004A723B /* CalculatedValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatedValues.swift; sourceTree = "<group>"; };
+		B7C293AF25ECE41A004A723B /* Offer Structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Offer Structs.swift"; sourceTree = "<group>"; };
+		B7C293B025ECE41C004A723B /* New Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "New Globals.swift"; sourceTree = "<group>"; };
+		B7C293B125ECE41D004A723B /* Useful UI Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Useful UI Functions.swift"; sourceTree = "<group>"; };
+		B7C293B225ECE41F004A723B /* Social Interactions ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Social Interactions ext.swift"; sourceTree = "<group>"; };
+		B7C293B325ECE421004A723B /* UniversalDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversalDate.swift; sourceTree = "<group>"; };
+		B7C293B425ECE423004A723B /* OfferPool algo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OfferPool algo.swift"; sourceTree = "<group>"; };
 		B7C58568234DED3600EB90BB /* InstagramUserTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramUserTVC.swift; sourceTree = "<group>"; };
 		B7C9FE8C231E486F005580E4 /* PlaidLinkEnabledVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaidLinkEnabledVC.swift; sourceTree = "<group>"; };
 		B7C9FE8D231E486F005580E4 /* PlaidHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaidHelper.swift; sourceTree = "<group>"; };
@@ -272,6 +306,31 @@
 			path = CollectionCell;
 			sourceTree = "<group>";
 		};
+		B7C293A325ECE3E8004A723B /* New Model */ = {
+			isa = PBXGroup;
+			children = (
+				B7C293A525ECE406004A723B /* AdminValues.swift */,
+				B7C293A825ECE40C004A723B /* Business Structs.swift */,
+				B7C293AE25ECE418004A723B /* CalculatedValues.swift */,
+				B7C293AB25ECE412004A723B /* Influencer Structs.swift */,
+				B7C293AC25ECE414004A723B /* Inititialization.swift */,
+				B7C293A425ECE404004A723B /* InProgress functions.swift */,
+				B7C293A625ECE408004A723B /* Interests.swift */,
+				B7C293B025ECE41C004A723B /* New Globals.swift */,
+				B7C293A725ECE40A004A723B /* Offer Distribution Functions.swift */,
+				B7C293AF25ECE41A004A723B /* Offer Structs.swift */,
+				B7C293B425ECE423004A723B /* OfferPool algo.swift */,
+				B7C293AA25ECE410004A723B /* Port.swift */,
+				B7C293AD25ECE416004A723B /* Public Data Algo.swift */,
+				B7C293B225ECE41F004A723B /* Social Interactions ext.swift */,
+				B7C293B325ECE421004A723B /* UniversalDate.swift */,
+				B7C293A925ECE40E004A723B /* UpdateToFirebase Ext.swift */,
+				B7C293B125ECE41D004A723B /* Useful UI Functions.swift */,
+				C05FE2D8225F683E002D3CAA /* FirebaseReferences.swift */,
+			);
+			path = "New Model";
+			sourceTree = "<group>";
+		};
 		B7C9FE8B231E485E005580E4 /* Plaid */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,7 +362,6 @@
 			children = (
 				E84600892273B0B300CF60F2 /* Savvy.swift */,
 				C089A3C42253D4E500ECF3B0 /* structs.swift */,
-				C05FE2D8225F683E002D3CAA /* FirebaseReferences.swift */,
 				C05FE2DA225F687C002D3CAA /* global.swift */,
 				C0C9390522614AE3003DC925 /* InstagramAPI.swift */,
 				C0FBFD00226154FC00BADDCD /* categories.swift */,
@@ -400,6 +458,7 @@
 				B7D030AD23237CA4002B90FF /* Ambassadoor Business-Bridging-Header.h */,
 				E8E54688227BA3E800775A07 /* YourCompany.swift */,
 				B7A65CAA25ADA1E50071785F /* GoogleService-Info.plist */,
+				B7C293A325ECE3E8004A723B /* New Model */,
 				B7C9FE8B231E485E005580E4 /* Plaid */,
 				E8F8AAC722C8485A0047BF5E /* Offers */,
 				E816AC202282F34000B9D951 /* Money */,
@@ -635,11 +694,14 @@
 				B7B11FF723242638006711BB /* ConnectedPlaidTVCell.swift in Sources */,
 				E8C708C7237645EB001699D0 /* FilterTypeVC.swift in Sources */,
 				B7BD39BB22FAAB53008A0496 /* CategoryTVC.swift in Sources */,
+				B7C293BE25ECE423004A723B /* Public Data Algo.swift in Sources */,
+				B7C293BA25ECE423004A723B /* UpdateToFirebase Ext.swift in Sources */,
 				B78B39EA25109BA500829F31 /* RegisterCompanyPVC.swift in Sources */,
 				B706CB5122E60DC20092FB77 /* ForgetPasswordVC.swift in Sources */,
 				B7FD83E722F07E1800347E8E /* AddPostTC.swift in Sources */,
 				B712C48B2306DA7900728758 /* StaticsPie.swift in Sources */,
 				E8E54689227BA3E800775A07 /* YourCompany.swift in Sources */,
+				B7C293C025ECE423004A723B /* Offer Structs.swift in Sources */,
 				B7CA8455234CB4A600A3223A /* StatisticsStruct.swift in Sources */,
 				B7D4209D232AA9A1009F0FCE /* TransactionListVC.swift in Sources */,
 				B799227822F1C511007E84B0 /* AddPostVC.swift in Sources */,
@@ -648,19 +710,27 @@
 				B7BD39BD22FAAE42008A0496 /* CategoryHeaderView.swift in Sources */,
 				E82F890D22DD30B40036A079 /* CreateCompanyVC.swift in Sources */,
 				B788D6F422E8931100FA59BA /* RegisterCompanyVC.swift in Sources */,
+				B7C293C125ECE423004A723B /* New Globals.swift in Sources */,
 				B7F4BA5D25668682000F7EA4 /* InfluencerListVC.swift in Sources */,
 				C05FE2DB225F687C002D3CAA /* global.swift in Sources */,
 				B78B39F12510D67C00829F31 /* CompanyWebsiteVC.swift in Sources */,
+				B7C293C225ECE423004A723B /* Useful UI Functions.swift in Sources */,
+				B7C293C325ECE423004A723B /* Social Interactions ext.swift in Sources */,
 				E816AC222282F3E200B9D951 /* MoneyVC.swift in Sources */,
 				E8C708C923764C51001699D0 /* SelectStatesVC.swift in Sources */,
+				B7C293C525ECE423004A723B /* OfferPool algo.swift in Sources */,
 				B712C485230690A700728758 /* ProductListCell.swift in Sources */,
+				B7C293BF25ECE423004A723B /* CalculatedValues.swift in Sources */,
 				E84600872273AF9100CF60F2 /* ImageViewExtensions.swift in Sources */,
 				E8F8AAC922C8492D0047BF5E /* ViewOffersVC.swift in Sources */,
 				B79EA0AA2581FD9800E3AFB1 /* CustomSplitVC.swift in Sources */,
 				E80B060A22A08D49002B9699 /* MoneyField.swift in Sources */,
+				B7C293B725ECE423004A723B /* Interests.swift in Sources */,
 				E899878323D3B8F20093FC0E /* CurseWords.swift in Sources */,
+				B7C293C425ECE423004A723B /* UniversalDate.swift in Sources */,
 				E86158822478A7CD006D5450 /* ReferralInfoVC.swift in Sources */,
 				B70DEC7C232C2CFA00580FD7 /* TransactionDetailsVC.swift in Sources */,
+				B7C293BC25ECE423004A723B /* Influencer Structs.swift in Sources */,
 				B72CB50A22E7024500958AE0 /* UIViewExtension.swift in Sources */,
 				E80B060822A07F63002B9699 /* WithdrawVC.swift in Sources */,
 				B7C9FE8F231E4870005580E4 /* PlaidHelper.swift in Sources */,
@@ -671,6 +741,7 @@
 				E844EAC22471DE48000CE74F /* mainTabBarController.swift in Sources */,
 				E861588024789C8B006D5450 /* ChangeWebsiteVC.swift in Sources */,
 				C0FBFD01226154FC00BADDCD /* categories.swift in Sources */,
+				B7C293B525ECE423004A723B /* InProgress functions.swift in Sources */,
 				E83F378D227CDEE100BA6688 /* SignUpVC.swift in Sources */,
 				C089A3C52253D4E500ECF3B0 /* structs.swift in Sources */,
 				B7FAB9562350888D00CED248 /* StripeConnectionMKWebview.swift in Sources */,
@@ -679,18 +750,23 @@
 				B7D42099232A9F40009F0FCE /* TransactionInfoTVCell.swift in Sources */,
 				B7787EF425132BBC00098A92 /* RegisterNewVC.swift in Sources */,
 				E84600852273A92A00CF60F2 /* BusinessLabel.swift in Sources */,
+				B7C293BD25ECE423004A723B /* Inititialization.swift in Sources */,
 				B7C58569234DED3600EB90BB /* InstagramUserTVC.swift in Sources */,
 				E8FC17642377A70100245932 /* SelectRadiiVC.swift in Sources */,
 				B78B39F32510D69800829F31 /* CompanyMissionVC.swift in Sources */,
 				B761DA242321352100587F28 /* DwollaUserInformationVC.swift in Sources */,
 				B72CB50822E6E8C100958AE0 /* BaseVC.swift in Sources */,
+				B7C293B925ECE423004A723B /* Business Structs.swift in Sources */,
 				B7FD83E322F072F800347E8E /* AddOfferVC.swift in Sources */,
 				B706CB4F22E5F7860092FB77 /* ValidationFile.swift in Sources */,
+				B7C293B625ECE423004A723B /* AdminValues.swift in Sources */,
 				B79308FE23015C3E001BB47A /* DistributeOfferVC.swift in Sources */,
+				B7C293B825ECE423004A723B /* Offer Distribution Functions.swift in Sources */,
 				B7FD83EB22F0866B00347E8E /* PostDetailTC.swift in Sources */,
 				B78B39ED2510D49400829F31 /* ReferralVC.swift in Sources */,
 				E8D06DF2255F09AF00F9D79C /* VerifyEmailVC.swift in Sources */,
 				E846008A2273B0B300CF60F2 /* Savvy.swift in Sources */,
+				B7C293BB25ECE423004A723B /* Port.swift in Sources */,
 				E8C708C423763EAA001699D0 /* GeolocationTools.swift in Sources */,
 				B79B1D2E22F2EE8D00F3C660 /* DateFormatManager.swift in Sources */,
 				B7C9FE8E231E4870005580E4 /* PlaidLinkEnabledVC.swift in Sources */,
@@ -860,8 +936,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Ambassadoor Business/Ambassadoor Business.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 13;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = F4W3LUKZFA;
 				INFOPLIST_FILE = "Ambassadoor Business/Info.plist";
@@ -878,7 +953,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Ambassadoor Business/Ambassadoor Business-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -891,7 +966,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Ambassadoor Business/Ambassadoor Business.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = F4W3LUKZFA;
 				INFOPLIST_FILE = "Ambassadoor Business/Info.plist";
@@ -907,7 +982,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = AmbassadoorBusiness;
 				SWIFT_OBJC_BRIDGING_HEADER = "Ambassadoor Business/Ambassadoor Business-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

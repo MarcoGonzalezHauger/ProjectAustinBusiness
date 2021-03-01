@@ -247,100 +247,21 @@ class SignInVC: BaseVC, UITextFieldDelegate {
                             
                             if userVal.isEmailVerified {
                                 
-                                UserDefaults.standard.set(self.emailText.text, forKey: "userEmail")
-                                UserDefaults.standard.set(self.passwordText.text, forKey: "userPass")
-                                UserDefaults.standard.set((Auth.auth().currentUser?.uid)!, forKey: "userid")
-                                print("userdefaults set.")
-                                //GoQjJPCnHBVRTc5PxfnjohUWcVw2
-                                //(Auth.auth().currentUser?.uid)!
-                                getCurrentCompanyUser(userID: (Auth.auth().currentUser?.uid)!, signInButton: self.signInButton) { (companyUser, error) in
-                                    if companyUser != nil {
-                                        Singleton.sharedInstance.setCompanyUser(user: companyUser!)
+                                getNewBusiness(email: self.emailText.text!) { (status, business) in
+                                    if status{
+                                        MyCompany = business
                                         
-//                                        if companyUser!.isForTesting == false {
+                                        UserDefaults.standard.set(self.emailText.text, forKey: "userEmail")
+                                        UserDefaults.standard.set(self.passwordText.text, forKey: "userPass")
+                                        UserDefaults.standard.set(MyCompany.businessId, forKey: "userid")
                                         
-                                        if let isRegistered =  Singleton.sharedInstance.getCompanyUser().isCompanyRegistered{
-                                            
-                                            if isRegistered{
-                                                
-                                                let user = Singleton.sharedInstance.getCompanyUser().companyID!
-                                                
-                                                getCompany(companyID: user, signInButton: self.signInButton) { (company, error) in
-                                                    
-                                                    Singleton.sharedInstance.setCompanyDetails(company: company!)
-                                                    YourCompany = company
-                                                    TimerListener.scheduleUpdateBalanceTimer()
-                                                    downloadBeforeLoad()
-                                                    
-                                                    getAllDistributedOffers { (status, results) in
-                                                        if status {
-                                                            if let results = results {
-                                                                if results.count == 0 {
-                                                                } else {
-                                                                    
-                                                                    var rslts: [OfferStatistic] = []
-                                                                    for i in results {
-                                                                        rslts.append(OfferStatistic.init(offer: i))
-                                                                    }
-                                                                    global.distributedOffers = rslts
-                                                                    
-                                                                }
-                                                            }
-                                                            
-                                                            DispatchQueue.main.async(execute: {
-                                                                timer.invalidate()
-                                                                self.hideActivityIndicator()
-                                                                self.instantiateToMainScreen()
-                                                            })
-                                                            
-                                                        }else{
-                                                            DispatchQueue.main.async(execute: {
-                                                                timer.invalidate()
-                                                                self.hideActivityIndicator()
-                                                                self.instantiateToMainScreen()
-                                                            })
-                                                        }
-                                                    }
-                                                    
-                                                    //                                                DispatchQueue.main.async(execute: {
-                                                    //                                                    timer.invalidate()
-                                                    //                                                    self.hideActivityIndicator()
-                                                    //                                                    self.instantiateToMainScreen()
-                                                    //                                                })
-                                                }
-                                                
-                                            }else{
-                                                DispatchQueue.main.async(execute: {
-                                                    timer.invalidate()
-                                                    self.hideActivityIndicator()
-                                                    self.instantiateToMainScreen()
-                                                })
-                                            }
-                                            
-                                            
-                                            
-                                        }else{
-                                            DispatchQueue.main.async(execute: {
-                                                timer.invalidate()
-                                                self.hideActivityIndicator()
-                                                self.instantiateToMainScreen()
-                                            })
-                                        }
-//                                    }else{
-//                                        DispatchQueue.main.async(execute: {
-//                                            timer.invalidate()
-//                                            self.hideActivityIndicator()
-//                                        })
-//                                        self.signInButton.setTitle("Sign In", for: .normal)
-//                                        self.showAlertMessage(title: "Alert", message: "This account is not a test account") {
-//
-//                                        }
-//                                    }
+                                        self.instantiateToMainScreen()
+                                        
                                     }else{
-                                        self.updateCompanyUserData(timer: timer)
+                                        
                                     }
-                                    
                                 }
+
                                 
                             }else{
                                 
