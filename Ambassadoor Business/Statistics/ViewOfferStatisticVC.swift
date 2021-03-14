@@ -134,7 +134,7 @@ class ViewOfferStatisticVC: UIViewController, UITableViewDelegate, UITableViewDa
 //        let money = self.stat!.offer.money == 0.0 ? self.stat!.offer.originalAmount : self.stat!.offer.money
 		let cashPower = self.stat!.offer.cashPower!
         print(CGFloat((cashPower / money)))
-		goldBarWidth.constant = barView.bounds.width * CGFloat((cashPower / money))
+		goldBarWidth.constant = (view.bounds.width - 16) * CGFloat((cashPower / money))
 		
         self.statMoneyText.text = "\(NumberToPrice(Value: cashPower))/\(NumberToPrice(Value: money)) left."
         self.acceptedOfferCount.text = "\(self.stat!.acceptedCount) influencer\(self.stat!.acceptedCount == 1 ? "" : "s") have accepted so far."
