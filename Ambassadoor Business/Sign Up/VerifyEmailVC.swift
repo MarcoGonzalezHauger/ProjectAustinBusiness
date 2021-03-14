@@ -49,89 +49,23 @@ class VerifyEmailVC: BaseVC {
             
             if user.isEmailVerified {
                 
-                UserDefaults.standard.set(self.emailString, forKey: "userEmail")
-                UserDefaults.standard.set(self.passwordString, forKey: "userPass")
-                UserDefaults.standard.set((Auth.auth().currentUser?.uid)!, forKey: "userid")
                 print("userdefaults set.")
                 
-                getCurrentCompanyUser(userID: (Auth.auth().currentUser?.uid)!) { (companyUser, error) in
-                    if companyUser != nil {
-                        Singleton.sharedInstance.setCompanyUser(user: companyUser!)
+                getNewBusiness(email: self.emailString) { (status, business) in
+                    if status{
+                        MyCompany = business
                         
+                        UserDefaults.standard.set(self.emailString, forKey: "userEmail")
+                        UserDefaults.standard.set(self.passwordString, forKey: "userPass")
+                        UserDefaults.standard.set(MyCompany.businessId, forKey: "userid")
                         
-                        if let isRegistered =  Singleton.sharedInstance.getCompanyUser().isCompanyRegistered{
-                            
-                            if isRegistered{
-                                
-                                let user = Singleton.sharedInstance.getCompanyUser().companyID!
-                                
-                                getCompany(companyID: user) { (company, error) in
-                                    
-                                    Singleton.sharedInstance.setCompanyDetails(company: company!)
-                                    YourCompany = company
-                                    TimerListener.scheduleUpdateBalanceTimer()
-                                    downloadBeforeLoad()
-                                    
-                                    getAllDistributedOffers { (status, results) in
-                                        if status {
-                                            if let results = results {
-                                                if results.count == 0 {
-                                                } else {
-                                                    
-                                                    var rslts: [OfferStatistic] = []
-                                                    for i in results {
-                                                        rslts.append(OfferStatistic.init(offer: i))
-                                                    }
-                                                    global.distributedOffers = rslts
-                                                    
-                                                }
-                                            }
-                                            
-                                            DispatchQueue.main.async(execute: {
-                                                self.instantiateToMainScreen()
-                                            })
-                                            
-                                        }else{
-                                            DispatchQueue.main.async(execute: {
-                                                self.instantiateToMainScreen()
-                                            })
-                                        }
-                                    }
-                                
-                                }
-                                
-                            }else{
-                                DispatchQueue.main.async(execute: {
-                                    
-                                    self.instantiateToMainScreen()
-                                })
-                            }
-                        }else{
-                            DispatchQueue.main.async(execute: {
-                                self.instantiateToMainScreen()
-                            })
-                        }
+                        self.instantiateToMainScreen()
+                        
                     }else{
                         
-                        user.getIDToken(completion: { (token, error) in
-                            
-                            if error == nil {
-                                
-                                UserDefaults.standard.set(self.emailString, forKey: "userEmail")
-                                UserDefaults.standard.set(self.passwordString, forKey: "userPass")
-                                UserDefaults.standard.set(user.uid, forKey: "userid")
-                                
-                                let referralCode = randomString(length: 7)
-                                
-                                self.companyUser = CompanyUser.init(dictionary: ["userID":user.uid,"token":token!,"email":user.email!,"refreshToken":user.refreshToken!,"isCompanyRegistered":false,"companyID": "", "deviceFIRToken": global.deviceFIRToken, "businessReferral": referralCode])
-                                
-                                let userDetails = CreateCompanyUser(companyUser: self.companyUser)
-                                Singleton.sharedInstance.setCompanyUser(user: userDetails)
-                                self.instantiateToMainScreen()
-                            }
-                            
-                        })
                     }
+                }
+                
                     
                 }
                 
@@ -144,7 +78,7 @@ class VerifyEmailVC: BaseVC {
         }
             
         }
-    }
+
     
     func fromSignUp() {
         
@@ -161,17 +95,24 @@ class VerifyEmailVC: BaseVC {
                     
                     if error == nil {
                         
+                        
+                        let NewUserID = makeFirebaseUrl(user.uid + ", " + randomString(length: 15))
+                        
+                        
                         UserDefaults.standard.set(self.emailString, forKey: "userEmail")
                         UserDefaults.standard.set(self.passwordString, forKey: "userPass")
-                        UserDefaults.standard.set(user.uid, forKey: "userid")
+                        UserDefaults.standard.set(NewUserID, forKey: "userid")
                         
-                        let referralCode = randomString(length: 7)
+                        let businessObject =  ["businessId":user.uid,"token":token!,"email":user.email!,"refreshToken":user.refreshToken!,"isCompanyRegistered":false, "deviceFIRToken": global.deviceFIRToken, "activeBasicId": NewUserID] as [String : Any]
                         
-                        self.companyUser = CompanyUser.init(dictionary: ["userID":user.uid,"token":token!,"email":user.email!,"refreshToken":user.refreshToken!,"isCompanyRegistered":false,"companyID": "", "deviceFIRToken": global.deviceFIRToken, "businessReferral": referralCode])
+                       let businessUser = Business.init(dictionary: businessObject, businessId: NewUserID)
                         
-                        let userDetails = CreateCompanyUser(companyUser: self.companyUser)
-                        Singleton.sharedInstance.setCompanyUser(user: userDetails)
-                        self.instantiateToMainScreen()
+                        CreateNewCompanyUser(user: businessUser) { (status) in
+                            if !status{
+                               self.instantiateToMainScreen()
+                            }
+                        }
+                        
                     }
                     
                 })

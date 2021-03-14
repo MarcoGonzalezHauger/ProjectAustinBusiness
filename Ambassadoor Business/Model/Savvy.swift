@@ -27,21 +27,21 @@ func NumberToPrice(Value: Double, enforceCents isBig: Bool = false) -> String {
 	return ""
 }
 
-func GetForeColor() -> UIColor {
-	if #available(iOS 13.0, *) {
-		return .label
-	} else {
-		return .black
-	}
-}
+//func GetForeColor() -> UIColor {
+//	if #available(iOS 13.0, *) {
+//		return .label
+//	} else {
+//		return .black
+//	}
+//}
 
-func GetBackColor() -> UIColor {
-	if #available(iOS 13.0, *) {
-		return .systemBackground
-	} else {
-		return .white
-	}
-}
+//func GetBackColor() -> UIColor {
+//	if #available(iOS 13.0, *) {
+//		return .systemBackground
+//	} else {
+//		return .white
+//	}
+//}
 
 func saveCoreDataUpdate(object: NSManagedObject) {
     
@@ -56,10 +56,10 @@ func saveCoreDataUpdate(object: NSManagedObject) {
 }
 
 
-let impact = UIImpactFeedbackGenerator()
-func UseTapticEngine() {
-	impact.impactOccurred()
-}
+//let impact = UIImpactFeedbackGenerator()
+//func UseTapticEngine() {
+//	impact.impactOccurred()
+//}
 
 func GoogleSearch(query: String) {
 	let newquery = query.replacingOccurrences(of: " ", with: "+")
@@ -283,22 +283,22 @@ func OfferFromID(id: String) -> Offer? {
 	}[0]
 }
 
-func CompressNumber(number: Double) -> String {
-	switch number {
-	case 0...9999:
-		return NumberToStringWithCommas(number: number)
-	case 10000...99999:
-		return "\(floor(number/100) / 10)K"
-	case 100000...999999:
-		return "\(floor(number/1000))K"
-	case 1000000...9999999:
-		return "\(floor(number/100000) / 10)M"
-	case 10000000...999999999:
-		return "\(floor(number/1000000))M"
-	default:
-		return String(number)
-	}
-}
+//func CompressNumber(number: Double) -> String {
+//	switch number {
+//	case 0...9999:
+//		return NumberToStringWithCommas(number: number)
+//	case 10000...99999:
+//		return "\(floor(number/100) / 10)K"
+//	case 100000...999999:
+//		return "\(floor(number/1000))K"
+//	case 1000000...9999999:
+//		return "\(floor(number/100000) / 10)M"
+//	case 10000000...999999999:
+//		return "\(floor(number/1000000))M"
+//	default:
+//		return String(number)
+//	}
+//}
 
 func PostTypeToText(posttype: TypeofPost) -> String {
 	switch posttype {

@@ -9,6 +9,33 @@ import Foundation
 import Firebase
 import UIKit
 
+
+//New Model
+
+
+func getNewBusiness(email: String, completed: @escaping (_ status: Bool, _ user: Business?) -> ()) {
+    let ref = Database.database().reference().child("Accounts/Private/Businesses")
+    let query = ref.queryOrdered(byChild: "email").queryEqual(toValue: email)
+    query.observeSingleEvent(of: .value, with: { (snapshot) in
+        
+        if let snapValue = snapshot.value as? [String: [String:AnyObject]]{
+            
+            let dict = snapValue[snapValue.keys.first!]
+            
+            let mybusiness = Business.init(dictionary: dict!, businessId: snapValue.keys.first!)
+            
+            completed(true, mybusiness)
+        }else{
+            completed(false, nil)
+        }
+        
+    }) { (error) in
+        
+    }
+}
+
+
+
 //Gets all offers relavent to the user via Firebase
 func GetOffers(userId: String) -> [Offer] {
     let ref = Database.database().reference().child("offers")
@@ -1138,6 +1165,16 @@ func UpdateCompanyInDatabase(company: Company) {
     ref.child(company.account_ID!).updateChildValues(companyData)
 }
 //Create Company User
+
+func CreateNewCompanyUser(user: Business, completed: @escaping(_ status: Bool)->()) {
+    let ref = Database.database().reference().child("Accounts/Private/Businesses")
+    let toDictionary = user.toDictionary()
+    ref.updateChildValues([user.businessId : toDictionary]) { (error, refVal) in
+        completed(error != nil)
+    }
+    
+}
+
 func CreateCompanyUser(companyUser: CompanyUser) -> CompanyUser {
     
     let ref = Database.database().reference().child("CompanyUser")
@@ -1576,13 +1613,13 @@ func getBusinessReferral(referralID: String,completion: @escaping(Bool, CompanyU
     
 }
 
-extension Date
-{
-    func toString( dateFormat format  : String ) -> String
-    {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = format
-        dateFormatter.timeZone = TimeZone(abbreviation: "EST")
-        return dateFormatter.string(from: self)
-    }
-}
+//extension Date
+//{
+//    func toString( dateFormat format  : String ) -> String
+//    {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = format
+//        dateFormatter.timeZone = TimeZone(abbreviation: "EST")
+//        return dateFormatter.string(from: self)
+//    }
+//}
