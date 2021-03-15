@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1yT-mU-ct4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1yT-mU-ct4">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -47,18 +48,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ykO-HX-rIu" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="2" width="789" height="97"/>
+                                <rect key="frame" x="0.0" y="-35" width="789" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Statistics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ege-zl-Gst">
-                                        <rect key="frame" x="163" y="54.666666666666664" width="88" height="26.333333333333336"/>
+                                        <rect key="frame" x="163" y="57.666666666666679" width="88" height="26.333333333333336"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="97" id="dl2-jM-3ed"/>
+                                    <constraint firstAttribute="height" constant="100" id="dl2-jM-3ed"/>
                                     <constraint firstAttribute="bottom" secondItem="ege-zl-Gst" secondAttribute="bottom" constant="16" id="rbO-Vq-B0g"/>
                                     <constraint firstItem="ege-zl-Gst" firstAttribute="centerX" secondItem="ykO-HX-rIu" secondAttribute="centerX" constant="-187.5" id="xRU-15-Y91"/>
                                 </constraints>
@@ -75,7 +76,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IWF-6C-HdV">
-                                <rect key="frame" x="0.0" y="99" width="414" height="637"/>
+                                <rect key="frame" x="0.0" y="65" width="414" height="671"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="offerStatCell" rowHeight="170" id="ai5-q3-kTe" customClass="OfferStatisticCell" customModule="Ambassadoor_Business" customModuleProvider="target">
@@ -95,13 +96,13 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 influencers have accepted so far." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nLO-Bw-DmZ">
-                                                            <rect key="frame" x="16" y="42" width="267" height="20.666666666666671"/>
+                                                            <rect key="frame" x="16" y="42" width="265.33333333333331" height="20.666666666666671"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Influencers have posted so far." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6DB-4q-EjH">
-                                                            <rect key="frame" x="16" y="68.666666666666671" width="249" height="21"/>
+                                                            <rect key="frame" x="16.000000000000014" y="68.666666666666671" width="247.33333333333337" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -113,7 +114,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstItem="GKW-Wm-Ufp" firstAttribute="leading" secondItem="fhq-3j-fGM" secondAttribute="leading" constant="12" id="CP7-2y-spJ"/>
                                                         <constraint firstItem="Req-df-Fel" firstAttribute="leading" secondItem="fhq-3j-fGM" secondAttribute="leading" constant="16" id="KmL-Ua-zco"/>
@@ -139,7 +140,7 @@
                                                             <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="value" systemColor="labelColor"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                             <real key="value" value="0.25"/>
@@ -172,7 +173,8 @@ Send out an offer and you will be updated in real-time about influencers activit
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="hLn-IB-59z"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="prl-Q4-2LZ" firstAttribute="leading" secondItem="xMq-yb-RUj" secondAttribute="leading" constant="32" id="347-Rs-m7p"/>
                             <constraint firstItem="ykO-HX-rIu" firstAttribute="trailing" secondItem="hLn-IB-59z" secondAttribute="trailing" constant="375" id="4qf-SV-TWd"/>
@@ -183,10 +185,9 @@ Send out an offer and you will be updated in real-time about influencers activit
                             <constraint firstItem="hLn-IB-59z" firstAttribute="trailing" secondItem="IWF-6C-HdV" secondAttribute="trailing" id="Zzt-QD-EE5"/>
                             <constraint firstItem="ykO-HX-rIu" firstAttribute="leading" secondItem="hLn-IB-59z" secondAttribute="leading" id="b5c-wy-NjI"/>
                             <constraint firstItem="hLn-IB-59z" firstAttribute="bottom" secondItem="IWF-6C-HdV" secondAttribute="bottom" id="ecp-s6-R7B"/>
-                            <constraint firstItem="ykO-HX-rIu" firstAttribute="top" secondItem="hLn-IB-59z" secondAttribute="top" constant="2" id="qMi-Xf-ZGD"/>
+                            <constraint firstItem="ykO-HX-rIu" firstAttribute="top" secondItem="hLn-IB-59z" secondAttribute="top" constant="-35" id="qMi-Xf-ZGD"/>
                             <constraint firstItem="IWF-6C-HdV" firstAttribute="top" secondItem="ykO-HX-rIu" secondAttribute="bottom" id="wAp-jE-zWI"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="hLn-IB-59z"/>
                     </view>
                     <navigationItem key="navigationItem" id="vVS-GP-ASM"/>
                     <connections>
@@ -205,13 +206,13 @@ Send out an offer and you will be updated in real-time about influencers activit
             <objects>
                 <viewController storyboardIdentifier="ViewOfferStatisticRef" id="SSz-WL-buY" customClass="ViewOfferStatisticVC" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Y8Z-pf-Pt4">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HaO-Lj-RF5">
-                                <rect key="frame" x="0.0" y="44" width="414" height="90"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bg1-D6-FOZ">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bg1-D6-FOZ">
                                         <rect key="frame" x="16" y="10" width="56" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="56" id="w7z-D7-G9j"/>
@@ -229,7 +230,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="Wn7-OY-dg2" firstAttribute="leading" secondItem="HaO-Lj-RF5" secondAttribute="leading" constant="8" id="3j4-Ro-GvE"/>
                                     <constraint firstAttribute="bottom" secondItem="Wn7-OY-dg2" secondAttribute="bottom" constant="8" id="JKK-5s-7SU"/>
@@ -241,13 +242,13 @@ Send out an offer and you will be updated in real-time about influencers activit
                                 </constraints>
                             </view>
                             <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rtq-gU-5PA">
-                                <rect key="frame" x="0.0" y="134" width="414" height="602"/>
+                                <rect key="frame" x="0.0" y="90" width="414" height="626"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mTe-09-1wF" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="220"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posts that were verified:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAe-eZ-4Ae">
-                                                <rect key="frame" x="115.00000000000001" y="191.66666666666669" width="184.33333333333337" height="20.333333333333343"/>
+                                                <rect key="frame" x="115.66666666666669" y="191.66666666666669" width="183" height="20.333333333333343"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -271,7 +272,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# Influencers have posted for this offer." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83u-Dy-73y">
-                                                <rect key="frame" x="20" y="141.66666666666669" width="374" height="21"/>
+                                                <rect key="frame" x="20" y="141.66666666666666" width="374" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="T9H-pg-24p"/>
                                                 </constraints>
@@ -282,7 +283,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6At-Rh-2dV" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                 <rect key="frame" x="360" y="100.33333333333334" width="46" height="32"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zpk-DZ-j9X">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zpk-DZ-j9X">
                                                         <rect key="frame" x="0.0" y="0.0" width="46" height="32"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
@@ -294,7 +295,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                 <constraints>
                                                     <constraint firstItem="zpk-DZ-j9X" firstAttribute="top" secondItem="6At-Rh-2dV" secondAttribute="top" id="1js-f9-jz3"/>
                                                     <constraint firstAttribute="trailing" secondItem="zpk-DZ-j9X" secondAttribute="trailing" id="2O1-Tn-arw"/>
@@ -324,7 +325,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                 <subviews>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0bi-QV-Jhc" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="90" height="16"/>
-                                                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="backgroundColor" systemColor="systemYellowColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="90" id="87x-5v-wOv"/>
                                                         </constraints>
@@ -335,7 +336,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="0bi-QV-Jhc" firstAttribute="leading" secondItem="uuM-nF-qaF" secondAttribute="leading" id="7Kq-zI-f3t"/>
                                                     <constraint firstAttribute="bottom" secondItem="0bi-QV-Jhc" secondAttribute="bottom" id="J0Z-ka-63h"/>
@@ -355,7 +356,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="gkT-nG-aiD" firstAttribute="leading" secondItem="mTe-09-1wF" secondAttribute="leading" constant="20" id="0rT-kg-iHE"/>
                                             <constraint firstAttribute="trailing" secondItem="6At-Rh-2dV" secondAttribute="trailing" constant="8" id="1wF-vc-6sz"/>
@@ -378,7 +379,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="szw-TV-6t3">
                                         <rect key="frame" x="0.0" y="220" width="414" height="500"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="500" id="FGZ-us-7Te"/>
                                         </constraints>
@@ -391,7 +392,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="164 followers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mze-vP-wCj">
-                                                            <rect key="frame" x="80" y="38.666666666666664" width="107.66666666666669" height="21"/>
+                                                            <rect key="frame" x="80" y="38.666666666666664" width="106.33333333333331" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -503,7 +504,8 @@ Send out an offer and you will be updated in real-time about influencers activit
                                 <viewLayoutGuide key="frameLayoutGuide" id="LWD-kl-zFt"/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="UUV-4l-Vm9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Rtq-gU-5PA" firstAttribute="leading" secondItem="UUV-4l-Vm9" secondAttribute="leading" id="Av1-cw-w9t"/>
                             <constraint firstItem="UUV-4l-Vm9" firstAttribute="trailing" secondItem="HaO-Lj-RF5" secondAttribute="trailing" id="BS2-Lr-acb"/>
@@ -515,7 +517,6 @@ Send out an offer and you will be updated in real-time about influencers activit
                             <constraint firstItem="Rtq-gU-5PA" firstAttribute="top" secondItem="HaO-Lj-RF5" secondAttribute="bottom" id="vAx-f8-JhA"/>
                             <constraint firstItem="UUV-4l-Vm9" firstAttribute="trailing" secondItem="Rtq-gU-5PA" secondAttribute="trailing" id="x1f-Tt-L5c"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="UUV-4l-Vm9"/>
                     </view>
                     <navigationItem key="navigationItem" id="dWz-sJ-vJH"/>
                     <connections>
@@ -548,7 +549,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4vo-15-0ea">
                                 <rect key="frame" x="0.0" y="60" width="414" height="622"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="influencer" rowHeight="85" id="iDO-an-MyX" customClass="InfluencerListCell" customModule="Ambassadoor_Business" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="85"/>
@@ -582,7 +583,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                 </imageView>
                                                             </subviews>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
                                                                 <constraint firstItem="reZ-3u-XqE" firstAttribute="leading" secondItem="iVg-zc-Am9" secondAttribute="leading" id="2co-x4-n8w"/>
                                                                 <constraint firstAttribute="height" constant="50" id="9rM-pX-S8Y"/>
@@ -599,7 +600,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstItem="8gI-za-09U" firstAttribute="top" secondItem="yNE-A5-thN" secondAttribute="bottom" constant="6" id="8Qa-RP-jR0"/>
                                                         <constraint firstItem="iVg-zc-Am9" firstAttribute="top" secondItem="cb7-oE-A2q" secondAttribute="top" constant="6" id="GdC-Hz-q1I"/>
@@ -656,7 +657,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="poS-gl-EgQ">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qxa-wT-28v">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qxa-wT-28v">
                                         <rect key="frame" x="8" y="10" width="95" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="95" id="A04-L0-ifp"/>
@@ -669,7 +670,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="Qxa-wT-28v" firstAttribute="leading" secondItem="poS-gl-EgQ" secondAttribute="leading" constant="8" id="fF2-RI-gj0"/>
                                     <constraint firstAttribute="height" constant="50" id="gPV-mN-XZm"/>
@@ -677,7 +678,8 @@ Send out an offer and you will be updated in real-time about influencers activit
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="i5s-m4-2dj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="poS-gl-EgQ" firstAttribute="top" secondItem="zeL-hY-59t" secondAttribute="top" id="9iI-CP-f6d"/>
                             <constraint firstItem="4vo-15-0ea" firstAttribute="leading" secondItem="zeL-hY-59t" secondAttribute="leading" id="JI5-Ly-uSP"/>
@@ -687,7 +689,6 @@ Send out an offer and you will be updated in real-time about influencers activit
                             <constraint firstItem="4vo-15-0ea" firstAttribute="top" secondItem="poS-gl-EgQ" secondAttribute="bottom" constant="10" id="rOH-ju-D6A"/>
                             <constraint firstAttribute="bottom" secondItem="4vo-15-0ea" secondAttribute="bottom" constant="34" id="vdV-gu-YFe"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="i5s-m4-2dj"/>
                     </view>
                     <connections>
                         <outlet property="influencerListTable" destination="4vo-15-0ea" id="Nlf-FY-bED"/>
@@ -725,11 +726,26 @@ Send out an offer and you will be updated in real-time about influencers activit
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="THP-wg-xXb"/>
+        <segue reference="kpK-Km-t8M"/>
         <segue reference="ZkP-2c-P9R"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="BusinessGradient" width="1000" height="2000"/>
         <image name="StatsIcon" width="25" height="25"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

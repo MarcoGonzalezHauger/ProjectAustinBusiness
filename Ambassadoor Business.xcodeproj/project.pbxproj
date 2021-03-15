@@ -20,6 +20,8 @@
 		B712C48B2306DA7900728758 /* StaticsPie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B712C48A2306DA7900728758 /* StaticsPie.swift */; };
 		B72CB50822E6E8C100958AE0 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72CB50722E6E8C100958AE0 /* BaseVC.swift */; };
 		B72CB50A22E7024500958AE0 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72CB50922E7024500958AE0 /* UIViewExtension.swift */; };
+		B72CFDCA25FF5AE100033CC5 /* ProfilePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72CFDC925FF5AE100033CC5 /* ProfilePickerVC.swift */; };
+		B72CFDCC25FF9C4B00033CC5 /* AddBasicBusinessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72CFDCB25FF9C4B00033CC5 /* AddBasicBusinessVC.swift */; };
 		B750E78522E5B75F00024CB1 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B750E78422E5B75F00024CB1 /* Onboarding.storyboard */; };
 		B7551F2B22F98841001C4974 /* BasePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7551F2A22F98841001C4974 /* BasePicker.swift */; };
 		B7551F2F22F99B01001C4974 /* BasePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7551F2E22F99B01001C4974 /* BasePicker.xib */; };
@@ -117,6 +119,7 @@
 		E8E54685227BA19C00775A07 /* ViewCompanyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E54684227BA19C00775A07 /* ViewCompanyVC.swift */; };
 		E8E54689227BA3E800775A07 /* YourCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E54688227BA3E800775A07 /* YourCompany.swift */; };
 		E8E5468C227BC9E900775A07 /* StatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E5468B227BC9E900775A07 /* StatsVC.swift */; };
+		E8F7C9B025FED714007893FF /* businessProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8F7C9AF25FED714007893FF /* businessProfile.storyboard */; };
 		E8F8AAC922C8492D0047BF5E /* ViewOffersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F8AAC822C8492D0047BF5E /* ViewOffersVC.swift */; };
 		E8FC176223778D9700245932 /* LocationPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC176123778D9700245932 /* LocationPicker.swift */; };
 		E8FC17642377A70100245932 /* SelectRadiiVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC17632377A70100245932 /* SelectRadiiVC.swift */; };
@@ -138,6 +141,8 @@
 		B712C48A2306DA7900728758 /* StaticsPie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticsPie.swift; sourceTree = "<group>"; };
 		B72CB50722E6E8C100958AE0 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		B72CB50922E7024500958AE0 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		B72CFDC925FF5AE100033CC5 /* ProfilePickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePickerVC.swift; sourceTree = "<group>"; };
+		B72CFDCB25FF9C4B00033CC5 /* AddBasicBusinessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBasicBusinessVC.swift; sourceTree = "<group>"; };
 		B750E78422E5B75F00024CB1 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		B7551F2A22F98841001C4974 /* BasePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePicker.swift; sourceTree = "<group>"; };
 		B7551F2E22F99B01001C4974 /* BasePicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasePicker.xib; sourceTree = "<group>"; };
@@ -239,6 +244,7 @@
 		E8E54684227BA19C00775A07 /* ViewCompanyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCompanyVC.swift; sourceTree = "<group>"; };
 		E8E54688227BA3E800775A07 /* YourCompany.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourCompany.swift; sourceTree = "<group>"; };
 		E8E5468B227BC9E900775A07 /* StatsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsVC.swift; sourceTree = "<group>"; };
+		E8F7C9AF25FED714007893FF /* businessProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = businessProfile.storyboard; sourceTree = "<group>"; };
 		E8F8AAC822C8492D0047BF5E /* ViewOffersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewOffersVC.swift; sourceTree = "<group>"; };
 		E8FC176123778D9700245932 /* LocationPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPicker.swift; sourceTree = "<group>"; };
 		E8FC17632377A70100245932 /* SelectRadiiVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRadiiVC.swift; sourceTree = "<group>"; };
@@ -454,6 +460,7 @@
 		E8C3694022161B3000AE12D7 /* Ambassadoor Business */ = {
 			isa = PBXGroup;
 			children = (
+				E8F7C9AE25FED6F7007893FF /* Business Profile */,
 				B7B72E07237C4953002AB168 /* Ambassadoor Business.entitlements */,
 				B7D030AD23237CA4002B90FF /* Ambassadoor Business-Bridging-Header.h */,
 				E8E54688227BA3E800775A07 /* YourCompany.swift */,
@@ -522,6 +529,16 @@
 				B7F4BA5C25668682000F7EA4 /* InfluencerListVC.swift */,
 			);
 			path = Statistics;
+			sourceTree = "<group>";
+		};
+		E8F7C9AE25FED6F7007893FF /* Business Profile */ = {
+			isa = PBXGroup;
+			children = (
+				E8F7C9AF25FED714007893FF /* businessProfile.storyboard */,
+				B72CFDC925FF5AE100033CC5 /* ProfilePickerVC.swift */,
+				B72CFDCB25FF9C4B00033CC5 /* AddBasicBusinessVC.swift */,
+			);
+			path = "Business Profile";
 			sourceTree = "<group>";
 		};
 		E8F8AAC722C8485A0047BF5E /* Offers */ = {
@@ -618,6 +635,7 @@
 				B770B8112514A5E700724465 /* RegisterCompany.storyboard in Resources */,
 				E8C3694C22161B3200AE12D7 /* Assets.xcassets in Resources */,
 				B770B8132514EACD00724465 /* Company.storyboard in Resources */,
+				E8F7C9B025FED714007893FF /* businessProfile.storyboard in Resources */,
 				E8C3694722161B3000AE12D7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -738,6 +756,7 @@
 				E8FC176223778D9700245932 /* LocationPicker.swift in Sources */,
 				E84600802273A65600CF60F2 /* StandardNC.swift in Sources */,
 				B712C4892306B6C900728758 /* WebVC.swift in Sources */,
+				B72CFDCA25FF5AE100033CC5 /* ProfilePickerVC.swift in Sources */,
 				E844EAC22471DE48000CE74F /* mainTabBarController.swift in Sources */,
 				E861588024789C8B006D5450 /* ChangeWebsiteVC.swift in Sources */,
 				C0FBFD01226154FC00BADDCD /* categories.swift in Sources */,
@@ -762,6 +781,7 @@
 				B7C293B625ECE423004A723B /* AdminValues.swift in Sources */,
 				B79308FE23015C3E001BB47A /* DistributeOfferVC.swift in Sources */,
 				B7C293B825ECE423004A723B /* Offer Distribution Functions.swift in Sources */,
+				B72CFDCC25FF9C4B00033CC5 /* AddBasicBusinessVC.swift in Sources */,
 				B7FD83EB22F0866B00347E8E /* PostDetailTC.swift in Sources */,
 				B78B39ED2510D49400829F31 /* ReferralVC.swift in Sources */,
 				E8D06DF2255F09AF00F9D79C /* VerifyEmailVC.swift in Sources */,
@@ -936,7 +956,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Ambassadoor Business/Ambassadoor Business.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = F4W3LUKZFA;
 				INFOPLIST_FILE = "Ambassadoor Business/Info.plist";
@@ -945,7 +965,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.7;
+				MARKETING_VERSION = 2.0.8;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ambassadoor.company;
 				PRODUCT_NAME = "Ambassadoor Business";
@@ -966,7 +986,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Ambassadoor Business/Ambassadoor Business.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = F4W3LUKZFA;
 				INFOPLIST_FILE = "Ambassadoor Business/Info.plist";
@@ -975,7 +995,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.7;
+				MARKETING_VERSION = 2.0.8;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ambassadoor.company;
 				PRODUCT_NAME = "Ambassadoor Business";
