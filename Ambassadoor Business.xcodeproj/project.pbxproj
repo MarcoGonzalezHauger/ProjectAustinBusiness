@@ -28,6 +28,9 @@
 		B75EC9A6230ACE4800BA7A7B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75EC9A5230ACE4800BA7A7B /* NetworkManager.swift */; };
 		B75F7A852506476300D14675 /* TimerListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75F7A842506476300D14675 /* TimerListener.swift */; };
 		B761DA242321352100587F28 /* DwollaUserInformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B761DA232321352100587F28 /* DwollaUserInformationVC.swift */; };
+		B76DEDE42600B24A00886911 /* MultipleBusinessAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76DEDE32600B24A00886911 /* MultipleBusinessAccountVC.swift */; };
+		B76DEDE62600B61400886911 /* ContractBusinessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76DEDE52600B61400886911 /* ContractBusinessVC.swift */; };
+		B76DEDEA2600C1F200886911 /* NewBasicBusinessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76DEDE92600C1F200886911 /* NewBasicBusinessView.swift */; };
 		B770B8112514A5E700724465 /* RegisterCompany.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B770B8102514A5E700724465 /* RegisterCompany.storyboard */; };
 		B770B8132514EACD00724465 /* Company.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B770B8122514EACD00724465 /* Company.storyboard */; };
 		B774B6E924728ADA007C8699 /* SimplexStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B774B6E824728ADA007C8699 /* SimplexStatistics.swift */; };
@@ -149,6 +152,9 @@
 		B75EC9A5230ACE4800BA7A7B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		B75F7A842506476300D14675 /* TimerListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerListener.swift; sourceTree = "<group>"; };
 		B761DA232321352100587F28 /* DwollaUserInformationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DwollaUserInformationVC.swift; sourceTree = "<group>"; };
+		B76DEDE32600B24A00886911 /* MultipleBusinessAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleBusinessAccountVC.swift; sourceTree = "<group>"; };
+		B76DEDE52600B61400886911 /* ContractBusinessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractBusinessVC.swift; sourceTree = "<group>"; };
+		B76DEDE92600C1F200886911 /* NewBasicBusinessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBasicBusinessView.swift; sourceTree = "<group>"; };
 		B770B8102514A5E700724465 /* RegisterCompany.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegisterCompany.storyboard; sourceTree = "<group>"; };
 		B770B8122514EACD00724465 /* Company.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Company.storyboard; sourceTree = "<group>"; };
 		B774B6E824728ADA007C8699 /* SimplexStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplexStatistics.swift; sourceTree = "<group>"; };
@@ -537,6 +543,9 @@
 				E8F7C9AF25FED714007893FF /* businessProfile.storyboard */,
 				B72CFDC925FF5AE100033CC5 /* ProfilePickerVC.swift */,
 				B72CFDCB25FF9C4B00033CC5 /* AddBasicBusinessVC.swift */,
+				B76DEDE32600B24A00886911 /* MultipleBusinessAccountVC.swift */,
+				B76DEDE52600B61400886911 /* ContractBusinessVC.swift */,
+				B76DEDE92600C1F200886911 /* NewBasicBusinessView.swift */,
 			);
 			path = "Business Profile";
 			sourceTree = "<group>";
@@ -747,6 +756,7 @@
 				E899878323D3B8F20093FC0E /* CurseWords.swift in Sources */,
 				B7C293C425ECE423004A723B /* UniversalDate.swift in Sources */,
 				E86158822478A7CD006D5450 /* ReferralInfoVC.swift in Sources */,
+				B76DEDE42600B24A00886911 /* MultipleBusinessAccountVC.swift in Sources */,
 				B70DEC7C232C2CFA00580FD7 /* TransactionDetailsVC.swift in Sources */,
 				B7C293BC25ECE423004A723B /* Influencer Structs.swift in Sources */,
 				B72CB50A22E7024500958AE0 /* UIViewExtension.swift in Sources */,
@@ -758,6 +768,7 @@
 				B712C4892306B6C900728758 /* WebVC.swift in Sources */,
 				B72CFDCA25FF5AE100033CC5 /* ProfilePickerVC.swift in Sources */,
 				E844EAC22471DE48000CE74F /* mainTabBarController.swift in Sources */,
+				B76DEDEA2600C1F200886911 /* NewBasicBusinessView.swift in Sources */,
 				E861588024789C8B006D5450 /* ChangeWebsiteVC.swift in Sources */,
 				C0FBFD01226154FC00BADDCD /* categories.swift in Sources */,
 				B7C293B525ECE423004A723B /* InProgress functions.swift in Sources */,
@@ -803,6 +814,7 @@
 				E83F378F227CDF3A00BA6688 /* GetPictureVC.swift in Sources */,
 				B799227622F16FA9007E84B0 /* PickUserCVC.swift in Sources */,
 				E8C3694A22161B3000AE12D7 /* Ambassadoor_Business.xcdatamodeld in Sources */,
+				B76DEDE62600B61400886911 /* ContractBusinessVC.swift in Sources */,
 				B75F7A852506476300D14675 /* TimerListener.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

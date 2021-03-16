@@ -20,6 +20,8 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
             self.activity.startAnimating()
             self.isImageLoading = true
             self.logo.image = image!
+            self.imageShadow.bringSubviewToFront(self.activity)
+            self.urlString = ""
             let path = "\(MyCompany.businessId)_\(MyCompany.basics.count)"
             uploadImageToFIR(image: image!,childName: "companylogo", path: path) { (url, error) in
                 self.activity.isHidden = true
@@ -56,10 +58,31 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
     
     @IBOutlet weak var scroll: UIScrollView!
     
+    var basicBusiness: BasicBusiness? = nil
+    
+    @IBOutlet weak var imageShadow: ShadowView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addDoneButtonOnKeyboard(textView: companyMission)
+        self.setBusinessData()
         // Do any additional setup after loading the view.
+    }
+    
+    func setBusinessData() {
+        if let basic = basicBusiness{
+            
+            if let url = URL.init(string: basic.logoUrl){
+            self.urlString = basic.logoUrl
+            self.logo.downloadedFrom(url: url, contentMode: .scaleAspectFill, makeImageCircular: true)
+            }
+            
+            self.businessName.text = basic.name
+            self.companyMission.text = basic.mission
+            self.website.text = basic.website
+            
+        }
     }
     
     override func doneButtonAction() {
@@ -222,27 +245,26 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
     
     @IBAction func saveAction(sender: UIButton){
         
-        if self.urlString == "" {
-            return
-        }
-        if self.businessName.text?.count == 0 {
-            return
-        }
-        if self.companyMission.text == "" || self.companyMission.text.count == 0 {
+        if checkBasicBusiness() == nil {
             return
         }
         
-        if checkIfWebsiteEntered() == nil {
-            return
+        let basic = checkBasicBusiness()!
+        
+        if self.basicBusiness == nil {
+            MyCompany.basics.append(basic)
+        }else{
+            
+            let index = MyCompany.basics.lastIndex { (basicData) -> Bool in
+                return basic.basicId == basicData.basicId
+            }
+            
+            if index == nil {
+               return
+            }
+            MyCompany.basics[index!] = basic
+            
         }
-        
-        let NewBasicID: String = makeFirebaseUrl(self.businessName.text! + ", " + GetNewID())
-        
-        let basicDict = ["businessId": MyCompany.businessId, "name": self.businessName.text!, "logoUrl": self.urlString, "mission": self.companyMission.text!, "joinedDate": Date().toUString(), "referralCode": randomString(length: 6), "flags": [], "followedBy": [], "website": checkIfWebsiteEntered() as Any] as [String : Any]
-        
-        let basic = BasicBusiness.init(dictionary: basicDict, basicId: NewBasicID)
-        
-        MyCompany.basics.append(basic)
         
         MyCompany.UpdateToFirebase { (error) in
             DispatchQueue.main.async {
@@ -253,10 +275,51 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
         
     }
 
+    func checkBasicBusiness() -> BasicBusiness? {
+        
+        if self.urlString == "" {
+            return nil
+        }
+        if self.businessName.text?.count == 0 {
+            return nil
+        }
+        if self.companyMission.text == "" || self.companyMission.text.count == 0 {
+            return nil
+        }
+        
+        if checkIfWebsiteEntered() == nil {
+            return nil
+        }
+        
+        let NewBasicID: String = self.basicBusiness == nil ? makeFirebaseUrl(self.businessName.text! + ", " + GetNewID()) : self.basicBusiness!.basicId
+        let referral = self.basicBusiness == nil ? randomString(length: 6) : self.basicBusiness!.referralCode
+        let flags = self.basicBusiness == nil ? [] : self.basicBusiness!.flags
+        let followedBy = self.basicBusiness == nil ? [] : self.basicBusiness!.followedBy
+        
+        let basicDict = ["businessId": MyCompany.businessId, "name": self.businessName.text!, "logoUrl": self.urlString, "mission": self.companyMission.text!, "joinedDate": Date().toUString(), "referralCode": referral, "flags": flags, "followedBy": followedBy, "website": checkIfWebsiteEntered() as Any] as [String : Any]
+        
+        let basic = BasicBusiness.init(dictionary: basicDict, basicId: NewBasicID)
+        
+        return basic
+        
+    }
+    
+    @IBAction func previewBasicData(sender: UIButton){
+        if checkBasicBusiness() == nil {
+            return
+        }
+        
+        let basic = checkBasicBusiness()!
+        self.performSegue(withIdentifier: "toContractBusiness", sender: basic)
+    }
    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? GetPictureVC {
             destination.delegate = self
+        }
+        
+        if let destination = segue.destination as? ContractBusinessVC {
+            destination.businessData = (sender as! BasicBusiness)
         }
     }
     

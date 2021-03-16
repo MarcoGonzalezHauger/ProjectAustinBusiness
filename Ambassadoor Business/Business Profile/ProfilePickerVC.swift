@@ -69,7 +69,7 @@ class ProfilePickerVC: UIViewController, UICollectionViewDelegate, UICollectionV
         let cell : BasicBusinessCell = collectionView.dequeueReusableCell(withReuseIdentifier: "basic", for: indexPath) as! BasicBusinessCell
         let basic = filteredArray[indexPath.row]
         if let url = URL.init(string: basic.logoUrl){
-            cell.companyLogo.downloadedFrom(url: url)
+            cell.companyLogo.downloadedFrom(url: url, contentMode: .scaleAspectFill, makeImageCircular: true)
         }
         cell.cmyName.text = basic.name
         UIView.animate(withDuration: 1) {
@@ -82,7 +82,10 @@ class ProfilePickerVC: UIViewController, UICollectionViewDelegate, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row == (filteredArray.count) {
-            self.performSegue(withIdentifier: "toAddBasicVC", sender: self)
+            self.performSegue(withIdentifier: "toAddBasicVC", sender: nil)
+        }else{
+            let basic = filteredArray[indexPath.row]
+            self.performSegue(withIdentifier: "toAddBasicVC", sender: basic)
         }
     }
     
@@ -140,7 +143,7 @@ class ProfilePickerVC: UIViewController, UICollectionViewDelegate, UICollectionV
         
         MyCompany.UpdateToFirebase { (error) in
             DispatchQueue.main.async {
-                self.basicBusinessList.reloadData()
+                self.setCollectionDataSource()
             }
         }
                 
@@ -171,9 +174,24 @@ class ProfilePickerVC: UIViewController, UICollectionViewDelegate, UICollectionV
         }
     }
     
+    @IBAction func signOutAction(sender: UIButton){
+        
+        MyCompany = nil
+        UserDefaults.standard.removeObject(forKey: "userid")
+        UserDefaults.standard.removeObject(forKey: "userPass")
+        UserDefaults.standard.removeObject(forKey: "userEmail")
+        UIApplication.shared.shortcutItems?.removeAll()
+        let signInStoryBoard = UIStoryboard(name: "Onboarding", bundle: nil)
+        let loginVC = signInStoryBoard.instantiateInitialViewController()
+        let appDel: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDel.window?.rootViewController = loginVC
+        
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let view = segue.destination as? AddBasicBusinessVC{
             view.reloadDelegate = self
+            view.basicBusiness = sender == nil ? nil : (sender as! BasicBusiness)
         }
     }
     

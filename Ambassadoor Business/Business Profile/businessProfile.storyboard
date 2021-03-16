@@ -199,6 +199,9 @@
                                                 <state key="normal" title="Sign Out">
                                                     <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="signOutActionWithSender:" destination="PMf-Dx-5WW" eventType="touchUpInside" id="Jxp-ZP-4mD"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" name="newCellColor"/>
@@ -253,25 +256,31 @@
             </objects>
             <point key="canvasLocation" x="1042.0289855072465" y="115.84821428571428"/>
         </scene>
-        <!--View Controller-->
+        <!--Multiple Business AccountVC-->
         <scene sceneID="PEc-rU-hBk">
             <objects>
-                <viewController id="xch-Us-8E3" sceneMemberID="viewController">
+                <viewController id="xch-Us-8E3" customClass="MultipleBusinessAccountVC" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7Do-yK-cCs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Multiple Business Accounts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ewi-6g-xjE">
-                                <rect key="frame" x="64.5" y="32" width="285.5" height="27"/>
+                                <rect key="frame" x="64.5" y="70" width="285.5" height="27"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="igu-WC-0id">
-                                <rect key="frame" x="374" y="10" width="30" height="34"/>
+                                <rect key="frame" x="348" y="10" width="56" height="34"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismissActionWithSender:" destination="xch-Us-8E3" eventType="touchUpInside" id="yd8-Q2-uA6"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rvS-k4-tgL">
-                                <rect key="frame" x="16" y="91" width="382" height="113.5"/>
+                                <rect key="frame" x="16" y="129" width="382" height="113.5"/>
                                 <string key="text">If you are somebody who owns multiple businesses, having multiple business accounts will allow influencers to tell which of your businesses they will be influencing for.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="textColor"/>
@@ -280,7 +289,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Ewi-6g-xjE" firstAttribute="top" secondItem="rmI-w5-Fr0" secondAttribute="top" constant="32" id="2QZ-iB-MfL"/>
+                            <constraint firstItem="Ewi-6g-xjE" firstAttribute="top" secondItem="rmI-w5-Fr0" secondAttribute="top" constant="70" id="2QZ-iB-MfL"/>
                             <constraint firstItem="rmI-w5-Fr0" firstAttribute="trailing" secondItem="rvS-k4-tgL" secondAttribute="trailing" constant="16" id="5To-uB-p8B"/>
                             <constraint firstItem="rmI-w5-Fr0" firstAttribute="trailing" secondItem="igu-WC-0id" secondAttribute="trailing" constant="10" id="Hql-y7-8JZ"/>
                             <constraint firstItem="Ewi-6g-xjE" firstAttribute="centerX" secondItem="7Do-yK-cCs" secondAttribute="centerX" id="WQe-1d-Zja"/>
@@ -397,7 +406,7 @@
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <state key="normal" title="Preview as Influencer"/>
                                                                 <connections>
-                                                                    <segue destination="RvU-KS-HPF" kind="show" id="Ad0-yq-c2p"/>
+                                                                    <action selector="previewBasicDataWithSender:" destination="AkD-Au-wBl" eventType="touchUpInside" id="S0z-oC-aRa"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -452,7 +461,7 @@
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultCompany" translatesAutoresizingMaskIntoConstraints="NO" id="QeW-JB-Fkl">
                                                         <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                                     </imageView>
-                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Y1s-gB-ZSQ">
+                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Y1s-gB-ZSQ">
                                                         <rect key="frame" x="35" y="35" width="20" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="BUA-pv-k9T"/>
@@ -556,10 +565,12 @@
                         <outlet property="activity" destination="Y1s-gB-ZSQ" id="sHM-dR-t1a"/>
                         <outlet property="businessName" destination="9Cc-no-mbt" id="Xqx-sA-EXb"/>
                         <outlet property="companyMission" destination="1ui-nb-NWu" id="mW6-kC-Svj"/>
+                        <outlet property="imageShadow" destination="rf2-Qv-Xa1" id="lxD-dr-do4"/>
                         <outlet property="logo" destination="QeW-JB-Fkl" id="Cvg-is-w42"/>
                         <outlet property="scroll" destination="LK6-zG-HIC" id="kAi-gm-qha"/>
                         <outlet property="website" destination="HVw-9f-MyB" id="onu-TS-lfO"/>
                         <segue destination="BXh-Jb-V4Z" kind="presentation" identifier="oneMoreGetPictureVC" modalPresentationStyle="fullScreen" id="730-gV-JVS"/>
+                        <segue destination="RvU-KS-HPF" kind="show" identifier="toContractBusiness" id="2Y4-IV-N52"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HDo-1X-zq4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -576,10 +587,10 @@
             </objects>
             <point key="canvasLocation" x="2434" y="-257"/>
         </scene>
-        <!--View Controller-->
+        <!--Contract BusinessVC-->
         <scene sceneID="iMw-dQ-OA1">
             <objects>
-                <viewController id="RvU-KS-HPF" sceneMemberID="viewController">
+                <viewController id="RvU-KS-HPF" customClass="ContractBusinessVC" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4f4-ug-nor">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -651,7 +662,7 @@
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <state key="normal" title="Expand View"/>
                                 <connections>
-                                    <segue destination="z7H-ce-UFd" kind="presentation" id="UUj-Hn-ylz"/>
+                                    <action selector="expandActionWithSender:" destination="RvU-KS-HPF" eventType="touchUpInside" id="Hgp-L1-gkh"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3aY-cW-ZOF">
@@ -665,6 +676,9 @@
                                 <rect key="frame" x="12" y="54" width="40" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="dismissActionWithSender:" destination="RvU-KS-HPF" eventType="touchUpInside" id="6f0-WV-EOt"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" name="newSubtleBackground"/>
@@ -685,6 +699,12 @@
                         <viewLayoutGuide key="safeArea" id="2D2-s2-AXi"/>
                     </view>
                     <navigationItem key="navigationItem" id="HcR-IT-Y9p"/>
+                    <connections>
+                        <outlet property="cmyName" destination="Ob4-Dl-q8m" id="ILf-yh-eKe"/>
+                        <outlet property="logo" destination="e9w-gh-F2L" id="rh0-IP-a3r"/>
+                        <outlet property="mission" destination="oET-bI-U3b" id="lBA-7j-7Xy"/>
+                        <segue destination="z7H-ce-UFd" kind="presentation" identifier="toExpandView" id="pnh-o4-zND"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ajE-40-pBy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -784,10 +804,10 @@
                                                     <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="closeButtonClicked:" destination="z7H-ce-UFd" eventType="touchUpInside" id="QWf-PT-z82"/>
+                                                    <action selector="dismissActionWithSender:" destination="z7H-ce-UFd" eventType="touchUpInside" id="Z4G-xn-E6P"/>
                                                 </connections>
                                             </button>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kZy-0D-9Qf" customClass="FollowButtonRegular" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kZy-0D-9Qf">
                                                 <rect key="frame" x="222" y="0.0" width="180" height="50"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -897,14 +917,11 @@ Follow them to get notified.</string>
                     <navigationItem key="navigationItem" id="sEk-Ag-CPT"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="avaliableOffersLabel" destination="rcW-Dc-8nm" id="85t-vj-ap6"/>
-                        <outlet property="backImage" destination="AM8-YQ-h1p" id="RVv-uI-C11"/>
-                        <outlet property="businessMission" destination="HeW-kq-12Q" id="UNE-J3-xA3"/>
-                        <outlet property="businessName" destination="RNw-Ds-Tjl" id="1mD-ox-ORE"/>
-                        <outlet property="noAvaliableOffersView" destination="Cef-wE-Oak" id="pEh-kL-mFI"/>
-                        <outlet property="regFollowButton" destination="kZy-0D-9Qf" id="old-FH-AYC"/>
-                        <outlet property="regProfilePic" destination="Pi0-jb-kD9" id="Ztq-pq-HCI"/>
-                        <outlet property="scrollView" destination="bOI-No-0DR" id="dTs-f7-qyu"/>
+                        <outlet property="backImage" destination="AM8-YQ-h1p" id="OSn-ne-6tT"/>
+                        <outlet property="cmyName" destination="RNw-Ds-Tjl" id="GT5-TG-0l5"/>
+                        <outlet property="logo" destination="Pi0-jb-kD9" id="Slx-a8-oQn"/>
+                        <outlet property="mission" destination="HeW-kq-12Q" id="LJf-J7-xBm"/>
+                        <outlet property="scroll" destination="bOI-No-0DR" id="12w-kK-5SD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9dm-mu-2pT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
