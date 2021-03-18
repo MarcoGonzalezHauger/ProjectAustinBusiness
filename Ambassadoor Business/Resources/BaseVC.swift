@@ -140,6 +140,7 @@ class BaseVC: UIViewController {
         DispatchQueue.main.async(execute: {
             let instantiateViewController = self.mainStoryBoard.instantiateInitialViewController()
             self.appDelegate?.window?.rootViewController = instantiateViewController
+            setCompanyTabBarItem(tab: instantiateViewController as! UITabBarController)
         })
     }
     

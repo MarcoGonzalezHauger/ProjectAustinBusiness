@@ -66,15 +66,15 @@ class StripeConnectionMKWebview: BaseVC, WKNavigationDelegate {
 
         if let url = navigationAction.request.url {
                 print(url.absoluteString)
-            /*
+            
             if url.absoluteString.hasPrefix("https://connect.stripe.com/connect/default_new/oauth/test?") || url.absoluteString.hasPrefix("https://connect.stripe.com/connect/default/oauth/test?"){
              
                     
-                */
-                
+            
+                /*
                 if url.absoluteString.hasPrefix("https://www.ambassadoor.co/paid?") || url.absoluteString.hasPrefix("https://www.ambassadoor.co/paid?code="){
                 
-                    
+                    */
                     print("SUCCESS")
                     
                     if let range = url.absoluteString.range(of: "code=") {
@@ -103,14 +103,29 @@ class StripeConnectionMKWebview: BaseVC, WKNavigationDelegate {
 
             print("dataString=",dataString as Any)
             do {
-                let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String : Any]
+                _ = try JSONSerialization.jsonObject(with: data!, options: []) as? [String : Any]
 
-                let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+                _ = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
 
                 if let accDetail = try JSONSerialization.jsonObject(with: data!, options: []) as? [String : Any] {
-                    if let stripeUserID = accDetail["stripe_user_id"] as? String {
+                    if (accDetail["stripe_user_id"] as? String) != nil {
                         
-                        self.withDrawAmoutSendServer(acctID: stripeUserID, amount: self.withDrawAmount)
+                        let stripe = StripeAccountInformation.init(dictionary: accDetail, userOrBusinessId: MyCompany.businessId)
+                        MyCompany.finance.stripeAccount = stripe
+                        
+                        MyCompany.UpdateToFirebase { (errorFIB) in
+                            if !errorFIB{
+                                DispatchQueue.main.async {
+                                    NotificationCenter.default.post(name: Notification.Name("reloadbanklist"), object: nil, userInfo: ["userinfo":"1"])
+                                        
+                                }
+                            }else{
+                                self.showAlertMessage(title: "Alert", message: "Something Wrong!!") {
+                                    self.dismiss(animated: true, completion: nil)
+                                }
+                            }
+                        }
+                        
                         
                     }else{
                         self.hideActivityIndicator()

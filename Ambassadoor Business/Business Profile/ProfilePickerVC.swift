@@ -12,6 +12,31 @@ protocol reloadMyCompanyDelegate {
     func reloadMyCompany()
 }
 
+func setCompanyTabBarItem(tab: UITabBarController) {
+    guard let myCompany = MyCompany.basics.first else {return}
+    let logo = myCompany.logoUrl
+    downloadImage(logo) { (image) in
+        DispatchQueue.main.async {
+            let size = CGSize.init(width: 32, height: 32)
+            
+            let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+            
+            UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
+            image?.draw(in: rect)
+            let newImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            if var image = newImage {
+                print(image.scale)
+                image = makeImageCircular(image: image)
+                print(image.scale)
+                tab.viewControllers?.first?.tabBarItem.image = image.withRenderingMode(.alwaysOriginal)
+            }
+        }
+        
+    }
+}
+
 class BasicBusinessCell: UICollectionViewCell {
     
     @IBOutlet weak var companyLogo: UIImageView!
@@ -40,7 +65,7 @@ class ProfilePickerVC: UIViewController, UICollectionViewDelegate, UICollectionV
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setCompanyTabBarItem()
+        setCompanyTabBarItem(tab: self.tabBarController!)
         self.setCollectionDataSource()
         // Do any additional setup after loading the view.
     }
@@ -149,30 +174,7 @@ class ProfilePickerVC: UIViewController, UICollectionViewDelegate, UICollectionV
                 
     }
     
-    func setCompanyTabBarItem() {
-        guard let myCompany = MyCompany.basics.first else {return}
-        let logo = myCompany.logoUrl
-        downloadImage(logo) { (image) in
-            DispatchQueue.main.async {
-                let size = CGSize.init(width: 32, height: 32)
-                
-                let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-                
-                UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
-                image?.draw(in: rect)
-                let newImage = UIGraphicsGetImageFromCurrentImageContext()
-                UIGraphicsEndImageContext()
-                
-                if var image = newImage {
-                    print(image.scale)
-                    image = makeImageCircular(image: image)
-                    print(image.scale)
-                    self.tabBarController?.viewControllers?.first?.tabBarItem.image = image.withRenderingMode(.alwaysOriginal)
-                }
-            }
-            
-        }
-    }
+    
     
     @IBAction func signOutAction(sender: UIButton){
         
