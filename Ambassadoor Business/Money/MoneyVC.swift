@@ -158,8 +158,8 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        shelf.alwaysBounceVertical = false
-        shelf.contentInset = UIEdgeInsets.init(top: 26, left: 0, bottom: 16, right: 0)
+//        shelf.alwaysBounceVertical = false
+//        shelf.contentInset = UIEdgeInsets.init(top: 26, left: 0, bottom: 16, right: 0)
         
         var red: CGFloat = 0
         var green: CGFloat = 0
@@ -180,21 +180,22 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
         view.layer.addSublayer(gradientLayer)
         
         gradientLayer.zPosition = 1000
-        balBox.layer.zPosition = 1001
         transactionDelegate = self
-        if GetTransactionHistory().count != 0{
-            shownBefore = true
-            accountBalance = global.accountBalance
-            DispatchQueue.main.async(execute: {
-                self.shelf.delegate = self
-                self.shelf.dataSource = self
-                self.shelf.reloadData()
-            })
-            
-        }else{
-            getDeepositDetails()
-            
-        }
+//        balBox.layer.zPosition = 1001
+//        if GetTransactionHistory().count != 0{
+//            shownBefore = true
+//            accountBalance = global.accountBalance
+//            DispatchQueue.main.async(execute: {
+//                self.shelf.delegate = self
+//                self.shelf.dataSource = self
+//                self.shelf.reloadData()
+//            })
+//
+//        }else{
+//            getDeepositDetails()
+//
+//        }
+        accountBalance = MyCompany.finance.balance
         NotificationCenter.default.addObserver(self, selector: #selector(self.getDeepositDetails), name: Notification.Name.init(rawValue: "reloadDeposit"), object: nil)
         
         
@@ -210,12 +211,14 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
     
     @objc func getDeepositDetails() {
         
-        if !shownBefore {
-            accountBalance = 0.0
-            shownBefore = true
-        }
-        let user = Singleton.sharedInstance.getCompanyUser()
-        self.getDepositDetailsByUser(user: user)
+        accountBalance = MyCompany.finance.balance
+        
+//        if !shownBefore {
+//            accountBalance = 0.0
+//            shownBefore = true
+//        }
+//        let user = Singleton.sharedInstance.getCompanyUser()
+//        self.getDepositDetailsByUser(user: user)
         
     }
     
@@ -280,6 +283,15 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
         }
         
         
+    }
+    
+    @IBAction func depositAction(sender: UIButton){
+        self.performSegue(withIdentifier: "toDepositVC", sender: self)
+        
+    }
+    
+    @IBAction func withDrawAction(sender: UIButton){
+        self.performSegue(withIdentifier: "toWothdrawRef", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

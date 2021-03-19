@@ -247,7 +247,8 @@ func uploadImageToFIR(image: UIImage, childName: String, path: String, completio
     let data = image.resizeImage(image: image, targetSize: CGSize.init(width: 256.0, height: 256.0)).jpegData(compressionQuality: 1)
 	let fileName = path + ".png"
     let ref = Storage.storage().reference().child(childName).child(fileName)
-    ref.putData(data!, metadata: nil, completion: { (metadata, error) in
+    let metaStore = StorageMetadata.init(dictionary: ["contentType": "image/jpeg"])
+    ref.putData(data!, metadata: metaStore, completion: { (metadata, error) in
         if error != nil {
             debugPrint(error!)
             completion("", true)

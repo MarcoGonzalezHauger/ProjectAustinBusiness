@@ -140,7 +140,7 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
 	}
 	
 	@IBAction func dismiss(_ sender: Any) {
-		self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
 	}
     
 	@IBAction func proceedAction(sender: UIButton){
@@ -299,93 +299,32 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
             case .succeeded:
                 // Payment Intent is confirmed
                 self.dismissStripeController()
-                getDepositDetails(companyUser: Auth.auth().currentUser!.uid) { (deposit, status, error) in
-                    /*var userID: String?
-                     var currentBalance: Double?
-                     var totalDepositAmount: Double?
-                     var totalDeductedAmount: Double?
-                     var lastDeductedAmount: Double?
-                     var lastDepositedAmount: Double?
-                     var lastTransactionHistory: TransactionDetails?
-                     var depositHistory: [AnyObject]?
-                     */
+                let transId = Database.database().reference().childByAutoId().key
+                
+                let transDict = ["type":"creditCardDeposit","value":Double(self.amountOfMoneyInCents) / 100,"time": Date().toUString()] as [String : Any]
+                
+                let log = BusinessTransactionLogItem.init(dictionary: transDict, businessId: MyCompany.businessId, transactionId: transId!)
+                
+                MyCompany.finance.log.append(log)
+                
+                MyCompany.finance.balance = MyCompany.finance.balance + Double(self.amountOfMoneyInCents) / 100
+                
+                MyCompany.UpdateToFirebase { (errorFIB) in
                     
-                    print(paymentIntent?.amount as Any)
-                    print(paymentIntent?.clientSecret as Any)
-                    print(paymentIntent?.currency as Any)
-                    print(paymentIntent?.paymentMethodId as Any)
-                    print(paymentIntent?.stripeId as Any)
-					print(paymentIntent?.status as Any)
-                    print(paymentMethodParams.card?.expMonth as Any)
-                    
-					let depositedAmount = Double(self.amountOfMoneyInCents) / 100
-                    
-                    let cardDetails = ["last4":(paymentMethodParams.card?.last4)!,"expireMonth":(paymentMethodParams.card?.expMonth)!,"expireYear":(paymentMethodParams.card?.expYear)!,"country":(paymentMethodParams.card?.country)!] as [String : Any]
-                    //print(paymentIntent?.created?.toString(dateFormat: "yyyy/MMM/dd HH:mm:ssZ") as Any)
-                    
-                    
-                    
-                    let transactionDict = ["id":(paymentIntent?.stripeId)!,"status":String(paymentIntent!.status.rawValue),"type":"sale","currencyIsoCode":paymentIntent!.currency,"amount":String(depositedAmount),"createdAt":(paymentIntent!.created?.toUString())!,"updatedAt":(paymentIntent?.created?.toUString())!,"transactionType":"card","cardDetails":cardDetails,"commission":0.0] as [String : Any]
+                    if !errorFIB{
+                        self.createLocalNotification(notificationName: "reloadDeposit", userInfo: [:])
+                        DispatchQueue.main.async(execute: {
 
-                    
-                    if status == "new" {
-                        
-                        
-                        let transactionObj = TransactionDetails.init(dictionary: transactionDict)
-                        
-                        let tranObj = API.serializeTransactionDetails(transaction: transactionObj)
-                        
-                        var depositHistory = [Any]()
-                        depositHistory.append(tranObj)
-                        
-                        let deposit = Deposit.init(dictionary: ["userID":Auth.auth().currentUser!.uid, "currentBalance":depositedAmount, "totalDepositAmount":depositedAmount, "totalDeductedAmount":0.00, "lastDeductedAmount":0.00, "lastDepositedAmount":depositedAmount, "lastTransactionHistory":tranObj, "depositHistory":depositHistory])
-                        
-                        sendDepositAmount(deposit: deposit, companyUser: Auth.auth().currentUser!.uid) { (deposit, status) in
-                            self.createLocalNotification(notificationName: "reloadDeposit", userInfo: [:])
-                            DispatchQueue.main.async(execute: {
-                                
-                                self.dismiss(animated: true, completion: nil)
-                            })
+                            self.navigationController?.popViewController(animated: true)
+                        })
+                    }else{
+                        self.showAlertMessage(title: "Error", message: "Something Went Wrong") {
+                            
                         }
-
-                        
-                    }else if status == "success" {
-                        
-                        let transactionObj = TransactionDetails.init(dictionary: transactionDict)
-                        
-                        let tranObj = API.serializeTransactionDetails(transaction: transactionObj)
-                        
-                        let currentBalance = deposit!.currentBalance! + depositedAmount
-                        let totalDepositAmount = deposit!.totalDepositAmount! + depositedAmount
-                        deposit?.totalDepositAmount = totalDepositAmount
-                        deposit?.currentBalance = currentBalance
-                        deposit?.lastDepositedAmount = depositedAmount
-                        deposit?.lastTransactionHistory = transactionObj
-                        var depositHistory = [Any]()
-                        
-                        
-                        
-                        depositHistory.append(contentsOf: (deposit!.depositHistory!))
-                        depositHistory.append(tranObj)
-                        
-                        deposit?.depositHistory = depositHistory
-                        
-                        sendDepositAmount(deposit: deposit!, companyUser: Auth.auth().currentUser!.uid) { (modifiedDeposit, status) in
-                            self.createLocalNotification(notificationName: "reloadDeposit", userInfo: [:])
-                            DispatchQueue.main.async(execute: {
-                                self.dismiss(animated: true, completion: nil)
-                            })
-                        }
-                        
-                    }
-                    else{
-                        
-                        
-                        
                     }
                     
                 }
-                
+                                
                 
             }
             

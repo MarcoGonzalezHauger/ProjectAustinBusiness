@@ -18,14 +18,24 @@
 		B712C487230690B500728758 /* ProductListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B712C486230690B500728758 /* ProductListCell.xib */; };
 		B712C4892306B6C900728758 /* WebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B712C4882306B6C900728758 /* WebVC.swift */; };
 		B712C48B2306DA7900728758 /* StaticsPie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B712C48A2306DA7900728758 /* StaticsPie.swift */; };
+		B724789A2603533300CD20FA /* AccountDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B72478992603533300CD20FA /* AccountDetails.storyboard */; };
+		B724789F2603543100CD20FA /* AccountInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B724789C2603542C00CD20FA /* AccountInfoVC.swift */; };
+		B72478A02603543100CD20FA /* NewWithdrawVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B724789D2603542E00CD20FA /* NewWithdrawVC.swift */; };
+		B72478A12603543100CD20FA /* WithDrawNoteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B724789E2603543100CD20FA /* WithDrawNoteVC.swift */; };
+		B72478A3260367C700CD20FA /* TransactionHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72478A2260367C700CD20FA /* TransactionHistoryVC.swift */; };
 		B72CB50822E6E8C100958AE0 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72CB50722E6E8C100958AE0 /* BaseVC.swift */; };
 		B72CB50A22E7024500958AE0 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72CB50922E7024500958AE0 /* UIViewExtension.swift */; };
+		B72CFDCA25FF5AE100033CC5 /* ProfilePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72CFDC925FF5AE100033CC5 /* ProfilePickerVC.swift */; };
+		B72CFDCC25FF9C4B00033CC5 /* AddBasicBusinessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72CFDCB25FF9C4B00033CC5 /* AddBasicBusinessVC.swift */; };
 		B750E78522E5B75F00024CB1 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B750E78422E5B75F00024CB1 /* Onboarding.storyboard */; };
 		B7551F2B22F98841001C4974 /* BasePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7551F2A22F98841001C4974 /* BasePicker.swift */; };
 		B7551F2F22F99B01001C4974 /* BasePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7551F2E22F99B01001C4974 /* BasePicker.xib */; };
 		B75EC9A6230ACE4800BA7A7B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75EC9A5230ACE4800BA7A7B /* NetworkManager.swift */; };
 		B75F7A852506476300D14675 /* TimerListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75F7A842506476300D14675 /* TimerListener.swift */; };
 		B761DA242321352100587F28 /* DwollaUserInformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B761DA232321352100587F28 /* DwollaUserInformationVC.swift */; };
+		B76DEDE42600B24A00886911 /* MultipleBusinessAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76DEDE32600B24A00886911 /* MultipleBusinessAccountVC.swift */; };
+		B76DEDE62600B61400886911 /* ContractBusinessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76DEDE52600B61400886911 /* ContractBusinessVC.swift */; };
+		B76DEDEA2600C1F200886911 /* NewBasicBusinessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76DEDE92600C1F200886911 /* NewBasicBusinessView.swift */; };
 		B770B8112514A5E700724465 /* RegisterCompany.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B770B8102514A5E700724465 /* RegisterCompany.storyboard */; };
 		B770B8132514EACD00724465 /* Company.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B770B8122514EACD00724465 /* Company.storyboard */; };
 		B774B6E924728ADA007C8699 /* SimplexStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B774B6E824728ADA007C8699 /* SimplexStatistics.swift */; };
@@ -137,14 +147,24 @@
 		B712C486230690B500728758 /* ProductListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductListCell.xib; sourceTree = "<group>"; };
 		B712C4882306B6C900728758 /* WebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebVC.swift; sourceTree = "<group>"; };
 		B712C48A2306DA7900728758 /* StaticsPie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticsPie.swift; sourceTree = "<group>"; };
+		B72478992603533300CD20FA /* AccountDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AccountDetails.storyboard; sourceTree = "<group>"; };
+		B724789C2603542C00CD20FA /* AccountInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoVC.swift; sourceTree = "<group>"; };
+		B724789D2603542E00CD20FA /* NewWithdrawVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewWithdrawVC.swift; sourceTree = "<group>"; };
+		B724789E2603543100CD20FA /* WithDrawNoteVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WithDrawNoteVC.swift; sourceTree = "<group>"; };
+		B72478A2260367C700CD20FA /* TransactionHistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryVC.swift; sourceTree = "<group>"; };
 		B72CB50722E6E8C100958AE0 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		B72CB50922E7024500958AE0 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		B72CFDC925FF5AE100033CC5 /* ProfilePickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePickerVC.swift; sourceTree = "<group>"; };
+		B72CFDCB25FF9C4B00033CC5 /* AddBasicBusinessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBasicBusinessVC.swift; sourceTree = "<group>"; };
 		B750E78422E5B75F00024CB1 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		B7551F2A22F98841001C4974 /* BasePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePicker.swift; sourceTree = "<group>"; };
 		B7551F2E22F99B01001C4974 /* BasePicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasePicker.xib; sourceTree = "<group>"; };
 		B75EC9A5230ACE4800BA7A7B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		B75F7A842506476300D14675 /* TimerListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerListener.swift; sourceTree = "<group>"; };
 		B761DA232321352100587F28 /* DwollaUserInformationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DwollaUserInformationVC.swift; sourceTree = "<group>"; };
+		B76DEDE32600B24A00886911 /* MultipleBusinessAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleBusinessAccountVC.swift; sourceTree = "<group>"; };
+		B76DEDE52600B61400886911 /* ContractBusinessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractBusinessVC.swift; sourceTree = "<group>"; };
+		B76DEDE92600C1F200886911 /* NewBasicBusinessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBasicBusinessView.swift; sourceTree = "<group>"; };
 		B770B8102514A5E700724465 /* RegisterCompany.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegisterCompany.storyboard; sourceTree = "<group>"; };
 		B770B8122514EACD00724465 /* Company.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Company.storyboard; sourceTree = "<group>"; };
 		B774B6E824728ADA007C8699 /* SimplexStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplexStatistics.swift; sourceTree = "<group>"; };
@@ -266,6 +286,17 @@
 				43232CCE7767D24B796A1AAB /* Pods_Ambassadoor_Business.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B724789B2603541000CD20FA /* New WithDraw */ = {
+			isa = PBXGroup;
+			children = (
+				B724789C2603542C00CD20FA /* AccountInfoVC.swift */,
+				B724789D2603542E00CD20FA /* NewWithdrawVC.swift */,
+				B724789E2603543100CD20FA /* WithDrawNoteVC.swift */,
+				B72478A2260367C700CD20FA /* TransactionHistoryVC.swift */,
+			);
+			path = "New WithDraw";
 			sourceTree = "<group>";
 		};
 		B7551F2922F98817001C4974 /* DataPickerClasses */ = {
@@ -461,6 +492,7 @@
 				B7D030AD23237CA4002B90FF /* Ambassadoor Business-Bridging-Header.h */,
 				E8E54688227BA3E800775A07 /* YourCompany.swift */,
 				B7A65CAA25ADA1E50071785F /* GoogleService-Info.plist */,
+				B724789B2603541000CD20FA /* New WithDraw */,
 				B7C293A325ECE3E8004A723B /* New Model */,
 				B7C9FE8B231E485E005580E4 /* Plaid */,
 				E8F8AAC722C8485A0047BF5E /* Offers */,
@@ -485,6 +517,7 @@
 				B770B8102514A5E700724465 /* RegisterCompany.storyboard */,
 				B703D92325B72EAA003C7F37 /* Money.storyboard */,
 				B703D92525B737D3003C7F37 /* Statistics.storyboard */,
+				B72478992603533300CD20FA /* AccountDetails.storyboard */,
 				B7D2FE11247542F00000BFFC /* tutorial.mp4 */,
 				E8C3694B22161B3200AE12D7 /* Assets.xcassets */,
 				E8C3694D22161B3200AE12D7 /* LaunchScreen.storyboard */,
@@ -531,6 +564,11 @@
 			isa = PBXGroup;
 			children = (
 				E8F7C9AF25FED714007893FF /* businessProfile.storyboard */,
+				B72CFDC925FF5AE100033CC5 /* ProfilePickerVC.swift */,
+				B72CFDCB25FF9C4B00033CC5 /* AddBasicBusinessVC.swift */,
+				B76DEDE32600B24A00886911 /* MultipleBusinessAccountVC.swift */,
+				B76DEDE52600B61400886911 /* ContractBusinessVC.swift */,
+				B76DEDE92600C1F200886911 /* NewBasicBusinessView.swift */,
 			);
 			path = "Business Profile";
 			sourceTree = "<group>";
@@ -625,6 +663,7 @@
 				B7FD83ED22F0870F00347E8E /* PostDetailTC.xib in Resources */,
 				B7FD83E922F0844C00347E8E /* AddPostTC.xib in Resources */,
 				B750E78522E5B75F00024CB1 /* Onboarding.storyboard in Resources */,
+				B724789A2603533300CD20FA /* AccountDetails.storyboard in Resources */,
 				B7AEF2C1247BA81B000AB4A4 /* TempLaunch.storyboard in Resources */,
 				B770B8112514A5E700724465 /* RegisterCompany.storyboard in Resources */,
 				E8C3694C22161B3200AE12D7 /* Assets.xcassets in Resources */,
@@ -732,6 +771,7 @@
 				E8C708C923764C51001699D0 /* SelectStatesVC.swift in Sources */,
 				B7C293C525ECE423004A723B /* OfferPool algo.swift in Sources */,
 				B712C485230690A700728758 /* ProductListCell.swift in Sources */,
+				B72478A12603543100CD20FA /* WithDrawNoteVC.swift in Sources */,
 				B7C293BF25ECE423004A723B /* CalculatedValues.swift in Sources */,
 				E84600872273AF9100CF60F2 /* ImageViewExtensions.swift in Sources */,
 				E8F8AAC922C8492D0047BF5E /* ViewOffersVC.swift in Sources */,
@@ -741,16 +781,21 @@
 				E899878323D3B8F20093FC0E /* CurseWords.swift in Sources */,
 				B7C293C425ECE423004A723B /* UniversalDate.swift in Sources */,
 				E86158822478A7CD006D5450 /* ReferralInfoVC.swift in Sources */,
+				B76DEDE42600B24A00886911 /* MultipleBusinessAccountVC.swift in Sources */,
 				B70DEC7C232C2CFA00580FD7 /* TransactionDetailsVC.swift in Sources */,
 				B7C293BC25ECE423004A723B /* Influencer Structs.swift in Sources */,
 				B72CB50A22E7024500958AE0 /* UIViewExtension.swift in Sources */,
+				B72478A3260367C700CD20FA /* TransactionHistoryVC.swift in Sources */,
 				E80B060822A07F63002B9699 /* WithdrawVC.swift in Sources */,
 				B7C9FE8F231E4870005580E4 /* PlaidHelper.swift in Sources */,
 				E83F1C5424748D9400EA216B /* ViewOfferStatisticVC.swift in Sources */,
 				E8FC176223778D9700245932 /* LocationPicker.swift in Sources */,
 				E84600802273A65600CF60F2 /* StandardNC.swift in Sources */,
 				B712C4892306B6C900728758 /* WebVC.swift in Sources */,
+				B72CFDCA25FF5AE100033CC5 /* ProfilePickerVC.swift in Sources */,
 				E844EAC22471DE48000CE74F /* mainTabBarController.swift in Sources */,
+				B72478A02603543100CD20FA /* NewWithdrawVC.swift in Sources */,
+				B76DEDEA2600C1F200886911 /* NewBasicBusinessView.swift in Sources */,
 				E861588024789C8B006D5450 /* ChangeWebsiteVC.swift in Sources */,
 				C0FBFD01226154FC00BADDCD /* categories.swift in Sources */,
 				B7C293B525ECE423004A723B /* InProgress functions.swift in Sources */,
@@ -767,6 +812,7 @@
 				E8FC17642377A70100245932 /* SelectRadiiVC.swift in Sources */,
 				B78B39F32510D69800829F31 /* CompanyMissionVC.swift in Sources */,
 				B761DA242321352100587F28 /* DwollaUserInformationVC.swift in Sources */,
+				B724789F2603543100CD20FA /* AccountInfoVC.swift in Sources */,
 				B72CB50822E6E8C100958AE0 /* BaseVC.swift in Sources */,
 				B7C293B925ECE423004A723B /* Business Structs.swift in Sources */,
 				B7FD83E322F072F800347E8E /* AddOfferVC.swift in Sources */,
@@ -774,6 +820,7 @@
 				B7C293B625ECE423004A723B /* AdminValues.swift in Sources */,
 				B79308FE23015C3E001BB47A /* DistributeOfferVC.swift in Sources */,
 				B7C293B825ECE423004A723B /* Offer Distribution Functions.swift in Sources */,
+				B72CFDCC25FF9C4B00033CC5 /* AddBasicBusinessVC.swift in Sources */,
 				B7FD83EB22F0866B00347E8E /* PostDetailTC.swift in Sources */,
 				B78B39ED2510D49400829F31 /* ReferralVC.swift in Sources */,
 				E8D06DF2255F09AF00F9D79C /* VerifyEmailVC.swift in Sources */,
@@ -795,6 +842,7 @@
 				E83F378F227CDF3A00BA6688 /* GetPictureVC.swift in Sources */,
 				B799227622F16FA9007E84B0 /* PickUserCVC.swift in Sources */,
 				E8C3694A22161B3000AE12D7 /* Ambassadoor_Business.xcdatamodeld in Sources */,
+				B76DEDE62600B61400886911 /* ContractBusinessVC.swift in Sources */,
 				B75F7A852506476300D14675 /* TimerListener.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
