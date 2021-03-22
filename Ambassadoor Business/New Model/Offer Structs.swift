@@ -16,7 +16,8 @@ class DraftOffer { //before business sends
 	var draftPosts: [DraftPost]
 	var title: String
 	var lastEdited: Date
-	
+    var basicId: String?
+    
 	init(dictionary d: [String: Any], businessId id: String, draftId did: String) {
 		businessId = id
 		draftId = did
@@ -33,6 +34,7 @@ class DraftOffer { //before business sends
 		
 		mustBeOver21 = d["mustBeOver21"] as! Bool
 		payIncrease = d["payIncrease"] as! Double
+        basicId = d["basicId"] as? String ?? ""
 		
 	}
 	
@@ -56,6 +58,7 @@ class DraftOffer { //before business sends
 		d["lastEdited"] = lastEdited.toUString()
 		d["mustBeOver21"] = mustBeOver21
 		d["payIncrease"] = payIncrease
+        d["basicId"] = basicId
 		
 		if draftPosts.count != 0 {
 			var draftPostDict: [String: Any] = [:]

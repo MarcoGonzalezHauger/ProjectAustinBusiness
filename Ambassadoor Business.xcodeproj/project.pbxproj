@@ -38,6 +38,9 @@
 		B76DEDEA2600C1F200886911 /* NewBasicBusinessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76DEDE92600C1F200886911 /* NewBasicBusinessView.swift */; };
 		B770B8112514A5E700724465 /* RegisterCompany.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B770B8102514A5E700724465 /* RegisterCompany.storyboard */; };
 		B770B8132514EACD00724465 /* Company.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B770B8122514EACD00724465 /* Company.storyboard */; };
+		B7712CCA26087A3700162E70 /* NewOfferListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7712CC926087A3700162E70 /* NewOfferListVC.swift */; };
+		B7712CCC260897E000162E70 /* OfferNewCreateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7712CCB260897E000162E70 /* OfferNewCreateVC.swift */; };
+		B7712CCE2608B6C300162E70 /* BasicsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7712CCD2608B6C300162E70 /* BasicsListVC.swift */; };
 		B774B6E924728ADA007C8699 /* SimplexStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B774B6E824728ADA007C8699 /* SimplexStatistics.swift */; };
 		B7787EF425132BBC00098A92 /* RegisterNewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7787EF325132BBC00098A92 /* RegisterNewVC.swift */; };
 		B788D6F422E8931100FA59BA /* RegisterCompanyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B788D6F322E8931100FA59BA /* RegisterCompanyVC.swift */; };
@@ -168,6 +171,9 @@
 		B76DEDE92600C1F200886911 /* NewBasicBusinessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBasicBusinessView.swift; sourceTree = "<group>"; };
 		B770B8102514A5E700724465 /* RegisterCompany.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegisterCompany.storyboard; sourceTree = "<group>"; };
 		B770B8122514EACD00724465 /* Company.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Company.storyboard; sourceTree = "<group>"; };
+		B7712CC926087A3700162E70 /* NewOfferListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOfferListVC.swift; sourceTree = "<group>"; };
+		B7712CCB260897E000162E70 /* OfferNewCreateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferNewCreateVC.swift; sourceTree = "<group>"; };
+		B7712CCD2608B6C300162E70 /* BasicsListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicsListVC.swift; sourceTree = "<group>"; };
 		B774B6E824728ADA007C8699 /* SimplexStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplexStatistics.swift; sourceTree = "<group>"; };
 		B7787EF325132BBC00098A92 /* RegisterNewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNewVC.swift; sourceTree = "<group>"; };
 		B788D6F322E8931100FA59BA /* RegisterCompanyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCompanyVC.swift; sourceTree = "<group>"; };
@@ -472,6 +478,9 @@
 			isa = PBXGroup;
 			children = (
 				E874250F260833FC008D7375 /* offerEditor.storyboard */,
+				B7712CC926087A3700162E70 /* NewOfferListVC.swift */,
+				B7712CCB260897E000162E70 /* OfferNewCreateVC.swift */,
+				B7712CCD2608B6C300162E70 /* BasicsListVC.swift */,
 			);
 			path = "Offer Editor";
 			sourceTree = "<group>";
@@ -806,6 +815,8 @@
 				B712C4892306B6C900728758 /* WebVC.swift in Sources */,
 				B72CFDCA25FF5AE100033CC5 /* ProfilePickerVC.swift in Sources */,
 				E844EAC22471DE48000CE74F /* mainTabBarController.swift in Sources */,
+				B7712CCE2608B6C300162E70 /* BasicsListVC.swift in Sources */,
+				B7712CCC260897E000162E70 /* OfferNewCreateVC.swift in Sources */,
 				B72478A02603543100CD20FA /* NewWithdrawVC.swift in Sources */,
 				B76DEDEA2600C1F200886911 /* NewBasicBusinessView.swift in Sources */,
 				E861588024789C8B006D5450 /* ChangeWebsiteVC.swift in Sources */,
@@ -841,6 +852,7 @@
 				E8C708C423763EAA001699D0 /* GeolocationTools.swift in Sources */,
 				B79B1D2E22F2EE8D00F3C660 /* DateFormatManager.swift in Sources */,
 				B7C9FE8E231E4870005580E4 /* PlaidLinkEnabledVC.swift in Sources */,
+				B7712CCA26087A3700162E70 /* NewOfferListVC.swift in Sources */,
 				C05FE2D9225F683E002D3CAA /* FirebaseReferences.swift in Sources */,
 				E8C3694422161B3000AE12D7 /* ViewController.swift in Sources */,
 				B7B11FF523242615006711BB /* PlaidTVCell.swift in Sources */,
@@ -1012,7 +1024,7 @@
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = F4W3LUKZFA;
 				INFOPLIST_FILE = "Ambassadoor Business/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1042,7 +1054,7 @@
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = F4W3LUKZFA;
 				INFOPLIST_FILE = "Ambassadoor Business/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
