@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ylo-aC-wgw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ylo-aC-wgw">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -43,7 +44,7 @@
                                                         </connections>
                                                     </textField>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="ZSm-YY-CIc" firstAttribute="top" secondItem="IXa-Wt-Btw" secondAttribute="top" id="0MZ-75-uGN"/>
                                                     <constraint firstAttribute="trailing" secondItem="ZSm-YY-CIc" secondAttribute="trailing" id="LvR-sV-Dl8"/>
@@ -87,7 +88,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h6V-Nn-rN8" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="142" height="50"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dE0-LY-upg">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dE0-LY-upg">
                                                         <rect key="frame" x="0.0" y="0.0" width="142" height="50"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                                         <state key="normal" title="Skip">
@@ -98,7 +99,7 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="dE0-LY-upg" firstAttribute="leading" secondItem="h6V-Nn-rN8" secondAttribute="leading" id="IP6-pB-iQ0"/>
                                                     <constraint firstAttribute="trailing" secondItem="dE0-LY-upg" secondAttribute="trailing" id="evj-H4-iWl"/>
@@ -120,7 +121,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ly-4t-f3H" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                 <rect key="frame" x="158" y="0.0" width="142" height="50"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m5W-Fu-7wA">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m5W-Fu-7wA">
                                                         <rect key="frame" x="0.0" y="0.0" width="142" height="50"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                                         <state key="normal" title="Save &amp; Next">
@@ -157,7 +158,7 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="lj2-OG-rHp" secondAttribute="trailing" constant="25" id="9Iv-7p-8vl"/>
                                     <constraint firstItem="9hD-TI-I7q" firstAttribute="leading" secondItem="jJf-v8-NHl" secondAttribute="leading" constant="57" id="J1a-gF-0OZ"/>
@@ -179,14 +180,14 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="x2O-Df-jUj"/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="xw2-Am-k5s"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="jJf-v8-NHl" firstAttribute="leading" secondItem="9U1-7I-sZG" secondAttribute="leading" id="0TN-D1-B3A"/>
                             <constraint firstItem="jJf-v8-NHl" firstAttribute="top" secondItem="9U1-7I-sZG" secondAttribute="top" id="BUE-6b-5Se"/>
                             <constraint firstAttribute="bottom" secondItem="jJf-v8-NHl" secondAttribute="bottom" id="TTq-h4-41U"/>
                             <constraint firstAttribute="trailing" secondItem="jJf-v8-NHl" secondAttribute="trailing" id="eWj-nK-yXT"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="xw2-Am-k5s"/>
                     </view>
                     <connections>
                         <outlet property="referralShadow" destination="IXa-Wt-Btw" id="qqe-eH-3c4"/>
@@ -212,7 +213,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nNS-5u-k66" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                         <rect key="frame" x="145" y="148.5" width="125" height="125"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qdo-F6-lpy">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qdo-F6-lpy">
                                                 <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -233,7 +234,7 @@
                                                 <color key="color" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </activityIndicatorView>
                                         </subviews>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="Qdo-F6-lpy" firstAttribute="leading" secondItem="nNS-5u-k66" secondAttribute="leading" id="Eo7-Kt-OZh"/>
                                             <constraint firstAttribute="width" constant="125" id="OEo-jK-0yo"/>
@@ -273,7 +274,7 @@
                                                 </connections>
                                             </textField>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="cz5-XN-hsk" firstAttribute="leading" secondItem="nxh-v1-kHH" secondAttribute="leading" id="5tn-Nd-gCA"/>
                                             <constraint firstAttribute="bottom" secondItem="cz5-XN-hsk" secondAttribute="bottom" constant="4" id="MdN-EA-8aj"/>
@@ -308,7 +309,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s6O-4L-Yhc" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="142" height="50"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lpj-KS-V58">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lpj-KS-V58">
                                                         <rect key="frame" x="0.0" y="0.0" width="142" height="50"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                                         <state key="normal" title="Back">
@@ -319,7 +320,7 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="lpj-KS-V58" firstAttribute="top" secondItem="s6O-4L-Yhc" secondAttribute="top" id="6pe-Io-jMO"/>
                                                     <constraint firstAttribute="trailing" secondItem="lpj-KS-V58" secondAttribute="trailing" id="CXs-4Y-qIF"/>
@@ -341,7 +342,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0hX-PD-YOJ" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                 <rect key="frame" x="158" y="0.0" width="142" height="50"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k81-vJ-lz2">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k81-vJ-lz2">
                                                         <rect key="frame" x="0.0" y="0.0" width="142" height="50"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                                         <state key="normal" title="Save &amp; Next">
@@ -379,7 +380,7 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="Ovz-IU-hdb" firstAttribute="centerX" secondItem="q0l-AD-w36" secondAttribute="centerX" constant="0.5" id="08D-Wo-7eU"/>
                                     <constraint firstAttribute="trailing" secondItem="Ovz-IU-hdb" secondAttribute="trailing" constant="27" id="3nG-uy-2Ft"/>
@@ -400,14 +401,14 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="Lru-WI-lAG"/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="xry-RT-7vB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="q0l-AD-w36" firstAttribute="top" secondItem="cBW-bc-xub" secondAttribute="top" id="46p-RN-SsM"/>
                             <constraint firstItem="q0l-AD-w36" firstAttribute="leading" secondItem="cBW-bc-xub" secondAttribute="leading" id="noW-Zw-b6G"/>
                             <constraint firstAttribute="bottom" secondItem="q0l-AD-w36" secondAttribute="bottom" id="pUO-RM-hzY"/>
                             <constraint firstAttribute="trailing" secondItem="q0l-AD-w36" secondAttribute="trailing" id="qCo-Cw-PaT"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="xry-RT-7vB"/>
                     </view>
                     <connections>
                         <outlet property="activity" destination="dx8-8b-vce" id="byS-cp-hAg"/>
@@ -472,7 +473,7 @@
                                                 </connections>
                                             </textField>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="AAA-YG-7vg" secondAttribute="bottom" id="CHT-fD-RTb"/>
                                             <constraint firstItem="AAA-YG-7vg" firstAttribute="leading" secondItem="x7j-3s-EQs" secondAttribute="leading" id="MaY-de-3g0"/>
@@ -498,7 +499,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Woq-2C-cUj" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="142" height="50"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sgg-EL-zuQ">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sgg-EL-zuQ">
                                                         <rect key="frame" x="0.0" y="0.0" width="142" height="50"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                                         <state key="normal" title="Back">
@@ -509,7 +510,7 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="sgg-EL-zuQ" secondAttribute="bottom" id="A7K-LU-24J"/>
                                                     <constraint firstAttribute="trailing" secondItem="sgg-EL-zuQ" secondAttribute="trailing" id="Hvz-fL-r4Y"/>
@@ -531,7 +532,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w7r-Dh-Dne" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                 <rect key="frame" x="158" y="0.0" width="142" height="50"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TFL-T7-9mz">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TFL-T7-9mz">
                                                         <rect key="frame" x="0.0" y="0.0" width="142" height="50"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                                         <state key="normal" title="Save &amp; Next">
@@ -585,7 +586,8 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="zNG-64-NjV"/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="nd0-hV-jxo"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Xij-av-pbq" firstAttribute="trailing" secondItem="nd0-hV-jxo" secondAttribute="trailing" id="A9t-gC-PZN"/>
                             <constraint firstItem="ebb-rS-iiO" firstAttribute="leading" secondItem="nd0-hV-jxo" secondAttribute="leading" id="BpM-4K-Xl1"/>
@@ -600,7 +602,6 @@
                             <constraint firstItem="Xij-av-pbq" firstAttribute="leading" secondItem="nd0-hV-jxo" secondAttribute="leading" id="uCW-7b-BYU"/>
                             <constraint firstAttribute="bottom" secondItem="ebb-rS-iiO" secondAttribute="bottom" id="wJ3-M1-Qgt"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="nd0-hV-jxo"/>
                     </view>
                     <connections>
                         <outlet property="scroll" destination="aiV-RK-I6S" id="Mg9-Cr-g6U"/>
@@ -655,7 +656,7 @@ Also, you must have permission to use the company name, logo, and website before
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ff9-gD-VSq" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                 <rect key="frame" x="16" y="483" width="382" height="60"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afn-e2-5KE">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afn-e2-5KE">
                                         <rect key="frame" x="0.0" y="0.0" width="382" height="60"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -690,7 +691,7 @@ Also, you must have permission to use the company name, logo, and website before
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oiR-Ra-Fjh" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                 <rect key="frame" x="111.5" y="559" width="191" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YUe-Tp-6dF">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YUe-Tp-6dF">
                                         <rect key="frame" x="0.0" y="0.0" width="191" height="50"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                         <state key="normal" title="Back">
@@ -701,7 +702,7 @@ Also, you must have permission to use the company name, logo, and website before
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="YUe-Tp-6dF" firstAttribute="leading" secondItem="oiR-Ra-Fjh" secondAttribute="leading" id="EJ4-0N-YOK"/>
                                     <constraint firstAttribute="trailing" secondItem="YUe-Tp-6dF" secondAttribute="trailing" id="Wc6-it-et1"/>
@@ -722,7 +723,8 @@ Also, you must have permission to use the company name, logo, and website before
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="KTE-GC-UCo"/>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="KTE-GC-UCo" firstAttribute="trailing" secondItem="b4b-jK-qou" secondAttribute="trailing" constant="16" id="7ps-Ic-a4B"/>
                             <constraint firstItem="oiR-Ra-Fjh" firstAttribute="width" secondItem="ff9-gD-VSq" secondAttribute="width" multiplier="0.5" id="Db6-uw-xcm"/>
@@ -736,7 +738,6 @@ Also, you must have permission to use the company name, logo, and website before
                             <constraint firstItem="b4b-jK-qou" firstAttribute="centerX" secondItem="0L9-yV-FJb" secondAttribute="centerX" id="oPn-jC-07v"/>
                             <constraint firstItem="ff9-gD-VSq" firstAttribute="centerX" secondItem="0L9-yV-FJb" secondAttribute="centerX" id="zRU-Zf-Kma"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="KTE-GC-UCo"/>
                     </view>
                     <connections>
                         <outlet property="registerBtn" destination="afn-e2-5KE" id="czT-jl-6fs"/>
@@ -765,7 +766,7 @@ Also, you must have permission to use the company name, logo, and website before
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6aA-9p-3yN">
                                                 <rect key="frame" x="8" y="8" width="334" height="150"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" systemColor="labelColor"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="19"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <connections>
@@ -773,7 +774,7 @@ Also, you must have permission to use the company name, logo, and website before
                                                 </connections>
                                             </textView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="6aA-9p-3yN" secondAttribute="trailing" constant="11" id="DGD-hl-Off"/>
                                             <constraint firstAttribute="height" constant="168" id="MHY-8B-uSc"/>
@@ -808,7 +809,7 @@ Also, you must have permission to use the company name, logo, and website before
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zdU-oR-lhe" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="142" height="50"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjN-Zv-Tak">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjN-Zv-Tak">
                                                         <rect key="frame" x="0.0" y="0.0" width="142" height="50"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                                         <state key="normal" title="Back">
@@ -819,7 +820,7 @@ Also, you must have permission to use the company name, logo, and website before
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="wjN-Zv-Tak" secondAttribute="trailing" id="AVQ-Jb-jfN"/>
                                                     <constraint firstItem="wjN-Zv-Tak" firstAttribute="top" secondItem="zdU-oR-lhe" secondAttribute="top" id="Bkh-9g-7eq"/>
@@ -841,7 +842,7 @@ Also, you must have permission to use the company name, logo, and website before
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NDg-Sn-cok" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                 <rect key="frame" x="158" y="0.0" width="142" height="50"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dgi-4Z-gPZ">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dgi-4Z-gPZ">
                                                         <rect key="frame" x="0.0" y="0.0" width="142" height="50"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                                         <state key="normal" title="Save &amp; Next">
@@ -878,7 +879,7 @@ Also, you must have permission to use the company name, logo, and website before
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="eCb-CB-J14" firstAttribute="top" secondItem="QPg-ep-1hO" secondAttribute="top" constant="134" id="C0k-ZC-iVs"/>
                                     <constraint firstItem="MCJ-6H-emI" firstAttribute="trailing" secondItem="vgq-kv-yXt" secondAttribute="trailing" constant="30" id="DYu-EN-Byk"/>
@@ -895,14 +896,14 @@ Also, you must have permission to use the company name, logo, and website before
                                 <viewLayoutGuide key="frameLayoutGuide" id="MCJ-6H-emI"/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="f9Z-W0-3R9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="QPg-ep-1hO" secondAttribute="bottom" id="8ds-27-al4"/>
                             <constraint firstItem="QPg-ep-1hO" firstAttribute="leading" secondItem="Hj1-39-GIv" secondAttribute="leading" id="NgR-hX-183"/>
                             <constraint firstItem="QPg-ep-1hO" firstAttribute="top" secondItem="Hj1-39-GIv" secondAttribute="top" id="g4J-e1-Ay3"/>
                             <constraint firstAttribute="trailing" secondItem="QPg-ep-1hO" secondAttribute="trailing" id="vxT-cA-Pzo"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="f9Z-W0-3R9"/>
                     </view>
                     <connections>
                         <outlet property="missionShadow" destination="vgq-kv-yXt" id="gs0-Wy-n0v"/>
@@ -938,7 +939,7 @@ Also, you must have permission to use the company name, logo, and website before
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="hhX-OW-5qu" firstAttribute="top" secondItem="ATF-7U-h8N" secondAttribute="top" constant="24" id="E9K-4M-wmV"/>
                                     <constraint firstAttribute="height" constant="130" id="feg-DU-FNT"/>
@@ -957,7 +958,8 @@ Also, you must have permission to use the company name, logo, and website before
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="SBE-YS-fc2"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ATF-7U-h8N" firstAttribute="leading" secondItem="SBE-YS-fc2" secondAttribute="leading" id="1WZ-Zn-rxT"/>
                             <constraint firstItem="SBE-YS-fc2" firstAttribute="bottom" secondItem="ATF-7U-h8N" secondAttribute="bottom" constant="-54" id="G9T-y1-114"/>
@@ -967,7 +969,6 @@ Also, you must have permission to use the company name, logo, and website before
                             <constraint firstItem="ATF-7U-h8N" firstAttribute="top" secondItem="u6Q-gH-TCe" secondAttribute="bottom" id="shW-7e-ySr"/>
                             <constraint firstItem="u6Q-gH-TCe" firstAttribute="top" secondItem="Jdu-6I-AHZ" secondAttribute="topMargin" id="w6G-wn-txb"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="SBE-YS-fc2"/>
                     </view>
                     <connections>
                         <outlet property="stepSegment" destination="hhX-OW-5qu" id="vUj-TL-hKf"/>
@@ -998,5 +999,20 @@ Also, you must have permission to use the company name, logo, and website before
         <namedColor name="AmbPurple">
             <color red="0.6470000147819519" green="0.36899998784065247" blue="0.9179999828338623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
