@@ -110,6 +110,7 @@
 		E846008A2273B0B300CF60F2 /* Savvy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84600892273B0B300CF60F2 /* Savvy.swift */; };
 		E861588024789C8B006D5450 /* ChangeWebsiteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E861587F24789C8B006D5450 /* ChangeWebsiteVC.swift */; };
 		E86158822478A7CD006D5450 /* ReferralInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86158812478A7CD006D5450 /* ReferralInfoVC.swift */; };
+		E8742510260833FC008D7375 /* offerEditor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E874250F260833FC008D7375 /* offerEditor.storyboard */; };
 		E8769168236F9A8A0026E07D /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8769166236F9A830026E07D /* LocalAuthentication.framework */; };
 		E899878323D3B8F20093FC0E /* CurseWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899878223D3B8F20093FC0E /* CurseWords.swift */; };
 		E8AC686A247F602A0046B2FA /* DistributeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AC6869247F602A0046B2FA /* DistributeVC.swift */; };
@@ -241,6 +242,7 @@
 		E84600892273B0B300CF60F2 /* Savvy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Savvy.swift; sourceTree = "<group>"; };
 		E861587F24789C8B006D5450 /* ChangeWebsiteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeWebsiteVC.swift; sourceTree = "<group>"; };
 		E86158812478A7CD006D5450 /* ReferralInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralInfoVC.swift; sourceTree = "<group>"; };
+		E874250F260833FC008D7375 /* offerEditor.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = offerEditor.storyboard; sourceTree = "<group>"; };
 		E8769166236F9A830026E07D /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		E899878223D3B8F20093FC0E /* CurseWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurseWords.swift; sourceTree = "<group>"; };
 		E8AC6869247F602A0046B2FA /* DistributeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistributeVC.swift; sourceTree = "<group>"; };
@@ -466,6 +468,14 @@
 			path = Extentions;
 			sourceTree = "<group>";
 		};
+		E874250E2608333F008D7375 /* Offer Editor */ = {
+			isa = PBXGroup;
+			children = (
+				E874250F260833FC008D7375 /* offerEditor.storyboard */,
+			);
+			path = "Offer Editor";
+			sourceTree = "<group>";
+		};
 		E8C3693522161B3000AE12D7 = {
 			isa = PBXGroup;
 			children = (
@@ -487,6 +497,7 @@
 		E8C3694022161B3000AE12D7 /* Ambassadoor Business */ = {
 			isa = PBXGroup;
 			children = (
+				E874250E2608333F008D7375 /* Offer Editor */,
 				E8F7C9AE25FED6F7007893FF /* Business Profile */,
 				B7B72E07237C4953002AB168 /* Ambassadoor Business.entitlements */,
 				B7D030AD23237CA4002B90FF /* Ambassadoor Business-Bridging-Header.h */,
@@ -665,6 +676,7 @@
 				B750E78522E5B75F00024CB1 /* Onboarding.storyboard in Resources */,
 				B724789A2603533300CD20FA /* AccountDetails.storyboard in Resources */,
 				B7AEF2C1247BA81B000AB4A4 /* TempLaunch.storyboard in Resources */,
+				E8742510260833FC008D7375 /* offerEditor.storyboard in Resources */,
 				B770B8112514A5E700724465 /* RegisterCompany.storyboard in Resources */,
 				E8C3694C22161B3200AE12D7 /* Assets.xcassets in Resources */,
 				B770B8132514EACD00724465 /* Company.storyboard in Resources */,
