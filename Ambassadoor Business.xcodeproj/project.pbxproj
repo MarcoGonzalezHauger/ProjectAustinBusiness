@@ -43,6 +43,7 @@
 		B7712CCE2608B6C300162E70 /* BasicsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7712CCD2608B6C300162E70 /* BasicsListVC.swift */; };
 		B774B6E924728ADA007C8699 /* SimplexStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B774B6E824728ADA007C8699 /* SimplexStatistics.swift */; };
 		B7787EF425132BBC00098A92 /* RegisterNewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7787EF325132BBC00098A92 /* RegisterNewVC.swift */; };
+		B77D4C392609CFF30002E04E /* PostDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77D4C382609CFF30002E04E /* PostDetailVC.swift */; };
 		B788D6F422E8931100FA59BA /* RegisterCompanyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B788D6F322E8931100FA59BA /* RegisterCompanyVC.swift */; };
 		B78B39EA25109BA500829F31 /* RegisterCompanyPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78B39E925109BA500829F31 /* RegisterCompanyPVC.swift */; };
 		B78B39ED2510D49400829F31 /* ReferralVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78B39EC2510D49400829F31 /* ReferralVC.swift */; };
@@ -176,6 +177,7 @@
 		B7712CCD2608B6C300162E70 /* BasicsListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicsListVC.swift; sourceTree = "<group>"; };
 		B774B6E824728ADA007C8699 /* SimplexStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplexStatistics.swift; sourceTree = "<group>"; };
 		B7787EF325132BBC00098A92 /* RegisterNewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNewVC.swift; sourceTree = "<group>"; };
+		B77D4C382609CFF30002E04E /* PostDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailVC.swift; sourceTree = "<group>"; };
 		B788D6F322E8931100FA59BA /* RegisterCompanyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCompanyVC.swift; sourceTree = "<group>"; };
 		B78B39E925109BA500829F31 /* RegisterCompanyPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCompanyPVC.swift; sourceTree = "<group>"; };
 		B78B39EC2510D49400829F31 /* ReferralVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralVC.swift; sourceTree = "<group>"; };
@@ -481,6 +483,7 @@
 				B7712CC926087A3700162E70 /* NewOfferListVC.swift */,
 				B7712CCB260897E000162E70 /* OfferNewCreateVC.swift */,
 				B7712CCD2608B6C300162E70 /* BasicsListVC.swift */,
+				B77D4C382609CFF30002E04E /* PostDetailVC.swift */,
 			);
 			path = "Offer Editor";
 			sourceTree = "<group>";
@@ -807,6 +810,7 @@
 				B7C293BC25ECE423004A723B /* Influencer Structs.swift in Sources */,
 				B72CB50A22E7024500958AE0 /* UIViewExtension.swift in Sources */,
 				B72478A3260367C700CD20FA /* TransactionHistoryVC.swift in Sources */,
+				B77D4C392609CFF30002E04E /* PostDetailVC.swift in Sources */,
 				E80B060822A07F63002B9699 /* WithdrawVC.swift in Sources */,
 				B7C9FE8F231E4870005580E4 /* PlaidHelper.swift in Sources */,
 				E83F1C5424748D9400EA216B /* ViewOfferStatisticVC.swift in Sources */,

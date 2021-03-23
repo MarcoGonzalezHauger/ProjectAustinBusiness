@@ -298,7 +298,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select an offer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xuk-sK-WrW">
-                                <rect key="frame" x="151" y="357.66666666666669" width="112" height="21"/>
+                                <rect key="frame" x="151.66666666666666" y="357.66666666666669" width="110.99999999999997" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -328,7 +328,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="1307"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Offer Name (only you will see this)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXP-gn-dXA">
-                                        <rect key="frame" x="76" y="30" width="262" height="21"/>
+                                        <rect key="frame" x="76.333333333333343" y="30" width="261.66666666666663" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -343,7 +343,7 @@
                                         </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Desired Location of Influencers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rit-UU-Ub1">
-                                        <rect key="frame" x="83" y="416.33333333333331" width="248" height="21"/>
+                                        <rect key="frame" x="83.000000000000014" y="416.33333333333331" width="248.33333333333337" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -360,7 +360,7 @@
                                         </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Desired Gender of Influencers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Go6-nV-y8I">
-                                        <rect key="frame" x="87.666666666666686" y="593.66666666666663" width="239" height="21"/>
+                                        <rect key="frame" x="87.666666666666671" y="593.66666666666663" width="238.66666666666663" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -522,7 +522,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What influencers will you want to target?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="i93-hj-Gl3">
-                                        <rect key="frame" x="35" y="295" width="344" height="23"/>
+                                        <rect key="frame" x="35" y="295" width="344.33333333333331" height="23"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1558,7 +1558,7 @@ Increase their pay by:</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="gbF-5S-nc7">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="692.00000000000011"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9gd-It-qtM" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                         <rect key="frame" x="162" y="43" width="90" height="90"/>
@@ -1773,6 +1773,7 @@ Increase their pay by:</string>
                                                     <constraint firstItem="o4O-uF-jaC" firstAttribute="width" secondItem="g7k-re-55x" secondAttribute="width" id="JOK-Ib-iQk"/>
                                                     <constraint firstItem="g7k-re-55x" firstAttribute="leading" secondItem="Kud-kK-GVo" secondAttribute="leading" id="Tzn-Wt-tag"/>
                                                     <constraint firstAttribute="trailing" secondItem="VMj-sh-ATL" secondAttribute="trailing" id="hNU-KS-rFz"/>
+                                                    <constraint firstAttribute="width" constant="382" id="hmb-Yf-LCc"/>
                                                     <constraint firstItem="o4O-uF-jaC" firstAttribute="top" secondItem="Kud-kK-GVo" secondAttribute="top" id="mRZ-uK-xKu"/>
                                                     <constraint firstItem="o4O-uF-jaC" firstAttribute="leading" secondItem="g7k-re-55x" secondAttribute="trailing" constant="-1" id="qGH-hZ-ufk"/>
                                                     <constraint firstItem="VMj-sh-ATL" firstAttribute="leading" secondItem="Kud-kK-GVo" secondAttribute="leading" id="s2h-Oz-ltp"/>
@@ -2480,7 +2481,7 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New York" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RCx-J6-Vj7">
-                                                            <rect key="frame" x="77" y="23" width="86.666666666666686" height="23"/>
+                                                            <rect key="frame" x="77" y="23" width="85.666666666666686" height="23"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -2706,10 +2707,10 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                                                     <rect key="frame" x="16" y="8" width="382" height="84"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DeF-Of-9X6">
-                                                            <rect key="frame" x="16" y="6.6666666666666643" width="197.66666666666666" height="71"/>
+                                                            <rect key="frame" x="16" y="6.6666666666666643" width="196.66666666666666" height="71"/>
                                                             <subviews>
-                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zip Code" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O1o-XU-UnB">
-                                                                    <rect key="frame" x="89" y="0.0" width="108.66666666666669" height="34"/>
+                                                                <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zip Code" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O1o-XU-UnB">
+                                                                    <rect key="frame" x="89" y="0.0" width="107.66666666666669" height="34"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="postal-code"/>
                                                                     <connections>
@@ -2717,14 +2718,14 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                                                                         <outlet property="delegate" destination="XoO-IN-buL" id="TZR-1v-73h"/>
                                                                     </connections>
                                                                 </textField>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSv-vy-YMO">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSv-vy-YMO">
                                                                     <rect key="frame" x="0.0" y="5.3333333333333357" width="73" height="23"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="in Miles" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JsN-Xc-K10">
-                                                                    <rect key="frame" x="89" y="37" width="108.66666666666669" height="34"/>
+                                                                <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="in Miles" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JsN-Xc-K10">
+                                                                    <rect key="frame" x="89" y="37" width="107.66666666666669" height="34"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                     <connections>
@@ -2732,7 +2733,7 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                                                                         <outlet property="delegate" destination="XoO-IN-buL" id="kOB-BQ-rdM"/>
                                                                     </connections>
                                                                 </textField>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Radius" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SF8-uo-ngt">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Radius" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SF8-uo-ngt">
                                                                     <rect key="frame" x="0.0" y="42.333333333333336" width="58" height="23.000000000000007"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                                     <nil key="textColor"/>
@@ -2815,7 +2816,7 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                                                     <rect key="frame" x="16" y="8" width="382" height="49"/>
                                                     <subviews>
                                                         <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y12-rL-uOH">
-                                                            <rect key="frame" x="121.66666666666667" y="13" width="138.66666666666663" height="23"/>
+                                                            <rect key="frame" x="122.33333333333333" y="13" width="137.33333333333337" height="23"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                             <state key="normal" title=" Add Location" image="mappin" catalog="system">
                                                                 <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2864,7 +2865,7 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Radius Around Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I4L-b9-6rL">
-                                        <rect key="frame" x="99" y="15" width="216" height="23"/>
+                                        <rect key="frame" x="99.000000000000014" y="15" width="216.33333333333337" height="23"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>

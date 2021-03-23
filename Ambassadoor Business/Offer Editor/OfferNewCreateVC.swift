@@ -26,7 +26,7 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     @IBOutlet weak var postShadow: ShadowView!
     
     var index: Int = 0
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -103,7 +103,13 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //self.performSegue(withIdentifier: "toNewOfferCreate", sender: indexPath.row)
+        var postIndex: Int? = nil
+        
+        if MyCompany.drafts[index].draftPosts.count != indexPath.row {
+            postIndex = indexPath.row
+        }
+        self.performSegue(withIdentifier: "toPostDetail", sender: postIndex)
+        
     }
     
     @IBAction func changeCompanyAction(sender: UIButton){
@@ -135,6 +141,10 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let view = segue.destination as? BasicsListVC{
             view.draftOffer = (sender as! DraftOffer)
+        }
+        if let view = segue.destination as? PostDetailVC {
+            view.draftOffer =  MyCompany.drafts[index]
+            view.postIndex = (sender as! Int)
         }
     }
     
