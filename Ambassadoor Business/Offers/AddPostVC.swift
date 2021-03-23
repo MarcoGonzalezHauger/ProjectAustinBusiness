@@ -17,7 +17,7 @@ protocol deletePhrase {
 
 class KeyphraseCell: UITableViewCell, UITextFieldDelegate {
     
-    var addpostRef: AddPostVC? = nil
+    var addpostRef: PostDetailVC? = nil
     var delegate: deletePhrase?
     var wasTold = false
     @IBOutlet weak var phraseText: UITextField!
@@ -189,7 +189,7 @@ class AddPostVC: BaseVC, NCDelegate, UITableViewDelegate, UITableViewDataSource,
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "phraseCell") as! KeyphraseCell
-        cell.addpostRef = self
+        //cell.addpostRef = self
         cell.phraseText.text = phraseList[indexPath.row]
         cell.delegate = self
         return cell
