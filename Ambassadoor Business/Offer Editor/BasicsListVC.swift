@@ -39,9 +39,6 @@ class BasicsListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     func setTableViewSource() {
         self.basicsList.delegate = self
         self.basicsList.dataSource = self
-        self.basicsList.reloadData()
-        
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -63,22 +60,15 @@ class BasicsListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-        return 110.0
+		return 86.0
     }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         let data = MyCompany.basics[indexPath.row]
         draftOffer?.basicId = data.basicId
-//        let cell = basicsList.cellForRow(at: indexPath) as! BasicsCell
-//        cell.accessoryType = .checkmark
         self.basicsList.reloadData()
     }
-    
-//    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath){
-//        let cell = basicsList.cellForRow(at: indexPath) as! BasicsCell
-//        cell.accessoryType = .none
-//    }
     
     @IBAction func doneAction(sender: UIButton){
         
@@ -96,18 +86,8 @@ class BasicsListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    @IBAction func dismissAction(sender: UIButton){
-        self.navigationController?.popViewController(animated: true)
+    @IBAction func dismissAction(sender: UIButton) {
+		//dismiss VC.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
