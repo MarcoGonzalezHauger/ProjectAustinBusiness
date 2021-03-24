@@ -87,7 +87,7 @@ class BasicsListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     @IBAction func dismissAction(sender: UIButton) {
-		//dismiss VC.
+		self.dismiss(animated: true, completion: nil)
     }
 
 }

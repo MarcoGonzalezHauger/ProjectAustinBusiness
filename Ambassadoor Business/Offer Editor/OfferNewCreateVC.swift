@@ -119,6 +119,17 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     
     @IBAction func deleteAction(sender: UIButton){
         
+        self.showAlertMessageForDestruction(title: "Alert", message: "Are you sure to delete the offer?", cancelTitle: "No", destructionTitle: "Yes", completion: {
+            
+        }, completionDestruction: {
+            self.deleteOffer()
+        })
+        
+
+        
+    }
+
+    func deleteOffer() {
         let draftOffer = MyCompany.drafts[index]
         let index = MyCompany.drafts.lastIndex { (draft) -> Bool in
             return draft.draftId == draftOffer.draftId
@@ -131,9 +142,7 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
                 self.navigationController?.popViewController(animated: true)
             }
         }
-        
     }
-
     
     // MARK: - Navigation
 
