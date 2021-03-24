@@ -61,6 +61,8 @@
 		B7AEF2C1247BA81B000AB4A4 /* TempLaunch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7AEF2C0247BA81B000AB4A4 /* TempLaunch.storyboard */; };
 		B7B11FF523242615006711BB /* PlaidTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B11FF423242615006711BB /* PlaidTVCell.swift */; };
 		B7B11FF723242638006711BB /* ConnectedPlaidTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B11FF623242638006711BB /* ConnectedPlaidTVCell.swift */; };
+		B7BA848A260B1AA400E4DB40 /* BusinessTypePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BA8489260B1AA400E4DB40 /* BusinessTypePicker.swift */; };
+		B7BA848C260B3E2F00E4DB40 /* LocationSelectorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BA848B260B3E2F00E4DB40 /* LocationSelectorVC.swift */; };
 		B7BD39BB22FAAB53008A0496 /* CategoryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BD39BA22FAAB53008A0496 /* CategoryTVC.swift */; };
 		B7BD39BD22FAAE42008A0496 /* CategoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BD39BC22FAAE42008A0496 /* CategoryHeaderView.swift */; };
 		B7C293B525ECE423004A723B /* InProgress functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C293A425ECE404004A723B /* InProgress functions.swift */; };
@@ -196,6 +198,8 @@
 		B7B11FF423242615006711BB /* PlaidTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaidTVCell.swift; sourceTree = "<group>"; };
 		B7B11FF623242638006711BB /* ConnectedPlaidTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedPlaidTVCell.swift; sourceTree = "<group>"; };
 		B7B72E07237C4953002AB168 /* Ambassadoor Business.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Ambassadoor Business.entitlements"; sourceTree = "<group>"; };
+		B7BA8489260B1AA400E4DB40 /* BusinessTypePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessTypePicker.swift; sourceTree = "<group>"; };
+		B7BA848B260B3E2F00E4DB40 /* LocationSelectorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSelectorVC.swift; sourceTree = "<group>"; };
 		B7BD39BA22FAAB53008A0496 /* CategoryTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTVC.swift; sourceTree = "<group>"; };
 		B7BD39BC22FAAE42008A0496 /* CategoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryHeaderView.swift; sourceTree = "<group>"; };
 		B7C293A425ECE404004A723B /* InProgress functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "InProgress functions.swift"; sourceTree = "<group>"; };
@@ -592,6 +596,8 @@
 				B76DEDE32600B24A00886911 /* MultipleBusinessAccountVC.swift */,
 				B76DEDE52600B61400886911 /* ContractBusinessVC.swift */,
 				B76DEDE92600C1F200886911 /* NewBasicBusinessView.swift */,
+				B7BA8489260B1AA400E4DB40 /* BusinessTypePicker.swift */,
+				B7BA848B260B3E2F00E4DB40 /* LocationSelectorVC.swift */,
 			);
 			path = "Business Profile";
 			sourceTree = "<group>";
@@ -814,6 +820,7 @@
 				E80B060822A07F63002B9699 /* WithdrawVC.swift in Sources */,
 				B7C9FE8F231E4870005580E4 /* PlaidHelper.swift in Sources */,
 				E83F1C5424748D9400EA216B /* ViewOfferStatisticVC.swift in Sources */,
+				B7BA848A260B1AA400E4DB40 /* BusinessTypePicker.swift in Sources */,
 				E8FC176223778D9700245932 /* LocationPicker.swift in Sources */,
 				E84600802273A65600CF60F2 /* StandardNC.swift in Sources */,
 				B712C4892306B6C900728758 /* WebVC.swift in Sources */,
@@ -872,6 +879,7 @@
 				E8C3694A22161B3000AE12D7 /* Ambassadoor_Business.xcdatamodeld in Sources */,
 				B76DEDE62600B61400886911 /* ContractBusinessVC.swift in Sources */,
 				B75F7A852506476300D14675 /* TimerListener.swift in Sources */,
+				B7BA848C260B3E2F00E4DB40 /* LocationSelectorVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

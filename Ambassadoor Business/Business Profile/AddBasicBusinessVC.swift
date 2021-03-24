@@ -9,7 +9,12 @@
 import UIKit
 import Photos
 
-class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITextViewDelegate {
+class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITextViewDelegate, TypePickerDelegate {
+    func pickedBusinessType(type: BusinessType) {
+        businessTypeText.text = type.rawValue
+        basicBusiness?.type = type
+    }
+    
     func imagePicked(image: UIImage?, imageUrl: String?) {
         if image != nil {
             //        self.urlString = uploadImageToFIR(image: image!, path: (Auth.auth().currentUser?.uid)!)
@@ -62,11 +67,14 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
     
     @IBOutlet weak var imageShadow: ShadowView!
     
+    @IBOutlet weak var businessTypeText: UITextField!
+    
+    @IBOutlet weak var locationText: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addDoneButtonOnKeyboard(textView: companyMission)
-        self.setBusinessData()
+        
         // Do any additional setup after loading the view.
     }
     
@@ -81,7 +89,12 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
             self.businessName.text = basic.name
             self.companyMission.text = basic.mission
             self.website.text = basic.website
-            
+            self.businessTypeText.text = basic.type.rawValue
+            if basic.locations.count == 0 {
+                self.locationText.text = "No Location"
+            }else{
+                self.locationText.text = basic.locations.count == 1 ? "\(basic.locations.count) location" : "\(basic.locations.count) locations"
+            }
         }
     }
     
@@ -103,6 +116,7 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.activity.isHidden = true
+        self.setBusinessData()
     }
     
     @objc override func keyboardWillHide(notification:NSNotification){
@@ -259,6 +273,8 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
                 return basic.basicId == basicData.basicId
             }
             
+            print("p==",index!)
+            
             if index == nil {
                return
             }
@@ -295,8 +311,9 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
         let referral = self.basicBusiness == nil ? randomString(length: 6) : self.basicBusiness!.referralCode
         let flags = self.basicBusiness == nil ? [] : self.basicBusiness!.flags
         let followedBy = self.basicBusiness == nil ? [] : self.basicBusiness!.followedBy
+        let locations = self.basicBusiness?.locations
         
-        let basicDict = ["businessId": MyCompany.businessId, "name": self.businessName.text!, "logoUrl": self.urlString, "mission": self.companyMission.text!, "joinedDate": Date().toUString(), "referralCode": referral, "flags": flags, "followedBy": followedBy, "website": checkIfWebsiteEntered() as Any] as [String : Any]
+        let basicDict = ["businessId": MyCompany.businessId, "name": self.businessName.text!, "logoUrl": self.urlString, "mission": self.companyMission.text!, "joinedDate": Date().toUString(), "referralCode": referral, "flags": flags, "followedBy": followedBy, "website": checkIfWebsiteEntered() as Any, "locations": locations] as [String : Any]
         
         let basic = BasicBusiness.init(dictionary: basicDict, basicId: NewBasicID)
         
@@ -312,6 +329,10 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
         let basic = checkBasicBusiness()!
         self.performSegue(withIdentifier: "toContractBusiness", sender: basic)
     }
+    
+    @IBAction func businessTapped(geture: UITapGestureRecognizer){
+        self.performSegue(withIdentifier: "toBusinessTypePicker", sender: self)
+    }
    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? GetPictureVC {
@@ -320,6 +341,14 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
         
         if let destination = segue.destination as? ContractBusinessVC {
             destination.businessData = (sender as! BasicBusiness)
+        }
+        
+        if let destination = segue.destination as? BusinessTypePicker{
+            destination.typePicker = self
+        }
+        
+        if let destination = segue.destination as? LocationSelectorVC{
+            destination.basicBusiness = self.basicBusiness
         }
     }
     

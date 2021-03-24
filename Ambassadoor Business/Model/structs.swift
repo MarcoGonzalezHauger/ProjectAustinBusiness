@@ -705,3 +705,20 @@ struct RegisterCompanyDetails {
     var companyWebsite: String
     var companyMission: String
 }
+
+enum BusinessType: String {
+    case foodestablishment = "FoodEstablishment"
+    case restaurant = "Restaurant"
+    case cafe = "Cafe"
+    case retailStore = "RetailStore"
+    case onlineBusiness = "OnlineBusiness"
+    case app = "App"
+    case brickMortarShop = "Brick&MortarShop"
+    case event = "Event"
+    case barberShop = "BarberShop/HairSalon"
+    
+    static func getAllType() -> [BusinessType] {
+        return [.foodestablishment,.restaurant,.cafe, .retailStore, .onlineBusiness, .app, .brickMortarShop, .event, .barberShop]
+    }
+    
+}

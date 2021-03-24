@@ -155,6 +155,8 @@ class BasicBusiness {
 	
 	var businessId: String
 	var basicId: String
+    var type: BusinessType
+    var locations: [String]
 	
 	func checkFlag(_ flag: String) -> Bool {
 		return flags.contains(flag)
@@ -172,7 +174,7 @@ class BasicBusiness {
 		}
 	}
 	
-	init(name: String, logoUrl: String, mission: String, website: String, joinedDate: Date, referralCode: String, flags: [String], followedBy: [String], businessId: String) {
+    init(name: String, logoUrl: String, mission: String, website: String, joinedDate: Date, referralCode: String, flags: [String], followedBy: [String], businessId: String, locations: [String], type: BusinessType) {
 		
 		self.businessId = businessId
 		
@@ -186,7 +188,8 @@ class BasicBusiness {
 		self.referralCode = referralCode
 		self.flags = flags
 		self.followedBy = followedBy
-		
+        self.type = type
+        self.locations = locations
 		
 	}
 	
@@ -202,7 +205,9 @@ class BasicBusiness {
 		referralCode = d["referralCode"] as! String
 		flags = d["flags"] as? [String] ?? []
 		followedBy = d["followedBy"] as? [String] ?? []
-		
+        let type = d["type"] as? String ?? (BusinessType.getAllType().first!.rawValue)
+        self.type = BusinessType(rawValue: type)!
+        locations = d["locations"] as? [String] ?? []
 	}
 	
 	// To Diciontary Function
@@ -219,7 +224,8 @@ class BasicBusiness {
 		d["flags"] = flags
 		d["followedBy"] = followedBy
 		d["businessId"] = businessId
-		
+        d["type"] = self.type.rawValue
+        d["locations"] = self.locations
 		return d
 	}
 }
