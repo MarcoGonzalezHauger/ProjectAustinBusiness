@@ -56,7 +56,7 @@ class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePh
     }
     
     func setPostDetails(){
-        self.postName.text = "Post \((self.postIndex! + 1))"
+        self.postName.text = "Post \((self.postIndex == nil ? 1 : (self.postIndex! + 1)))"
         if let draft = self.draftOffer{
             let company = MyCompany.basics.filter({ (basic) -> Bool in
                 return basic.basicId == draft.basicId

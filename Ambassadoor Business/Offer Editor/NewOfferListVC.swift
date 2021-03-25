@@ -67,7 +67,11 @@ class NewOfferListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "toNewOfferCreate", sender: indexPath.row)
+        var index: Int? = nil
+        if indexPath.row != MyCompany.drafts.count {
+            index = indexPath.row
+        }
+        self.performSegue(withIdentifier: "toNewOfferCreate", sender: index)
     }
 
     override func viewDidLoad() {
@@ -92,7 +96,7 @@ class NewOfferListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let view = segue.destination as? OfferNewCreateVC{
-            view.index = sender as! Int
+            view.index = sender as? Int
         }
     }
 
