@@ -89,9 +89,122 @@ class LocationSelectorVC: BaseVC, UITableViewDelegate, UITableViewDataSource, Lo
                 MakeShake(viewToShake: cell)
                 return
             }
+            
+//            if !(regexForLocation(loc: location) ?? false) {
+//                let index = IndexPath.init(row: sender.tag, section: 0)
+//                let cell = self.locationList.cellForRow(at: index) as! LocationCell
+//                MakeShake(viewToShake: cell)
+//                self.showAlertMessage(title: "Alert", message: "Please enter the valid address.") {
+//                }
+//                return
+//            }
+        }
+        for location in locations {
+            
+            
+            if !regexForLocation(loc: location) {
+                let index = IndexPath.init(row: sender.tag, section: 0)
+                let cell = self.locationList.cellForRow(at: index) as! LocationCell
+                MakeShake(viewToShake: cell)
+                self.showAlertMessage(title: "Alert", message: "Please enter the valid address.") {
+                }
+                return
+            }
         }
         basicBusiness?.locations = locations
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    func regexForLocation(loc: String) -> Bool{
+        
+        
+            for zip in zipcodes {
+                
+                let regexString = ".*" + zip + "*."
+                
+                let commaSeparate = loc.components(separatedBy: ",")
+                
+                let commaCount = commaSeparate.filter { (zipFilter) -> Bool in
+                    do {
+                        let regex = try NSRegularExpression(pattern: regexString, options: .caseInsensitive)
+                        let range = NSRange(location: 0, length: zipFilter.utf16.count)
+                        let checkIfContained = regex.firstMatch(in: zipFilter, options: [], range: range) != nil
+                        return checkIfContained
+                    } catch {
+                        return false
+                    }
+                    
+                }
+                
+                if commaCount.count != 0 {
+                    return true
+                }
+                
+                let spaceSeparate = loc.components(separatedBy: " ")
+                
+                let spaceCount = spaceSeparate.filter { (zipFilter) -> Bool in
+                    do {
+                        let regex = try NSRegularExpression(pattern: regexString, options: .caseInsensitive)
+                        let range = NSRange(location: 0, length: zipFilter.utf16.count)
+                        let checkIfContained = regex.firstMatch(in: zipFilter, options: [], range: range) != nil
+                        return checkIfContained
+                    } catch {
+                        return false
+                    }
+                    
+                }
+                
+                if spaceCount.count != 0 {
+                    return true
+                }
+
+                
+            }
+        
+            
+        
+            for town in towns {
+                let text = town
+                let regexString = ".*" + text + "*."
+                
+                let commaSeparate = loc.components(separatedBy: ",")
+                
+                let commaCount = commaSeparate.filter { (townFilter) -> Bool in
+                    do {
+                        let regex = try NSRegularExpression(pattern: regexString, options: .caseInsensitive)
+                        let range = NSRange(location: 0, length: townFilter.utf16.count)
+                        let checkIfContained = regex.firstMatch(in: townFilter, options: [], range: range) != nil
+                        return checkIfContained
+                    } catch {
+                        return false
+                    }
+                    
+                }
+                
+                if commaCount.count != 0 {
+                    return true
+                }
+                
+                let spaceSeparate = loc.components(separatedBy: " ")
+                
+                let spaceCount = spaceSeparate.filter { (townFilter) -> Bool in
+                    do {
+                        let regex = try NSRegularExpression(pattern: regexString, options: .caseInsensitive)
+                        let range = NSRange(location: 0, length: townFilter.utf16.count)
+                        let checkIfContained = regex.firstMatch(in: townFilter, options: [], range: range) != nil
+                        return checkIfContained
+                    } catch {
+                        return false
+                    }
+                    
+                }
+                
+                if spaceCount.count != 0 {
+                    return true
+                }
+                
+            }
+        return false
     }
     
     /*

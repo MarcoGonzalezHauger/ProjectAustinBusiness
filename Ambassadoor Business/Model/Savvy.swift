@@ -601,4 +601,7 @@ func GetZipsFromLocationFilter(locationFilter: String, completion: @escaping ([S
         completion(nil)
     }
 }
+var countries = ["United States", "USA"]
+var towns = ["New York", "NY"]
+var zipcodes = ["10001"]
 
