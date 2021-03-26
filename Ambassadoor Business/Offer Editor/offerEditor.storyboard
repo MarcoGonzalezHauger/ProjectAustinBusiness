@@ -337,7 +337,7 @@
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0xL-1Y-27q" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="222.5" width="390" height="100"/>
                                                 <subviews>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="E6y-ra-saI">
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="E6y-ra-saI">
                                                         <rect key="frame" x="0.0" y="0.0" width="390" height="100"/>
                                                         <color key="backgroundColor" name="newCellColor"/>
                                                         <prototypes>
@@ -361,15 +361,15 @@
                                                                     <outlet property="addPostText" destination="vr3-Dc-kfx" id="GjM-8t-FJL"/>
                                                                 </connections>
                                                             </tableViewCell>
-                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addpost" textLabel="kAM-Sm-pxa" style="IBUITableViewCellStyleDefault" id="S7o-oS-PbV" customClass="NewAddPostCell" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="73" width="390" height="43.5"/>
+                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="addpost" textLabel="kAM-Sm-pxa" style="IBUITableViewCellStyleDefault" id="S7o-oS-PbV" customClass="NewAddPostCell" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="73" width="390" height="44"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="S7o-oS-PbV" id="XsK-7V-dcb">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="390" height="43.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="359" height="44"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Add Post" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kAM-Sm-pxa">
-                                                                            <rect key="frame" x="20" y="0.0" width="350" height="43.5"/>
+                                                                            <rect key="frame" x="20" y="0.0" width="331" height="44"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
@@ -523,6 +523,7 @@
                     <navigationItem key="navigationItem" id="ZS2-F1-FtF"/>
                     <connections>
                         <outlet property="cmyName" destination="h5W-2K-ch8" id="he4-N3-4be"/>
+                        <outlet property="delView" destination="nZg-Pd-ucs" id="PP8-M2-1XK"/>
                         <outlet property="largeImg" destination="tYX-OT-tJu" id="d1P-bG-DEX"/>
                         <outlet property="logo" destination="1sg-bA-euo" id="8te-Uj-cBK"/>
                         <outlet property="offerName" destination="rIh-zl-jix" id="0bR-j4-ENH"/>

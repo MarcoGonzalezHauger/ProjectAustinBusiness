@@ -25,7 +25,9 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     
     @IBOutlet weak var postShadow: ShadowView!
     
-    var index: Int = 0
+    @IBOutlet weak var delView: ShadowView!
+    
+    var index: Int? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,26 +40,31 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     }
     
     func setOfferData() {
-        let draftOffer = MyCompany.drafts[index]
-        self.offerName.text = "Offer \((index + 1))"
-        self.offerName.isUserInteractionEnabled = false
         
-        let company = MyCompany.basics.filter({ (basic) -> Bool in
-            return basic.basicId == draftOffer.basicId
-        })
-        
-        if let basic = company.first {
-            if let url = URL.init(string: basic.logoUrl) {
-                self.largeImg.downloadedFrom(url: url)
-                self.logo.downloadedFrom(url: url)
-                
+        if index != nil {
+            let draftOffer = MyCompany.drafts[index!]
+            self.offerName.text = "Offer \((index! + 1))"
+            self.offerName.isUserInteractionEnabled = false
+            
+            let company = MyCompany.basics.filter({ (basic) -> Bool in
+                return basic.basicId == draftOffer.basicId
+            })
+            
+            if let basic = company.first {
+                if let url = URL.init(string: basic.logoUrl) {
+                    self.largeImg.downloadedFrom(url: url)
+                    self.logo.downloadedFrom(url: url)
+                    
+                }
+                self.cmyName.text = "Offer will appear from \(basic.name)"
             }
-            self.cmyName.text = "Offer will appear from \(basic.name)"
+            
+            tableHeight.constant = CGFloat((MyCompany.drafts[index!].draftPosts.count + 1) * 45)
+            self.postShadow.layoutIfNeeded()
+            self.delView.isHidden = false
+        }else{
+            self.delView.isHidden = true
         }
-        
-        tableHeight.constant = CGFloat((MyCompany.drafts[index].draftPosts.count + 1) * 45)
-        self.postShadow.layoutIfNeeded()
-        
         
         self.postTable.delegate = self
         self.postTable.dataSource = self
@@ -82,12 +89,18 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return MyCompany.drafts[index].draftPosts.count + 1
+        return index == nil ? 1 : MyCompany.drafts[index!].draftPosts.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row == MyCompany.drafts[index].draftPosts.count {
+        if index == nil {
+            let identifier = "addpost"
+            let cell = self.postTable.dequeueReusableCell(withIdentifier: identifier) as! NewAddPostCell
+            return cell
+        }
+        
+        if indexPath.row == MyCompany.drafts[index!].draftPosts.count {
             let identifier = "addpost"
             let cell = self.postTable.dequeueReusableCell(withIdentifier: identifier) as! NewAddPostCell
             return cell
@@ -105,15 +118,18 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var postIndex: Int? = nil
         
-        if MyCompany.drafts[index].draftPosts.count != indexPath.row {
-            postIndex = indexPath.row
+        if index != nil {
+            if MyCompany.drafts[index!].draftPosts.count != indexPath.row {
+                postIndex = indexPath.row
+            }
         }
+        
         self.performSegue(withIdentifier: "toPostDetail", sender: postIndex)
         
     }
     
     @IBAction func changeCompanyAction(sender: UIButton){
-        let draftOffer = MyCompany.drafts[index]
+        let draftOffer = MyCompany.drafts[index!]
         self.performSegue(withIdentifier: "toCompanyList", sender: draftOffer)
     }
     
@@ -130,7 +146,7 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     }
 
     func deleteOffer() {
-        let draftOffer = MyCompany.drafts[index]
+        let draftOffer = MyCompany.drafts[index!]
         let index = MyCompany.drafts.lastIndex { (draft) -> Bool in
             return draft.draftId == draftOffer.draftId
         }
@@ -152,8 +168,10 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
             view.draftOffer = (sender as! DraftOffer)
         }
         if let view = segue.destination as? PostDetailVC {
-            view.draftOffer =  MyCompany.drafts[index]
-            view.postIndex = (sender as! Int)
+            if let indexValue = index{
+                view.draftOffer =  MyCompany.drafts[indexValue]
+            }
+            view.postIndex = sender as? Int
         }
     }
     
