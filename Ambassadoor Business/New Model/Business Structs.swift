@@ -173,6 +173,27 @@ class BasicBusiness {
 			flags.removeAll{$0 == flag}
 		}
 	}
+    
+    func GetLocationZips() -> [String] {
+        
+        var zipCodes = [String]()
+        
+        for location in self.locations {
+            let commaSeparate = location.components(separatedBy: ",")
+            let zipComma = commaSeparate.filter { (loc) -> Bool in
+                return zipcodes.contains(loc)
+            }
+            zipCodes.append(contentsOf: zipComma)
+            
+            let spaceSeparate = location.components(separatedBy: " ")
+            let zipSpace = spaceSeparate.filter { (loc) -> Bool in
+                return zipcodes.contains(loc)
+            }
+            zipCodes.append(contentsOf: zipSpace)
+        }
+        
+        return zipCodes
+        }
 	
     init(name: String, logoUrl: String, mission: String, website: String, joinedDate: Date, referralCode: String, flags: [String], followedBy: [String], businessId: String, locations: [String], type: BusinessType) {
 		

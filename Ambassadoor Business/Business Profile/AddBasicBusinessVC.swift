@@ -74,7 +74,7 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addDoneButtonOnKeyboard(textView: companyMission)
-        
+        //let zips = basicBusiness!.GetLocationZips()
         // Do any additional setup after loading the view.
     }
     

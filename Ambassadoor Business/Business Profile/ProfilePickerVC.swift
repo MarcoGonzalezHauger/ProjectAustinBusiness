@@ -67,6 +67,7 @@ class ProfilePickerVC: UIViewController, UICollectionViewDelegate, UICollectionV
         super.viewDidLoad()
         setCompanyTabBarItem(tab: self.tabBarController!)
         self.setCollectionDataSource()
+        
         // Do any additional setup after loading the view.
     }
     
