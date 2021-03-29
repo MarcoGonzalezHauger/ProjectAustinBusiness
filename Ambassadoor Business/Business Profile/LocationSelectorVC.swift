@@ -118,51 +118,26 @@ class LocationSelectorVC: BaseVC, UITableViewDelegate, UITableViewDataSource, Lo
     func regexForLocation(loc: String) -> Bool{
         
         
-            for zip in zipcodes {
-                
-                let regexString = ".*" + zip + "*."
-                
-                let commaSeparate = loc.components(separatedBy: ",")
-                
-                let commaCount = commaSeparate.filter { (zipFilter) -> Bool in
-                    do {
-                        let regex = try NSRegularExpression(pattern: regexString, options: .caseInsensitive)
-                        let range = NSRange(location: 0, length: zipFilter.utf16.count)
-                        let checkIfContained = regex.firstMatch(in: zipFilter, options: [], range: range) != nil
-                        return checkIfContained
-                    } catch {
-                        return false
-                    }
-                    
-                }
-                
-                if commaCount.count != 0 {
-                    return true
-                }
-                
-                let spaceSeparate = loc.components(separatedBy: " ")
-                
-                let spaceCount = spaceSeparate.filter { (zipFilter) -> Bool in
-                    do {
-                        let regex = try NSRegularExpression(pattern: regexString, options: .caseInsensitive)
-                        let range = NSRange(location: 0, length: zipFilter.utf16.count)
-                        let checkIfContained = regex.firstMatch(in: zipFilter, options: [], range: range) != nil
-                        return checkIfContained
-                    } catch {
-                        return false
-                    }
-                    
-                }
-                
-                if spaceCount.count != 0 {
-                    return true
-                }
-
-                
-            }
+        let commaSeparate = loc.components(separatedBy: ",")
         
-            
+        let isZipContainOne = commaSeparate.filter { (sepString) -> Bool in
+            return zipcodes.contains(sepString)
+        }
         
+        if isZipContainOne.count != 0 {
+            return true
+        }
+        
+        let spaceSeparate = loc.components(separatedBy: " ")
+        
+        let isZipContainTwo = spaceSeparate.filter { (sepString) -> Bool in
+            return zipcodes.contains(sepString)
+        }
+        
+        if isZipContainTwo.count != 0 {
+            return true
+        }
+                
             for town in towns {
                 let text = town
                 let regexString = ".*" + text + "*."
