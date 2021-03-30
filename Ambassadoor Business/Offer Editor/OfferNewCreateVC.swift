@@ -160,6 +160,10 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
         }
     }
     
+    @IBAction func filterOffer(sender: UIButton){
+        self.performSegue(withIdentifier: "toFilterOffer", sender: self)
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
