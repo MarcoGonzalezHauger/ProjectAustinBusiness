@@ -127,7 +127,7 @@ class SelectStatesVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 			}
 			let returnValue = "states:" + vals.joined(separator: ",")
 			self.locationDelegate?.LocationFilterChosen(filter: returnValue)
-			dismiss(animated: true, completion: nil)
+			self.navigationController?.popViewController(animated: true)
 		}
 	}
 	
