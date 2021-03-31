@@ -12,7 +12,13 @@ protocol RadiousFilteredDelegate {
     func radiousFilteredZipcodes(zipcodes: [String])
 }
 
-class LocationFilterVC: BaseVC, LocationFilterDelegate, RadiousFilteredDelegate {
+
+class LocationFilterVC: BaseVC, LocationFilterDelegate, RadiousFilteredDelegate, CityCellDelegate {
+    
+    func SendCityObject(zipObj: [CityObject]){
+        
+    }
+    
     func radiousFilteredZipcodes(zipcodes: [String]) {
         
     }
@@ -21,6 +27,21 @@ class LocationFilterVC: BaseVC, LocationFilterDelegate, RadiousFilteredDelegate 
         
         //let filt = self.TitleAndTagLineforLocationFilter(filter: filter)
         
+        switch filter.components(separatedBy: ":")[0] {
+            
+        case "states":
+            self.getStateFilterZips(filter: filter)
+        case "zipcode":
+            self.getZipcodesradious(filter: filter)
+        default:
+            print("")
+        }
+        
+
+        
+    }
+    
+    func getStateFilterZips(filter: String) {
         let data = filter.components(separatedBy: ":")[1]
         var returnData: [String] = []
         var index = 0
@@ -33,7 +54,26 @@ class LocationFilterVC: BaseVC, LocationFilterDelegate, RadiousFilteredDelegate 
                 }
             }
         }
-        
+    }
+    
+    func getZipcodesradious(filter: String) {
+        let data1 = filter.components(separatedBy: ":")[1]
+        var returnData: [String] = []
+        var index = 0
+        for data in data1.components(separatedBy: ",") {
+            let zip = data.components(separatedBy: "-")[0]
+            let radius = Int(data.components(separatedBy: "-")[1]) ?? 0
+            GetAllZipCodesInRadius(zipCode: zip, radiusInMiles: radius) { (returns, zip, radius) in
+                if let returns = returns {
+                    returnData.append(contentsOf: returns.keys)
+                }
+                index += 1
+                if index >= data1.components(separatedBy: ",").count {
+                   print(returnData)
+                }
+            }
+        }
+
     }
     
     override func viewDidLoad() {
@@ -50,12 +90,26 @@ class LocationFilterVC: BaseVC, LocationFilterDelegate, RadiousFilteredDelegate 
         self.performSegue(withIdentifier: "toFilterStates", sender: self)
     }
     
+    @IBAction func fiterByCity(sender: Any){
+        self.performSegue(withIdentifier: "toCityFilter", sender: self)
+    }
+    
+    @IBAction func toZipCodeViewAction(sender: Any){
+        self.performSegue(withIdentifier: "toZipCodeView", sender: self)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let view = segue.destination as? SelectStatesVC {
             view.locationDelegate = self
         }
         if let view = segue.destination as? FilterRadiousVC{
             view.radiousFilteredDelegate = self
+        }
+        if let view = segue.destination as? FilterByCityVC{
+            view.cityReturnDelegate = self
+        }
+        if let view = segue.destination as? SelectRadiiVC {
+           view.locationDelegate = self
         }
     }
 

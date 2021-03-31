@@ -40,15 +40,6 @@ class RadiusCell: UITableViewCell, UITextFieldDelegate {
             let newString: NSString =
                 currentString.replacingCharacters(in: range, with: string) as NSString
             return newString.length <= maxLength
-        }else if textField == Miles {
-            
-            let currentString: NSString = (textField.text ?? "") as NSString
-            let newString: NSString =
-                currentString.replacingCharacters(in: range, with: string) as NSString
-            
-            let miles = Int(newString as String) ?? 0
-            
-            return miles <= 50
         }else{
             return true
         }
@@ -58,8 +49,8 @@ class RadiusCell: UITableViewCell, UITextFieldDelegate {
 
 protocol RadiusDelegate {
 	func updated(zip: String, radius: Int, indexPath: IndexPath)
-	func removeLocation(indexPath: IndexPath)
-	func getMyIndexPath(cell: RadiusCell) -> IndexPath
+    func removeLocation(indexPath: IndexPath)
+    func getMyIndexPath(cell: RadiusCell) -> IndexPath
 }
 
 class SelectRadiiVC: BaseVC, UITableViewDelegate, UITableViewDataSource, RadiusDelegate {
@@ -94,7 +85,7 @@ class SelectRadiiVC: BaseVC, UITableViewDelegate, UITableViewDataSource, RadiusD
 			for loc in locations {
 				vals.append("\(loc.zip)-\(loc.radius)")
 			}
-			let returnValue = "radius:" + vals.joined(separator: ",")
+			let returnValue = "zipcode:" + vals.joined(separator: ",")
 			self.locationDelegate?.LocationFilterChosen(filter: returnValue)
 			dismiss(animated: true, completion: nil)
 		} else {
