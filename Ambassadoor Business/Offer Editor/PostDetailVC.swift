@@ -9,6 +9,8 @@
 import UIKit
 
 class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePhrase {
+    
+    
     func deleteThis(cell: UITableViewCell) {
         if phraseList.count <= 1 {
             if let newcell = (cell as? KeyphraseCell) {
@@ -126,6 +128,27 @@ class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePh
     }
     
     @IBAction func dismissAction(sender: AnyObject){
+        if self.postInstruction.text.count == 0 {
+            self.showAlertMessage(title: "Alert", message: "Please enter the instruction") {
+            }
+            return
+        }
+        if self.phraseList.count == 1 {
+            if phraseList.first == "" || phraseList.first == "#" {
+                self.showAlertMessage(title: "Alert", message: "Please add any phase or Hashtag") {
+                }
+                return
+            }
+            
+        }
+        let hash = phraseList.filter { (hashtag) -> Bool in
+            return hashtag.starts(with: "#")
+        }
+        let phase = phraseList.filter { (hashtag) -> Bool in
+            return !hashtag.starts(with: "#")
+        }
+        let post = DraftPost.init(businessId: MyCompany.businessId, draftId: self.draftOffer!.draftId, poolId: "", hash: hash, keywords: phase, ins: self.postInstruction.text)
+        self.draftOffer?.draftPosts.append(post)
         self.navigationController?.popViewController(animated: true)
     }
     

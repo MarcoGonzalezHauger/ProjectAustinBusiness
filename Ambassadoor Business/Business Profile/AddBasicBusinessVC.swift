@@ -9,7 +9,18 @@
 import UIKit
 import Photos
 
-class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITextViewDelegate, TypePickerDelegate {
+protocol LocationretriveDelegate {
+    func sendLocationObjects(locations: [String])
+}
+
+class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITextViewDelegate, TypePickerDelegate, LocationretriveDelegate {
+    func sendLocationObjects(locations: [String]) {
+        self.locations = locations
+        self.setBusinessData()
+    }
+    
+    
+    
     func pickedBusinessType(type: BusinessType) {
         businessTypeText.text = type.rawValue
         basicBusiness?.type = type
@@ -71,6 +82,8 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
     
     @IBOutlet weak var locationText: UILabel!
     
+    var locations = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addDoneButtonOnKeyboard(textView: companyMission)
@@ -90,11 +103,14 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
             self.companyMission.text = basic.mission
             self.website.text = basic.website
             self.businessTypeText.text = basic.type.rawValue
+            locations.append(contentsOf: basic.locations)
             if basic.locations.count == 0 {
                 self.locationText.text = "No Location"
             }else{
                 self.locationText.text = basic.locations.count == 1 ? "\(basic.locations.count) location" : "\(basic.locations.count) locations"
             }
+        }else{
+            self.locationText.text = self.locations.count == 0 ? "No Location" : self.locations.count == 1 ? "\(1) Location" : "\(self.locations.count) Locations"
         }
     }
     
@@ -311,9 +327,9 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
         let referral = self.basicBusiness == nil ? randomString(length: 6) : self.basicBusiness!.referralCode
         let flags = self.basicBusiness == nil ? [] : self.basicBusiness!.flags
         let followedBy = self.basicBusiness == nil ? [] : self.basicBusiness!.followedBy
-        let locations = self.basicBusiness?.locations
+        let locations = self.locations
         
-        let basicDict = ["businessId": MyCompany.businessId, "name": self.businessName.text!, "logoUrl": self.urlString, "mission": self.companyMission.text!, "joinedDate": Date().toUString(), "referralCode": referral, "flags": flags, "followedBy": followedBy, "website": checkIfWebsiteEntered() as Any, "locations": locations] as [String : Any]
+        let basicDict = ["businessId": MyCompany.businessId, "name": self.businessName.text!, "logoUrl": self.urlString, "mission": self.companyMission.text!, "joinedDate": Date().toUString(), "referralCode": referral, "flags": flags, "followedBy": followedBy, "website": checkIfWebsiteEntered() as Any, "locations": locations as Any] as [String : Any]
         
         let basic = BasicBusiness.init(dictionary: basicDict, basicId: NewBasicID)
         
@@ -348,7 +364,8 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
         }
         
         if let destination = segue.destination as? LocationSelectorVC{
-            destination.basicBusiness = self.basicBusiness
+            destination.locationRetrive = self
+            destination.locations = self.locations
         }
     }
     

@@ -707,13 +707,13 @@ struct RegisterCompanyDetails {
 }
 
 enum BusinessType: String {
-    case foodestablishment = "FoodEstablishment"
+    case foodestablishment = "Food Establishment"
     case restaurant = "Restaurant"
     case cafe = "Cafe"
-    case retailStore = "RetailStore"
-    case onlineBusiness = "OnlineBusiness"
+    case retailStore = "Retail Store"
+    case onlineBusiness = "Online Business"
     case app = "App"
-    case brickMortarShop = "Brick&MortarShop"
+    case brickMortarShop = "Brick & MortarShop"
     case event = "Event"
     case barberShop = "BarberShop/HairSalon"
     

@@ -98,6 +98,10 @@ class LocationFilterVC: BaseVC, LocationFilterDelegate, RadiousFilteredDelegate,
         self.performSegue(withIdentifier: "toZipCodeView", sender: self)
     }
     
+    @IBAction func cancelAction(sender: UIButton){
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let view = segue.destination as? SelectStatesVC {
             view.locationDelegate = self

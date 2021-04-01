@@ -18,12 +18,15 @@ class LocationCell: UITableViewCell, UITextFieldDelegate {
     
     var locationDelegate: LocationDelegate?
     
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         textField.resignFirstResponder()
         locationDelegate?.sendLocationObject(cell: self, index: self.close.tag)
         return true
     }
 }
+
+//MARK: Location Class
 
 class LocationSelectorVC: BaseVC, UITableViewDelegate, UITableViewDataSource, LocationDelegate {
     func sendLocationObject(cell: LocationCell, index: Int) {
@@ -56,10 +59,11 @@ class LocationSelectorVC: BaseVC, UITableViewDelegate, UITableViewDataSource, Lo
     var basicBusiness: BasicBusiness? = nil
     
     var locations = [String]()
+    
+    var locationRetrive: LocationretriveDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        locations.append(contentsOf: basicBusiness!.locations)
         self.setTableData()
         // Do any additional setup after loading the view.
     }
@@ -111,7 +115,8 @@ class LocationSelectorVC: BaseVC, UITableViewDelegate, UITableViewDataSource, Lo
                 return
             }
         }
-        basicBusiness?.locations = locations
+        //basicBusiness?.locations = locations
+        self.locationRetrive?.sendLocationObjects(locations: locations)
         self.navigationController?.popViewController(animated: true)
     }
     

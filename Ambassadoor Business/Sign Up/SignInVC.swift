@@ -247,7 +247,7 @@ class SignInVC: BaseVC, UITextFieldDelegate {
                             
                             if userVal.isEmailVerified {
                                 
-                                getNewBusiness(email: self.emailText.text!) { (status, business) in
+                                getNewBusiness(email: self.emailText.text!.lowercased()) { (status, business) in
                                     if status{
                                         MyCompany = business
                                         
@@ -258,7 +258,10 @@ class SignInVC: BaseVC, UITextFieldDelegate {
                                         self.instantiateToMainScreen()
                                         
                                     }else{
-                                        
+                                        timer.invalidate()
+                                        self.hideActivityIndicator()
+                                        self.signInButton.setTitle("Sign In", for: .normal)
+                                        MakeShake(viewToShake: self.signInButton)
                                     }
                                 }
 

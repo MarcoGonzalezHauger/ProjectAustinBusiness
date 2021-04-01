@@ -28,7 +28,8 @@ class OfferList: UITableViewCell{
                 }
                 
                 
-                self.lastEdited.text = offer.lastEdited.toUString()
+                //self.lastEdited.text = offer.lastEdited.toUString()
+                self.lastEdited.text = "Last edited " + DateToAgo(date: offer.lastEdited)
                 self.cmyName.text = MyCompany.basics.first!.name
             }
         }

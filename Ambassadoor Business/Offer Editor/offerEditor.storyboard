@@ -537,7 +537,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="565-eA-f8y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1905" y="168"/>
+            <point key="canvasLocation" x="1785" y="161"/>
         </scene>
         <!--Post DetailVC-->
         <scene sceneID="gmD-au-syk">
@@ -1180,6 +1180,17 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CKH-mo-Kvx">
+                                                <rect key="frame" x="0.0" y="3.6666666666666714" width="59" height="35"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="zoi-tW-5Hf"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                <state key="normal" title="Cancel"/>
+                                                <connections>
+                                                    <action selector="cancelActionWithSender:" destination="12s-bJ-2o2" eventType="touchUpInside" id="gXI-YO-Uub"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -1187,6 +1198,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                             <constraint firstItem="Jse-bs-i3s" firstAttribute="top" secondItem="sV9-uV-ig6" secondAttribute="bottom" constant="16" id="62g-Hw-yHO"/>
                                             <constraint firstItem="3C7-0F-8Zh" firstAttribute="top" secondItem="ndG-JD-1Iq" secondAttribute="top" constant="8" id="AeT-Fg-QWW"/>
                                             <constraint firstAttribute="trailing" secondItem="yZ6-w1-ahL" secondAttribute="trailing" id="CM6-BS-QzI"/>
+                                            <constraint firstItem="CKH-mo-Kvx" firstAttribute="leading" secondItem="ndG-JD-1Iq" secondAttribute="leading" id="Ecd-St-yGW"/>
                                             <constraint firstAttribute="trailing" secondItem="Pas-Im-GDX" secondAttribute="trailing" id="Fz8-nF-wEM"/>
                                             <constraint firstItem="hbi-DE-iiF" firstAttribute="leading" secondItem="ndG-JD-1Iq" secondAttribute="leading" id="HC8-Gw-Qg0"/>
                                             <constraint firstItem="Jse-bs-i3s" firstAttribute="leading" secondItem="ndG-JD-1Iq" secondAttribute="leading" id="HZW-Rb-hlm"/>
@@ -1195,6 +1207,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                             <constraint firstItem="Pas-Im-GDX" firstAttribute="leading" secondItem="ndG-JD-1Iq" secondAttribute="leading" id="Vbt-g2-H0T"/>
                                             <constraint firstItem="sV9-uV-ig6" firstAttribute="top" secondItem="hbi-DE-iiF" secondAttribute="bottom" constant="16" id="YRb-dc-L9n"/>
                                             <constraint firstItem="sV9-uV-ig6" firstAttribute="leading" secondItem="ndG-JD-1Iq" secondAttribute="leading" id="aP6-ZT-w11"/>
+                                            <constraint firstItem="CKH-mo-Kvx" firstAttribute="centerY" secondItem="3C7-0F-8Zh" secondAttribute="centerY" id="eNA-sN-RLy"/>
                                             <constraint firstItem="3C7-0F-8Zh" firstAttribute="centerX" secondItem="ndG-JD-1Iq" secondAttribute="centerX" id="gKx-v3-uc8"/>
                                             <constraint firstItem="Pas-Im-GDX" firstAttribute="top" secondItem="yZ6-w1-ahL" secondAttribute="bottom" constant="16" id="hXi-uW-Vk0"/>
                                             <constraint firstAttribute="trailing" secondItem="Jse-bs-i3s" secondAttribute="trailing" id="sFo-51-ZxY"/>
@@ -1361,7 +1374,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pTH-mN-EdV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1906" y="836"/>
+            <point key="canvasLocation" x="1785" y="864"/>
         </scene>
         <!--Location FilterVC-->
         <scene sceneID="krT-Lh-LKm">
@@ -1533,6 +1546,17 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                 <outletCollection property="gestureRecognizers" destination="HjN-1t-zuC" appends="YES" id="QuP-mg-bAh"/>
                                             </connections>
                                         </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oMN-WE-ZP9">
+                                            <rect key="frame" x="10" y="49" width="59" height="35"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="35" id="i42-cu-gnT"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                            <state key="normal" title="Cancel"/>
+                                            <connections>
+                                                <action selector="cancelActionWithSender:" destination="cs7-a5-TYD" eventType="touchUpInside" id="iPX-sQ-8JR"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="rL8-SI-ndn" firstAttribute="top" secondItem="PNu-Rb-F4d" secondAttribute="top" constant="12" id="0mu-lX-bGH"/>
@@ -1540,6 +1564,8 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                         <constraint firstAttribute="trailing" secondItem="rL8-SI-ndn" secondAttribute="trailing" constant="12" id="DBf-Ei-k5y"/>
                                         <constraint firstItem="mQi-RD-clE" firstAttribute="leading" secondItem="PNu-Rb-F4d" secondAttribute="leading" constant="12" id="DEf-Gh-dSe"/>
                                         <constraint firstAttribute="trailing" secondItem="mQi-RD-clE" secondAttribute="trailing" constant="12" id="Dhg-YW-ghL"/>
+                                        <constraint firstItem="oMN-WE-ZP9" firstAttribute="centerY" secondItem="UyE-IP-3Y0" secondAttribute="centerY" id="IUh-b8-ngz"/>
+                                        <constraint firstItem="oMN-WE-ZP9" firstAttribute="leading" secondItem="PNu-Rb-F4d" secondAttribute="leading" constant="10" id="QLR-Kg-u4j"/>
                                         <constraint firstAttribute="bottom" secondItem="G1w-Ij-Wxq" secondAttribute="bottom" constant="40" id="XIf-fr-NiD"/>
                                         <constraint firstItem="UyE-IP-3Y0" firstAttribute="top" secondItem="PNu-Rb-F4d" secondAttribute="top" constant="55" id="Zo7-7b-NbL"/>
                                         <constraint firstAttribute="trailing" secondItem="G1w-Ij-Wxq" secondAttribute="trailing" constant="12" id="Zor-Z8-0Ps"/>
