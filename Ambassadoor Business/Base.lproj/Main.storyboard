@@ -2704,59 +2704,10 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eIE-SV-K0r" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="8" width="382" height="84"/>
+                                                    <rect key="frame" x="16" y="8" width="382" height="67"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DeF-Of-9X6">
-                                                            <rect key="frame" x="16" y="6.6666666666666643" width="196.66666666666666" height="71"/>
-                                                            <subviews>
-                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zip Code" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O1o-XU-UnB">
-                                                                    <rect key="frame" x="89" y="0.0" width="107.66666666666669" height="34"/>
-                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
-                                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="postal-code"/>
-                                                                    <connections>
-                                                                        <action selector="zipChanged:" destination="XoO-IN-buL" eventType="editingChanged" id="Gta-Z8-ouW"/>
-                                                                        <outlet property="delegate" destination="XoO-IN-buL" id="TZR-1v-73h"/>
-                                                                    </connections>
-                                                                </textField>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSv-vy-YMO">
-                                                                    <rect key="frame" x="0.0" y="5.3333333333333357" width="73" height="23"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="in Miles" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JsN-Xc-K10">
-                                                                    <rect key="frame" x="89" y="37" width="107.66666666666669" height="34"/>
-                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
-                                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                                                    <connections>
-                                                                        <action selector="milesChanged:" destination="XoO-IN-buL" eventType="editingChanged" id="nsl-LJ-Uc6"/>
-                                                                        <outlet property="delegate" destination="XoO-IN-buL" id="kOB-BQ-rdM"/>
-                                                                    </connections>
-                                                                </textField>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Radius" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SF8-uo-ngt">
-                                                                    <rect key="frame" x="0.0" y="42.333333333333336" width="58" height="23.000000000000007"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                            <constraints>
-                                                                <constraint firstItem="JsN-Xc-K10" firstAttribute="leading" secondItem="O1o-XU-UnB" secondAttribute="leading" id="4Mh-MF-vrz"/>
-                                                                <constraint firstItem="SF8-uo-ngt" firstAttribute="centerY" secondItem="JsN-Xc-K10" secondAttribute="centerY" id="B4w-Ys-KBm"/>
-                                                                <constraint firstItem="SF8-uo-ngt" firstAttribute="leading" secondItem="BSv-vy-YMO" secondAttribute="leading" id="Bvs-Xz-nnP"/>
-                                                                <constraint firstItem="O1o-XU-UnB" firstAttribute="top" secondItem="DeF-Of-9X6" secondAttribute="top" id="Eph-2r-Qye"/>
-                                                                <constraint firstItem="O1o-XU-UnB" firstAttribute="leading" secondItem="BSv-vy-YMO" secondAttribute="trailing" constant="16" id="F3y-8f-bJD"/>
-                                                                <constraint firstAttribute="trailing" secondItem="O1o-XU-UnB" secondAttribute="trailing" id="Keg-uz-Qz3"/>
-                                                                <constraint firstAttribute="bottom" secondItem="JsN-Xc-K10" secondAttribute="bottom" id="c9W-bQ-30e"/>
-                                                                <constraint firstItem="BSv-vy-YMO" firstAttribute="centerY" secondItem="O1o-XU-UnB" secondAttribute="centerY" id="exJ-kj-MLi"/>
-                                                                <constraint firstItem="JsN-Xc-K10" firstAttribute="width" secondItem="O1o-XU-UnB" secondAttribute="width" id="q0p-Bf-2iu"/>
-                                                                <constraint firstItem="BSv-vy-YMO" firstAttribute="leading" secondItem="DeF-Of-9X6" secondAttribute="leading" id="rwf-Jc-X86"/>
-                                                                <constraint firstItem="JsN-Xc-K10" firstAttribute="top" secondItem="O1o-XU-UnB" secondAttribute="bottom" constant="3" id="uKb-3J-Wh5"/>
-                                                            </constraints>
-                                                        </view>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWx-jV-fWz">
-                                                            <rect key="frame" x="315" y="17" width="50" height="50"/>
+                                                            <rect key="frame" x="313" y="9" width="50" height="50"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="50" id="cX3-LR-iek"/>
                                                                 <constraint firstAttribute="height" constant="50" id="e79-rc-Trs"/>
@@ -2770,13 +2721,42 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                                                                 <action selector="deleteLocation:" destination="XoO-IN-buL" eventType="touchUpInside" id="vTX-Ss-p7I"/>
                                                             </connections>
                                                         </button>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DeF-Of-9X6">
+                                                            <rect key="frame" x="16" y="17" width="196.66666666666666" height="34"/>
+                                                            <subviews>
+                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zip Code" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O1o-XU-UnB">
+                                                                    <rect key="frame" x="89" y="0.0" width="107.66666666666669" height="34"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="postal-code"/>
+                                                                    <connections>
+                                                                        <action selector="zipChanged:" destination="XoO-IN-buL" eventType="editingChanged" id="Gta-Z8-ouW"/>
+                                                                        <outlet property="delegate" destination="XoO-IN-buL" id="TZR-1v-73h"/>
+                                                                    </connections>
+                                                                </textField>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSv-vy-YMO">
+                                                                    <rect key="frame" x="0.0" y="5.6666666666666679" width="73" height="23"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                            <constraints>
+                                                                <constraint firstItem="O1o-XU-UnB" firstAttribute="top" secondItem="DeF-Of-9X6" secondAttribute="top" id="Eph-2r-Qye"/>
+                                                                <constraint firstItem="O1o-XU-UnB" firstAttribute="leading" secondItem="BSv-vy-YMO" secondAttribute="trailing" constant="16" id="F3y-8f-bJD"/>
+                                                                <constraint firstAttribute="trailing" secondItem="O1o-XU-UnB" secondAttribute="trailing" id="Keg-uz-Qz3"/>
+                                                                <constraint firstItem="BSv-vy-YMO" firstAttribute="centerY" secondItem="O1o-XU-UnB" secondAttribute="centerY" id="exJ-kj-MLi"/>
+                                                                <constraint firstItem="BSv-vy-YMO" firstAttribute="leading" secondItem="DeF-Of-9X6" secondAttribute="leading" id="rwf-Jc-X86"/>
+                                                            </constraints>
+                                                        </view>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="DeF-Of-9X6" secondAttribute="bottom" constant="16" id="5FA-YV-dj8"/>
                                                         <constraint firstItem="DeF-Of-9X6" firstAttribute="leading" secondItem="eIE-SV-K0r" secondAttribute="leading" constant="16" id="5Xx-Bv-7Iy"/>
-                                                        <constraint firstItem="cWx-jV-fWz" firstAttribute="centerY" secondItem="eIE-SV-K0r" secondAttribute="centerY" id="9ZT-DJ-MAH"/>
-                                                        <constraint firstItem="DeF-Of-9X6" firstAttribute="centerY" secondItem="eIE-SV-K0r" secondAttribute="centerY" id="Tqp-iz-4wP"/>
-                                                        <constraint firstAttribute="trailing" secondItem="cWx-jV-fWz" secondAttribute="trailing" constant="17" id="f28-y1-EUP"/>
+                                                        <constraint firstItem="cWx-jV-fWz" firstAttribute="centerY" secondItem="eIE-SV-K0r" secondAttribute="centerY" constant="0.5" id="9ZT-DJ-MAH"/>
+                                                        <constraint firstItem="DeF-Of-9X6" firstAttribute="centerY" secondItem="eIE-SV-K0r" secondAttribute="centerY" constant="0.5" id="Tqp-iz-4wP"/>
+                                                        <constraint firstAttribute="trailing" secondItem="cWx-jV-fWz" secondAttribute="trailing" constant="19" id="f28-y1-EUP"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="ShadowRadius">
@@ -2793,7 +2773,7 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="eIE-SV-K0r" secondAttribute="bottom" constant="8" id="0CS-Gz-WUN"/>
+                                                <constraint firstAttribute="bottom" secondItem="eIE-SV-K0r" secondAttribute="bottom" constant="25" id="0CS-Gz-WUN"/>
                                                 <constraint firstItem="eIE-SV-K0r" firstAttribute="leading" secondItem="fXN-WH-BZW" secondAttribute="leading" constant="16" id="aoa-ts-8aP"/>
                                                 <constraint firstAttribute="trailing" secondItem="eIE-SV-K0r" secondAttribute="trailing" constant="16" id="eko-7F-dPu"/>
                                                 <constraint firstItem="eIE-SV-K0r" firstAttribute="top" secondItem="fXN-WH-BZW" secondAttribute="top" constant="8" id="soP-pd-gjA"/>
@@ -2801,7 +2781,6 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <outlet property="Miles" destination="JsN-Xc-K10" id="sAU-cx-ing"/>
                                             <outlet property="zipCode" destination="O1o-XU-UnB" id="hS0-f8-3hX"/>
                                         </connections>
                                     </tableViewCell>
@@ -2955,7 +2934,7 @@ IF YOU ARE AN ONLINE BUSINESS, DO NOT ASK INFLUENCERS TO ORDER PRODUCTS.</string
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E5P-Mp-4be" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2183" y="-683"/>
+            <point key="canvasLocation" x="2182.608695652174" y="-683.1521739130435"/>
         </scene>
         <!--SuccessVC-->
         <scene sceneID="Dke-gV-ebs">

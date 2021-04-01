@@ -36,6 +36,8 @@
 		B75EC9A6230ACE4800BA7A7B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75EC9A5230ACE4800BA7A7B /* NetworkManager.swift */; };
 		B75F7A852506476300D14675 /* TimerListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75F7A842506476300D14675 /* TimerListener.swift */; };
 		B761DA242321352100587F28 /* DwollaUserInformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B761DA232321352100587F28 /* DwollaUserInformationVC.swift */; };
+		B76575F626143AEC0076F594 /* FilterByCityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76575F526143AEC0076F594 /* FilterByCityVC.swift */; };
+		B76575F82614484D0076F594 /* NewObjectClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76575F72614484D0076F594 /* NewObjectClass.swift */; };
 		B76DEDE42600B24A00886911 /* MultipleBusinessAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76DEDE32600B24A00886911 /* MultipleBusinessAccountVC.swift */; };
 		B76DEDE62600B61400886911 /* ContractBusinessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76DEDE52600B61400886911 /* ContractBusinessVC.swift */; };
 		B76DEDEA2600C1F200886911 /* NewBasicBusinessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76DEDE92600C1F200886911 /* NewBasicBusinessView.swift */; };
@@ -175,6 +177,8 @@
 		B75EC9A5230ACE4800BA7A7B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		B75F7A842506476300D14675 /* TimerListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerListener.swift; sourceTree = "<group>"; };
 		B761DA232321352100587F28 /* DwollaUserInformationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DwollaUserInformationVC.swift; sourceTree = "<group>"; };
+		B76575F526143AEC0076F594 /* FilterByCityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterByCityVC.swift; sourceTree = "<group>"; };
+		B76575F72614484D0076F594 /* NewObjectClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewObjectClass.swift; sourceTree = "<group>"; };
 		B76DEDE32600B24A00886911 /* MultipleBusinessAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleBusinessAccountVC.swift; sourceTree = "<group>"; };
 		B76DEDE52600B61400886911 /* ContractBusinessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractBusinessVC.swift; sourceTree = "<group>"; };
 		B76DEDE92600C1F200886911 /* NewBasicBusinessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBasicBusinessView.swift; sourceTree = "<group>"; };
@@ -380,6 +384,7 @@
 				B7C293A925ECE40E004A723B /* UpdateToFirebase Ext.swift */,
 				B7C293B125ECE41D004A723B /* Useful UI Functions.swift */,
 				C05FE2D8225F683E002D3CAA /* FirebaseReferences.swift */,
+				B76575F72614484D0076F594 /* NewObjectClass.swift */,
 			);
 			path = "New Model";
 			sourceTree = "<group>";
@@ -497,6 +502,9 @@
 				B72CD04826130A8B00AE5CA4 /* OfferFilterVC.swift */,
 				B72CD04A2613275900AE5CA4 /* LocationFilterVC.swift */,
 				B72CD04C261331E300AE5CA4 /* FilterRadiousVC.swift */,
+				B76575F526143AEC0076F594 /* FilterByCityVC.swift */,
+				E8C708C823764C51001699D0 /* SelectStatesVC.swift */,
+				E8FC17632377A70100245932 /* SelectRadiiVC.swift */,
 			);
 			path = "Offer Editor";
 			sourceTree = "<group>";
@@ -567,9 +575,7 @@
 			isa = PBXGroup;
 			children = (
 				E8C708C6237645EB001699D0 /* FilterTypeVC.swift */,
-				E8C708C823764C51001699D0 /* SelectStatesVC.swift */,
 				E8FC176123778D9700245932 /* LocationPicker.swift */,
-				E8FC17632377A70100245932 /* SelectRadiiVC.swift */,
 			);
 			path = "Location Picker";
 			sourceTree = "<group>";
@@ -864,7 +870,9 @@
 				B7FD83E322F072F800347E8E /* AddOfferVC.swift in Sources */,
 				B706CB4F22E5F7860092FB77 /* ValidationFile.swift in Sources */,
 				B7C293B625ECE423004A723B /* AdminValues.swift in Sources */,
+				B76575F82614484D0076F594 /* NewObjectClass.swift in Sources */,
 				B79308FE23015C3E001BB47A /* DistributeOfferVC.swift in Sources */,
+				B76575F626143AEC0076F594 /* FilterByCityVC.swift in Sources */,
 				B7C293B825ECE423004A723B /* Offer Distribution Functions.swift in Sources */,
 				B72CFDCC25FF9C4B00033CC5 /* AddBasicBusinessVC.swift in Sources */,
 				B7FD83EB22F0866B00347E8E /* PostDetailTC.swift in Sources */,
