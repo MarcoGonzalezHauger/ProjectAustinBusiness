@@ -29,6 +29,9 @@ class BasicsListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var basicsList: UITableView!
     
     var draftOffer: DraftOffer?
+    
+    var reloadBusiness: BusinessDelegate?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +90,7 @@ class BasicsListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     @IBAction func dismissAction(sender: UIButton) {
+        self.reloadBusiness!.reloadBusiness()
 		self.dismiss(animated: true, completion: nil)
     }
 

@@ -166,7 +166,7 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
         var blue: CGFloat = 0
         var alpha: CGFloat = 0
         
-		gradientLayer.frame = CGRect(x: 0, y: shelf.frame.origin.y - 26.0, width: self.view.bounds.width, height: 26.0)
+//		gradientLayer.frame = CGRect(x: 0, y: shelf.frame.origin.y - 26.0, width: self.view.bounds.width, height: 26.0)
         var backColor = GetBackColor()
         if #available(iOS 13.0, *) {
             backColor = .secondarySystemBackground

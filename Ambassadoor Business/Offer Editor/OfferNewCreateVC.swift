@@ -8,11 +8,18 @@
 
 import UIKit
 
-class NewAddPostCell: UITableViewCell {
-    
+protocol BusinessDelegate {
+    func reloadBusiness()
 }
 
-class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate {
+class NewAddPostCell: UITableViewCell {
+}
+
+class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, BusinessDelegate {
+    
+    func reloadBusiness() {
+        self.setOfferData()
+    }
     
     @IBOutlet weak var largeImg: UIImageView!
     @IBOutlet weak var logo: UIImageView!
@@ -28,6 +35,9 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     @IBOutlet weak var delView: ShadowView!
     
     var index: Int? = nil
+    
+    var draftTemp: DraftOffer?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,13 +72,41 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
             tableHeight.constant = CGFloat((MyCompany.drafts[index!].draftPosts.count + 1) * 45)
             self.postShadow.layoutIfNeeded()
             self.delView.isHidden = false
+            self.draftTemp = draftOffer
         }else{
-            self.delView.isHidden = true
+            if self.draftTemp == nil {
+                self.delView.isHidden = true
+                self.offerName.text = "Offer \((MyCompany.drafts.count + 1))"
+                self.cmyName.text = "No Company Chosen"
+                self.draftTemp = createTempDraft()
+            }else{
+                let company = MyCompany.basics.filter({ (basic) -> Bool in
+                    return basic.basicId == self.draftTemp!.basicId
+                })
+                
+                if let basic = company.first {
+                    if let url = URL.init(string: basic.logoUrl) {
+                        self.largeImg.downloadedFrom(url: url)
+                        self.logo.downloadedFrom(url: url)
+                        
+                    }
+                    self.cmyName.text = "Offer will appear from \(basic.name)"
+                }
+            }
+            
         }
         
         self.postTable.delegate = self
         self.postTable.dataSource = self
         self.postTable.reloadData()
+    }
+    
+    func createTempDraft() -> DraftOffer {
+        
+        let draftID = GetNewID()
+        let tempDict = ["title":"","mustBeOver21": false, "payIncrease": 1.0, "lastEdited": Date().toUString()] as [String : Any]
+        let draft = DraftOffer.init(dictionary: tempDict, businessId: MyCompany.businessId, draftId: draftID)
+        return draft
     }
     
     @IBAction func editOfferAction(sender: UIButton){
@@ -77,7 +115,32 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     }
     
     @IBAction func dismissAction(sender: UIButton){
-        self.navigationController?.popViewController(animated: true)
+        draftTemp!.lastEdited = Date()
+        if index == nil {
+            if draftTemp!.basicId == ""  {
+                self.showAlertMessage(title: "Alert", message: "Please choose any comapny") {
+                }
+                return
+            }
+            
+            if self.draftTemp!.draftPosts.count == 0 {
+                self.showAlertMessage(title: "Alert", message: "Please add atleast one post") {
+                }
+                return
+            }
+            
+            MyCompany.drafts.append(draftTemp!)
+        }else{
+            MyCompany.drafts[index!] = draftTemp!
+        }
+        
+        MyCompany.UpdateToFirebase { (error) in
+            if !error{
+               self.navigationController?.popViewController(animated: true)
+            }
+        }
+        
+        
     }
     
     //MARK: Textfield Delegates
@@ -89,18 +152,12 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return index == nil ? 1 : MyCompany.drafts[index!].draftPosts.count + 1
+        return self.draftTemp!.draftPosts.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if index == nil {
-            let identifier = "addpost"
-            let cell = self.postTable.dequeueReusableCell(withIdentifier: identifier) as! NewAddPostCell
-            return cell
-        }
-        
-        if indexPath.row == MyCompany.drafts[index!].draftPosts.count {
+        if indexPath.row == self.draftTemp!.draftPosts.count {
             let identifier = "addpost"
             let cell = self.postTable.dequeueReusableCell(withIdentifier: identifier) as! NewAddPostCell
             return cell
@@ -119,7 +176,7 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
         var postIndex: Int? = nil
         
         if index != nil {
-            if MyCompany.drafts[index!].draftPosts.count != indexPath.row {
+            if self.draftTemp!.draftPosts.count != indexPath.row {
                 postIndex = indexPath.row
             }
         }
@@ -129,7 +186,7 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     }
     
     @IBAction func changeCompanyAction(sender: UIButton){
-        let draftOffer = MyCompany.drafts[index!]
+        let draftOffer = self.draftTemp
         self.performSegue(withIdentifier: "toCompanyList", sender: draftOffer)
     }
     
@@ -164,17 +221,18 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
         self.performSegue(withIdentifier: "toFilterOffer", sender: self)
     }
     
+    
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let view = segue.destination as? BasicsListVC{
+            view.reloadBusiness = self
             view.draftOffer = (sender as! DraftOffer)
         }
         if let view = segue.destination as? PostDetailVC {
-            if let indexValue = index{
-                view.draftOffer =  MyCompany.drafts[indexValue]
-            }
+            view.draftOffer =  self.draftTemp
             view.postIndex = sender as? Int
         }
     }

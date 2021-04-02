@@ -16,6 +16,10 @@ class OfferFilterVC: BaseVC {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func cancelAction(sender: Any){
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     @IBAction func pickLocation(sender: UIButton){
         self.performSegue(withIdentifier: "toLocationFilter", sender: self)
     }
