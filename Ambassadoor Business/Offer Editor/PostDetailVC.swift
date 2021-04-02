@@ -58,7 +58,7 @@ class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePh
     }
     
     func setPostDetails(){
-        self.postName.text = "Post \((self.postIndex == nil ? 1 : (self.postIndex! + 1)))"
+        self.postName.text = "Post \((self.postIndex == nil ? (self.draftOffer!.draftPosts.count + 1) : (self.postIndex! + 1)))"
         if let draft = self.draftOffer{
             let company = MyCompany.basics.filter({ (basic) -> Bool in
                 return basic.basicId == draft.basicId
@@ -133,13 +133,18 @@ class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePh
             }
             return
         }
-        if self.phraseList.count == 1 {
-            if phraseList.first == "" || phraseList.first == "#" {
-                self.showAlertMessage(title: "Alert", message: "Please add any phase or Hashtag") {
+        for phase in self.phraseList {
+            if phase == "" {
+                self.showAlertMessage(title: "Alert", message: "Please enter any phase") {
                 }
                 return
             }
             
+            if phase == "#" {
+                self.showAlertMessage(title: "Alert", message: "Please enter any HashTag") {
+                }
+                return
+            }
         }
         let hash = phraseList.filter { (hashtag) -> Bool in
             return hashtag.starts(with: "#")
@@ -147,8 +152,18 @@ class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePh
         let phase = phraseList.filter { (hashtag) -> Bool in
             return !hashtag.starts(with: "#")
         }
-        let post = DraftPost.init(businessId: MyCompany.businessId, draftId: self.draftOffer!.draftId, poolId: "", hash: hash, keywords: phase, ins: self.postInstruction.text)
-        self.draftOffer?.draftPosts.append(post)
+        
+        if self.postIndex == nil{
+            let post = DraftPost.init(businessId: MyCompany.businessId, draftId: self.draftOffer!.draftId, poolId: "", hash: hash, keywords: phase, ins: self.postInstruction.text)
+            self.draftOffer?.draftPosts.append(post)
+        }else{
+            let modified = self.draftOffer?.draftPosts[self.postIndex!]
+            let postData = ["requiredHastags": hash, "requiredKeywords": phase, "instructions": self.postInstruction.text!] as [String: Any]
+            let post = DraftPost.init(dictionary: postData, businessId: MyCompany.businessId, draftId: self.draftOffer!.draftId, draftPostId: modified!.draftPostId, poolId: "")
+            self.draftOffer?.draftPosts[self.postIndex!] = post
+        }
+        
+        
         self.navigationController?.popViewController(animated: true)
     }
     
