@@ -170,6 +170,8 @@ let selectedBoxColor = UIColor(red: 255/255, green: 121/255, blue: 8/255, alpha:
 
 let allCategoryClasses: [categoryClass] = [.petsAnimals, .food, .comedy, .lifestyle, .sports, .athletics, .photography, .automotive, .crafts, .technology, .gaming, .fashion, .music, .literature, .entertainment, .moviesandtv, .political, .realestate, .professional, .artist, .memes, .organization]
 
+//let ClassToCategories: [categoryClass: [String]] = [.petsAnimals: animals, .food: food]
+
 let ClassToCategories: [categoryClass: [String]] = [.petsAnimals: animals, .food: food, .comedy: comedy, .lifestyle: lifestyle, .sports: sports, .athletics: athletics, .photography: photography, .automotive: automotive, .crafts: crafts, .technology: technology, .gaming: gaming, .fashion: fashion, .music: music, .literature: literature, .entertainment: entertainment, .moviesandtv: moviesandshows, .political: political, .realestate: realestate, .professional: professional, .artist: aritst, .memes: meme, .organization: organization]
 
 let animals = ["Animal Photography", //Animals
@@ -306,7 +308,7 @@ let organization = ["Business", //Organization
 
 var categoryListArray: [Section]! {
     didSet{
-        //categoryList.removeAll()
+        //categoryListArray.removeAll()
         for value in allCategoryClasses {
             categoryListArray.append(Section.init(categoryTitle: value, categoryData: ClassToCategories[value]!, expanded: false, selected: false))
         }

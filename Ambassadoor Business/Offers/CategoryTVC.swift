@@ -33,6 +33,16 @@ class CategoryTVC: UITableViewController, ExpandableHeaderViewDelegate, NCDelega
         
         categoryListArray = [Section]()
         categoryList.append(contentsOf: categoryListArray)
+        for (index,category) in categoryList.enumerated() {
+            
+            let checkIfexist = category.categoryData.filter { (cat) -> Bool in
+                return self.selectedValues.contains(cat)
+            }
+            
+            categoryList[index].expanded = checkIfexist.count > 0
+            
+        }
+        self.reloadData()
 //        self.customizeNavigationBar()
         self.addRightButton()
         self.addLeftButton()
@@ -43,6 +53,12 @@ class CategoryTVC: UITableViewController, ExpandableHeaderViewDelegate, NCDelega
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         
+    }
+    
+    func reloadData() {
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.reloadData()
     }
     
 	override func viewDidAppear(_ animated: Bool) {
@@ -91,7 +107,8 @@ class CategoryTVC: UITableViewController, ExpandableHeaderViewDelegate, NCDelega
     
     @IBAction func addLeftAction(sender: UIBarButtonItem){
         self.delegateCategory.selectedArray(array: self.selectedValues)
-        self.navigationController?.popViewController(animated: true)
+        //self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func clearAction(sender: UIBarButtonItem){
@@ -99,6 +116,7 @@ class CategoryTVC: UITableViewController, ExpandableHeaderViewDelegate, NCDelega
         let categoryPartialList = categoryList.map { (category) -> Section in
             var categoryPartial = category
             categoryPartial.selectedAll = false
+            categoryPartial.expanded = false
             return categoryPartial
         }
         categoryList.removeAll()
@@ -121,8 +139,15 @@ class CategoryTVC: UITableViewController, ExpandableHeaderViewDelegate, NCDelega
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "catCell", for: indexPath) as! catCell
-        cell.titleLabel.text = categoryList[indexPath.section].categoryData[indexPath.row]
+        let section = categoryList[indexPath.section]
+        cell.titleLabel.text = section.categoryData[indexPath.row]
         // Configure the cell...
+        
+        if section.selectedAll {
+            cell.accessoryType = .checkmark
+            cell.titleLabel.textColor = UIColor.systemBlue
+            cell.titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .bold)
+        }else{
         
         if self.selectedValues.contains(cell.titleLabel.text!){
             cell.accessoryType = .checkmark
@@ -133,7 +158,7 @@ class CategoryTVC: UITableViewController, ExpandableHeaderViewDelegate, NCDelega
             cell.titleLabel.textColor = GetForeColor()
 			cell.titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         }
-
+        }
         return cell
     }
     
@@ -196,9 +221,17 @@ class CategoryTVC: UITableViewController, ExpandableHeaderViewDelegate, NCDelega
     
     func toggleSection(header: ExpandableHeaderView, section: Int) {
         categoryList[section].expanded = !categoryList[section].expanded
+        
             self.tableView.beginUpdates()
             self.tableView .reloadSections(IndexSet.init(integer: section), with: .fade)
             self.tableView.endUpdates()
+    }
+    
+    func expandIfsomeSelected(section: Int) {
+        categoryList[section].expanded = !categoryList[section].expanded
+        self.tableView.beginUpdates()
+        self.tableView .reloadSections(IndexSet.init(integer: section), with: .fade)
+        self.tableView.endUpdates()
     }
     
     func selectAllSection(header: ExpandableHeaderView, section: Int, selected: Bool) {

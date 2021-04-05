@@ -15,6 +15,7 @@ protocol RadiousFilteredDelegate {
 
 class LocationFilterVC: BaseVC, LocationFilterDelegate, RadiousFilteredDelegate, CityCellDelegate {
     
+    
     func SendCityObject(zipObj: [CityObject]){
         
     }
@@ -76,6 +77,8 @@ class LocationFilterVC: BaseVC, LocationFilterDelegate, RadiousFilteredDelegate,
 
     }
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -115,6 +118,7 @@ class LocationFilterVC: BaseVC, LocationFilterDelegate, RadiousFilteredDelegate,
         if let view = segue.destination as? SelectRadiiVC {
            view.locationDelegate = self
         }
+        
     }
 
     /*

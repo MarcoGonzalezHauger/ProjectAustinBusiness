@@ -8,7 +8,14 @@
 
 import UIKit
 
-class OfferFilterVC: BaseVC {
+class OfferFilterVC: BaseVC, selectedCategoryDelegate {
+    
+    func selectedArray(array: [String]) {
+        self.selectedCategoryArray.removeAll()
+        self.selectedCategoryArray.append(contentsOf: array)
+    }
+    
+    var selectedCategoryArray = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,15 +30,23 @@ class OfferFilterVC: BaseVC {
     @IBAction func pickLocation(sender: UIButton){
         self.performSegue(withIdentifier: "toLocationFilter", sender: self)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func pickInterest(sender: UIButton){
+        self.performSegue(withIdentifier: "toNewCategoryTVC", sender: self)
     }
-    */
+
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       if segue.identifier == "toNewCategoryTVC"{
+        if let viewNav = segue.destination as? UINavigationController{
+            if let view = viewNav.viewControllers.first as? CategoryTVC{
+                view.selectedValues = selectedCategoryArray
+                view.delegateCategory = self
+            }
+        }
+            
+        }
+    }
+    
 
 }
