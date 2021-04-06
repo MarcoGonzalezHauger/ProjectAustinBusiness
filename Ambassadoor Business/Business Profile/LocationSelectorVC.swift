@@ -42,7 +42,9 @@ class LocationSelectorVC: BaseVC, UITableViewDelegate, UITableViewDataSource, Lo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = "location"
         let cell = locationList.dequeueReusableCell(withIdentifier: identifier) as! LocationCell
-        cell.locationText.text = locations[indexPath.row]
+        if locations[indexPath.row] != ""{
+           cell.locationText.text = locations[indexPath.row]
+        }
         cell.close.tag = indexPath.row
         cell.locationDelegate = self
         cell.close.addTarget(self, action: #selector(self.removelocation(sender:)), for: .touchUpInside)

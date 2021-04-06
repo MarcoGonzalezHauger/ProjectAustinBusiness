@@ -61,16 +61,11 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
             })
             
             if let basic = company.first {
-                if let url = URL.init(string: basic.logoUrl) {
-                    self.largeImg.downloadedFrom(url: url)
-                    self.logo.downloadedFrom(url: url)
-                    
-                }
-                self.cmyName.text = "Offer will appear from \(basic.name)"
+                setBasicBusinessLogo(basic: basic)
+            }else{
+                self.cmyName.text = "No Company Chosen"
             }
             
-            tableHeight.constant = CGFloat((MyCompany.drafts[index!].draftPosts.count + 1) * 45)
-            self.postShadow.layoutIfNeeded()
             self.delView.isHidden = false
             self.draftTemp = draftOffer
         }else{
@@ -85,20 +80,42 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
                 })
                 
                 if let basic = company.first {
-                    if let url = URL.init(string: basic.logoUrl) {
-                        self.largeImg.downloadedFrom(url: url)
-                        self.logo.downloadedFrom(url: url)
-                        
-                    }
-                    self.cmyName.text = "Offer will appear from \(basic.name)"
+                   setBasicBusinessLogo(basic: basic)
                 }
             }
             
         }
-        
+        self.setPostConstraints()
+        self.setTableSource()
+    }
+    
+    func setTableSource() {
         self.postTable.delegate = self
         self.postTable.dataSource = self
         self.postTable.reloadData()
+    }
+    
+    func setBasicBusinessLogo(basic: BasicBusiness) {
+        if let url = URL.init(string: basic.logoUrl) {
+            self.largeImg.downloadedFrom(url: url)
+            self.logo.downloadedFrom(url: url)
+            
+        }
+        self.cmyName.text = "Offer will appear from \(basic.name)"
+    }
+    
+    func setPostConstraints() {
+        
+        if index != nil {
+            tableHeight.constant = MyCompany.drafts[index!].draftPosts.count == 3 ? CGFloat((MyCompany.drafts[index!].draftPosts.count) * 45) :   CGFloat((MyCompany.drafts[index!].draftPosts.count + 1) * 45)
+        }else{
+            if self.draftTemp != nil {
+               tableHeight.constant = self.draftTemp!.draftPosts.count == 3 ? CGFloat((self.draftTemp!.draftPosts.count) * 45) :   CGFloat((self.draftTemp!.draftPosts.count + 1) * 45)
+            }else{
+               tableHeight.constant = 45
+            }
+        }
+        self.postShadow.layoutIfNeeded()
     }
     
     func createTempDraft() -> DraftOffer {
@@ -115,32 +132,39 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     }
     
     @IBAction func dismissAction(sender: UIButton){
-        draftTemp!.lastEdited = Date()
-        if index == nil {
-            if draftTemp!.basicId == ""  {
-                self.showAlertMessage(title: "Alert", message: "Please choose any comapny") {
-                }
-                return
-            }
-            
-            if self.draftTemp!.draftPosts.count == 0 {
-                self.showAlertMessage(title: "Alert", message: "Please add atleast one post") {
-                }
-                return
-            }
-            
-            MyCompany.drafts.append(draftTemp!)
-        }else{
-            MyCompany.drafts[index!] = draftTemp!
-        }
         
-        MyCompany.UpdateToFirebase { (error) in
-            if !error{
-               self.navigationController?.popViewController(animated: true)
+        if self.isSavable() {
+            draftTemp!.lastEdited = Date()
+            if index == nil{
+               MyCompany.drafts.append(draftTemp!)
+            }else{
+               MyCompany.drafts[index!] = draftTemp!
+            }
+            
+            MyCompany.UpdateToFirebase { (error) in
+                if !error{
+                   self.navigationController?.popViewController(animated: true)
+                }
             }
         }
         
+    }
+    
+    
+    
+    func isSavable() -> Bool {
+        if draftTemp!.basicId == ""  {
+            self.showAlertMessage(title: "Alert", message: "Please choose any comapny") {
+            }
+            return false
+        }
         
+        if self.draftTemp!.draftPosts.count == 0 {
+            self.showAlertMessage(title: "Alert", message: "Please add atleast one post") {
+            }
+            return false
+        }
+        return true
     }
     
     //MARK: Textfield Delegates
@@ -152,16 +176,19 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.draftTemp!.draftPosts.count + 1
+        return  self.draftTemp!.draftPosts.count == 3 ? 3 : (self.draftTemp!.draftPosts.count + 1)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row == self.draftTemp!.draftPosts.count {
-            let identifier = "addpost"
-            let cell = self.postTable.dequeueReusableCell(withIdentifier: identifier) as! NewAddPostCell
-            return cell
+        if self.draftTemp!.draftPosts.count < 3 {
+            if indexPath.row == self.draftTemp!.draftPosts.count {
+                let identifier = "addpost"
+                let cell = self.postTable.dequeueReusableCell(withIdentifier: identifier) as! NewAddPostCell
+                return cell
+            }
         }
+        
         let identifier = "postlist"
         let cell = self.postTable.dequeueReusableCell(withIdentifier: identifier) as! AddPostTC
         cell.addPostText.text = "Post \((indexPath.row + 1))"
@@ -174,13 +201,11 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var postIndex: Int? = nil
-        
-        if index != nil {
-            if self.draftTemp!.draftPosts.count != indexPath.row {
-                postIndex = indexPath.row
+        if self.draftTemp!.draftPosts.count <= 3 {
+            if indexPath.row != self.draftTemp!.draftPosts.count{
+               postIndex = indexPath.row
             }
         }
-        
         self.performSegue(withIdentifier: "toPostDetail", sender: postIndex)
         
     }
@@ -218,7 +243,21 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     }
     
     @IBAction func filterOffer(sender: UIButton){
-        self.performSegue(withIdentifier: "toFilterOffer", sender: self)
+        if self.isSavable() {
+            draftTemp!.lastEdited = Date()
+            if index == nil{
+               MyCompany.drafts.append(draftTemp!)
+            }else{
+               MyCompany.drafts[index!] = draftTemp!
+            }
+            
+            MyCompany.UpdateToFirebase { (error) in
+                if !error{
+                   self.performSegue(withIdentifier: "toFilterOffer", sender: self)
+                }
+            }
+        }
+        
     }
     
     

@@ -43,7 +43,6 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
                 self.activity.isHidden = true
                 self.activity.stopAnimating()
                 self.isImageLoading = false
-                
                 if error == false{
                     self.urlString = url
                     print("URL=",url)
@@ -84,9 +83,60 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
     
     var locations = [String]()
     
+    
+    var websiteUrl: String? {
+        didSet {
+            guard var websiteString = websiteUrl else {return}
+            var result = ""
+            while(websiteString.contains("///")) {
+                websiteString = websiteString.replacingOccurrences(of: "///", with: "//")
+            }
+            if websiteString.starts(with: "https://"){
+
+                let removedString = websiteString.replacingOccurrences(of: "https://", with: "")
+
+                let stringPool = removedString.components(separatedBy: "/")
+
+                result = stringPool.first!
+            }else if websiteString.starts(with: "http://"){
+
+                let removedString = websiteString.replacingOccurrences(of: "http://", with: "")
+
+                let stringPool = removedString.components(separatedBy: "/")
+                
+                result = stringPool.first!
+            } else if websiteString == "" {
+                self.website.text = ""
+                return
+            }else{
+                print(websiteString)
+                let stringPool = websiteString.components(separatedBy: "/")
+                result = stringPool.first!
+            }
+            
+            print("before: \(result)")
+            
+           let checkContained = result.range(of: "\\b\("www.")\\b", options: .regularExpression) != nil
+            
+            if result.hasPrefix("www.") {
+                
+               //result = result.replacingOccurrences(of: "www.", with: "")
+              result = String(result.dropFirst("www.".count))
+                
+            }
+            
+            if !result.hasPrefix("www."){
+                result = "www." + result
+            }
+            self.website.text = " " + result
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.activity.isHidden = true
         self.addDoneButtonOnKeyboard(textView: companyMission)
+        setBusinessData()
         //let zips = basicBusiness!.GetLocationZips()
         // Do any additional setup after loading the view.
     }
@@ -101,7 +151,8 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
             
             self.businessName.text = basic.name
             self.companyMission.text = basic.mission
-            self.website.text = basic.website
+            //self.website.text = basic.website
+            self.websiteUrl = basic.website
             self.businessTypeText.text = basic.type.rawValue
             locations.append(contentsOf: basic.locations)
             if basic.locations.count == 0 {
@@ -131,8 +182,7 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.activity.isHidden = true
-        self.setBusinessData()
+        
     }
     
     @objc override func keyboardWillHide(notification:NSNotification){
@@ -224,41 +274,33 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
     }
     
         func checkIfWebsiteEntered() -> String? {
-            
-            let thisUrl = GetURL()
-            
-            if thisUrl != nil{
+                        
+            if !isGoodUrl(url: GetURL()!.absoluteString) || GetURL()!.absoluteString == "http://www.com" || GetURL()!.absoluteString == "https://www.com" || GetURL()!.absoluteString == "http://.com" || GetURL()!.absoluteString == "https://.com" || GetURL()!.absoluteString == "http://www..com" || GetURL()!.absoluteString == "https://www..com"{
                 
-                if thisUrl!.absoluteString == "http://www.com" || thisUrl!.absoluteString == "https://www.com" || thisUrl!.absoluteString == "http://.com" || thisUrl!.absoluteString == "https://.com" || GetURL()!.absoluteString == "http://www..com" || GetURL()!.absoluteString == "https://www..com" {
-                    
-                    MakeShake(viewToShake: self.website)
-                    return nil
-                    
-                }else{
-                    
-                    if isGoodUrl(url: thisUrl?.absoluteString ?? "") && website.text?.count != 0{
-                    
-                       return thisUrl!.absoluteString
-                        
-                    }else{
-                        
-                        MakeShake(viewToShake: self.website)
-                        return nil
-                    }
-                    
-                }
-            
+               self.showAlertMessage(title: "Alert", message: "Please enter valid website") {
+                              
+               }
+                
+               return nil
                 
             }else{
                 
-                MakeShake(viewToShake: self.website)
-                return nil
+                if isGoodUrl(url: GetURL()?.absoluteString ?? "") && website.text?.count != 0{
+                
+                   return GetURL()!.absoluteString
+                    
+                }else{
+                    
+                    MakeShake(viewToShake: self.website)
+                    return nil
+                }
+                
             }
             
         }
     
     func GetURL() -> URL? {
-        var returnValue = website.text!
+        var returnValue = website.text!.trimmingCharacters(in: .whitespaces)
         if !returnValue.lowercased().hasPrefix("http") {
             if !returnValue.lowercased().hasPrefix("www.") {
                 returnValue = "http://www." + returnValue

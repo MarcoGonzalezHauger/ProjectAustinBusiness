@@ -74,23 +74,17 @@ class BasicsListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     @IBAction func doneAction(sender: UIButton){
-        
-        let index = MyCompany.drafts.lastIndex { (draft) -> Bool in
-            return draft.draftId == self.draftOffer?.draftId
-        }
-        
-        MyCompany.drafts[index!] = self.draftOffer!
-        
-        MyCompany.UpdateToFirebase { (errorFIB) in
-            if !errorFIB{
-                self.navigationController?.popViewController(animated: true)
+        if draftOffer?.basicId == nil || draftOffer?.basicId == "" {
+            self.showAlertMessage(title: "Alert", message: "Please choose the company") {
             }
+            return
         }
+        self.reloadBusiness!.reloadBusiness()
+        self.dismiss(animated: true, completion: nil)
         
     }
     
     @IBAction func dismissAction(sender: UIButton) {
-        self.reloadBusiness!.reloadBusiness()
 		self.dismiss(animated: true, completion: nil)
     }
 
