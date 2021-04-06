@@ -62,6 +62,8 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
             
             if let basic = company.first {
                 setBasicBusinessLogo(basic: basic)
+            }else{
+                self.cmyName.text = "No Company Chosen"
             }
             
             self.delView.isHidden = false

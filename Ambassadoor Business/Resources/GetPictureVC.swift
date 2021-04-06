@@ -111,7 +111,9 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
 		
 		switch photoAuthorizationStatus {
 		case .authorized:
-			self.present(self.imagePicker, animated: true, completion: nil)
+			//self.present(self.imagePicker, animated: true, completion: nil)
+            self.present(self.imagePicker, animated: true, completion: nil)
+            self.imagePicker.modalPresentationStyle = .fullScreen
 			print("Access is granted by user")
 			//only for NEW iOS Beta.
 //		case .limited:
@@ -123,7 +125,9 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
 				print("status is \(newStatus)")
 				if newStatus ==  PHAuthorizationStatus.authorized {
                     DispatchQueue.main.async {
+                        //self.present(self.imagePicker, animated: true, completion: nil)
                         self.present(self.imagePicker, animated: true, completion: nil)
+                        self.imagePicker.modalPresentationStyle = .fullScreen
                     }
 					
 					print("success")
