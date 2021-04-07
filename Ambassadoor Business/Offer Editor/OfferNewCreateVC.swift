@@ -15,7 +15,24 @@ protocol BusinessDelegate {
 class NewAddPostCell: UITableViewCell {
 }
 
-class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, BusinessDelegate {
+class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, BusinessDelegate, NCDelegate {
+    func shouldAllowBack() -> Bool {
+        if self.isSavable() {
+            draftTemp!.lastEdited = Date()
+            if index == nil{
+               MyCompany.drafts.append(draftTemp!)
+            }else{
+               MyCompany.drafts[index!] = draftTemp!
+            }
+            
+            MyCompany.UpdateToFirebase { (error) in
+            }
+            return true
+        }else{
+            return false
+        }
+    }
+    
     
     func reloadBusiness() {
         self.setOfferData()
@@ -41,6 +58,9 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let nc = self.navigationController as? StandardNC {
+            nc.tempDelegate = self
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -115,7 +135,6 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
                tableHeight.constant = 45
             }
         }
-        self.postShadow.layoutIfNeeded()
     }
     
     func createTempDraft() -> DraftOffer {
@@ -175,8 +194,17 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
         return true
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  self.draftTemp!.draftPosts.count == 3 ? 3 : (self.draftTemp!.draftPosts.count + 1)
+	@IBOutlet weak var informationalLabel: UILabel!
+	
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		var numOfRows = self.draftTemp!.draftPosts.count + 1
+		if numOfRows > 3 {
+			numOfRows = 3
+		}
+		let counttext = "\(numOfRows) post \(numOfRows == 1 ? "" : "s")"
+		informationalLabel.text = "When an influencer accepts this offer they will be required to post \(counttext) to Instagram following the instructions you created:"
+		
+        return numOfRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

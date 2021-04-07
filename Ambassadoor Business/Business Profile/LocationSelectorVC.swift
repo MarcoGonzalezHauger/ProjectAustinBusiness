@@ -95,15 +95,6 @@ class LocationSelectorVC: BaseVC, UITableViewDelegate, UITableViewDataSource, Lo
                 MakeShake(viewToShake: cell)
                 return
             }
-            
-//            if !(regexForLocation(loc: location) ?? false) {
-//                let index = IndexPath.init(row: sender.tag, section: 0)
-//                let cell = self.locationList.cellForRow(at: index) as! LocationCell
-//                MakeShake(viewToShake: cell)
-//                self.showAlertMessage(title: "Alert", message: "Please enter the valid address.") {
-//                }
-//                return
-//            }
         }
         for location in locations {
             
@@ -112,7 +103,7 @@ class LocationSelectorVC: BaseVC, UITableViewDelegate, UITableViewDataSource, Lo
                 let index = IndexPath.init(row: sender.tag, section: 0)
                 let cell = self.locationList.cellForRow(at: index) as! LocationCell
                 MakeShake(viewToShake: cell)
-                self.showAlertMessage(title: "Alert", message: "Please enter the valid address.") {
+                self.showAlertMessage(title: "Invalid Address!", message: "Please enter the valid address.") {
                 }
                 return
             }
@@ -123,70 +114,24 @@ class LocationSelectorVC: BaseVC, UITableViewDelegate, UITableViewDataSource, Lo
     }
     
     func regexForLocation(loc: String) -> Bool{
-        
-        
-        let commaSeparate = loc.components(separatedBy: ",")
-        
-        let isZipContainOne = commaSeparate.filter { (sepString) -> Bool in
-            return zipcodes.contains(sepString)
-        }
-        
-        if isZipContainOne.count != 0 {
-            return true
-        }
-        
-        let spaceSeparate = loc.components(separatedBy: " ")
-        
-        let isZipContainTwo = spaceSeparate.filter { (sepString) -> Bool in
-            return zipcodes.contains(sepString)
-        }
-        
-        if isZipContainTwo.count != 0 {
-            return true
-        }
-                
-            for town in towns {
-                let text = town
-                let regexString = ".*" + text + "*."
-                
-                let commaSeparate = loc.components(separatedBy: ",")
-                
-                let commaCount = commaSeparate.filter { (townFilter) -> Bool in
-                    do {
-                        let regex = try NSRegularExpression(pattern: regexString, options: .caseInsensitive)
-                        let range = NSRange(location: 0, length: townFilter.utf16.count)
-                        let checkIfContained = regex.firstMatch(in: townFilter, options: [], range: range) != nil
-                        return checkIfContained
-                    } catch {
-                        return false
-                    }
-                    
-                }
-                
-                if commaCount.count != 0 {
-                    return true
-                }
-                
-                let spaceSeparate = loc.components(separatedBy: " ")
-                
-                let spaceCount = spaceSeparate.filter { (townFilter) -> Bool in
-                    do {
-                        let regex = try NSRegularExpression(pattern: regexString, options: .caseInsensitive)
-                        let range = NSRange(location: 0, length: townFilter.utf16.count)
-                        let checkIfContained = regex.firstMatch(in: townFilter, options: [], range: range) != nil
-                        return checkIfContained
-                    } catch {
-                        return false
-                    }
-                    
-                }
-                
-                if spaceCount.count != 0 {
-                    return true
-                }
-                
-            }
-        return false
+		
+		//EDIT FROM MARCO: Just checks if location contains zip code which is all we need.
+		
+		let parts = loc.components(separatedBy: ",")
+		let end = parts.last!
+		let ZipC = end.components(separatedBy: " ").last ?? ""
+		if ZipC == "" {
+			return false
+		}
+		
+		if ZipC.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil {
+			if ZipC.count >= 4 {
+				if ZipC.count <= 6 {
+					return true
+				}
+			}
+		}
+		return false
     }
     
     /*

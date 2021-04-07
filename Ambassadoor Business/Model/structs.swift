@@ -30,7 +30,6 @@ class ShadowView: UIView {
     @IBInspectable var ShadowColor: UIColor = UIColor.black { didSet { DrawShadows() } }
     @IBInspectable var borderWidth: Float = 0.0 { didSet { DrawShadows() }}
 	@IBInspectable var borderColor: UIColor = UIColor.black { didSet { DrawShadows() } }
-	@IBInspectable var maskToBounds: Int = -1 { didSet { DrawShadows() } }
     
     func DrawShadows() {
         //draw shadow & rounded corners for offer cell
@@ -41,12 +40,15 @@ class ShadowView: UIView {
         self.layer.shadowRadius = CGFloat(ShadowRadius)
         self.layer.borderWidth = CGFloat(borderWidth)
         self.layer.borderColor = borderColor.cgColor
-		if maskToBounds != -1 {
-			self.layer.masksToBounds = maskToBounds == 1
-            //self.layer.masksToBounds = false
-		} else {
-			self.layer.masksToBounds = false
-		}
+		
+		//please do not use this.
+		
+//		if maskToBounds != -1 {
+//			self.layer.masksToBounds = maskToBounds == 1
+//            //self.layer.masksToBounds = false
+//		} else {
+//			self.layer.masksToBounds = false
+//		}
 		let rect = CGRect.init(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height + 2)
         self.layer.shadowPath = UIBezierPath(roundedRect: rect, cornerRadius: self.layer.cornerRadius).cgPath
         

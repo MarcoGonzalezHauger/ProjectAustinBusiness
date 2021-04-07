@@ -35,6 +35,13 @@ class OfferFilterVC: BaseVC, selectedCategoryDelegate {
         self.performSegue(withIdentifier: "toNewCategoryTVC", sender: self)
     }
 
+    @IBAction func pickGender(sender: UIButton){
+        
+        ShowGenderPicker(self) { (newGender) in
+            
+        }
+        
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        if segue.identifier == "toNewCategoryTVC"{

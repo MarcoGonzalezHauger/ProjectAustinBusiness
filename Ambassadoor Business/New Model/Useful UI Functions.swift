@@ -98,20 +98,20 @@ func GetColorFromPercentage(percent: Double) -> UIColor {
 
 func ShowGenderPicker(_ vcToPresent: UIViewController, genderPicked: @escaping (_ gender: String) -> Void) {
 	let genderPick = UIAlertController(title: "Pick Gender", message: "", preferredStyle: UIAlertController.Style.actionSheet)
+    
+    let prefnotsay = UIAlertAction(title: "All", style: .default) { (action: UIAlertAction) in
+        genderPicked("All")
+    }
 	
-	let female = UIAlertAction(title: "Female", style: .default) { (action: UIAlertAction) in
+	let female = UIAlertAction(title: "Females Only", style: .default) { (action: UIAlertAction) in
 		genderPicked("Female")
 	}
 	
-	let male = UIAlertAction(title: "Male", style: .default) { (action: UIAlertAction) in
+	let male = UIAlertAction(title: "Males Only", style: .default) { (action: UIAlertAction) in
 		genderPicked("Male")
 	}
 	
-	let prefnotsay = UIAlertAction(title: "Prefer not to say", style: .default) { (action: UIAlertAction) in
-		genderPicked("Not Provided")
-	}
-	
-	let other = UIAlertAction(title: "Other...", style: .default) { (action: UIAlertAction) in
+	let other = UIAlertAction(title: "Other Only", style: .default) { (action: UIAlertAction) in
 		let alert = UIAlertController(title: "Enter Your Gender", message: "", preferredStyle: .alert)
 
 		alert.addTextField { (textField) in
@@ -143,9 +143,9 @@ func ShowGenderPicker(_ vcToPresent: UIViewController, genderPicked: @escaping (
 	
 	let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 	
+    genderPick.addAction(prefnotsay)
 	genderPick.addAction(female)
 	genderPick.addAction(male)
-	genderPick.addAction(prefnotsay)
 	genderPick.addAction(other)
 	genderPick.addAction(cancelAction)
 	vcToPresent.present(genderPick, animated: true, completion: nil)
