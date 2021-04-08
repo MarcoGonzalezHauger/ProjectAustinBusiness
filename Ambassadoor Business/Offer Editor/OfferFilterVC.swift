@@ -8,14 +8,13 @@
 
 import UIKit
 
-class OfferFilterVC: BaseVC, selectedCategoryDelegate {
-    
-    func selectedArray(array: [String]) {
-        self.selectedCategoryArray.removeAll()
-        self.selectedCategoryArray.append(contentsOf: array)
+class OfferFilterVC: BaseVC, InterestPickerDelegate {
+    func newInterests(interests: [String]) {
+        self.selectedInterestArray = interests
     }
     
-    var selectedCategoryArray = [String]()
+    
+    var selectedInterestArray = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +31,7 @@ class OfferFilterVC: BaseVC, selectedCategoryDelegate {
     }
     
     @IBAction func pickInterest(sender: UIButton){
-        self.performSegue(withIdentifier: "toNewCategoryTVC", sender: self)
+        self.performSegue(withIdentifier: "toInterestPicker", sender: self)
     }
 
     @IBAction func pickGender(sender: UIButton){
@@ -44,15 +43,12 @@ class OfferFilterVC: BaseVC, selectedCategoryDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       if segue.identifier == "toNewCategoryTVC"{
-        if let viewNav = segue.destination as? UINavigationController{
-            if let view = viewNav.viewControllers.first as? CategoryTVC{
-                view.selectedValues = selectedCategoryArray
-                view.delegateCategory = self
-            }
+        
+        if let view = segue.destination as? InterestPickerPopupVC {
+            view.currentInterests = selectedInterestArray
+            view.delegate = self
         }
-            
-        }
+       
     }
     
 

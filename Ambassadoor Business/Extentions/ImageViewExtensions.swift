@@ -78,6 +78,14 @@ public extension UIImageView {
             }.resume()
     }
     
+    func downloadAndSetImage(_ urlLink: String, forceDownload: Bool = false, isCircle: Bool = true){
+        self.showActivityIndicator()
+        self.image = nil
+        downloadImage(urlLink, forceDownload: forceDownload) { (returnImage) in
+            guard let returnImage = returnImage else { return }
+            self.image = returnImage
+        }
+    }
     
     
 //    func downloadAndSetImage(_ urlLink: String, isCircle: Bool = true){
@@ -168,7 +176,7 @@ func downloadImage(_ urlLink: String, completed: @escaping (_ image: UIImage?) -
 	
 }
 */
-func downloadImage(_ urlLink: String, completed: @escaping (_ image: UIImage?) -> ()){
+func downloadImage(_ urlLink: String, forceDownload: Bool = false, completed: @escaping (_ image: UIImage?) -> ()){
 	if urlLink.isEmpty {
 		completed(nil)
 		return

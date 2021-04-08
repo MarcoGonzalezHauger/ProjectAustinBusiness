@@ -84,10 +84,10 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ayi-Hy-Vwu">
-                                <rect key="frame" x="10" y="52" width="40" height="39"/>
+                                <rect key="frame" x="20" y="52.5" width="30" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="GGH-Ga-2Zr"/>
-                                    <constraint firstAttribute="height" constant="40" id="q1X-wW-zvw"/>
+                                    <constraint firstAttribute="width" constant="30" id="GGH-Ga-2Zr"/>
+                                    <constraint firstAttribute="height" constant="31" id="q1X-wW-zvw"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <color key="tintColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -102,11 +102,11 @@
                             <constraint firstAttribute="bottom" secondItem="jN1-Zg-cq2" secondAttribute="bottom" constant="-12" id="816-er-nNl"/>
                             <constraint firstItem="5hw-JC-JgF" firstAttribute="top" secondItem="oXL-mU-pkC" secondAttribute="top" constant="16" id="EaS-d6-t8Z"/>
                             <constraint firstItem="jN1-Zg-cq2" firstAttribute="top" secondItem="5hw-JC-JgF" secondAttribute="bottom" constant="20" id="JJQ-xR-ILc"/>
-                            <constraint firstItem="Ayi-Hy-Vwu" firstAttribute="leading" secondItem="oXL-mU-pkC" secondAttribute="leading" constant="10" id="VSw-4G-Sgd"/>
+                            <constraint firstItem="Ayi-Hy-Vwu" firstAttribute="leading" secondItem="oXL-mU-pkC" secondAttribute="leading" constant="20" id="VSw-4G-Sgd"/>
                             <constraint firstItem="oXL-mU-pkC" firstAttribute="trailing" secondItem="jN1-Zg-cq2" secondAttribute="trailing" id="Yz0-gx-Wqh"/>
                             <constraint firstItem="5hw-JC-JgF" firstAttribute="centerX" secondItem="exB-lT-E29" secondAttribute="centerX" id="cbN-nR-ikb"/>
                             <constraint firstItem="jN1-Zg-cq2" firstAttribute="leading" secondItem="oXL-mU-pkC" secondAttribute="leading" id="d6u-Fa-93a"/>
-                            <constraint firstItem="Ayi-Hy-Vwu" firstAttribute="centerY" secondItem="5hw-JC-JgF" secondAttribute="centerY" id="uLm-Gh-IfC"/>
+                            <constraint firstItem="Ayi-Hy-Vwu" firstAttribute="centerY" secondItem="5hw-JC-JgF" secondAttribute="centerY" constant="-4" id="uLm-Gh-IfC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oXL-mU-pkC"/>
                     </view>
@@ -508,7 +508,7 @@ Stripe may take up to 3 days to complete the transfer, but it usually transfers 
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="9l3-fA-MdC"/>
+        <segue reference="ga8-II-Vnk"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="backArrow" width="42" height="42"/>
