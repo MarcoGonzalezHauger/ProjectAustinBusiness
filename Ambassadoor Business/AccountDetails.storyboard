@@ -84,7 +84,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ayi-Hy-Vwu">
-                                <rect key="frame" x="20" y="52.5" width="30" height="30"/>
+                                <rect key="frame" x="20" y="56.5" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="GGH-Ga-2Zr"/>
                                     <constraint firstAttribute="height" constant="31" id="q1X-wW-zvw"/>
@@ -106,7 +106,7 @@
                             <constraint firstItem="oXL-mU-pkC" firstAttribute="trailing" secondItem="jN1-Zg-cq2" secondAttribute="trailing" id="Yz0-gx-Wqh"/>
                             <constraint firstItem="5hw-JC-JgF" firstAttribute="centerX" secondItem="exB-lT-E29" secondAttribute="centerX" id="cbN-nR-ikb"/>
                             <constraint firstItem="jN1-Zg-cq2" firstAttribute="leading" secondItem="oXL-mU-pkC" secondAttribute="leading" id="d6u-Fa-93a"/>
-                            <constraint firstItem="Ayi-Hy-Vwu" firstAttribute="centerY" secondItem="5hw-JC-JgF" secondAttribute="centerY" constant="-4" id="uLm-Gh-IfC"/>
+                            <constraint firstItem="Ayi-Hy-Vwu" firstAttribute="centerY" secondItem="5hw-JC-JgF" secondAttribute="centerY" id="uLm-Gh-IfC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oXL-mU-pkC"/>
                     </view>

@@ -250,9 +250,6 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
         }, completionDestruction: {
             self.deleteOffer()
         })
-        
-
-        
     }
 
     func deleteOffer() {

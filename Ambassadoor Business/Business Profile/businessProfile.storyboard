@@ -289,16 +289,32 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dNF-0f-jfI">
+                                <rect key="frame" x="16" y="20.5" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="L9U-12-Sfk"/>
+                                    <constraint firstAttribute="height" constant="31" id="ZPy-N4-XHc"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" backgroundImage="multiply.circle.fill" catalog="system">
+                                    <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismissActionWithSender:" destination="xch-Us-8E3" eventType="touchUpInside" id="HHM-PF-IkW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Ewi-6g-xjE" firstAttribute="top" secondItem="rmI-w5-Fr0" secondAttribute="top" constant="70" id="2QZ-iB-MfL"/>
                             <constraint firstItem="rmI-w5-Fr0" firstAttribute="trailing" secondItem="rvS-k4-tgL" secondAttribute="trailing" constant="16" id="5To-uB-p8B"/>
+                            <constraint firstItem="dNF-0f-jfI" firstAttribute="top" secondItem="rmI-w5-Fr0" secondAttribute="top" constant="20" id="AuQ-Ax-LdD"/>
                             <constraint firstItem="rmI-w5-Fr0" firstAttribute="trailing" secondItem="igu-WC-0id" secondAttribute="trailing" constant="10" id="Hql-y7-8JZ"/>
                             <constraint firstItem="Ewi-6g-xjE" firstAttribute="centerX" secondItem="7Do-yK-cCs" secondAttribute="centerX" id="WQe-1d-Zja"/>
                             <constraint firstItem="igu-WC-0id" firstAttribute="top" secondItem="rmI-w5-Fr0" secondAttribute="top" constant="10" id="csN-wL-ZBY"/>
                             <constraint firstItem="rvS-k4-tgL" firstAttribute="top" secondItem="Ewi-6g-xjE" secondAttribute="bottom" constant="32" id="d2I-f9-9Ux"/>
                             <constraint firstItem="rvS-k4-tgL" firstAttribute="leading" secondItem="rmI-w5-Fr0" secondAttribute="leading" constant="16" id="vB0-gR-v7R"/>
+                            <constraint firstItem="dNF-0f-jfI" firstAttribute="leading" secondItem="rmI-w5-Fr0" secondAttribute="leading" constant="16" id="zQF-t4-1qB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rmI-w5-Fr0"/>
                     </view>

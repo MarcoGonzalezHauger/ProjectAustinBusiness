@@ -120,7 +120,9 @@ class Business {
 				draftDictionary[draft.draftId] = draft.toDictionary()
 			}
 			d["drafts"] = draftDictionary
-		}
+        }else{
+            d["drafts"] = [:]
+        }
 		
 		if sentOffers.count != 0 {
 			var sentOffersDictionary: [String: Any] = [:]

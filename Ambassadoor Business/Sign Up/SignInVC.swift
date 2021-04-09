@@ -313,7 +313,7 @@ class SignInVC: BaseVC, UITextFieldDelegate {
                                     
                                 }
                             }else if err.code == 17009{
-                                self.usernameLine.backgroundColor = .systemBlue
+                                self.usernameLine.backgroundColor = UIColor(named: "AmbPurple")
                                 self.passwordline.backgroundColor = .red
                                 
                                 self.showAlertMessage(title: "Alert", message: "The password is invalid") {
