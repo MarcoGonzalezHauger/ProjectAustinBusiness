@@ -126,7 +126,7 @@ class LocationSelectorVC: BaseVC, UITableViewDelegate, UITableViewDataSource, Lo
 		
 		if ZipC.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil {
 			if ZipC.count >= 4 {
-				if ZipC.count >= 6 {
+				if ZipC.count <= 6 {
 					return true
 				}
 			}

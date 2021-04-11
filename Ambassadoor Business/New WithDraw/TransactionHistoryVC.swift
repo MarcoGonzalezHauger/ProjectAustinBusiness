@@ -11,10 +11,17 @@ import UIKit
 class TransactionHistoryVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var shelf: UITableView!
+    
+    @IBOutlet weak var errorShadow: ShadowView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setTableData()
+        if MyCompany.finance.log.count == 0 {
+            errorShadow.isHidden = false
+        }else{
+            errorShadow.isHidden = true
+            self.setTableData()
+        }
         // Do any additional setup after loading the view.
     }
     

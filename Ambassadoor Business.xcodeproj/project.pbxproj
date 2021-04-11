@@ -23,6 +23,9 @@
 		B72478A02603543100CD20FA /* NewWithdrawVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B724789D2603542E00CD20FA /* NewWithdrawVC.swift */; };
 		B72478A12603543100CD20FA /* WithDrawNoteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B724789E2603543100CD20FA /* WithDrawNoteVC.swift */; };
 		B72478A3260367C700CD20FA /* TransactionHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72478A2260367C700CD20FA /* TransactionHistoryVC.swift */; };
+		B72A5C61261ECD12004B63F3 /* InterestPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B72A5C5E261ECD0C004B63F3 /* InterestPicker.storyboard */; };
+		B72A5C62261ECD12004B63F3 /* InterestPickerPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72A5C5F261ECD0F004B63F3 /* InterestPickerPopupVC.swift */; };
+		B72A5C63261ECD12004B63F3 /* InterestPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72A5C60261ECD12004B63F3 /* InterestPickerVC.swift */; };
 		B72CB50822E6E8C100958AE0 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72CB50722E6E8C100958AE0 /* BaseVC.swift */; };
 		B72CB50A22E7024500958AE0 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72CB50922E7024500958AE0 /* UIViewExtension.swift */; };
 		B72CD04926130A8B00AE5CA4 /* OfferFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72CD04826130A8B00AE5CA4 /* OfferFilterVC.swift */; };
@@ -164,6 +167,9 @@
 		B724789D2603542E00CD20FA /* NewWithdrawVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewWithdrawVC.swift; sourceTree = "<group>"; };
 		B724789E2603543100CD20FA /* WithDrawNoteVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WithDrawNoteVC.swift; sourceTree = "<group>"; };
 		B72478A2260367C700CD20FA /* TransactionHistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryVC.swift; sourceTree = "<group>"; };
+		B72A5C5E261ECD0C004B63F3 /* InterestPicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = InterestPicker.storyboard; sourceTree = "<group>"; };
+		B72A5C5F261ECD0F004B63F3 /* InterestPickerPopupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestPickerPopupVC.swift; sourceTree = "<group>"; };
+		B72A5C60261ECD12004B63F3 /* InterestPickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestPickerVC.swift; sourceTree = "<group>"; };
 		B72CB50722E6E8C100958AE0 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		B72CB50922E7024500958AE0 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		B72CD04826130A8B00AE5CA4 /* OfferFilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferFilterVC.swift; sourceTree = "<group>"; };
@@ -505,6 +511,9 @@
 				B76575F526143AEC0076F594 /* FilterByCityVC.swift */,
 				E8C708C823764C51001699D0 /* SelectStatesVC.swift */,
 				E8FC17632377A70100245932 /* SelectRadiiVC.swift */,
+				B72A5C5E261ECD0C004B63F3 /* InterestPicker.storyboard */,
+				B72A5C5F261ECD0F004B63F3 /* InterestPickerPopupVC.swift */,
+				B72A5C60261ECD12004B63F3 /* InterestPickerVC.swift */,
 			);
 			path = "Offer Editor";
 			sourceTree = "<group>";
@@ -713,6 +722,7 @@
 				B770B8112514A5E700724465 /* RegisterCompany.storyboard in Resources */,
 				E8C3694C22161B3200AE12D7 /* Assets.xcassets in Resources */,
 				B770B8132514EACD00724465 /* Company.storyboard in Resources */,
+				B72A5C61261ECD12004B63F3 /* InterestPicker.storyboard in Resources */,
 				E8F7C9B025FED714007893FF /* businessProfile.storyboard in Resources */,
 				E8C3694722161B3000AE12D7 /* Main.storyboard in Resources */,
 			);
@@ -809,6 +819,7 @@
 				B788D6F422E8931100FA59BA /* RegisterCompanyVC.swift in Sources */,
 				B7C293C125ECE423004A723B /* New Globals.swift in Sources */,
 				B7F4BA5D25668682000F7EA4 /* InfluencerListVC.swift in Sources */,
+				B72A5C62261ECD12004B63F3 /* InterestPickerPopupVC.swift in Sources */,
 				C05FE2DB225F687C002D3CAA /* global.swift in Sources */,
 				B78B39F12510D67C00829F31 /* CompanyWebsiteVC.swift in Sources */,
 				B7C293C225ECE423004A723B /* Useful UI Functions.swift in Sources */,
@@ -831,6 +842,7 @@
 				B76DEDE42600B24A00886911 /* MultipleBusinessAccountVC.swift in Sources */,
 				B70DEC7C232C2CFA00580FD7 /* TransactionDetailsVC.swift in Sources */,
 				B7C293BC25ECE423004A723B /* Influencer Structs.swift in Sources */,
+				B72A5C63261ECD12004B63F3 /* InterestPickerVC.swift in Sources */,
 				B72CB50A22E7024500958AE0 /* UIViewExtension.swift in Sources */,
 				B72478A3260367C700CD20FA /* TransactionHistoryVC.swift in Sources */,
 				B77D4C392609CFF30002E04E /* PostDetailVC.swift in Sources */,

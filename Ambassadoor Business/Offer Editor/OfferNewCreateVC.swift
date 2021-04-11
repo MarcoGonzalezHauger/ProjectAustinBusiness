@@ -15,7 +15,24 @@ protocol BusinessDelegate {
 class NewAddPostCell: UITableViewCell {
 }
 
-class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, BusinessDelegate {
+class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, BusinessDelegate, NCDelegate {
+    func shouldAllowBack() -> Bool {
+        if self.isSavable() {
+            draftTemp!.lastEdited = Date()
+            if index == nil{
+               MyCompany.drafts.append(draftTemp!)
+            }else{
+               MyCompany.drafts[index!] = draftTemp!
+            }
+            
+            MyCompany.UpdateToFirebase { (error) in
+            }
+            return true
+        }else{
+            return false
+        }
+    }
+    
     
     func reloadBusiness() {
         self.setOfferData()
@@ -41,6 +58,9 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let nc = self.navigationController as? StandardNC {
+            nc.tempDelegate = self
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -230,9 +250,6 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
         }, completionDestruction: {
             self.deleteOffer()
         })
-        
-
-        
     }
 
     func deleteOffer() {
