@@ -27,10 +27,10 @@ func StartListeningToPublicData() {
 			
 			let newInf = BasicInfluencer.init(dictionary: snapValue, userId: snap.key)
 			
-			if newInf.userId == Myself.userId {
-				Myself.basic = newInf
-				Myself.UpdateToFirebase(alsoUpdateToPublic: false, completed: nil)
-			}
+//			if newInf.userId == Myself.userId {
+//				Myself.basic = newInf
+//				Myself.UpdateToFirebase(alsoUpdateToPublic: false, completed: nil)
+//			}
 			
 			for i in 0...(globalBasicInfluencers.count - 1) {
 				if globalBasicInfluencers[i].userId == newInf.userId {

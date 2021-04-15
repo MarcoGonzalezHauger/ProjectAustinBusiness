@@ -33,6 +33,8 @@
 		B72CD04D261331E300AE5CA4 /* FilterRadiousVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72CD04C261331E300AE5CA4 /* FilterRadiousVC.swift */; };
 		B72CFDCA25FF5AE100033CC5 /* ProfilePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72CFDC925FF5AE100033CC5 /* ProfilePickerVC.swift */; };
 		B72CFDCC25FF9C4B00033CC5 /* AddBasicBusinessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72CFDCB25FF9C4B00033CC5 /* AddBasicBusinessVC.swift */; };
+		B737F9F0262817D9008D0E6F /* FilterStatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B737F9EF262817D9008D0E6F /* FilterStatsVC.swift */; };
+		B737F9F226288046008D0E6F /* NewDistributeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B737F9F126288046008D0E6F /* NewDistributeVC.swift */; };
 		B750E78522E5B75F00024CB1 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B750E78422E5B75F00024CB1 /* Onboarding.storyboard */; };
 		B7551F2B22F98841001C4974 /* BasePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7551F2A22F98841001C4974 /* BasePicker.swift */; };
 		B7551F2F22F99B01001C4974 /* BasePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7551F2E22F99B01001C4974 /* BasePicker.xib */; };
@@ -177,6 +179,8 @@
 		B72CD04C261331E300AE5CA4 /* FilterRadiousVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterRadiousVC.swift; sourceTree = "<group>"; };
 		B72CFDC925FF5AE100033CC5 /* ProfilePickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePickerVC.swift; sourceTree = "<group>"; };
 		B72CFDCB25FF9C4B00033CC5 /* AddBasicBusinessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBasicBusinessVC.swift; sourceTree = "<group>"; };
+		B737F9EF262817D9008D0E6F /* FilterStatsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterStatsVC.swift; sourceTree = "<group>"; };
+		B737F9F126288046008D0E6F /* NewDistributeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDistributeVC.swift; sourceTree = "<group>"; };
 		B750E78422E5B75F00024CB1 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		B7551F2A22F98841001C4974 /* BasePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePicker.swift; sourceTree = "<group>"; };
 		B7551F2E22F99B01001C4974 /* BasePicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasePicker.xib; sourceTree = "<group>"; };
@@ -514,6 +518,8 @@
 				B72A5C5E261ECD0C004B63F3 /* InterestPicker.storyboard */,
 				B72A5C5F261ECD0F004B63F3 /* InterestPickerPopupVC.swift */,
 				B72A5C60261ECD12004B63F3 /* InterestPickerVC.swift */,
+				B737F9EF262817D9008D0E6F /* FilterStatsVC.swift */,
+				B737F9F126288046008D0E6F /* NewDistributeVC.swift */,
 			);
 			path = "Offer Editor";
 			sourceTree = "<group>";
@@ -836,6 +842,7 @@
 				B79EA0AA2581FD9800E3AFB1 /* CustomSplitVC.swift in Sources */,
 				E80B060A22A08D49002B9699 /* MoneyField.swift in Sources */,
 				B7C293B725ECE423004A723B /* Interests.swift in Sources */,
+				B737F9F226288046008D0E6F /* NewDistributeVC.swift in Sources */,
 				E899878323D3B8F20093FC0E /* CurseWords.swift in Sources */,
 				B7C293C425ECE423004A723B /* UniversalDate.swift in Sources */,
 				E86158822478A7CD006D5450 /* ReferralInfoVC.swift in Sources */,
@@ -860,6 +867,7 @@
 				B7712CCC260897E000162E70 /* OfferNewCreateVC.swift in Sources */,
 				B72478A02603543100CD20FA /* NewWithdrawVC.swift in Sources */,
 				B76DEDEA2600C1F200886911 /* NewBasicBusinessView.swift in Sources */,
+				B737F9F0262817D9008D0E6F /* FilterStatsVC.swift in Sources */,
 				E861588024789C8B006D5450 /* ChangeWebsiteVC.swift in Sources */,
 				C0FBFD01226154FC00BADDCD /* categories.swift in Sources */,
 				B7C293B525ECE423004A723B /* InProgress functions.swift in Sources */,
@@ -1062,11 +1070,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = BlueIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ambassadoor Business/Ambassadoor Business.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = JMBR2RF2B8;
+				DEVELOPMENT_TEAM = F4W3LUKZFA;
 				INFOPLIST_FILE = "Ambassadoor Business/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1075,9 +1083,9 @@
 				);
 				MARKETING_VERSION = 2.0.8;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ambassadoor.business;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ambassadoor.company;
 				PRODUCT_NAME = "Ambassadoor Business";
-				PROVISIONING_PROFILE_SPECIFIER = AmbBusinessProvision;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Ambassadoor Business/Ambassadoor Business-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -1092,11 +1100,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = BlueIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Ambassadoor Business/Ambassadoor Business.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = JMBR2RF2B8;
+				DEVELOPMENT_TEAM = F4W3LUKZFA;
 				INFOPLIST_FILE = "Ambassadoor Business/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1105,9 +1113,9 @@
 				);
 				MARKETING_VERSION = 2.0.8;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ambassadoor.business;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ambassadoor.company;
 				PRODUCT_NAME = "Ambassadoor Business";
-				PROVISIONING_PROFILE_SPECIFIER = AmbBusinessProvision;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Ambassadoor Business/Ambassadoor Business-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;

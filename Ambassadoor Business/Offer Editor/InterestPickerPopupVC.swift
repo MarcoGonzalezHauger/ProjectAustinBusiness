@@ -44,12 +44,15 @@ class InterestPickerPopupVC: UIViewController { //interestPickerPopup
 	
 	@IBAction func donePressed(_ sender: Any) {
 		let newInt = pickerviewdel!.getInterests()
-		if newInt.count > 0 {
-			delegate?.newInterests(interests: newInt)
-			dismiss(animated: true, completion: nil)
-		} else {
-			MakeShake(viewToShake: doneButton, coefficient: 0.2)
-		}
+//		if newInt.count > 0 {
+//			delegate?.newInterests(interests: newInt)
+//			dismiss(animated: true, completion: nil)
+//		} else {
+//			MakeShake(viewToShake: doneButton, coefficient: 0.2)
+//		}
+//        
+        delegate?.newInterests(interests: newInt)
+        dismiss(animated: true, completion: nil)
 	}
 	
 
