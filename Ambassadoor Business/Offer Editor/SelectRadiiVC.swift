@@ -87,7 +87,11 @@ class SelectRadiiVC: BaseVC, UITableViewDelegate, UITableViewDataSource, RadiusD
 			}
 			let returnValue = "zipcode:" + vals.joined(separator: ",")
 			self.locationDelegate?.LocationFilterChosen(filter: returnValue)
-			dismiss(animated: true, completion: nil)
+            if let nav = self.navigationController{
+                nav.popViewController(animated: true)
+            }else{
+                dismiss(animated: true, completion: nil)
+            }
 		} else {
 			YouShallNotPass(SaveButtonView: UseAreaButtonView, returnColor: .lightGray)
 		}

@@ -58,6 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         getGlobalAllInfluencers()
+        InitializeAmbassadoor()
         
         if (launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem) != nil {
             
@@ -117,7 +118,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                     
                                     if user.isEmailVerified{
                                         
-                                        self.autoLoginCheckAction(launchOptions: launchOptions)
+                                        self.autoLoginCheckAction(launchOptions: launchOptions, email: email)
                                         
                                     }else{
                                         self.moveLoginScreen()
@@ -155,102 +156,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     
-    func autoLoginCheckAction(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
+    func autoLoginCheckAction(launchOptions: [UIApplication.LaunchOptionsKey: Any]?, email: String) {
         
-        if ((Auth.auth().currentUser?.uid) != nil) {
-            
-            //                Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-            
-            //let checkID = "GoQjJPCnHBVRTc5PxfnjohUWcVw2"
-            
-            //(Auth.auth().currentUser?.uid)!
-            
-            getCurrentCompanyUser(userID: (Auth.auth().currentUser?.uid)!) { (companyUser, error) in
-                if companyUser != nil {
-                    Singleton.sharedInstance.setCompanyUser(user: companyUser!)
-                    
-                    if let user = Singleton.sharedInstance.getCompanyUser().companyID {
-                        
-                        
-                        if let isRegistered =  Singleton.sharedInstance.getCompanyUser().isCompanyRegistered {
-                            
-                            if isRegistered && user != "" {
-                                
-                                getCompany(companyID: user) { (company, error) in
-                                    
-                                    if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
-                                        
-                                        Singleton.sharedInstance.setCompanyDetails(company: company!)
-                                        YourCompany = company
-                                        
-                                        DispatchQueue.main.async(execute: {
-                                            //self.instantiateToMainScreen()
-                                            let viewController = instantiateViewController(storyboard: "Main", reference: "tabbar") as! UITabBarController
-                                            self.handleHapticAction(shortcutItem, tabController: viewController)
-                                            self.window?.rootViewController = viewController
-                                        })
-                                        
-                                    }else{
-                                        
-                                        Singleton.sharedInstance.setCompanyDetails(company: company!)
-                                        YourCompany = company
-                                        downloadBeforeLoad()
-                                        setHapticMenu(companyUserID: (Auth.auth().currentUser?.uid)!)
-                                        
-                                        if let openSettingIndex = UserDefaults.standard.object(forKey: "opensettingsIndex") as? Int{
-                                            if openSettingIndex == 1{
-                                               self.moveMainScreen(index: openSettingIndex)
-                                            }else{
-                                               self.moveMainScreen()
-                                            }
-                                        }else{
-                                              self.moveMainScreen()
-                                        }
-                                        
-                                        
-                                    }
-                                    
-                                    
-                                }
-                                
-                            }else{
-                                
-                                self.moveMainScreen()
-                                
-                            }
-                            
-                        }else{
-                            
-                            self.moveMainScreen()
-                            
-                        }
-                        
-                    }else{
-                        
-                        self.moveMainScreen()
-                        
-                    }
-                    
-                    
-                }else{
-                    do{
-                    try Auth.auth().signOut()
-                    }catch let error{
-                        print(error)
-                    }
-                    self.moveLoginScreen()
-                }
+        getNewBusiness(email: email.lowercased()) { (status, business) in
+            if status{
+                MyCompany = business
+                self.moveMainScreen()
                 
+            }else{
+                
+                self.moveLoginScreen()
             }
-            
-            
-            
-            
-            
-            
-            
-        }else{
-            self.moveLoginScreen()
         }
         
     }
@@ -259,12 +175,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         DispatchQueue.main.async(execute: {
             let viewController = instantiateViewController(storyboard: "Main", reference: "tabbar") as! UITabBarController
-            if index != nil {
-                if index == 1 {
-                    viewController.selectedIndex = 0
-                }
-            }
             self.window?.rootViewController = viewController
+            setCompanyTabBarItem(tab: viewController)
+//            if index != nil {
+//                if index == 1 {
+//                    viewController.selectedIndex = 0
+//                }
+//            }
+//            self.window?.rootViewController = viewController
         })
         
     }

@@ -17,11 +17,16 @@ class LocationFilterVC: BaseVC, LocationFilterDelegate, RadiousFilteredDelegate,
     
     
     func SendCityObject(zipObj: [CityObject]){
+        var city = [String]()
         
+        for cityObj in zipObj {
+            city.append(contentsOf: cityObj.zipcodes)
+        }
+        selectedZipCodes.append(contentsOf: city)
     }
     
     func radiousFilteredZipcodes(zipcodes: [String]) {
-        
+        selectedZipCodes.append(contentsOf: zipcodes)
     }
     
     func LocationFilterChosen(filter: String) {
@@ -52,6 +57,7 @@ class LocationFilterVC: BaseVC, LocationFilterDelegate, RadiousFilteredDelegate,
                 index += 1
                 if index == data.components(separatedBy: ",").count {
                    print(returnData)
+                    self.selectedZipCodes.append(contentsOf: returnData)
                 }
             }
         }
@@ -71,12 +77,17 @@ class LocationFilterVC: BaseVC, LocationFilterDelegate, RadiousFilteredDelegate,
                 index += 1
                 if index >= data1.components(separatedBy: ",").count {
                    print(returnData)
+                    self.selectedZipCodes.append(contentsOf: returnData)
                 }
             }
         }
 
     }
     
+    
+    var selectedZipCodes = [String]()
+    
+    var zipCollection: ZipcodeCollectionDelegate?
     
     
     override func viewDidLoad() {
@@ -119,6 +130,11 @@ class LocationFilterVC: BaseVC, LocationFilterDelegate, RadiousFilteredDelegate,
            view.locationDelegate = self
         }
         
+    }
+    
+    @IBAction func doneAction(sender: UIButton){
+        self.zipCollection?.sendZipcodeCollection(zipcodes: self.selectedZipCodes)
+        self.dismiss(animated: true, completion: nil)
     }
 
     /*
