@@ -16,8 +16,8 @@ extension DraftOffer {
 			return
 		}
 		let newPoolOffer = PoolOffer.init(draftOffer: self, filter: filter, withMoney: withMoney, createdBy: asBusiness, sentFromBasicId: asBasic)
-		newPoolOffer.UpdateToFirebase { (success) in
-			if success {
+		newPoolOffer.UpdateToFirebase { (error) in
+			if !error {
 				asBusiness.sentOffers.append(sentOffer.init(poolId: newPoolOffer.poolId, draftOfferId: self.draftId, businessId: self.businessId, title: self.title, basicId: asBasic.basicId))
 				if withdrawFunds {
 					asBusiness.finance.balance -= withMoney

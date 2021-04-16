@@ -13,7 +13,13 @@ protocol LocationretriveDelegate {
     func sendLocationObjects(locations: [String])
 }
 
-class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITextViewDelegate, TypePickerDelegate, LocationretriveDelegate {
+class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITextViewDelegate, TypePickerDelegate, LocationretriveDelegate, NCDelegate {
+	
+	func shouldAllowBack() -> Bool {
+		saveBasicBusiness()
+		return true
+	}
+	
     func sendLocationObjects(locations: [String]) {
         self.locations = locations
         self.setBusinessData()
@@ -137,6 +143,7 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
         self.activity.isHidden = true
         self.addDoneButtonOnKeyboard(textView: companyMission)
         setBusinessData()
+		(self.navigationController as! StandardNC).tempDelegate = self
         //let zips = basicBusiness!.GetLocationZips()
         // Do any additional setup after loading the view.
     }
@@ -204,6 +211,7 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
     }
     
     @IBAction func dismiss(sender: UIButton){
+		saveBasicBusiness()
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -316,38 +324,40 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
     }
     
     @IBAction func saveAction(sender: UIButton){
-        
-        if checkBasicBusiness() == nil {
-            return
-        }
-        
-        let basic = checkBasicBusiness()!
-        
-        if self.basicBusiness == nil {
-            MyCompany.basics.append(basic)
-        }else{
-            
-            let index = MyCompany.basics.lastIndex { (basicData) -> Bool in
-                return basic.basicId == basicData.basicId
-            }
-            
-            print("p==",index!)
-            
-            if index == nil {
-               return
-            }
-            MyCompany.basics[index!] = basic
-            
-        }
-        
-        MyCompany.UpdateToFirebase { (error) in
-            DispatchQueue.main.async {
-                self.reloadDelegate?.reloadMyCompany()
-                self.navigationController?.popViewController(animated: true)
-            }
-        }
-        
+        saveBasicBusiness()
     }
+	
+	func saveBasicBusiness() {
+		if checkBasicBusiness() == nil {
+			return
+		}
+		
+		let basic = checkBasicBusiness()!
+		
+		if self.basicBusiness == nil {
+			MyCompany.basics.append(basic)
+		}else{
+			
+			let index = MyCompany.basics.lastIndex { (basicData) -> Bool in
+				return basic.basicId == basicData.basicId
+			}
+			
+			print("p==",index!)
+			
+			if index == nil {
+			   return
+			}
+			MyCompany.basics[index!] = basic
+			
+		}
+		
+		MyCompany.UpdateToFirebase { (error) in
+			DispatchQueue.main.async {
+				self.reloadDelegate?.reloadMyCompany()
+				self.navigationController?.popViewController(animated: true)
+			}
+		}
+	}
 
     func checkBasicBusiness() -> BasicBusiness? {
         

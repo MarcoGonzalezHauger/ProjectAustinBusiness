@@ -18,6 +18,10 @@ class NewDistributeVC: BaseVC, changedDelegate {
     @IBOutlet weak var money: MoneyField!
     
     var amountOfMoneyInCents: Int = 10000
+    
+    var draftOffer: DraftOffer!
+    
+    var filter: OfferFilter!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,13 +40,55 @@ class NewDistributeVC: BaseVC, changedDelegate {
             let offerAmount = getDesiredCashPower()
                 if offerAmount > 0 {
                     
-                }
+                    if MyCompany.finance.balance > 0 {
+                        
+                        let basicBusiness = globalBasicBusinesses.filter { (basic) -> Bool in
+                            return basic.basicId == self.draftOffer.basicId!
+                        }
+                   
+                        self.draftOffer.distributeToPool(asBusiness: MyCompany, asBasic: basicBusiness.first!, filter: self.filter, withMoney: offerAmount, withDrawFundsFalseForTestingOnly: true) { (error, dataOfBusiness) in
+                            
+                            if dataOfBusiness == nil{
+                                self.showAlertMessage(title: "Alert", message: error) {
+                                    
+                                }
+                            }else{
+                                MyCompany = dataOfBusiness!
+                                DispatchQueue.main.async {
+                                    self.navigationController?.popToRootViewController(animated: true)
+                                }
+                                
+                            }
+                            
+                        }
+                        
+                    }else{
+                        
+                        self.showAlertMessage(title: "No Budget", message: "You have a low balance.") {
+                            
+                        }
+                        
+                    }
+                    
+                }else{
+                    self.showAlertMessage(title: "Enter Amount", message: "Enter how much money you would like to spend distributing your offer.") {
+                        
+                    }
+            }
+                
+        }else{
+            self.showAlertMessage(title: "No Budget", message: "You did not select a budget for the offer.") {
                 
             }
+        }
     }
     
     override func doneButtonAction() {
         self.money.resignFirstResponder()
+    }
+    
+    @IBAction func cancelAction(sender: UIButton){
+        self.navigationController?.popViewController(animated: true)
     }
 
     /*

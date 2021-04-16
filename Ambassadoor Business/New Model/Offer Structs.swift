@@ -139,6 +139,8 @@ class OfferFilter {
 	var acceptedGenders: [String]
 	var mustBe21: Bool
 	var minimumEngagementRate: Double
+    var averageLikes: Double
+    
 	
 	var businessId: String
 	var basicId: String
@@ -152,6 +154,7 @@ class OfferFilter {
 		acceptedGenders = d["acceptedGenders"] as? [String] ?? []
 		mustBe21 = d["mustBe21"] as! Bool
 		minimumEngagementRate = d["minimumEngagementRate"] as! Double
+        averageLikes = d["averageLikes"] as? Double ?? 0.0
 		
 	}
 	
@@ -165,6 +168,7 @@ class OfferFilter {
 		d["acceptedGenders"] = acceptedGenders
 		d["mustBe21"] = mustBe21
 		d["minimumEngagementRate"] = minimumEngagementRate
+        d["averageLikes"] = averageLikes
 		
 		return d
 	}
@@ -468,7 +472,7 @@ class sentOffer { //when business goes back to look at previously sent out offer
 		
 		poolId = d["poolId"] as! String
 		draftOfferId = d["draftOfferId"] as! String
-		inProgressPosts = d["inProgressPosts"] as! [InProgressPost]
+		inProgressPosts = d["inProgressPosts"] as? [InProgressPost] ?? []
 		title = d["title"] as! String
 		timeSent = (d["timeSent"] as! String).toUDate()
 		basicId = d["basicId"] as! String

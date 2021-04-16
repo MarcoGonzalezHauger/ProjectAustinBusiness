@@ -74,6 +74,8 @@ class SelectRadiiVC: BaseVC, UITableViewDelegate, UITableViewDataSource, RadiusD
 	@IBOutlet weak var radiusAroundLocation: UILabel!
 	@IBOutlet weak var UseAreaButtonView: ShadowView!
 	@IBOutlet weak var UseAreaButton: UIButton!
+    
+    var zipCollection: ZipcodeCollectionDelegate?
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return locations.count + 1
@@ -86,16 +88,37 @@ class SelectRadiiVC: BaseVC, UITableViewDelegate, UITableViewDataSource, RadiusD
 				vals.append("\(loc.zip)-\(loc.radius)")
 			}
 			let returnValue = "zipcode:" + vals.joined(separator: ",")
-			self.locationDelegate?.LocationFilterChosen(filter: returnValue)
-            if let nav = self.navigationController{
-                nav.popViewController(animated: true)
-            }else{
-                dismiss(animated: true, completion: nil)
-            }
+			//self.locationDelegate?.LocationFilterChosen(filter: returnValue)
+            self.getZipcodesradious(filter: returnValue)
+            
 		} else {
 			YouShallNotPass(SaveButtonView: UseAreaButtonView, returnColor: .lightGray)
 		}
 	}
+    
+        func getZipcodesradious(filter: String) {
+        let data1 = filter.components(separatedBy: ":")[1]
+        var returnData: [String] = []
+        var index = 0
+        for data in data1.components(separatedBy: ",") {
+            let zip = data.components(separatedBy: "-")[0]
+            let radius = Int(data.components(separatedBy: "-")[1]) ?? 0
+            GetAllZipCodesInRadius(zipCode: zip, radiusInMiles: radius) { (returns, zip, radius) in
+                if let returns = returns {
+                    returnData.append(contentsOf: returns.keys)
+                }
+                index += 1
+                if index >= data1.components(separatedBy: ",").count {
+                   print(returnData)
+                    self.zipCollection?.sendZipcodeCollection(zipcodes: returnData)
+                    DispatchQueue.main.async {
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
+            }
+        }
+
+    }
 	
 	@IBAction func backClicked(_ sender: Any) {
 		navigationController?.popViewController(animated: true)

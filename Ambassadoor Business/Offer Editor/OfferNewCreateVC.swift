@@ -55,6 +55,8 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     
     var draftTemp: DraftOffer?
     
+    @IBOutlet weak var backBtn: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +68,7 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        backBtn.isUserInteractionEnabled = true
         self.setOfferData()
     }
     
@@ -73,7 +76,7 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
         
         if index != nil {
             let draftOffer = MyCompany.drafts[index!]
-            self.offerName.text = "Offer \((index! + 1))"
+            self.offerName.text = draftOffer.title == "" ? "Offer \((MyCompany.drafts.count))" : draftOffer.title
             self.offerName.isUserInteractionEnabled = false
             
             let company = MyCompany.basics.filter({ (basic) -> Bool in
@@ -140,7 +143,7 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     func createTempDraft() -> DraftOffer {
         
         let draftID = GetNewID()
-        let tempDict = ["title":"","mustBeOver21": false, "payIncrease": 1.0, "lastEdited": Date().toUString()] as [String : Any]
+        let tempDict = ["title":self.offerName.text!,"mustBeOver21": false, "payIncrease": 1.0, "lastEdited": Date().toUString()] as [String : Any]
         let draft = DraftOffer.init(dictionary: tempDict, businessId: MyCompany.businessId, draftId: draftID)
         return draft
     }
@@ -152,6 +155,8 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     
     @IBAction func dismissAction(sender: UIButton){
         
+        backBtn.isUserInteractionEnabled = false
+        
         if self.isSavable() {
             draftTemp!.lastEdited = Date()
             if index == nil{
@@ -162,8 +167,16 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
             
             MyCompany.UpdateToFirebase { (error) in
                 if !error{
-                   self.navigationController?.popViewController(animated: true)
+                    DispatchQueue.main.async {
+                        self.backBtn.isUserInteractionEnabled = true
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                    
                 }
+            }
+        }else{
+            DispatchQueue.main.async {
+                self.backBtn.isUserInteractionEnabled = true
             }
         }
         
@@ -191,6 +204,9 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         textField.resignFirstResponder()
         self.offerName.isUserInteractionEnabled = false
+        if textField.text?.count != 0{
+            self.draftTemp?.title = textField.text!
+        }
         return true
     }
     
@@ -271,14 +287,15 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
         if self.isSavable() {
             draftTemp!.lastEdited = Date()
             if index == nil{
-               MyCompany.drafts.append(draftTemp!)
+                self.index = MyCompany.drafts.count
+                MyCompany.drafts.append(draftTemp!)
             }else{
                MyCompany.drafts[index!] = draftTemp!
             }
             
             MyCompany.UpdateToFirebase { (error) in
                 if !error{
-                   self.performSegue(withIdentifier: "toFilterOffer", sender: self)
+                    self.performSegue(withIdentifier: "toFilterOffer", sender: self.draftTemp!)
                 }
             }
         }
@@ -298,6 +315,10 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
         if let view = segue.destination as? PostDetailVC {
             view.draftOffer =  self.draftTemp
             view.postIndex = sender as? Int
+        }
+        
+        if let view = segue.destination as? OfferFilterVC {
+            view.draftOffer = (sender as! DraftOffer)
         }
     }
     

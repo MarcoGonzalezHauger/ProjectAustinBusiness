@@ -75,7 +75,11 @@ class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePh
                 let post = draftOffer?.draftPosts[postIndex!]
                 phraseList.append(contentsOf: post!.requiredKeywords)
                 for hashtag in post!.requiredHastags {
-                    phraseList.append("#\(hashtag)")
+                    if hashtag.starts(with: "#") {
+                        phraseList.append("\(hashtag)")
+                    }else{
+                        phraseList.append("#\(hashtag)")
+                    }
                 }
                 
                 self.postInstruction.text = post?.instructions
@@ -129,19 +133,19 @@ class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePh
     
     @IBAction func dismissAction(sender: AnyObject){
         if self.postInstruction.text.count == 0 {
-            self.showAlertMessage(title: "Alert", message: "Please enter the instruction") {
+            self.showAlertMessage(title: "Alert", message: "You need to put in instructions for the influencer to follow.") {
             }
             return
         }
         for phase in self.phraseList {
             if phase == "" {
-                self.showAlertMessage(title: "Alert", message: "Please enter any phase") {
+                self.showAlertMessage(title: "Alert", message: "You left a blank in your required caption items.") {
                 }
                 return
             }
             
             if phase == "#" {
-                self.showAlertMessage(title: "Alert", message: "Please enter any HashTag") {
+                self.showAlertMessage(title: "Alert", message: "You left a blank hashtag in your required caption items.") {
                 }
                 return
             }

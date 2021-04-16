@@ -115,6 +115,8 @@ class SelectStatesVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 	@IBOutlet weak var statesShelf: UITableView!
 	@IBOutlet weak var UseStateView: ShadowView!
 	@IBOutlet weak var UseStateButton: UIButton!
+    
+    var zipCollection: ZipcodeCollectionDelegate?
 	
 	@IBAction func UseState(_ sender: Any) {
 		if selectedStates.count == 0 {
@@ -126,10 +128,29 @@ class SelectStatesVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 				vals.append(state.shortName)
 			}
 			let returnValue = "states:" + vals.joined(separator: ",")
-			self.locationDelegate?.LocationFilterChosen(filter: returnValue)
-			self.navigationController?.popViewController(animated: true)
+//			self.locationDelegate?.LocationFilterChosen(filter: returnValue)
+            self.getStateFilterZips(filter: returnValue)
 		}
 	}
+    
+    func getStateFilterZips(filter: String) {
+        let data = filter.components(separatedBy: ":")[1]
+        var returnData: [String] = []
+        var index = 0
+        for stateName in data.components(separatedBy: ",") {
+            GetZipCodesInState(stateShortName: stateName) { (zips1) in
+                returnData.append(contentsOf: zips1)
+                index += 1
+                if index == data.components(separatedBy: ",").count {
+                   print(returnData)
+                    self.zipCollection?.sendZipcodeCollection(zipcodes: returnData)
+                    DispatchQueue.main.async {
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
+            }
+        }
+    }
 	
 	var locationString: String {
 		if let getls = locationDelegate?.GetLocationString {

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hj4-Pb-rUV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hj4-Pb-rUV">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -193,7 +195,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="backgroundColor" systemColor="systemRedColor"/>
                                                                 <constraints>
                                                                     <constraint firstItem="CnK-Hu-7Yz" firstAttribute="centerY" secondItem="QbC-hb-oz0" secondAttribute="centerY" constant="-1.5" id="6Nt-7S-MUl"/>
                                                                     <constraint firstItem="CnK-Hu-7Yz" firstAttribute="centerX" secondItem="QbC-hb-oz0" secondAttribute="centerX" constant="-0.5" id="9c2-D8-IS1"/>
@@ -236,6 +238,7 @@
                                 <blurEffect style="regular"/>
                             </visualEffectView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="ZRx-GV-cW7"/>
                         <color key="backgroundColor" name="newSubtleBackground"/>
                         <constraints>
                             <constraint firstItem="iHk-f5-Kfo" firstAttribute="top" secondItem="ZRx-GV-cW7" secondAttribute="top" id="Drc-0U-n0I"/>
@@ -246,7 +249,6 @@
                             <constraint firstItem="iHk-f5-Kfo" firstAttribute="leading" secondItem="ZRx-GV-cW7" secondAttribute="leading" id="nkg-MA-p8i"/>
                             <constraint firstAttribute="bottom" secondItem="rW8-Oj-VHd" secondAttribute="bottom" id="xve-ID-4hK"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="ZRx-GV-cW7"/>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="rW8-Oj-VHd" id="sWl-i0-MAs"/>
@@ -275,22 +277,22 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qU9-zk-oIl" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="-9" width="375" height="110"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick Your Interests" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KAa-cf-iB0">
-                                        <rect key="frame" x="108.66666666666669" y="71" width="158" height="23"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Influencer Interests" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KAa-cf-iB0">
+                                        <rect key="frame" x="114.33333333333333" y="73" width="146.33333333333337" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vtW-K4-5WO">
-                                        <rect key="frame" x="10" y="65" width="59" height="35"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vtW-K4-5WO">
+                                        <rect key="frame" x="10" y="66" width="59" height="35"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <state key="normal" title="Cancel"/>
                                         <connections>
                                             <action selector="cancelPressed:" destination="hj4-Pb-rUV" eventType="touchUpInside" id="983-Ul-iPt"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eMq-dc-rFq">
-                                        <rect key="frame" x="318" y="65" width="47" height="35"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eMq-dc-rFq">
+                                        <rect key="frame" x="318" y="66" width="47" height="35"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                         <state key="normal" title="Done"/>
                                         <connections>
@@ -324,7 +326,8 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="bX9-Ti-OgE"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="oB6-Cc-dSL" firstAttribute="top" secondItem="qU9-zk-oIl" secondAttribute="bottom" id="Acz-jj-sac"/>
                             <constraint firstItem="qU9-zk-oIl" firstAttribute="trailing" secondItem="bX9-Ti-OgE" secondAttribute="trailing" id="cbP-aB-95L"/>
@@ -334,7 +337,6 @@
                             <constraint firstItem="oB6-Cc-dSL" firstAttribute="leading" secondItem="bX9-Ti-OgE" secondAttribute="leading" id="scz-QY-DFW"/>
                             <constraint firstItem="oB6-Cc-dSL" firstAttribute="trailing" secondItem="bX9-Ti-OgE" secondAttribute="trailing" id="xw6-gP-Azr"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="bX9-Ti-OgE"/>
                     </view>
                     <connections>
                         <outlet property="doneButton" destination="eMq-dc-rFq" id="GJE-jD-0xl"/>
@@ -358,5 +360,11 @@
         <namedColor name="newTrueBack">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

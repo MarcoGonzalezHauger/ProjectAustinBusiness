@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PY6-HP-jp8">
-    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -337,11 +337,12 @@
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0xL-1Y-27q" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="243" width="351" height="100"/>
                                                 <subviews>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="E6y-ra-saI">
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="E6y-ra-saI">
                                                         <rect key="frame" x="0.0" y="0.0" width="351" height="100"/>
                                                         <color key="backgroundColor" name="newCellColor"/>
+                                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <prototypes>
-                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="postlist" textLabel="vr3-Dc-kfx" rowHeight="45" style="IBUITableViewCellStyleDefault" id="CU0-gn-Qst" customClass="AddPostTC" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="0.0" reuseIdentifier="postlist" textLabel="vr3-Dc-kfx" rowHeight="45" style="IBUITableViewCellStyleDefault" id="CU0-gn-Qst" customClass="AddPostTC" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="28" width="351" height="45"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CU0-gn-Qst" id="ojw-uu-CTJ">
@@ -357,19 +358,20 @@
                                                                         </label>
                                                                     </subviews>
                                                                 </tableViewCellContentView>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <connections>
                                                                     <outlet property="addPostText" destination="vr3-Dc-kfx" id="GjM-8t-FJL"/>
                                                                 </connections>
                                                             </tableViewCell>
-                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="addpost" textLabel="kAM-Sm-pxa" style="IBUITableViewCellStyleDefault" id="S7o-oS-PbV" customClass="NewAddPostCell" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="73" width="351" height="44"/>
+                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="0.0" reuseIdentifier="addpost" textLabel="kAM-Sm-pxa" style="IBUITableViewCellStyleDefault" id="S7o-oS-PbV" customClass="NewAddPostCell" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="73" width="351" height="43.666667938232422"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="S7o-oS-PbV" id="XsK-7V-dcb">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="325" height="44"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="325" height="43.666667938232422"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Add Post" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kAM-Sm-pxa">
-                                                                            <rect key="frame" x="15" y="0.0" width="302" height="44"/>
+                                                                            <rect key="frame" x="15" y="0.0" width="302" height="43.666667938232422"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
@@ -377,6 +379,7 @@
                                                                         </label>
                                                                     </subviews>
                                                                 </tableViewCellContentView>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </tableViewCell>
                                                         </prototypes>
                                                     </tableView>
@@ -524,6 +527,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="ZS2-F1-FtF"/>
                     <connections>
+                        <outlet property="backBtn" destination="Nw2-6k-Nsg" id="MD6-3P-sZL"/>
                         <outlet property="cmyName" destination="h5W-2K-ch8" id="he4-N3-4be"/>
                         <outlet property="delView" destination="nZg-Pd-ucs" id="PP8-M2-1XK"/>
                         <outlet property="informationalLabel" destination="Obi-Gk-3yA" id="QDr-Hs-pqr"/>
@@ -553,16 +557,16 @@
                                 <rect key="frame" x="0.0" y="128" width="414" height="1272"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vZx-86-Wxa">
-                                        <rect key="frame" x="12" y="31.999999999999943" width="390" height="988.66666666666652"/>
+                                        <rect key="frame" x="12" y="31.999999999999943" width="390" height="1005.6666666666665"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="My Instructions for Influencer:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xed-tl-TuO">
-                                                <rect key="frame" x="51.666666666666657" y="8" width="287" height="25.666666666666671"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Instructions for Influencer:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xed-tl-TuO">
+                                                <rect key="frame" x="51.666666666666657" y="8.0000000000000018" width="287" height="25.666666666666671"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jfJ-x5-Ccq">
-                                                <rect key="frame" x="0.0" y="41.666666666666629" width="390" height="223.33333333333337"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jfJ-x5-Ccq">
+                                                <rect key="frame" x="0.0" y="41.666666666666643" width="390" height="223.33333333333337"/>
                                                 <string key="text">Influencers who accept this offer will be required to follow all your instructions. An Ambassadoor Verifier will check that the influencer has properly followed your instructions and met our influencing standards.
 
 Write your instructions below, this what will be shown to the influencer.
@@ -572,12 +576,12 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FgW-UC-hG6" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FgW-UC-hG6" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="281" width="390" height="200"/>
                                                 <subviews>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QF3-8H-vxz">
                                                         <rect key="frame" x="4" y="0.0" width="382" height="200"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" name="newCellColor"/>
                                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -600,13 +604,13 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="My Caption Requirements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sjb-n5-iyP">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Caption Requirements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sjb-n5-iyP">
                                                 <rect key="frame" x="71" y="545" width="248" height="26"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ysm-dR-dkT">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ysm-dR-dkT">
                                                 <rect key="frame" x="0.0" y="587" width="390" height="101.66666666666663"/>
                                                 <string key="text">The Influencer's post to Instagram must include all the phrases and hashtags that you list below.
 
@@ -623,7 +627,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                         <subviews>
                                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="I4f-pb-woH">
                                                                 <rect key="frame" x="0.0" y="50" width="382" height="230"/>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <prototypes>
                                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="phraseCell" rowHeight="55" id="urQ-Ks-CM9" customClass="KeyphraseCell" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="28" width="382" height="55"/>
@@ -648,12 +652,14 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                                                         <constraint firstAttribute="width" constant="34" id="hrn-IG-kXY"/>
                                                                                         <constraint firstAttribute="height" constant="34" id="qOX-Vp-crH"/>
                                                                                     </constraints>
-                                                                                    <state key="normal" image="remove_item"/>
+                                                                                    <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                    <state key="normal" image="deleteButton"/>
                                                                                     <connections>
                                                                                         <action selector="deletePhrase:" destination="urQ-Ks-CM9" eventType="touchUpInside" id="VK3-9V-MA6"/>
                                                                                     </connections>
                                                                                 </button>
                                                                             </subviews>
+                                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <constraints>
                                                                                 <constraint firstItem="hQ7-Mf-RuK" firstAttribute="leading" secondItem="4Xx-nN-Qdp" secondAttribute="trailing" constant="3" id="7YQ-Gw-u51"/>
                                                                                 <constraint firstItem="hQ7-Mf-RuK" firstAttribute="centerY" secondItem="4Xx-nN-Qdp" secondAttribute="centerY" id="knj-3v-jmZ"/>
@@ -662,6 +668,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                                                 <constraint firstAttribute="trailingMargin" secondItem="hQ7-Mf-RuK" secondAttribute="trailing" constant="-12" id="pn5-7e-FFK"/>
                                                                             </constraints>
                                                                         </tableViewCellContentView>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <connections>
                                                                             <outlet property="delete" destination="hQ7-Mf-RuK" id="3y3-D5-HAE"/>
                                                                             <outlet property="phraseText" destination="4Xx-nN-Qdp" id="lje-wu-IMy"/>
@@ -679,13 +686,15 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HhX-Jy-OIK">
                                                                         <rect key="frame" x="3" y="3" width="185.33333333333334" height="44"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                                        <state key="normal" title="Add Hashtag"/>
+                                                                        <state key="normal" title="Add Hashtag">
+                                                                            <color key="titleColor" name="AmbPurple"/>
+                                                                        </state>
                                                                         <connections>
                                                                             <action selector="addHashtag:" destination="hx3-x1-hCi" eventType="touchUpInside" id="8cc-NC-uaN"/>
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstItem="HhX-Jy-OIK" firstAttribute="leading" secondItem="hTL-dg-T2b" secondAttribute="leading" constant="3" id="F48-vl-9mk"/>
                                                                     <constraint firstItem="HhX-Jy-OIK" firstAttribute="top" secondItem="hTL-dg-T2b" secondAttribute="top" constant="3" id="FLx-vQ-MXJ"/>
@@ -710,13 +719,15 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yaf-48-lDn">
                                                                         <rect key="frame" x="3" y="3" width="185.66666666666666" height="44"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                                        <state key="normal" title="Add Phrase"/>
+                                                                        <state key="normal" title="Add Phrase">
+                                                                            <color key="titleColor" name="AmbPurple"/>
+                                                                        </state>
                                                                         <connections>
                                                                             <action selector="addPhrase:" destination="hx3-x1-hCi" eventType="touchUpInside" id="zc7-ph-wAB"/>
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="9RY-5q-Vj2"/>
                                                                     <constraint firstItem="Yaf-48-lDn" firstAttribute="top" secondItem="WoA-6D-vrx" secondAttribute="top" constant="3" id="LAR-69-kah"/>
@@ -737,7 +748,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="backgroundColor" name="newCellColor"/>
                                                         <constraints>
                                                             <constraint firstItem="I4f-pb-woH" firstAttribute="top" secondItem="hTL-dg-T2b" secondAttribute="bottom" id="Bvs-Bz-IXX"/>
                                                             <constraint firstItem="WoA-6D-vrx" firstAttribute="top" secondItem="FGV-ZA-YPe" secondAttribute="top" id="HNW-c6-Eya"/>
@@ -776,7 +787,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" name="newCellColor"/>
                                                 <constraints>
                                                     <constraint firstItem="FGV-ZA-YPe" firstAttribute="top" secondItem="SJS-d4-isZ" secondAttribute="top" id="0Hg-Tc-mDq"/>
                                                     <constraint firstAttribute="height" constant="301" id="ejP-dG-CvR"/>
@@ -793,7 +804,6 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="988.5" id="5gv-6r-hKb"/>
                                             <constraint firstItem="ysm-dR-dkT" firstAttribute="top" secondItem="Sjb-n5-iyP" secondAttribute="bottom" constant="16" id="D4d-pG-1xq"/>
                                             <constraint firstAttribute="trailing" secondItem="SJS-d4-isZ" secondAttribute="trailing" id="F1S-Ot-OaC"/>
                                             <constraint firstItem="SJS-d4-isZ" firstAttribute="leading" secondItem="vZx-86-Wxa" secondAttribute="leading" id="GpL-x3-r5X"/>
@@ -804,8 +814,8 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                             <constraint firstItem="Sjb-n5-iyP" firstAttribute="top" secondItem="FgW-UC-hG6" secondAttribute="bottom" constant="64" id="U5D-X8-odf"/>
                                             <constraint firstItem="FgW-UC-hG6" firstAttribute="leading" secondItem="vZx-86-Wxa" secondAttribute="leading" id="YeQ-of-snB"/>
                                             <constraint firstItem="SJS-d4-isZ" firstAttribute="top" secondItem="ysm-dR-dkT" secondAttribute="bottom" constant="16" id="hBm-qw-EQh"/>
-                                            <constraint firstAttribute="bottom" secondItem="ysm-dR-dkT" secondAttribute="bottom" constant="300" id="qll-uV-svp"/>
                                             <constraint firstAttribute="trailing" secondItem="jfJ-x5-Ccq" secondAttribute="trailing" id="qqj-vN-AXX"/>
+                                            <constraint firstAttribute="bottom" secondItem="SJS-d4-isZ" secondAttribute="bottom" id="rT8-Md-Gb4"/>
                                             <constraint firstItem="jfJ-x5-Ccq" firstAttribute="top" secondItem="xed-tl-TuO" secondAttribute="bottom" constant="8" symbolic="YES" id="sRs-LC-hZW"/>
                                             <constraint firstItem="Sjb-n5-iyP" firstAttribute="centerX" secondItem="vZx-86-Wxa" secondAttribute="centerX" id="teR-1L-I5f"/>
                                             <constraint firstItem="jfJ-x5-Ccq" firstAttribute="leading" secondItem="vZx-86-Wxa" secondAttribute="leading" id="toF-y9-i2H"/>
@@ -818,7 +828,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                     <constraint firstItem="FgW-UC-hG6" firstAttribute="leading" secondItem="yFD-Cv-5IN" secondAttribute="leading" constant="12" id="SIe-sg-fx8"/>
                                     <constraint firstItem="vZx-86-Wxa" firstAttribute="width" secondItem="yFD-Cv-5IN" secondAttribute="width" constant="-24" id="SQT-fd-7FL"/>
                                     <constraint firstItem="vZx-86-Wxa" firstAttribute="leading" secondItem="yFD-Cv-5IN" secondAttribute="leading" constant="12" id="U8N-wk-8X0"/>
-                                    <constraint firstAttribute="bottom" secondItem="vZx-86-Wxa" secondAttribute="bottom" id="lDd-0w-YNP"/>
+                                    <constraint firstAttribute="bottom" secondItem="vZx-86-Wxa" secondAttribute="bottom" id="XnU-b4-CS0"/>
                                     <constraint firstAttribute="trailing" secondItem="vZx-86-Wxa" secondAttribute="trailing" constant="12" id="pH0-AW-6lS"/>
                                     <constraint firstItem="vZx-86-Wxa" firstAttribute="top" secondItem="yFD-Cv-5IN" secondAttribute="top" constant="32" id="zqa-3H-fks"/>
                                 </constraints>
@@ -936,7 +946,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                         <color key="value" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="8"/>
@@ -1020,7 +1030,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" name="newCellColor"/>
                                                 <constraints>
                                                     <constraint firstItem="Zxy-DL-fft" firstAttribute="leading" secondItem="yZ6-w1-ahL" secondAttribute="leading" constant="8" id="EKe-og-o11"/>
                                                     <constraint firstItem="Zxy-DL-fft" firstAttribute="top" secondItem="yZ6-w1-ahL" secondAttribute="top" constant="8" id="IYg-D2-vdM"/>
@@ -1056,7 +1066,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" name="newCellColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="UXo-vr-8xu" secondAttribute="bottom" constant="8" id="2CQ-Zq-cte"/>
                                                     <constraint firstItem="ayU-2w-ulb" firstAttribute="top" secondItem="Pas-Im-GDX" secondAttribute="top" constant="8" id="6WP-sw-DEz"/>
@@ -1092,7 +1102,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" name="newCellColor"/>
                                                 <constraints>
                                                     <constraint firstItem="0kK-cU-1a3" firstAttribute="leading" secondItem="hbi-DE-iiF" secondAttribute="leading" constant="8" id="3BY-Pf-3dS"/>
                                                     <constraint firstItem="0kK-cU-1a3" firstAttribute="top" secondItem="hbi-DE-iiF" secondAttribute="top" constant="8" id="CAK-bt-CxO"/>
@@ -1128,7 +1138,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" name="newCellColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="Ipw-VX-aHy" secondAttribute="bottom" constant="8" id="55M-lW-fj3"/>
                                                     <constraint firstItem="dbL-pG-jk6" firstAttribute="top" secondItem="sV9-uV-ig6" secondAttribute="top" constant="8" id="Owc-uS-oUk"/>
@@ -1145,20 +1155,20 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jse-bs-i3s" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="514.33333333333337" width="351" height="200"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can change all your filters later." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YYw-w9-8PR">
-                                                        <rect key="frame" x="8" y="8" width="300.66666666666669" height="23"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can change these filters after you send out this offer." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YYw-w9-8PR">
+                                                        <rect key="frame" x="8" y="8" width="335" height="45.666666666666664"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" name="AmbDarkPurple"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Influencers that meet your filters:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DKq-u0-wBc">
-                                                        <rect key="frame" x="8" y="35" width="294.33333333333331" height="21"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total number of influencers that meet your filters:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DKq-u0-wBc">
+                                                        <rect key="frame" x="8" y="57.666666666666629" width="335" height="40.666666666666657"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7gp-Ze-1pe" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                                        <rect key="frame" x="145.33333333333334" y="69" width="60.333333333333343" height="33.666666666666657"/>
+                                                        <rect key="frame" x="145.33333333333334" y="111.33333333333327" width="60.333333333333343" height="33.666666666666671"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pUf-5H-hxn">
                                                                 <rect key="frame" x="12" y="4.0000000000000018" width="36.333333333333336" height="25.666666666666671"/>
@@ -1181,12 +1191,12 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QPu-XA-xZE" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                                        <rect key="frame" x="279" y="152" width="64" height="40"/>
+                                                        <rect key="frame" x="263" y="152" width="80" height="40"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9RP-Xp-PO3">
-                                                                <rect key="frame" x="8" y="1" width="48" height="38"/>
+                                                                <rect key="frame" x="8" y="1" width="64" height="38"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                                <state key="normal" title="Send">
+                                                                <state key="normal" title="Next">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
                                                                 <connections>
@@ -1197,6 +1207,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                         <color key="backgroundColor" name="AmbPurple"/>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="9RP-Xp-PO3" secondAttribute="trailing" constant="8" id="0dO-NC-6q6"/>
+                                                            <constraint firstAttribute="width" constant="80" id="ICZ-3m-Fx0"/>
                                                             <constraint firstAttribute="bottom" secondItem="9RP-Xp-PO3" secondAttribute="bottom" constant="1" id="LyT-Ho-iw9"/>
                                                             <constraint firstItem="9RP-Xp-PO3" firstAttribute="leading" secondItem="QPu-XA-xZE" secondAttribute="leading" constant="8" id="lTG-wi-58A"/>
                                                             <constraint firstItem="9RP-Xp-PO3" firstAttribute="top" secondItem="QPu-XA-xZE" secondAttribute="top" constant="1" id="vbt-Ua-Nmf"/>
@@ -1208,16 +1219,18 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" name="newCellColor"/>
                                                 <constraints>
                                                     <constraint firstItem="7gp-Ze-1pe" firstAttribute="top" secondItem="DKq-u0-wBc" secondAttribute="bottom" constant="13" id="192-US-SD2"/>
                                                     <constraint firstItem="YYw-w9-8PR" firstAttribute="leading" secondItem="Jse-bs-i3s" secondAttribute="leading" constant="8" id="5QV-PP-tyI"/>
+                                                    <constraint firstAttribute="trailing" secondItem="DKq-u0-wBc" secondAttribute="trailing" constant="8" id="O4o-hl-Yhk"/>
                                                     <constraint firstAttribute="trailing" secondItem="QPu-XA-xZE" secondAttribute="trailing" constant="8" id="PUe-Hc-0aQ"/>
                                                     <constraint firstAttribute="bottom" secondItem="QPu-XA-xZE" secondAttribute="bottom" constant="8" id="QED-NW-dEu"/>
                                                     <constraint firstItem="DKq-u0-wBc" firstAttribute="top" secondItem="YYw-w9-8PR" secondAttribute="bottom" constant="4" id="Uga-aY-7rk"/>
                                                     <constraint firstItem="YYw-w9-8PR" firstAttribute="top" secondItem="Jse-bs-i3s" secondAttribute="top" constant="8" id="aNS-jt-qkP"/>
                                                     <constraint firstAttribute="height" constant="200" id="iDg-WR-nxB"/>
                                                     <constraint firstItem="7gp-Ze-1pe" firstAttribute="centerX" secondItem="Jse-bs-i3s" secondAttribute="centerX" id="oaV-xs-ZVC"/>
+                                                    <constraint firstAttribute="trailing" secondItem="YYw-w9-8PR" secondAttribute="trailing" constant="8" id="xm4-aF-qLC"/>
                                                     <constraint firstItem="DKq-u0-wBc" firstAttribute="leading" secondItem="Jse-bs-i3s" secondAttribute="leading" constant="8" id="yRv-4f-rA6"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
@@ -1227,12 +1240,13 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CKH-mo-Kvx">
-                                                <rect key="frame" x="0.0" y="-0.3333333333333357" width="40" height="30"/>
+                                                <rect key="frame" x="0.0" y="1.3333333333333286" width="40" height="40"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="zoi-tW-5Hf"/>
+                                                    <constraint firstAttribute="width" constant="40" id="2K9-Yg-Djq"/>
+                                                    <constraint firstAttribute="height" constant="40" id="zoi-tW-5Hf"/>
                                                 </constraints>
                                                 <color key="tintColor" name="AmbPurple"/>
-                                                <state key="normal" title="Back">
+                                                <state key="normal" image="backArrow">
                                                     <color key="titleColor" name="AmbPurple"/>
                                                 </state>
                                                 <connections>
@@ -1255,7 +1269,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                             <constraint firstItem="Pas-Im-GDX" firstAttribute="leading" secondItem="ndG-JD-1Iq" secondAttribute="leading" id="Vbt-g2-H0T"/>
                                             <constraint firstItem="sV9-uV-ig6" firstAttribute="top" secondItem="hbi-DE-iiF" secondAttribute="bottom" constant="16" id="YRb-dc-L9n"/>
                                             <constraint firstItem="sV9-uV-ig6" firstAttribute="leading" secondItem="ndG-JD-1Iq" secondAttribute="leading" id="aP6-ZT-w11"/>
-                                            <constraint firstItem="CKH-mo-Kvx" firstAttribute="centerY" secondItem="3C7-0F-8Zh" secondAttribute="centerY" constant="-6.4999999999999982" id="eNA-sN-RLy"/>
+                                            <constraint firstItem="CKH-mo-Kvx" firstAttribute="centerY" secondItem="3C7-0F-8Zh" secondAttribute="centerY" id="eNA-sN-RLy"/>
                                             <constraint firstItem="3C7-0F-8Zh" firstAttribute="centerX" secondItem="ndG-JD-1Iq" secondAttribute="centerX" id="gKx-v3-uc8"/>
                                             <constraint firstItem="Pas-Im-GDX" firstAttribute="top" secondItem="yZ6-w1-ahL" secondAttribute="bottom" constant="16" id="hXi-uW-Vk0"/>
                                             <constraint firstAttribute="trailing" secondItem="Jse-bs-i3s" secondAttribute="trailing" id="sFo-51-ZxY"/>
@@ -1270,7 +1284,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                     <constraint firstAttribute="height" constant="764" id="6zR-Tl-vrm"/>
                                     <constraint firstItem="ndG-JD-1Iq" firstAttribute="top" secondItem="Ado-pb-aM0" secondAttribute="top" constant="16" id="8B8-Jw-RGC"/>
                                     <constraint firstAttribute="trailing" secondItem="ndG-JD-1Iq" secondAttribute="trailing" constant="12" id="GIK-CX-UZV"/>
-                                    <constraint firstAttribute="bottom" secondItem="ndG-JD-1Iq" secondAttribute="bottom" constant="16" id="rzf-0k-bry"/>
+                                    <constraint firstAttribute="bottom" secondItem="ndG-JD-1Iq" secondAttribute="bottom" constant="32" id="rzf-0k-bry"/>
                                     <constraint firstItem="ndG-JD-1Iq" firstAttribute="leading" secondItem="Ado-pb-aM0" secondAttribute="leading" constant="12" id="v2k-nz-hqH"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="Lke-Dn-clP"/>
@@ -1493,6 +1507,9 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                             <real key="value" value="8"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="q6b-B4-6fW" appends="YES" id="TcF-CX-gwC"/>
+                                                    </connections>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zsx-1S-7Nv" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="110.66666666666669" width="351" height="104.33333333333331"/>
@@ -1586,15 +1603,21 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I8S-sI-8tP" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="351" height="143"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Click for radius around my locations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbf-FI-Q9I">
-                                                            <rect key="frame" x="8" y="8" width="272" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click for radius around my locations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbf-FI-Q9I">
+                                                            <rect key="frame" x="8" y="8" width="273" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="21" id="FJN-de-mRL"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <constraints>
+                                                        <constraint firstItem="bbf-FI-Q9I" firstAttribute="leading" secondItem="I8S-sI-8tP" secondAttribute="leading" constant="8" id="hRm-dK-CwF"/>
+                                                        <constraint firstItem="bbf-FI-Q9I" firstAttribute="top" secondItem="I8S-sI-8tP" secondAttribute="top" constant="8" id="rWA-Qg-xia"/>
+                                                    </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                             <real key="value" value="8"/>
@@ -1638,7 +1661,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                 <action selector="cancelActionWithSender:" destination="cs7-a5-TYD" eventType="touchUpInside" id="iPX-sQ-8JR"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zfe-Ge-IOR">
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zfe-Ge-IOR">
                                             <rect key="frame" x="320" y="12" width="43" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="43" id="8ac-p8-9Pb"/>
@@ -1671,7 +1694,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                         <constraint firstItem="G1w-Ij-Wxq" firstAttribute="top" secondItem="mQi-RD-clE" secondAttribute="bottom" constant="12" id="wXc-MY-gd0"/>
                                     </constraints>
                                 </view>
-                                <blurEffect style="systemMaterialLight"/>
+                                <blurEffect style="systemMaterial"/>
                             </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1712,8 +1735,13 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                         <action selector="toZipCodeViewActionWithSender:" destination="cs7-a5-TYD" id="ALO-FP-jIH"/>
                     </connections>
                 </tapGestureRecognizer>
+                <tapGestureRecognizer id="q6b-B4-6fW">
+                    <connections>
+                        <action selector="pickedNationWideWithSender:" destination="cs7-a5-TYD" id="wqU-EY-x3a"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3758" y="-896"/>
+            <point key="canvasLocation" x="3757.5999999999999" y="-896.30541871921184"/>
         </scene>
         <!--Filter RadiousVC-->
         <scene sceneID="FpW-5Q-uyK">
@@ -1867,6 +1895,9 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                 </constraints>
                                 <color key="tintColor" name="AmbPurple"/>
                                 <state key="normal" title="Cancel" image="backArrow"/>
+                                <connections>
+                                    <action selector="cancelActionWithSender:" destination="bW6-qa-OQn" eventType="touchUpInside" id="mVZ-xd-5zl"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1959,7 +1990,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New York, NY" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qsi-hv-naF">
                                                     <rect key="frame" x="15" y="6" width="282" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" textContentType="address-level2"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="5cs-6A-5Kg" id="9cZ-cf-hvy"/>
                                                     </connections>
@@ -2717,7 +2748,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                 <color key="tintColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" backgroundImage="multiply.circle.fill" catalog="system"/>
                                 <connections>
-                                    <action selector="cancelActionWithSender:" destination="cs7-a5-TYD" eventType="touchUpInside" id="OOl-uu-1a6"/>
+                                    <action selector="cancelActionWithSender:" destination="eQ2-kf-N9d" eventType="touchUpInside" id="mG7-aR-6UO"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wko-PF-JV0">
@@ -2742,7 +2773,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="useFilterActionWithSender:" destination="0zo-sV-rkt" eventType="touchUpInside" id="pVO-Lj-rE0"/>
+                                            <action selector="DistributeOfferActionWithSender:" destination="eQ2-kf-N9d" eventType="touchUpInside" id="Geq-Gi-uQo"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -2805,7 +2836,6 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
         <image name="multiply.circle.fill" catalog="system" width="128" height="121"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plusImage" width="75" height="75"/>
-        <image name="remove_item" width="84" height="84"/>
         <image name="square.and.pencil" catalog="system" width="128" height="118"/>
         <namedColor name="AmbDarkPurple">
             <color red="0.92900002002716064" green="0.23499999940395355" blue="0.40000000596046448" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
