@@ -17,6 +17,8 @@ class OfferList: UITableViewCell{
         didSet{
             if let offer = draftOffer{
                 
+                self.offerName.text = offer.title
+                
                 let company = MyCompany.basics.filter({ (basic) -> Bool in
                     return basic.basicId == offer.basicId
                 })
@@ -58,8 +60,9 @@ class NewOfferListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         }
         let identifier = "offerlist"
         let cell = self.offerList.dequeueReusableCell(withIdentifier: identifier) as! OfferList
-        cell.draftOffer = MyCompany.drafts[indexPath.row]
-        cell.offerName.text = "Offer \((indexPath.row + 1))"
+        let draft = MyCompany.drafts[indexPath.row]
+        cell.draftOffer = draft
+        cell.offerName.text = draft.title == "" ? "Offer \((indexPath.row + 1))" : draft.title
         return cell
     }
     

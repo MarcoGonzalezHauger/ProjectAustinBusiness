@@ -13,27 +13,44 @@ protocol reloadMyCompanyDelegate {
 }
 
 func setCompanyTabBarItem(tab: UITabBarController) {
-    guard let myCompany = MyCompany.basics.first else {return}
+    
+    let filtered = MyCompany.basics.filter { (basic) -> Bool in
+        return !basic.flags.contains("isDeleted") && !basic.flags.contains("isInvisible")
+    }
+    
+    if filtered.count == 0 {
+        setTabImage(image: UIImage.init(named: "default")!, tab: tab)
+        return
+    }
+    
+    guard let myCompany = filtered.first else {return}
     let logo = myCompany.logoUrl
     downloadImage(logo) { (image) in
-        DispatchQueue.main.async {
-            let size = CGSize.init(width: 32, height: 32)
-            
-            let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-            
-            UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
-            image?.draw(in: rect)
-            let newImage = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-            
-            if var image = newImage {
-                print(image.scale)
-                image = makeImageCircular(image: image)
-                print(image.scale)
-                tab.viewControllers?.first?.tabBarItem.image = image.withRenderingMode(.alwaysOriginal)
-            }
+        if image != nil{
+            setTabImage(image: image!, tab: tab)
+        }else{
+            setTabImage(image: UIImage.init(named: "default")!, tab: tab)
         }
+    }
+}
+
+func setTabImage(image: UIImage, tab: UITabBarController) {
+    DispatchQueue.main.async {
+        let size = CGSize.init(width: 32, height: 32)
         
+        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        
+        UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        if var image = newImage {
+            print(image.scale)
+            image = makeImageCircular(image: image)
+            print(image.scale)
+            tab.viewControllers?.first?.tabBarItem.image = image.withRenderingMode(.alwaysOriginal)
+        }
     }
 }
 
@@ -51,6 +68,7 @@ class AddProfileCell: UICollectionViewCell {
 
 class ProfilePickerVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, reloadMyCompanyDelegate {
     func reloadMyCompany() {
+        setCompanyTabBarItem(tab: self.tabBarController!)
         self.setCollectionDataSource()
     }
     
@@ -135,8 +153,14 @@ class ProfilePickerVC: UIViewController, UICollectionViewDelegate, UICollectionV
     @IBAction func removeBusinessAction(sender: UIButton){
         if !isDeleteHidden{
             isDeleteHidden = true
-            self.basicBusinessList.reloadData()
             self.removeBtn.setTitle("Remove a Business", for: .normal)
+            setCompanyTabBarItem(tab: self.tabBarController!)
+            MyCompany.UpdateToFirebase { (error) in
+                DispatchQueue.main.async {
+                    self.setCollectionDataSource()
+                }
+            }
+                        
         }else{
             isDeleteHidden = false
             self.basicBusinessList.reloadData()
@@ -167,11 +191,13 @@ class ProfilePickerVC: UIViewController, UICollectionViewDelegate, UICollectionV
         MyCompany.basics[index!].AddFlag("isDeleted")
         MyCompany.basics[index!].AddFlag("isInvisible")
         
-        MyCompany.UpdateToFirebase { (error) in
-            DispatchQueue.main.async {
-                self.setCollectionDataSource()
-            }
-        }
+        self.setCollectionDataSource()
+        
+//        MyCompany.UpdateToFirebase { (error) in
+//            DispatchQueue.main.async {
+//                self.setCollectionDataSource()
+//            }
+//        }
                 
     }
     

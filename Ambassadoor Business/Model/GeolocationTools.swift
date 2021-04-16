@@ -360,6 +360,8 @@ func GetZipCodeUsingCity(city: String, state: String, completed: @escaping (_ zi
                                 } else {
                                     completed([])
                                 }
+                            }else{
+                                completed([])
                             }
                         }
                     } catch {

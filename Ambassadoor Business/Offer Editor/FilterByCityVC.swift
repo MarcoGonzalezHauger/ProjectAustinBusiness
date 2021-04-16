@@ -11,7 +11,6 @@ import UIKit
 @objc protocol CityCellDelegate {
     @objc optional func ZipCodeValid(zipObj: CityObject, cell: CityCell)
     @objc optional func Delete(zipObj: CityObject, cell: CityCell)
-    @objc optional func SendCityObject(zipObj: [CityObject])
 }
 
 class CityCell: UITableViewCell, UITextFieldDelegate {
@@ -89,9 +88,8 @@ class FilterByCityVC: BaseVC, UITableViewDelegate, UITableViewDataSource, CityCe
     
     var totalCityObjects = [CityObject]()
     @IBOutlet weak var cityList: UITableView!
-    
-    var cityReturnDelegate: CityCellDelegate?
-    
+        
+    var zipCollection: ZipcodeCollectionDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -163,8 +161,13 @@ class FilterByCityVC: BaseVC, UITableViewDelegate, UITableViewDataSource, CityCe
             }
         }
         
-        self.cityReturnDelegate!.SendCityObject!(zipObj: self.totalCityObjects)
-        self.navigationController?.popViewController(animated: true)
+        var selectedZipCodes = [String]()
+        
+        for cityObj in self.totalCityObjects {
+            selectedZipCodes.append(contentsOf: cityObj.zipcodes)
+        }
+        self.zipCollection!.sendZipcodeCollection(zipcodes: selectedZipCodes)
+        self.dismiss(animated: true, completion: nil)
     }
 
     /*

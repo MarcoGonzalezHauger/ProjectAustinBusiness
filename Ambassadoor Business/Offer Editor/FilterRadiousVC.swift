@@ -80,15 +80,29 @@ class FilterRadiousVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     var filteredZips = [String]()
     
-    var radiousFilteredDelegate: RadiousFilteredDelegate?
+    //var radiousFilteredDelegate: RadiousFilteredDelegate?
+    
+    var zipCollection: ZipcodeCollectionDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         for basic in MyCompany.basics {
             allZipCode.append(contentsOf: basic.GetLocationZips())
         }
+        allZipCode = removeDuplicates()
         self.setTableData()
         // Do any additional setup after loading the view.
+    }
+    
+    func removeDuplicates() -> [String] {
+        
+        var unique = [String]()
+        for zip in allZipCode {
+            if !unique.contains(zip) {
+                unique.append(zip)
+            }
+        }
+        return unique
     }
     
     func setTableData() {
@@ -117,11 +131,16 @@ class FilterRadiousVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
                 }
                 index += 1
                 if index >= self.selectedZip.count {
-                    self.radiousFilteredDelegate?.radiousFilteredZipcodes(zipcodes: returnData)
-                    self.navigationController?.popViewController(animated: true)
+                    //self.radiousFilteredDelegate?.radiousFilteredZipcodes(zipcodes: returnData)
+                    self.zipCollection?.sendZipcodeCollection(zipcodes: returnData)
+                    self.dismiss(animated: true, completion: nil)
                 }
             }
         }
+    }
+    
+    @IBAction func cancelAction(sender: UIButton){
+        self.navigationController?.popViewController(animated: true)
     }
 
     /*

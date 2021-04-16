@@ -75,7 +75,11 @@ class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePh
                 let post = draftOffer?.draftPosts[postIndex!]
                 phraseList.append(contentsOf: post!.requiredKeywords)
                 for hashtag in post!.requiredHastags {
-                    phraseList.append("#\(hashtag)")
+                    if hashtag.starts(with: "#") {
+                        phraseList.append("\(hashtag)")
+                    }else{
+                        phraseList.append("#\(hashtag)")
+                    }
                 }
                 
                 self.postInstruction.text = post?.instructions

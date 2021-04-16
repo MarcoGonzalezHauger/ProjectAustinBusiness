@@ -21,7 +21,10 @@ class OfferFilterVC: BaseVC, InterestPickerDelegate, InfluencerStatsDelegate, Zi
     
     func sendZipcodeCollection(zipcodes: [String]) {
          selectedZipCodes = zipcodes
-         self.filteredInfText.text = "\(self.filterInfluencers().count)"
+        DispatchQueue.main.async {
+            self.filteredInfText.text = "\(self.filterInfluencers().count)"
+        }
+         
     }
     
     func sendInfluencerStats(avglikes: Double, engagement: Double) {
@@ -41,6 +44,8 @@ class OfferFilterVC: BaseVC, InterestPickerDelegate, InfluencerStatsDelegate, Zi
     var selectedGender = ""
     var averageLikes = 0.0
     var engagement = 0.0
+    
+    var draftOffer: DraftOffer!
     
     @IBOutlet weak var filteredInfText: UILabel!
 
@@ -65,7 +70,7 @@ class OfferFilterVC: BaseVC, InterestPickerDelegate, InfluencerStatsDelegate, Zi
     @IBAction func pickGender(sender: UIButton){
         
         ShowGenderPicker(self) { (newGender) in
-            self.selectedGender = newGender == "All" ? "" : newGender
+            self.selectedGender =  newGender
             self.filteredInfText.text = "\(self.filterInfluencers().count)"
         }
         
@@ -75,13 +80,13 @@ class OfferFilterVC: BaseVC, InterestPickerDelegate, InfluencerStatsDelegate, Zi
         self.performSegue(withIdentifier: "toFilterStats", sender: self)
     }
     
-    func getGenders(gender: String) -> String {
+    func getGenders(gender: String) -> [String] {
         
         switch gender {
         case "All":
-            return ""
+            return ["Male", "Female", "Other"]
         default:
-            return gender
+            return [gender]
         }
         
     }
@@ -94,7 +99,7 @@ class OfferFilterVC: BaseVC, InterestPickerDelegate, InfluencerStatsDelegate, Zi
         for user in globalBasicInfluencers {
             var locationMatch = (self.selectedZipCodes.count == 0)
             var categoryMatch = (self.selectedInterestArray.count == 0)
-            var genderMatch = (self.selectedGender == "")
+            var genderMatch = (self.selectedGender == "" || self.selectedGender == "All")
             var likesMatch = (self.averageLikes == 0.0)
             var engagementMatch = (self.engagement == 0.0)
             
@@ -138,7 +143,29 @@ class OfferFilterVC: BaseVC, InterestPickerDelegate, InfluencerStatsDelegate, Zi
     }
     
     @IBAction func sendOfferAction(sender: UIButton){
-        self.performSegue(withIdentifier: "toNewDistribute", sender: self)
+        
+        var filterDict = [String: AnyObject]()
+        
+        if self.selectedZipCodes.count != 0{
+            filterDict["acceptedZipCodes"] = self.selectedZipCodes as AnyObject
+        }
+        
+        if self.selectedInterestArray.count != 0 {
+            filterDict["acceptedInterests"] = self.selectedInterestArray as AnyObject
+        }
+        
+        if self.selectedGender != "" {
+            filterDict["acceptedGenders"] = getGenders(gender: self.selectedGender) as AnyObject
+        }
+        
+        filterDict["mustBe21"] = true as AnyObject
+        filterDict["minimumEngagementRate"] = self.engagement as AnyObject
+        filterDict["averageLikes"] = self.averageLikes as AnyObject
+        
+        let filter = OfferFilter.init(dictionary: filterDict, businessId: MyCompany.businessId, basicId: draftOffer.basicId!)
+        
+        self.performSegue(withIdentifier: "toNewDistribute", sender: filter)
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -157,6 +184,11 @@ class OfferFilterVC: BaseVC, InterestPickerDelegate, InfluencerStatsDelegate, Zi
                view.zipCollection = self
             }
             
+        }
+        
+        if let view = segue.destination as? NewDistributeVC {
+            view.draftOffer = self.draftOffer
+            view.filter = (sender as! OfferFilter)
         }
        
     }
