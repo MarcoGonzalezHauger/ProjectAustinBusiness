@@ -51,15 +51,15 @@ class CityCell: UITableViewCell, UITextFieldDelegate {
             if zipcodes != nil && zipcodes?.count != 0{
                 DispatchQueue.main.async {
                     self.mappinImg.tintColor = .systemGreen
-                    self.cityData?.city = "\(city),\(state)"
+                    self.cityData?.city = "\(city), \(state)"
                     self.cityData?.zipcodes = zipcodes!
                     self.cityDelegate!.ZipCodeValid!(zipObj: self.cityData!, cell: self)
                 }
             }else{
                 DispatchQueue.main.async {
-                self.cityText.text = ""
-                MakeShake(viewToShake: self)
-                self.mappinImg.tintColor = .red
+					self.cityText.text = ""
+					MakeShake(viewToShake: self)
+					self.mappinImg.tintColor = .red
                 }
             }
             
