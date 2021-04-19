@@ -403,7 +403,7 @@ class InProgressPost {
 		
 		
 		if let instaPostDict = d["instagramPost"] as? [String: Any] {
-			instagramPost = InstagramPost.init(dictionary: instaPostDict, userId: id)		//sometimes nil
+			instagramPost = InstagramPost.init(dictionary: instaPostDict, userId: id)
 		}									//sometimes ""
 		denyReason = d["denyReason"] as! String												//sometimes ""
 		
@@ -429,8 +429,8 @@ class InProgressPost {
 			d["comissionUserId"] = comissionUserId }
 		if let comissionBusinessId = comissionBusinessId {
 			d["comissionBusinessId"] = comissionBusinessId }
-		if let instagramPost = instagramPost {
-			d["instagramPost"] = instagramPost.toDictionary() }
+//		if let instagramPost = instagramPost {
+//			d["instagramPost"] = instagramPost.toDictionary() }
 		
 		d["status"] = status
 		d["cashValue"] = cashValue
@@ -448,8 +448,9 @@ class InProgressPost {
 		d["PoolOfferId"] = PoolOfferId
 		d["draftOfferId"] = draftOfferId
 		d["businessId"] = businessId
+		d["basicId"] = basicId
 		d["draftPostId"] = draftPostId
-        d["draftPost"] = draftPost.toDictionary()
+		d["draftPost"] = draftPost.toDictionary()
 		return d
 	}
 }
@@ -491,18 +492,6 @@ class sentOffer { //when business goes back to look at previously sent out offer
 		
 		sentOfferId = GetNewID()
 	}
-
-//	init(poolId pid: String, draftOfferId doid: String, businessId bid: String, title t: String) {
-//		poolId = pid
-//		draftOfferId = doid
-//		businessId = bid
-//		inProgressPosts = []
-//
-//		title = t
-//		timeSent = Date()
-//
-//		sentOfferId = GetNewID()
-//	}
 	
 	func toDictionary() -> [String: Any] {
 		var d: [String: Any] = [:]

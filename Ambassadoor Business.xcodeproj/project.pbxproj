@@ -116,6 +116,8 @@
 		E80B060A22A08D49002B9699 /* MoneyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80B060922A08D49002B9699 /* MoneyField.swift */; };
 		E816AC222282F3E200B9D951 /* MoneyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E816AC212282F3E200B9D951 /* MoneyVC.swift */; };
 		E82F890D22DD30B40036A079 /* CreateCompanyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82F890C22DD30B40036A079 /* CreateCompanyVC.swift */; };
+		E83C3877262A751400B1241D /* newStatistics.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E83C3876262A751400B1241D /* newStatistics.storyboard */; };
+		E83C387C262A78F100B1241D /* postsFromInfluencers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83C387B262A78F100B1241D /* postsFromInfluencers.swift */; };
 		E83F1C5424748D9400EA216B /* ViewOfferStatisticVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F1C5324748D9400EA216B /* ViewOfferStatisticVC.swift */; };
 		E83F378D227CDEE100BA6688 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F378C227CDEE100BA6688 /* SignUpVC.swift */; };
 		E83F378F227CDF3A00BA6688 /* GetPictureVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F378E227CDF3A00BA6688 /* GetPictureVC.swift */; };
@@ -264,6 +266,8 @@
 		E80B060922A08D49002B9699 /* MoneyField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyField.swift; sourceTree = "<group>"; };
 		E816AC212282F3E200B9D951 /* MoneyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyVC.swift; sourceTree = "<group>"; };
 		E82F890C22DD30B40036A079 /* CreateCompanyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCompanyVC.swift; sourceTree = "<group>"; };
+		E83C3876262A751400B1241D /* newStatistics.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = newStatistics.storyboard; sourceTree = "<group>"; };
+		E83C387B262A78F100B1241D /* postsFromInfluencers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postsFromInfluencers.swift; sourceTree = "<group>"; };
 		E83F1C5324748D9400EA216B /* ViewOfferStatisticVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewOfferStatisticVC.swift; sourceTree = "<group>"; };
 		E83F378C227CDEE100BA6688 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		E83F378E227CDF3A00BA6688 /* GetPictureVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPictureVC.swift; sourceTree = "<group>"; };
@@ -463,6 +467,15 @@
 			path = Money;
 			sourceTree = "<group>";
 		};
+		E83C3875262A750200B1241D /* New Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				E83C3876262A751400B1241D /* newStatistics.storyboard */,
+				E83C387B262A78F100B1241D /* postsFromInfluencers.swift */,
+			);
+			path = "New Statistics";
+			sourceTree = "<group>";
+		};
 		E83F378B227CDEBA00BA6688 /* Sign Up */ = {
 			isa = PBXGroup;
 			children = (
@@ -545,6 +558,7 @@
 		E8C3694022161B3000AE12D7 /* Ambassadoor Business */ = {
 			isa = PBXGroup;
 			children = (
+				E83C3875262A750200B1241D /* New Statistics */,
 				E874250E2608333F008D7375 /* Offer Editor */,
 				E8F7C9AE25FED6F7007893FF /* Business Profile */,
 				B7B72E07237C4953002AB168 /* Ambassadoor Business.entitlements */,
@@ -721,6 +735,7 @@
 				B7551F2F22F99B01001C4974 /* BasePicker.xib in Resources */,
 				B7FD83ED22F0870F00347E8E /* PostDetailTC.xib in Resources */,
 				B7FD83E922F0844C00347E8E /* AddPostTC.xib in Resources */,
+				E83C3877262A751400B1241D /* newStatistics.storyboard in Resources */,
 				B750E78522E5B75F00024CB1 /* Onboarding.storyboard in Resources */,
 				B724789A2603533300CD20FA /* AccountDetails.storyboard in Resources */,
 				B7AEF2C1247BA81B000AB4A4 /* TempLaunch.storyboard in Resources */,
@@ -853,6 +868,7 @@
 				B72CB50A22E7024500958AE0 /* UIViewExtension.swift in Sources */,
 				B72478A3260367C700CD20FA /* TransactionHistoryVC.swift in Sources */,
 				B77D4C392609CFF30002E04E /* PostDetailVC.swift in Sources */,
+				E83C387C262A78F100B1241D /* postsFromInfluencers.swift in Sources */,
 				E80B060822A07F63002B9699 /* WithdrawVC.swift in Sources */,
 				B7C9FE8F231E4870005580E4 /* PlaidHelper.swift in Sources */,
 				E83F1C5424748D9400EA216B /* ViewOfferStatisticVC.swift in Sources */,

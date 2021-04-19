@@ -54,17 +54,18 @@ class NewDistributeVC: BaseVC, changedDelegate {
                                 }
                             }else{
                                 MyCompany = dataOfBusiness!
-                                DispatchQueue.main.async {
-                                    self.navigationController?.popToRootViewController(animated: true)
-                                }
-                                
+								self.showAlertMessage(title: "Offer has been Sent", message: "When influencers accept this offer you will be able to view statistics on the Statistics page.") {
+									DispatchQueue.main.async {
+										self.navigationController?.popToRootViewController(animated: true)
+									}
+								}
                             }
                             
                         }
                         
                     }else{
                         
-                        self.showAlertMessage(title: "No Budget", message: "You have a low balance.") {
+                        self.showAlertMessage(title: "Couldn't Distribute Offer.", message: "You don't have any money in your account.") {
                             
                         }
                         
