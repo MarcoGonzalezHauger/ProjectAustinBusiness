@@ -1023,8 +1023,8 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKL-vL-fsm">
-                                                        <rect key="frame" x="313" y="62.000000000000014" width="30" height="30"/>
-                                                        <state key="normal" title="Pick">
+                                                        <rect key="frame" x="225" y="62.000000000000014" width="118" height="30"/>
+                                                        <state key="normal" title="Filter by Location">
                                                             <color key="titleColor" name="AmbPurple"/>
                                                         </state>
                                                         <connections>
@@ -1056,11 +1056,11 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UXo-vr-8xu">
-                                                        <rect key="frame" x="250" y="61.999999999999972" width="93" height="30"/>
+                                                        <rect key="frame" x="224" y="61.999999999999972" width="119" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="Ppa-r5-AAW"/>
                                                         </constraints>
-                                                        <state key="normal" title="Pick Interests">
+                                                        <state key="normal" title="Filter by Interests">
                                                             <color key="titleColor" name="AmbPurple"/>
                                                         </state>
                                                         <connections>
@@ -1092,11 +1092,11 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KEC-bS-iVB">
-                                                        <rect key="frame" x="262" y="62" width="81" height="30"/>
+                                                        <rect key="frame" x="233" y="62" width="110" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="H2e-Jt-Egj"/>
                                                         </constraints>
-                                                        <state key="normal" title="pick gender">
+                                                        <state key="normal" title="Filter by Gender">
                                                             <color key="titleColor" name="AmbPurple"/>
                                                         </state>
                                                         <connections>
@@ -1121,18 +1121,18 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sV9-uV-ig6" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="398.33333333333331" width="351" height="100"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minimum Stats" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbL-pG-jk6">
-                                                        <rect key="frame" x="8" y="8" width="114" height="21"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minimum Statistics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbL-pG-jk6">
+                                                        <rect key="frame" x="8" y="8" width="145" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ipw-VX-aHy">
-                                                        <rect key="frame" x="210" y="62.000000000000057" width="133" height="30"/>
+                                                        <rect key="frame" x="154" y="62.000000000000057" width="189" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="Mxb-QW-4t9"/>
                                                         </constraints>
-                                                        <state key="normal" title="pick minimum stats">
+                                                        <state key="normal" title="Filter by Minimum Statistics">
                                                             <color key="titleColor" name="AmbPurple"/>
                                                         </state>
                                                         <connections>
@@ -1492,8 +1492,8 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qHG-IX-I9n" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="351" height="104.66666666666667"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click for Nationwide" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uoa-49-Pz1">
-                                                            <rect key="frame" x="8" y="7.9999999999999982" width="152.33333333333334" height="20.333333333333329"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nationwide" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uoa-49-Pz1">
+                                                            <rect key="frame" x="133" y="42" width="85.333333333333314" height="20.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1501,8 +1501,8 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
-                                                        <constraint firstItem="uoa-49-Pz1" firstAttribute="leading" secondItem="qHG-IX-I9n" secondAttribute="leading" constant="8" id="BMD-mq-qBE"/>
-                                                        <constraint firstItem="uoa-49-Pz1" firstAttribute="top" secondItem="qHG-IX-I9n" secondAttribute="top" constant="8" id="DJ8-ci-cHE"/>
+                                                        <constraint firstItem="uoa-49-Pz1" firstAttribute="centerX" secondItem="qHG-IX-I9n" secondAttribute="centerX" id="54b-6C-gQB"/>
+                                                        <constraint firstItem="uoa-49-Pz1" firstAttribute="centerY" secondItem="qHG-IX-I9n" secondAttribute="centerY" id="8oz-tk-rgs"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1516,8 +1516,8 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zsx-1S-7Nv" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="110.66666666666669" width="351" height="104.33333333333331"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click on View for City Selection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kde-M1-DSG">
-                                                            <rect key="frame" x="8" y="7.9999999999999982" width="236.66666666666666" height="20.333333333333329"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City Selection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kde-M1-DSG">
+                                                            <rect key="frame" x="123" y="42" width="105.33333333333331" height="20.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1525,8 +1525,8 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
-                                                        <constraint firstItem="Kde-M1-DSG" firstAttribute="top" secondItem="zsx-1S-7Nv" secondAttribute="top" constant="8" id="1jB-bc-yvG"/>
-                                                        <constraint firstItem="Kde-M1-DSG" firstAttribute="leading" secondItem="zsx-1S-7Nv" secondAttribute="leading" constant="8" id="KC8-Hc-ocD"/>
+                                                        <constraint firstItem="Kde-M1-DSG" firstAttribute="centerY" secondItem="zsx-1S-7Nv" secondAttribute="centerY" id="Jhu-6P-ohb"/>
+                                                        <constraint firstItem="Kde-M1-DSG" firstAttribute="centerX" secondItem="zsx-1S-7Nv" secondAttribute="centerX" id="lmM-rK-Z7E"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1540,8 +1540,8 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JgQ-8h-Nnb" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="220.99999999999997" width="351" height="104.66666666666666"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click on View for Zip Code Selection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ywH-7r-Yoh">
-                                                            <rect key="frame" x="8" y="7.9999999999999982" width="276.33333333333331" height="20.333333333333329"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zip Code Selection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ywH-7r-Yoh">
+                                                            <rect key="frame" x="103.33333333333333" y="42" width="144.66666666666669" height="20.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1549,8 +1549,8 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
-                                                        <constraint firstItem="ywH-7r-Yoh" firstAttribute="leading" secondItem="JgQ-8h-Nnb" secondAttribute="leading" constant="8" id="Lhe-95-rjn"/>
-                                                        <constraint firstItem="ywH-7r-Yoh" firstAttribute="top" secondItem="JgQ-8h-Nnb" secondAttribute="top" constant="8" id="mAa-WM-gSx"/>
+                                                        <constraint firstItem="ywH-7r-Yoh" firstAttribute="centerX" secondItem="JgQ-8h-Nnb" secondAttribute="centerX" id="DdA-H5-OGf"/>
+                                                        <constraint firstItem="ywH-7r-Yoh" firstAttribute="centerY" secondItem="JgQ-8h-Nnb" secondAttribute="centerY" id="xta-0h-Hhe"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1564,8 +1564,8 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hOa-U5-LVS" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="331.66666666666663" width="351" height="104.33333333333331"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click on View for State Selection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0i-U3-Hql">
-                                                            <rect key="frame" x="7.9999999999999858" y="7.9999999999999982" width="246.66666666666663" height="20.333333333333329"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State Selection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0i-U3-Hql">
+                                                            <rect key="frame" x="118" y="42" width="115.33333333333331" height="20.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1573,8 +1573,8 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
-                                                        <constraint firstItem="h0i-U3-Hql" firstAttribute="top" secondItem="hOa-U5-LVS" secondAttribute="top" constant="8" id="Lv5-7V-97g"/>
-                                                        <constraint firstItem="h0i-U3-Hql" firstAttribute="leading" secondItem="hOa-U5-LVS" secondAttribute="leading" constant="8" id="zeP-bG-jgi"/>
+                                                        <constraint firstItem="h0i-U3-Hql" firstAttribute="centerX" secondItem="hOa-U5-LVS" secondAttribute="centerX" id="6Og-JJ-q5N"/>
+                                                        <constraint firstItem="h0i-U3-Hql" firstAttribute="centerY" secondItem="hOa-U5-LVS" secondAttribute="centerY" id="fGY-Of-bVD"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1605,11 +1605,8 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I8S-sI-8tP" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="351" height="143"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click for radius around my locations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbf-FI-Q9I">
-                                                            <rect key="frame" x="8" y="8" width="271.66666666666669" height="21"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="21" id="FJN-de-mRL"/>
-                                                            </constraints>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Radius around my locations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbf-FI-Q9I">
+                                                            <rect key="frame" x="71.000000000000014" y="61.33333333333335" width="209.33333333333337" height="20.333333333333336"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1617,8 +1614,8 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
-                                                        <constraint firstItem="bbf-FI-Q9I" firstAttribute="leading" secondItem="I8S-sI-8tP" secondAttribute="leading" constant="8" id="hRm-dK-CwF"/>
-                                                        <constraint firstItem="bbf-FI-Q9I" firstAttribute="top" secondItem="I8S-sI-8tP" secondAttribute="top" constant="8" id="rWA-Qg-xia"/>
+                                                        <constraint firstItem="bbf-FI-Q9I" firstAttribute="centerY" secondItem="I8S-sI-8tP" secondAttribute="centerY" id="6lb-Fz-DvB"/>
+                                                        <constraint firstItem="bbf-FI-Q9I" firstAttribute="centerX" secondItem="I8S-sI-8tP" secondAttribute="centerX" id="m0k-7T-moB"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
