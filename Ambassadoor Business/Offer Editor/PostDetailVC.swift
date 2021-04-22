@@ -150,9 +150,16 @@ class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePh
                 return
             }
         }
-        let hash = phraseList.filter { (hashtag) -> Bool in
+		let tempHash = phraseList.filter { (hashtag) -> Bool in
             return hashtag.starts(with: "#")
         }
+		var hash: [String] = []
+		for h in tempHash {
+			hash.append(String(h.dropFirst()))
+		}
+		if !hash.contains("ad") {
+			hash.append("ad")
+		}
         let phase = phraseList.filter { (hashtag) -> Bool in
             return !hashtag.starts(with: "#")
         }

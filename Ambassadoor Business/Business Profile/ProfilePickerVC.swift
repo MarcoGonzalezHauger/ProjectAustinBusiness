@@ -178,6 +178,13 @@ class ProfilePickerVC: UIViewController, UICollectionViewDelegate, UICollectionV
     
     @IBAction func updateBasicBusiness(button: UIButton) {
         
+        if self.filteredArray.count == 1 {
+            self.showStandardAlertDialog(title: "Alert", msg: "Sorry!. You can delete if you have more than one company") { (action) in
+                
+            }
+            return
+        }
+        
         let basic = self.filteredArray[button.tag]
         
         let index = MyCompany.basics.lastIndex { (basicData) -> Bool in

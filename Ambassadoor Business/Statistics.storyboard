@@ -206,11 +206,11 @@ Send out an offer and you will be updated in real-time about influencers activit
             <objects>
                 <viewController storyboardIdentifier="ViewOfferStatisticRef" id="SSz-WL-buY" customClass="ViewOfferStatisticVC" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Y8Z-pf-Pt4">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HaO-Lj-RF5">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="90"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bg1-D6-FOZ">
                                         <rect key="frame" x="16" y="10" width="56" height="35"/>
@@ -242,7 +242,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                 </constraints>
                             </view>
                             <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rtq-gU-5PA">
-                                <rect key="frame" x="0.0" y="90" width="414" height="626"/>
+                                <rect key="frame" x="0.0" y="134" width="414" height="602"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mTe-09-1wF" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="220"/>
@@ -272,7 +272,7 @@ Send out an offer and you will be updated in real-time about influencers activit
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# Influencers have posted for this offer." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83u-Dy-73y">
-                                                <rect key="frame" x="20" y="141.66666666666666" width="374" height="21"/>
+                                                <rect key="frame" x="20" y="141.66666666666669" width="374" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="T9H-pg-24p"/>
                                                 </constraints>
@@ -726,7 +726,7 @@ Send out an offer and you will be updated in real-time about influencers activit
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="kpK-Km-t8M"/>
+        <segue reference="THP-wg-xXb"/>
         <segue reference="ZkP-2c-P9R"/>
     </inferredMetricsTieBreakers>
     <resources>
