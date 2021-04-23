@@ -120,6 +120,14 @@ class FilterRadiousVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     @IBAction func UserFilterAction(sender: UIButton){
+        
+        if self.selectedZip.count == 0{
+            self.showStandardAlertDialog(title: "Alert", msg: "Please pick any location from the list") { (action) in
+                
+            }
+            return
+        }
+        
         var index = 0
         var returnData = [String]()
         for data in self.selectedZip {

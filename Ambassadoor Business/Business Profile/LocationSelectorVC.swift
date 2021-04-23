@@ -77,9 +77,13 @@ class LocationSelectorVC: BaseVC, UITableViewDelegate, UITableViewDataSource, Lo
     }
 
     @IBAction func removelocation(sender: UIButton){
-        let index = IndexPath.init(row: sender.tag, section: 0)
-        self.locations.remove(at: sender.tag)
-        locationList.deleteRows(at: [index], with: .right)
+        if self.locations.count > sender.tag{
+            let index = IndexPath.init(row: sender.tag, section: 0)
+            self.locations.remove(at: sender.tag)
+            locationList.deleteRows(at: [index], with: .right)
+            locationList.reloadData()
+        }
+        
     }
     
     @IBAction func addLocationAction(sender: UIButton){
