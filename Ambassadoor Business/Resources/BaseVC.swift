@@ -293,31 +293,31 @@ class BaseVC: UIViewController {
         self.navigationController?.interactivePopGestureRecognizer?.delegate=nil
     }
     
-    func addPickerToolBar(textField: UITextField,object: [String]) -> BasePicker {
-        
-        let picker = BasePicker.instanceFromNib()
-        picker.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 216)
-        picker.pickerComponents = object
-        picker.delegate = picker
-        picker.dataSource = picker
-        picker.reloadComponent(0)
-        textField.inputView = picker
-        
-        let toolbar = UIToolbar()
-        toolbar.barStyle = .default
-        toolbar.isTranslucent = true
-        toolbar.tintColor = UIColor.blue
-        toolbar.sizeToFit()
-        
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneClickPicker))
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.cancelClickPicker))
-        toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
-        
-        toolbar.isUserInteractionEnabled = true
-        textField.inputAccessoryView = toolbar
-        return picker
-    }
+//    func addPickerToolBar(textField: UITextField,object: [String]) -> BasePicker {
+//
+//        let picker = BasePicker.instanceFromNib()
+//        picker.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 216)
+//        picker.pickerComponents = object
+//        picker.delegate = picker
+//        picker.dataSource = picker
+//        picker.reloadComponent(0)
+//        textField.inputView = picker
+//
+//        let toolbar = UIToolbar()
+//        toolbar.barStyle = .default
+//        toolbar.isTranslucent = true
+//        toolbar.tintColor = UIColor.blue
+//        toolbar.sizeToFit()
+//
+//        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneClickPicker))
+//        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+//        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.cancelClickPicker))
+//        toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+//
+//        toolbar.isUserInteractionEnabled = true
+//        textField.inputAccessoryView = toolbar
+//        return picker
+//    }
     
     @objc func doneClickPicker() {
         

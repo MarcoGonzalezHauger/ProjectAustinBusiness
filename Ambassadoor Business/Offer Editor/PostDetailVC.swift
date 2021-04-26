@@ -7,6 +7,133 @@
 //
 
 import UIKit
+import FirebaseAuth
+
+protocol deletePhrase {
+    func deleteThis(cell: UITableViewCell)
+    func textChanged(at: UITableViewCell, to: String)
+    func NotValidWord(words: [String])
+}
+
+class KeyphraseCell: UITableViewCell, UITextFieldDelegate {
+    
+    var addpostRef: PostDetailVC? = nil
+    var delegate: deletePhrase?
+    var wasTold = false
+    @IBOutlet weak var phraseText: UITextField!
+    @IBOutlet weak var delete: UIButton!
+    @IBAction func deletePhrase(_ sender: Any) {
+        delegate?.deleteThis(cell: self)
+    }
+    
+    override func awakeFromNib() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown), name: UIResponder.keyboardWillShowNotification, object: phraseText)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: phraseText)
+    }
+    
+    @objc func keyboardWasShown(notification : NSNotification) {
+        
+ //       if let key = notification.object as? UITextField {
+ //           if key == phraseText {
+                
+                let userInfo = notification.userInfo!
+                var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+                keyboardFrame = addpostRef!.view.convert(keyboardFrame, from: nil)
+                
+                var contentInset:UIEdgeInsets = addpostRef!.scroll.contentInset
+                contentInset.bottom = keyboardFrame.size.height + 25
+                addpostRef!.scroll.contentInset = contentInset
+                
+  //          }
+  //      }
+        
+        
+        
+    }
+    
+    @objc func keyboardWillHide(notification:NSNotification){
+        
+//        if let key = notification.object as? UITextField {
+//        if key == phraseText {
+            
+            let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+            addpostRef!.scroll.contentInset = contentInset
+            
+//            }
+ //       }
+    }
+    
+    @IBAction func returnEntered(_ sender: Any) {
+        (sender as! UITextField).resignFirstResponder()
+    }
+    @IBAction func editingChanged(_ sender: Any) {
+        
+        //Contains what the current phrasetext will look like.
+        var currentString: String = phraseText.text!
+        
+        if currentString.count > 75 {
+            currentString = String(currentString.dropLast(currentString.count - 75))
+            MakeShake(viewToShake: self, coefficient: 0.2, positiveCoefficient: 0)
+            if !wasTold {
+                delegate?.NotValidWord(words: ["Max Length Reached", "Each phrase may only have a maximum of 75 characters."])
+                wasTold = true
+            }
+        }
+        
+        //hashtag positioning correction
+        let index = currentString.filter{ (char) -> Bool in
+            return char == "#"
+        }.count
+        if index != 0 {
+            let beginsWithHashtag = currentString.hasPrefix("#")
+            if !beginsWithHashtag {
+                currentString = currentString.replacingOccurrences(of: "#", with: "")
+                MakeShake(viewToShake: self, coefficient: 0.2)
+            } else {
+                if index > 1 {
+                    currentString = String(currentString.dropFirst())
+                    currentString = currentString.replacingOccurrences(of: "#", with: "")
+                    currentString = "#\(currentString)"
+                    MakeShake(viewToShake: self, coefficient: 0.2)
+                }
+            }
+        }
+        
+        var matchFound = true
+        while(matchFound) {
+            for curse in swearWords {
+                let check = currentString.replacingOccurrences(of: "#", with: "")
+                if check.lowercased().starts(with: "\(curse.lowercased()) ") || check.lowercased().contains(" \(curse.lowercased()) ") || check.lowercased().hasSuffix(" \(curse)") || check.lowercased() == curse.lowercased() {
+                    if let thisRange = currentString.range(of: curse, options: .caseInsensitive) {
+                        currentString.replaceSubrange(thisRange.lowerBound ..< thisRange.upperBound, with: "")
+                        MakeShake(viewToShake: self, coefficient: 0.2)
+                        delegate?.NotValidWord(words: ["Text Not Permitted", "The text \"\(curse)\" is not permitted in caption."])
+                        continue
+                    }
+                }
+            }
+            matchFound = false
+        }
+        
+        phraseText.text = currentString
+        delegate?.textChanged(at: self, to: currentString)
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if (textField.text?.hasPrefix("#"))! {
+            
+            let rawString = string
+             let range = rawString.rangeOfCharacter(from: .whitespaces)
+            if ((textField.text?.count)! == 0 && range  != nil)
+            || ((textField.text?.count)! > 0 && range != nil)  {
+                return false
+            }
+            
+        }
+    return true
+    }
+}
+
 
 class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePhrase {
     
