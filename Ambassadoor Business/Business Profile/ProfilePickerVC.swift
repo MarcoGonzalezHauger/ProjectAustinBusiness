@@ -125,11 +125,17 @@ class ProfilePickerVC: UIViewController, UICollectionViewDelegate, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.row == (filteredArray.count) {
-            self.performSegue(withIdentifier: "toAddBasicVC", sender: nil)
+        if self.isDeleteHidden{
+            if indexPath.row == (filteredArray.count) {
+                self.performSegue(withIdentifier: "toAddBasicVC", sender: nil)
+            }else{
+                let basic = filteredArray[indexPath.row]
+                self.performSegue(withIdentifier: "toAddBasicVC", sender: basic)
+            }
         }else{
-            let basic = filteredArray[indexPath.row]
-            self.performSegue(withIdentifier: "toAddBasicVC", sender: basic)
+            self.showStandardAlertDialog(title: "Alert", msg: "Please complete your editing") { (action) in
+                
+            }
         }
     }
     

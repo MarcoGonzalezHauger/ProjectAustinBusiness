@@ -59,8 +59,8 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Business Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wz5-az-Xkf">
-                                                            <rect key="frame" x="27" y="134" width="118" height="20.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Business Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wz5-az-Xkf">
+                                                            <rect key="frame" x="8" y="134" width="156" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -80,6 +80,8 @@
                                                         <constraint firstItem="wz5-az-Xkf" firstAttribute="centerX" secondItem="iyL-iy-rYD" secondAttribute="centerX" id="aL0-mg-18n"/>
                                                         <constraint firstItem="wz5-az-Xkf" firstAttribute="top" secondItem="hvb-uD-4me" secondAttribute="bottom" constant="16" id="ay2-JD-lYG"/>
                                                         <constraint firstItem="ZBl-12-INj" firstAttribute="centerX" secondItem="iyL-iy-rYD" secondAttribute="centerX" id="q6O-R9-d5g"/>
+                                                        <constraint firstItem="wz5-az-Xkf" firstAttribute="leading" secondItem="iyL-iy-rYD" secondAttribute="leading" constant="8" id="sm4-Yo-DNt"/>
+                                                        <constraint firstAttribute="trailing" secondItem="wz5-az-Xkf" secondAttribute="trailing" constant="8" id="wZg-0P-E2X"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">

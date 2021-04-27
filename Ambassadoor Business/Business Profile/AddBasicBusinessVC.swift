@@ -29,7 +29,8 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
     
     func pickedBusinessType(type: BusinessType) {
         businessTypeText.text = type.rawValue
-        basicBusiness?.type = type
+        //basicBusiness?.type = type
+        self.type = type
     }
     
     func imagePicked(image: UIImage?, imageUrl: String?) {
@@ -81,6 +82,8 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
     
     var basicBusiness: BasicBusiness? = nil
     
+    var type: BusinessType? = nil
+    
     @IBOutlet weak var imageShadow: ShadowView!
     
     @IBOutlet weak var businessTypeText: UITextField!
@@ -88,7 +91,6 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
     @IBOutlet weak var locationText: UILabel!
     
     var locations = [String]()
-    
     
     var websiteUrl: String? {
         didSet {
@@ -161,6 +163,7 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
             //self.website.text = basic.website
             self.websiteUrl = basic.website
             self.businessTypeText.text = basic.type.rawValue
+            self.type = basic.type
             locations.append(contentsOf: basic.locations)
             if basic.locations.count == 0 {
                 self.locationText.text = "No Location"
@@ -282,27 +285,34 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
     }
     
         func checkIfWebsiteEntered() -> String? {
-                        
-            if !isGoodUrl(url: GetURL()!.absoluteString) || GetURL()!.absoluteString == "http://www.com" || GetURL()!.absoluteString == "https://www.com" || GetURL()!.absoluteString == "http://.com" || GetURL()!.absoluteString == "https://.com" || GetURL()!.absoluteString == "http://www..com" || GetURL()!.absoluteString == "https://www..com"{
+            
+            if GetURL() != nil{
                 
-               self.showAlertMessage(title: "Alert", message: "Please enter valid website") {
-                              
-               }
-                
-               return nil
-                
-            }else{
-                
-                if isGoodUrl(url: GetURL()?.absoluteString ?? "") && website.text?.count != 0{
-                
-                   return GetURL()!.absoluteString
+                if !isGoodUrl(url: GetURL()!.absoluteString) || GetURL()!.absoluteString == "http://www.com" || GetURL()!.absoluteString == "https://www.com" || GetURL()!.absoluteString == "http://.com" || GetURL()!.absoluteString == "https://.com" || GetURL()!.absoluteString == "http://www..com" || GetURL()!.absoluteString == "https://www..com"{
+                    
+                   self.showAlertMessage(title: "Alert", message: "Please enter valid website") {
+                                  
+                   }
+                    
+                   return nil
                     
                 }else{
                     
-                    MakeShake(viewToShake: self.website)
-                    return nil
+                    if isGoodUrl(url: GetURL()?.absoluteString ?? "") && website.text?.count != 0{
+                    
+                       return GetURL()!.absoluteString
+                        
+                    }else{
+                        
+                        MakeShake(viewToShake: self.website)
+                        return nil
+                    }
+                    
                 }
                 
+            }else{
+                MakeShake(viewToShake: self.website)
+                return nil
             }
             
         }
@@ -375,13 +385,21 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
             return nil
         }
         
+        if self.type == nil{
+            return nil
+        }
+        
+        if self.locations.count == 0 {
+            return nil
+        }
+        
         let NewBasicID: String = self.basicBusiness == nil ? makeFirebaseUrl(self.businessName.text! + ", " + GetNewID()) : self.basicBusiness!.basicId
         let referral = self.basicBusiness == nil ? randomString(length: 6) : self.basicBusiness!.referralCode
         let flags = self.basicBusiness == nil ? [] : self.basicBusiness!.flags
         let followedBy = self.basicBusiness == nil ? [] : self.basicBusiness!.followedBy
         let locations = self.locations
         
-        let basicDict = ["businessId": MyCompany.businessId, "name": self.businessName.text!, "logoUrl": self.urlString, "mission": self.companyMission.text!, "joinedDate": Date().toUString(), "referralCode": referral, "flags": flags, "followedBy": followedBy, "website": checkIfWebsiteEntered() as Any, "locations": locations as Any] as [String : Any]
+        let basicDict = ["businessId": MyCompany.businessId, "name": self.businessName.text!, "logoUrl": self.urlString, "mission": self.companyMission.text!, "joinedDate": Date().toUString(), "referralCode": referral, "flags": flags, "followedBy": followedBy, "website": checkIfWebsiteEntered() as Any, "locations": locations as Any, "type": self.type!.rawValue as Any] as [String : Any]
         
         let basic = BasicBusiness.init(dictionary: basicDict, basicId: NewBasicID)
         
