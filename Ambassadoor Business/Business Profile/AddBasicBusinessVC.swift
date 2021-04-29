@@ -92,6 +92,8 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
     
     var locations = [String]()
     
+    @IBOutlet weak var saveBtn: UIButton!
+    
     var websiteUrl: String? {
         didSet {
             guard var websiteString = websiteUrl else {return}
@@ -334,11 +336,15 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
     }
     
     @IBAction func saveAction(sender: UIButton){
+        saveBtn.isUserInteractionEnabled = false
         saveBasicBusiness()
     }
 	
 	func saveBasicBusiness() {
 		if checkBasicBusiness() == nil {
+            DispatchQueue.main.async {
+                self.saveBtn.isUserInteractionEnabled = true
+            }
 			return
 		}
 		
@@ -364,6 +370,7 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
 		MyCompany.UpdateToFirebase { (error) in
 			DispatchQueue.main.async {
 				self.reloadDelegate?.reloadMyCompany()
+                self.saveBtn.isUserInteractionEnabled = true
 				self.navigationController?.popViewController(animated: true)
 			}
 		}
