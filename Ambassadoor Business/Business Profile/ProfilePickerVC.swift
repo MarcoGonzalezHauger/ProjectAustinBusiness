@@ -125,11 +125,17 @@ class ProfilePickerVC: UIViewController, UICollectionViewDelegate, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.row == (filteredArray.count) {
-            self.performSegue(withIdentifier: "toAddBasicVC", sender: nil)
+        if self.isDeleteHidden{
+            if indexPath.row == (filteredArray.count) {
+                self.performSegue(withIdentifier: "toAddBasicVC", sender: nil)
+            }else{
+                let basic = filteredArray[indexPath.row]
+                self.performSegue(withIdentifier: "toAddBasicVC", sender: basic)
+            }
         }else{
-            let basic = filteredArray[indexPath.row]
-            self.performSegue(withIdentifier: "toAddBasicVC", sender: basic)
+            self.showStandardAlertDialog(title: "Alert", msg: "Please complete your editing") { (action) in
+                
+            }
         }
     }
     
@@ -177,6 +183,13 @@ class ProfilePickerVC: UIViewController, UICollectionViewDelegate, UICollectionV
     }
     
     @IBAction func updateBasicBusiness(button: UIButton) {
+        
+        if self.filteredArray.count == 1 {
+            self.showStandardAlertDialog(title: "Alert", msg: "Sorry!. You can delete if you have more than one company") { (action) in
+                
+            }
+            return
+        }
         
         let basic = self.filteredArray[button.tag]
         

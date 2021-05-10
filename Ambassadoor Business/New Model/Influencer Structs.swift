@@ -63,28 +63,21 @@ class Influencer {
 		instagramAccountId = d["instagramAccountId"] as! String
 		tokenFIR = d["tokenFIR"] as! String
 	
-//		let instaPosts = d["instagramPost"] as? [String: Any] ?? [:]
+		let instaPosts = d["instagramPost"] as? [String: Any] ?? [:]
 		
 		inProgressPosts = []
-		if let thesePosts = d["inProgressPosts"] as? [String: Any] {
-			for k in thesePosts.keys {
-				let newInProgressPost = InProgressPost.init(dictionary: thesePosts[k] as! [String : Any], inProgressPostId: k, userId: id)
+		if let inProgressDictionary = d["inProgressPosts"] as? [String: Any] {
+			for inProgressPostId in inProgressDictionary.keys {
+				var thisInProgressPost = inProgressDictionary[inProgressPostId] as! [String: Any]
+				if var instaPostDict = instaPosts[inProgressPostId] as? [String: Any] {
+					instaPostDict["postID"] = inProgressPostId
+					instaPostDict["offerID"] = thisInProgressPost["PoolOfferId"]
+					thisInProgressPost["instagramPost"] = instaPostDict
+				}
+				let newInProgressPost = InProgressPost.init(dictionary: thisInProgressPost, inProgressPostId: inProgressPostId, userId: id)
 				inProgressPosts.append(newInProgressPost)
 			}
 		}
-		
-		//if let inProgressDictionary = d["inProgressPosts"] as? [String: Any] {
-//			for inProgressPostId in inProgressDictionary.keys {
-//				var thisInProgressPost = inProgressDictionary[inProgressPostId] as! [String: Any]
-//				if var instaPostDict = instaPosts[inProgressPostId] as? [String: Any] {
-//					instaPostDict["postID"] = inProgressPostId
-//					instaPostDict["offerID"] = thisInProgressPost["PoolOfferId"]
-//					thisInProgressPost["instagramPost"] = instaPostDict
-//				}
-//				let newInProgressPost = InProgressPost.init(dictionary: thisInProgressPost, inProgressPostId: inProgressPostId, userId: id)
-//				inProgressPosts.append(newInProgressPost)
-//			}
-//		}
 		
 	}
 	
@@ -247,8 +240,8 @@ class InstagramPost {
 	var type: String
 	var username: String
 	var userId: String
-//	var postID: String
-//	var offerID: String
+	var postID: String
+	var offerID: String
 	
 	
 	init(dictionary d: [String: Any], userId id: String) {
@@ -261,8 +254,8 @@ class InstagramPost {
 		status = d["status"] as! String
 		type = d["type"] as! String
 		username = d["username"] as! String
-//		postID = d["postID"] as! String
-//		offerID = d["offerID"] as! String
+		postID = d["postID"] as! String
+		offerID = d["offerID"] as! String
 		let ts = d["timestamp"] as! String
 		
 		let dateFormatter = DateFormatter()
@@ -271,22 +264,22 @@ class InstagramPost {
 		
 	}
 	
-    func toDictionary() -> [String: Any] {
-        var d: [String: Any] = [:]
-
-        d["caption"] = caption
-        d["id"] = instagramPostId
-        d["images"] = images
-        d["like_count"] = like_count
-        d["status"] = status
-        d["type"] = type
-        d["username"] = username
+//    func toDictionary() -> [String: Any] {
+//        var d: [String: Any] = [:]
+//
+//        d["caption"] = caption
+//        d["id"] = instagramPostId
+//        d["images"] = images
+//        d["like_count"] = like_count
+//        d["status"] = status
+//        d["type"] = type
+//        d["username"] = username
 //        d["postID"] = postID
 //        d["offerID"] = offerID
-		d["timestamp"] = timestamp.toUString()
-
-        return d
-    }
+//		d["timestamp"] = timestamp.toUString()
+//
+//        return d
+//    }
 	
 }
 

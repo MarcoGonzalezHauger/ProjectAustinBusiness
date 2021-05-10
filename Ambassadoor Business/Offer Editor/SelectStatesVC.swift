@@ -8,6 +8,11 @@
 
 import UIKit
 
+@objc protocol LocationFilterDelegate {
+    func LocationFilterChosen(filter: String)
+    @objc optional func GetLocationString() -> String
+}
+
 class stateCell: UITableViewCell {
 	@IBOutlet weak var stateSelected: UILabel!
 	@IBOutlet weak var stateLabel: UILabel!

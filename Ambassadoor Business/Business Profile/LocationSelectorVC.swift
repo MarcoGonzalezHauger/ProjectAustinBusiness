@@ -42,9 +42,7 @@ class LocationSelectorVC: BaseVC, UITableViewDelegate, UITableViewDataSource, Lo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = "location"
         let cell = locationList.dequeueReusableCell(withIdentifier: identifier) as! LocationCell
-        if locations[indexPath.row] != ""{
-           cell.locationText.text = locations[indexPath.row]
-        }
+        cell.locationText.text = locations[indexPath.row] != "" ? locations[indexPath.row] : nil
         cell.close.tag = indexPath.row
         cell.locationDelegate = self
         cell.close.addTarget(self, action: #selector(self.removelocation(sender:)), for: .touchUpInside)
@@ -77,9 +75,13 @@ class LocationSelectorVC: BaseVC, UITableViewDelegate, UITableViewDataSource, Lo
     }
 
     @IBAction func removelocation(sender: UIButton){
-        let index = IndexPath.init(row: sender.tag, section: 0)
-        self.locations.remove(at: sender.tag)
-        locationList.deleteRows(at: [index], with: .right)
+        if self.locations.count > sender.tag{
+            let index = IndexPath.init(row: sender.tag, section: 0)
+            self.locations.remove(at: sender.tag)
+            locationList.deleteRows(at: [index], with: .right)
+            locationList.reloadData()
+        }
+        
     }
     
     @IBAction func addLocationAction(sender: UIButton){

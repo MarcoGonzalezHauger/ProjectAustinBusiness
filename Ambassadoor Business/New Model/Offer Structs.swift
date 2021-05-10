@@ -429,8 +429,8 @@ class InProgressPost {
 			d["comissionUserId"] = comissionUserId }
 		if let comissionBusinessId = comissionBusinessId {
 			d["comissionBusinessId"] = comissionBusinessId }
-		if let instagramPost = instagramPost {
-			d["instagramPost"] = instagramPost.toDictionary() }
+//		if let instagramPost = instagramPost {
+//			d["instagramPost"] = instagramPost.toDictionary() }
 		
 		d["status"] = status
 		d["cashValue"] = cashValue

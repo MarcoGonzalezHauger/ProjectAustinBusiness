@@ -32,9 +32,14 @@ class BasicsListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     var reloadBusiness: BusinessDelegate?
     
+    var currentCompanies = [BasicBusiness]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let filtered = MyCompany.basics.filter { (basic) -> Bool in
+            return !basic.flags.contains("isDeleted") && !basic.flags.contains("isInvisible")
+        }
+        self.currentCompanies.append(contentsOf: filtered)
         self.setTableViewSource()
         // Do any additional setup after loading the view.
     }
@@ -45,14 +50,14 @@ class BasicsListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return MyCompany.basics.count
+        return self.currentCompanies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let identifier = "basic"
         let cell = self.basicsList.dequeueReusableCell(withIdentifier: identifier) as! BasicsCell
-        let data = MyCompany.basics[indexPath.row]
+        let data = self.currentCompanies[indexPath.row]
         cell.basic = data
         if data.basicId == draftOffer?.basicId {
             cell.accessoryType = .checkmark
@@ -68,7 +73,7 @@ class BasicsListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        let data = MyCompany.basics[indexPath.row]
+        let data = self.currentCompanies[indexPath.row]
         draftOffer?.basicId = data.basicId
         self.basicsList.reloadData()
     }
