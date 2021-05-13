@@ -44,12 +44,13 @@ class TransactionHistoryVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             
             cell.amountlabel.text = "- \(NumberToPrice(Value: log.value))"
             cell.shadowBox.borderColor = .red
-            cell.descriptionLabel.text = "Deposited with Stripe"
+            cell.descriptionLabel.text = "Withdraw from Ambassadoor"
+            
             
         }else if log.type == "creditCardDeposit"{
             cell.amountlabel.text = "+ \(NumberToPrice(Value: log.value))"
             cell.shadowBox.borderColor = .green
-            cell.descriptionLabel.text = "Withdraw from Ambassadoor"
+            cell.descriptionLabel.text = "Deposited with Stripe"
         }
         
         cell.dateText.text = log.time.toUString()
