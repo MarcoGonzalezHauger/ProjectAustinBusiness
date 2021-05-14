@@ -103,12 +103,15 @@ class VerifyEmailVC: BaseVC {
                         UserDefaults.standard.set(self.passwordString, forKey: "userPass")
                         UserDefaults.standard.set(NewUserID, forKey: "userid")
                         
-                        let businessObject =  ["businessId":user.uid,"token":token!,"email":user.email!,"refreshToken":user.refreshToken!,"isCompanyRegistered":false, "deviceFIRToken": global.deviceFIRToken, "activeBasicId": NewUserID] as [String : Any]
+                        let finance = ["balance":0.0]
+                        
+                        let businessObject =  ["businessId":user.uid,"token":token!,"email":user.email!,"refreshToken":user.refreshToken!,"isCompanyRegistered":false, "deviceFIRToken": global.deviceFIRToken, "activeBasicId": NewUserID, "finance": finance] as [String : Any]
                         
                        let businessUser = Business.init(dictionary: businessObject, businessId: NewUserID)
                         
                         CreateNewCompanyUser(user: businessUser) { (status) in
                             if !status{
+                                MyCompany = businessUser
                                self.instantiateToMainScreen()
                             }
                         }
