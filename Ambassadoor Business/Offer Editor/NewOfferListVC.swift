@@ -60,11 +60,15 @@ class NewOfferListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         }
         let identifier = "offerlist"
         let cell = self.offerList.dequeueReusableCell(withIdentifier: identifier) as! OfferList
-        let draft = MyCompany.drafts[indexPath.row]
+        let draft = GetSortedList()[indexPath.row]
         cell.draftOffer = draft
         cell.offerName.text = draft.title == "" ? "Offer \((indexPath.row + 1))" : draft.title
         return cell
     }
+	
+	func GetSortedList() -> [DraftOffer] {
+		return MyCompany.drafts.sorted{$0.lastEdited > $1.lastEdited}
+	}
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         return 120.0
