@@ -95,19 +95,20 @@ class VerifyEmailVC: BaseVC {
                     
                     if error == nil {
                         
-                        
-                        let NewUserID = makeFirebaseUrl(user.uid + ", " + randomString(length: 15))
-                        
+                        let coName: String = makeFirebaseUrl( "NewCo" + ", " + GetNewID())
+                        let NewBusinessID: String = makeFirebaseUrl(coName + ", " + randomString(length: 15))
                         
                         UserDefaults.standard.set(self.emailString, forKey: "userEmail")
                         UserDefaults.standard.set(self.passwordString, forKey: "userPass")
-                        UserDefaults.standard.set(NewUserID, forKey: "userid")
+                        UserDefaults.standard.set(NewBusinessID, forKey: "userid")
                         
                         let finance = ["balance":0.0]
                         
-                        let businessObject =  ["businessId":user.uid,"token":token!,"email":user.email!,"refreshToken":user.refreshToken!,"isCompanyRegistered":false, "deviceFIRToken": global.deviceFIRToken, "activeBasicId": NewUserID, "finance": finance] as [String : Any]
                         
-                       let businessUser = Business.init(dictionary: businessObject, businessId: NewUserID)
+                        
+                        let businessObject =  ["businessId":user.uid,"token":token!,"email":user.email!,"refreshToken":user.refreshToken!,"isCompanyRegistered":false, "deviceFIRToken": global.deviceFIRToken, "activeBasicId": NewBusinessID, "finance": finance] as [String : Any]
+                        
+                       let businessUser = Business.init(dictionary: businessObject, businessId: NewBusinessID)
                         
                         CreateNewCompanyUser(user: businessUser) { (status) in
                             if !status{
