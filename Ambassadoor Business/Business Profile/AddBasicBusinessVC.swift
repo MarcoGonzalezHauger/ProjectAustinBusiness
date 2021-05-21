@@ -449,7 +449,12 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
         
         if let destination = segue.destination as? LocationSelectorVC{
             destination.locationRetrive = self
-            destination.locations = self.locations
+            if self.locations.count == 0{
+               destination.locations = [""]
+            }else{
+               destination.locations = self.locations
+            }
+            
         }
     }
     
