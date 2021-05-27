@@ -135,20 +135,13 @@ class KeyphraseCell: UITableViewCell, UITextFieldDelegate {
 }
 
 
-class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePhrase, NCDelegate {
-	
-	func shouldAllowBack() -> Bool {
-		return tryDismiss()
-	}
+class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePhrase {
+    
     
     func deleteThis(cell: UITableViewCell) {
         if phraseList.count <= 1 {
             if let newcell = (cell as? KeyphraseCell) {
                 newcell.phraseText.text = ""
-                if let index = self.shelf.indexPath(for: newcell){
-                    phraseList[index.row] = ""
-                }
-                self.shelf.reloadData()
                 MakeShake(viewToShake: cell, coefficient: 0.2)
             } else {
                 MakeShake(viewToShake: cell)
@@ -162,7 +155,6 @@ class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePh
     
     func textChanged(at cell: UITableViewCell, to: String) {
         let ip: IndexPath = shelf.indexPath(for: cell)!
-        print("tick =",ip.row)
         phraseList[ip.row] = to
     }
     
@@ -185,11 +177,12 @@ class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePh
     
     @IBOutlet weak var postName: UILabel!
     @IBOutlet weak var postInstruction: UITextView!
+    
+    @IBOutlet weak var backBtn: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setPostDetails()
-		(self.navigationController as! StandardNC).tempDelegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -208,21 +201,21 @@ class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePh
             }
             
             if postIndex != nil {
+                self.backBtn.setTitle("Done", for: .normal)
                 let post = draftOffer?.draftPosts[postIndex!]
                 phraseList.append(contentsOf: post!.requiredKeywords)
                 for hashtag in post!.requiredHastags {
-					if hashtag != "ad" && hashtag != "#ad" {
-						if hashtag.starts(with: "#") {
-							phraseList.append("\(hashtag)")
-						}else{
-							phraseList.append("#\(hashtag)")
-						}
-					}
-                    
+                    if hashtag.starts(with: "#") {
+                        phraseList.append("\(hashtag)")
+                    }else{
+                        phraseList.append("#\(hashtag)")
+                    }
                 }
                 
                 self.postInstruction.text = post?.instructions
                 
+            }else{
+                self.backBtn.setTitle("Back", for: .normal)
             }
             if phraseList.count == 0 {
                 phraseList.append("")
@@ -269,22 +262,39 @@ class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePh
         cell.delegate = self
         return cell
     }
-	
-	func tryDismiss() -> Bool {
-		if self.postInstruction.text.count == 0 {
-			self.navigationController?.popViewController(animated: true)
-			return true
-		}
-        self.phraseList = self.phraseList.filter{$0 != "" && $0.starts(with: "#") ? $0.count > 1 : $0.count > 0}
-		if self.phraseList.count == 0 {
-			self.showAlertMessage(title: "Post not complete", message: "Add at least one phrase in Caption Requirements to save."){ }
-			return false
-		}
+    
+    @IBAction func dismissAction(sender: AnyObject){
         
- 
+        let pharse = self.phraseList.filter { (pharse) -> Bool in
+            return pharse != "" && pharse != "#"
+        }
+        
+        if postIndex == nil && pharse.count == 0 && self.postInstruction.text.count == 0{
+           self.navigationController?.popViewController(animated: true)
+           return 
+        }
+        
+        if self.postInstruction.text.count == 0 {
+            self.showAlertMessage(title: "Alert", message: "You need to put in instructions for the influencer to follow.") {
+            }
+            return
+        }
+        for phase in self.phraseList {
+            if phase == "" {
+                self.showAlertMessage(title: "Alert", message: "You left a blank in your required caption items.") {
+                }
+                return
+            }
+            
+            if phase == "#" {
+                self.showAlertMessage(title: "Alert", message: "You left a blank hashtag in your required caption items.") {
+                }
+                return
+            }
+        }
 		let tempHash = phraseList.filter { (hashtag) -> Bool in
-			return hashtag.starts(with: "#")
-		}
+            return hashtag.starts(with: "#")
+        }
 		var hash: [String] = []
 		for h in tempHash {
 			hash.append(String(h.dropFirst()))
@@ -292,26 +302,22 @@ class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePh
 		if !hash.contains("ad") {
 			hash.append("ad")
 		}
-		let phase = phraseList.filter { (hashtag) -> Bool in
-			return !hashtag.starts(with: "#")
-		}
-		
-		if self.postIndex == nil{
-			let post = DraftPost.init(businessId: MyCompany.businessId, draftId: self.draftOffer!.draftId, poolId: "", hash: hash, keywords: phase, ins: self.postInstruction.text)
-			self.draftOffer?.draftPosts.append(post)
-		}else{
-			let modified = self.draftOffer?.draftPosts[self.postIndex!]
-			let postData = ["requiredHastags": hash, "requiredKeywords": phase, "instructions": self.postInstruction.text!] as [String: Any]
-			let post = DraftPost.init(dictionary: postData, businessId: MyCompany.businessId, draftId: self.draftOffer!.draftId, draftPostId: modified!.draftPostId, poolId: "")
-			self.draftOffer?.draftPosts[self.postIndex!] = post
-		}
-		return true
-	}
-    
-    @IBAction func dismissAction(sender: AnyObject){
-		if tryDismiss() {
-			self.navigationController?.popViewController(animated: true)
-		}
+        let phase = phraseList.filter { (hashtag) -> Bool in
+            return !hashtag.starts(with: "#")
+        }
+        
+        if self.postIndex == nil{
+            let post = DraftPost.init(businessId: MyCompany.businessId, draftId: self.draftOffer!.draftId, poolId: "", hash: hash, keywords: phase, ins: self.postInstruction.text)
+            self.draftOffer?.draftPosts.append(post)
+        }else{
+            let modified = self.draftOffer?.draftPosts[self.postIndex!]
+            let postData = ["requiredHastags": hash, "requiredKeywords": phase, "instructions": self.postInstruction.text!] as [String: Any]
+            let post = DraftPost.init(dictionary: postData, businessId: MyCompany.businessId, draftId: self.draftOffer!.draftId, draftPostId: modified!.draftPostId, poolId: "")
+            self.draftOffer?.draftPosts[self.postIndex!] = post
+        }
+        
+        
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func addPhrase(_ sender: Any) {

@@ -366,10 +366,6 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
 			MyCompany.basics[index!] = basic
 			
 		}
-        
-        if MyCompany.basics.count == 1 {
-            MyCompany.activeBasicId = MyCompany.basics.first!.basicId
-        }
 		
 		MyCompany.UpdateToFirebase { (error) in
 			DispatchQueue.main.async {
@@ -383,9 +379,6 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
     func checkBasicBusiness() -> BasicBusiness? {
         
         if self.urlString == "" {
-            self.showAlertMessage(title: "Alert", message: "Please choose the image") {
-                
-            }
             return nil
         }
         if self.businessName.text?.count == 0 {
@@ -449,12 +442,7 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
         
         if let destination = segue.destination as? LocationSelectorVC{
             destination.locationRetrive = self
-            if self.locations.count == 0{
-               destination.locations = [""]
-            }else{
-               destination.locations = self.locations
-            }
-            
+            destination.locations = self.locations
         }
     }
     

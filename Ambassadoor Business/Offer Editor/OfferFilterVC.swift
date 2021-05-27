@@ -130,7 +130,6 @@ class OfferFilterVC: BaseVC, InterestPickerDelegate, InfluencerStatsDelegate, Zi
             }
             
             if !engagementMatch && likesMatch && genderMatch && categoryMatch && locationMatch {
-                print("en=",user.engagementRate)
                 engagementMatch = user.engagementRate >= self.engagement
             }
             

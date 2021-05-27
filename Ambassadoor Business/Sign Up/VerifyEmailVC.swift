@@ -62,7 +62,7 @@ class VerifyEmailVC: BaseVC {
                         self.instantiateToMainScreen()
                         
                     }else{
-                        self.CreateNewUser()
+                        
                     }
                 }
                 
@@ -95,25 +95,24 @@ class VerifyEmailVC: BaseVC {
                     
                     if error == nil {
                         
-                        let coName: String = makeFirebaseUrl( "NewCo" + ", " + GetNewID())
-                        let NewBusinessID: String = makeFirebaseUrl(coName + ", " + randomString(length: 15))
+                        
+                        let NewUserID = makeFirebaseUrl(user.uid + ", " + randomString(length: 15))
+                        
                         
                         UserDefaults.standard.set(self.emailString, forKey: "userEmail")
                         UserDefaults.standard.set(self.passwordString, forKey: "userPass")
-                        UserDefaults.standard.set(NewBusinessID, forKey: "userid")
+                        UserDefaults.standard.set(NewUserID, forKey: "userid")
                         
                         let finance = ["balance":0.0]
                         
+                        let businessObject =  ["businessId":user.uid,"token":token!,"email":user.email!,"refreshToken":user.refreshToken!,"isCompanyRegistered":false, "deviceFIRToken": global.deviceFIRToken, "activeBasicId": NewUserID, "finance": finance] as [String : Any]
                         
-                        
-                        let businessObject =  ["businessId":NewBusinessID,"token":token!,"email":user.email!,"refreshToken":user.refreshToken!,"isCompanyRegistered":false, "deviceFIRToken": global.deviceFIRToken, "activeBasicId": NewBusinessID, "finance": finance] as [String : Any]
-                        
-                       let businessUser = Business.init(dictionary: businessObject, businessId: NewBusinessID)
+                       let businessUser = Business.init(dictionary: businessObject, businessId: NewUserID)
                         
                         CreateNewCompanyUser(user: businessUser) { (status) in
                             if !status{
                                 MyCompany = businessUser
-                                self.instantiateToMainScreen()
+                               self.instantiateToMainScreen()
                             }
                         }
                         
@@ -131,39 +130,6 @@ class VerifyEmailVC: BaseVC {
             
         }
         
-    }
-    
-    func CreateNewUser() {
-        
-        let user = Auth.auth().currentUser!
-        user.getIDToken(completion: { (token, error) in
-            
-            if error == nil {
-                
-                let coName: String = makeFirebaseUrl( "NewCo" + ", " + GetNewID())
-                let NewBusinessID: String = makeFirebaseUrl(coName + ", " + randomString(length: 15))
-                
-                UserDefaults.standard.set(self.emailString, forKey: "userEmail")
-                UserDefaults.standard.set(self.passwordString, forKey: "userPass")
-                UserDefaults.standard.set(NewBusinessID, forKey: "userid")
-                
-                let finance = ["balance":0.0]
-                
-                let businessObject =  ["businessId":NewBusinessID,"token":token!,"email":user.email!,"refreshToken":user.refreshToken!,"isCompanyRegistered":false, "deviceFIRToken": global.deviceFIRToken, "activeBasicId": NewBusinessID, "finance": finance] as [String : Any]
-                
-               let businessUser = Business.init(dictionary: businessObject, businessId: NewBusinessID)
-                
-                CreateNewCompanyUser(user: businessUser) { (status) in
-                    if !status{
-                        MyCompany = businessUser
-                       self.instantiateToMainScreen()
-                    }
-                }
-                
-            }
-            
-        })
-
     }
     
     @IBAction func popToprevious(sender: UIButton){

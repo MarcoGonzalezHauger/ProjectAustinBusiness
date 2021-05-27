@@ -8,18 +8,11 @@
 
 import UIKit
 
-protocol deleteDelegate {
-	func delete(_ at: Int)
-}
-
 class AddPostTC: UITableViewCell {
     
     @IBOutlet weak var addPostImage: UIImageView!
     @IBOutlet weak var addPostText: UILabel!
 
-	var delegate: deleteDelegate?
-	var thisIndex = 0
-	
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -31,9 +24,5 @@ class AddPostTC: UITableViewCell {
 
         // Configure the view for the selected state
     }
-	
-	@IBAction func deleteThis(_ sender: Any) {
-		delegate?.delete(thisIndex)
-	}
-	
+
 }

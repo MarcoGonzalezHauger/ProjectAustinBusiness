@@ -161,10 +161,6 @@ class ProfilePickerVC: UIViewController, UICollectionViewDelegate, UICollectionV
             isDeleteHidden = true
             self.removeBtn.setTitle("Remove a Business", for: .normal)
             setCompanyTabBarItem(tab: self.tabBarController!)
-            //MyCompany.activeBasicId =
-            MyCompany.activeBasicId = MyCompany.basics.filter { (basic) -> Bool in
-                return !basic.checkFlag("isDeleted") || !basic.checkFlag("isInvisible")
-                }.first!.basicId
             MyCompany.UpdateToFirebase { (error) in
                 DispatchQueue.main.async {
                     self.setCollectionDataSource()
