@@ -112,7 +112,8 @@ class LocationSelectorVC: BaseVC, UITableViewDelegate, UITableViewDataSource, Lo
         }
         //basicBusiness?.locations = locations
         self.locationRetrive?.sendLocationObjects(locations: locations)
-        self.navigationController?.popViewController(animated: true)
+        self.performDismiss()
+        
     }
     
     func regexForLocation(loc: String) -> Bool{

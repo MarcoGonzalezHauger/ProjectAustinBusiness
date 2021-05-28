@@ -338,6 +338,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
         
+        let refone = Database.database().reference().child("LatestAppVersion")
+        refone.updateChildValues(["Businessversion":"2.1"]) { (err, dataref) in
+           
+        }
+        
         let ref = Database.database().reference().child("LatestAppVersion").child("Businessversion")
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             
