@@ -185,6 +185,8 @@ class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePh
     
     @IBOutlet weak var postName: UILabel!
     @IBOutlet weak var postInstruction: UITextView!
+    
+    @IBOutlet weak var backBtn: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -208,6 +210,7 @@ class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePh
             }
             
             if postIndex != nil {
+                self.backBtn.setTitle("Done", for: .normal)
                 let post = draftOffer?.draftPosts[postIndex!]
                 phraseList.append(contentsOf: post!.requiredKeywords)
                 for hashtag in post!.requiredHastags {
@@ -223,6 +226,8 @@ class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePh
                 
                 self.postInstruction.text = post?.instructions
                 
+            }else{
+                self.backBtn.setTitle("Back", for: .normal)
             }
             if phraseList.count == 0 {
                 phraseList.append("")
@@ -271,12 +276,22 @@ class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePh
     }
 	
 	func tryDismiss() -> Bool {
+        
+        let pharse = self.phraseList.filter { (pharse) -> Bool in
+            return pharse != "" && pharse != "#"
+        }
+        
+        if postIndex == nil && pharse.count == 0 && self.postInstruction.text.count == 0{
+           self.navigationController?.popViewController(animated: true)
+           return false
+        }
+        
 		if self.postInstruction.text.count == 0 {
-			self.navigationController?.popViewController(animated: true)
-			return true
+			self.showAlertMessage(title: "Post not complete", message: "Add instruction for how you post should come on instagram"){ }
+            return false
 		}
-        self.phraseList = self.phraseList.filter{$0 != "" && $0.starts(with: "#") ? $0.count > 1 : $0.count > 0}
-		if self.phraseList.count == 0 {
+        let phaseCheck = self.phraseList.filter{$0 != "" && $0.starts(with: "#") ? $0.count > 1 : $0.count > 0}
+		if phaseCheck.count == 0 {
 			self.showAlertMessage(title: "Post not complete", message: "Add at least one phrase in Caption Requirements to save."){ }
 			return false
 		}
