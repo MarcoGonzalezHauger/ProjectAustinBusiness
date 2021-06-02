@@ -195,7 +195,7 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
 //            getDeepositDetails()
 //
 //        }
-//        accountBalance = MyCompany.finance.balance
+        accountBalance = MyCompany.finance.balance
         NotificationCenter.default.addObserver(self, selector: #selector(self.getDeepositDetails), name: Notification.Name.init(rawValue: "reloadDeposit"), object: nil)
         
         
@@ -204,7 +204,6 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        accountBalance = MyCompany.finance.balance
         //self.getDeepositDetails()
     }
     

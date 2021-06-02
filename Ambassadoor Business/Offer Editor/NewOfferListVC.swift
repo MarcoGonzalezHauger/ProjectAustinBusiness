@@ -48,8 +48,7 @@ class NewOfferListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var offerList: UITableView!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return GetSortedList().count + 1
-        //return MyCompany.drafts.count + 1
+        return MyCompany.drafts.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -61,17 +60,11 @@ class NewOfferListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         }
         let identifier = "offerlist"
         let cell = self.offerList.dequeueReusableCell(withIdentifier: identifier) as! OfferList
-        let draft = GetSortedList()[indexPath.row]
+        let draft = MyCompany.drafts[indexPath.row]
         cell.draftOffer = draft
         cell.offerName.text = draft.title == "" ? "Offer \((indexPath.row + 1))" : draft.title
         return cell
     }
-	
-	func GetSortedList() -> [DraftOffer] {
-        let filtered = MyCompany.drafts.sorted{$0.lastEdited > $1.lastEdited}
-        MyCompany.drafts = filtered
-		return filtered
-	}
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         return 120.0

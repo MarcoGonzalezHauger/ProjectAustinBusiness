@@ -29,7 +29,6 @@ let noIndicator = true //I don't like the activity indicator. ~Marco;
 class BaseVC: UIViewController {
     
     let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-    let businessProfile = UIStoryboard(name: "businessProfile", bundle: nil)
     let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
     
     var activityIndicator: UIActivityIndicatorView!
@@ -144,7 +143,6 @@ class BaseVC: UIViewController {
             setCompanyTabBarItem(tab: instantiateViewController as! UITabBarController)
         })
     }
-    
     
     
     func addDoneButtonOnKeyboard(textView: UITextView)
