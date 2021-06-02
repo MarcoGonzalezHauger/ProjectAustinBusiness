@@ -33,7 +33,7 @@ class ContractBusinessVC: BaseVC {
     }
     
     @IBAction func dismissAction(sender: UIButton){
-        self.navigationController?.popViewController(animated: true)
+        self.performDismiss()
     }
 
     @IBAction func expandAction(sender: UIButton){

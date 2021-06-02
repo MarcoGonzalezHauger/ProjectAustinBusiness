@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PY6-HP-jp8">
-    <device id="retina5_9" orientation="portrait" appearance="dark"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -342,25 +342,42 @@
                                                         <color key="backgroundColor" name="newCellColor"/>
                                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <prototypes>
-                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="0.0" reuseIdentifier="postlist" textLabel="vr3-Dc-kfx" rowHeight="45" style="IBUITableViewCellStyleDefault" id="CU0-gn-Qst" customClass="AddPostTC" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="0.0" reuseIdentifier="postlist" rowHeight="45" id="CU0-gn-Qst" customClass="AddPostTC" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="28" width="351" height="45"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CU0-gn-Qst" id="ojw-uu-CTJ">
                                                                     <rect key="frame" x="0.0" y="0.0" width="325" height="45"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Post 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vr3-Dc-kfx">
-                                                                            <rect key="frame" x="15" y="0.0" width="302" height="45"/>
-                                                                            <autoresizingMask key="autoresizingMask"/>
+                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WdZ-s7-HHF">
+                                                                            <rect key="frame" x="285" y="6.6666666666666679" width="32" height="32"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="32" id="1z3-8k-utu"/>
+                                                                                <constraint firstAttribute="height" constant="32" id="PZ8-Ge-5HL"/>
+                                                                            </constraints>
+                                                                            <color key="tintColor" name="AmbPurple"/>
+                                                                            <state key="normal" image="deleteButton"/>
+                                                                            <connections>
+                                                                                <action selector="deleteThis:" destination="CU0-gn-Qst" eventType="touchUpInside" id="9oh-Y8-kx5"/>
+                                                                            </connections>
+                                                                        </button>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post Lbl" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsp-8w-2km">
+                                                                            <rect key="frame" x="15" y="12" width="62" height="21"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
+                                                                    <constraints>
+                                                                        <constraint firstItem="qsp-8w-2km" firstAttribute="leading" secondItem="ojw-uu-CTJ" secondAttribute="leadingMargin" id="1VW-EE-i76"/>
+                                                                        <constraint firstItem="WdZ-s7-HHF" firstAttribute="centerY" secondItem="ojw-uu-CTJ" secondAttribute="centerY" id="NbR-Hz-XRT"/>
+                                                                        <constraint firstItem="qsp-8w-2km" firstAttribute="centerY" secondItem="ojw-uu-CTJ" secondAttribute="centerY" id="gbq-9Q-8Ia"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="WdZ-s7-HHF" secondAttribute="trailing" constant="8" id="xEq-PQ-VO7"/>
+                                                                    </constraints>
                                                                 </tableViewCellContentView>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <connections>
-                                                                    <outlet property="addPostText" destination="vr3-Dc-kfx" id="GjM-8t-FJL"/>
+                                                                    <outlet property="addPostText" destination="qsp-8w-2km" id="feU-Zw-J0W"/>
                                                                 </connections>
                                                             </tableViewCell>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="0.0" reuseIdentifier="addpost" textLabel="kAM-Sm-pxa" style="IBUITableViewCellStyleDefault" id="S7o-oS-PbV" customClass="NewAddPostCell" customModule="Ambassadoor_Business" customModuleProvider="target">
@@ -406,6 +423,7 @@
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="21"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
+                                                    <action selector="textDidChange:" destination="5zy-es-Mje" eventType="editingChanged" id="0ED-EC-CG5"/>
                                                     <outlet property="delegate" destination="5zy-es-Mje" id="vVW-IQ-fq9"/>
                                                 </connections>
                                             </textField>
@@ -557,7 +575,7 @@
                                 <rect key="frame" x="0.0" y="128" width="414" height="1272"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vZx-86-Wxa">
-                                        <rect key="frame" x="12" y="31.999999999999943" width="390" height="1005.6666666666665"/>
+                                        <rect key="frame" x="12" y="32" width="390" height="1026"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Instructions for Influencer:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xed-tl-TuO">
                                                 <rect key="frame" x="51.666666666666657" y="8.0000000000000018" width="287" height="25.666666666666671"/>
@@ -611,8 +629,8 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ysm-dR-dkT">
-                                                <rect key="frame" x="0.0" y="587" width="390" height="101.66666666666663"/>
-                                                <string key="text">The Influencer's post to Instagram must include all the phrases and hashtags that you list below.
+                                                <rect key="frame" x="0.0" y="587" width="390" height="122"/>
+                                                <string key="text">The Influencer's post to Instagram must include all the phrases and hashtags that you list below. For legal reasons, #ad will be automiatcally added.
 
 HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITED.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -620,7 +638,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SJS-d4-isZ" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="704.66666666666663" width="390" height="301"/>
+                                                <rect key="frame" x="0.0" y="725" width="390" height="301"/>
                                                 <subviews>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FGV-ZA-YPe" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                         <rect key="frame" x="4" y="0.0" width="382" height="280"/>
@@ -823,6 +841,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" name="newSubtleBackground"/>
                                 <constraints>
                                     <constraint firstItem="FgW-UC-hG6" firstAttribute="top" secondItem="jfJ-x5-Ccq" secondAttribute="bottom" constant="16" id="3Qe-GG-AJQ"/>
                                     <constraint firstItem="FgW-UC-hG6" firstAttribute="leading" secondItem="yFD-Cv-5IN" secondAttribute="leading" constant="12" id="SIe-sg-fx8"/>
@@ -979,7 +998,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                     <navigationItem key="navigationItem" id="zbC-HI-4jU"/>
                     <size key="freeformSize" width="414" height="1400"/>
                     <connections>
-                        <outlet property="backBtn" destination="4rI-p8-vCJ" id="Awi-Nr-Clx"/>
+                        <outlet property="backBtn" destination="4rI-p8-vCJ" id="kEt-Bh-SdH"/>
                         <outlet property="largeImg" destination="L3o-Oi-agm" id="ZQC-SX-gZu"/>
                         <outlet property="logoImg" destination="Jnq-qT-usv" id="BGz-m2-zDB"/>
                         <outlet property="postInstruction" destination="QF3-8H-vxz" id="x4g-HQ-n8E"/>

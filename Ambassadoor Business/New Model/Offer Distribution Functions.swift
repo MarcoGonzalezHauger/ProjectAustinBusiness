@@ -20,7 +20,11 @@ extension DraftOffer {
 			if !error {
 				asBusiness.sentOffers.append(sentOffer.init(poolId: newPoolOffer.poolId, draftOfferId: self.draftId, businessId: self.businessId, title: self.title, basicId: asBasic.basicId))
 				if withdrawFunds {
-					asBusiness.finance.balance -= withMoney
+                    
+                    let logDict = ["time":Date().toUString(),"type": "offer", "value":(withMoney)] as [String : Any]
+                    let log = BusinessTransactionLogItem.init(dictionary: logDict, businessId: MyCompany.businessId, transactionId: newPoolOffer.poolId)
+                    asBusiness.finance.log.append(log)
+                    asBusiness.finance.balance -= withMoney
 					if asBusiness.finance.balance < 0 {
 						asBusiness.finance.balance = 0
 					}

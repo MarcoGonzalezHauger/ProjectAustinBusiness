@@ -22,7 +22,12 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
 	
     func sendLocationObjects(locations: [String]) {
         self.locations = locations
-        self.setBusinessData()
+        if self.locations.count == 0 {
+            self.locationText.text = "No Location"
+        }else{
+            self.locationText.text = self.locations.count == 1 ? "\(self.locations.count) location" : "\(self.locations.count) locations"
+        }
+        //self.setBusinessData()
     }
     
     
@@ -81,6 +86,8 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
     @IBOutlet weak var scroll: UIScrollView!
     
     var basicBusiness: BasicBusiness? = nil
+    
+    var isProfileSegue = false
     
     var type: BusinessType? = nil
     
@@ -147,7 +154,10 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
         self.activity.isHidden = true
         self.addDoneButtonOnKeyboard(textView: companyMission)
         setBusinessData()
-		(self.navigationController as! StandardNC).tempDelegate = self
+//		(self.navigationController as! StandardNC).tempDelegate = self
+        if let navigation = self.navigationController as? StandardNC{
+            navigation.tempDelegate = self
+        }
         //let zips = basicBusiness!.GetLocationZips()
         // Do any additional setup after loading the view.
     }
@@ -217,7 +227,7 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
     
     @IBAction func dismiss(sender: UIButton){
 		saveBasicBusiness()
-        self.navigationController?.popViewController(animated: true)
+        //self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func logoControlAction(sender: UIButton){
@@ -366,12 +376,20 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
 			MyCompany.basics[index!] = basic
 			
 		}
+        
+        if MyCompany.basics.count == 1 {
+            MyCompany.activeBasicId = MyCompany.basics.first!.basicId
+        }
 		
 		MyCompany.UpdateToFirebase { (error) in
 			DispatchQueue.main.async {
 				self.reloadDelegate?.reloadMyCompany()
                 self.saveBtn.isUserInteractionEnabled = true
+                if self.isProfileSegue{
 				self.navigationController?.popViewController(animated: true)
+                }else{
+                    self.instantiateToMainScreen()
+                }
 			}
 		}
 	}
@@ -379,6 +397,9 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
     func checkBasicBusiness() -> BasicBusiness? {
         
         if self.urlString == "" {
+            self.showAlertMessage(title: "Alert", message: "Please choose the image") {
+                
+            }
             return nil
         }
         if self.businessName.text?.count == 0 {
@@ -442,7 +463,12 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
         
         if let destination = segue.destination as? LocationSelectorVC{
             destination.locationRetrive = self
-            destination.locations = self.locations
+            if self.locations.count == 0{
+               destination.locations = [""]
+            }else{
+               destination.locations = self.locations
+            }
+            
         }
     }
     

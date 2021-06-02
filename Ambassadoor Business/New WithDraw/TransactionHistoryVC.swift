@@ -13,14 +13,9 @@ class TransactionHistoryVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var shelf: UITableView!
     
     @IBOutlet weak var errorShadow: ShadowView!
-    
-    var logs = [BusinessTransactionLogItem]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        logs = MyCompany.finance.log.sorted { (logOne, logTwo) -> Bool in
-            return logOne.time.compare(logTwo.time) == .orderedDescending
-        }
         if MyCompany.finance.log.count == 0 {
             errorShadow.isHidden = false
         }else{
@@ -37,16 +32,14 @@ class TransactionHistoryVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return MyCompany.finance.log.count
-        return logs.count
+        return MyCompany.finance.log.count
         //return GetTransactionHistory().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
         let cell = shelf.dequeueReusableCell(withIdentifier: "TransactionTrunk") as! TransactionCell
-        let log = logs[row]
-        //let log = MyCompany.finance.log[row]
+        let log = MyCompany.finance.log[row]
         if log.type == "withdraw" {
             
             cell.amountlabel.text = "- \(NumberToPrice(Value: log.value))"
@@ -69,6 +62,10 @@ class TransactionHistoryVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         }else if log.type == "adminWithdraw"{
             cell.amountlabel.text = "\(NumberToPrice(Value: log.value))"
             cell.descriptionLabel.text = "Ambassadoor Withdraw from AMBVER"
+            cell.shadowBox.borderColor = .red
+        }else if log.type == "offer"{
+            cell.amountlabel.text = "- \(NumberToPrice(Value: log.value))"
+            cell.descriptionLabel.text = "Offer Distributed"
             cell.shadowBox.borderColor = .red
         }
         

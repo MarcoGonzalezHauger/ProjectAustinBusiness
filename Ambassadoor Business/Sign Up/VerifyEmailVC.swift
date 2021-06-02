@@ -59,15 +59,22 @@ class VerifyEmailVC: BaseVC {
                         UserDefaults.standard.set(self.passwordString, forKey: "userPass")
                         UserDefaults.standard.set(MyCompany.businessId, forKey: "userid")
                         
-                        self.instantiateToMainScreen()
+                        //self.instantiateToMainScreen()
+                        self.instantiateToNewBusiness()
                         
                     }else{
-                        
+                        self.CreateNewUser()
                     }
                 }
                 
                     
+            }else{
+                
+                self.showAlertMessage(title: "Alert", message: "You have not verified email yet. Please verify your email") {
+                    
                 }
+                
+            }
                 
             }else{
                 self.showAlertMessage(title: "Alert", message: "You have not verified email yet. Please verify your email") {
@@ -95,24 +102,26 @@ class VerifyEmailVC: BaseVC {
                     
                     if error == nil {
                         
-                        
-                        let NewUserID = makeFirebaseUrl(user.uid + ", " + randomString(length: 15))
-                        
+                        let coName: String = makeFirebaseUrl( "NewCo" + ", " + GetNewID())
+                        let NewBusinessID: String = makeFirebaseUrl(coName + ", " + randomString(length: 15))
                         
                         UserDefaults.standard.set(self.emailString, forKey: "userEmail")
                         UserDefaults.standard.set(self.passwordString, forKey: "userPass")
-                        UserDefaults.standard.set(NewUserID, forKey: "userid")
+                        UserDefaults.standard.set(NewBusinessID, forKey: "userid")
                         
                         let finance = ["balance":0.0]
                         
-                        let businessObject =  ["businessId":user.uid,"token":token!,"email":user.email!,"refreshToken":user.refreshToken!,"isCompanyRegistered":false, "deviceFIRToken": global.deviceFIRToken, "activeBasicId": NewUserID, "finance": finance] as [String : Any]
                         
-                       let businessUser = Business.init(dictionary: businessObject, businessId: NewUserID)
+                        
+                        let businessObject =  ["businessId":NewBusinessID,"token":token!,"email":user.email!,"refreshToken":user.refreshToken!,"isCompanyRegistered":false, "deviceFIRToken": global.deviceFIRToken, "activeBasicId": "", "finance": finance] as [String : Any]
+                        
+                       let businessUser = Business.init(dictionary: businessObject, businessId: NewBusinessID)
                         
                         CreateNewCompanyUser(user: businessUser) { (status) in
                             if !status{
                                 MyCompany = businessUser
-                               self.instantiateToMainScreen()
+                                self.instantiateToNewBusiness()
+                                //self.instantiateToMainScreen()
                             }
                         }
                         
@@ -132,6 +141,46 @@ class VerifyEmailVC: BaseVC {
         
     }
     
+    func instantiateToNewBusiness() {
+        DispatchQueue.main.async(execute: {
+            self.performSegue(withIdentifier: "toAddBusinessPresent", sender: self)
+        })
+    }
+    
+    func CreateNewUser() {
+        
+        let user = Auth.auth().currentUser!
+        user.getIDToken(completion: { (token, error) in
+            
+            if error == nil {
+                
+                let coName: String = makeFirebaseUrl( "NewCo" + ", " + GetNewID())
+                let NewBusinessID: String = makeFirebaseUrl(coName + ", " + randomString(length: 15))
+                
+                UserDefaults.standard.set(self.emailString, forKey: "userEmail")
+                UserDefaults.standard.set(self.passwordString, forKey: "userPass")
+                UserDefaults.standard.set(NewBusinessID, forKey: "userid")
+                
+                let finance = ["balance":0.0]
+                
+                let businessObject =  ["businessId":NewBusinessID,"token":token!,"email":user.email!,"refreshToken":user.refreshToken!,"isCompanyRegistered":false, "deviceFIRToken": global.deviceFIRToken, "activeBasicId": "", "finance": finance] as [String : Any]
+                
+               let businessUser = Business.init(dictionary: businessObject, businessId: NewBusinessID)
+                
+                CreateNewCompanyUser(user: businessUser) { (status) in
+                    if !status{
+                        MyCompany = businessUser
+                        self.instantiateToNewBusiness()
+                       //self.instantiateToMainScreen()
+                    }
+                }
+                
+            }
+            
+        })
+
+    }
+    
     @IBAction func popToprevious(sender: UIButton){
         
         if let navCon = self.navigationController{
@@ -142,14 +191,15 @@ class VerifyEmailVC: BaseVC {
         
     }
     
-    /*
-     // MARK: - Navigation
+    
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
+        if segue.identifier == "toAddBusinessPresent" {
+            let view = segue.destination as! AddBasicBusinessVC
+            view.isProfileSegue = false
+            view.basicBusiness = nil
+        }
      }
-     */
     
 }

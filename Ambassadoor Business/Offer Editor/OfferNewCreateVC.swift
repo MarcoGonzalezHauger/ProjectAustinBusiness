@@ -15,7 +15,13 @@ protocol BusinessDelegate {
 class NewAddPostCell: UITableViewCell {
 }
 
-class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, BusinessDelegate, NCDelegate {
+class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, BusinessDelegate, NCDelegate, deleteDelegate {
+	
+	func delete(_ at: Int) {
+		draftTemp?.draftPosts.remove(at: at)
+		postTable.reloadData()
+	}
+	
     func shouldAllowBack() -> Bool {
         if checkIfEdited() && self.isSavable() {
             draftTemp!.lastEdited = Date()
@@ -67,8 +73,11 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        backBtn.isUserInteractionEnabled = true
+		super.viewWillAppear(true)
+		if let nc = self.navigationController as? StandardNC {
+			nc.tempDelegate = self
+		}
+		backBtn.isUserInteractionEnabled = true
         self.setOfferData()
     }
     
@@ -100,7 +109,6 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
             let company = MyCompany.basics.filter({ (basic) -> Bool in
                 return basic.basicId == draftOffer.basicId
             })
-            
             if let basic = company.first {
                 setBasicBusinessLogo(basic: basic)
             }else{
@@ -110,7 +118,6 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
             self.delView.isHidden = false
             self.draftTemp = draftOffer
         }else{
-            
             if self.draftTemp == nil {
                 self.delView.isHidden = true
                 self.offerName.text = "Offer \((MyCompany.drafts.count + 1))"
@@ -125,11 +132,15 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
                 if let basic = company.first {
                    setBasicBusinessLogo(basic: basic)
                 }
-                self.backBtn.setTitle("Done", for: .normal)
+                if company.count == 0 && self.draftTemp?.draftPosts.count == 0{
+                   self.backBtn.setTitle("Back", for: .normal)
+                }else{
+                    self.backBtn.setTitle("Done", for: .normal)
+                }
+                
             }
             
         }
-        self.setPostConstraints()
         self.setTableSource()
     }
     
@@ -176,15 +187,14 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     
     @IBAction func dismissAction(sender: UIButton){
         
-        if index == nil && !checkIfEdited(){
+        if index == nil && !checkIfEdited() {
             DispatchQueue.main.async {
                 self.backBtn.isUserInteractionEnabled = true
                 self.navigationController?.popViewController(animated: true)
             }
-        }else{
-        
+        }
+        else{
         backBtn.isUserInteractionEnabled = false
-        
         if self.isSavable() {
             draftTemp!.lastEdited = Date()
             if index == nil{
@@ -207,12 +217,18 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
                 self.backBtn.isUserInteractionEnabled = true
             }
         }
-        }
+    }
+        
     }
     
     
     
     func isSavable() -> Bool {
+		for p in draftTemp!.draftPosts {
+			if p.instructions == "" {
+				
+			}
+		}
         if draftTemp!.basicId == ""  {
             self.showAlertMessage(title: "Alert", message: "Please choose any comapny") {
             }
@@ -220,7 +236,7 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
         }
         
         if self.draftTemp!.draftPosts.count == 0 {
-            self.showAlertMessage(title: "Alert", message: "Please add atleast one post") {
+            self.showAlertMessage(title: "Alert", message: "Please add at least one post in your offer to save.") {
             }
             return false
         }
@@ -228,6 +244,12 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     }
     
     //MARK: Textfield Delegates
+    
+    @IBAction func textDidChange(_ textField: UITextField){
+        if textField.text?.count != 0{
+            self.draftTemp?.title = textField.text!
+        }
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         textField.resignFirstResponder()
@@ -245,8 +267,10 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
 		if numOfRows > 3 {
 			numOfRows = 3
 		}
-		let counttext = "\(numOfRows) post \(numOfRows == 1 ? "" : "s")"
+		let counttext = "\(numOfRows - 1) post\(numOfRows == 2 ? "" : "s")"
 		informationalLabel.text = "When an influencer accepts this offer they will be required to post \(counttext) to Instagram following the instructions you created:"
+		
+		setPostConstraints()
 		
         return numOfRows
     }
@@ -264,6 +288,8 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
         let identifier = "postlist"
         let cell = self.postTable.dequeueReusableCell(withIdentifier: identifier) as! AddPostTC
         cell.addPostText.text = "Post \((indexPath.row + 1))"
+		cell.thisIndex = indexPath.row
+		cell.delegate = self
         return cell
     }
     
