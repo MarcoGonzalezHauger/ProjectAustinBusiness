@@ -84,7 +84,7 @@ class OfferFilterVC: BaseVC, InterestPickerDelegate, InfluencerStatsDelegate, Zi
         
         switch gender {
         case "All":
-            return ["Male", "Female", "Other"]
+            return ["Male", "Female", "Other", "Not Provided"]
         default:
             return [gender]
         }
