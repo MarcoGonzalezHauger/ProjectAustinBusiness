@@ -18,6 +18,8 @@ class CityCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var mappinImg: UIImageView!
     @IBOutlet weak var delBtn: UIButton!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     var cityDelegate: CityCellDelegate?
     
     var cityData: CityObject?{
@@ -28,6 +30,13 @@ class CityCell: UITableViewCell, UITextFieldDelegate {
         }
     }
     
+    func textFieldDidChange(_ textfield: UITextField) {
+        self.mappinImg.tintColor = .red
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.mappinImg.tintColor = .red
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         if cityText.text!.count != 0{
@@ -36,16 +45,29 @@ class CityCell: UITableViewCell, UITextFieldDelegate {
                 self.fetchZipcodes(city: seperateData[0].trimmingCharacters(in: .whitespaces), state: seperateData[1].trimmingCharacters(in: .whitespaces))
             }else{
                 self.mappinImg.tintColor = .red
+                self.cityText.resignFirstResponder()
             }
         }else{
             self.mappinImg.tintColor = .red
+            self.cityText.resignFirstResponder()
         }
-        self.cityText.resignFirstResponder()
+        
         return true
     }
     
     func fetchZipcodes(city: String, state: String) {
+        DispatchQueue.main.async {
+            self.activityIndicator.isHidden = false
+            self.activityIndicator.startAnimating()
+        }
+        
         GetZipCodeUsingCity(city: city, state: state) { (zipcodes) in
+            
+            DispatchQueue.main.async {
+                self.cityText.resignFirstResponder()
+                self.activityIndicator.isHidden = true
+                self.activityIndicator.stopAnimating()
+            }
             
             if zipcodes != nil && zipcodes?.count != 0{
                 DispatchQueue.main.async {
@@ -113,9 +135,9 @@ class FilterByCityVC: BaseVC, UITableViewDelegate, UITableViewDataSource, CityCe
         let cell = cityList.dequeueReusableCell(withIdentifier: identifier) as! CityCell
         
         let obj = self.totalCityObjects[indexPath.row]
+        cell.activityIndicator.isHidden = true
         cell.cityData = obj
         cell.cityDelegate = self
-        
         return cell
     }
     

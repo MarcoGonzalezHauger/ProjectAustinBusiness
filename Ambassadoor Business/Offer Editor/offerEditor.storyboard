@@ -2035,10 +2035,19 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                         <action selector="deleteCityActionWithSender:" destination="5cs-6A-5Kg" eventType="touchUpInside" id="3l8-fD-DIF"/>
                                                     </connections>
                                                 </button>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="TuD-JQ-TKb">
+                                                    <rect key="frame" x="262" y="13" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="FUM-SA-2hf"/>
+                                                        <constraint firstAttribute="width" constant="20" id="mGj-Mu-mF2"/>
+                                                    </constraints>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Y4K-Xr-zqU" firstAttribute="centerY" secondItem="LVs-fh-MeW" secondAttribute="centerY" constant="-0.5" id="5M7-sb-l3E"/>
+                                                <constraint firstItem="TuD-JQ-TKb" firstAttribute="leading" secondItem="Qsi-hv-naF" secondAttribute="trailing" constant="-35" id="6hx-H9-eKe"/>
                                                 <constraint firstItem="Qsi-hv-naF" firstAttribute="leading" secondItem="IXL-Ay-fVH" secondAttribute="leadingMargin" id="N3a-p0-hw4"/>
+                                                <constraint firstItem="TuD-JQ-TKb" firstAttribute="centerY" secondItem="Qsi-hv-naF" secondAttribute="centerY" id="QJM-4G-s5X"/>
                                                 <constraint firstItem="LVs-fh-MeW" firstAttribute="leading" secondItem="Qsi-hv-naF" secondAttribute="trailing" constant="4" id="Yk9-Sx-O3b"/>
                                                 <constraint firstAttribute="trailing" secondItem="Y4K-Xr-zqU" secondAttribute="trailing" constant="8" id="cF8-dt-I87"/>
                                                 <constraint firstItem="Qsi-hv-naF" firstAttribute="top" secondItem="IXL-Ay-fVH" secondAttribute="top" constant="6" id="hvT-Fp-vO5"/>
@@ -2048,6 +2057,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                         </tableViewCellContentView>
                                         <color key="tintColor" name="AmbPurple"/>
                                         <connections>
+                                            <outlet property="activityIndicator" destination="TuD-JQ-TKb" id="bRT-Zp-fHE"/>
                                             <outlet property="cityText" destination="Qsi-hv-naF" id="TtK-g2-SR4"/>
                                             <outlet property="delBtn" destination="Y4K-Xr-zqU" id="AUW-O9-sSO"/>
                                             <outlet property="mappinImg" destination="LVs-fh-MeW" id="zFK-ZH-q0B"/>
