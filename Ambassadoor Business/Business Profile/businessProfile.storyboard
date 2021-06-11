@@ -1023,13 +1023,13 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avaliable Offers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcW-Dc-8nm">
-                                                <rect key="frame" x="144" y="342.5" width="126" height="21"/>
+                                                <rect key="frame" x="144" y="370.5" width="126" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cef-wE-Oak" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                                <rect key="frame" x="12" y="372.5" width="390" height="100.5"/>
+                                                <rect key="frame" x="12" y="400.5" width="390" height="100.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3lf-zp-Io6">
                                                         <rect key="frame" x="32" y="16" width="326" height="68.5"/>
@@ -1067,19 +1067,59 @@ Follow them to get notified.</string>
                                                     <action selector="dismissActionWithSender:" destination="z7H-ce-UFd" eventType="touchUpInside" id="Z4G-xn-E6P"/>
                                                 </connections>
                                             </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="639-rb-Tqs" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                                <rect key="frame" x="12" y="310" width="390" height="53"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="InI-El-8iZ">
+                                                        <rect key="frame" x="8" y="16.5" width="20" height="20"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="20" id="R7w-5G-wQz"/>
+                                                            <constraint firstAttribute="width" constant="20" id="vOe-19-LZV"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button" image="globe" catalog="system"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mxz-PH-gdE">
+                                                        <rect key="frame" x="36" y="9.5" width="346" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="rAz-uZ-U2m"/>
+                                                        </constraints>
+                                                        <state key="normal" title="www.google.com"/>
+                                                        <connections>
+                                                            <action selector="openWebsiteWithButton:" destination="z7H-ce-UFd" eventType="touchUpInside" id="PWK-m1-VkZ"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="Mxz-PH-gdE" firstAttribute="leading" secondItem="InI-El-8iZ" secondAttribute="trailing" constant="8" id="0dI-Ub-H9P"/>
+                                                    <constraint firstItem="InI-El-8iZ" firstAttribute="leading" secondItem="639-rb-Tqs" secondAttribute="leading" constant="8" id="C4l-r5-Zhy"/>
+                                                    <constraint firstItem="Mxz-PH-gdE" firstAttribute="centerY" secondItem="639-rb-Tqs" secondAttribute="centerY" constant="-2" id="bOn-Dq-s8R"/>
+                                                    <constraint firstAttribute="height" constant="53" id="f3q-Vq-sJ4"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Mxz-PH-gdE" secondAttribute="trailing" constant="8" id="tMW-SN-hfJ"/>
+                                                    <constraint firstItem="InI-El-8iZ" firstAttribute="centerY" secondItem="639-rb-Tqs" secondAttribute="centerY" id="xsA-e1-r5G"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="639-rb-Tqs" firstAttribute="top" secondItem="7od-tb-e5h" secondAttribute="bottom" constant="7.5" id="3vW-qG-uP5"/>
                                             <constraint firstItem="8xj-4W-04f" firstAttribute="top" secondItem="rKO-h3-qsP" secondAttribute="bottom" constant="14" id="6HV-5W-NSs"/>
                                             <constraint firstItem="8xj-4W-04f" firstAttribute="leading" secondItem="T2C-bA-s0t" secondAttribute="leading" constant="12" id="He2-y4-WYN"/>
                                             <constraint firstItem="Cef-wE-Oak" firstAttribute="leading" secondItem="T2C-bA-s0t" secondAttribute="leading" constant="12" id="JVh-Dq-QX0"/>
                                             <constraint firstItem="kZy-0D-9Qf" firstAttribute="trailing" secondItem="8xj-4W-04f" secondAttribute="trailing" id="LCV-Tq-3UT"/>
                                             <constraint firstItem="rKO-h3-qsP" firstAttribute="leading" secondItem="T2C-bA-s0t" secondAttribute="leading" constant="12" id="PnV-zf-hoR"/>
+                                            <constraint firstItem="639-rb-Tqs" firstAttribute="leading" secondItem="T2C-bA-s0t" secondAttribute="leading" constant="12" id="WBI-lh-2MX"/>
                                             <constraint firstAttribute="trailing" secondItem="7od-tb-e5h" secondAttribute="trailing" constant="12" id="YZq-Hm-Lte"/>
                                             <constraint firstItem="8xj-4W-04f" firstAttribute="top" secondItem="kZy-0D-9Qf" secondAttribute="bottom" constant="4" id="aXM-YW-416"/>
+                                            <constraint firstAttribute="trailing" secondItem="639-rb-Tqs" secondAttribute="trailing" constant="12" id="cEg-KF-S3K"/>
                                             <constraint firstAttribute="trailing" secondItem="Cef-wE-Oak" secondAttribute="trailing" constant="12" id="dRT-RZ-9ih"/>
-                                            <constraint firstItem="rcW-Dc-8nm" firstAttribute="top" secondItem="7od-tb-e5h" secondAttribute="bottom" constant="40" id="ewd-md-JB9"/>
-                                            <constraint firstItem="Cef-wE-Oak" firstAttribute="top" secondItem="7od-tb-e5h" secondAttribute="bottom" constant="70" id="f3j-9N-0LT"/>
+                                            <constraint firstItem="rcW-Dc-8nm" firstAttribute="top" secondItem="7od-tb-e5h" secondAttribute="bottom" constant="68" id="ewd-md-JB9"/>
+                                            <constraint firstItem="Cef-wE-Oak" firstAttribute="top" secondItem="7od-tb-e5h" secondAttribute="bottom" constant="98" id="f3j-9N-0LT"/>
                                             <constraint firstItem="kZy-0D-9Qf" firstAttribute="top" secondItem="T2C-bA-s0t" secondAttribute="top" id="i7E-Yx-38b"/>
                                             <constraint firstItem="rKO-h3-qsP" firstAttribute="top" secondItem="T2C-bA-s0t" secondAttribute="top" constant="9" id="jwc-nl-yr4"/>
                                             <constraint firstItem="rcW-Dc-8nm" firstAttribute="centerX" secondItem="T2C-bA-s0t" secondAttribute="centerX" id="l6m-Hv-QYR"/>
@@ -1119,11 +1159,12 @@ Follow them to get notified.</string>
                         <outlet property="logo" destination="Pi0-jb-kD9" id="Slx-a8-oQn"/>
                         <outlet property="mission" destination="HeW-kq-12Q" id="LJf-J7-xBm"/>
                         <outlet property="scroll" destination="bOI-No-0DR" id="12w-kK-5SD"/>
+                        <outlet property="website" destination="Mxz-PH-gdE" id="Bhy-OF-JEH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9dm-mu-2pT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3559" y="116"/>
+            <point key="canvasLocation" x="3557.971014492754" y="115.84821428571428"/>
         </scene>
         <!--Location SelectorVC-->
         <scene sceneID="C9W-O5-nUC">
@@ -1257,6 +1298,7 @@ Follow them to get notified.</string>
         <image name="backArrow" width="42" height="42"/>
         <image name="defaultCompany" width="600" height="600"/>
         <image name="deleteButton" width="42" height="42"/>
+        <image name="globe" catalog="system" width="128" height="121"/>
         <image name="multiply.circle.fill" catalog="system" width="128" height="121"/>
         <image name="plus.app" catalog="system" width="128" height="114"/>
         <namedColor name="AmbPurple">

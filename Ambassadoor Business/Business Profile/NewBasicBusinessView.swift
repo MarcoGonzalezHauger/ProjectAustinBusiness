@@ -17,6 +17,9 @@ class NewBasicBusinessView: BaseVC {
     @IBOutlet weak var backImage: UIImageView!
     @IBOutlet weak var scroll: UIScrollView!
     
+    @IBOutlet weak var website: UIButton!
+    
+    
     var businessData: BasicBusiness? = nil
 
     override func viewDidLoad() {
@@ -34,6 +37,19 @@ class NewBasicBusinessView: BaseVC {
             }
             self.cmyName.text = basic.name
             self.mission.text = basic.mission
+            self.website.setTitle(basic.website, for: .normal)
+        }
+    }
+    
+    @IBAction func openWebsite(button: UIButton){
+        if let basic = businessData{
+            let sharedApps = UIApplication.shared
+            if let url = URL.init(string: basic.website){
+                if sharedApps.canOpenURL(url) {
+                sharedApps.open(url)
+                }
+            }
+            
         }
     }
     
