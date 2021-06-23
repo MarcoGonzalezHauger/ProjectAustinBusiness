@@ -19,5 +19,6 @@ target 'Ambassadoor Business' do
   pod 'Alamofire', '~> 4.5'
   pod 'AlamofireObjectMapper', '~> 5.0'
   #pod 'Plaid'
-  pod 'Stripe'
+  #pod 'Stripe'
+  pod 'Stripe', '~> 21.4'
 end
