@@ -9,7 +9,7 @@
 import UIKit
 
 protocol LocationDelegate {
-    func sendLocationObject(cell: LocationCell, index: Int)
+    func sendLocationObject(cell: LocationCell, index: Int, isEditing: Bool)
 }
 
 class LocationCell: UITableViewCell, UITextFieldDelegate {
@@ -18,10 +18,13 @@ class LocationCell: UITableViewCell, UITextFieldDelegate {
     
     var locationDelegate: LocationDelegate?
     
+    @IBAction func textDidChange(sender: UITextField){
+        locationDelegate?.sendLocationObject(cell: self, index: self.close.tag, isEditing: true)
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         textField.resignFirstResponder()
-        locationDelegate?.sendLocationObject(cell: self, index: self.close.tag)
+        locationDelegate?.sendLocationObject(cell: self, index: self.close.tag, isEditing: false)
         return true
     }
 }
@@ -29,9 +32,11 @@ class LocationCell: UITableViewCell, UITextFieldDelegate {
 //MARK: Location Class
 
 class LocationSelectorVC: BaseVC, UITableViewDelegate, UITableViewDataSource, LocationDelegate {
-    func sendLocationObject(cell: LocationCell, index: Int) {
+    func sendLocationObject(cell: LocationCell, index: Int, isEditing: Bool) {
         self.locations[index] = cell.locationText.text!
-        self.locationList.reloadData()
+        if !isEditing{
+            self.locationList.reloadData()
+        }
     }
     
     
@@ -90,19 +95,20 @@ class LocationSelectorVC: BaseVC, UITableViewDelegate, UITableViewDataSource, Lo
     }
     
     @IBAction func backAction(sender: UIButton){
-        for location in locations {
+        for (index,location) in locations.enumerated() {
             if location == ""{
-                let index = IndexPath.init(row: sender.tag, section: 0)
+                let index = IndexPath.init(row: index, section: 0)
+                //let index = IndexPath.init(row: sender.tag, section: 0)
                 let cell = self.locationList.cellForRow(at: index) as! LocationCell
                 MakeShake(viewToShake: cell)
                 return
             }
         }
-        for location in locations {
+        for (index,location) in locations.enumerated() {
             
             
             if !regexForLocation(loc: location) {
-                let index = IndexPath.init(row: sender.tag, section: 0)
+                let index = IndexPath.init(row: index, section: 0)
                 let cell = self.locationList.cellForRow(at: index) as! LocationCell
                 MakeShake(viewToShake: cell)
                 self.showAlertMessage(title: "Invalid Address!", message: "Please enter the valid address.") {
@@ -112,7 +118,8 @@ class LocationSelectorVC: BaseVC, UITableViewDelegate, UITableViewDataSource, Lo
         }
         //basicBusiness?.locations = locations
         self.locationRetrive?.sendLocationObjects(locations: locations)
-        self.navigationController?.popViewController(animated: true)
+        self.performDismiss()
+        
     }
     
     func regexForLocation(loc: String) -> Bool{

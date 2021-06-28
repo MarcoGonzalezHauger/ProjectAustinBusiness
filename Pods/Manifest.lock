@@ -118,7 +118,9 @@ PODS:
   - SDWebImage (5.9.0):
     - SDWebImage/Core (= 5.9.0)
   - SDWebImage/Core (5.9.0)
-  - Stripe (19.4.0)
+  - Stripe (21.6.0):
+    - Stripe/Stripe3DS2 (= 21.6.0)
+  - Stripe/Stripe3DS2 (21.6.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.5)
@@ -131,7 +133,7 @@ DEPENDENCIES:
   - Firebase/Messaging
   - Firebase/Storage
   - SDWebImage
-  - Stripe
+  - Stripe (~> 21.4)
 
 SPEC REPOS:
   trunk:
@@ -184,8 +186,8 @@ SPEC CHECKSUMS:
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   Protobuf: 3dac39b34a08151c6d949560efe3f86134a3f748
   SDWebImage: 62ae4a18473520c67b79e9724c31a63599cc9423
-  Stripe: 92f1c73a9dbd3c54277ed06a1fea6e08f20414c6
+  Stripe: 6cc7bb348f4b1fad111129f6ee40eb6682deaefb
 
-PODFILE CHECKSUM: 5f620e7fa6745756ca7305cba40e3bf774dcedd8
+PODFILE CHECKSUM: 897338d6a82cf49318aed38e4d2bfcb0657e84a9
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.1

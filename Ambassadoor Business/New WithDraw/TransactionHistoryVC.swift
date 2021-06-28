@@ -51,6 +51,22 @@ class TransactionHistoryVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             cell.amountlabel.text = "+ \(NumberToPrice(Value: log.value))"
             cell.shadowBox.borderColor = .green
             cell.descriptionLabel.text = "Deposited with Stripe"
+        }else if log.type == "admin"{
+            cell.amountlabel.text = "\(NumberToPrice(Value: log.value))"
+            cell.descriptionLabel.text = "Ambassadoor made through AMBVER"
+            cell.shadowBox.borderColor = UIColor.init(named: "appcolor")!
+        }else if log.type == "adminDeposit"{
+            cell.amountlabel.text = "\(NumberToPrice(Value: log.value))"
+            cell.descriptionLabel.text = "Ambassadoor Deposited with AMBVER"
+            cell.shadowBox.borderColor = .green
+        }else if log.type == "adminWithdraw"{
+            cell.amountlabel.text = "\(NumberToPrice(Value: log.value))"
+            cell.descriptionLabel.text = "Ambassadoor Withdraw from AMBVER"
+            cell.shadowBox.borderColor = .red
+        }else if log.type == "offer"{
+            cell.amountlabel.text = "- \(NumberToPrice(Value: log.value))"
+            cell.descriptionLabel.text = "Offer Distributed"
+            cell.shadowBox.borderColor = .red
         }
         
         cell.dateText.text = log.time.toUString()

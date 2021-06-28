@@ -122,7 +122,7 @@ class FilterStatsVC: BaseVC, UITextFieldDelegate {
             return
         }
         
-        self.influencerStatsDelegate?.sendInfluencerStats(avglikes: Double(self.avgLikes.text!)!, engagement: Double(String((engagement.text!.dropLast())))!)
+        self.influencerStatsDelegate?.sendInfluencerStats(avglikes: Double(self.avgLikes.text!)!, engagement: Double(Double(String((engagement.text!.dropLast())))! / 100) )
         self.dismiss(animated: true, completion: nil)
         
     }

@@ -23,7 +23,7 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
 	}
 	
     func shouldAllowBack() -> Bool {
-        if self.isSavable() {
+        if checkIfEdited() && self.isSavable() {
             draftTemp!.lastEdited = Date()
             if index == nil{
                MyCompany.drafts.append(draftTemp!)
@@ -81,9 +81,27 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
         self.setOfferData()
     }
     
+    func checkIfEdited() -> Bool {
+        var checkEdited = false
+        if index == nil {
+        if self.draftTemp != nil{
+            if self.draftTemp?.basicId != nil && self.draftTemp?.basicId != ""{
+               checkEdited = true
+            }
+            if self.draftTemp?.draftPosts.count != 0 {
+                checkEdited = true
+            }
+        }
+        }else{
+            checkEdited = true
+        }
+        return checkEdited
+    }
+    
     func setOfferData() {
         
         if index != nil {
+            self.backBtn.setTitle("Done", for: .normal)
             let draftOffer = MyCompany.drafts[index!]
             self.offerName.text = draftOffer.title == "" ? "Offer \((MyCompany.drafts.count))" : draftOffer.title
             self.offerName.isUserInteractionEnabled = false
@@ -105,6 +123,7 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
                 self.offerName.text = "Offer \((MyCompany.drafts.count + 1))"
                 self.cmyName.text = "No Company Chosen"
                 self.draftTemp = createTempDraft()
+                self.backBtn.setTitle("Back", for: .normal)
             }else{
                 let company = MyCompany.basics.filter({ (basic) -> Bool in
                     return basic.basicId == self.draftTemp!.basicId
@@ -113,6 +132,12 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
                 if let basic = company.first {
                    setBasicBusinessLogo(basic: basic)
                 }
+                if company.count == 0 && self.draftTemp?.draftPosts.count == 0{
+                   self.backBtn.setTitle("Back", for: .normal)
+                }else{
+                    self.backBtn.setTitle("Done", for: .normal)
+                }
+                
             }
             
         }
@@ -162,8 +187,14 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     
     @IBAction func dismissAction(sender: UIButton){
         
+        if index == nil && !checkIfEdited() {
+            DispatchQueue.main.async {
+                self.backBtn.isUserInteractionEnabled = true
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+        else{
         backBtn.isUserInteractionEnabled = false
-        
         if self.isSavable() {
             draftTemp!.lastEdited = Date()
             if index == nil{
@@ -186,6 +217,7 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
                 self.backBtn.isUserInteractionEnabled = true
             }
         }
+    }
         
     }
     
@@ -212,6 +244,12 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     }
     
     //MARK: Textfield Delegates
+    
+    @IBAction func textDidChange(_ textField: UITextField){
+        if textField.text?.count != 0{
+            self.draftTemp?.title = textField.text!
+        }
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         textField.resignFirstResponder()
