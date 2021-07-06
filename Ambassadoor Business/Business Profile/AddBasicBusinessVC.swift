@@ -374,7 +374,7 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
 			   return
 			}
 			MyCompany.basics[index!] = basic
-			
+            
 		}
         
         if MyCompany.basics.count == 1 {
@@ -385,6 +385,8 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
 			DispatchQueue.main.async {
 				self.reloadDelegate?.reloadMyCompany()
                 self.saveBtn.isUserInteractionEnabled = true
+                RefreshPublicData {
+                }
                 if self.isProfileSegue{
 				self.navigationController?.popViewController(animated: true)
                 }else{
