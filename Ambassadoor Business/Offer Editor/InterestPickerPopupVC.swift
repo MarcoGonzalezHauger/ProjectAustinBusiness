@@ -30,8 +30,8 @@ class InterestPickerPopupVC: UIViewController { //interestPickerPopup
 	@IBOutlet weak var doneButton: UIButton!
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if segue.identifier == "embedView" {
-			if let view = segue.destination as? InterestPickerVC {
+		if segue.identifier == "embedSegue" {
+			if let view = segue.destination as? PickInterests {
 				pickerviewdel = view
 				view.pickedInterests = currentInterests
 			}
