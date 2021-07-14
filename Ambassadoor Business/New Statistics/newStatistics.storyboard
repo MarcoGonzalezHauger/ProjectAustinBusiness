@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19115.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19107.5"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -19,17 +19,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posts from Influencers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pI6-UI-BYd">
-                                <rect key="frame" x="112" y="52" width="190" height="23"/>
+                                <rect key="frame" x="112" y="60" width="190" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MsB-BW-ZmS">
-                                <rect key="frame" x="0.0" y="83" width="414" height="813"/>
+                                <rect key="frame" x="0.0" y="91" width="414" height="805"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="instaCell" rowHeight="100" id="srQ-vX-3Me" customClass="instaPostCell" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="100"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="srQ-vX-3Me" id="fJK-Zd-2RG">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
@@ -124,7 +124,7 @@
                             <constraint firstItem="nMY-vo-pBE" firstAttribute="trailing" secondItem="MsB-BW-ZmS" secondAttribute="trailing" id="1ni-SM-DNL"/>
                             <constraint firstItem="pI6-UI-BYd" firstAttribute="centerX" secondItem="Y7P-oF-M7G" secondAttribute="centerX" id="IcI-bh-AEA"/>
                             <constraint firstItem="MsB-BW-ZmS" firstAttribute="top" secondItem="pI6-UI-BYd" secondAttribute="bottom" constant="8" id="P6M-MK-wYF"/>
-                            <constraint firstItem="pI6-UI-BYd" firstAttribute="top" secondItem="nMY-vo-pBE" secondAttribute="top" constant="8" id="cqH-W3-10u"/>
+                            <constraint firstItem="pI6-UI-BYd" firstAttribute="top" secondItem="nMY-vo-pBE" secondAttribute="top" constant="16" id="cqH-W3-10u"/>
                             <constraint firstItem="MsB-BW-ZmS" firstAttribute="leading" secondItem="nMY-vo-pBE" secondAttribute="leading" id="kDe-vi-Ebm"/>
                             <constraint firstAttribute="bottom" secondItem="MsB-BW-ZmS" secondAttribute="bottom" id="l9Q-jv-RB9"/>
                         </constraints>
