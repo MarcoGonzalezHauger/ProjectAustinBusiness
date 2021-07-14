@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19115.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19107.5"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Fv4-rI-o63">
-                                <rect key="frame" x="0.0" y="108" width="414" height="623"/>
+                                <rect key="frame" x="8" y="108" width="398" height="623"/>
                                 <color key="backgroundColor" name="newSubtleBackground"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="SKj-IJ-VNY">
                                     <size key="itemSize" width="128" height="128"/>
@@ -113,7 +113,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="add" id="OtU-4R-T9A" customClass="AddProfileCell" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                        <rect key="frame" x="226" y="0.0" width="188" height="222"/>
+                                        <rect key="frame" x="210" y="0.0" width="188" height="222"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="188" height="222"/>
@@ -123,9 +123,9 @@
                                                     <rect key="frame" x="8" y="8" width="172" height="206"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Business" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ppi-hG-lK1">
-                                                            <rect key="frame" x="16" y="91.5" width="140" height="23"/>
+                                                            <rect key="frame" x="16" y="93.5" width="140" height="19.5"/>
                                                             <color key="tintColor" name="AmbPurple"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" name="AmbPurple"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -174,7 +174,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XHX-oh-LmM">
                                                 <rect key="frame" x="3" y="3" width="177" height="44"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <state key="normal" title="Remove a Business">
                                                     <color key="titleColor" name="AmbPurple"/>
                                                 </state>
@@ -201,7 +201,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JJV-LF-cvv">
                                                 <rect key="frame" x="3" y="3" width="177" height="44"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <state key="normal" title="Sign Out">
                                                     <color key="titleColor" systemColor="systemRedColor"/>
                                                 </state>
@@ -229,7 +229,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rXU-ky-Y71">
-                                <rect key="frame" x="276.5" y="62.5" width="20" height="20"/>
+                                <rect key="frame" x="276.5" y="60.5" width="25" height="24"/>
                                 <color key="tintColor" name="AmbPurple"/>
                                 <connections>
                                     <segue destination="xch-Us-8E3" kind="presentation" id="gYT-3D-7fJ"/>
@@ -241,10 +241,10 @@
                         <constraints>
                             <constraint firstItem="sKt-4O-sBS" firstAttribute="top" secondItem="Fv4-rI-o63" secondAttribute="bottom" constant="16" id="7WE-ry-0PC"/>
                             <constraint firstItem="0Jm-iQ-1M5" firstAttribute="bottom" secondItem="sKt-4O-sBS" secondAttribute="bottom" constant="16" id="8i0-Or-A8i"/>
-                            <constraint firstItem="Fv4-rI-o63" firstAttribute="leading" secondItem="0Jm-iQ-1M5" secondAttribute="leading" id="GGi-fk-NtR"/>
+                            <constraint firstItem="Fv4-rI-o63" firstAttribute="leading" secondItem="0Jm-iQ-1M5" secondAttribute="leading" constant="8" id="GGi-fk-NtR"/>
                             <constraint firstItem="Fv4-rI-o63" firstAttribute="top" secondItem="0Jm-iQ-1M5" secondAttribute="top" constant="64" id="JAp-fa-P0e"/>
                             <constraint firstItem="rXU-ky-Y71" firstAttribute="centerY" secondItem="Bax-yb-bPF" secondAttribute="centerY" id="MUR-bA-YwF"/>
-                            <constraint firstItem="0Jm-iQ-1M5" firstAttribute="trailing" secondItem="Fv4-rI-o63" secondAttribute="trailing" id="Mgx-tk-TU8"/>
+                            <constraint firstItem="0Jm-iQ-1M5" firstAttribute="trailing" secondItem="Fv4-rI-o63" secondAttribute="trailing" constant="8" id="Mgx-tk-TU8"/>
                             <constraint firstItem="rXU-ky-Y71" firstAttribute="leading" secondItem="Bax-yb-bPF" secondAttribute="trailing" constant="8" id="R7x-rp-HYX"/>
                             <constraint firstItem="Fv4-rI-o63" firstAttribute="top" secondItem="Bax-yb-bPF" secondAttribute="bottom" constant="24" id="WqB-Kz-W9X"/>
                             <constraint firstItem="Bax-yb-bPF" firstAttribute="centerX" secondItem="gcz-xJ-hyV" secondAttribute="centerX" constant="-8" id="ZFE-4z-Pee"/>
@@ -1199,7 +1199,7 @@ Follow them to get notified.</string>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="location" rowHeight="57" id="fXa-jC-Ser" customClass="LocationCell" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="57"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="57"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fXa-jC-Ser" id="XRA-Qp-vkx">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="57"/>
