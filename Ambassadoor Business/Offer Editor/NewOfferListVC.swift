@@ -47,18 +47,24 @@ class NewOfferListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var offerList: UITableView!
     
+    @IBOutlet weak var editBtn: UIButton!
+    
+    var isEditOffer = false
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return GetSortedList().count + 1
+        return GetSortedList().count
         //return MyCompany.drafts.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        /*
         if indexPath.row == MyCompany.drafts.count {
             let identifier = "addoffer"
             let cell = self.offerList.dequeueReusableCell(withIdentifier: identifier) as! AddOfferCell
             return cell
         }
+        */
         let identifier = "offerlist"
         let cell = self.offerList.dequeueReusableCell(withIdentifier: identifier) as! OfferList
         let draft = GetSortedList()[indexPath.row]
@@ -84,6 +90,41 @@ class NewOfferListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         }
         self.performSegue(withIdentifier: "toNewOfferCreate", sender: index)
     }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle{
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
+        let draft = GetSortedList()[indexPath.row]
+        print("draftID=",draft.draftId)
+        draft.getDraftFromPool { isExist in
+            if isExist{
+                self.showAlertMessage(title: "Alert", message: "You cannot delete offers you have already distributed") {
+                    
+                }
+            }else{
+                self.deleteOffer(index: indexPath.row)
+            }
+        }
+    }
+    
+    func deleteOffer(index: Int) {
+        let draftOffer = MyCompany.drafts[index]
+        let index = MyCompany.drafts.lastIndex { (draft) -> Bool in
+            return draft.draftId == draftOffer.draftId
+        }
+        
+        MyCompany.drafts.remove(at: index!)
+        
+        MyCompany.UpdateToFirebase { (errorFIB) in
+            if !errorFIB{
+                DispatchQueue.main.async {
+                    self.offerList.reloadData()
+                }
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,6 +141,16 @@ class NewOfferListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         self.offerList.delegate = self
         self.offerList.dataSource = self
         self.offerList.reloadData()
+    }
+    
+    @IBAction func newOfferAction(sender: UIButton){
+        self.performSegue(withIdentifier: "toNewOfferCreate", sender: nil)
+    }
+    
+    @IBAction func editOffers(sender: UIButton){
+        self.offerList .setEditing(!self.isEditOffer ? true : false, animated: true)
+        self.editBtn.setTitle(!self.isEditOffer ? "Done" : "Edit", for: .normal)
+        self.isEditOffer = !self.isEditOffer
     }
 
     // MARK: - Navigation

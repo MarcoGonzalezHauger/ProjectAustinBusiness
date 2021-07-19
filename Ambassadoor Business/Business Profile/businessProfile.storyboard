@@ -59,6 +59,15 @@
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                     <real key="value" value="47.5"/>
                                                                 </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="ShadowOpacity">
+                                                                    <real key="value" value="0.14999999999999999"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="ShadowRadius">
+                                                                    <real key="value" value="3"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="ShadowColor">
+                                                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Business Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wz5-az-Xkf">
@@ -530,7 +539,9 @@
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x7s-5e-IQ9">
                                                 <rect key="frame" x="30.5" y="105" width="53" height="30"/>
-                                                <state key="normal" title="Change"/>
+                                                <state key="normal" title="Change">
+                                                    <color key="titleColor" name="AmbPurple"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="logoControlActionWithSender:" destination="AkD-Au-wBl" eventType="touchUpInside" id="HKe-Hk-70e"/>
                                                 </connections>
@@ -1078,6 +1089,7 @@ Follow them to get notified.</string>
                                                             <constraint firstAttribute="height" constant="20" id="R7w-5G-wQz"/>
                                                             <constraint firstAttribute="width" constant="20" id="vOe-19-LZV"/>
                                                         </constraints>
+                                                        <color key="tintColor" name="AmbPurple"/>
                                                         <state key="normal" title="Button" image="globe" catalog="system"/>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mxz-PH-gdE">
@@ -1085,6 +1097,7 @@ Follow them to get notified.</string>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="rAz-uZ-U2m"/>
                                                         </constraints>
+                                                        <color key="tintColor" name="AmbPurple"/>
                                                         <state key="normal" title="www.google.com"/>
                                                         <connections>
                                                             <action selector="openWebsiteWithButton:" destination="z7H-ce-UFd" eventType="touchUpInside" id="PWK-m1-VkZ"/>

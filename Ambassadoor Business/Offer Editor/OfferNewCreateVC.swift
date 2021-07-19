@@ -317,8 +317,20 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
         
         self.showAlertMessageForDestruction(title: "Alert", message: "Are you sure to delete the offer?", cancelTitle: "No", destructionTitle: "Yes", completion: {
             
-        }, completionDestruction: {
-            self.deleteOffer()
+        }, completionDestruction: { [self] in
+            
+            let draftOffer = MyCompany.drafts[self.index!]
+            
+            draftOffer.getDraftFromPool { isExist in
+                if isExist{
+                    self.showAlertMessage(title: "Alert", message: "You cannot delete offers you have already distributed") {
+                    }
+                }else{
+                    self.deleteOffer()
+                }
+            }
+            
+            
         })
     }
 
