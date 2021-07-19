@@ -49,7 +49,7 @@ class ShadowView: UIView {
 //		} else {
 //			self.layer.masksToBounds = false
 //		}
-		let rect = CGRect.init(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height + 2)
+		let rect = CGRect.init(x: 0, y: 3, width: self.bounds.width, height: self.bounds.height + 3)
         self.layer.shadowPath = UIBezierPath(roundedRect: rect, cornerRadius: self.layer.cornerRadius).cgPath
         
     }
