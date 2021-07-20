@@ -226,8 +226,12 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
     }
     
     @IBAction func dismiss(sender: UIButton){
-		saveBasicBusiness()
-        //self.navigationController?.popViewController(animated: true)
+        if basicBusiness != nil{
+            saveBasicBusiness()
+        }else{
+            self.navigationController?.popViewController(animated: true)
+        }
+        //
     }
     
     @IBAction func logoControlAction(sender: UIButton){

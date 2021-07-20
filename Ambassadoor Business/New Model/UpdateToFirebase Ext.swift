@@ -41,6 +41,7 @@ extension Business {
 			b.UpdateToFirebase(completed: nil)
 		}
 	}
+    
 }
 
 extension BasicBusiness {
@@ -103,4 +104,25 @@ extension BasicInfluencer {
         }
         
 	}
+}
+
+extension DraftOffer{
+    
+    var pathString: String{
+        get{
+            return "Pool"
+        }
+    }
+    
+    
+    func getDraftFromPool(completed: ((_ success: Bool) -> ())?) {
+        let ref = Database.database().reference().child(pathString).queryOrdered(byChild: "draftOfferId").queryEqual(toValue: self.draftId)
+        ref.observeSingleEvent(of: .value) { snap in
+            completed?(snap.exists())
+        } withCancel: { error in
+            completed?(false)
+        }
+
+    }
+    
 }
