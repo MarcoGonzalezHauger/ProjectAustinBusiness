@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         getGlobalAllInfluencers()
-        InitializeAmbassadoor()
+        InitializeAmbassadoorBusiness()
         
         if (launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem) != nil {
             

@@ -9,9 +9,14 @@
 import Foundation
 import Firebase
 
-func InitializeAmbassadoor() {
+func InitializeAmbassadoorBusiness() {
 	
 	InitializeZipCodeAPI(completed: nil)
+	
+	
+	getInfluencers {}
+	//This is for statistics page, other times will include when statistics are manually refreshed.
+	
 	
     StartListening()
 	
