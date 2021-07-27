@@ -38,18 +38,15 @@ class ShadowView: UIView {
         self.layer.shadowOpacity = ShadowOpacity
         self.layer.shadowOffset = CGSize.zero
         self.layer.shadowRadius = CGFloat(ShadowRadius)
-        self.layer.borderWidth = CGFloat(borderWidth)
+		if borderWidth == 0.33 {
+			self.layer.borderWidth = GetOnePxWidth()
+		} else {
+			self.layer.borderWidth = CGFloat(borderWidth)
+		}
         self.layer.borderColor = borderColor.cgColor
 		
-		//please do not use this.
 		
-//		if maskToBounds != -1 {
-//			self.layer.masksToBounds = maskToBounds == 1
-//            //self.layer.masksToBounds = false
-//		} else {
-//			self.layer.masksToBounds = false
-//		}
-		let rect = CGRect.init(x: 0, y: 3, width: self.bounds.width, height: self.bounds.height + 3)
+		let rect = CGRect.init(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height + 2.5)
         self.layer.shadowPath = UIBezierPath(roundedRect: rect, cornerRadius: self.layer.cornerRadius).cgPath
         
     }

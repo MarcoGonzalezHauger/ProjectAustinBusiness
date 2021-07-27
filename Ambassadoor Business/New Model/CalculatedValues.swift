@@ -149,12 +149,14 @@ extension sentOffer {
 		return nil
 	}
 	
-	func getPoolOffer(completion: @escaping (PoolOffer) -> ()) {
+	func getPoolOffer(completion: @escaping (PoolOffer?) -> ()) {
 		let ref = Database.database().reference().child("Pool").child(self.poolId)
 		ref.observeSingleEvent(of: .value) { (data) in
 			if let dict = data.value as? [String: Any] {
 				let poolOffer = PoolOffer.init(dictionary: dict, poolId: self.poolId)
 				completion(poolOffer)
+			} else {
+				completion(nil)
 			}
 		}
 	}

@@ -233,6 +233,7 @@ class InstagramPost {
 	
 	var caption: String
 	var instagramPostId: String
+    var mediaId: String
 	var images: String
 	var like_count: Int
 	var status: String
@@ -248,14 +249,15 @@ class InstagramPost {
 		userId = id
 		
 		caption = d["caption"] as! String
-		instagramPostId = d["id"] as! String
+		instagramPostId = d["shortcode"] as? String ?? ""
+        mediaId = d["id"] as! String
 		images = d["images"] as! String
 		like_count = d["like_count"] as! Int
 		status = d["status"] as! String
 		type = d["type"] as! String
 		username = d["username"] as! String
-		postID = d["postID"] as! String
-		offerID = d["offerID"] as! String
+		postID = d["postID"] as? String ?? ""
+		offerID = d["offerID"] as? String ?? ""
 		let ts = d["timestamp"] as! String
 		
 		let dateFormatter = DateFormatter()

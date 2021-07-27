@@ -104,7 +104,6 @@
 		E816AC222282F3E200B9D951 /* MoneyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E816AC212282F3E200B9D951 /* MoneyVC.swift */; };
 		E82F890D22DD30B40036A079 /* CreateCompanyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82F890C22DD30B40036A079 /* CreateCompanyVC.swift */; };
 		E83C3877262A751400B1241D /* newStatistics.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E83C3876262A751400B1241D /* newStatistics.storyboard */; };
-		E83C387C262A78F100B1241D /* postsFromInfluencers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83C387B262A78F100B1241D /* postsFromInfluencers.swift */; };
 		E83F1C5424748D9400EA216B /* ViewOfferStatisticVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F1C5324748D9400EA216B /* ViewOfferStatisticVC.swift */; };
 		E83F378D227CDEE100BA6688 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F378C227CDEE100BA6688 /* SignUpVC.swift */; };
 		E83F378F227CDF3A00BA6688 /* GetPictureVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F378E227CDF3A00BA6688 /* GetPictureVC.swift */; };
@@ -113,6 +112,7 @@
 		E84600852273A92A00CF60F2 /* BusinessLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84600842273A92A00CF60F2 /* BusinessLabel.swift */; };
 		E84600872273AF9100CF60F2 /* ImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84600862273AF9100CF60F2 /* ImageViewExtensions.swift */; };
 		E846008A2273B0B300CF60F2 /* Savvy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84600892273B0B300CF60F2 /* Savvy.swift */; };
+		E855182F26ADE4840090D435 /* PostViewerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E855182D26ADE4840090D435 /* PostViewerVC.swift */; };
 		E8742510260833FC008D7375 /* offerEditor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E874250F260833FC008D7375 /* offerEditor.storyboard */; };
 		E8769168236F9A8A0026E07D /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8769166236F9A830026E07D /* LocalAuthentication.framework */; };
 		E899878323D3B8F20093FC0E /* CurseWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899878223D3B8F20093FC0E /* CurseWords.swift */; };
@@ -125,6 +125,10 @@
 		E8C708C423763EAA001699D0 /* GeolocationTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C708C323763EA9001699D0 /* GeolocationTools.swift */; };
 		E8C708C923764C51001699D0 /* SelectStatesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C708C823764C51001699D0 /* SelectStatesVC.swift */; };
 		E8D06DF2255F09AF00F9D79C /* VerifyEmailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D06DF1255F09AF00F9D79C /* VerifyEmailVC.swift */; };
+		E8DB56FF26AE4FAC00AFB807 /* StatisticsHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DB56FE26AE4FAC00AFB807 /* StatisticsHomeVC.swift */; };
+		E8DB570126AE512F00AFB807 /* Statistics Algo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DB570026AE512F00AFB807 /* Statistics Algo.swift */; };
+		E8DB570326AF1AC900AFB807 /* StatInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DB570226AF1AC900AFB807 /* StatInfoVC.swift */; };
+		E8DB570526AF300200AFB807 /* SentOfferStatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DB570426AF300100AFB807 /* SentOfferStatsVC.swift */; };
 		E8E54689227BA3E800775A07 /* YourCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E54688227BA3E800775A07 /* YourCompany.swift */; };
 		E8E5468C227BC9E900775A07 /* StatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E5468B227BC9E900775A07 /* StatsVC.swift */; };
 		E8F7C9B025FED714007893FF /* businessProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8F7C9AF25FED714007893FF /* businessProfile.storyboard */; };
@@ -233,7 +237,6 @@
 		E816AC212282F3E200B9D951 /* MoneyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyVC.swift; sourceTree = "<group>"; };
 		E82F890C22DD30B40036A079 /* CreateCompanyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCompanyVC.swift; sourceTree = "<group>"; };
 		E83C3876262A751400B1241D /* newStatistics.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = newStatistics.storyboard; sourceTree = "<group>"; };
-		E83C387B262A78F100B1241D /* postsFromInfluencers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postsFromInfluencers.swift; sourceTree = "<group>"; };
 		E83F1C5324748D9400EA216B /* ViewOfferStatisticVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewOfferStatisticVC.swift; sourceTree = "<group>"; };
 		E83F378C227CDEE100BA6688 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		E83F378E227CDF3A00BA6688 /* GetPictureVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPictureVC.swift; sourceTree = "<group>"; };
@@ -242,6 +245,7 @@
 		E84600842273A92A00CF60F2 /* BusinessLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessLabel.swift; sourceTree = "<group>"; };
 		E84600862273AF9100CF60F2 /* ImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtensions.swift; sourceTree = "<group>"; };
 		E84600892273B0B300CF60F2 /* Savvy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Savvy.swift; sourceTree = "<group>"; };
+		E855182D26ADE4840090D435 /* PostViewerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewerVC.swift; sourceTree = "<group>"; };
 		E874250F260833FC008D7375 /* offerEditor.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = offerEditor.storyboard; sourceTree = "<group>"; };
 		E8769166236F9A830026E07D /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		E899878223D3B8F20093FC0E /* CurseWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurseWords.swift; sourceTree = "<group>"; };
@@ -256,6 +260,10 @@
 		E8C708C323763EA9001699D0 /* GeolocationTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeolocationTools.swift; sourceTree = "<group>"; };
 		E8C708C823764C51001699D0 /* SelectStatesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStatesVC.swift; sourceTree = "<group>"; };
 		E8D06DF1255F09AF00F9D79C /* VerifyEmailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyEmailVC.swift; sourceTree = "<group>"; };
+		E8DB56FE26AE4FAC00AFB807 /* StatisticsHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsHomeVC.swift; sourceTree = "<group>"; };
+		E8DB570026AE512F00AFB807 /* Statistics Algo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Statistics Algo.swift"; sourceTree = "<group>"; };
+		E8DB570226AF1AC900AFB807 /* StatInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatInfoVC.swift; sourceTree = "<group>"; };
+		E8DB570426AF300100AFB807 /* SentOfferStatsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentOfferStatsVC.swift; sourceTree = "<group>"; };
 		E8E54688227BA3E800775A07 /* YourCompany.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourCompany.swift; sourceTree = "<group>"; };
 		E8E5468B227BC9E900775A07 /* StatsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsVC.swift; sourceTree = "<group>"; };
 		E8F7C9AF25FED714007893FF /* businessProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = businessProfile.storyboard; sourceTree = "<group>"; };
@@ -348,6 +356,7 @@
 				B7C293B125ECE41D004A723B /* Useful UI Functions.swift */,
 				C05FE2D8225F683E002D3CAA /* FirebaseReferences.swift */,
 				B76575F72614484D0076F594 /* NewObjectClass.swift */,
+				E8DB570026AE512F00AFB807 /* Statistics Algo.swift */,
 			);
 			path = "New Model";
 			sourceTree = "<group>";
@@ -416,7 +425,10 @@
 			isa = PBXGroup;
 			children = (
 				E83C3876262A751400B1241D /* newStatistics.storyboard */,
-				E83C387B262A78F100B1241D /* postsFromInfluencers.swift */,
+				E855182D26ADE4840090D435 /* PostViewerVC.swift */,
+				E8DB56FE26AE4FAC00AFB807 /* StatisticsHomeVC.swift */,
+				E8DB570226AF1AC900AFB807 /* StatInfoVC.swift */,
+				E8DB570426AF300100AFB807 /* SentOfferStatsVC.swift */,
 			);
 			path = "New Statistics";
 			sourceTree = "<group>";
@@ -752,6 +764,7 @@
 				B79EA0AA2581FD9800E3AFB1 /* CustomSplitVC.swift in Sources */,
 				E80B060A22A08D49002B9699 /* MoneyField.swift in Sources */,
 				B7C293B725ECE423004A723B /* Interests.swift in Sources */,
+				E8DB570326AF1AC900AFB807 /* StatInfoVC.swift in Sources */,
 				B737F9F226288046008D0E6F /* NewDistributeVC.swift in Sources */,
 				E899878323D3B8F20093FC0E /* CurseWords.swift in Sources */,
 				B7C293C425ECE423004A723B /* UniversalDate.swift in Sources */,
@@ -761,7 +774,6 @@
 				B72CB50A22E7024500958AE0 /* UIViewExtension.swift in Sources */,
 				B72478A3260367C700CD20FA /* TransactionHistoryVC.swift in Sources */,
 				B77D4C392609CFF30002E04E /* PostDetailVC.swift in Sources */,
-				E83C387C262A78F100B1241D /* postsFromInfluencers.swift in Sources */,
 				B7C9FE8F231E4870005580E4 /* PlaidHelper.swift in Sources */,
 				E83F1C5424748D9400EA216B /* ViewOfferStatisticVC.swift in Sources */,
 				B7BA848A260B1AA400E4DB40 /* BusinessTypePicker.swift in Sources */,
@@ -786,15 +798,18 @@
 				E84600852273A92A00CF60F2 /* BusinessLabel.swift in Sources */,
 				B7C293BD25ECE423004A723B /* Inititialization.swift in Sources */,
 				B7C58569234DED3600EB90BB /* InstagramUserTVC.swift in Sources */,
+				E855182F26ADE4840090D435 /* PostViewerVC.swift in Sources */,
 				E8FC17642377A70100245932 /* SelectRadiiVC.swift in Sources */,
 				B78B39F32510D69800829F31 /* CompanyMissionVC.swift in Sources */,
 				B724789F2603543100CD20FA /* AccountInfoVC.swift in Sources */,
 				B72CB50822E6E8C100958AE0 /* BaseVC.swift in Sources */,
+				E8DB56FF26AE4FAC00AFB807 /* StatisticsHomeVC.swift in Sources */,
 				B7C293B925ECE423004A723B /* Business Structs.swift in Sources */,
 				B706CB4F22E5F7860092FB77 /* ValidationFile.swift in Sources */,
 				B7C293B625ECE423004A723B /* AdminValues.swift in Sources */,
 				B76575F82614484D0076F594 /* NewObjectClass.swift in Sources */,
 				B76575F626143AEC0076F594 /* FilterByCityVC.swift in Sources */,
+				E8DB570526AF300200AFB807 /* SentOfferStatsVC.swift in Sources */,
 				B7C293B825ECE423004A723B /* Offer Distribution Functions.swift in Sources */,
 				B7F48BE8269C232B00F404F4 /* PickInterests.swift in Sources */,
 				B72CFDCC25FF9C4B00033CC5 /* AddBasicBusinessVC.swift in Sources */,
@@ -811,6 +826,7 @@
 				E8C3694422161B3000AE12D7 /* ViewController.swift in Sources */,
 				B7B11FF523242615006711BB /* PlaidTVCell.swift in Sources */,
 				E8C3694222161B3000AE12D7 /* AppDelegate.swift in Sources */,
+				E8DB570126AE512F00AFB807 /* Statistics Algo.swift in Sources */,
 				C0C9390622614AE3003DC925 /* InstagramAPI.swift in Sources */,
 				B78B39F52510D6B000829F31 /* RegisterVC.swift in Sources */,
 				B78B39EF2510D65B00829F31 /* ComapanyBasicVC.swift in Sources */,
@@ -976,7 +992,7 @@
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = JMBR2RF2B8;
 				INFOPLIST_FILE = "Ambassadoor Business/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1006,7 +1022,7 @@
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = JMBR2RF2B8;
 				INFOPLIST_FILE = "Ambassadoor Business/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

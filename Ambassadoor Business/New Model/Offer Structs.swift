@@ -464,6 +464,8 @@ class sentOffer { //when business goes back to look at previously sent out offer
 	var businessId: String
 	var basicId: String
 	
+	var poolOffer: PoolOffer?
+	
 	var title: String
 	var timeSent: Date
 	
@@ -473,10 +475,18 @@ class sentOffer { //when business goes back to look at previously sent out offer
 		
 		poolId = d["poolId"] as! String
 		draftOfferId = d["draftOfferId"] as! String
-		inProgressPosts = d["inProgressPosts"] as? [InProgressPost] ?? []
+		
+		inProgressPosts = []
+		
 		title = d["title"] as! String
 		timeSent = (d["timeSent"] as! String).toUDate()
 		basicId = d["basicId"] as! String
+		
+		getPoolOffer { PO in
+			if let PO = PO {
+				self.poolOffer = PO
+			}
+		}
 		
 	}
 
@@ -498,7 +508,7 @@ class sentOffer { //when business goes back to look at previously sent out offer
 		
 		d["poolId"] = poolId
 		d["draftOfferId"] = draftOfferId
-		d["inProgressPosts"] = inProgressPosts
+		
 		d["title"] = title
 		d["timeSent"] = timeSent.toUString()
 		d["basicId"] = basicId
