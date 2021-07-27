@@ -71,6 +71,7 @@ class Business {
 				sentOffers.append(sentOffer.init(dictionary: sentOffersDict[sentOfferId] as! [String: Any], businessId: businessId, sentOfferId: sentOfferId))
 			}
 		}
+		sentOffers.sort{$0.timeSent < $1.timeSent}
 		
 	}
 	

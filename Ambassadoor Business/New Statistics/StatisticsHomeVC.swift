@@ -9,16 +9,67 @@
 import UIKit
 import Firebase
 
+class sentOfferCell: UITableViewCell {
+	@IBOutlet weak var logoView: ShadowView!
+	@IBOutlet weak var logoImage: UIImageView!
+	@IBOutlet weak var titleLabel: UILabel!
+	@IBOutlet weak var sentLabel: UILabel!
+}
 
-class StatisticsHomeVC: UIViewController {
+
+class StatisticsHomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+	
+	@IBOutlet weak var sentOfferHeight: NSLayoutConstraint!
+	
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return MyCompany.sentOffers.count
+	}
+	
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(withIdentifier: "sentCell", for: indexPath) as! sentOfferCell
+		
+		let thisSentOffer = MyCompany.sentOffers[indexPath.row]
+		
+		cell.logoImage.clipsToBounds = true
+		cell.logoImage.layer.cornerRadius = 20
+		
+		downloadImage(thisSentOffer.BasicBusiness()!.logoUrl) { image in
+			if let image = image {
+				cell.logoImage.image = image
+			}
+		}
+		
+		cell.titleLabel.text = "\"" +  thisSentOffer.title + "\""
+		cell.sentLabel.text = "Sent " + thisSentOffer.timeSent.toString(dateFormat: "MM/dd/YYYY") + ": " + NumberToPrice(Value: thisSentOffer.poolOffer?.originalCashPower ?? 0, enforceCents: true)
+		
+		return cell
+	}
+	
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		sentOfferHeight.constant = CGFloat((69 * MyCompany.sentOffers.count)) - GetOnePxWidth()
+		return 69
+	}
+	
+	var tSO: sentOffer?
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		tableView.deselectRow(at: indexPath, animated: true)
+		tSO = MyCompany.sentOffers[indexPath.row]
+		performSegue(withIdentifier: "toSentStatistics", sender: self)
+	}
+	
 
 	var viewRef: PostViewerVC?
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		
+		sentTableView.dataSource = self
+		sentTableView.delegate = self
+		loadData()
     }
 	
+	@IBOutlet weak var sentOfferBox: ShadowView!
+	@IBOutlet weak var sentTableView: UITableView!
 	
 	
 	@IBOutlet weak var totalLikes: UILabel!
@@ -30,12 +81,15 @@ class StatisticsHomeVC: UIViewController {
 	
 	override func viewDidAppear(_ animated: Bool) {
 		
-		loadData()
+		//loadData()
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if let dest = segue.destination as? PostViewerVC {
 			viewRef = dest
+		}
+		if let dest = segue.destination as? SentOfferStatsVC {
+			dest.thisSentOffer = tSO!
 		}
 	}
 	
@@ -49,7 +103,10 @@ class StatisticsHomeVC: UIViewController {
 		print(">> Loaded with \(allPosts.count) results.")
 		
 		
+		sentTableView.reloadData()
+		
 		viewRef?.samplePosts = allPosts
+		viewRef?.topLabel.text = "All Posts"
 		viewRef?.collectionView.reloadData()
 		
 		var tLikes = 0
@@ -66,14 +123,12 @@ class StatisticsHomeVC: UIViewController {
 		var tBudget = 0.0
 		var index = 0
 		for sent in MyCompany.sentOffers {
-			sent.getPoolOffer { PO in
-				if let PO = PO {
-					tBudget += PO.originalCashPower
-				}
-				index += 1
-				if index == MyCompany.sentOffers.count {
-					self.totalBudget.text = "Total Budget: " + NumberToPrice(Value: tBudget)
-				}
+			if let PO = sent.poolOffer {
+				tBudget += PO.originalCashPower
+			}
+			index += 1
+			if index == MyCompany.sentOffers.count {
+				self.totalBudget.text = "Total Budget: " + NumberToPrice(Value: tBudget)
 			}
 		}
 		

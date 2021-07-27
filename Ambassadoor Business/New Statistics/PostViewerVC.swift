@@ -26,21 +26,24 @@ class PreviewPostCell: UICollectionViewCell {
 					setColor(color: .systemGreen)
 				case "Paid":
 					setColor(color: .systemYellow)
-				default:
+				case "Rejected":
 					setColor(color: .systemRed)
+				case "Cancelled":
+					setColor(color: .black)
+				default:
+					setColor(color: .white)
 				}
 				
 				PostImage.image = nil
 				
 				downloadImage(thisPost.instagramPost!.images) { image in
 					if let image = image {
-//						let dimention = (self.heightConstraint.constant / image.size.height) * image.size.width
-//						print("HEIGHT: \(self.heightConstraint.constant)")
-//						print("WIDTH: \(dimention)")
+//						DispatchQueue.main.async {
+//							self.PostImage.image = image
+//						}
+						let goodImage = image.sd_resizedImage(with: CGSize(width: self.PostImage.bounds.size.width * UIScreen.main.scale, height: self.PostImage.bounds.size.height * UIScreen.main.scale) , scaleMode: .aspectFill)
 						DispatchQueue.main.async {
-//							self.widthConstraint.constant = dimention
-//								self.layoutIfNeeded()
-								self.PostImage.image = image
+							self.PostImage.image = goodImage
 						}
 					}
 				}
@@ -75,7 +78,17 @@ class PostViewerVC: UIViewController, UICollectionViewDelegate, UICollectionView
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		collectionView.deselectItem(at: indexPath, animated: true)
-		print(samplePosts[indexPath.item].status)
+//
+//		let instaURL = URL(string: "instagram://user?username=\(user)")!
+//		let sharedApps = UIApplication.shared
+//		if sharedApps.canOpenURL(instaURL) {
+//		sharedApps.open(instaURL) } else {
+		UIApplication.shared.open(URL(string: "https://www.instagram.com/p/\(samplePosts[indexPath.item].instagramPost!.instagramPostId)")!) //}
+		
+		print("username: \(InfluencerDatabase.filter{$0.userId == samplePosts[indexPath.item].userId}.first!.basic.username)")
+			
+		
+		print(samplePosts[indexPath.item].instagramPost!.instagramPostId)
 	}
 	
 

@@ -56,6 +56,10 @@ func GetBackColor() -> UIColor {
 	}
 }
 
+func GetOnePxWidth() -> CGFloat {
+	return CGFloat(1 / UIScreen.main.scale)
+}
+
 func GetInterestUrl(interest: String) -> String {
 	var intr = interest.replacingOccurrences(of: " ", with: "%20")
 	intr = intr.replacingOccurrences(of: "&", with: "_")
