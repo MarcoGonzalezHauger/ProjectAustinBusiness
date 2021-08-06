@@ -404,14 +404,17 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
         
         if self.urlString == "" {
             self.showAlertMessage(title: "Alert", message: "Please choose the image") {
-                
             }
             return nil
         }
         if self.businessName.text?.count == 0 {
+            self.showAlertMessage(title: "Alert", message: "Please enter the business name") {
+            }
             return nil
         }
         if self.companyMission.text == "" || self.companyMission.text.count == 0 {
+            self.showAlertMessage(title: "Alert", message: "Please enter company mission") {
+            }
             return nil
         }
         
@@ -420,10 +423,14 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
         }
         
         if self.type == nil{
+            self.showAlertMessage(title: "Alert", message: "Please choose any Business Type") {
+            }
             return nil
         }
         
         if self.locations.count == 0 {
+            self.showAlertMessage(title: "Alert", message: "Please add any location") {
+            }
             return nil
         }
         
