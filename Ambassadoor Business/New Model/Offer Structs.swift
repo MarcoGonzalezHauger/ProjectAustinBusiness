@@ -248,7 +248,7 @@ class PoolOffer { //while in offer pool (GETS ASSIGNED NEW ID)
 	}
 	
 	init(dictionary d: [String: Any], poolId pid: String) {
-		poolId = pid
+        poolId = pid
 		businessId = d["businessId"] as! String
 		basicId = d["basicId"] as! String
 		
