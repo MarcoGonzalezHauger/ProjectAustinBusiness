@@ -250,7 +250,10 @@ class SignInVC: BaseVC, UITextFieldDelegate {
                                 getNewBusiness(email: self.emailText.text!.lowercased()) { (status, business) in
                                     if status{
                                         MyCompany = business
-                                        
+                                        MyCompany.deviceFIRToken = global.deviceFIRToken
+                                        MyCompany.UpdateToFirebase { error in
+                                            
+                                        }
                                         UserDefaults.standard.set(self.emailText.text, forKey: "userEmail")
                                         UserDefaults.standard.set(self.passwordText.text, forKey: "userPass")
                                         UserDefaults.standard.set(MyCompany.businessId, forKey: "userid")
