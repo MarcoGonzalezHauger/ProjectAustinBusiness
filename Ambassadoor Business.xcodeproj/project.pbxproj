@@ -31,6 +31,7 @@
 		B72CD04D261331E300AE5CA4 /* FilterRadiousVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72CD04C261331E300AE5CA4 /* FilterRadiousVC.swift */; };
 		B72CFDCA25FF5AE100033CC5 /* ProfilePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72CFDC925FF5AE100033CC5 /* ProfilePickerVC.swift */; };
 		B72CFDCC25FF9C4B00033CC5 /* AddBasicBusinessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72CFDCB25FF9C4B00033CC5 /* AddBasicBusinessVC.swift */; };
+		B72F433026E1F38800D2953D /* ReferralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72F432F26E1F38800D2953D /* ReferralViewController.swift */; };
 		B737F9F0262817D9008D0E6F /* FilterStatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B737F9EF262817D9008D0E6F /* FilterStatsVC.swift */; };
 		B737F9F226288046008D0E6F /* NewDistributeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B737F9F126288046008D0E6F /* NewDistributeVC.swift */; };
 		B750E78522E5B75F00024CB1 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B750E78422E5B75F00024CB1 /* Onboarding.storyboard */; };
@@ -162,6 +163,7 @@
 		B72CD04C261331E300AE5CA4 /* FilterRadiousVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterRadiousVC.swift; sourceTree = "<group>"; };
 		B72CFDC925FF5AE100033CC5 /* ProfilePickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePickerVC.swift; sourceTree = "<group>"; };
 		B72CFDCB25FF9C4B00033CC5 /* AddBasicBusinessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBasicBusinessVC.swift; sourceTree = "<group>"; };
+		B72F432F26E1F38800D2953D /* ReferralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralViewController.swift; sourceTree = "<group>"; };
 		B737F9EF262817D9008D0E6F /* FilterStatsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterStatsVC.swift; sourceTree = "<group>"; };
 		B737F9F126288046008D0E6F /* NewDistributeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDistributeVC.swift; sourceTree = "<group>"; };
 		B750E78422E5B75F00024CB1 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
@@ -441,6 +443,7 @@
 				B706CB5022E60DC20092FB77 /* ForgetPasswordVC.swift */,
 				E82F890C22DD30B40036A079 /* CreateCompanyVC.swift */,
 				E8D06DF1255F09AF00F9D79C /* VerifyEmailVC.swift */,
+				B72F432F26E1F38800D2953D /* ReferralViewController.swift */,
 				B78B39EB2510D41A00829F31 /* RegisterCompanyVcs */,
 			);
 			path = "Sign Up";
@@ -801,6 +804,7 @@
 				E855182F26ADE4840090D435 /* PostViewerVC.swift in Sources */,
 				E8FC17642377A70100245932 /* SelectRadiiVC.swift in Sources */,
 				B78B39F32510D69800829F31 /* CompanyMissionVC.swift in Sources */,
+				B72F433026E1F38800D2953D /* ReferralViewController.swift in Sources */,
 				B724789F2603543100CD20FA /* AccountInfoVC.swift in Sources */,
 				B72CB50822E6E8C100958AE0 /* BaseVC.swift in Sources */,
 				E8DB56FF26AE4FAC00AFB807 /* StatisticsHomeVC.swift in Sources */,

@@ -229,7 +229,8 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
         if basicBusiness != nil{
             saveBasicBusiness()
         }else{
-            self.navigationController?.popViewController(animated: true)
+            performDismiss()
+            //self.navigationController?.popViewController(animated: true)
         }
         //
     }

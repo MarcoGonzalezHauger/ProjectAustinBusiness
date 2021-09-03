@@ -15,6 +15,7 @@ func InitializeAmbassadoorBusiness() {
 	
 	
 	getInfluencers {}
+    //getBusinesses {}
 	//This is for statistics page, other times will include when statistics are manually refreshed.
 	
 	
