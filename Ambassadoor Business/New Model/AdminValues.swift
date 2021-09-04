@@ -13,3 +13,5 @@ var ambassadoorComission: Double = 0.22
 var referralComission: Double = 0.01
 
 var dateFormatUniversal = "yyyy-MM-dd HH:mm:ssZ"
+
+var dateFormatUniversalWithoutZone = "yyyy-MM-dd HH:mm:ss"
