@@ -33,6 +33,7 @@ class Business {
 	var referredByUserId: String?
 	var referredByBusinessId: String?
 	var activeBasicId: String
+    
 		
 	init(dictionary d: [String: Any], businessId id: String) {
 		businessId = id
@@ -47,7 +48,7 @@ class Business {
 		referredByBusinessId = d["referredByBusinessId"] as? String
 		
 		activeBasicId = d["activeBasicId"] as! String
-		
+        		
 		basics = []
 		if let basicDict = d["basics"] as? [String: Any] {
 			for b in basicDict.keys {
@@ -75,7 +76,7 @@ class Business {
 		
 	}
 	
-	init(businessId: String, token: String, email: String, refreshToken: String, deviceFIRToken: String, referredByUserId: String, referredByBusinessId: String, drafts: [DraftOffer], finance: BusinessFinance, sentOffers: [sentOffer], basic: [BasicBusiness], activeBasicId: String) {
+    init(businessId: String, token: String, email: String, refreshToken: String, deviceFIRToken: String, referredByUserId: String, referredByBusinessId: String, drafts: [DraftOffer], finance: BusinessFinance, sentOffers: [sentOffer], basic: [BasicBusiness], activeBasicId: String, referredBy: String) {
 		
 		self.businessId = businessId
 		self.token = token
@@ -90,7 +91,6 @@ class Business {
 		self.basics = basic
 		self.sentOffers = sentOffers
 		self.activeBasicId = activeBasicId
-		
 	}
 	
 	// To Diciontary Function

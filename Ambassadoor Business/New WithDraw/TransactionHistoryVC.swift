@@ -22,6 +22,7 @@ class TransactionHistoryVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             errorShadow.isHidden = true
             self.setTableData()
         }
+        
         // Do any additional setup after loading the view.
     }
     
@@ -32,6 +33,8 @@ class TransactionHistoryVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        MyCompany.finance.log.sort { logOne, logTwo in
+            return logOne.time > logTwo.time}
         return MyCompany.finance.log.count
         //return GetTransactionHistory().count
     }

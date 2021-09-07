@@ -208,9 +208,9 @@ class PoolOffer { //while in offer pool (GETS ASSIGNED NEW ID)
 		}
 	}
 	
-	init(draftOffer: DraftOffer, filter flt: OfferFilter, withMoney cash: Double, createdBy bus: Business, sentFromBasicId basicD: BasicBusiness) {
+    init(draftOffer: DraftOffer, filter flt: OfferFilter, withMoney cash: Double, withOriginalMoney originalCash: Double, createdBy bus: Business, sentFromBasicId basicD: BasicBusiness) {
 		cashPower = cash
-		originalCashPower = cash
+		originalCashPower = originalCash
 		comissionUserId = bus.referredByUserId
 		comissionBusinessId = bus.referredByBusinessId
 		poolId = makeFirebaseUrl(basicD.name + " " + GetNewID())
@@ -248,7 +248,7 @@ class PoolOffer { //while in offer pool (GETS ASSIGNED NEW ID)
 	}
 	
 	init(dictionary d: [String: Any], poolId pid: String) {
-		poolId = pid
+        poolId = pid
 		businessId = d["businessId"] as! String
 		basicId = d["basicId"] as! String
 		

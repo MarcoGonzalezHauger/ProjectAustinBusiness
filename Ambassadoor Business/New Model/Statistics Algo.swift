@@ -83,3 +83,19 @@ func getInfluencers(completion: @escaping () -> Void) {
 func getInfluencer(id: String) -> Influencer {
 	return InfluencerDatabase.filter{ return $0.userId == id }.first!
 }
+
+
+var BusinessDatabase: [Business] = []
+
+func getBusinesses(completion: @escaping () -> Void) {
+    let database = Database.database().reference().child("Accounts/Private/Businesses")
+    database.observeSingleEvent(of: .value) { snap in
+        if let snap = snap.value as? [String: Any] {
+            BusinessDatabase.removeAll()
+            for ky: String in snap.keys {
+                BusinessDatabase.append(Business.init(dictionary: snap[ky] as! [String: Any], businessId: ky))
+            }
+            completion()
+        }
+    }
+}

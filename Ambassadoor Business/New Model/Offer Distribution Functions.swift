@@ -15,7 +15,8 @@ extension DraftOffer {
 			completed("You do not enough money to distribute this offer.", nil)
 			return
 		}
-		let newPoolOffer = PoolOffer.init(draftOffer: self, filter: filter, withMoney: withMoney, createdBy: asBusiness, sentFromBasicId: asBasic)
+        let cashPower = roundPriceDown(price: (withMoney - (withMoney * Singleton.sharedInstance.getCommision())))
+        let newPoolOffer = PoolOffer.init(draftOffer: self, filter: filter, withMoney: cashPower, withOriginalMoney: withMoney, createdBy: asBusiness, sentFromBasicId: asBasic)
 		newPoolOffer.UpdateToFirebase { (error) in
 			if !error {
 				asBusiness.sentOffers.append(sentOffer.init(poolId: newPoolOffer.poolId, draftOfferId: self.draftId, businessId: self.businessId, title: self.title, basicId: asBasic.basicId))

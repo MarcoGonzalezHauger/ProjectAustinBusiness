@@ -1546,6 +1546,34 @@ func checkIfInfluencerReferralExist(referralID: String,completion: @escaping(Boo
     
 }
 
+func checkIfNewInfluencerReferralExist(referralID: String,completion: @escaping(Bool)->Void) {
+    
+    let usersRef = Database.database().reference().child("users")
+    
+    let query = usersRef.queryOrdered(byChild: "referralcode").queryEqual(toValue: referralID)
+    
+    query.observeSingleEvent(of: .value) { (snapshot) in
+        
+//        if let dictionary = snapshot.value as? [String: AnyObject] {
+//
+//            let userInstance = User(dictionary: dictionary[dictionary.keys.first!] as! [String: AnyObject])
+//            completion(userInstance)
+//
+//
+//        }
+        
+        if snapshot.exists(){
+            
+            completion(true)
+            
+        }else{
+            completion(false)
+        }
+        
+    }
+    
+}
+
 func checkIfBusinessReferralExist(referralID: String,completion: @escaping(Bool)->Void) {
     
     let usersRef = Database.database().reference().child("CompanyUser")

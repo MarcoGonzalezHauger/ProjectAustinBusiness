@@ -156,7 +156,7 @@ func ShowGenderPicker(_ vcToPresent: UIViewController, genderPicked: @escaping (
 }
 
 func makeFirebaseUrl(_ str: String) -> String {
-	return str.replacingOccurrences(of: ".", with: ",").replacingOccurrences(of: "#", with: "%").replacingOccurrences(of: "$", with: "%").replacingOccurrences(of: "[", with: "(").replacingOccurrences(of: "]", with: ")")
+    return str.replacingOccurrences(of: ".", with: ",").replacingOccurrences(of: "#", with: "%").replacingOccurrences(of: "$", with: "%").replacingOccurrences(of: "[", with: "(").replacingOccurrences(of: "]", with: ")").replacingOccurrences(of: "/", with: "%")
 }
 
 func preDownloadInterests() {

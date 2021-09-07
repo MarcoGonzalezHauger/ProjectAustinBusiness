@@ -12,7 +12,7 @@ import Firebase
 extension PoolOffer {
 	var poolPath: String {
 		get {
-			return "Pool/\(self.poolId)"
+            return "Pool/\(self.poolId)"
 		}
 	}
 	

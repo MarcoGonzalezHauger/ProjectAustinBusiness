@@ -143,7 +143,7 @@ class VerifyEmailVC: BaseVC {
     
     func instantiateToNewBusiness() {
         DispatchQueue.main.async(execute: {
-            self.performSegue(withIdentifier: "toAddBusinessPresent", sender: self)
+            self.performSegue(withIdentifier: "toReferralView", sender: self)
         })
     }
     
@@ -195,8 +195,8 @@ class VerifyEmailVC: BaseVC {
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toAddBusinessPresent" {
-            let view = segue.destination as! AddBasicBusinessVC
+        if segue.identifier == "toReferralView" {
+            let view = segue.destination as! ReferralViewController
             view.isProfileSegue = false
             view.basicBusiness = nil
         }

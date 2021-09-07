@@ -756,7 +756,8 @@ If you are an influencer: download Ambassadoor.</string>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="scroll" destination="LGM-lw-o8T" id="PEk-b1-pMm"/>
-                        <segue destination="bJ8-yh-fpX" kind="presentation" identifier="toAddBusinessPresent" id="QY9-Pw-aZ6"/>
+                        <segue destination="bJ8-yh-fpX" kind="presentation" identifier="" id="QY9-Pw-aZ6"/>
+                        <segue destination="EbO-If-heS" kind="presentation" identifier="toReferralView" id="Wd8-88-3Ph"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P5e-yr-RmW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -776,8 +777,180 @@ If you are an influencer: download Ambassadoor.</string>
             </objects>
             <point key="canvasLocation" x="2784" y="743"/>
         </scene>
+        <!--Referral View Controller-->
+        <scene sceneID="nyc-ea-T4l">
+            <objects>
+                <viewController id="EbO-If-heS" customClass="ReferralViewController" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rnm-ih-0dO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u0g-0V-D4Y">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0vw-1u-h7K" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="153" width="374" height="73"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We're you Referred by an Influencer or Business Already on Ambassadoor?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYT-ZU-3qD">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="73"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="73" id="KXj-ia-moq"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="UYT-ZU-3qD" firstAttribute="leading" secondItem="0vw-1u-h7K" secondAttribute="leading" id="Pnm-Uz-UVO"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="73" id="Qvc-pV-E7v"/>
+                                            <constraint firstAttribute="bottom" secondItem="UYT-ZU-3qD" secondAttribute="bottom" id="SvI-y2-Kk8"/>
+                                            <constraint firstItem="UYT-ZU-3qD" firstAttribute="top" secondItem="0vw-1u-h7K" secondAttribute="top" id="WPm-tQ-f8M"/>
+                                            <constraint firstAttribute="trailing" secondItem="UYT-ZU-3qD" secondAttribute="trailing" id="axo-Ad-gVJ"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ibB-f7-QhF" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="253" width="374" height="136"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KhW-MB-gMQ" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                                <rect key="frame" x="95.666666666666686" y="51" width="183" height="65"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ABCDEFG" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iuV-8e-Pjq">
+                                                        <rect key="frame" x="0.0" y="0.0" width="183" height="65"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="EbO-If-heS" id="k1l-Gn-TFb"/>
+                                                        </connections>
+                                                    </textField>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="iuV-8e-Pjq" secondAttribute="bottom" id="1Lb-7X-mc3"/>
+                                                    <constraint firstItem="iuV-8e-Pjq" firstAttribute="leading" secondItem="KhW-MB-gMQ" secondAttribute="leading" id="2mH-vL-aaS"/>
+                                                    <constraint firstAttribute="width" constant="183" id="ETS-oC-Oi0"/>
+                                                    <constraint firstItem="iuV-8e-Pjq" firstAttribute="top" secondItem="KhW-MB-gMQ" secondAttribute="top" id="eu9-fm-5wt"/>
+                                                    <constraint firstAttribute="height" constant="65" id="fSq-Pw-pRU"/>
+                                                    <constraint firstAttribute="trailing" secondItem="iuV-8e-Pjq" secondAttribute="trailing" id="xpF-ni-IO1"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="15"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter their referral code here:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MeF-Io-rfx">
+                                                <rect key="frame" x="54.333333333333343" y="0.0" width="265.33333333333326" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="vMR-dX-ax9"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="KhW-MB-gMQ" firstAttribute="top" secondItem="MeF-Io-rfx" secondAttribute="bottom" constant="11" id="30N-mM-2ov"/>
+                                            <constraint firstItem="MeF-Io-rfx" firstAttribute="top" secondItem="ibB-f7-QhF" secondAttribute="top" id="6HU-W2-rE2"/>
+                                            <constraint firstAttribute="height" constant="136" id="8n9-Ht-tnE"/>
+                                            <constraint firstItem="KhW-MB-gMQ" firstAttribute="centerX" secondItem="ibB-f7-QhF" secondAttribute="centerX" id="EIJ-vA-Qez"/>
+                                            <constraint firstItem="MeF-Io-rfx" firstAttribute="centerX" secondItem="ibB-f7-QhF" secondAttribute="centerX" id="xY8-ah-a0a"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="0vw-1u-h7K" firstAttribute="centerX" secondItem="u0g-0V-D4Y" secondAttribute="centerX" id="AZx-3m-yAp"/>
+                                    <constraint firstItem="1TJ-zh-pyq" firstAttribute="trailing" secondItem="ibB-f7-QhF" secondAttribute="trailing" constant="20" id="NbU-MQ-QOD"/>
+                                    <constraint firstAttribute="bottom" secondItem="ibB-f7-QhF" secondAttribute="bottom" constant="453" id="RAg-5Z-a2a"/>
+                                    <constraint firstAttribute="trailing" secondItem="0vw-1u-h7K" secondAttribute="trailing" constant="20" id="XPN-lk-okh"/>
+                                    <constraint firstItem="ibB-f7-QhF" firstAttribute="leading" secondItem="1TJ-zh-pyq" secondAttribute="leading" constant="20" id="kTA-3u-hdf"/>
+                                    <constraint firstItem="0vw-1u-h7K" firstAttribute="top" secondItem="u0g-0V-D4Y" secondAttribute="top" constant="153" id="rzr-tU-dcy"/>
+                                    <constraint firstItem="ibB-f7-QhF" firstAttribute="top" secondItem="0vw-1u-h7K" secondAttribute="bottom" constant="27" id="wCA-Nh-los"/>
+                                    <constraint firstItem="ibB-f7-QhF" firstAttribute="centerX" secondItem="u0g-0V-D4Y" secondAttribute="centerX" id="wbk-XX-SBl"/>
+                                    <constraint firstItem="0vw-1u-h7K" firstAttribute="leading" secondItem="u0g-0V-D4Y" secondAttribute="leading" constant="20" id="xeA-e2-mJZ"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="09H-TF-HhP"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="1TJ-zh-pyq"/>
+                            </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UJO-I6-1xv">
+                                <rect key="frame" x="335" y="8" width="71" height="56"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wbt-Xz-JxS">
+                                        <rect key="frame" x="0.0" y="0.0" width="71" height="56"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                        <state key="normal" title="Skip"/>
+                                        <connections>
+                                            <action selector="skipActionWithSender:" destination="EbO-If-heS" eventType="touchUpInside" id="DjG-fg-JhP"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="wbt-Xz-JxS" secondAttribute="trailing" id="SrV-cf-YN4"/>
+                                    <constraint firstAttribute="height" constant="56" id="VOq-3p-FZe"/>
+                                    <constraint firstItem="wbt-Xz-JxS" firstAttribute="leading" secondItem="UJO-I6-1xv" secondAttribute="leading" id="dJB-Pm-7sS"/>
+                                    <constraint firstAttribute="bottom" secondItem="wbt-Xz-JxS" secondAttribute="bottom" id="eVl-dX-l6U"/>
+                                    <constraint firstAttribute="width" constant="71" id="sRY-fM-r5d"/>
+                                    <constraint firstItem="wbt-Xz-JxS" firstAttribute="top" secondItem="UJO-I6-1xv" secondAttribute="top" id="y9b-UB-DUv"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9b2-HY-aLq">
+                                <rect key="frame" x="112.66666666666669" y="600" width="189" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="yn8-dD-Cza"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <state key="normal" title="Nobody referred me."/>
+                                <connections>
+                                    <action selector="skipActionWithSender:" destination="EbO-If-heS" eventType="touchUpInside" id="b3n-9Z-vXg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="q8t-HQ-1kg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="UJO-I6-1xv" firstAttribute="top" secondItem="q8t-HQ-1kg" secondAttribute="top" constant="8" id="Hb6-Xw-BUY"/>
+                            <constraint firstAttribute="trailing" secondItem="u0g-0V-D4Y" secondAttribute="trailing" id="Ksh-TS-S55"/>
+                            <constraint firstItem="9b2-HY-aLq" firstAttribute="centerX" secondItem="rnm-ih-0dO" secondAttribute="centerX" id="Nps-tF-uto"/>
+                            <constraint firstAttribute="bottom" secondItem="9b2-HY-aLq" secondAttribute="bottom" constant="196" id="eFy-oQ-On7"/>
+                            <constraint firstItem="u0g-0V-D4Y" firstAttribute="top" secondItem="rnm-ih-0dO" secondAttribute="top" id="gOH-Pt-ZsA"/>
+                            <constraint firstItem="q8t-HQ-1kg" firstAttribute="trailing" secondItem="UJO-I6-1xv" secondAttribute="trailing" constant="8" id="xob-JI-ZKc"/>
+                            <constraint firstAttribute="bottom" secondItem="u0g-0V-D4Y" secondAttribute="bottom" id="xra-Q2-6rf"/>
+                            <constraint firstItem="u0g-0V-D4Y" firstAttribute="leading" secondItem="rnm-ih-0dO" secondAttribute="leading" id="z3k-3y-Job"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="referralShadow" destination="KhW-MB-gMQ" id="XJH-Wg-hJd"/>
+                        <outlet property="referralText" destination="iuV-8e-Pjq" id="tlS-e7-La9"/>
+                        <outlet property="scroll" destination="u0g-0V-D4Y" id="pMJ-N1-UEv"/>
+                        <segue destination="bJ8-yh-fpX" kind="presentation" identifier="toAddBusinessPresent" id="iNI-da-vsc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7XE-2d-fPl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1853.6231884057972" y="1644.6428571428571"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="iNI-da-vsc"/>
         <segue reference="xdN-ue-zdU"/>
     </inferredMetricsTieBreakers>
     <resources>

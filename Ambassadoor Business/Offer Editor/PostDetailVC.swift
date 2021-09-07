@@ -286,6 +286,8 @@ class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePh
            return false
         }
         
+        
+        
 		if self.postInstruction.text.count == 0 {
 			self.showAlertMessage(title: "Post not complete", message: "Add instruction for how you post should come on instagram"){ }
             return false
@@ -296,6 +298,9 @@ class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePh
 			return false
 		}
         
+        self.phraseList = self.phraseList.filter { (pharse) -> Bool in
+            return pharse != "" && pharse != "#"
+        }
  
 		let tempHash = phraseList.filter { (hashtag) -> Bool in
 			return hashtag.starts(with: "#")
