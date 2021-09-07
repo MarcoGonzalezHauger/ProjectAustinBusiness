@@ -84,6 +84,7 @@ func getInfluencer(id: String) -> Influencer {
 	return InfluencerDatabase.filter{ return $0.userId == id }.first!
 }
 
+
 var BusinessDatabase: [Business] = []
 
 func getBusinesses(completion: @escaping () -> Void) {
