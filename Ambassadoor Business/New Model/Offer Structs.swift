@@ -323,7 +323,7 @@ class InProgressPost {
 	
 	var draftPost: DraftPost
 	
-	var cashValue: Double
+	var cashValue: Double //cashValue is the amount of money that will be paid to influencer.
 	var status: String //Accepted, Expired, Posted, Verified, Paid, Rejected, Cancelled.
 	
 	//MARK: Accetped
