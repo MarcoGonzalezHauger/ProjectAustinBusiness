@@ -264,6 +264,9 @@ class InstagramPost {
 		dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ" //date format that instagram uses
 		timestamp = dateFormatter.date(from: ts) ?? Date(timeIntervalSince1970: 0)
 		
+		
+		print(d)
+		
 	}
 	
 //    func toDictionary() -> [String: Any] {

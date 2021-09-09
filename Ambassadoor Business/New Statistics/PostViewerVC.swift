@@ -55,9 +55,14 @@ class PreviewPostCell: UICollectionViewCell {
 	@IBOutlet weak var statusIndicator: ShadowView!
 }
 
+protocol viewAllDelegate {
+	func viewAllPressed(posts: [InProgressPost])
+}
+
 class PostViewerVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 	
 	var samplePosts: [InProgressPost] = []
+	var delegate: viewAllDelegate?
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 //		topLabel.text = "All Posts (\(samplePosts.count))"
@@ -78,17 +83,7 @@ class PostViewerVC: UIViewController, UICollectionViewDelegate, UICollectionView
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		collectionView.deselectItem(at: indexPath, animated: true)
-//
-//		let instaURL = URL(string: "instagram://user?username=\(user)")!
-//		let sharedApps = UIApplication.shared
-//		if sharedApps.canOpenURL(instaURL) {
-//		sharedApps.open(instaURL) } else {
-		UIApplication.shared.open(URL(string: "https://www.instagram.com/p/\(samplePosts[indexPath.item].instagramPost!.instagramPostId)")!) //}
-		
-		print("username: \(InfluencerDatabase.filter{$0.userId == samplePosts[indexPath.item].userId}.first!.basic.username)")
-			
-		
-		print(samplePosts[indexPath.item].instagramPost!.instagramPostId)
+		delegate?.viewAllPressed(posts: [samplePosts[indexPath.item]])
 	}
 	
 
@@ -98,7 +93,7 @@ class PostViewerVC: UIViewController, UICollectionViewDelegate, UICollectionView
 	
 	
 	@IBAction func viewAllPressed(_ sender: Any) {
-		
+		delegate?.viewAllPressed(posts: samplePosts)
 	}
 	
 	override func viewDidLoad() {
