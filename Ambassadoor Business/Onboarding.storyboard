@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="v5Z-mx-CQh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19115.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="v5Z-mx-CQh">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19107.5"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -143,7 +144,10 @@
                                                     <constraint firstAttribute="width" secondItem="R6K-VY-grl" secondAttribute="height" id="xyu-tW-0JM"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <state key="normal" title="Button" image="faceid">
+                                                <color key="tintColor" name="AmbPurple"/>
+                                                <state key="normal" title="Button">
+                                                    <color key="titleShadowColor" name="AmbDarkPurple"/>
+                                                    <imageReference key="image" image="faceid"/>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default" weight="light"/>
                                                 </state>
                                                 <connections>
@@ -438,7 +442,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="1P8-al-bFV">
-                                <rect key="frame" x="0.0" y="44" width="414" height="764"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="798"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nap-qC-YiL">
                                         <rect key="frame" x="0.0" y="173" width="414" height="241"/>
@@ -648,7 +652,7 @@ If you are an influencer: download Ambassadoor.</string>
             <objects>
                 <viewController id="JFM-4V-Lmv" customClass="VerifyEmailVC" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vc4-kL-fbL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="LGM-lw-o8T">
@@ -665,7 +669,7 @@ If you are an influencer: download Ambassadoor.</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYC-OE-Nh4">
-                                        <rect key="frame" x="16" y="236.66666666666669" width="382" height="91"/>
+                                        <rect key="frame" x="16" y="241.66666666666669" width="382" height="91"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="74" id="VyU-ji-Hnc"/>
                                         </constraints>
@@ -689,7 +693,7 @@ If you are an influencer: download Ambassadoor.</string>
                                 <viewLayoutGuide key="frameLayoutGuide" id="lIs-sZ-rUf"/>
                             </scrollView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5lc-kc-p0e" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                <rect key="frame" x="10" y="728" width="394" height="70"/>
+                                <rect key="frame" x="10" y="782" width="394" height="70"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wl7-9p-8c6">
                                         <rect key="frame" x="10" y="10" width="374" height="50"/>
@@ -951,15 +955,18 @@ If you are an influencer: download Ambassadoor.</string>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="iNI-da-vsc"/>
-        <segue reference="xdN-ue-zdU"/>
+        <segue reference="7FS-uX-oT2"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="NiceIconSmall" width="480" height="480"/>
         <image name="backArrow" width="42" height="42"/>
         <image name="faceid" width="150" height="150"/>
         <image name="multiply.circle.fill" catalog="system" width="128" height="121"/>
+        <namedColor name="AmbDarkPurple">
+            <color red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="AmbPurple">
-            <color red="0.92900002002716064" green="0.23499999940395355" blue="0.40000000596046448" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

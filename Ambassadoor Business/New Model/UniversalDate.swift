@@ -35,18 +35,7 @@ extension String {
 		} else {
 			let dateFormatter = DateFormatter()
 			dateFormatter.dateFormat = dateFormatUniversal
-            //return dateFormatter.date(from: self) ?? Date(timeIntervalSince1970: 0)
-            if let date = dateFormatter.date(from: self) {
-                return date
-            }else{
-                dateFormatter.dateFormat = dateFormatUniversalWithoutZone
-                if let date = dateFormatter.date(from: self) {
-                    return date
-                }else{
-                    return Date(timeIntervalSince1970: 0)
-                }
-            }
-			
+			return dateFormatter.date(from: self) ?? Date(timeIntervalSince1970: 0)
 		}
 	}
 }

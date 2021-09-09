@@ -15,7 +15,6 @@ import Firebase
 import CoreData
 
 func NumberToPrice(Value: Double, enforceCents isBig: Bool = false) -> String {
-    //let vv = floor(Value)
 	if floor(Value) == Value && isBig == false {
 		return "$" + String(Int(Value))
 	}

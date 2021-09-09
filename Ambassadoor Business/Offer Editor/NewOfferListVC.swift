@@ -53,18 +53,18 @@ class NewOfferListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return GetSortedList().count
+        return GetSortedList().count + 1
         //return MyCompany.drafts.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        /*
-        if indexPath.row == MyCompany.drafts.count {
+        
+        if indexPath.row == GetSortedList().count {
             let identifier = "addoffer"
             let cell = self.offerList.dequeueReusableCell(withIdentifier: identifier) as! AddOfferCell
             return cell
         }
-        */
+        
         let identifier = "offerlist"
         let cell = self.offerList.dequeueReusableCell(withIdentifier: identifier) as! OfferList
         let draft = GetSortedList()[indexPath.row]
@@ -87,6 +87,8 @@ class NewOfferListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         var index: Int? = nil
         if indexPath.row != MyCompany.drafts.count {
             index = indexPath.row
+        }else{
+            index = nil
         }
         self.performSegue(withIdentifier: "toNewOfferCreate", sender: index)
     }

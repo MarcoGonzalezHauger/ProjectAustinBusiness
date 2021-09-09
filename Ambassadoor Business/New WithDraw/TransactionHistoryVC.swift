@@ -70,10 +70,6 @@ class TransactionHistoryVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
             cell.amountlabel.text = "- \(NumberToPrice(Value: log.value))"
             cell.descriptionLabel.text = "Offer Distributed"
             cell.shadowBox.borderColor = .red
-        }else if log.type == "referral"{
-            cell.amountlabel.text = "+ \(NumberToPrice(Value: log.value, enforceCents: false))"
-            cell.shadowBox.borderColor = .green
-            cell.descriptionLabel.text = "Credited referral amount"
         }
         
         cell.dateText.text = log.time.toUString()

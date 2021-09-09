@@ -312,14 +312,9 @@ class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePh
 		if !hash.contains("ad") {
 			hash.append("ad")
 		}
-        
-        let phases = phraseList.filter { (hashtag) -> Bool in
-            return !hashtag.starts(with: "#")
-        }
-        
-        let phase = phases.map { keyword in
-            keyword.trimmingCharacters(in: .whitespacesAndNewlines)
-        }
+		let phase = phraseList.filter { (hashtag) -> Bool in
+			return !hashtag.starts(with: "#")
+		}
 		
 		if self.postIndex == nil{
 			let post = DraftPost.init(businessId: MyCompany.businessId, draftId: self.draftOffer!.draftId, poolId: "", hash: hash, keywords: phase, ins: self.postInstruction.text)

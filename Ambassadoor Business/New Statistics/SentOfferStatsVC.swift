@@ -8,7 +8,18 @@
 
 import UIKit
 
-class SentOfferStatsVC: UIViewController {
+class SentOfferStatsVC: UIViewController, viewAllDelegate {
+	
+	var tempPosts: [InProgressPost] = []
+	func viewAllPressed(posts: [InProgressPost]) {
+		tempPosts = posts
+		if posts.count == 1 {
+			performSegue(withIdentifier: "viewOne", sender: self)
+		} else {
+			performSegue(withIdentifier: "toViewAll", sender: self)
+		}
+	}
+	
 
 	@IBOutlet weak var companyLogo: UIImageView!
 	var thisSentOffer: sentOffer!
@@ -91,6 +102,10 @@ class SentOfferStatsVC: UIViewController {
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if let dest = segue.destination as? PostViewerVC {
 			refView = dest
+			dest.delegate = self
+		}
+		if let dest = segue.destination as? ViewPostsVC {
+			dest.posts = tempPosts
 		}
 	}
 	

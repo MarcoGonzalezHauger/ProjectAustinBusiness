@@ -17,7 +17,17 @@ class sentOfferCell: UITableViewCell {
 }
 
 
-class StatisticsHomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class StatisticsHomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, viewAllDelegate {
+	
+	var tempPosts: [InProgressPost] = []
+	func viewAllPressed(posts: [InProgressPost]) {
+		tempPosts = posts
+		if posts.count == 1 {
+			performSegue(withIdentifier: "viewOne", sender: self)
+		} else {
+			performSegue(withIdentifier: "toViewAll", sender: self)
+		}
+	}
 	
 	@IBOutlet weak var sentOfferHeight: NSLayoutConstraint!
 	
@@ -87,9 +97,13 @@ class StatisticsHomeVC: UIViewController, UITableViewDelegate, UITableViewDataSo
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if let dest = segue.destination as? PostViewerVC {
 			viewRef = dest
+			dest.delegate = self
 		}
 		if let dest = segue.destination as? SentOfferStatsVC {
 			dest.thisSentOffer = tSO!
+		}
+		if let dest = segue.destination as? ViewPostsVC {
+			dest.posts = tempPosts
 		}
 	}
 	

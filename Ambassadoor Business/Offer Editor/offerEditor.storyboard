@@ -41,9 +41,6 @@
                                                                     <subviews>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fB5-Kd-hVi">
                                                                             <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="width" secondItem="fB5-Kd-hVi" secondAttribute="height" id="Wrp-Gb-fKe"/>
-                                                                            </constraints>
                                                                         </imageView>
                                                                     </subviews>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -70,8 +67,8 @@
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="70" id="2Zc-uB-eCM"/>
-                                                                <constraint firstAttribute="width" secondItem="dwx-yx-26g" secondAttribute="height" multiplier="1:1" id="6O1-me-qQN"/>
                                                                 <constraint firstAttribute="bottom" secondItem="r2a-Qv-MUG" secondAttribute="bottom" id="6T5-XM-Ip1"/>
+                                                                <constraint firstAttribute="width" constant="70" id="FzU-As-7Xe"/>
                                                                 <constraint firstItem="r2a-Qv-MUG" firstAttribute="leading" secondItem="dwx-yx-26g" secondAttribute="leading" id="ceP-xo-TaI"/>
                                                                 <constraint firstItem="r2a-Qv-MUG" firstAttribute="top" secondItem="dwx-yx-26g" secondAttribute="top" id="hF1-zr-Imp"/>
                                                                 <constraint firstAttribute="trailing" secondItem="r2a-Qv-MUG" secondAttribute="trailing" id="ha3-Uy-1a2"/>
@@ -2977,10 +2974,10 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
         <image name="plusImage" width="75" height="75"/>
         <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <namedColor name="AmbDarkPurple">
-            <color red="0.92900002002716064" green="0.23499999940395355" blue="0.40000000596046448" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.5899999737739563" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="AmbPurple">
-            <color red="0.92900002002716064" green="0.23499999940395355" blue="0.40000000596046448" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.5899999737739563" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="newCellColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
