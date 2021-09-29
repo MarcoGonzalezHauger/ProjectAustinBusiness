@@ -11,8 +11,12 @@ import Firebase
 
 extension DraftOffer {
 	func distributeToPool(asBusiness: Business, asBasic: BasicBusiness, filter: OfferFilter, withMoney: Double, withDrawFundsFalseForTestingOnly withdrawFunds: Bool, completed: @escaping (_ failedReason: String, _ newBusinessWithChanges: Business?) -> ()) {
+		if withMoney < 3 {
+			completed("You must distribute your offer with at least $3.", nil)
+			return
+		}
 		if withdrawFunds && asBusiness.finance.balance < withMoney - 0.01 {
-			completed("You do not enough money to distribute this offer.", nil)
+			completed("You do not have enough money to distribute this offer. (Balance: \(NumberToPrice(Value: asBusiness.finance.balance)))", nil)
 			return
 		}
         let cashPower = roundPriceDown(price: (withMoney - (withMoney * Singleton.sharedInstance.getCommision())))

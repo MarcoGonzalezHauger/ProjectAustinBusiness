@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,10 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BusinessGradient" translatesAutoresizingMaskIntoConstraints="NO" id="BL0-fv-Xxr">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashIcon" translatesAutoresizingMaskIntoConstraints="NO" id="W2T-9P-f7s">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueNoBG" translatesAutoresizingMaskIntoConstraints="NO" id="W2T-9P-f7s">
                                 <rect key="frame" x="107.66666666666669" y="326" width="160" height="160"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="160" id="aH5-zc-q7O"/>
@@ -27,16 +24,12 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="BL0-fv-Xxr" secondAttribute="bottom" id="OBB-MC-o5c"/>
-                            <constraint firstItem="BL0-fv-Xxr" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="OeL-Kf-snw"/>
                             <constraint firstItem="W2T-9P-f7s" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="d0A-pd-1en"/>
-                            <constraint firstAttribute="trailing" secondItem="BL0-fv-Xxr" secondAttribute="trailing" id="ng9-6E-6pi"/>
-                            <constraint firstItem="BL0-fv-Xxr" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="rAL-Gb-9eB"/>
                             <constraint firstItem="W2T-9P-f7s" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ydC-Nf-4Fh"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -45,7 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="BusinessGradient" width="1000" height="2000"/>
-        <image name="SplashIcon" width="1000" height="1000"/>
+        <image name="BlueNoBG" width="375" height="375"/>
     </resources>
 </document>

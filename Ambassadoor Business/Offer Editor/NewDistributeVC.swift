@@ -38,7 +38,7 @@ class NewDistributeVC: BaseVC, changedDelegate {
     @IBAction func DistributeOfferAction(sender: UIButton){
         if getDesiredCashPower() != 0 {
             let offerAmount = getDesiredCashPower()
-                if offerAmount > 0 {
+                if offerAmount > 3 {
                     
                     if MyCompany.finance.balance > 0 {
                         
@@ -54,7 +54,7 @@ class NewDistributeVC: BaseVC, changedDelegate {
                                 }
                             }else{
                                 MyCompany = dataOfBusiness!
-								self.showAlertMessage(title: "Offer has been Sent", message: "When influencers accept this offer you will be able to view statistics on the Sent Offers page.") {
+								self.showAlertMessage(title: "Offer has been Sent!", message: "Keep up to date with the results on the Statistics page!") {
 									DispatchQueue.main.async {
 										self.navigationController?.popToRootViewController(animated: true)
 									}
@@ -65,14 +65,14 @@ class NewDistributeVC: BaseVC, changedDelegate {
                         
                     }else{
                         
-                        self.showAlertMessage(title: "Couldn't Distribute Offer.", message: "You don't have any money in your account.") {
+						self.showAlertMessage(title: "Couldn't Distribute Offer.", message: "You don't have any money in your account. (Balance: \(NumberToPrice(Value: MyCompany.finance.balance))") {
                             
                         }
                         
                     }
                     
                 }else{
-                    self.showAlertMessage(title: "Enter Amount", message: "Enter how much money you would like to spend distributing your offer.") {
+                    self.showAlertMessage(title: "$3 minimum", message: "You must distribute the offer with a minimum of $3.") {
                         
                     }
             }

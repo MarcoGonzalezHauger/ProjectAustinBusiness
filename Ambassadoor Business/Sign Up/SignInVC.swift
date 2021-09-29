@@ -316,7 +316,7 @@ class SignInVC: BaseVC, UITextFieldDelegate {
                                 self.usernameLine.backgroundColor = UIColor(named: "AmbPurple")
                                 self.passwordline.backgroundColor = .red
                                 
-                                self.showAlertMessage(title: "Alert", message: "The password is invalid") {
+                                self.showAlertMessage(title: "Alert", message: "password is incorrect") {
                                     
                                 }
                                 

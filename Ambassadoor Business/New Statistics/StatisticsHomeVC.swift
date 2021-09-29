@@ -91,7 +91,7 @@ class StatisticsHomeVC: UIViewController, UITableViewDelegate, UITableViewDataSo
 	
 	override func viewDidAppear(_ animated: Bool) {
 		
-		//loadData()
+		loadData()
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
