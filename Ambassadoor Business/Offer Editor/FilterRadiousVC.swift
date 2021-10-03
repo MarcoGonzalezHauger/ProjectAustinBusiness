@@ -22,7 +22,6 @@ class ZipCell: UITableViewCell {
 			}
         }
     }
-    
 }
 
 class FilterRadiousVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
