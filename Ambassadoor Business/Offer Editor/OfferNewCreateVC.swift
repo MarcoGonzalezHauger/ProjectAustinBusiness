@@ -126,6 +126,11 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
                 self.offerName.text = "Offer \((MyCompany.drafts.count + 1))"
                 self.cmyName.text = "No Company Chosen"
                 self.draftTemp = createTempDraft()
+				
+				if MyCompany.basics.count == 1 {
+					self.draftTemp?.basicId = MyCompany.basics.first!.basicId
+					setBasicBusinessLogo(basic: MyCompany.basics.first!)
+				}
                 self.backBtn.setTitle("Back", for: .normal)
             }else{
                 let company = MyCompany.basics.filter({ (basic) -> Bool in
@@ -239,7 +244,7 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
 			}
 		}
 		if draftTemp!.basicId == ""  {
-			self.showAlertMessage(title: "Alert", message: "Please choose any comapny") {
+			self.showAlertMessage(title: "Alert", message: "Please choose which company this offer will appear from.") {
 			}
 			return false
 		}

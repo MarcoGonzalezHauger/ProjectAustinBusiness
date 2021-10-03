@@ -658,11 +658,10 @@ If you are an influencer: download Ambassadoor.</string>
                             <scrollView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="LGM-lw-o8T">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0la-wV-RVM">
-                                        <rect key="frame" x="132" y="20" width="150" height="36"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verify Your Email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0la-wV-RVM">
+                                        <rect key="frame" x="84" y="20" width="246" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="g2A-5n-OdE"/>
-                                            <constraint firstAttribute="width" constant="150" id="jCQ-MD-3BO"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
                                         <nil key="textColor"/>
@@ -825,7 +824,7 @@ If you are an influencer: download Ambassadoor.</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KhW-MB-gMQ" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
                                                 <rect key="frame" x="95.666666666666686" y="51" width="183" height="65"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ABCDEFG" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iuV-8e-Pjq">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ABC123" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iuV-8e-Pjq">
                                                         <rect key="frame" x="0.0" y="0.0" width="183" height="65"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -864,6 +863,13 @@ If you are an influencer: download Ambassadoor.</string>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="codeFound" translatesAutoresizingMaskIntoConstraints="NO" id="fSQ-RF-o8t">
+                                                <rect key="frame" x="290.66666666666669" y="59.666666666666686" width="48" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="48" id="fzi-P1-dR1"/>
+                                                    <constraint firstAttribute="height" constant="48" id="h2Y-u1-54s"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -871,6 +877,8 @@ If you are an influencer: download Ambassadoor.</string>
                                             <constraint firstItem="MeF-Io-rfx" firstAttribute="top" secondItem="ibB-f7-QhF" secondAttribute="top" id="6HU-W2-rE2"/>
                                             <constraint firstAttribute="height" constant="136" id="8n9-Ht-tnE"/>
                                             <constraint firstItem="KhW-MB-gMQ" firstAttribute="centerX" secondItem="ibB-f7-QhF" secondAttribute="centerX" id="EIJ-vA-Qez"/>
+                                            <constraint firstItem="fSQ-RF-o8t" firstAttribute="leading" secondItem="KhW-MB-gMQ" secondAttribute="trailing" constant="12" id="pLW-et-3de"/>
+                                            <constraint firstItem="fSQ-RF-o8t" firstAttribute="centerY" secondItem="iuV-8e-Pjq" secondAttribute="centerY" id="uia-1k-7Jt"/>
                                             <constraint firstItem="MeF-Io-rfx" firstAttribute="centerX" secondItem="ibB-f7-QhF" secondAttribute="centerX" id="xY8-ah-a0a"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -883,7 +891,7 @@ If you are an influencer: download Ambassadoor.</string>
                                 <constraints>
                                     <constraint firstItem="0vw-1u-h7K" firstAttribute="centerX" secondItem="u0g-0V-D4Y" secondAttribute="centerX" id="AZx-3m-yAp"/>
                                     <constraint firstItem="1TJ-zh-pyq" firstAttribute="trailing" secondItem="ibB-f7-QhF" secondAttribute="trailing" constant="20" id="NbU-MQ-QOD"/>
-                                    <constraint firstAttribute="bottom" secondItem="ibB-f7-QhF" secondAttribute="bottom" constant="453" id="RAg-5Z-a2a"/>
+                                    <constraint firstAttribute="bottom" secondItem="ibB-f7-QhF" secondAttribute="bottom" constant="200" id="RAg-5Z-a2a"/>
                                     <constraint firstAttribute="trailing" secondItem="0vw-1u-h7K" secondAttribute="trailing" constant="20" id="XPN-lk-okh"/>
                                     <constraint firstItem="ibB-f7-QhF" firstAttribute="leading" secondItem="1TJ-zh-pyq" secondAttribute="leading" constant="20" id="kTA-3u-hdf"/>
                                     <constraint firstItem="0vw-1u-h7K" firstAttribute="top" secondItem="u0g-0V-D4Y" secondAttribute="top" constant="153" id="rzr-tU-dcy"/>
@@ -942,9 +950,11 @@ If you are an influencer: download Ambassadoor.</string>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="codeFoundImage" destination="fSQ-RF-o8t" id="ati-8y-y1p"/>
                         <outlet property="referralShadow" destination="KhW-MB-gMQ" id="XJH-Wg-hJd"/>
                         <outlet property="referralText" destination="iuV-8e-Pjq" id="tlS-e7-La9"/>
                         <outlet property="scroll" destination="u0g-0V-D4Y" id="pMJ-N1-UEv"/>
+                        <outlet property="scrollView" destination="u0g-0V-D4Y" id="cAb-Vn-I83"/>
                         <segue destination="bJ8-yh-fpX" kind="presentation" identifier="toAddBusinessPresent" id="iNI-da-vsc"/>
                     </connections>
                 </viewController>
@@ -960,6 +970,7 @@ If you are an influencer: download Ambassadoor.</string>
     <resources>
         <image name="BlueNoBG" width="375" height="375"/>
         <image name="backArrow" width="42" height="42"/>
+        <image name="codeFound" width="150" height="150"/>
         <image name="faceid" width="150" height="150"/>
         <image name="multiply.circle.fill" catalog="system" width="128" height="121"/>
         <namedColor name="AmbDarkPurple">

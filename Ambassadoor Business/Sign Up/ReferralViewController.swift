@@ -23,11 +23,13 @@ class ReferralViewController: BaseVC, UITextFieldDelegate {
         self.checkIfReferralApplied()
         return true
     }
-    
+	
+	@IBOutlet weak var codeFoundImage: UIImageView!
+	
     func checkIfReferralApplied() {
         
         if self.referralText.text?.count == 0 {
-            MakeShake(viewToShake: self.referralShadow)
+            //MakeShake(viewToShake: self.referralShadow)
             return
         }
         
@@ -42,6 +44,9 @@ class ReferralViewController: BaseVC, UITextFieldDelegate {
         
         MyCompany.referredByUserId = referralByUser.count != 0 ? referralByUser.first!.userId : ""
         MyCompany.referredByBusinessId = referralByBusiness.count != 0 ? referralByBusiness.first!.businessId : ""
+		
+		codeFoundImage.isHidden = false
+		
         MyCompany.UpdateToFirebase { error in
             if !error{
                 DispatchQueue.main.async {
@@ -62,10 +67,20 @@ class ReferralViewController: BaseVC, UITextFieldDelegate {
         self.checkIfReferralApplied()
     }
 
-    override func viewDidLoad() {
+	override func viewDidAppear(_ animated: Bool) {
+		codeFoundImage.isHidden = true
+	}
+	
+	@IBOutlet weak var scrollView: UIScrollView!
+	
+	override func viewDidLoad() {
         super.viewDidLoad()
         self.addDoneButtonOnKeyboard(textField: self.referralText)
+		scrollView.alwaysBounceVertical = false
         // Do any additional setup after loading the view.
+		if #available(iOS 13.0, *) {
+			isModalInPresentation = true
+		}
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

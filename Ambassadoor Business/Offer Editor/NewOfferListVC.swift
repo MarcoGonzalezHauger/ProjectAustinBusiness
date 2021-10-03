@@ -24,16 +24,19 @@ class OfferList: UITableViewCell{
                 })
 				
 				self.companyLogo.image = nil
+				
                 if let basic = company.first {
                     if let url = URL.init(string: basic.logoUrl) {
                         self.companyLogo.downloadedFrom(url: url)
 					}
-                }
+					self.cmyName.text = MyCompany.basics.first!.name
+				} else {
+					self.cmyName.text = "No Company Chosen"
+				}
                 
                 
                 //self.lastEdited.text = offer.lastEdited.toUString()
                 self.lastEdited.text = "Last edited " + DateToAgo(date: offer.lastEdited)
-                self.cmyName.text = MyCompany.basics.first!.name
             }
         }
     }
