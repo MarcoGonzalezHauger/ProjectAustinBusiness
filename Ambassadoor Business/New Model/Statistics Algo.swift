@@ -56,6 +56,9 @@ func GetAllInProgressPosts() -> [InProgressPost] {
 
 func gtSt(completion: @escaping () -> Void) { // "GET STAT", should only be used through the function "RefreshStatistics"
 	print(">> GET STAT ORDER SIZE: \(MyCompany.sentOffers.count)")
+	if MyCompany.sentOffers.count == 0 {
+		completion()
+	}
 	var index = 0
 	for sentOffer in MyCompany.sentOffers {
 		sentOffer.getDataForOffer {

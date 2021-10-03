@@ -404,7 +404,7 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
     func checkBasicBusiness() -> BasicBusiness? {
         
         if self.urlString == "" {
-            self.showAlertMessage(title: "Alert", message: "Please choose the image") {
+            self.showAlertMessage(title: "Alert", message: "Please choose a logo") {
             }
             return nil
         }
@@ -413,7 +413,7 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
             }
             return nil
         }
-        if self.companyMission.text == "" || self.companyMission.text.count == 0 {
+        if self.companyMission.text == "" {
             self.showAlertMessage(title: "Alert", message: "Please enter company mission") {
             }
             return nil

@@ -111,7 +111,15 @@ class StatisticsHomeVC: UIViewController, UITableViewDelegate, UITableViewDataSo
 		loadData()
 	}
 	
+	@IBOutlet weak var titleLabel: UILabel!
+	
 	func refreshTotals() {
+		
+		if MyCompany.sentOffers.count == 0 {
+			titleLabel.text = "No Offers Sent Yet!"
+		} else {
+			titleLabel.text = "Sent for All Offers"
+		}
 		
 		let allPosts = GetAllInProgressPosts().filter{$0.instagramPost != nil}
 		print(">> Loaded with \(allPosts.count) results.")

@@ -23,6 +23,9 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
 	}
 	
     func shouldAllowBack() -> Bool {
+		if self.draftTemp!.draftPosts.count == 0 {
+			return true
+		}
         if checkIfEdited() && self.isSavable() {
             draftTemp!.lastEdited = Date()
             if index == nil{
@@ -185,81 +188,87 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
         self.offerName.becomeFirstResponder()
     }
     
-    @IBAction func dismissAction(sender: UIButton){
-        
-        if index == nil && !checkIfEdited() {
-            DispatchQueue.main.async {
-                self.backBtn.isUserInteractionEnabled = true
-                self.navigationController?.popViewController(animated: true)
-            }
-        }
-        else{
-        backBtn.isUserInteractionEnabled = false
-        if self.isSavable() {
-            draftTemp!.lastEdited = Date()
-            if index == nil{
-               MyCompany.drafts.append(draftTemp!)
-            }else{
-               MyCompany.drafts[index!] = draftTemp!
-            }
-            
-            MyCompany.UpdateToFirebase { (error) in
-                if !error{
-                    DispatchQueue.main.async {
-                        self.backBtn.isUserInteractionEnabled = true
-                        self.navigationController?.popViewController(animated: true)
-                    }
-                    
-                }
-            }
-        }else{
-            DispatchQueue.main.async {
-                self.backBtn.isUserInteractionEnabled = true
-            }
-        }
-    }
-        
-    }
-    
-    
-    
-    func isSavable() -> Bool {
-		for p in draftTemp!.draftPosts {
-			if p.instructions == "" {
-				
+	@IBAction func dismissAction(sender: UIButton){
+		
+		if index == nil && !checkIfEdited() {
+			DispatchQueue.main.async {
+				self.backBtn.isUserInteractionEnabled = true
+				self.navigationController?.popViewController(animated: true)
 			}
 		}
-        if draftTemp!.basicId == ""  {
-            self.showAlertMessage(title: "Alert", message: "Please choose any comapny") {
-            }
-            return false
-        }
-        
-        if self.draftTemp!.draftPosts.count == 0 {
-            self.showAlertMessage(title: "Alert", message: "Please add at least one post in your offer to save.") {
-            }
-            return false
-        }
-        return true
-    }
-    
-    //MARK: Textfield Delegates
-    
-    @IBAction func textDidChange(_ textField: UITextField){
-        if textField.text?.count != 0{
-            self.draftTemp?.title = textField.text!
-        }
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
-        textField.resignFirstResponder()
-        self.offerName.isUserInteractionEnabled = false
-        if textField.text?.count != 0{
-            self.draftTemp?.title = textField.text!
-        }
-        return true
-    }
-    
+		else{
+			backBtn.isUserInteractionEnabled = false
+			
+			if self.draftTemp!.draftPosts.count == 0 {
+				self.navigationController?.popViewController(animated: true)
+			}
+			if self.isSavable() {
+				draftTemp!.lastEdited = Date()
+				if index == nil{
+					MyCompany.drafts.append(draftTemp!)
+				} else {
+					MyCompany.drafts[index!] = draftTemp!
+				}
+				
+				MyCompany.UpdateToFirebase { (error) in
+					if !error{
+						DispatchQueue.main.async {
+							self.backBtn.isUserInteractionEnabled = true
+							self.navigationController?.popViewController(animated: true)
+						}
+						
+					}
+				}
+			} else {
+				DispatchQueue.main.async {
+					self.backBtn.isUserInteractionEnabled = true
+				}
+			}
+		}
+		
+	}
+	
+	
+	
+	func isSavable() -> Bool {
+		for p in draftTemp!.draftPosts {
+			if p.instructions == "" {
+				self.showAlertMessage(title: "Alert", message: "You must have instructions for every post in your offer.") {
+				}
+				return false
+			}
+		}
+		if draftTemp!.basicId == ""  {
+			self.showAlertMessage(title: "Alert", message: "Please choose any comapny") {
+			}
+			return false
+		}
+		
+		if self.draftTemp!.draftPosts.count == 0 {
+			self.showAlertMessage(title: "Alert", message: "Please add at least one post in your offer to save.") {
+			}
+			return false
+		}
+		return true
+	}
+	
+	//MARK: Textfield Delegates
+	
+	@IBAction func textDidChange(_ textField: UITextField){
+		if textField.text?.count != 0{
+			self.draftTemp?.title = textField.text!
+		}
+	}
+	
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+		textField.resignFirstResponder()
+		self.offerName.isUserInteractionEnabled = false
+		if textField.text?.count != 0{
+			self.draftTemp?.title = textField.text!
+		}
+		return true
+	}
+	
 	@IBOutlet weak var informationalLabel: UILabel!
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

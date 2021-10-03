@@ -22,11 +22,12 @@ class OfferList: UITableViewCell{
                 let company = MyCompany.basics.filter({ (basic) -> Bool in
                     return basic.basicId == offer.basicId
                 })
-                
+				
+				self.companyLogo.image = nil
                 if let basic = company.first {
                     if let url = URL.init(string: basic.logoUrl) {
                         self.companyLogo.downloadedFrom(url: url)
-                    }
+					}
                 }
                 
                 
