@@ -39,6 +39,37 @@ class LocationSelectorVC: BaseVC, UITableViewDelegate, UITableViewDataSource, Lo
         }
     }
     
+    @objc override func keyboardWasShown(notification : NSNotification) {
+        
+ //       if let key = notification.object as? UITextField {
+ //           if key == phraseText {
+                
+                let userInfo = notification.userInfo!
+                var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+                keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+                
+                var contentInset:UIEdgeInsets = locationList.contentInset
+                contentInset.bottom = keyboardFrame.size.height + 25
+                locationList.contentInset = contentInset
+                
+  //          }
+  //      }
+        
+        
+        
+    }
+    
+    @objc override func keyboardWillHide(notification:NSNotification){
+        
+//        if let key = notification.object as? UITextField {
+//        if key == phraseText {
+            
+            let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+            locationList.contentInset = contentInset
+            
+//            }
+ //       }
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (locations.count)

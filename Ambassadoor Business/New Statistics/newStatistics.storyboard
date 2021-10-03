@@ -197,7 +197,7 @@
                                                                 <rect key="frame" x="0.0" y="44.5" width="366" height="69"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5Ky-ib-sh0" id="XQH-Wh-Dys">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="336.5" height="69"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="69"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="QfU-1U-5XE">
@@ -218,7 +218,7 @@
                                                                             </subviews>
                                                                         </stackView>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Afg-QU-MW9" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                                                            <rect key="frame" x="284.5" y="14.5" width="40" height="40"/>
+                                                                            <rect key="frame" x="283" y="14.5" width="40" height="40"/>
                                                                             <subviews>
                                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="faf-TF-ZYe">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -949,6 +949,9 @@ ABCDEF Caption
         <segue reference="9M7-T2-JUf"/>
         <segue reference="I6d-sz-7q1"/>
         <segue reference="xeG-Ty-NMp"/>
+        <segue reference="1TW-r8-61D"/>
+        <segue reference="4DZ-1O-Ocj"/>
+        <segue reference="tuR-xn-R4b"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="StatsIcon" width="25" height="25"/>

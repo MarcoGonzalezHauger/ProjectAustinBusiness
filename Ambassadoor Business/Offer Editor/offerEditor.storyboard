@@ -287,6 +287,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="4TR-mz-Sn9"/>
                     <connections>
+                        <outlet property="addBtn" destination="5CT-66-VRL" id="I9F-xt-JYT"/>
                         <outlet property="editBtn" destination="xT3-Tu-4Lg" id="DQh-KL-RIp"/>
                         <outlet property="offerList" destination="HR9-db-FE2" id="H7i-9S-euW"/>
                         <segue destination="5zy-es-Mje" kind="show" identifier="toNewOfferCreate" id="B6d-nl-7cN"/>
@@ -2579,7 +2580,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RVA-3H-9px">
                                                             <rect key="frame" x="16" y="6.6666666666666643" width="196.66666666666666" height="71"/>
                                                             <subviews>
-                                                                <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zip Code" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kgL-0q-3IH">
+                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zip Code" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kgL-0q-3IH">
                                                                     <rect key="frame" x="89" y="0.0" width="107.66666666666669" height="34"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="postal-code"/>
@@ -2588,13 +2589,13 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                                         <outlet property="delegate" destination="lJ7-RB-UhH" id="R5R-Yo-zUr"/>
                                                                     </connections>
                                                                 </textField>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNp-Mk-yeN">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNp-Mk-yeN">
                                                                     <rect key="frame" x="0.0" y="5.3333333333333357" width="73" height="23"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="in Miles" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G2U-H7-8dk">
+                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="in Miles" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G2U-H7-8dk">
                                                                     <rect key="frame" x="89" y="37" width="107.66666666666669" height="34"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -2603,7 +2604,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                                         <outlet property="delegate" destination="lJ7-RB-UhH" id="7TY-KU-9Gk"/>
                                                                     </connections>
                                                                 </textField>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Radius" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agO-YK-hAs">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Radius" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agO-YK-hAs">
                                                                     <rect key="frame" x="0.0" y="42.333333333333336" width="58" height="23.000000000000007"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                                     <nil key="textColor"/>
