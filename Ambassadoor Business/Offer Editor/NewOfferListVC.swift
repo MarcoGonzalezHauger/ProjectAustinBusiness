@@ -59,7 +59,7 @@ class NewOfferListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        addBtn.isHidden = GetSortedList().count == 0 ? true : false
+        (addBtn.isHidden, editBtn.isHidden) = GetSortedList().count == 0 ? (true,true) : (false, false)
         return GetSortedList().count + 1
         //return MyCompany.drafts.count + 1
     }
