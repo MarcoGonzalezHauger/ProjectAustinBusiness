@@ -328,7 +328,7 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
                 }
                 
             }else{
-                MakeShake(viewToShake: self.website)
+                //MakeShake(viewToShake: self.website)
                 return nil
             }
             
@@ -404,7 +404,7 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
     func checkBasicBusiness() -> BasicBusiness? {
         
         if self.urlString == "" {
-            self.showAlertMessage(title: "Alert", message: "Please choose the image") {
+            self.showAlertMessage(title: "Alert", message: "Please choose a logo") {
             }
             return nil
         }
@@ -413,7 +413,7 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
             }
             return nil
         }
-        if self.companyMission.text == "" || self.companyMission.text.count == 0 {
+        if self.companyMission.text == "" {
             self.showAlertMessage(title: "Alert", message: "Please enter company mission") {
             }
             return nil
@@ -429,11 +429,12 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
             return nil
         }
         
-        if self.locations.count == 0 {
-            self.showAlertMessage(title: "Alert", message: "Please add any location") {
-            }
-            return nil
-        }
+		//**BUSINESS CAN HAVE NO LOCATIONS.
+//        if self.locations.count == 0 {
+//            self.showAlertMessage(title: "Alert", message: "Please add any location") {
+//            }
+//            return nil
+//        }
         
         let NewBasicID: String = self.basicBusiness == nil ? makeFirebaseUrl(self.businessName.text! + ", " + GetNewID()) : self.basicBusiness!.basicId
         let referral = self.basicBusiness == nil ? randomString(length: 6) : self.basicBusiness!.referralCode
@@ -441,7 +442,7 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
         let followedBy = self.basicBusiness == nil ? [] : self.basicBusiness!.followedBy
         let locations = self.locations
         
-        let basicDict = ["businessId": MyCompany.businessId, "name": self.businessName.text!, "logoUrl": self.urlString, "mission": self.companyMission.text!, "joinedDate": Date().toUString(), "referralCode": referral, "flags": flags, "followedBy": followedBy, "website": checkIfWebsiteEntered() as Any, "locations": locations as Any, "type": self.type!.rawValue as Any] as [String : Any]
+        let basicDict = ["businessId": MyCompany.businessId, "name": self.businessName.text!, "logoUrl": self.urlString, "mission": self.companyMission.text!, "joinedDate": Date().toUString(), "referralCode": referral, "flags": flags, "followedBy": followedBy, "website": (checkIfWebsiteEntered() ?? "") as Any, "locations": locations as Any, "type": self.type!.rawValue as Any] as [String : Any]
         
         let basic = BasicBusiness.init(dictionary: basicDict, basicId: NewBasicID)
         

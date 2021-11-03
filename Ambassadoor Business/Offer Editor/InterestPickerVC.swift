@@ -8,7 +8,7 @@
 
 import UIKit
 
-let maxInterests: Int = 10
+let maxInterests: Int = 9999 //business app shouldn't have max.
 
 class PickerCell: UITableViewCell { //picker
 	@IBOutlet weak var interestImage: UIImageView!

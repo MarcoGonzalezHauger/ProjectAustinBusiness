@@ -12,10 +12,16 @@ class ZipCell: UITableViewCell {
     @IBOutlet weak var locationText: UILabel!
     var zipcode: String?{
         didSet{
-            self.locationText.text = "Location \(zipcode!)"
+            self.locationText.text = "Location at \(zipcode!)"
+			GetTownName(zipCode: zipcode!) { zipCodeInfo, zipCode in
+				if let zipCodeInfo = zipCodeInfo {
+					if zipCode == self.zipcode {
+						self.locationText.text = "Location in " + zipCodeInfo.CityAndStateName
+					}
+				}
+			}
         }
     }
-    
 }
 
 class FilterRadiousVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
@@ -75,7 +81,8 @@ class FilterRadiousVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var slider: UISlider!
     
     @IBOutlet weak var selectedMiles: UILabel!
-    
+	@IBOutlet weak var driveEstimate: UILabel!
+	
     var selectedZip = [String]()
     
     var filteredZips = [String]()
@@ -113,6 +120,7 @@ class FilterRadiousVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     @IBAction func sliderChanged(sender: UISlider){
         self.selectedMiles.text = "\(Int(sender.value.rounded(.awayFromZero))) Miles"
+		self.driveEstimate.text = "About a \(Int((sender.value.rounded(.awayFromZero)) * 2.3)) minute drive"
     }
     
     @IBAction func dismissAction(sender: UIButton) {

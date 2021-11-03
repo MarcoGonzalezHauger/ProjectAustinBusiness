@@ -22,17 +22,21 @@ class OfferList: UITableViewCell{
                 let company = MyCompany.basics.filter({ (basic) -> Bool in
                     return basic.basicId == offer.basicId
                 })
-                
+				
+				self.companyLogo.image = nil
+				
                 if let basic = company.first {
                     if let url = URL.init(string: basic.logoUrl) {
                         self.companyLogo.downloadedFrom(url: url)
-                    }
-                }
+					}
+					self.cmyName.text = MyCompany.basics.first!.name
+				} else {
+					self.cmyName.text = "No Company Chosen"
+				}
                 
                 
                 //self.lastEdited.text = offer.lastEdited.toUString()
                 self.lastEdited.text = "Last edited " + DateToAgo(date: offer.lastEdited)
-                self.cmyName.text = MyCompany.basics.first!.name
             }
         }
     }
@@ -55,7 +59,7 @@ class NewOfferListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        addBtn.isHidden = GetSortedList().count == 0 ? true : false
+        (addBtn.isHidden, editBtn.isHidden) = GetSortedList().count == 0 ? (true,true) : (false, false)
         return GetSortedList().count + 1
         //return MyCompany.drafts.count + 1
     }

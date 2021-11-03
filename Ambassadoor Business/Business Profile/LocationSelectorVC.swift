@@ -126,15 +126,16 @@ class LocationSelectorVC: BaseVC, UITableViewDelegate, UITableViewDataSource, Lo
     }
     
     @IBAction func backAction(sender: UIButton){
-        for (index,location) in locations.enumerated() {
-            if location == ""{
-                let index = IndexPath.init(row: index, section: 0)
-                //let index = IndexPath.init(row: sender.tag, section: 0)
-                let cell = self.locationList.cellForRow(at: index) as! LocationCell
-                MakeShake(viewToShake: cell)
-                return
-            }
-        }
+		locations = locations.filter{$0 != ""}
+//        for (index,location) in locations.enumerated() {
+//            if location == "" {
+//                let index = IndexPath.init(row: index, section: 0)
+//                //let index = IndexPath.init(row: sender.tag, section: 0)
+//                let cell = self.locationList.cellForRow(at: index) as! LocationCell
+//                MakeShake(viewToShake: cell)
+//                return
+//            }
+//        }
         for (index,location) in locations.enumerated() {
             
             

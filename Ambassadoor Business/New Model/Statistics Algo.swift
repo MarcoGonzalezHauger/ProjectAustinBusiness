@@ -14,6 +14,7 @@ extension sentOffer {
 	func getDataForOffer(completion: @escaping () -> Void) {
 		self.getPoolOffer { PoolOffer in
 			if let PoolOffer = PoolOffer {
+				
 				print("\(self.title) >> \(PoolOffer.acceptedUserIds.count)")
 				self.inProgressPosts.removeAll()
 				
@@ -22,6 +23,8 @@ extension sentOffer {
 					self.inProgressPosts.append(contentsOf: inf.inProgressPosts.filter{$0.PoolOfferId == self.poolId})
 				}
 				self.inProgressPosts.sort{$0.dateAccepted < $1.dateAccepted}
+				
+				self.poolOffer = PoolOffer
 			}
 			completion()
 		}
@@ -53,6 +56,9 @@ func GetAllInProgressPosts() -> [InProgressPost] {
 
 func gtSt(completion: @escaping () -> Void) { // "GET STAT", should only be used through the function "RefreshStatistics"
 	print(">> GET STAT ORDER SIZE: \(MyCompany.sentOffers.count)")
+	if MyCompany.sentOffers.count == 0 {
+		completion()
+	}
 	var index = 0
 	for sentOffer in MyCompany.sentOffers {
 		sentOffer.getDataForOffer {
