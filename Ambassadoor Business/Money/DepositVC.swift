@@ -282,7 +282,7 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
         let paymentIntentParams = STPPaymentIntentParams(clientSecret: clientSecret)
         let paymentManager = STPPaymentHandler.shared()
         paymentIntentParams.paymentMethodId = paymentMethodParams.stripeId
-        paymentManager.confirmPayment(withParams: paymentIntentParams, authenticationContext: self) { (status, paymentIntent, error) in
+		paymentManager.confirmPayment(paymentIntentParams, with: self) { (status, paymentIntent, error) in
             
             switch (status) {
             case .failed:

@@ -48,8 +48,10 @@ class SignInVC: BaseVC, UITextFieldDelegate {
             switch GetBiometricType() {
             case .touch:
                 bioAuthButton.setImage(UIImage(named: "touchid"), for: .normal)
+				bioAuth()
             case .face:
                 bioAuthButton.setImage(UIImage(named: "faceid"), for: .normal)
+				bioAuth()
             default:
                 bioAuthButton.isHidden = true
             }
@@ -77,6 +79,8 @@ class SignInVC: BaseVC, UITextFieldDelegate {
         case touch
         case face
     }
+	
+	
     
     @IBAction func doBioAuth(_ sender: Any) {
         bioAuth()
