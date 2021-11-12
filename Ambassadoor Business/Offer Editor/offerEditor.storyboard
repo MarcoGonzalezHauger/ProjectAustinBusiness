@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PY6-HP-jp8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PY6-HP-jp8">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -24,7 +24,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="offerlist" rowHeight="120" id="eO6-yf-UW2" customClass="OfferList" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="375" height="120"/>
+                                        <rect key="frame" x="0.0" y="24.333333969116211" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eO6-yf-UW2" id="iN0-Tb-CH4">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
@@ -154,7 +154,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addoffer" rowHeight="120" id="PSO-tl-Kkb" customClass="AddOfferCell" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="164.66666603088379" width="375" height="120"/>
+                                        <rect key="frame" x="0.0" y="144.33333396911621" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PSO-tl-Kkb" id="ieh-3F-afT">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
@@ -450,7 +450,7 @@
                                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="0.0" reuseIdentifier="postlist" rowHeight="45" id="CU0-gn-Qst" customClass="AddPostTC" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="44.666666030883789" width="351" height="45"/>
+                                                                <rect key="frame" x="0.0" y="24.333333969116211" width="351" height="45"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CU0-gn-Qst" id="ojw-uu-CTJ">
                                                                     <rect key="frame" x="0.0" y="0.0" width="325.33333333333331" height="45"/>
@@ -488,7 +488,7 @@
                                                                 </connections>
                                                             </tableViewCell>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="0.0" reuseIdentifier="addpost" textLabel="kAM-Sm-pxa" style="IBUITableViewCellStyleDefault" id="S7o-oS-PbV" customClass="NewAddPostCell" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="89.666666030883789" width="351" height="43.666667938232422"/>
+                                                                <rect key="frame" x="0.0" y="69.333333969116211" width="351" height="43.666667938232422"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="S7o-oS-PbV" id="XsK-7V-dcb">
                                                                     <rect key="frame" x="0.0" y="0.0" width="325.33333333333331" height="43.666667938232422"/>
@@ -755,7 +755,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <prototypes>
                                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="phraseCell" rowHeight="55" id="urQ-Ks-CM9" customClass="KeyphraseCell" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="44.666666030883789" width="382" height="55"/>
+                                                                        <rect key="frame" x="0.0" y="24.333333969116211" width="382" height="55"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="urQ-Ks-CM9" id="jkO-ml-QkN">
                                                                             <rect key="frame" x="0.0" y="0.0" width="382" height="55"/>
@@ -1121,7 +1121,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
         <!--Offer FilterVC-->
         <scene sceneID="fdv-jy-Cc4">
             <objects>
-                <viewController id="12s-bJ-2o2" customClass="OfferFilterVC" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OfferFilterRef" id="12s-bJ-2o2" customClass="OfferFilterVC" customModule="Ambassadoor_Business" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0xD-lz-wJc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1515,6 +1515,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                     <navigationItem key="navigationItem" id="Kbq-aL-MSf"/>
                     <connections>
                         <outlet property="filteredInfText" destination="pUf-5H-hxn" id="4lo-ha-ucJ"/>
+                        <outlet property="sentOfferBtn" destination="9RP-Xp-PO3" id="JNS-Tg-7ss"/>
                         <segue destination="VAN-OV-ppy" kind="presentation" identifier="toLocationFilter" id="1Bi-gG-Xwx"/>
                         <segue destination="bYW-Uf-EDs" kind="presentation" identifier="toInterestPicker" id="PHM-uV-kKv"/>
                         <segue destination="IQl-52-zei" kind="presentation" identifier="toFilterStats" modalPresentationStyle="fullScreen" id="uVM-vk-wJK"/>
@@ -1608,7 +1609,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="basic" rowHeight="86" id="Ini-xw-Fgu" customClass="BasicsCell" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="375" height="86"/>
+                                        <rect key="frame" x="0.0" y="24.333333969116211" width="375" height="86"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ini-xw-Fgu" id="HLG-9d-hIA">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="86"/>
@@ -1987,7 +1988,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="zipcode" editingAccessoryType="checkmark" textLabel="CPt-AF-OiZ" style="IBUITableViewCellStyleDefault" id="yt8-2W-OxS" customClass="ZipCell" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="24.333333969116211" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yt8-2W-OxS" id="jRU-xz-wbf">
                                             <rect key="frame" x="0.0" y="0.0" width="338.33333333333331" height="44"/>
@@ -2071,7 +2072,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                 <nil key="highlightedColor"/>
                             </label>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uz4-yk-mAC" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                <rect key="frame" x="12" y="686" width="351" height="60"/>
+                                <rect key="frame" x="12" y="652" width="351" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LEN-6A-O0l">
                                         <rect key="frame" x="12" y="12" width="327" height="36"/>
@@ -2201,7 +2202,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="city" rowHeight="47" id="5cs-6A-5Kg" customClass="CityCell" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="375" height="47"/>
+                                        <rect key="frame" x="0.0" y="24.333333969116211" width="375" height="47"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5cs-6A-5Kg" id="IXL-Ay-fVH">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="47"/>
@@ -2266,7 +2267,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                 </prototypes>
                             </tableView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Sk-Xb-aXm" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                <rect key="frame" x="12" y="686" width="351" height="60"/>
+                                <rect key="frame" x="12" y="652" width="351" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JtA-bR-JPM">
                                         <rect key="frame" x="12" y="12" width="327" height="36"/>
@@ -2369,7 +2370,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                 <viewLayoutGuide key="frameLayoutGuide" id="wdt-WD-XOB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="stateCell" rowHeight="85" id="63i-9b-geh" customClass="stateCell" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="375" height="85"/>
+                                        <rect key="frame" x="0.0" y="24.333333969116211" width="375" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="63i-9b-geh" id="99V-hn-ZTA">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
@@ -2480,7 +2481,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A0b-K9-3cF" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                <rect key="frame" x="16" y="678" width="343" height="64"/>
+                                <rect key="frame" x="16" y="644" width="343" height="64"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DFx-59-jjK">
                                         <rect key="frame" x="4" y="0.0" width="335" height="64"/>
@@ -2568,7 +2569,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                 <viewLayoutGuide key="frameLayoutGuide" id="luy-wp-WSf"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="radiusCell" rowHeight="100" id="lJ7-RB-UhH" customClass="RadiusCell" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="375" height="100"/>
+                                        <rect key="frame" x="0.0" y="24.333333969116211" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lJ7-RB-UhH" id="wBo-qv-5Is">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
@@ -2677,7 +2678,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="newCell" rowHeight="65" id="UKG-XI-mZg">
-                                        <rect key="frame" x="0.0" y="144.66666603088379" width="375" height="65"/>
+                                        <rect key="frame" x="0.0" y="124.33333396911621" width="375" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UKG-XI-mZg" id="uSq-dm-JAO">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
@@ -2774,7 +2775,7 @@ HATE SPEECH, BULLYING, DEFAMATION, OR ANY UNLAWFUL CONTENT IS STRICTLY PROHIBITE
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yod-Kp-ZV8" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                <rect key="frame" x="16" y="678" width="343" height="64"/>
+                                <rect key="frame" x="16" y="644" width="343" height="64"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JQw-zO-gSx">
                                         <rect key="frame" x="4" y="0.0" width="335" height="64"/>

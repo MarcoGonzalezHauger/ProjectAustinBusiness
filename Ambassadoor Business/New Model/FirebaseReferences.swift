@@ -1642,6 +1642,23 @@ func getBusinessReferral(referralID: String,completion: @escaping(Bool, CompanyU
     
 }
 
+func getOfferPool(poolId: String, completion: @escaping(Bool,PoolOffer?)->()){
+    let poolRef = Database.database().reference().child("Pool").child(poolId)
+    poolRef.observeSingleEvent(of: .value) { snapshot in
+        
+        if let dictionary = snapshot.value as? [String: AnyObject] {
+            let pool = PoolOffer.init(dictionary: dictionary, poolId: poolId)
+            completion(true,pool)
+        }else{
+            completion(false,nil)
+        }
+        
+    } withCancel: { error in
+        completion(false,nil)
+    }
+
+}
+
 //extension Date
 //{
 //    func toString( dateFormat format  : String ) -> String

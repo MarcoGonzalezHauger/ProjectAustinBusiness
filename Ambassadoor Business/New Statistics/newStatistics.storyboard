@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -194,7 +194,7 @@
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="sentCell" rowHeight="69" id="5Ky-ib-sh0" customClass="sentOfferCell" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="44.5" width="366" height="69"/>
+                                                                <rect key="frame" x="0.0" y="24.5" width="366" height="69"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5Ky-ib-sh0" id="XQH-Wh-Dys">
                                                                     <rect key="frame" x="0.0" y="0.0" width="336.5" height="69"/>
@@ -513,6 +513,16 @@
             </objects>
             <point key="canvasLocation" x="1841" y="-328"/>
         </scene>
+        <!--OfferFilterRef-->
+        <scene sceneID="VMe-ez-iUa">
+            <objects>
+                <viewControllerPlaceholder storyboardName="offerEditor" referencedIdentifier="OfferFilterRef" id="Gn1-ib-HlA" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="vDe-wn-ZFp"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bMo-LH-dzX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2491" y="-250"/>
+        </scene>
         <!--Statistics-->
         <scene sceneID="O5Y-SA-eid">
             <objects>
@@ -680,17 +690,58 @@
                                             <action selector="dismissNow:" destination="igs-l2-sYp" eventType="touchUpInside" id="dwR-cf-C3E"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jDh-su-Tf2" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
+                                        <rect key="frame" x="40" y="460" width="334" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FxS-i2-ehw">
+                                                <rect key="frame" x="8" y="1" width="318" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                <state key="normal" title="Edit Filters">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="toEditFilterActionWithSender:" destination="igs-l2-sYp" eventType="touchUpInside" id="yeO-hT-Xek"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" name="AmbPurple"/>
+                                        <constraints>
+                                            <constraint firstItem="FxS-i2-ehw" firstAttribute="leading" secondItem="jDh-su-Tf2" secondAttribute="leading" constant="8" id="8Iw-hF-eJo"/>
+                                            <constraint firstAttribute="trailing" secondItem="FxS-i2-ehw" secondAttribute="trailing" constant="8" id="dPX-2B-lge"/>
+                                            <constraint firstItem="FxS-i2-ehw" firstAttribute="top" secondItem="jDh-su-Tf2" secondAttribute="top" constant="1" id="k17-Qz-jf3"/>
+                                            <constraint firstAttribute="height" constant="50" id="rE5-Ng-0k7"/>
+                                            <constraint firstAttribute="bottom" secondItem="FxS-i2-ehw" secondAttribute="bottom" constant="1" id="zTZ-GU-v24"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="ShadowOpacity">
+                                                <real key="value" value="0.20000000000000001"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="ShadowRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="ShadowColor">
+                                                <color key="value" name="AmbPurple"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="bbb-fC-smG" secondAttribute="trailing" constant="8" id="065-Cu-Exs"/>
                                     <constraint firstItem="7wH-XG-Xdh" firstAttribute="leading" secondItem="bbb-fC-smG" secondAttribute="leading" id="D6B-Eh-wF7"/>
+                                    <constraint firstItem="jDh-su-Tf2" firstAttribute="leading" secondItem="wdZ-m6-ctl" secondAttribute="leading" constant="40" id="Fn8-PD-fyF"/>
                                     <constraint firstItem="bbb-fC-smG" firstAttribute="top" secondItem="9Cq-pf-i0A" secondAttribute="bottom" constant="8" symbolic="YES" id="KN7-Yi-0S6"/>
                                     <constraint firstItem="7wH-XG-Xdh" firstAttribute="trailing" secondItem="bbb-fC-smG" secondAttribute="trailing" id="PVu-oJ-lcy"/>
                                     <constraint firstItem="9Cq-pf-i0A" firstAttribute="leading" secondItem="oZr-Ie-CTc" secondAttribute="leading" constant="12" id="Wgb-be-tMq"/>
                                     <constraint firstItem="7wH-XG-Xdh" firstAttribute="top" secondItem="bbb-fC-smG" secondAttribute="bottom" constant="8" id="dEF-Sg-L1Y"/>
                                     <constraint firstItem="bbb-fC-smG" firstAttribute="leading" secondItem="oZr-Ie-CTc" secondAttribute="leading" constant="8" id="dIx-TR-quI"/>
                                     <constraint firstAttribute="bottom" secondItem="7wH-XG-Xdh" secondAttribute="bottom" constant="16" id="hiN-2N-WOB"/>
+                                    <constraint firstAttribute="trailing" secondItem="jDh-su-Tf2" secondAttribute="trailing" constant="40" id="oED-7H-nno"/>
+                                    <constraint firstItem="jDh-su-Tf2" firstAttribute="centerX" secondItem="wdZ-m6-ctl" secondAttribute="centerX" id="rsj-gs-ScH"/>
                                     <constraint firstItem="bbb-fC-smG" firstAttribute="top" secondItem="oZr-Ie-CTc" secondAttribute="top" constant="90" id="tZv-Lr-DYj"/>
+                                    <constraint firstItem="jDh-su-Tf2" firstAttribute="top" secondItem="7wH-XG-Xdh" secondAttribute="bottom" constant="24" id="ytx-E5-0VI"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="Af4-ZN-Dq3"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="oZr-Ie-CTc"/>
@@ -719,11 +770,12 @@
                         <outlet property="totalReached" destination="XIe-UQ-eWu" id="R6J-uJ-5OE"/>
                         <segue destination="bnD-Vb-1ne" kind="show" identifier="toViewAll" id="u6w-ca-xYd"/>
                         <segue destination="bnD-Vb-1ne" kind="presentation" identifier="viewOne" id="1TW-r8-61D"/>
+                        <segue destination="Gn1-ib-HlA" kind="show" identifier="toEditFilterSegue" id="NF0-Ja-1sY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ncL-kk-Hqh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1942" y="116"/>
+            <point key="canvasLocation" x="1940.5797101449277" y="115.84821428571428"/>
         </scene>
         <!--View PostsVC-->
         <scene sceneID="onw-Lu-mRE">
@@ -738,7 +790,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="singlePostCell" rowHeight="699" id="8PH-eg-aSA" customClass="singlePostCell" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="699"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="699"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8PH-eg-aSA" id="wpH-hw-z6W">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="699"/>
@@ -947,9 +999,9 @@ ABCDEF Caption
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="9M7-T2-JUf"/>
-        <segue reference="I6d-sz-7q1"/>
-        <segue reference="xeG-Ty-NMp"/>
+        <segue reference="1TW-r8-61D"/>
+        <segue reference="4DZ-1O-Ocj"/>
+        <segue reference="tuR-xn-R4b"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="StatsIcon" width="25" height="25"/>
