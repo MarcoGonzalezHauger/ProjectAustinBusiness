@@ -18,6 +18,7 @@ extension PoolOffer {
 	
 	func UpdateToFirebase(completed: ((_ success: Bool) -> ())?) {
 		let ref = Database.database().reference().child(poolPath)
+        let ccc = self.toDictionary()
 		ref.updateChildValues(self.toDictionary()) { (err, dataref) in
 			completed?(err != nil)
 		}

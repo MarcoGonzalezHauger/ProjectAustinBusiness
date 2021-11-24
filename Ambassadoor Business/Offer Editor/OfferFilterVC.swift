@@ -48,11 +48,30 @@ class OfferFilterVC: BaseVC, InterestPickerDelegate, InfluencerStatsDelegate, Zi
     var draftOffer: DraftOffer!
     
     @IBOutlet weak var filteredInfText: UILabel!
+    @IBOutlet weak var sentOfferBtn: UIButton!
+    
+    var offerPool: PoolOffer?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.filteredInfText.text = "\(globalBasicInfluencers.count)"
+        if let pool = offerPool {
+            self.loadFilterInfo(pool: pool)
+        }else{
+            self.filteredInfText.text = "\(globalBasicInfluencers.count)"
+        }
+        self.sentOfferBtn.setTitle(self.offerPool == nil ? "Send to Influencers!" : "Save", for: .normal)
         // Do any additional setup after loading the view.
+    }
+    
+    func loadFilterInfo(pool: PoolOffer) {
+        
+        self.selectedZipCodes = pool.filter.acceptedZipCodes
+        self.selectedInterestArray = pool.filter.acceptedInterests
+        self.selectedGender = self.getRawGender(gender: pool.filter.acceptedGenders)
+        self.averageLikes = pool.filter.averageLikes
+        self.engagement = pool.filter.minimumEngagementRate
+        self.filteredInfText.text = "\(self.filterInfluencers().count)"
     }
     
     @IBAction func cancelAction(sender: Any){
@@ -89,6 +108,17 @@ class OfferFilterVC: BaseVC, InterestPickerDelegate, InfluencerStatsDelegate, Zi
             return [gender]
         }
         
+    }
+    
+    func getRawGender(gender: [String]) -> String {
+        if gender.count == 0 {
+            return ""
+        }
+        if gender.contains("Male") && gender.contains("Female") && gender.contains("Other") && gender.contains("Not Provided"){
+            return "All"
+        }else{
+            return gender.first!
+        }
     }
     
     func filterInfluencers() -> [BasicInfluencer] {
@@ -163,10 +193,25 @@ class OfferFilterVC: BaseVC, InterestPickerDelegate, InfluencerStatsDelegate, Zi
         filterDict["minimumEngagementRate"] = self.engagement as AnyObject
         filterDict["averageLikes"] = self.averageLikes as AnyObject
         
-        let filter = OfferFilter.init(dictionary: filterDict, businessId: MyCompany.businessId, basicId: draftOffer.basicId!)
-        
+        let filter = OfferFilter.init(dictionary: filterDict, businessId: MyCompany.businessId, basicId: self.offerPool == nil ? draftOffer.basicId! : self.offerPool!.basicId)
+        if let pool = self.offerPool {
+            
+            pool.filter = filter
+            pool.UpdateToFirebase { error in
+                if !error{
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                }else{
+                    self.showAlertMessage(title: "Alert", message: "Something went wrong!. Please try again later.") {
+                        
+                    }
+                }
+            }
+            
+        }else{
         self.performSegue(withIdentifier: "toNewDistribute", sender: filter)
-        
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

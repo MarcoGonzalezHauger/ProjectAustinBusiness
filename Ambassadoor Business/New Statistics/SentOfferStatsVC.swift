@@ -23,6 +23,8 @@ class SentOfferStatsVC: UIViewController, viewAllDelegate {
 
 	@IBOutlet weak var companyLogo: UIImageView!
 	var thisSentOffer: sentOffer!
+    var offerPool: PoolOffer?
+    
 	
 	func loadInfo() {
 		
@@ -63,7 +65,11 @@ class SentOfferStatsVC: UIViewController, viewAllDelegate {
 				self.companyLogo.image = image
 			}
 		}
-		
+        getOfferPool(poolId: thisSentOffer.poolId) { status, pooloffer in
+            if status{
+                self.offerPool = pooloffer
+            }
+        }
 	}
 	
 	@IBOutlet weak var offerNameLabel: UILabel!
@@ -105,6 +111,17 @@ class SentOfferStatsVC: UIViewController, viewAllDelegate {
 	}
 	
 	var refView: PostViewerVC?
+    
+    @IBAction func toEditFilterAction(sender: UIButton){
+        if self.offerPool == nil{
+            self.showStandardAlertDialog(title: "Alert", msg: "No Filter Found. Try another Offer") { alert in
+                
+            }
+            return
+        }else{
+            self.performSegue(withIdentifier: "toEditFilterSegue", sender: self)
+        }
+    }
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if let dest = segue.destination as? PostViewerVC {
@@ -114,6 +131,9 @@ class SentOfferStatsVC: UIViewController, viewAllDelegate {
 		if let dest = segue.destination as? ViewPostsVC {
 			dest.posts = tempPosts
 		}
+        if let dest = segue.destination as? OfferFilterVC {
+            dest.offerPool = self.offerPool
+        }
 	}
 	
 }
