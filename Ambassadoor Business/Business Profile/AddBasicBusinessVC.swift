@@ -384,7 +384,9 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
         
         if MyCompany.basics.count == 1 {
             MyCompany.activeBasicId = MyCompany.basics.first!.basicId
-        }
+		} else {
+			MyCompany.activeBasicId = basic.basicId
+		}
 		
 		MyCompany.UpdateToFirebase { (error) in
 			DispatchQueue.main.async {
