@@ -108,7 +108,7 @@ class NewOfferListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
         let draft = GetSortedList()[indexPath.row]
         print("draftID=",draft.draftId)
-        draft.getDraftFromPool { isExist in
+        draft.getDraftFromPool { isExist,pool  in
             if isExist{
                 self.showAlertMessage(title: "Alert", message: "You cannot delete offers you have already distributed") {
                     

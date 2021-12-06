@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 
 extension DraftOffer {
-	func distributeToPool(asBusiness: Business, asBasic: BasicBusiness, filter: OfferFilter, withMoney: Double, withDrawFundsFalseForTestingOnly withdrawFunds: Bool, completed: @escaping (_ failedReason: String, _ newBusinessWithChanges: Business?) -> ()) {
+	func distributeToPool(asBusiness: Business, asBasic: BasicBusiness, filter: OfferFilter, xoTacoCaseStudy: Bool, withMoney: Double, withDrawFundsFalseForTestingOnly withdrawFunds: Bool, completed: @escaping (_ failedReason: String, _ newBusinessWithChanges: Business?) -> ()) {
 		if withMoney < 3 {
 			completed("You must distribute your offer with at least $3.", nil)
 			return
@@ -21,6 +21,9 @@ extension DraftOffer {
 		}
         let cashPower = roundPriceDown(price: (withMoney - (withMoney * Singleton.sharedInstance.getCommision())))
         let newPoolOffer = PoolOffer.init(draftOffer: self, filter: filter, withMoney: cashPower, withOriginalMoney: withMoney, createdBy: asBusiness, sentFromBasicId: asBasic)
+		if xoTacoCaseStudy {
+			newPoolOffer.AddFlag("xo case study")
+		}
 		newPoolOffer.UpdateToFirebase { (error) in
 			if !error {
 				asBusiness.sentOffers.append(sentOffer.init(poolId: newPoolOffer.poolId, draftOfferId: self.draftId, businessId: self.businessId, title: self.title, basicId: asBasic.basicId))

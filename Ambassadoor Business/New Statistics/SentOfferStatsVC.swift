@@ -53,6 +53,12 @@ class SentOfferStatsVC: UIViewController, viewAllDelegate {
 		totalCollected.text = "Collected by Influencers: " + NumberToPrice(Value: tCollected, enforceCents: true)
 		totalReached.text = "Followers Reached: " + NumberToStringWithCommas(number: tReached)
 		totalBudget.text = "Total Budget: " + NumberToPrice(Value: thisSentOffer.poolOffer?.originalCashPower ?? 0.0)
+		if tLikes == 0 {
+			pricePerLike.isHidden = true
+		} else {
+			pricePerLike.isHidden = false
+			pricePerLike.text = "Cost per Engagement: " + NumberToPrice(Value: tCollected / tLikes)
+		}
 		
 		downloadImage(thisSentOffer.BasicBusiness()!.logoUrl) { image in
 			if let image = image {
@@ -74,6 +80,7 @@ class SentOfferStatsVC: UIViewController, viewAllDelegate {
 	@IBOutlet weak var totalCollected: UILabel!
 	@IBOutlet weak var totalReached: UILabel!
 	@IBOutlet weak var totalBudget: UILabel!
+	@IBOutlet weak var pricePerLike: UILabel!
 	
 	
 	@IBOutlet weak var topConstraint: NSLayoutConstraint!

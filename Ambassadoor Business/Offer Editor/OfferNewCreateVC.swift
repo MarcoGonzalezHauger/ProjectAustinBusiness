@@ -60,6 +60,9 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     
     @IBOutlet weak var delView: ShadowView!
     
+    @IBOutlet weak var reclaimView: ShadowView!
+    @IBOutlet weak var reclaimBtn: UIButton!
+    
     var index: Int? = nil
     
     var draftTemp: DraftOffer?
@@ -120,6 +123,18 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
             
             self.delView.isHidden = false
             self.draftTemp = draftOffer
+            draftOffer.getDraftFromPool { (isExist,pool)  in
+                if isExist{
+                    DispatchQueue.main.async {
+                        self.reclaimView.isHidden = false
+                        self.reclaimBtn.setTitle("Remaining Cash Power \(NumberToPrice(Value: pool!.cashPower))", for: .normal)
+                    }
+                }else{
+                    DispatchQueue.main.async {
+                        self.reclaimView.isHidden = true
+                    }
+                }
+            }
         }else{
             if self.draftTemp == nil {
                 self.delView.isHidden = true
@@ -335,7 +350,7 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
             
             let draftOffer = MyCompany.drafts[self.index!]
             
-            draftOffer.getDraftFromPool { isExist in
+            draftOffer.getDraftFromPool { (isExist,pool)  in
                 if isExist{
                     self.showAlertMessage(title: "Alert", message: "You cannot delete offers you have already distributed") {
                     }
@@ -359,6 +374,28 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
         MyCompany.UpdateToFirebase { (errorFIB) in
             if !errorFIB{
                 self.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
+    
+    @IBAction func reclaimOffer(sender: UIButton){
+        let draftOffer = MyCompany.drafts[self.index!]
+        draftOffer.getDraftFromPool { (isExist,pool)  in
+            if isExist{
+                
+                self.showAlertMessageForDestruction(title: "Alert", message: "Are you sure to reclaim \(NumberToPrice(Value: pool!.cashPower))?", cancelTitle: "No", destructionTitle: "Yes") {
+                    
+                } completionDestruction: {
+                    MyCompany.finance.balance += pool!.cashPower
+                    MyCompany.finance.balance = roundPriceDown(price: MyCompany.finance.balance)
+                    pool!.cashPower = 0
+                    pool!.UpdateToFirebase { error in
+                    }
+                    MyCompany.UpdateToFirebase { error in
+                    }
+                }
+            }else{
+                
             }
         }
     }

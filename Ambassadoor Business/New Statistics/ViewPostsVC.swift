@@ -97,7 +97,7 @@ class singlePostCell: UITableViewCell { //reuseId: singlePostCell
 			usernameButton.titleLabel?.text = "@" + username
 			usernameButton.setTitle("@" + username, for: .normal)
 			averageLikesLabel.text = "Average Likes for this Influencer: " + CompressNumber(number: inf.averageLikes)
-			followersLabel.text = "Followers: " + CompressNumber(number: inf.averageLikes)
+			followersLabel.text = "Followers: " + CompressNumber(number: inf.followerCount)
 		}
 		
 		likesLabel.text = "Likes so far: \(thisPost.instagramPost!.like_count)"

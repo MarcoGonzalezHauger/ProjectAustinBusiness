@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -194,7 +194,7 @@
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="sentCell" rowHeight="69" id="5Ky-ib-sh0" customClass="sentOfferCell" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="24.5" width="366" height="69"/>
+                                                                <rect key="frame" x="0.0" y="44.5" width="366" height="69"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5Ky-ib-sh0" id="XQH-Wh-Dys">
                                                                     <rect key="frame" x="0.0" y="0.0" width="336.5" height="69"/>
@@ -555,7 +555,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7wH-XG-Xdh">
-                                        <rect key="frame" x="8" y="264" width="398" height="172"/>
+                                        <rect key="frame" x="8" y="294" width="398" height="172"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="172" id="JOq-os-MwF"/>
                                         </constraints>
@@ -564,7 +564,7 @@
                                         </connections>
                                     </containerView>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bbb-fC-smG" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="46" width="398" height="210"/>
+                                        <rect key="frame" x="8" y="46" width="398" height="240"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;Offer Name&quot;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aej-kz-ULH">
                                                 <rect key="frame" x="16" y="12" width="109.5" height="19.5"/>
@@ -575,43 +575,49 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Q5r-yk-w5X">
-                                                <rect key="frame" x="16" y="55.5" width="196.5" height="130.5"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Q5r-yk-w5X">
+                                                <rect key="frame" x="16" y="55.5" width="208" height="160.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Engagements (Likes): -" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OOB-Mo-Cee">
-                                                        <rect key="frame" x="0.0" y="0.0" width="196.5" height="22"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="208" height="25"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Posts: -" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r16-Nx-5i1">
-                                                        <rect key="frame" x="0.0" y="27" width="196.5" height="22"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <rect key="frame" x="0.0" y="27" width="208" height="25"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collected by Influencers: -" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CPO-0l-0qS">
-                                                        <rect key="frame" x="0.0" y="54" width="196.5" height="22.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <rect key="frame" x="0.0" y="54" width="208" height="25"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Followers Reached: -" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XIe-UQ-eWu">
-                                                        <rect key="frame" x="0.0" y="81.5" width="196.5" height="22"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <rect key="frame" x="0.0" y="81" width="208" height="25.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Budget: -" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uEn-cf-YB5">
-                                                        <rect key="frame" x="0.0" y="108.5" width="196.5" height="22"/>
+                                                        <rect key="frame" x="0.0" y="108.5" width="208" height="25"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cost per Engagement: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WCa-QI-F5F">
+                                                        <rect key="frame" x="0.0" y="135.5" width="208" height="25"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mBx-fc-4hD">
-                                                <rect key="frame" x="355" y="130.5" width="35" height="35"/>
+                                                <rect key="frame" x="355" y="132" width="35" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="16T-CX-MbR"/>
                                                     <constraint firstAttribute="width" constant="35" id="UsN-jj-1wM"/>
@@ -670,7 +676,7 @@
                                             <constraint firstAttribute="trailing" secondItem="mBx-fc-4hD" secondAttribute="trailing" constant="8" id="a7g-OZ-uM4"/>
                                             <constraint firstItem="aej-kz-ULH" firstAttribute="leading" secondItem="bbb-fC-smG" secondAttribute="leading" constant="16" id="aPA-pJ-Cn6"/>
                                             <constraint firstItem="aej-kz-ULH" firstAttribute="top" secondItem="bbb-fC-smG" secondAttribute="top" constant="12" id="b2W-i6-i90"/>
-                                            <constraint firstAttribute="height" constant="210" id="pFc-JZ-CVi"/>
+                                            <constraint firstAttribute="height" constant="240" id="pFc-JZ-CVi"/>
                                             <constraint firstAttribute="trailing" secondItem="awf-aH-q1K" secondAttribute="trailing" constant="14" id="vUM-zf-VNe"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -691,7 +697,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jDh-su-Tf2" customClass="ShadowView" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                        <rect key="frame" x="40" y="460" width="334" height="50"/>
+                                        <rect key="frame" x="40" y="490" width="334" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FxS-i2-ehw">
                                                 <rect key="frame" x="8" y="1" width="318" height="48"/>
@@ -762,6 +768,7 @@
                         <outlet property="backButton" destination="9Cq-pf-i0A" id="MlP-ZL-kkh"/>
                         <outlet property="companyLogo" destination="S3Y-EX-M3f" id="iRa-0n-2Bo"/>
                         <outlet property="offerNameLabel" destination="aej-kz-ULH" id="MZ5-7c-lsH"/>
+                        <outlet property="pricePerLike" destination="WCa-QI-F5F" id="Z15-UL-QJ0"/>
                         <outlet property="topConstraint" destination="tZv-Lr-DYj" id="Fkm-sT-sle"/>
                         <outlet property="totalBudget" destination="uEn-cf-YB5" id="MhW-sW-Yha"/>
                         <outlet property="totalCollected" destination="CPO-0l-0qS" id="42T-mE-Wfq"/>
@@ -790,7 +797,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="singlePostCell" rowHeight="699" id="8PH-eg-aSA" customClass="singlePostCell" customModule="Ambassadoor_Business" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="699"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="699"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8PH-eg-aSA" id="wpH-hw-z6W">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="699"/>

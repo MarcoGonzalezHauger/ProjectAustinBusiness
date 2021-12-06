@@ -116,12 +116,33 @@ extension DraftOffer{
     }
     
     
-    func getDraftFromPool(completed: ((_ success: Bool) -> ())?) {
+    func getDraftFromPool(completed: ((_ success: Bool, _ pool: PoolOffer?) -> ())?) {
         let ref = Database.database().reference().child(pathString).queryOrdered(byChild: "draftOfferId").queryEqual(toValue: self.draftId)
         ref.observeSingleEvent(of: .value) { snap in
-            completed?(snap.exists())
+            
+            if snap.exists(){
+                
+                if let poolData = snap.value as? [String: AnyObject]{
+                    
+                    if let snapKey = poolData.keys.first{
+                        if let snapValue = poolData[snapKey] as? [String: Any]{
+                            let pool = PoolOffer.init(dictionary: snapValue, poolId: snapKey)
+                            completed?(snap.exists(),pool)
+                        }
+                    }else{
+                        completed?(false,nil)
+                    }
+                    
+                }else{
+                    completed?(false,nil)
+                }
+                
+                
+            }else{
+                completed?(snap.exists(), nil)
+            }
         } withCancel: { error in
-            completed?(false)
+            completed?(false, nil)
         }
 
     }
