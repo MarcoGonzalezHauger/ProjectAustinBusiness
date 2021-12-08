@@ -136,6 +136,9 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
                 }
             }
         }else{
+            DispatchQueue.main.async {
+                self.reclaimView.isHidden = true
+            }
             if self.draftTemp == nil {
                 self.delView.isHidden = true
                 self.offerName.text = "Offer \((MyCompany.drafts.count + 1))"
