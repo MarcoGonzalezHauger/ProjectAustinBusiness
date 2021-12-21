@@ -505,6 +505,7 @@
 			isa = PBXGroup;
 			children = (
 				E8C3694022161B3000AE12D7 /* Ambassadoor Business */,
+				E8C3695022161B3200AE12D7 /* Info.plist */,
 				E8C3693F22161B3000AE12D7 /* Products */,
 				89E5CAE2B32FDBDFE060CC9E /* Frameworks */,
 				CC48B249CB6DE037BF7A37D1 /* Pods */,
@@ -554,7 +555,6 @@
 				B7D2FE11247542F00000BFFC /* tutorial.mp4 */,
 				E8C3694B22161B3200AE12D7 /* Assets.xcassets */,
 				E8C3694D22161B3200AE12D7 /* LaunchScreen.storyboard */,
-				E8C3695022161B3200AE12D7 /* Info.plist */,
 				E8C3694822161B3000AE12D7 /* Ambassadoor_Business.xcdatamodeld */,
 			);
 			path = "Ambassadoor Business";
@@ -999,7 +999,7 @@
 				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = JMBR2RF2B8;
-				INFOPLIST_FILE = "Ambassadoor Business/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1029,7 +1029,7 @@
 				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = JMBR2RF2B8;
-				INFOPLIST_FILE = "Ambassadoor Business/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

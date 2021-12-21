@@ -18,6 +18,10 @@ class ReferralViewController: BaseVC, UITextFieldDelegate {
     @IBOutlet weak var referralText: UITextField!
     @IBOutlet weak var referralShadow: ShadowView!
     
+    
+    /// Resign referralText textfield
+    /// - Parameter textField: UITextField referrance
+    /// - Returns: true or false
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         textField.resignFirstResponder()
         self.checkIfReferralApplied()
@@ -26,6 +30,8 @@ class ReferralViewController: BaseVC, UITextFieldDelegate {
 	
 	@IBOutlet weak var codeFoundImage: UIImageView!
 	
+    
+    /// Checks if referralText is not empty. Checks if referral code is available or not. if available, add referred user Id to Business user's  referredByUserId or referredByBusinessId. Update business user changes to Firebase.
     func checkIfReferralApplied() {
         
         if self.referralText.text?.count == 0 {
@@ -58,21 +64,24 @@ class ReferralViewController: BaseVC, UITextFieldDelegate {
         
     }
     
+    /// Clicks if noone referred the user. it redirects to Create Company Page
+    /// - Parameter sender: UIButton reference
     @IBAction func skipAction(sender: UIButton){
         self.performSegue(withIdentifier: "toAddBusinessPresent", sender: self)
     }
     
+    /// Override Custom Done Button Action of UITextfield
     override func doneButtonAction() {
         referralText.resignFirstResponder()
         self.checkIfReferralApplied()
     }
-
+    /// UIViewController Life Cycle
 	override func viewDidAppear(_ animated: Bool) {
 		codeFoundImage.isHidden = true
 	}
 	
 	@IBOutlet weak var scrollView: UIScrollView!
-	
+    /// UIViewController Life Cycle
 	override func viewDidLoad() {
         super.viewDidLoad()
         self.addDoneButtonOnKeyboard(textField: self.referralText)
@@ -82,7 +91,7 @@ class ReferralViewController: BaseVC, UITextFieldDelegate {
 			isModalInPresentation = true
 		}
     }
-    
+    /// send isProfileSegue and basicBusiness tag to Create Business Page
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toAddBusinessPresent" {
             let view = segue.destination as! AddBasicBusinessVC

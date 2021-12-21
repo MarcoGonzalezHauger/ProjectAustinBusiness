@@ -15,11 +15,16 @@ protocol LocationretriveDelegate {
 
 class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITextViewDelegate, TypePickerDelegate, LocationretriveDelegate, NCDelegate {
 	
+    
+    /// NCDelegate delegate method
+    /// - Returns: true or false
 	func shouldAllowBack() -> Bool {
 		saveBasicBusiness()
 		return true
 	}
-	
+    
+    /// LocationretriveDelegate delegate method. set location count to locationText label.
+    /// - Parameter locations: referrence of picked locations
     func sendLocationObjects(locations: [String]) {
         self.locations = locations
         if self.locations.count == 0 {
@@ -32,12 +37,19 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
     
     
     
+    /// TypePickerDelegate delegate method. set business type rawvalue to businessTypeText
+    /// - Parameter type: BusinessType referrance
     func pickedBusinessType(type: BusinessType) {
         businessTypeText.text = type.rawValue
         //basicBusiness?.type = type
         self.type = type
     }
     
+    
+    /// ImagePickerDelegate delegate mathod. it sends picked image referrance. upload picked image to firebase and get firebase readable image url.
+    /// - Parameters:
+    ///   - image: picked image
+    ///   - imageUrl: it always empty.
     func imagePicked(image: UIImage?, imageUrl: String?) {
         if image != nil {
             //        self.urlString = uploadImageToFIR(image: image!, path: (Auth.auth().currentUser?.uid)!)
@@ -101,6 +113,8 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
     
     @IBOutlet weak var saveBtn: UIButton!
     
+    
+    /// make website url as valid one and set formatted url to website
     var websiteUrl: String? {
         didSet {
             guard var websiteString = websiteUrl else {return}
@@ -162,6 +176,8 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
         // Do any additional setup after loading the view.
     }
     
+    
+    /// if edit exist business data, fill all the business data to concerned field otherwise make it empty.
     func setBusinessData() {
         if let basic = basicBusiness{
             
@@ -187,10 +203,12 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
         }
     }
     
+    /// resign the first responder of the UITextfield
     override func doneButtonAction() {
         self.companyMission.resignFirstResponder()
     }
     
+    /// resign the first responder of the UITextfield
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         textField.resignFirstResponder()
         return true
@@ -206,13 +224,17 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
         super.viewWillAppear(true)
         
     }
-    
+        
+    /// Getback scroll view to normal state
+    /// - Parameter notification: keyboardWillHideNotification reference
     @objc override func keyboardWillHide(notification:NSNotification){
         
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         scroll.contentInset = contentInset
     }
     
+    /// Adjust scroll view as per Keyboard Height if the keyboard hides textfiled.
+    /// - Parameter notification: keyboardWillShowNotification reference
     @objc override func keyboardWasShown(notification : NSNotification) {
         
         let userInfo = notification.userInfo!
@@ -225,6 +247,9 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
         
     }
     
+    
+    /// Dismiss current view controller. while dismissing current view controller, if basicBusiness is not nil, save business details otherwise just dismiss.
+    /// - Parameter sender: UIButton referrence
     @IBAction func dismiss(sender: UIButton){
         if basicBusiness != nil{
             saveBasicBusiness()
@@ -235,6 +260,9 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
         //
     }
     
+    
+    /// Checks if currently uploading business logo to firebase. Get authorization from user to access photo library
+    /// - Parameter sender: UIButton referrence
     @IBAction func logoControlAction(sender: UIButton){
         
         if !self.isImageLoading {
@@ -263,6 +291,8 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
         }
     }
     
+    
+    /// Check authorization status of photo library. if denied, open phone settings and show notification
     func showNotificationForAuthorization() {
         
         let notificationCenter = UNUserNotificationCenter.current()
@@ -279,6 +309,8 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
         
     }
     
+    
+    /// Create UNUserNotification for expose settings status
     func photoLibrarySettingsNotification() {
         
         let notificationCenter = UNUserNotificationCenter.current()
@@ -301,6 +333,9 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
         }
     }
     
+    
+    /// Checks if user entered valid url. Make valid url from string.
+    /// - Returns: returns optional string
         func checkIfWebsiteEntered() -> String? {
             
             if GetURL() != nil{
@@ -334,6 +369,9 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
             
         }
     
+    
+    /// Make valid url from free text
+    /// - Returns: URL is Optional. returns formatted URL.
     func GetURL() -> URL? {
         var returnValue = website.text!.trimmingCharacters(in: .whitespaces)
         if !returnValue.lowercased().hasPrefix("http") {
@@ -350,11 +388,16 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
         return URL.init(string: returnValue)
     }
     
+    
+    /// save action triggered
+    /// - Parameter sender: UIButton referrance
     @IBAction func saveAction(sender: UIButton){
         saveBtn.isUserInteractionEnabled = false
         saveBasicBusiness()
     }
 	
+    
+    /// Validate basic business data and save to user object(MyCompany). Update MyCompany to firebase
 	func saveBasicBusiness() {
 		if checkBasicBusiness() == nil {
             DispatchQueue.main.async {
@@ -403,6 +446,9 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
 		}
 	}
 
+    
+    /// Validate all business data. if every data are valid, make business data object.
+    /// - Returns: returns BasicBusiness optional
     func checkBasicBusiness() -> BasicBusiness? {
         
         if self.urlString == "" {
@@ -452,6 +498,9 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
         
     }
     
+    
+    /// Preview basic buisness data. and shows screen how the data will be displayed on influencer side
+    /// - Parameter sender: UIButton Referrance
     @IBAction func previewBasicData(sender: UIButton){
         if checkBasicBusiness() == nil {
             return
@@ -461,6 +510,9 @@ class AddBasicBusinessVC: BaseVC, ImagePickerDelegate, UITextFieldDelegate, UITe
         self.performSegue(withIdentifier: "toContractBusiness", sender: basic)
     }
     
+    
+    /// redirects to Business Type Picker class
+    /// - Parameter geture: UITapGestureRecognizer referrance
     @IBAction func businessTapped(geture: UITapGestureRecognizer){
         self.performSegue(withIdentifier: "toBusinessTypePicker", sender: self)
     }

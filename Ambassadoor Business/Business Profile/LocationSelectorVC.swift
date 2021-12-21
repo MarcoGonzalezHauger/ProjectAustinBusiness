@@ -39,11 +39,10 @@ class LocationSelectorVC: BaseVC, UITableViewDelegate, UITableViewDataSource, Lo
         }
     }
     
+    /// /// Adjust scroll view as per Keyboard Height if the keyboard hides textfiled.
+    /// - Parameter notification: keyboardWillShowNotification reference
     @objc override func keyboardWasShown(notification : NSNotification) {
         
- //       if let key = notification.object as? UITextField {
- //           if key == phraseText {
-                
                 let userInfo = notification.userInfo!
                 var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
                 keyboardFrame = self.view.convert(keyboardFrame, from: nil)
@@ -51,26 +50,17 @@ class LocationSelectorVC: BaseVC, UITableViewDelegate, UITableViewDataSource, Lo
                 var contentInset:UIEdgeInsets = locationList.contentInset
                 contentInset.bottom = keyboardFrame.size.height + 25
                 locationList.contentInset = contentInset
-                
-  //          }
-  //      }
-        
-        
         
     }
-    
+    /// Getback scroll view to normal state
+    /// - Parameter notification: keyboardWillHideNotification reference
     @objc override func keyboardWillHide(notification:NSNotification){
-        
-//        if let key = notification.object as? UITextField {
-//        if key == phraseText {
             
             let contentInset:UIEdgeInsets = UIEdgeInsets.zero
             locationList.contentInset = contentInset
-            
-//            }
- //       }
+        
     }
-    
+     //MARK: - UITableView Delegate and Datasource Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (locations.count)
     }
@@ -104,12 +94,16 @@ class LocationSelectorVC: BaseVC, UITableViewDelegate, UITableViewDataSource, Lo
         // Do any additional setup after loading the view.
     }
     
+    
+    /// Set UItableView Datasource and Delegates
     func setTableData() {
         self.locationList.delegate = self
         self.locationList.dataSource = self
         self.locationList.reloadData()
     }
-
+    
+    /// remove location
+    /// - Parameter sender: UIButton referrance
     @IBAction func removelocation(sender: UIButton){
         if self.locations.count > sender.tag{
             let index = IndexPath.init(row: sender.tag, section: 0)
@@ -120,11 +114,15 @@ class LocationSelectorVC: BaseVC, UITableViewDelegate, UITableViewDataSource, Lo
         
     }
     
+    /// Add location text field and reload
+    /// - Parameter sender: UIButton referrance
     @IBAction func addLocationAction(sender: UIButton){
         self.locations.append("")
         self.locationList.reloadData()
     }
     
+    /// Validate the locations field. pass location array to LocationretriveDelegate delegate. Dismiss current view controller.
+    /// - Parameter sender: UIButton referrance
     @IBAction func backAction(sender: UIButton){
 		locations = locations.filter{$0 != ""}
 //        for (index,location) in locations.enumerated() {

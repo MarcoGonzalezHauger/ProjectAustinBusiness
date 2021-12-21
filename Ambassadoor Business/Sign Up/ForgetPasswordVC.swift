@@ -19,30 +19,35 @@ class ForgetPasswordVC: BaseVC,UITextFieldDelegate {
     var keyboardHeight: CGFloat = 0.00
     var assainedTextField: UITextField? = nil
 
+    /// UIViewController Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
 		addDoneButtonOnKeyboard(textField: emailText)
-		
 		sendEmailButton.layer.cornerRadius = 10
-		
         // Do any additional setup after loading the view.
     }
-	
+    
+    /// resign the first responder of the UITextfield
 	override func doneButtonAction() {
 		emailText.resignFirstResponder()
 	}
-	
+    
+    /// Dismiss view controller
+    /// - Parameter sender: UIButton referrance
     @IBAction func Cancelled(_ sender: Any) {
-		
 		self.navigationController?.popViewController(animated: true)
 	}
 	
+    
+    /// resign email field
+    /// - Parameter textField: textField param
+    /// - Returns: true or false
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
 		emailText.resignFirstResponder()
         return true
     }
-    
+    /// Adjust scroll view as per Keyboard Height if the keyboard hides textfiled.
+    /// - Parameter notification: keyboardWillShowNotification reference
     @objc override func keyboardWasShown(notification : NSNotification) {
         
         let info : NSDictionary = notification.userInfo! as NSDictionary
@@ -82,6 +87,8 @@ class ForgetPasswordVC: BaseVC,UITextFieldDelegate {
     }
 
     
+    /// Check if entered email is valid or not. Call firebase reset method it sends password reset link to registered email address.
+    /// - Parameter sender: UIButton referrence
     @IBAction func sendEmailAction(sender: UIButton) {
         if emailText.text?.count != 0 {
             

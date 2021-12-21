@@ -212,6 +212,10 @@ func GetTierFromFollowerCount(FollowerCount: Double) -> Int? {
 	}
 }
 
+
+/// Checks if the entered url is good.
+/// - Parameter url: entered url string
+/// - Returns: returns true if valid one otherwise false
 func isGoodUrl(url: String) -> Bool {
 	if url == "" { return true }
 	if let url = URL(string: url) {

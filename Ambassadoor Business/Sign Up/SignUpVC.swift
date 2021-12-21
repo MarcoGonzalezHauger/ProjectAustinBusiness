@@ -36,7 +36,8 @@ class SignUpVC: BaseVC, UITextFieldDelegate {
     var emailString: String = ""
     var passwordString: String = ""
 
-
+    
+    /// UIViewController Life Cycle
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -47,33 +48,45 @@ class SignUpVC: BaseVC, UITextFieldDelegate {
 		
     }
     
+    /// UIViewController Life Cycle
+    /// - Parameter animated: Default Param
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.registerButton.isUserInteractionEnabled = true
     }
-	
+    
+    /// It is Action Event of emailText(TextField) and Connected this action event to emailText Primary Action. This action triggered when textfield return or done. Purpose of this action is to make passwordText become first responder.
+    /// - Parameter sender: Uitextfiled reference
 	@IBAction func nextButtonClicked(_ sender: Any) {
 		passwordText.becomeFirstResponder()
 	}
-	
+    
+    /// Force resign the first responder and Create account function called
+    /// - Parameter sender: UITextfield reference
 	@IBAction func joinButtonPressed(_ sender: Any) {
 		doneButtonAction()
 		CreateAccount()
 	}
-	
+    
 	@IBAction func stopEditing(_ sender: Any) {
 		doneButtonAction()
 	}
-	
+    
+    /// resign the first responder of the UITextfield
 	override func doneButtonAction() {
 		view.endEditing(true)
 	}
     
+    /// Dismiss current UIViewcontroller
+    /// - Parameter sender: UIButton referrance
 	@IBAction func Cancelled(_ sender: Any) {
 		//self.navigationController?.popViewController(animated: true)
         self.dismiss(animated: true, completion: nil)
 	}
 	
+    
+    /// Adjust scroll view as per Keyboard Height if the keyboard hides textfiled.
+    /// - Parameter notification: keyboardWillShowNotification reference
     @objc override func keyboardWasShown(notification : NSNotification) {
         
         let info : NSDictionary = notification.userInfo! as NSDictionary
@@ -119,10 +132,15 @@ class SignUpVC: BaseVC, UITextFieldDelegate {
         
     }
     
+    
+    /// Called if user clicks registerButton and it calls CreateAccount method
+    /// - Parameter sender: UIButton reference
     @IBAction func signinAction(sender: UIButton){
         CreateAccount()
     }
 	
+    
+    /// Checks if user entered valid email and password. Checks if user is new one. Create a new business user and send email verification to verify the email. if all done without any error, it redirects to email verification controller
 	func CreateAccount() {
         
         //self.instantiateToMainScreen()
@@ -222,6 +240,10 @@ class SignUpVC: BaseVC, UITextFieldDelegate {
         
 	}
     
+    /// Pass email, password and identifySegue to email verification controller
+    /// - Parameters:
+    ///   - segue: Current segue of the UIViewcontroller
+    ///   - sender: Optional Any
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "fromSignup" {
             let view = segue.destination as! VerifyEmailVC

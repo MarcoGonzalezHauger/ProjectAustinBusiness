@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 
+
 class VerifyEmailVC: BaseVC {
     
     @IBOutlet weak var scroll: UIScrollView!
@@ -20,12 +21,16 @@ class VerifyEmailVC: BaseVC {
     var identifySegue = ""
     
     
+    /// UIViewController Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
     }
     
+    
+    /// Checks if segue from sign up or sign in. Based on the segue, we call the concerned method to verify the email.
+    /// - Parameter sender: UIButton reference
     @IBAction func verifyEmailAction(sender: UIButton){
         
         
@@ -38,7 +43,8 @@ class VerifyEmailVC: BaseVC {
         }
         
 	}
-	
+    
+    /// Check if user verified the email. if verified,  we create new business user ID and enable auto login and redirect to create company page.
 	func fromSignIn() {
 		
 		Auth.auth().signIn(withEmail: emailString, password: passwordString) { (user, error) in
@@ -86,7 +92,7 @@ class VerifyEmailVC: BaseVC {
 		
 	}
 	
-	
+    // Check if user verified the email. if verified,  we create new business user ID and enable auto login and redirect to Referral Page.
 	func fromSignUp() {
 		
 		
@@ -147,6 +153,7 @@ class VerifyEmailVC: BaseVC {
         })
     }
     
+    /// Create one unique Id by makeFirebaseUrl and 15 randam string. Using Unique ID, create new business user in Firebase.
     func CreateNewUser() {
         
         let user = Auth.auth().currentUser!
@@ -181,6 +188,8 @@ class VerifyEmailVC: BaseVC {
 
     }
     
+    /// Dismiss current UIViewcontroller
+    /// - Parameter sender: UIButton reference
     @IBAction func popToprevious(sender: UIButton){
         
         if let navCon = self.navigationController{

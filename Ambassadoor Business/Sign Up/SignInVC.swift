@@ -31,6 +31,7 @@ class SignInVC: BaseVC, UITextFieldDelegate {
     var stringOne: String? = nil
     
     
+    /// UIViewController Life Cycle: Check if user already signed in. If signed in, enable biametric features.
     override func viewDidLoad() {
         super.viewDidLoad()
         print("roundup",(1.056756 * 100).rounded()/100)
@@ -60,32 +61,38 @@ class SignInVC: BaseVC, UITextFieldDelegate {
         }
         
     }
-    
+    /// UIViewController Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         self.signInButton.setTitle("Sign In", for: .normal)
     }
     
+    /// resign the first responder of the UITextfield
     override func doneButtonAction() {
         view.endEditing(true)
     }
     
+    /// Checks if user already signed in or not
+    /// - Returns: returns true or false
     func userInfoExists() -> Bool {
         return UserDefaults.standard.string(forKey: "userEmail") != nil && UserDefaults.standard.string(forKey: "userPass") != nil
     }
     
+    /// Group of Biomatric enable options
     enum BiometricType {
         case none
         case touch
         case face
     }
-	
-	
     
+    /// If user already signed in, he can login via bio metrics
+    /// - Parameter sender: UIButton referrance
     @IBAction func doBioAuth(_ sender: Any) {
         bioAuth()
     }
     
+    /// Get biomatric type which one user has enabled
+    /// - Returns: return BiometricType
     func GetBiometricType() -> BiometricType {
         let authContext = LAContext()
         if #available(iOS 11, *) {
@@ -103,6 +110,7 @@ class SignInVC: BaseVC, UITextFieldDelegate {
         }
     }
     
+    /// If biometric authentication success, user allow to sign in by stored credentials
     func bioAuth() {
         print("Bio Auth started")
         let lac = LAContext()
@@ -130,7 +138,7 @@ class SignInVC: BaseVC, UITextFieldDelegate {
     //let name = NSUserDefaults.standard.string(forKey: "name")
     
     var firstTime = false
-    
+    /// UIViewController Life Cycle: Check if user first time entered or not. if user is not first time, allow bioAuth.
     override func viewDidAppear(_ animated: Bool) {
         print("appeared.")
         if firstTime {
@@ -143,6 +151,8 @@ class SignInVC: BaseVC, UITextFieldDelegate {
         firstTime = true
     }
     
+    /// Adjust scroll view as per Keyboard Height if the keyboard hides textfiled.
+    /// - Parameter notification: keyboardWillShowNotification reference
     @objc override func keyboardWasShown(notification : NSNotification) {
         
         let info : NSDictionary = notification.userInfo! as NSDictionary
@@ -183,6 +193,9 @@ class SignInVC: BaseVC, UITextFieldDelegate {
         
     }
     
+    /// Resign textfield, if it is passwordText textfield, call signInAction.
+    /// - Parameter textField: UITextfield referrance
+    /// - Returns: returns true or false
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         if textField == emailText {
             passwordText.becomeFirstResponder()
@@ -194,11 +207,15 @@ class SignInVC: BaseVC, UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        
         self.assainedTextField = textField
-        
     }
     
+    /// Disallow spaces in emailText textfield
+    /// - Parameters:
+    ///   - textField: emailText textfield referrance
+    ///   - range: range of the entered text
+    ///   - string: entered string
+    /// - Returns: returns true or false
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         if textField == emailText && string.contains(" ") {
@@ -207,6 +224,8 @@ class SignInVC: BaseVC, UITextFieldDelegate {
         return true
     }
     
+    /// redirects to create new user page
+    /// - Parameter sender: UIButton referrance
     @IBAction func createAccountAction(sender: UIButton){
         DispatchQueue.main.async(execute: {
             
@@ -215,10 +234,15 @@ class SignInVC: BaseVC, UITextFieldDelegate {
         })
     }
     
+    
+    /// resign UITextfields
+    /// - Parameter sender: UITextfield referrance
     @IBAction func tapped(_ sender: Any) {
         view.endEditing(true)
     }
     
+    /// If sign in action takes more than 4 seconds, cancel the sign in action and call again.
+    /// - Parameter sender: UItimer referrance
     @objc func timerAction(sender: AnyObject){
         Database.database().reference().cancelDisconnectOperations()
         self.showActivityIndicator()
@@ -227,6 +251,10 @@ class SignInVC: BaseVC, UITextFieldDelegate {
     @IBOutlet weak var usernameLine: UILabel!
     @IBOutlet weak var passwordline: UILabel!
     
+    
+    
+    /// Checks If email and password are valid or not. Sign in through firebase auth. If user exist, get user details. Checks if email verified or not if email is not verified, call send email verification method. Checks if user created any company. If not redirects to create company page. update company details to firebase.
+    /// - Parameter sender: UIButton reference
     @IBAction func signInAction(sender: UIButton){
                 
         
@@ -350,6 +378,7 @@ class SignInVC: BaseVC, UITextFieldDelegate {
         
     }
     
+    /// Create one unique Id by makeFirebaseUrl and 15 randam string. Using Unique ID, create new business user in Firebase.
     func CreateNewUser() {
         
         let user = Auth.auth().currentUser!
