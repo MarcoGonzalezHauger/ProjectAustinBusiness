@@ -26,12 +26,14 @@ class TransactionHistoryVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         // Do any additional setup after loading the view.
     }
     
+    /// reload shelf table
     func setTableData() {
         self.shelf.delegate = self
         self.shelf.dataSource = self
         self.shelf.reloadData()
     }
     
+    //MARK: -UITableView Delegate and Datasource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         MyCompany.finance.log.sort { logOne, logTwo in
             return logOne.time > logTwo.time}
@@ -80,6 +82,8 @@ class TransactionHistoryVC: BaseVC, UITableViewDataSource, UITableViewDelegate {
         return 95.0
     }
     
+    /// Dismiss current view controller
+    /// - Parameter sender: UIButton referrance
     @IBAction func cancelAction(sender: UIButton){
         self.navigationController?.popViewController(animated: true)
     }

@@ -86,6 +86,10 @@ class NetworkManager {
         
     }
     
+    /// Check stripe id and payment to stripe server. this function works in firebase single application.
+    /// - Parameters:
+    ///   - params: stripeID, amount, mode
+    ///   - completion: Callback stripe server response.
     func postAmountToServerThroughStripe(params: [String: Any],completion: @escaping (_ status: String, _ error: String?, _ dataValue: Data?) -> Void) {
         //postStripeIDToServer
         let urlString = API.kBaseURL + "postStripeIDToServer"
@@ -466,6 +470,10 @@ class NetworkManager {
              
          }
     
+    /// Initiate withdraw transaction to stripe server. this function created in firebase function page
+    /// - Parameters:
+    ///   - params: stripe account ID, amount, mode
+    ///   - completion: Callback stripe response
     func withdrawThroughStripe(params: [String: AnyObject],completion: @escaping (  _ status: String,   _ error: String?, _ dataValue: Data?) -> Void) {
             
             let urlString = "https://us-central1-amassadoor.cloudfunctions.net/" + "sendAmountTobankaccount"

@@ -22,6 +22,7 @@ class ContractBusinessVC: BaseVC {
         // Do any additional setup after loading the view.
     }
     
+    /// Set basic business data to fields
     func setBusinessData() {
         if let basic = businessData{
             if let url = URL.init(string: basic.logoUrl){
@@ -32,10 +33,14 @@ class ContractBusinessVC: BaseVC {
         }
     }
     
+    /// Dismiss current view controller
+    /// - Parameter sender: UIButton referrance
     @IBAction func dismissAction(sender: UIButton){
         self.performDismiss()
     }
-
+    
+    /// Segue to expand view
+    /// - Parameter sender: UIButton referrance
     @IBAction func expandAction(sender: UIButton){
         self.performSegue(withIdentifier: "toExpandView", sender: self)
     }

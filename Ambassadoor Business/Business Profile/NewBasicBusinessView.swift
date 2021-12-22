@@ -28,6 +28,7 @@ class NewBasicBusinessView: BaseVC {
         // Do any additional setup after loading the view.
     }
     
+    /// Set business data to fields
     func setBusinessData() {
         if let basic = businessData{
             //backImage = nil
@@ -41,6 +42,8 @@ class NewBasicBusinessView: BaseVC {
         }
     }
     
+    /// Open business site url in mobile default browser
+    /// - Parameter button: UIButton referrance
     @IBAction func openWebsite(button: UIButton){
         if let basic = businessData{
             let sharedApps = UIApplication.shared
@@ -53,6 +56,8 @@ class NewBasicBusinessView: BaseVC {
         }
     }
     
+    /// Dismiss current view controller
+    /// - Parameter sender: UIButton referrance
     @IBAction func dismissAction(sender: UIButton){
         self.dismiss(animated: true, completion: nil)
     }

@@ -59,7 +59,7 @@ class StripeConnectionMKWebview: BaseVC, WKNavigationDelegate {
         }
     }
     
-    
+    // listen every calls until identifying https://www.ambassadoor.co/paid?code call
      func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping ((WKNavigationActionPolicy) -> Void)) {
 
         print("webView:\(webView) decidePolicyForNavigationAction:\(navigationAction) decisionHandler:\(String(describing: decisionHandler))")
@@ -94,6 +94,8 @@ class StripeConnectionMKWebview: BaseVC, WKNavigationDelegate {
     }
 
     
+    /// Send stipe added bank code to server to fetch stripe ID from stripe auth server. Init stripe account information using stripe_user_id. After successfully getting user stripe information, update account changes to firebase.
+    /// - Parameter code: code from stripe bank page
     func getAccountID(code: String) {
 
         let params = ["client_secret": API.Stripeclient_secret,"code":code,"grant_type":"authorization_code"] as [String: AnyObject]
@@ -149,52 +151,52 @@ class StripeConnectionMKWebview: BaseVC, WKNavigationDelegate {
     
 
     
-    func withDrawAmoutSendServer(acctID: String, amount: Double) {
-        
-        let params = ["accountID":acctID,"amount":amount] as [String: AnyObject]
-        NetworkManager.sharedInstance.withdrawThroughStripe(params: params) { (status, error, data) in
-            
-            let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-            
-            print("dataString=",dataString as Any)
-            do {
-                let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String : Any]
-                
-                let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-                
-                if let code = json!["code"] as? Int {
-                    
-                    if code == 401 {
-                        self.hideActivityIndicator()
-                        let message = json!["message"] as! [String:Any]
-                        self.showAlertMessage(title: "Alert", message:  message["code"] as! String) {
-                            
-                            DispatchQueue.main.async {
-                                self.dismiss(animated: true, completion: nil)
-                            }
-                            
-                        }
-                    }else{
-                        self.getDepositDetailValue(amount: amount, stripeID: acctID, cardDetails: json!)
-//                        DispatchQueue.main.async {
-//                            self.dismiss(animated: true, completion: nil)
-//                        }
+//    func withDrawAmoutSendServer(acctID: String, amount: Double) {
 //
-                        
-                        
-                        
-                    }
-                }
-                
-            }catch _ {
-                
-                self.hideActivityIndicator()
-                
-            }
-            
-        }
-        
-    }
+//        let params = ["accountID":acctID,"amount":amount] as [String: AnyObject]
+//        NetworkManager.sharedInstance.withdrawThroughStripe(params: params) { (status, error, data) in
+//
+//            let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+//
+//            print("dataString=",dataString as Any)
+//            do {
+//                let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String : Any]
+//
+//                let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+//
+//                if let code = json!["code"] as? Int {
+//
+//                    if code == 401 {
+//                        self.hideActivityIndicator()
+//                        let message = json!["message"] as! [String:Any]
+//                        self.showAlertMessage(title: "Alert", message:  message["code"] as! String) {
+//
+//                            DispatchQueue.main.async {
+//                                self.dismiss(animated: true, completion: nil)
+//                            }
+//
+//                        }
+//                    }else{
+//                        self.getDepositDetailValue(amount: amount, stripeID: acctID, cardDetails: json!)
+////                        DispatchQueue.main.async {
+////                            self.dismiss(animated: true, completion: nil)
+////                        }
+////
+//
+//
+//
+//                    }
+//                }
+//
+//            }catch _ {
+//
+//                self.hideActivityIndicator()
+//
+//            }
+//
+//        }
+//
+//    }
     
     func getDepositDetailValue(amount: Double,stripeID: String, cardDetails: [String : Any]) {
         getDepositDetails(companyUser: Auth.auth().currentUser!.uid) { (deposit, status, error) in

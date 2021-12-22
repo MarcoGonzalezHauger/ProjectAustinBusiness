@@ -20,10 +20,14 @@ class WithDrawNoteVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    /// Dismiss current viewcontroller
+    /// - Parameter sender: UIButton referrance
     @IBAction func cancel_Action(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
     
+    /// Dismiss current view controller and call MoneyVC view controller to reload the class.
+    /// - Parameter sender: UIButton referrance
     @IBAction func dismisAction(sender: UIButton){
         
         if let viewTab = self.view.window?.rootViewController as? UITabBarController{

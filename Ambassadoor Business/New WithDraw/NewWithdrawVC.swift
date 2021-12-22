@@ -22,6 +22,9 @@ class NewWithdrawVC: BaseVC {
         self.navigationController?.popViewController(animated: true)
     }
     
+    
+    /// Get user finance information. Initiate withdraw transaction in stripe server
+    /// - Parameter sender: UIButton referrance
     @IBAction func withdrawAction(sender: UIButton){
         
         let ref = Database.database().reference().child("Accounts/Private/Businesses").child(MyCompany.businessId)
@@ -57,9 +60,15 @@ class NewWithdrawVC: BaseVC {
         
     }
     
+    
+    /// Initiate withdraw transaction to stripe server. this function created in firebase function page. update user changes to firebase.
+    /// - Parameters:
+    ///   - acctID: stripe account ID
+    ///   - amount: withdraw amount
+    ///   - mode: test or live
     func withDrawAmoutSendServer(acctID: String, amount: Double, mode: String) {
             
-            let params = ["accountID":acctID,"amount":amount, "mode": "test"] as [String: AnyObject]
+            let params = ["accountID":acctID,"amount":amount, "mode": "live"] as [String: AnyObject]
             NetworkManager.sharedInstance.withdrawThroughStripe(params: params) { (status, error, data) in
                 
                 let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)

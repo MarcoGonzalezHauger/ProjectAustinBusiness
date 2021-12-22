@@ -98,6 +98,8 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
         self.money.addTarget(self, action: #selector(self.TrackBarTracked(_:)), for: .editingDidEnd)
     }
 	
+    
+    /// Show expected returns and profit based on their deposit amount
 	func moneyChanged() {
 		if editMode == .manual {
 			let value = amountOfMoneyInCents
@@ -117,6 +119,10 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
 		ExpectedPROFIT.text = "Expected Profit: \(LocalPriceGetter(Value: Int(Double(amountOfMoneyInCents) * 4.85)))"
 	}
 	
+    
+    /// show local currency of the amount
+    /// - Parameter Value: send amount in Int
+    /// - Returns: return local currency of the amount
 	func LocalPriceGetter(Value: Int) -> String {
 		let formatter = NumberFormatter()
 		formatter.numberStyle = .currency
@@ -126,6 +132,9 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
 		return formatter.string(from: NSNumber(value: amount))!
 	}
 	
+    
+    /// Cnage amount based on UISlider
+    /// - Parameter sender: UISlider referrance
 	@IBAction func TrackBarTracked(_ sender: Any) {
 		editMode = .slider
 		let value = Double(moneySlider.value)
@@ -139,10 +148,15 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
 		moneyChanged()
 	}
 	
+    
+    /// Dismiss current view controller
+    /// - Parameter sender: UIButton referrance
 	@IBAction func dismiss(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
 	}
     
+    /// Check if user entered valid amount. As per ambassadoor standard, we add service charge with user deposit amount. Show alert for confirmation to add total amount.
+    /// - Parameter sender: UIButton referrance
 	@IBAction func proceedAction(sender: UIButton){
 		
 		if amountOfMoneyInCents != 0 {
@@ -206,6 +220,11 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
         
     }
     
+    
+    /// Check if stripe id and payments are valid to stripe server and make further authentication process. this function works in firebase single application.
+    /// - Parameters:
+    ///   - params: stripeID, amount, mode
+    ///   - paymentMethodParams: STPPaymentMethod referrance
     func depositAmountToWalletThroughStripe(params: [String: Any],paymentMethodParams: STPPaymentMethod) {
         
         //if params["amount"] as! String != "" && params["amount"] as! String != "0.00" {
@@ -277,6 +296,10 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
         
     }
     
+    /// Pass stripe server client secret ID and stripe id to stripe for further process to get amount from card. if amount deducted from card successfully, add amount to user account and update changes to firebase.
+    /// - Parameters:
+    ///   - clientSecret: stripe server clent secret ID
+    ///   - paymentMethodParams: STPPaymentMethod referrance
     func stripePaymentMethod(clientSecret: String, paymentMethodParams: STPPaymentMethod) {
         
         let paymentIntentParams = STPPaymentIntentParams(clientSecret: clientSecret)
@@ -332,6 +355,7 @@ class DepositVC: BaseVC, changedDelegate, STPAddCardViewControllerDelegate, STPA
         
     }
     
+    /// Re- Initialise stripe controller
     func dismissStripeController() {
         DispatchQueue.main.async {
             self.addCardViewController.dismiss(animated: true, completion: nil)

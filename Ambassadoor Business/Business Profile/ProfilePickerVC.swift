@@ -12,6 +12,9 @@ protocol reloadMyCompanyDelegate {
     func reloadMyCompany()
 }
 
+
+/// Feature of the function is set company logo to image of profile tab.
+/// - Parameter tab: UITabBarController referrance
 func setCompanyTabBarItem(tab: UITabBarController) {
     
     let filtered = MyCompany.basics.filter { (basic) -> Bool in
@@ -89,6 +92,7 @@ class ProfilePickerVC: UIViewController, UICollectionViewDelegate, UICollectionV
         // Do any additional setup after loading the view.
     }
     
+    /// Filter valid campanies and reload basicBusinessList table.
     func setCollectionDataSource() {
         filteredArray = MyCompany.basics.filter { (basic) -> Bool in
             return !basic.flags.contains("isDeleted") && !basic.flags.contains("isInvisible")
@@ -97,7 +101,7 @@ class ProfilePickerVC: UIViewController, UICollectionViewDelegate, UICollectionV
         self.basicBusinessList.dataSource = self
         self.basicBusinessList.reloadData()
     }
-    
+    //MARK: - UICollectionview Delegate and Datasource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
                 
         return (filteredArray.count + 1)
@@ -156,6 +160,9 @@ class ProfilePickerVC: UIViewController, UICollectionViewDelegate, UICollectionV
         return 0.0
     }
     
+    
+    /// Remove a business action. If isDeleteHidden is false, modification of the company list is done. so set first company basic id to activeBasicId of the user. update changes to firebase. reload tabbar and collectionview
+    /// - Parameter sender: UIButton referrance
     @IBAction func removeBusinessAction(sender: UIButton){
         if !isDeleteHidden{
             isDeleteHidden = true
@@ -178,6 +185,7 @@ class ProfilePickerVC: UIViewController, UICollectionViewDelegate, UICollectionV
         }
     }
     
+    /// reload collection view with animation
     func reloadCollection() {
         self.basicBusinessList .performBatchUpdates({
             self.basicBusinessList.reloadData()
@@ -186,6 +194,9 @@ class ProfilePickerVC: UIViewController, UICollectionViewDelegate, UICollectionV
         }
     }
     
+    
+    /// Company delete action .Check if user has only one company (Because user must have atleast one company). If more than one company, Add isDeleted and isInvisible flags to that company.
+    /// - Parameter button: UIButton referrance
     @IBAction func updateBasicBusiness(button: UIButton) {
         
         if self.filteredArray.count == 1 {
@@ -220,6 +231,8 @@ class ProfilePickerVC: UIViewController, UICollectionViewDelegate, UICollectionV
     
     
     
+    /// Log out current user. remove all local data of the user. Redirect to sign in page.
+    /// - Parameter sender: UIButton referrance
     @IBAction func signOutAction(sender: UIButton){
         
         MyCompany = nil

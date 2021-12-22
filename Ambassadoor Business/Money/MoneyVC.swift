@@ -31,127 +31,129 @@ class TransactionCell: UITableViewCell {
     @IBOutlet weak var shadowBox: ShadowView!
 }
 
-class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, TransactionListener {
+class MoneyVC: UIViewController, TransactionListener {
     
     @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var balBox: ShadowView!
     
-    func GetTransactionHistory() -> [Transaction] {
-        
-        var transHistory: [Transaction] = transactionHistory
-//		transHistory.sort{$0.time < $1.time}
-        transHistory.sort{$0.date!.compare($1.date!) == .orderedDescending}
-        return transHistory
-    }
+//    func GetTransactionHistory() -> [Transaction] {
+//
+//        var transHistory: [Transaction] = transactionHistory
+////		transHistory.sort{$0.time < $1.time}
+//        transHistory.sort{$0.date!.compare($1.date!) == .orderedDescending}
+//        return transHistory
+//    }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return GetTransactionHistory().count
-        //return GetTransactionHistory().count
-    }
+//    //MARK: -UITableview Delegates and Datasource
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return GetTransactionHistory().count
+//        //return GetTransactionHistory().count
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let row = indexPath.row
+//        let cell = shelf.dequeueReusableCell(withIdentifier: "TransactionTrunk") as! TransactionCell
+//        let ThisTransaction = GetTransactionHistory()[row]
+//
+//        //let ThisTransaction = GetTransactionHistory()[row]
+//        let date = DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: ThisTransaction.time)
+//        if date != nil{
+//           cell.dateText.text = DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: date!, format: "MM/dd/yy hh:mm a")
+//        }else{
+//           cell.dateText.text = ""
+//        }
+//
+//        let amt = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
+//        if ThisTransaction.type == "sale"{
+//            cell.descriptionLabel.text = "Deposited from Credit Card."
+//            cell.amountlabel.text = "+\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
+//            cell.shadowBox.borderColor = .systemGreen
+//        }else if ThisTransaction.type == "paid" || ThisTransaction.type == "distributed" {
+//            cell.descriptionLabel.text = "Distributed Offer: \"\(ThisTransaction.status)\""
+//            cell.amountlabel.text = "-\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
+//            cell.shadowBox.borderColor = .systemBlue
+//        }else if ThisTransaction.type == "withdraw"{
+//            cell.descriptionLabel.text = "Transferred to bank account."
+//            cell.amountlabel.text = "-\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
+//            cell.shadowBox.borderColor = .systemRed
+//        }
+//        else if ThisTransaction.type == "refund" {
+//            cell.descriptionLabel.text = "User Rejected \"\(ThisTransaction.status)\", You have been credited \(amt)"
+//            cell.amountlabel.text = "+\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
+//            cell.shadowBox.borderColor = .systemRed
+//        }else if ThisTransaction.type == "commissionrefund" {
+//            cell.descriptionLabel.text = "Ambassadoor Commission Refunded \"\(ThisTransaction.status)\", You have been credited \(amt)"
+//            cell.amountlabel.text = "+\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
+//        }else if ThisTransaction.type == "postrefund" {
+//            cell.descriptionLabel.text = "Ambassadoor Refunded the single post, You have been credited \(amt)"
+//            cell.amountlabel.text = "+\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
+//        }else if ThisTransaction.type == "referral" {
+//            //cell.descriptionLabel.text = "Referral Fees from \(ThisTransaction.userName)."
+//            cell.amountlabel.text = "+\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
+//            cell.shadowBox.borderColor = .systemGreen
+//            //"JKWJJE"
+//            //self.getReferralUser(cell: cell, referralCode: "JKWJJE")
+//            self.getReferralUser(cell: cell, referralCode: ThisTransaction.id!)
+//        }else if ThisTransaction.type == "Amber-ADD" {
+//            cell.descriptionLabel.text = "Ambassadoor Added."
+//            cell.amountlabel.text = "+\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
+//            cell.shadowBox.borderColor = .systemGreen
+//        }else if ThisTransaction.type == "Amber-REDUCE"{
+//            cell.descriptionLabel.text = "Ambassadoor deducted."
+//            cell.amountlabel.text = "-\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
+//            cell.shadowBox.borderColor = .systemRed
+//        }
+//        //cell.shadowBox.borderColor = .black // Refer to PowerPoint.
+//        return cell
+//    }
+//
+//    func getReferralUser(cell: TransactionCell, referralCode: String) {
+//
+//        if referralCode.count == 6{
+//
+//            getInfluencerReferral(referralID: referralCode) { (status, user) in
+//                 if status && user != nil {
+//                   cell.descriptionLabel.text = "Referral Fees from \((user?.username)!)"
+//                 }else{
+//                    cell.descriptionLabel.text = "Referral Amount"
+//                }
+//            }
+//
+//        }else if referralCode.count == 7{
+//
+//            getBusinessReferral(referralID: referralCode) { (status, user) in
+//                if status && user != nil {
+//                    cell.descriptionLabel.text = "Referral Fees from \((user?.email)!)"
+//                }else{
+//                    cell.descriptionLabel.text = "Referral Amount"
+//                }
+//            }
+//
+//        }else{
+//                cell.descriptionLabel.text = "Referral Amount"
+//        }
+//
+//    }
+//
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        shelf.deselectRow(at: indexPath, animated: false)
+//    }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let row = indexPath.row
-        let cell = shelf.dequeueReusableCell(withIdentifier: "TransactionTrunk") as! TransactionCell
-        let ThisTransaction = GetTransactionHistory()[row]
-        
-        //let ThisTransaction = GetTransactionHistory()[row]
-        let date = DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: ThisTransaction.time)
-        if date != nil{
-           cell.dateText.text = DateFormatManager.sharedInstance.getStringFromDateWithFormat(date: date!, format: "MM/dd/yy hh:mm a")
-        }else{
-           cell.dateText.text = ""
-        }
-        
-        let amt = NumberToPrice(Value: ThisTransaction.amount, enforceCents: true)
-        if ThisTransaction.type == "sale"{
-            cell.descriptionLabel.text = "Deposited from Credit Card."
-            cell.amountlabel.text = "+\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
-            cell.shadowBox.borderColor = .systemGreen
-        }else if ThisTransaction.type == "paid" || ThisTransaction.type == "distributed" {
-            cell.descriptionLabel.text = "Distributed Offer: \"\(ThisTransaction.status)\""
-            cell.amountlabel.text = "-\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
-            cell.shadowBox.borderColor = .systemBlue
-        }else if ThisTransaction.type == "withdraw"{
-            cell.descriptionLabel.text = "Transferred to bank account."
-            cell.amountlabel.text = "-\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
-            cell.shadowBox.borderColor = .systemRed
-        }
-        else if ThisTransaction.type == "refund" {
-            cell.descriptionLabel.text = "User Rejected \"\(ThisTransaction.status)\", You have been credited \(amt)"
-            cell.amountlabel.text = "+\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
-            cell.shadowBox.borderColor = .systemRed
-        }else if ThisTransaction.type == "commissionrefund" {
-            cell.descriptionLabel.text = "Ambassadoor Commission Refunded \"\(ThisTransaction.status)\", You have been credited \(amt)"
-            cell.amountlabel.text = "+\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
-        }else if ThisTransaction.type == "postrefund" {
-            cell.descriptionLabel.text = "Ambassadoor Refunded the single post, You have been credited \(amt)"
-            cell.amountlabel.text = "+\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
-        }else if ThisTransaction.type == "referral" {
-            //cell.descriptionLabel.text = "Referral Fees from \(ThisTransaction.userName)."
-            cell.amountlabel.text = "+\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
-            cell.shadowBox.borderColor = .systemGreen
-            //"JKWJJE"
-            //self.getReferralUser(cell: cell, referralCode: "JKWJJE")
-            self.getReferralUser(cell: cell, referralCode: ThisTransaction.id!)
-        }else if ThisTransaction.type == "Amber-ADD" {
-            cell.descriptionLabel.text = "Ambassadoor Added."
-            cell.amountlabel.text = "+\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
-            cell.shadowBox.borderColor = .systemGreen
-        }else if ThisTransaction.type == "Amber-REDUCE"{
-            cell.descriptionLabel.text = "Ambassadoor deducted."
-            cell.amountlabel.text = "-\(NumberToPrice(Value: ThisTransaction.amount, enforceCents: true))"
-            cell.shadowBox.borderColor = .systemRed
-        }
-        //cell.shadowBox.borderColor = .black // Refer to PowerPoint.
-        return cell
-    }
     
-    func getReferralUser(cell: TransactionCell, referralCode: String) {
-        
-        
-        if referralCode.count == 6{
-            
-            getInfluencerReferral(referralID: referralCode) { (status, user) in
-                 if status && user != nil {
-                   cell.descriptionLabel.text = "Referral Fees from \((user?.username)!)"
-                 }else{
-                    cell.descriptionLabel.text = "Referral Amount"
-                }
-            }
-            
-        }else if referralCode.count == 7{
-            
-            getBusinessReferral(referralID: referralCode) { (status, user) in
-                if status && user != nil {
-                    cell.descriptionLabel.text = "Referral Fees from \((user?.email)!)"
-                }else{
-                    cell.descriptionLabel.text = "Referral Amount"
-                }
-            }
-            
-        }else{
-                cell.descriptionLabel.text = "Referral Amount"
-        }
-        
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        shelf.deselectRow(at: indexPath, animated: false)
-    }
-    
+    /// TransactionListener delegate method. whenever account balance changes, we update balanceLabel here.
     func BalanceChange() {
         balanceLabel.text = NumberToPrice(Value: accountBalance, enforceCents: true)
     }
     
     func TransactionHistoryChanged() {
-        shelf.reloadData()
     }
     
-    @IBOutlet weak var shelf: UITableView!
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return 95.0
-    }
+//    @IBOutlet weak var shelf: UITableView!
+    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//		return 95.0
+//    }
     
     let gradientLayer = CAGradientLayer()
     
@@ -202,6 +204,9 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
         
     }
     
+    
+    /// set user account balance
+    /// - Parameter animated: true
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         accountBalance = MyCompany.finance.balance
@@ -223,74 +228,80 @@ class MoneyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Tra
         
     }
     
-    func getDepositDetailsByUser(user: CompanyUser) {
-        //(Auth.auth().currentUser?.uid)!
-        getDepositDetails(companyUser: (Auth.auth().currentUser?.uid)!) { (deposit, status, error) in
-            
-            if status == "success" {
-                // transactionDelegate = self
-                transactionHistory.removeAll()
-                accountBalance = deposit!.currentBalance!
-                setHapticMenu(companyUserID: (Auth.auth().currentUser?.uid)!, amount: accountBalance)
-                for value in deposit!.depositHistory! {
-                    
-                    if let valueDetails = value as? NSDictionary {
-                        
-                        var amount = 0.0
-                        
-                        if let amt = valueDetails["amount"] as? String {
-                            amount = Double(amt)!
-                        }else if let amt = valueDetails["amount"] as? Double{
-                            amount = amt
-                        }
-                        
-                        transactionHistory.append(Transaction(description: "", details: valueDetails["cardDetails"] as AnyObject, time: valueDetails["updatedAt"] as! String, amount: amount, type: valueDetails["type"] as! String, status: valueDetails["status"] as? String ?? "", userName: valueDetails["userName"] as? String ?? "", date: DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: valueDetails["updatedAt"] as! String), id: valueDetails["id"] as? String ?? ""))
-                    }
-                }
-                
-                //                let transSort = transactionHistory.sort{DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: $0.time)! > DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: $1.time)!}
-                
-//                let transSort = transactionHistory.sorted { (SeqOne, SeqTwo) -> Bool in
-//                    
-//                    if DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: SeqOne.time)
-//                        != nil && DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: SeqTwo.time) != nil{
-//                        return DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: SeqOne.time)! >
-//                            DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: SeqTwo.time)!
-//                        
-//                    }else{
-//                        return false
+//    func getDepositDetailsByUser(user: CompanyUser) {
+//        //(Auth.auth().currentUser?.uid)!
+//        getDepositDetails(companyUser: (Auth.auth().currentUser?.uid)!) { (deposit, status, error) in
+//
+//            if status == "success" {
+//                // transactionDelegate = self
+//                transactionHistory.removeAll()
+//                accountBalance = deposit!.currentBalance!
+//                setHapticMenu(companyUserID: (Auth.auth().currentUser?.uid)!, amount: accountBalance)
+//                for value in deposit!.depositHistory! {
+//
+//                    if let valueDetails = value as? NSDictionary {
+//
+//                        var amount = 0.0
+//
+//                        if let amt = valueDetails["amount"] as? String {
+//                            amount = Double(amt)!
+//                        }else if let amt = valueDetails["amount"] as? Double{
+//                            amount = amt
+//                        }
+//
+//                        transactionHistory.append(Transaction(description: "", details: valueDetails["cardDetails"] as AnyObject, time: valueDetails["updatedAt"] as! String, amount: amount, type: valueDetails["type"] as! String, status: valueDetails["status"] as? String ?? "", userName: valueDetails["userName"] as? String ?? "", date: DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: valueDetails["updatedAt"] as! String), id: valueDetails["id"] as? String ?? ""))
 //                    }
-//                    
 //                }
-                
-//                transactionHistory.append(contentsOf: transSort)
-                
-                DispatchQueue.main.async(execute: {
-                    self.shelf.delegate = self
-                    self.shelf.dataSource = self
-                    self.shelf.reloadData()
-                })
-            }else{
-                
-                // transactionDelegate = self
-                DispatchQueue.main.async(execute: {
-                    self.shelf.delegate = self
-                    self.shelf.dataSource = self
-                    self.shelf.reloadData()
-                })
-                
-            }
-            
-        }
-        
-        
-    }
+//
+//                //                let transSort = transactionHistory.sort{DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: $0.time)! > DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: $1.time)!}
+//
+////                let transSort = transactionHistory.sorted { (SeqOne, SeqTwo) -> Bool in
+////
+////                    if DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: SeqOne.time)
+////                        != nil && DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: SeqTwo.time) != nil{
+////                        return DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: SeqOne.time)! >
+////                            DateFormatManager.sharedInstance.getDateFromStringWithAutoMonthFormat(dateString: SeqTwo.time)!
+////
+////                    }else{
+////                        return false
+////                    }
+////
+////                }
+//
+////                transactionHistory.append(contentsOf: transSort)
+//
+//                DispatchQueue.main.async(execute: {
+//                    self.shelf.delegate = self
+//                    self.shelf.dataSource = self
+//                    self.shelf.reloadData()
+//                })
+//            }else{
+//
+//                // transactionDelegate = self
+//                DispatchQueue.main.async(execute: {
+//                    self.shelf.delegate = self
+//                    self.shelf.dataSource = self
+//                    self.shelf.reloadData()
+//                })
+//
+//            }
+//
+//        }
+//
+//
+//    }
     
+    
+    /// Segue to deposit page
+    /// - Parameter sender: UIButton referrance
     @IBAction func depositAction(sender: UIButton){
         self.performSegue(withIdentifier: "toDepositVC", sender: self)
         
     }
     
+    
+    /// Segue to withdraw page
+    /// - Parameter sender: UIButton referrance
     @IBAction func withDrawAction(sender: UIButton){
         self.performSegue(withIdentifier: "toWothdrawRef", sender: self)
     }

@@ -18,6 +18,8 @@ class AccountInfoVC: UIViewController {
 		
     }
     
+    /// Check if user already added stripe account. if true, redirect to account page otherwise connect stripe page
+    /// - Parameter gesture: Gesture referrance
     @IBAction func showStripeAccount(gesture: UIGestureRecognizer){
         if MyCompany.finance.hasStripeAccount {
             self.performSegue(withIdentifier: "fromAccountInfoToWithdraw", sender: self)
@@ -41,6 +43,9 @@ class AccountInfoVC: UIViewController {
         
     }
     
+    
+    /// Dismiss current viewcontroller
+    /// - Parameter _sender: UIButton referrance
     @IBAction func closeAction(_sender: Any){
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
