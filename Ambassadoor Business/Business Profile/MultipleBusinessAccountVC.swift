@@ -16,6 +16,8 @@ class MultipleBusinessAccountVC: BaseVC {
         // Do any additional setup after loading the view.
     }
     
+    /// Dismiss current view controller
+    /// - Parameter sender: UIButton reference
     @IBAction func dismissAction(sender: UIButton){
         self.dismiss(animated: true, completion: nil)
     }

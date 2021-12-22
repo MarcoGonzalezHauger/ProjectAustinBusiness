@@ -152,6 +152,9 @@ class LocationSelectorVC: BaseVC, UITableViewDelegate, UITableViewDataSource, Lo
         
     }
     
+    /// Just checks if location contains zip code which is all we need.
+    /// - Parameter loc: location string
+    /// - Returns: returns true if location contains valid zipcode otherwise false
     func regexForLocation(loc: String) -> Bool{
 		
 		//EDIT FROM MARCO: Just checks if location contains zip code which is all we need.
