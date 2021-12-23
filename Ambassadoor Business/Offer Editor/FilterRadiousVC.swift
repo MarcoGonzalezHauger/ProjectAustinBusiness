@@ -25,6 +25,8 @@ class ZipCell: UITableViewCell {
 }
 
 class FilterRadiousVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
+    
+//    MARK:- Zipcode list UITableView Delegate and Datasource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.allZipCode.count
     }
@@ -101,8 +103,10 @@ class FilterRadiousVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         // Do any additional setup after loading the view.
     }
     
+    
+    /// remove dublicate zipcodes
+    /// - Returns: return filtered zipcodes
     func removeDuplicates() -> [String] {
-        
         var unique = [String]()
         for zip in allZipCode {
             if !unique.contains(zip) {
@@ -112,21 +116,23 @@ class FilterRadiousVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         return unique
     }
     
+    
+    /// Initialise locationList table delegate and datasource
     func setTableData() {
         self.locationList.delegate = self
         self.locationList.dataSource = self
         self.locationList.reloadData()
     }
     
+    /// Show miles and duration of location based on slider value
+    /// - Parameter sender: UISlider referrance
     @IBAction func sliderChanged(sender: UISlider){
         self.selectedMiles.text = "\(Int(sender.value.rounded(.awayFromZero))) Miles"
 		self.driveEstimate.text = "About a \(Int((sender.value.rounded(.awayFromZero)) * 2.3)) minute drive"
     }
     
-    @IBAction func dismissAction(sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
+    /// Get locations in radious of picked location .Check if user picked any location from the list. get locations in radious of picked location using third party web service
+    /// - Parameter sender: UIButton referrance
     @IBAction func UserFilterAction(sender: UIButton){
         
         if self.selectedZip.count == 0{
@@ -155,6 +161,8 @@ class FilterRadiousVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    /// Dismiss current viewcontroller
+    /// - Parameter sender: UIButton referrance
     @IBAction func cancelAction(sender: UIButton){
         self.navigationController?.popViewController(animated: true)
     }

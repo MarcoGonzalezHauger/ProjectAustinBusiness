@@ -27,45 +27,17 @@ class KeyphraseCell: UITableViewCell, UITextFieldDelegate {
     }
     
     override func awakeFromNib() {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown), name: UIResponder.keyboardWillShowNotification, object: phraseText)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: phraseText)
-    }
-    
-    @objc func keyboardWasShown(notification : NSNotification) {
-        
- //       if let key = notification.object as? UITextField {
- //           if key == phraseText {
-                
-                let userInfo = notification.userInfo!
-                var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-                keyboardFrame = addpostRef!.view.convert(keyboardFrame, from: nil)
-                
-                var contentInset:UIEdgeInsets = addpostRef!.scroll.contentInset
-                contentInset.bottom = keyboardFrame.size.height + 25
-                addpostRef!.scroll.contentInset = contentInset
-                
-  //          }
-  //      }
-        
-        
         
     }
     
-    @objc func keyboardWillHide(notification:NSNotification){
-        
-//        if let key = notification.object as? UITextField {
-//        if key == phraseText {
-            
-            let contentInset:UIEdgeInsets = UIEdgeInsets.zero
-            addpostRef!.scroll.contentInset = contentInset
-            
-//            }
- //       }
-    }
-    
+    /// UITableView primary action. resign text field
+    /// - Parameter sender: UITextField referrance
     @IBAction func returnEntered(_ sender: Any) {
         (sender as! UITextField).resignFirstResponder()
     }
+    
+    /// UITextField edit changed action. Check if user entered keyword or hashtag not more than 75 characters. check if user entered hashtag that should contain # before the text. Check if hash and keyword is not swearWords.
+    /// - Parameter sender: UITextField referrance
     @IBAction func editingChanged(_ sender: Any) {
         
         //Contains what the current phrasetext will look like.
@@ -119,6 +91,7 @@ class KeyphraseCell: UITableViewCell, UITextFieldDelegate {
         delegate?.textChanged(at: self, to: currentString)
     }
     
+//    Disallow if user enters # in between hashtag field.
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if (textField.text?.hasPrefix("#"))! {
             
@@ -137,10 +110,15 @@ class KeyphraseCell: UITableViewCell, UITextFieldDelegate {
 
 class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePhrase, NCDelegate {
 	
+    
+    ///  NCDelegate Method. check if user entered valid keywords or hashtags
+    /// - Returns: true if entered valid keywords or hashtags otherwise false
 	func shouldAllowBack() -> Bool {
 		return tryDismiss()
 	}
     
+    /// Delete keywords or hashtags. check if user entered more than one keywords or hashtags. get index and remove data.
+    /// - Parameter cell: UITableViewCell referrance
     func deleteThis(cell: UITableViewCell) {
         if phraseList.count <= 1 {
             if let newcell = (cell as? KeyphraseCell) {
@@ -160,12 +138,18 @@ class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePh
         shelf.deleteRows(at: [ip], with: .right)
     }
     
+    /// deletePhrase delegate method. Call back if kewords or hashtags cell edited
+    /// - Parameters:
+    ///   - cell: KeyphraseCell cell referrance
+    ///   - to: edited text
     func textChanged(at cell: UITableViewCell, to: String) {
         let ip: IndexPath = shelf.indexPath(for: cell)!
         print("tick =",ip.row)
         phraseList[ip.row] = to
     }
     
+    /// deletePhrase delegate method. Call back if keword or hashtag is invalid.
+    /// - Parameter words: error words
     func NotValidWord(words: [String]) {
         self.showAlertMessage(title: words.first!, message: words.last!){ }
     }
@@ -195,6 +179,7 @@ class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePh
         // Do any additional setup after loading the view.
     }
     
+    /// Set post details to all fields if the user edited already created post otherwise initialise all fields
     func setPostDetails(){
         self.postName.text = "Post \((self.postIndex == nil ? (self.draftOffer!.draftPosts.count + 1) : (self.postIndex! + 1)))"
         if let draft = self.draftOffer{
@@ -237,7 +222,8 @@ class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePh
         }
         self.addDoneButtonOnKeyboard(textView: postInstruction)
     }
-    
+    /// Adjust scroll view as per Keyboard Height if the keyboard hides textfiled.
+    /// - Parameter notification: keyboardWillShowNotification reference
     @objc override func keyboardWasShown(notification : NSNotification) {
         
         let userInfo = notification.userInfo!
@@ -251,18 +237,20 @@ class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePh
         print(contentInset)
         
     }
-    
+    ///   Getback scroll view to normal state
+    /// - Parameter notification: keyboardWillHideNotification reference
     @objc override func keyboardWillHide(notification:NSNotification){
         
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         scroll.contentInset = contentInset
     }
     
+    /// Custom textfield done button. resign first responder UITextView
     @objc override func doneButtonAction() {
         self.postInstruction.resignFirstResponder()
         //self.category.resignFirstResponder()
     }
-    
+    //MARK: -Post list UITableView Delegate and Datasource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return phraseList.count
     }
@@ -275,6 +263,9 @@ class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePh
         return cell
     }
 	
+    
+    /// Check If user does not edit anythig. Check if user entered valid instruction. Check if user entered valid keywords or hashtags.Form valid hashtags and keywords. update changes to firebase.
+    /// - Returns: return true if user entered valid data otherwise false.
 	func tryDismiss() -> Bool {
         
         let pharse = self.phraseList.filter { (pharse) -> Bool in
@@ -328,21 +319,33 @@ class PostDetailVC: BaseVC, UITableViewDelegate, UITableViewDataSource, deletePh
 		return true
 	}
     
+    
+    /// Dismiss current viewcontroller if tryDismiss() method returns true.
+    /// - Parameter sender: UIButton referrance
     @IBAction func dismissAction(sender: AnyObject){
 		if tryDismiss() {
 			self.navigationController?.popViewController(animated: true)
 		}
     }
     
+    
+    /// Add new pharse text field
+    /// - Parameter sender: UIButton referrance
     @IBAction func addPhrase(_ sender: Any) {
         addNewItem(text: "", sender: sender as! UIButton)
     }
-    
+    /// Add new hashtag text field
+    /// - Parameter sender: UIButton referrance
     @IBAction func addHashtag(_ sender: Any) {
         addNewItem(text: "#", sender: sender as! UIButton)
         
     }
     
+    
+    /// reload post cells. Check if the user not added more than five field. Insert cell and reload the post data.
+    /// - Parameters:
+    ///   - text: pharse or hashtag text
+    ///   - sender: UIButton referrance
     func addNewItem(text: String, sender: UIButton) {
         if phraseList.count >= 5 {
             MakeShake(viewToShake: sender)

@@ -20,8 +20,8 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
 	func delete(_ at: Int) {
 		draftTemp?.draftPosts.remove(at: at)
 		postTable.reloadData()
-	}
-	
+    }
+    /// NCDelegate Method. it calls when pop the current view controller. here we check if user edited any fields. if edited, update changes to firebase.
     func shouldAllowBack() -> Bool {
 		if self.draftTemp!.draftPosts.count == 0 {
 			return true
@@ -43,6 +43,7 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     }
     
     
+    /// BusinessDelegate delegate method. reset business data.
     func reloadBusiness() {
         self.setOfferData()
     }
@@ -87,6 +88,9 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
         self.setOfferData()
     }
     
+    
+    /// Check if the user edited any field.
+    /// - Returns: return true if user edit any field otherwise false
     func checkIfEdited() -> Bool {
         var checkEdited = false
         if index == nil {
@@ -104,9 +108,10 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
         return checkEdited
     }
     
+    
+    /// Set all draft offer data to concerned fields if user is going to edit the already created offer. Initialise all fileds if new offer.
     func setOfferData() {
-        
-        if index != nil {
+            if index != nil {
             self.backBtn.setTitle("Done", for: .normal)
             let draftOffer = MyCompany.drafts[index!]
             self.offerName.text = draftOffer.title == "" ? "Offer \((MyCompany.drafts.count))" : draftOffer.title
@@ -170,6 +175,7 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
         self.setTableSource()
     }
     
+    /// Initialise postTable delegate and datasource and reload data
     func setTableSource() {
         self.postTable.delegate = self
         self.postTable.dataSource = self
@@ -185,6 +191,8 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
         self.cmyName.text = "Offer will appear from \(basic.name)"
     }
     
+    
+    /// set table height contraint based on post count
     func setPostConstraints() {
         
         if index != nil {
@@ -199,18 +207,21 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
     }
     
     func createTempDraft() -> DraftOffer {
-        
         let draftID = GetNewID()
         let tempDict = ["title":self.offerName.text!,"mustBeOver21": false, "payIncrease": 1.0, "lastEdited": Date().toUString()] as [String : Any]
         let draft = DraftOffer.init(dictionary: tempDict, businessId: MyCompany.businessId, draftId: draftID)
         return draft
     }
     
+    /// Edit Offer name
+    /// - Parameter sender: UIButton referrance
     @IBAction func editOfferAction(sender: UIButton){
         self.offerName.isUserInteractionEnabled = true
         self.offerName.becomeFirstResponder()
     }
     
+    /// Dismiss current view controller. update changes to firebase if edited anything offer details.
+    /// - Parameter sender: UIButton referrance
 	@IBAction func dismissAction(sender: UIButton){
 		
 		if index == nil && !checkIfEdited() {
@@ -250,9 +261,9 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
 		}
 		
 	}
-	
-	
-	
+    
+    /// Check if user entered all the data are valid.
+    /// - Returns: return true if entered all data are valid otherwise false.
 	func isSavable() -> Bool {
 		for p in draftTemp!.draftPosts {
 			if p.instructions == "" {
@@ -276,13 +287,17 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
 	}
 	
 	//MARK: Textfield Delegates
-	
+    /// Set modified offer name to draft title
+    /// - Parameter textField: UITextField referrance
 	@IBAction func textDidChange(_ textField: UITextField){
 		if textField.text?.count != 0{
 			self.draftTemp?.title = textField.text!
 		}
 	}
-	
+    
+    /// Set modified offer name to draft title
+    /// - Parameter textField: UITextField referrance
+    /// - Returns: return true or false
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool{
 		textField.resignFirstResponder()
 		self.offerName.isUserInteractionEnabled = false
@@ -294,6 +309,7 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
 	
 	@IBOutlet weak var informationalLabel: UILabel!
 	
+    //MARK: - Draft posts UITableView Delegates and Datasource
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		var numOfRows = self.draftTemp!.draftPosts.count + 1
 		if numOfRows > 3 {
@@ -340,11 +356,16 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
         
     }
     
+    
+    /// Segue to change company page.
+    /// - Parameter sender: UIButton referrance
     @IBAction func changeCompanyAction(sender: UIButton){
         let draftOffer = self.draftTemp
         self.performSegue(withIdentifier: "toCompanyList", sender: draftOffer)
     }
     
+    /// Delete draft offer if the offer does not distribute to offer pool.
+    /// - Parameter sender: UIButton referrance
     @IBAction func deleteAction(sender: UIButton){
         
         self.showAlertMessageForDestruction(title: "Alert", message: "Are you sure to delete the offer?", cancelTitle: "No", destructionTitle: "Yes", completion: {
@@ -365,7 +386,8 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
             
         })
     }
-
+    
+    /// remove selected index from drafts and update changes to firebase.
     func deleteOffer() {
         let draftOffer = MyCompany.drafts[index!]
         let index = MyCompany.drafts.lastIndex { (draft) -> Bool in
@@ -381,6 +403,9 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
         }
     }
     
+    
+    /// Reclaim Action: Check if offer distrubuted to offerpool. Add remaining offer balance to user balance. Update changes to firebase.
+    /// - Parameter sender: UIButton referrance
     @IBAction func reclaimOffer(sender: UIButton){
         let draftOffer = MyCompany.drafts[self.index!]
         draftOffer.getDraftFromPool { (isExist,pool)  in
@@ -403,6 +428,8 @@ class OfferNewCreateVC: BaseVC, UITextFieldDelegate, UITableViewDataSource, UITa
         }
     }
     
+    /// Check if user entered valid data. set last current time to lastEdited variable. set last draft index to index variable if it is new offer. update changes to firebase. segue to filter influencer screen.
+    /// - Parameter sender: UIButton referrance
     @IBAction func filterOffer(sender: UIButton){
         if self.isSavable() {
             draftTemp!.lastEdited = Date()

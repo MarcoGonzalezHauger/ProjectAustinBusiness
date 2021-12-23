@@ -157,6 +157,8 @@ class LocationFilterVC: BaseVC {
         self.dismiss(animated: true, completion: nil)
     }
     
+    /// ZipcodeCollectionDelegate delegate method. send selected zipcodes
+    /// - Parameter sender: UIButton referrence
     @IBAction func doneAction(sender: UIButton){
         self.zipCollection?.sendZipcodeCollection(zipcodes: self.selectedZipCodes)
         self.dismiss(animated: true, completion: nil)

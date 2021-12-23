@@ -11,6 +11,8 @@ import UIKit
 class BasicsCell: UITableViewCell {
     @IBOutlet weak var logo: UIImageView!
     @IBOutlet weak var cmyName: UILabel!
+    
+    /// set basic business details to BasicsCell cell fields.
     var basic: BasicBusiness?{
         didSet{
             if let basicBusiness = basic{
@@ -34,6 +36,8 @@ class BasicsListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     var currentCompanies = [BasicBusiness]()
 
+    
+    /// Viewcontroller life cycle. Filter valid businesses
     override func viewDidLoad() {
         super.viewDidLoad()
         let filtered = MyCompany.basics.filter { (basic) -> Bool in
@@ -44,11 +48,12 @@ class BasicsListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         // Do any additional setup after loading the view.
     }
     
+    /// Initialise basicsList table datasource and delegate
     func setTableViewSource() {
         self.basicsList.delegate = self
         self.basicsList.dataSource = self
     }
-    
+    //MARK: - Comapny list UITableView Delegate and Datasource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.currentCompanies.count
     }
@@ -78,6 +83,9 @@ class BasicsListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         self.basicsList.reloadData()
     }
     
+    
+    /// Check user if selected any business. Dismiss Current View Controller
+    /// - Parameter sender: UIButton referrance
     @IBAction func doneAction(sender: UIButton){
         if draftOffer?.basicId == nil || draftOffer?.basicId == "" {
             self.showAlertMessage(title: "Alert", message: "Please choose the company") {
@@ -89,6 +97,8 @@ class BasicsListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         
     }
     
+    /// Dismiss current viewcontroller
+    /// - Parameter sender: UIButton referrance
     @IBAction func dismissAction(sender: UIButton) {
 		self.dismiss(animated: true, completion: nil)
     }

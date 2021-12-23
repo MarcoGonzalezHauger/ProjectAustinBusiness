@@ -13,6 +13,8 @@ class OfferList: UITableViewCell{
     @IBOutlet weak var offerName: UILabel!
     @IBOutlet weak var cmyName: UILabel!
     @IBOutlet weak var lastEdited: UILabel!
+    
+    /// set all fields data of OfferList cell in didSet of DraftOffer
     var draftOffer: DraftOffer?{
         didSet{
             if let offer = draftOffer{
@@ -57,6 +59,14 @@ class NewOfferListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     var isEditOffer = false
     
+    /// Sort draft offers by last edited date
+    /// - Returns: return sorted draft offer
+	func GetSortedList() -> [DraftOffer] {
+        let filtered = MyCompany.drafts.sorted{$0.lastEdited > $1.lastEdited}
+        MyCompany.drafts = filtered
+		return filtered
+	}
+    //MARK:- UITableview Delegates and Datasource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         (addBtn.isHidden, editBtn.isHidden) = GetSortedList().count == 0 ? (true,true) : (false, false)
@@ -79,12 +89,6 @@ class NewOfferListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         cell.offerName.text = draft.title == "" ? "Offer \((indexPath.row + 1))" : draft.title
         return cell
     }
-	
-	func GetSortedList() -> [DraftOffer] {
-        let filtered = MyCompany.drafts.sorted{$0.lastEdited > $1.lastEdited}
-        MyCompany.drafts = filtered
-		return filtered
-	}
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         return 120.0
@@ -119,6 +123,8 @@ class NewOfferListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    /// Delete selected index from draft offer. update changes to firebase.
+    /// - Parameter index: selected index
     func deleteOffer(index: Int) {
         let draftOffer = MyCompany.drafts[index]
         let index = MyCompany.drafts.lastIndex { (draft) -> Bool in
@@ -147,16 +153,22 @@ class NewOfferListVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         self.setTableSource()
     }
     
+    /// Initialise table view datasource and delegates. reload data.
     func setTableSource() {
         self.offerList.delegate = self
         self.offerList.dataSource = self
         self.offerList.reloadData()
     }
     
+    
+    /// segue to new offer create page
+    /// - Parameter sender: UIButton referrance
     @IBAction func newOfferAction(sender: UIButton){
         self.performSegue(withIdentifier: "toNewOfferCreate", sender: nil)
     }
     
+    /// Edit offerList table based on isEditOffer tag.
+    /// - Parameter sender: UIButton referrance
     @IBAction func editOffers(sender: UIButton){
         self.offerList .setEditing(!self.isEditOffer ? true : false, animated: true)
         self.editBtn.setTitle(!self.isEditOffer ? "Done" : "Edit", for: .normal)

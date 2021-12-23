@@ -116,6 +116,9 @@ extension DraftOffer{
     }
     
     
+    /// Check if draft offer has distributed to offer pool.
+    /// - Parameter completed: pass closure function with success, pooloffer params
+    /// - Returns: return closure functions
     func getDraftFromPool(completed: ((_ success: Bool, _ pool: PoolOffer?) -> ())?) {
         let ref = Database.database().reference().child(pathString).queryOrdered(byChild: "draftOfferId").queryEqual(toValue: self.draftId)
         ref.observeSingleEvent(of: .value) { snap in
