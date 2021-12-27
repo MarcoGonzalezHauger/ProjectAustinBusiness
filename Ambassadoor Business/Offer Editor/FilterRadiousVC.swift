@@ -131,7 +131,7 @@ class FilterRadiousVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
 		self.driveEstimate.text = "About a \(Int((sender.value.rounded(.awayFromZero)) * 2.3)) minute drive"
     }
     
-    /// Get locations in radious of picked location .Check if user picked any location from the list. get locations in radious of picked location using third party web service
+    /// Get locations in radious of picked location .Check if user picked any location from the list. get locations in radious of picked location using third party web service. Send selected zipcodes to ZipcodeCollectionDelegate method. Dismiss current viewcontroller.
     /// - Parameter sender: UIButton referrance
     @IBAction func UserFilterAction(sender: UIButton){
         

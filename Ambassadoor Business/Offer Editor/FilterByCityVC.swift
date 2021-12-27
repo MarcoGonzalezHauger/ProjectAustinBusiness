@@ -22,6 +22,8 @@ class CityCell: UITableViewCell, UITextFieldDelegate {
     
     var cityDelegate: CityCellDelegate?
     
+    
+    /// Set value to CityCell fields
     var cityData: CityObject?{
         didSet{
             if let object = cityData{
@@ -38,6 +40,10 @@ class CityCell: UITableViewCell, UITextFieldDelegate {
         self.mappinImg.tintColor = .red
     }
     
+    
+    /// Return cityText text field. seperate city and state. Fetch zipcodes by state and city. change mappinImg color based on valid zipcode.
+    /// - Parameter textField: UITextField referrance
+    /// - Returns: true or false
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         if cityText.text!.count != 0{
         let seperateData = cityText.text!.components(separatedBy: ",")
@@ -55,6 +61,10 @@ class CityCell: UITableViewCell, UITextFieldDelegate {
         return true
     }
     
+    /// Fetch zipcodes based on city and state using third party API.
+    /// - Parameters:
+    ///   - city: entered city
+    ///   - state: entered state
     func fetchZipcodes(city: String, state: String) {
         DispatchQueue.main.async {
             self.activityIndicator.isHidden = false
@@ -87,12 +97,21 @@ class CityCell: UITableViewCell, UITextFieldDelegate {
         }
     }
     
+    
+    /// Delete citytext cell. send cityobject referrance to CityCellDelegate method.
+    /// - Parameter sender: UIButton reffeance.
     @IBAction func deleteCityAction(sender: UIButton){
         self.cityDelegate!.Delete!(zipObj: self.cityData!, cell: self)
     }
 }
 
 class FilterByCityVC: BaseVC, UITableViewDelegate, UITableViewDataSource, CityCellDelegate {
+    
+    
+    /// CityCellDelegate delegate method
+    /// - Parameters:
+    ///   - zipObj: CityObject referrance
+    ///   - cell: CityCell referrance
     func ZipCodeValid(zipObj: CityObject, cell: CityCell) {
         if let index = cityList.indexPath(for: cell){
             self.totalCityObjects[index.row] = zipObj
@@ -100,6 +119,10 @@ class FilterByCityVC: BaseVC, UITableViewDelegate, UITableViewDataSource, CityCe
         self.setTableSource()
     }
     
+    /// CityCellDelegate delegate method. delete location cell by delegate cell referrance
+    /// - Parameters:
+    ///   - zipObj: CityObject referrance.
+    ///   - cell: CityCell referrance.
     func Delete(zipObj: CityObject, cell: CityCell) {
         if let index = cityList.indexPath(for: cell){
         self.totalCityObjects.remove(at: index.row)
@@ -119,13 +142,14 @@ class FilterByCityVC: BaseVC, UITableViewDelegate, UITableViewDataSource, CityCe
         self.setTableSource()
         // Do any additional setup after loading the view.
     }
-    
+    /// Initialise locationList table delegate and datasource
     func setTableSource() {
         self.cityList.delegate = self
         self.cityList.dataSource = self
         self.cityList.reloadData()
     }
     
+    //MARK: - city list UITableView Delegate and Datasource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return totalCityObjects.count
     }
@@ -145,6 +169,9 @@ class FilterByCityVC: BaseVC, UITableViewDelegate, UITableViewDataSource, CityCe
         return 44.0
     }
     
+    
+    /// Check if empty field is there. if not, add new location field. reload table
+    /// - Parameter sender: UIButton referrance
     @IBAction func addNewCell(sender: UIButton) {
         
         for (index, city) in self.totalCityObjects.enumerated() {
@@ -165,10 +192,14 @@ class FilterByCityVC: BaseVC, UITableViewDelegate, UITableViewDataSource, CityCe
         
     }
     
+    /// Dismiss current viewcontroller
+    /// - Parameter sender: UIButton referrance
     @IBAction func dismissAction(sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
     
+    /// Check if user entered valid location.
+    /// - Parameter sender: UIButton referrance
     @IBAction func useFilterAction(sender: UIButton){
         for (index, city) in self.totalCityObjects.enumerated() {
             if city.city == "" {

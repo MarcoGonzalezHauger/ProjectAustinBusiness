@@ -9,6 +9,7 @@
 import UIKit
 
 class NewDistributeVC: BaseVC, changedDelegate {
+    // changedDelegate delegate method. set amountOfMoneyInCents from money textfield.
     func changed() {
         //money.moneyValue = amountOfMoneyInCents
         amountOfMoneyInCents = money.moneyValue
@@ -31,12 +32,14 @@ class NewDistributeVC: BaseVC, changedDelegate {
         // Do any additional setup after loading the view.
     }
     
+    // Change amount of cents to dollar
     func getDesiredCashPower() -> Double {
         return Double(amountOfMoneyInCents) / 100
     }
     
+    /// Distribute action
+    /// - Parameter sender: UIButton referrance.
     @IBAction func DistributeOfferAction(sender: UIButton){
-		
 		
 		let basicBusiness = globalBasicBusinesses.filter { (basic) -> Bool in
 			return basic.basicId == self.draftOffer.basicId!
@@ -69,7 +72,9 @@ class NewDistributeVC: BaseVC, changedDelegate {
 			distributeOffer(xoTaco: false)
 		}
     }
-	
+    
+    /// Check cash power if not equal to zero. check offer amount if more than 3. check user balance if more than zero. Distribute offer to offer pool.
+    /// - Parameter xoTaco: send true business is "XO Taco" othe wise false
 	func distributeOffer(xoTaco: Bool) {
 		if getDesiredCashPower() != 0 {
 			let offerAmount = getDesiredCashPower()
@@ -120,11 +125,14 @@ class NewDistributeVC: BaseVC, changedDelegate {
 			}
 		}
 	}
-    
+    /// Custom textfield done button. resign first responder UITextField.
     override func doneButtonAction() {
         self.money.resignFirstResponder()
     }
     
+    
+    /// Dismiss current viewcontroller.
+    /// - Parameter sender: UIButton referrance.
     @IBAction func cancelAction(sender: UIButton){
         self.navigationController?.popViewController(animated: true)
     }

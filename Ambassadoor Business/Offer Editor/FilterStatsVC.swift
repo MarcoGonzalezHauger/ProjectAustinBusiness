@@ -34,6 +34,12 @@ class FilterStatsVC: BaseVC, UITextFieldDelegate {
         return true
     }
     
+    /// Add % at end of the text when enter engagement text filed. restrict more than 20%.
+    /// - Parameters:
+    ///   - textField: UITextField referrance
+    ///   - range: rage of text
+    ///   - string: entered text
+    /// - Returns: true or false
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool{
         if textField == engagement {
             
@@ -80,6 +86,7 @@ class FilterStatsVC: BaseVC, UITextFieldDelegate {
          
     }
     
+    /// Set cursor position in engagement text.
     func setTextCursor(){
         if let selectedRange = engagement.selectedTextRange {
 
@@ -96,10 +103,15 @@ class FilterStatsVC: BaseVC, UITextFieldDelegate {
         
     }
     
+    /// Dismiss current viewcontroller
+    /// - Parameter sender: UIButton referrance
     @IBAction func cancelAction(sender: UIButton){
         self.dismiss(animated: true, completion: nil)
     }
     
+    
+    /// Check if user entered valid average likes and engagement. send average likes and engagement to InfluencerStatsDelegate delegate method. Dismiss current viewcontroller.
+    /// - Parameter sender: UIButton referrance
     @IBAction func UseFilterAction(sender: UIButton){
         if self.avgLikes.text?.count == 0{
             self.showAlertMessage(title: "Alert", message: "Average Likes should not empty") {

@@ -17,6 +17,8 @@ class stateCell: UITableViewCell {
 	@IBOutlet weak var stateSelected: UILabel!
 	@IBOutlet weak var stateLabel: UILabel!
 	@IBOutlet weak var stateImage: UIImageView!
+    
+    /// set state image and state name.
 	var thisState: State? {
 		didSet {
 			stateImage.image = thisState?.GetImage()
@@ -26,7 +28,8 @@ class stateCell: UITableViewCell {
 }
 
 class SelectStatesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
-		
+    
+    // MARK: - statesShelf list UITableView Delegate and Datasource
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return 85
 	}
@@ -49,12 +52,17 @@ class SelectStatesVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 		}
 		updateSelection(indexPath: indexPath)
 	}
-	
+    
+    /// Update stateSelected text in cell when user select the state.
+    /// - Parameter indexPath: Index path of the cell.
 	func updateSelection(indexPath: IndexPath) {
 		(statesShelf.cellForRow(at: indexPath) as! stateCell).stateSelected.isHidden = !isSelected(state: GetItems()[indexPath.row])
 		searchBar.resignFirstResponder()
 	}
-	
+    
+    /// Check id user selected state or not. To avoid reuse identifies cell conflict
+    /// - Parameter state: selected state
+    /// - Returns: true if user selected the state otherwise false
 	func isSelected(state: State) -> Bool {
 		return selectedStates.contains(where: { (state1) -> Bool in
 			return state1.shortName == state.shortName
@@ -70,6 +78,7 @@ class SelectStatesVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 	
 	let stateList = GetListOfStates()
 	
+//    Get all states and filter by search string if user search other wise filter by has prefix name.
 	func GetItems() -> [State] {
 		var returnValue = stateList
 		returnValue = returnValue.filter { (state) -> Bool in
@@ -81,12 +90,16 @@ class SelectStatesVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 		}
 		return returnValue
 	}
-	
+    
+    /// Dismiss current view controller
+    /// - Parameter sender: UIButton referrance
 	@IBAction func backPressed(_ sender: Any) {
 		self.navigationController?.popViewController(animated: true)
 	}
 	
 	var searchString = ""
+    
+    /// Update UseStateButton title and UseStateView color based on selectedStates.
 	var selectedStates: [State] = [] {
 		didSet {
 			if selectedStates.count == 1 {
@@ -123,6 +136,9 @@ class SelectStatesVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var zipCollection: ZipcodeCollectionDelegate?
 	
+    
+    /// Check if user selected any state. fetch zipcode by state using third party API.
+    /// - Parameter sender: UIButton referrance
 	@IBAction func UseState(_ sender: Any) {
 		if selectedStates.count == 0 {
 			YouShallNotPass(SaveButtonView: UseStateView, returnColor: .lightGray)
@@ -138,6 +154,9 @@ class SelectStatesVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 		}
 	}
     
+    
+    /// Fetch zipcodes by state name using third party API. pass zipcods in sendZipcodeCollection delegate method. Dismiss current view controller.
+    /// - Parameter filter: selected states
     func getStateFilterZips(filter: String) {
         let data = filter.components(separatedBy: ":")[1]
         var returnData: [String] = []
@@ -164,7 +183,8 @@ class SelectStatesVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 			return ""
 		}
 	}
-	
+    
+    /// Initialise statesShelf list delegate and datasource
 	override func viewDidLoad() {
         super.viewDidLoad()
 		if #available(iOS 13.0, *) {
@@ -183,16 +203,15 @@ class SelectStatesVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 		statesShelf.contentInset.bottom = view.safeAreaInsets.bottom + 88
 		statesShelf.contentInset.top = 6
     }
-
-	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-		searchBar.resignFirstResponder()
-	}
 	
 	var locationDelegate: LocationFilterDelegate?
 	
+//    UISearchbar delegate
 	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 		searchString = searchText
 		statesShelf.reloadData()
 	}
-	
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
 }

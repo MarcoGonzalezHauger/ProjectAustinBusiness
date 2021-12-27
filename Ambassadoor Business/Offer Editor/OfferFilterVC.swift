@@ -19,6 +19,8 @@ protocol ZipcodeCollectionDelegate {
 class OfferFilterVC: BaseVC, InterestPickerDelegate, InfluencerStatsDelegate, ZipcodeCollectionDelegate {
     
     
+    /// ZipcodeCollectionDelegate delegate method. getting selected zipcodes from location selector page through delegate. filter influencers based on location
+    /// - Parameter zipcodes: selected zipcodes array
     func sendZipcodeCollection(zipcodes: [String]) {
          selectedZipCodes = zipcodes
         DispatchQueue.main.async {
@@ -33,6 +35,8 @@ class OfferFilterVC: BaseVC, InterestPickerDelegate, InfluencerStatsDelegate, Zi
         self.filteredInfText.text = "\(self.filterInfluencers().count)"
     }
     
+    /// InterestPickerDelegate delegate method. Filter influencers based on Interest.
+    /// - Parameter interests: get selected interests
     func newInterests(interests: [String]) {
         self.selectedInterestArray = interests
         self.filteredInfText.text = "\(self.filterInfluencers().count)"
@@ -52,7 +56,8 @@ class OfferFilterVC: BaseVC, InterestPickerDelegate, InfluencerStatsDelegate, Zi
     
     var offerPool: PoolOffer?
     
-
+    
+    /// Initialise filters and sentOfferBtn button
     override func viewDidLoad() {
         super.viewDidLoad()
         if let pool = offerPool {
@@ -64,6 +69,9 @@ class OfferFilterVC: BaseVC, InterestPickerDelegate, InfluencerStatsDelegate, Zi
         // Do any additional setup after loading the view.
     }
     
+    
+    /// Filter influencers based on offer location, interest, gender, statistics
+    /// - Parameter pool: Draft offer
     func loadFilterInfo(pool: PoolOffer) {
         
         self.selectedZipCodes = pool.filter.acceptedZipCodes
@@ -74,20 +82,31 @@ class OfferFilterVC: BaseVC, InterestPickerDelegate, InfluencerStatsDelegate, Zi
         self.filteredInfText.text = "\(self.filterInfluencers().count)"
     }
     
+    
+    /// Dismiss current view controller
+    /// - Parameter sender: UIButton Referrance
     @IBAction func cancelAction(sender: Any){
         self.navigationController?.popViewController(animated: true)
     }
     
+    
+    /// Segue to location filter
+    /// - Parameter sender: UIButton Referrance
     @IBAction func pickLocation(sender: UIButton){
         self.performSegue(withIdentifier: "toLocationFilter", sender: self)
     }
     
+    
+    /// Segue to Interest Picker
+    /// - Parameter sender: UIButton Referrance
     @IBAction func pickInterest(sender: UIButton){
         self.performSegue(withIdentifier: "toInterestPicker", sender: self)
     }
 
+    
+    /// Show gender picker action sheet
+    /// - Parameter sender: UIButton referrance
     @IBAction func pickGender(sender: UIButton){
-        
         ShowGenderPicker(self) { (newGender) in
             self.selectedGender =  newGender
             self.filteredInfText.text = "\(self.filterInfluencers().count)"
@@ -95,10 +114,17 @@ class OfferFilterVC: BaseVC, InterestPickerDelegate, InfluencerStatsDelegate, Zi
         
     }
     
+    
+    /// Segue to statistical filter page
+    /// - Parameter sender: UIButton referrance
     @IBAction func pickStatAction(sender: UIButton){
         self.performSegue(withIdentifier: "toFilterStats", sender: self)
     }
     
+    
+    /// Get Gender array
+    /// - Parameter gender: selected gender
+    /// - Returns: Gender array
     func getGenders(gender: String) -> [String] {
         
         switch gender {
@@ -110,6 +136,10 @@ class OfferFilterVC: BaseVC, InterestPickerDelegate, InfluencerStatsDelegate, Zi
         
     }
     
+    
+    /// Get raw gender and meaningful word of none
+    /// - Parameter gender: pass gender array
+    /// - Returns: return gender raw value
     func getRawGender(gender: [String]) -> String {
         if gender.count == 0 {
             return ""
@@ -121,6 +151,9 @@ class OfferFilterVC: BaseVC, InterestPickerDelegate, InfluencerStatsDelegate, Zi
         }
     }
     
+    
+    /// Filter Basic influencers based on location, Interest, Gender, Statistical data
+    /// - Returns: return filtered influencers
     func filterInfluencers() -> [BasicInfluencer] {
         
         var filteredInfluencers = [BasicInfluencer]()
@@ -173,6 +206,9 @@ class OfferFilterVC: BaseVC, InterestPickerDelegate, InfluencerStatsDelegate, Zi
         
     }
     
+    
+    /// Check if user filtered data valid or not. create OfferFilter instance and update to firebase
+    /// - Parameter sender: UIButton referrance
     @IBAction func sendOfferAction(sender: UIButton){
         
         var filterDict = [String: AnyObject]()

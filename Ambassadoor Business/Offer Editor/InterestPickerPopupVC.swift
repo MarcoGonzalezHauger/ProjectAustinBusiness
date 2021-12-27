@@ -29,6 +29,11 @@ class InterestPickerPopupVC: UIViewController { //interestPickerPopup
 	var currentInterests: [String] = []
 	@IBOutlet weak var doneButton: UIButton!
 	
+    
+    /// Set pickerViewDelegate and selected interests
+    /// - Parameters:
+    ///   - segue: storyboard segue
+    ///   - sender: Any object referrance
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "embedSegue" {
 			if let view = segue.destination as? PickInterests {
@@ -38,10 +43,16 @@ class InterestPickerPopupVC: UIViewController { //interestPickerPopup
 		}
 	}
 	
+    
+    /// Dismiss Current ViewController
+    /// - Parameter sender: UIButton referrance
 	@IBAction func cancelPressed(_ sender: Any) {
 		dismiss(animated: true, completion: nil)
 	}
 	
+    
+    /// Get selcted interest and pass selected interest to InterestPickerDelegate's newInterests method. Dismiss current viewcontroller.
+    /// - Parameter sender: UIButton referrance
 	@IBAction func donePressed(_ sender: Any) {
 		let newInt = pickerviewdel!.getInterests()
 //		if newInt.count > 0 {

@@ -76,6 +76,9 @@ class PickInterests: UIViewController, UICollectionViewDelegate, UICollectionVie
 
 	@IBOutlet weak var collectionView: UICollectionView!
 	
+    
+    /// InterestPickerDelegate method.
+    /// - Returns: picked interests
 	func getInterests() -> [String] {
 		return pickedInterests
 	}
@@ -85,6 +88,8 @@ class PickInterests: UIViewController, UICollectionViewDelegate, UICollectionVie
 	
 	let columnLayout = CustomViewFlowLayout()
 	
+    
+    /// Initialise all data and collection view.
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -99,7 +104,7 @@ class PickInterests: UIViewController, UICollectionViewDelegate, UICollectionVie
         // Do any additional setup after loading the view.
     }
 	
-	
+//	MARK: - collectionView Delegates and Datasource
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		
 		

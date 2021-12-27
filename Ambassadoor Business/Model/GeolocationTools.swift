@@ -289,6 +289,13 @@ func GetTownName(zipCode: String, completed: @escaping (_ zipCodeInfo: ZipCodeDa
     
 }
 
+
+/// Fetch zipcodes based on city and state using third party API.
+/// - Parameters:
+///   - city: Entered city
+///   - state: Entered state
+///   - completed: callback with fetched zipcodes.
+/// - Returns: return call back function
 func GetZipCodeUsingCity(city: String, state: String, completed: @escaping (_ zipCodes: [String]?) -> () ) {
     
     
@@ -332,7 +339,12 @@ func GetZipCodeUsingCity(city: String, state: String, completed: @escaping (_ zi
 }
     
     var zipCodesFromStatesDic: [String: [String]] = [:]
-    
+
+/// Fetch zipcode by short state name using third party API.
+/// - Parameters:
+///   - stateShortName: state short name
+///   - completed: call back with zipcodes
+/// - Returns: fetched zipcodes
     func GetZipCodesInState(stateShortName: String, completed: @escaping ([String]) -> () ) {
         if let zips1 = zipCodesFromStatesDic[stateShortName] {
             if zips1 != [] {

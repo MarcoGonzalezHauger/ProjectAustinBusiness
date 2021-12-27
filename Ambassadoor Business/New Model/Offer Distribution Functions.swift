@@ -10,6 +10,17 @@ import Foundation
 import Firebase
 
 extension DraftOffer {
+    
+    /// Check offer amount more than $3.  Check if user enter not more than balance. calcualte ambassadoor commision. Create pool offer instance. distribute offer to pool.
+    /// - Parameters:
+    ///   - asBusiness: Business user instance
+    ///   - asBasic: Basic Business instance
+    ///   - filter: OfferFilter instance
+    ///   - xoTacoCaseStudy: xoTaco tag
+    ///   - withMoney: offer amount
+    ///   - withdrawFunds: testing true or false
+    ///   - completed: callback function
+    /// - Returns: call back function
 	func distributeToPool(asBusiness: Business, asBasic: BasicBusiness, filter: OfferFilter, xoTacoCaseStudy: Bool, withMoney: Double, withDrawFundsFalseForTestingOnly withdrawFunds: Bool, completed: @escaping (_ failedReason: String, _ newBusinessWithChanges: Business?) -> ()) {
 		if withMoney < 3 {
 			completed("You must distribute your offer with at least $3.", nil)
