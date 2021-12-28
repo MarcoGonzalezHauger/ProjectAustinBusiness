@@ -15,7 +15,9 @@ class StatInfoVC: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-	
+    
+    /// Dismiss current view controller
+    /// - Parameter sender: UIButton referrance
 	@IBAction func dismissNow(_ sender: Any) {
 		dismiss(animated: true)
 	}

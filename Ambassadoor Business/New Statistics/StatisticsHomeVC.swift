@@ -20,6 +20,9 @@ class sentOfferCell: UITableViewCell {
 class StatisticsHomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, viewAllDelegate {
 	
 	var tempPosts: [InProgressPost] = []
+    
+    /// segue to view one post page if selected one post otherwise view all post page.
+    /// - Parameter posts: get InProgressPost array referrance
 	func viewAllPressed(posts: [InProgressPost]) {
 		tempPosts = posts
 		if posts.count == 1 {
@@ -31,6 +34,7 @@ class StatisticsHomeVC: UIViewController, UITableViewDelegate, UITableViewDataSo
 	
 	@IBOutlet weak var sentOfferHeight: NSLayoutConstraint!
 	
+//    MARK: - SentOffers list UITableview Datasource and Delegates
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return MyCompany.sentOffers.count
 	}
@@ -107,12 +111,17 @@ class StatisticsHomeVC: UIViewController, UITableViewDelegate, UITableViewDataSo
 		}
 	}
 	
+    
+    /// Refresh statistics action
+    /// - Parameter sender: UIButton referrance
 	@IBAction func reloadTemp(_ sender: Any) {
 		loadData()
 	}
 	
 	@IBOutlet weak var titleLabel: UILabel!
 	
+    
+    /// Filter inprogress post by instagram post. reload inprogress post data. compute total post, total engagements, Follower reached, total budget and set data.
 	func refreshTotals() {
 		
 		if MyCompany.sentOffers.count == 0 {
@@ -165,6 +174,8 @@ class StatisticsHomeVC: UIViewController, UITableViewDelegate, UITableViewDataSo
 		
 	}
 	
+    
+    /// Refresh statistics data
 	func loadData() {
 		print(">> Loading Test Data.")
 		RefreshStatistics(withInfluencerRefresh: true) {

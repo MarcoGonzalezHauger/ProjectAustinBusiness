@@ -14,7 +14,8 @@ class PreviewPostCell: UICollectionViewCell {
 		statusIndicator.ShadowColor = color
 		statusIndicator.backgroundColor = color
 	}
-	
+    
+    /// Set post status and download instagarm posted image and set image.
 	var thisPost: InProgressPost? {
 		didSet {
 			if let thisPost = thisPost {
@@ -64,6 +65,7 @@ class PostViewerVC: UIViewController, UICollectionViewDelegate, UICollectionView
 	var samplePosts: [InProgressPost] = []
 	var delegate: viewAllDelegate?
 	
+// MARK: -Post collection Delegate and datasource
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 //		topLabel.text = "All Posts (\(samplePosts.count))"
 		return samplePosts.count
@@ -91,7 +93,9 @@ class PostViewerVC: UIViewController, UICollectionViewDelegate, UICollectionView
 	@IBOutlet weak var collectionView: UICollectionView!
 	@IBOutlet weak var viewAllButton: UIButton!
 	
-	
+    
+    /// viewAllDelegate delegate method. pass InProgressPost array.
+    /// - Parameter sender: UIButton referrance
 	@IBAction func viewAllPressed(_ sender: Any) {
 		delegate?.viewAllPressed(posts: samplePosts)
 	}

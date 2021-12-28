@@ -68,7 +68,7 @@ class NewWithdrawVC: BaseVC {
     ///   - mode: test or live
     func withDrawAmoutSendServer(acctID: String, amount: Double, mode: String) {
             
-            let params = ["accountID":acctID,"amount":amount, "mode": "live"] as [String: AnyObject]
+            let params = ["accountID":acctID,"amount":amount, "mode": "test"] as [String: AnyObject]
             NetworkManager.sharedInstance.withdrawThroughStripe(params: params) { (status, error, data) in
                 
                 let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)

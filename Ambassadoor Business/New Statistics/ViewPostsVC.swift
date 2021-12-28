@@ -22,7 +22,9 @@ class singlePostCell: UITableViewCell { //reuseId: singlePostCell
 	@IBOutlet weak var viewOnInstaView: ShadowView!
 	
 	var thisPost: InProgressPost!
-	
+    
+    /// Open instagram app through post id to show post
+    /// - Parameter sender: UITapGestureRecognizer referrance optional
 	@objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
 		UseTapticEngine()
 		
@@ -31,7 +33,10 @@ class singlePostCell: UITableViewCell { //reuseId: singlePostCell
 		
 		
 	}
-	
+    
+    /// /// Get meaningful word of post status
+    /// - Parameter status: Post status
+    /// - Returns: text
 	func getLabelTextForStatus(_ status: String) -> String {
 		switch status {
 		case "Posted":
@@ -48,6 +53,10 @@ class singlePostCell: UITableViewCell { //reuseId: singlePostCell
 		}
 	}
 	
+    
+    /// get status color based on status
+    /// - Parameter status: post status
+    /// - Returns: return color
 	func getLabelColorForStatus(_ status: String) -> UIColor {
 		switch status {
 		case "Posted":
@@ -64,6 +73,10 @@ class singlePostCell: UITableViewCell { //reuseId: singlePostCell
 		}
 	}
 	
+    
+    /// Get meaningful word of paid status.
+    /// - Parameter status: post status
+    /// - Returns: text
 	func getPriceSuffixForStatus(_ status: String) -> String {
 		switch status {
 		case "Posted":
@@ -82,6 +95,8 @@ class singlePostCell: UITableViewCell { //reuseId: singlePostCell
 	
 	var addedTap = false
 	
+    
+    /// Update post information
 	func updatePostInformation() {
 		if !addedTap {
 			let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
@@ -114,6 +129,9 @@ class singlePostCell: UITableViewCell { //reuseId: singlePostCell
 	
 	var username: String = ""
 	@IBOutlet weak var usernameButton: UIButton!
+    
+    /// Open instagram app through user profile
+    /// - Parameter sender: UIButton referrance
 	@IBAction func usernameButonPressed(_ sender: Any) {
 		UseTapticEngine()
 		
@@ -124,7 +142,9 @@ class singlePostCell: UITableViewCell { //reuseId: singlePostCell
 }
 
 class ViewPostsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
-	
+    
+    
+//MARK:-  Post list UITableview delegate and datasource
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return posts.count
 	}
@@ -138,6 +158,9 @@ class ViewPostsVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
 		return postCell
 	}
 	
+    
+    /// Dismiss current view controller
+    /// - Parameter sender: UIButton referrance
 	@IBAction func donePressed(_ sender: Any) {
 		if let nav = self.navigationController {
 			nav.popViewController(animated: true)

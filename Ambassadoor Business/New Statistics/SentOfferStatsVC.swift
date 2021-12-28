@@ -11,6 +11,8 @@ import UIKit
 class SentOfferStatsVC: UIViewController, viewAllDelegate {
 	
 	var tempPosts: [InProgressPost] = []
+    /// segue to view one post page if selected one post otherwise view all post page.
+    /// - Parameter posts: get InProgressPost array referrance
 	func viewAllPressed(posts: [InProgressPost]) {
 		tempPosts = posts
 		if posts.count == 1 {
@@ -25,7 +27,7 @@ class SentOfferStatsVC: UIViewController, viewAllDelegate {
 	var thisSentOffer: sentOffer!
     var offerPool: PoolOffer?
     
-	
+    /// Filter inprogress post by instagram post. reload inprogress post data. compute total post, total engagements, Follower reached, total budget and set data.
 	func loadInfo() {
 		
 		let allPosts = GetAllInProgressPosts().filter{$0.PoolOfferId == thisSentOffer.poolId}.filter{$0.instagramPost != nil}
@@ -86,6 +88,9 @@ class SentOfferStatsVC: UIViewController, viewAllDelegate {
 	@IBOutlet weak var topConstraint: NSLayoutConstraint!
 	@IBOutlet weak var backButton: UIButton!
 	
+    
+    /// Dismiss current view controller
+    /// - Parameter sender: UIButton referrance
 	@IBAction func dismissNow(_ sender: Any) {
 		if backButton.title(for: .normal) == "Back" {
 			navigationController?.popViewController(animated: true)
@@ -100,6 +105,9 @@ class SentOfferStatsVC: UIViewController, viewAllDelegate {
 		loadInfo()
     }
 	
+    
+    /// Change back button text as per isDone status
+    /// - Parameter isDone: true or false
 	func doneButton(isDone: Bool) {
 		if isDone {
 			backButton.setTitle("Done", for: .normal)
@@ -112,6 +120,10 @@ class SentOfferStatsVC: UIViewController, viewAllDelegate {
 	
 	var refView: PostViewerVC?
     
+    
+    
+    /// Check if user can edit the filter. segue to edit filter page
+    /// - Parameter sender: UIButton referrance
     @IBAction func toEditFilterAction(sender: UIButton){
         if self.offerPool == nil{
             self.showStandardAlertDialog(title: "Alert", msg: "No Filter Found. Try another Offer") { alert in

@@ -11,6 +11,9 @@ import Firebase
 
 extension sentOffer {
 	
+    
+    /// Get all pool offers from firebase. filter pool offers based on sentout offer. Get offer current status from influencer inprogress post. sort inprogress post by accepted date.
+    /// - Parameter completion: send empty call back.
 	func getDataForOffer(completion: @escaping () -> Void) {
 		self.getPoolOffer { PoolOffer in
 			if let PoolOffer = PoolOffer {
@@ -31,6 +34,10 @@ extension sentOffer {
 	}
 }
 
+/// Get all influencers from firebase and pass to gtSt function.
+/// - Parameters:
+///   - withInfluencerRefresh: pass bool tag if refresh influencers too.
+///   - completion: Pass empty callback
 func RefreshStatistics(withInfluencerRefresh: Bool, completion: @escaping () -> Void) {
 	if withInfluencerRefresh {
 		getInfluencers {
@@ -54,6 +61,8 @@ func GetAllInProgressPosts() -> [InProgressPost] {
 	return totalList
 }
 
+/// Get information about sentout offers from pool offer table.
+/// - Parameter completion: pass empty closure
 func gtSt(completion: @escaping () -> Void) { // "GET STAT", should only be used through the function "RefreshStatistics"
 	print(">> GET STAT ORDER SIZE: \(MyCompany.sentOffers.count)")
 	if MyCompany.sentOffers.count == 0 {
@@ -73,6 +82,8 @@ func gtSt(completion: @escaping () -> Void) { // "GET STAT", should only be used
 
 var InfluencerDatabase: [Influencer] = []
 
+/// Get influencers from firebase
+/// - Parameter completion: pass empty call back.
 func getInfluencers(completion: @escaping () -> Void) {
 	let database = Database.database().reference().child("Accounts/Private/Influencers")
 	database.observeSingleEvent(of: .value) { snap in
