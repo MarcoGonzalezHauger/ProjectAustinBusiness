@@ -51,6 +51,8 @@ var zipCodeDic: [String: ZipCodeData] = [:]
 
 var ZipCodeAPIKey: String?
 
+/// Fetch ZipCodeAPIKey from Firebase. we can dynamically change this ID as per requirement
+/// - Parameter completed: Callback with empty params
 func InitializeZipCodeAPI(completed: (() -> Void)?) {
     let ref = Database.database().reference().child("Admin").child("ZipCodeAPIKey")
     ref.observeSingleEvent(of: .value) { (Snapshot) in

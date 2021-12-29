@@ -23,7 +23,7 @@ var offerPoolListeners: [OfferPoolRefreshDelegate] = []
 //This function only needs to activated ONCE on startup of the app. After that please do not execute it again.
 
 
-
+/// Fetch a Offer pool data from Firebase and add childChanged and childAdded observe for refresh data incase any child added or child changed in Firebase
 func startListeningToOfferPool() {
 	let oneTimeRef = Database.database().reference().child("Pool")
 	oneTimeRef.observeSingleEvent(of: .value) { (snap) in
