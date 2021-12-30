@@ -14,6 +14,7 @@ protocol ImagePickerDelegate {
 	func imagePicked(image: UIImage?, imageUrl: String?)
 }
 
+/// Custom UIImage picker
 class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIScrollViewDelegate {
 	
 	var delegate: ImagePickerDelegate?
@@ -24,10 +25,14 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
 	@IBOutlet weak var imageView: UIImageView!
 	@IBOutlet weak var scrollView: UIScrollView!
 	
+//    Asks the delegate for the imageView to scale when zooming is about to occur in the scroll view.
 	func viewForZooming(in scrollView: UIScrollView) -> UIView? {
 		return imageView
 	}
 	
+    
+    /// set image to crop based on scrollview zoom and scale.
+    /// - Parameter image: picked image
 	func setImageToCrop(image : UIImage) {
 		
 		imageView.image = image
@@ -43,6 +48,7 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
 		
 	}
 	
+    // Crop image as per scroll zoom and content offset.
 	func GetCroppedImage() -> UIImage {
 		let scale : CGFloat = 1 / scrollView.zoomScale
 		let x : CGFloat = scrollView.contentOffset.x * scale
@@ -55,6 +61,10 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
 		return croppedImage
 	}
 	
+    
+    /// Change the cropped image orientation to up.
+    /// - Parameter image: Cropped Image.
+    /// - Returns: Orientated image.
 	func fixOrientation(image: UIImage?) -> UIImage? {
 		guard let image = image else { return nil }
 		if image.imageOrientation == UIImage.Orientation.up {
@@ -70,6 +80,9 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
 		}
 	}
 	
+    
+    /// Crop the image and send cropped image to ImagePickerDelegate delegate method. dismiss current view controller.
+    /// - Parameter sender: UIButton referrance
 	@IBAction func cropImage(_ sender: Any) {
 		
 		let croppedImage = GetCroppedImage()
@@ -81,6 +94,9 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
 		self.dismiss(animated: true, completion: nil)
 	}
 	
+    
+    /// send nil to ImagePickerDelegate delegate method. Dismiss current view controller
+    /// - Parameter sender: UIButton referrance
 	@IBAction func cancel(_ sender: Any) {
 		delegate?.imagePicked(image: nil, imageUrl: nil)
 		self.dismiss(animated: true, completion: nil)
@@ -89,6 +105,8 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
 	let imagePicker = UIImagePickerController()
 	@IBOutlet weak var outView: UIView!
 	
+    
+    /// Initialize scrollview, imagePicker, outView
     override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -101,6 +119,9 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
 	
 	var alreadyPresented: Bool = false
 	
+    
+    /// Check if user has given authorize permisson to access photolibrary. if not ask permission otherwise go to photo library.
+    /// - Parameter animated: true or false
 	override func viewDidAppear(_ animated: Bool) {
 		outView.layer.cornerRadius = outView.bounds.width / 2
 		if alreadyPresented {
@@ -154,6 +175,7 @@ class GetPictureVC: UIViewController, UINavigationControllerDelegate, UIImagePic
 		alreadyPresented = true
 	}
 	
+//  MARK:  UIImagePickerController delegate method
 	@objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 		if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
 			imageView.image = image

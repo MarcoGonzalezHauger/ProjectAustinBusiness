@@ -26,7 +26,7 @@ class MoneyField: UITextField, UITextFieldDelegate {
 		self.delegate = self
 		self.placeholder = updateAmount()
 	}
-		
+//	UITextfield delegate method. Check if user entered valid text
 	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 		if let digit = Int(string) {
 			if moneyValue < 100000000000 {
@@ -76,6 +76,8 @@ class MoneyField: UITextField, UITextFieldDelegate {
 //        self.endEditing(true)
 //    }
     
+    /// Update text as US money format
+    /// - Returns: Optional US money format string
 	func updateAmount() -> String? {
 		let formatter = NumberFormatter()
 		formatter.numberStyle = .currency

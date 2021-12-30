@@ -8,6 +8,8 @@
 
 import Foundation
 
+
+/// singleton NetworkManager class. purpose of this class is reuse NSURLSession class to entire app
 class NetworkManager {
 
     static let sharedInstance = NetworkManager()

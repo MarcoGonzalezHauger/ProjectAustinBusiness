@@ -9,6 +9,8 @@
 import UIKit
 import Foundation
 
+
+/// Return device width and height
 class DeviceManager {
     static let sharedInstance = DeviceManager()
     
@@ -26,6 +28,8 @@ class DeviceManager {
 
 let noIndicator = true //I don't like the activity indicator. ~Marco;
 
+
+/// Comman class to override reuse methods and functions
 class BaseVC: UIViewController {
     
     let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)

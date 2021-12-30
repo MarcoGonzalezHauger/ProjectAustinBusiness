@@ -13,10 +13,13 @@ protocol NCDelegate {
 	func shouldAllowBack() -> Bool
 }
 
+/// Custom UINavigationController
 class StandardNC: UINavigationController, UIGestureRecognizerDelegate {
 	
 	var tempDelegate: NCDelegate?
 	
+    
+    /// set interactivePopGestureRecognizer delegate
 	override func viewDidLoad() {
 		super.viewDidLoad()
         self.interactivePopGestureRecognizer?.delegate = self
@@ -32,7 +35,7 @@ class StandardNC: UINavigationController, UIGestureRecognizerDelegate {
         
     }
     
-	
+//  UIGestureRecognizerDelegate method. if view controller more than one. check if NCDelegate instance created. if created, return shouldAllowBack method(returnd true or false based on user intraction). otherwise dismiss current view controller.
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool{
         if(self.viewControllers.count > 1){
             if let td = tempDelegate {

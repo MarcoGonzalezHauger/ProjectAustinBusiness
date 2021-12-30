@@ -7,6 +7,9 @@
 //
 
 import Foundation
+
+
+/// Singleton DateFormatManager class. Get readable date and send needable date format
 class DateFormatManager: NSObject {
     
     static let sharedInstance = DateFormatManager()

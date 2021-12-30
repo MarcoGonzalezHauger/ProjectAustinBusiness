@@ -11,6 +11,10 @@ class Validation {
     
     static let sharedInstance = Validation()
     
+    
+    /// Check if user entered valid email format
+    /// - Parameter emailStr:entered email
+    /// - Returns: return true if valid email format otherwise false
     func isValidEmail(emailStr:String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         
@@ -120,6 +124,8 @@ class Validation {
     
     
 }
+
+/// Singleton class. purpose of singleton class is create class instance one time and use entire app. 
 class Singleton {
     static let sharedInstance = Singleton()
     
